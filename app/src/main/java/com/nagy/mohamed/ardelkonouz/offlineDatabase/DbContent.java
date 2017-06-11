@@ -42,7 +42,7 @@ public class DbContent {
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 COURSE_NAME_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
-                COURSE_HOURS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                COURSE_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_COST_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_COMPLETE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
@@ -72,7 +72,7 @@ public class DbContent {
         public static final String INSTRUCTOR_AGE_COLUMN = "instructor_age";
 
         public static final String CREATE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
-                _ID + INTEGER + PRIMARY_KEY + "," +
+                _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 INSTRUCTOR_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_CV_COLUMN  + SPACE + BLOB   + "," +
                 INSTRUCTOR_ADDRESS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
@@ -101,7 +101,7 @@ public class DbContent {
         public static final String EMPLOYEE_AGE_COLUMN = "employee_age";
 
         public static final String CREATE_EMPLOYEE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
-                _ID + INTEGER + PRIMARY_KEY + "," +
+                _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 EMPLOYEE_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_ADDRESS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_TOTAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
@@ -133,7 +133,7 @@ public class DbContent {
         public static final String CHILD_STUDY_YEAR_COLUMN = "child_study_year";
 
         public static final String CREATE_CHILD_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
-                _ID + INTEGER + PRIMARY_KEY + "," +
+                _ID + SPACE + INTEGER +  SPACE +PRIMARY_KEY + "," +
                 CHILD_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 CHILD_FATHER_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 CHILD_MOTHER_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
@@ -163,10 +163,10 @@ public class DbContent {
         public static final String CREATE_COURSE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + INSTRUCTOR_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
-                + FOREIGN_KEY + SPACE + COURSE_ID_COLUMN + SPACE + REFERENCES + SPACE
-                + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" + ","
-                + FOREIGN_KEY + SPACE + INSTRUCTOR_ID_COLUMN + SPACE + REFERENCES + SPACE
-                + InstructorTable.TABLE_NAME + SPACE + "(" + InstructorTable._ID + ")" +")";
+                + FOREIGN_KEY + SPACE + "(" + INSTRUCTOR_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                + InstructorTable.TABLE_NAME + SPACE + "(" + InstructorTable._ID + ")"+
+                FOREIGN_KEY + SPACE + "(" +COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +");";
 
         public static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
@@ -186,9 +186,9 @@ public class DbContent {
         public static final String CREATE_CHILD_COURSE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
-                + FOREIGN_KEY + SPACE + COURSE_ID_COLUMN + SPACE + REFERENCES + SPACE
+                + FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" + ","
-                + FOREIGN_KEY + SPACE + CHILD_ID_COLUMN + SPACE + REFERENCES + SPACE
+                + FOREIGN_KEY + SPACE + "(" + CHILD_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + ChildTable.TABLE_NAME + SPACE + "(" + ChildTable._ID + ")" +")";
 
         public static final String CONTENT_TYPE =

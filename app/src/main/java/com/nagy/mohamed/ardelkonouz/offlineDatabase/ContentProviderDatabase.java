@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
  * Created by mohamednagy on 6/10/2017.
@@ -189,6 +190,8 @@ public class ContentProviderDatabase extends ContentProvider {
     public Uri insert(Uri uri, ContentValues contentValues) {
         int match = m_uriMatcher.match(uri);
         Long insertResult = null;
+        Log.e("vvvvvvvvvvvvvvvvvvv",uri.toString() + "vvvvvvvvvvvvvvvvvvv");
+
         switch (match){
             case INSTRUCTOR_TABLE:
                 insertResult = m_dbHelper.getWritableDatabase().insert(

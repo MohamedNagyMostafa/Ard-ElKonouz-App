@@ -10,22 +10,26 @@ import android.util.Log;
  */
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "courses.db";
+    private static final String DATABASE_NAME = "ardElKonouz.db";
 
     private static final int DATABASE_VERSION = 1;
 
     public DbHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        Log.e("DbHelper","vvvvvvvvvvvvvvvvvvv");
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.e("database","onCreated is called");
+        Log.e("database1","vvvvvvvvvvvvvvvvvvv");
+        sqLiteDatabase.execSQL(DbContent.CourseTable.CREATE_COURSE_TABLE);
         sqLiteDatabase.execSQL(DbContent.ChildTable.CREATE_CHILD_TABLE);
         sqLiteDatabase.execSQL(DbContent.InstructorTable.CREATE_INSTRUCTOR_TABLE);
-        sqLiteDatabase.execSQL(DbContent.CourseTable.CREATE_COURSE_TABLE);
-        sqLiteDatabase.execSQL(DbContent.CourseInstructorTable.CREATE_COURSE_INSTRUCTOR_TABLE);
         sqLiteDatabase.execSQL(DbContent.ChildCourseTable.CREATE_CHILD_COURSE_TABLE);
+        sqLiteDatabase.execSQL(DbContent.CourseInstructorTable.CREATE_COURSE_INSTRUCTOR_TABLE);
+        Log.e("database2","vvvvvvvvvvvvvvvvvvv");
+
 
     }
 
