@@ -7,7 +7,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 /**
@@ -72,7 +71,6 @@ public class ContentProviderDatabase extends ContentProvider {
         return true;
     }
 
-    @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
@@ -172,7 +170,6 @@ public class ContentProviderDatabase extends ContentProvider {
         }
     }
 
-    @Nullable
     @Override
     public String getType(Uri uri) {
 
@@ -208,7 +205,6 @@ public class ContentProviderDatabase extends ContentProvider {
         return null;
     }
 
-    @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
         int match = m_uriMatcher.match(uri);
@@ -473,6 +469,87 @@ public class ContentProviderDatabase extends ContentProvider {
 
         }
         return 0;
+    }
+
+    @Override
+    public int bulkInsert(Uri uri, ContentValues[] values) {
+        int match = m_uriMatcher.match(uri);
+        int counter = 0;
+
+        switch (match){
+            case INSTRUCTOR_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                     m_dbHelper.getWritableDatabase().insert(
+                            DbContent.InstructorTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
+
+            case CHILD_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.ChildTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
+
+            case COURSE_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.CourseTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
+
+            case EMPLOYEE_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.EmployeeTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
+
+            case CHILD_COURSE_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.ChildCourseTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
+
+            case INSTRUCTOR_COURSE_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.CourseInstructorTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
+
+
+            default:
+                throw new UnsupportedOperationException("Unknown Uri : " + uri);
+        }
+
+
+        return counter;
     }
 
     private UriMatcher buildUriMatcher(){
