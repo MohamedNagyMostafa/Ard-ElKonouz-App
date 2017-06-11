@@ -21,6 +21,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int CHILD_TABLE = 0;
     private static final int COURSE_TABLE = 1;
     private static final int INSTRUCTOR_TABLE = 10;
+    private static final int EMPLOYEE_TABLE = 111;
     private static final int CHILD_COURSE_TABLE = 11;
     private static final int INSTRUCTOR_COURSE_TABLE = 110;
     private static final int CHILD_WITH_ID_TABLE = 1010;
@@ -30,6 +31,8 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int CHILD_COURSE_WITH_COURSE_ID_TABLE = 11111;
     private static final int INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE = 10101;
     private static final int INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE = 10011;
+    private static final int EMPLOYEE_WITH_ID_TABLE = 10111;
+
 
     private static final String INNER_JOIN = "INNER JOINT";
     private static final String ON = "ON";
@@ -129,6 +132,17 @@ public class ContentProviderDatabase extends ContentProvider {
                         sortOrder
                 );
 
+            case EMPLOYEE_TABLE:
+                return m_dbHelper.getReadableDatabase().query(
+                        DbContent.EmployeeTable.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+
             case CHILD_WITH_ID_TABLE:
                 return getChildWithId(uri, projection, sortOrder);
 
@@ -137,6 +151,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case COURSE_WITH_ID_TABLE:
                 return getCourseWithId(uri, projection, sortOrder);
+
+            case EMPLOYEE_WITH_ID_TABLE:
+                return getEmployeeWithId(uri, projection, sortOrder);
 
             case INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE:
                 return getCourseInstructorWithCourseId(uri, projection, sortOrder);
@@ -171,6 +188,12 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case COURSE_TABLE:
                 return DbContent.CourseTable.CONTENT_TYPE;
+
+            case EMPLOYEE_TABLE:
+                return DbContent.EmployeeTable.CONTENT_TYPE;
+
+            case EMPLOYEE_WITH_ID_TABLE:
+                return DbContent.EmployeeTable.CONTENT_ITEM_TYPE;
 
             case INSTRUCTOR_WITH_ID_TABLE:
                 return DbContent.InstructorTable.CONTENT_ITEM_TYPE;
@@ -217,6 +240,14 @@ public class ContentProviderDatabase extends ContentProvider {
                 );
                 break;
 
+            case EMPLOYEE_TABLE:
+                insertResult = m_dbHelper.getWritableDatabase().insert(
+                        DbContent.EmployeeTable.TABLE_NAME,
+                        null,
+                        contentValues
+                );
+                break;
+
             case CHILD_COURSE_TABLE:
                 insertResult = m_dbHelper.getWritableDatabase().insert(
                         DbContent.ChildCourseTable.TABLE_NAME,
@@ -232,6 +263,8 @@ public class ContentProviderDatabase extends ContentProvider {
                         contentValues
                 );
                 break;
+
+
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
         }
@@ -267,6 +300,13 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
+            case EMPLOYEE_TABLE:
+                return m_dbHelper.getWritableDatabase().delete(
+                        DbContent.EmployeeTable.TABLE_NAME,
+                        selection,
+                        selectionArgs
+                );
+
             case INSTRUCTOR_COURSE_TABLE:
                 return m_dbHelper.getWritableDatabase().delete(
                         DbContent.CourseInstructorTable.TABLE_NAME,
@@ -280,6 +320,9 @@ public class ContentProviderDatabase extends ContentProvider {
                         selection,
                         selectionArgs
                 );
+
+            case EMPLOYEE_WITH_ID_TABLE:
+                return deleteRowWithId(DbContent.EmployeeTable.TABLE_NAME, uri, DbContent.EmployeeTable._ID);
 
             case COURSE_WITH_ID_TABLE:
                 return deleteRowWithId(DbContent.CourseTable.TABLE_NAME, uri, DbContent.CourseTable._ID);
@@ -339,6 +382,14 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
+            case EMPLOYEE_TABLE:
+                return m_dbHelper.getWritableDatabase().update(
+                        DbContent.EmployeeTable.TABLE_NAME,
+                        contentValues,
+                        selection,
+                        selectionArgs
+                );
+
             case CHILD_COURSE_TABLE:
                 return m_dbHelper.getWritableDatabase().update(
                         DbContent.ChildCourseTable.TABLE_NAME,
@@ -378,6 +429,15 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.CourseTable.TABLE_NAME,
                         DbContent.CourseTable._ID
                 );
+
+            case EMPLOYEE_WITH_ID_TABLE:
+                return updateRowWithId(
+                        uri,
+                        contentValues,
+                        DbContent.EmployeeTable.TABLE_NAME,
+                        DbContent.EmployeeTable._ID
+                );
+
 
             case INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE:
                 return updateRowWithId(
@@ -421,9 +481,11 @@ public class ContentProviderDatabase extends ContentProvider {
         final String CHILD_PATH = DbContent.ChildTable.TABLE_NAME;
         final String COURSE_PATH = DbContent.CourseTable.TABLE_NAME;
         final String INSTRUCTOR_PATH = DbContent.InstructorTable.TABLE_NAME;
+        final String EMPLOYEE_PATH = DbContent.EmployeeTable.TABLE_NAME;
         final String CHILD_COURSE_PATH = DbContent.ChildCourseTable.TABLE_NAME;
         final String INSTRUCTOR_COURSE_PATH = DbContent.CourseInstructorTable.TABLE_NAME;
         final String CHILD_WITH_ID_PATH = DbContent.ChildTable.TABLE_NAME + "/#";
+        final String EMPLOYEE_WITH_ID_PATH = DbContent.EmployeeTable.TABLE_NAME + "/#";
         final String COURSE_WITH_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/#";
         final String INSTRUCTOR_WITH_ID_PATH = DbContent.InstructorTable.TABLE_NAME + "/#";
         final String CHILD_COURSE_WITH_CHILD_ID_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
@@ -443,6 +505,8 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_PATH, INSTRUCTOR_COURSE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_ID_PATH, CHILD_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_ID_PATH, COURSE_WITH_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_PATH, EMPLOYEE_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_ID_PATH, EMPLOYEE_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_ID_PATH, INSTRUCTOR_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_CHILD_ID_PATH, CHILD_COURSE_WITH_CHILD_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_COURSE_ID_PATH, CHILD_COURSE_WITH_COURSE_ID_TABLE);
@@ -477,6 +541,23 @@ public class ContentProviderDatabase extends ContentProvider {
 
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getEmployeeWithId(Uri uri, String[] projection, String sortOrder){
+        long columnId = ContentUris.parseId(uri);
+
+        String selection = DbContent.EmployeeTable._ID +"=?";
+        String[] selectionArgs = {String.valueOf(columnId)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.EmployeeTable.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,

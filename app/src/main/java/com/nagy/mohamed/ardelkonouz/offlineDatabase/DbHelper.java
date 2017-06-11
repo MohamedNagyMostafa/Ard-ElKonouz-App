@@ -22,15 +22,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.e("database1","vvvvvvvvvvvvvvvvvvv");
         sqLiteDatabase.execSQL(DbContent.CourseTable.CREATE_COURSE_TABLE);
         sqLiteDatabase.execSQL(DbContent.ChildTable.CREATE_CHILD_TABLE);
         sqLiteDatabase.execSQL(DbContent.InstructorTable.CREATE_INSTRUCTOR_TABLE);
+        sqLiteDatabase.execSQL(DbContent.EmployeeTable.CREATE_EMPLOYEE_TABLE);
         sqLiteDatabase.execSQL(DbContent.ChildCourseTable.CREATE_CHILD_COURSE_TABLE);
         sqLiteDatabase.execSQL(DbContent.CourseInstructorTable.CREATE_COURSE_INSTRUCTOR_TABLE);
-        Log.e("database2","vvvvvvvvvvvvvvvvvvv");
-
-
     }
 
     @Override
