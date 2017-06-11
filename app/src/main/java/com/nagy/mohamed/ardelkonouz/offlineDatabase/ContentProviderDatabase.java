@@ -34,7 +34,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int EMPLOYEE_WITH_ID_TABLE = 10111;
 
 
-    private static final String INNER_JOIN = "INNER JOINT";
+    private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
 
     private static final SQLiteQueryBuilder COURSE_INSTRUCTOR_QUERY =
@@ -69,7 +69,7 @@ public class ContentProviderDatabase extends ContentProvider {
     @Override
     public boolean onCreate() {
         m_dbHelper = new DbHelper(getContext());
-        return false;
+        return true;
     }
 
     @Nullable
@@ -512,7 +512,6 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_COURSE_ID_PATH, CHILD_COURSE_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_PATH, INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_WITH_COURSE_ID_PATH, INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE);
-
         return uriMatcher;
     }
 

@@ -16,12 +16,14 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public DbHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        Log.e("DbHelper","vvvvvvvvvvvvvvvvvvv");
+        Log.e("DbHelper","cccccccccccccccccccccc");
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        Log.e("create helper called", "cccccccccccccccccccccc");
+
         sqLiteDatabase.execSQL(DbContent.CourseTable.CREATE_COURSE_TABLE);
         sqLiteDatabase.execSQL(DbContent.ChildTable.CREATE_CHILD_TABLE);
         sqLiteDatabase.execSQL(DbContent.InstructorTable.CREATE_INSTRUCTOR_TABLE);
@@ -32,6 +34,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        Log.e("upgrade called", "cccccccccccccccccccccc");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.ChildTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.InstructorTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.CourseTable.TABLE_NAME);
