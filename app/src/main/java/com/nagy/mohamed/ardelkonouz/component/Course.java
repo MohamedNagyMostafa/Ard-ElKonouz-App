@@ -5,7 +5,7 @@ package com.nagy.mohamed.ardelkonouz.component;
  */
 public class Course {
     private String m_name;
-    private Integer m_hours;
+    private Double m_hours;
     private Double m_cost;
     private Boolean m_completed;
     private Long m_startDate;
@@ -14,7 +14,7 @@ public class Course {
     private Short m_endAge;
     private Integer m_level;
 
-    public Course(String name, Integer hours, Double cost, Boolean completed,
+    public Course(String name, Double hours, Double cost, Boolean completed,
                   Long startDate, Long endDate, Integer level,
                   Short startAge, Short endAge){
         m_name = name;
@@ -36,7 +36,7 @@ public class Course {
         return m_cost;
     }
 
-    public Integer getM_hours() {
+    public Double getM_hours() {
         return m_hours;
     }
 
