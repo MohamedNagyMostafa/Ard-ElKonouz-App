@@ -70,6 +70,9 @@ public class DbContent {
         public static final String INSTRUCTOR_MOBILE_COLUMN = "instructor_mobile";
         public static final String INSTRUCTOR_QUALIFICATION_COLUMN = "instructor_qualification";
         public static final String INSTRUCTOR_AGE_COLUMN = "instructor_age";
+        public static final String INSTRUCTOR_HOURS_PER_DAY_COLUMN = "instructor_hours_per_day";
+        public static final String INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN = "instructor_original_hours_per_day";
+        public static final String INSTRUCTOR_GENDER_COLUMN = "instructor_gender";
 
         public static final String CREATE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
@@ -78,6 +81,9 @@ public class DbContent {
                 INSTRUCTOR_ADDRESS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_TOTAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_MOBILE_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
+                INSTRUCTOR_GENDER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                INSTRUCTOR_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_QUALIFICATION_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
@@ -99,6 +105,9 @@ public class DbContent {
         public static final String EMPLOYEE_MOBILE_COLUMN = "employee_mobile";
         public static final String EMPLOYEE_QUALIFICATION_COLUMN = "employee_qualification";
         public static final String EMPLOYEE_AGE_COLUMN = "employee_age";
+        public static final String EMPLOYEE_HOURS_PER_DAY_COLUMN = "employee_hours_per_day";
+        public static final String EMPLOYEE_ORIGINAL_HOURS_PER_DAY_COLUMN = "employee_original_hours_per_day";
+        public static final String EMPLOYEE_GENDER_COLUMN = "employee_gender";
 
         public static final String CREATE_EMPLOYEE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
@@ -106,6 +115,9 @@ public class DbContent {
                 EMPLOYEE_ADDRESS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_TOTAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
                 EMPLOYEE_MOBILE_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
+                EMPLOYEE_GENDER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                EMPLOYEE_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                EMPLOYEE_ORIGINAL_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 EMPLOYEE_QUALIFICATION_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
@@ -131,6 +143,11 @@ public class DbContent {
         public static final String CHILD_AGE_COLUMN = "child_age";
         public static final String CHILD_EDUCATION_TYPE_COLUMN = "education_type";
         public static final String CHILD_STUDY_YEAR_COLUMN = "child_study_year";
+        public static final String CHILD_BIRTH_ORDER_COLUMN = "child_birth_order";
+        public static final String CHILD_HANDLING_COLUMN = "child_handling";
+        public static final String CHILD_TRAITS_COLUMN = "child_traits";
+        public static final String CHILD_FREE_TIME_COLUMN = "child_free_time";
+        public static final String CHILD_GENDER_COLUMN = "child_gender";
 
         public static final String CREATE_CHILD_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER +  SPACE +PRIMARY_KEY + "," +
@@ -143,6 +160,11 @@ public class DbContent {
                 CHILD_MOTHER_QUALIFICATION_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_EDUCATION_TYPE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_BIRTH_ORDER_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_HANDLING_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_TRAITS_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_FREE_TIME_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_GENDER_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_STUDY_YEAR_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
         public static final String CONTENT_TYPE =
@@ -182,10 +204,12 @@ public class DbContent {
 
         public static final String COURSE_ID_COLUMN = "course_id";
         public static final String CHILD_ID_COLUMN = "child_id";
+        public static final String CHILD_COURSE_COMPLETED = "child_course_completed";
 
         public static final String CREATE_CHILD_COURSE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + CHILD_COURSE_COMPLETED + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" + ","
                 + FOREIGN_KEY + SPACE + "(" + CHILD_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
