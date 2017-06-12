@@ -24,6 +24,8 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        databaseTesting();
+
 
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -39,7 +41,7 @@ public class MainActivityFragment extends Fragment {
         contentValues.put(DbContent.CourseTable.COURSE_COMPLETE_COLUMN, 1);
         contentValues.put(DbContent.CourseTable.COURSE_COST_COLUMN, 1);
         contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 1);
-        contentValues.put(DbContent.CourseTable.COURSE_NAME_COLUMN, 1);
+        contentValues.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "android");
         getContext().getContentResolver().insert(DbContent.CourseTable.CONTENT_URI, contentValues );
         // Test Join
         ContentValues contentValues2 = new ContentValues();
@@ -49,6 +51,10 @@ public class MainActivityFragment extends Fragment {
         contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN, 2);
         contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_QUALIFICATION_COLUMN, 2);
         contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN, 2);
+        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN, 1);
+        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_HOURS_PER_DAY_COLUMN, 1);
+        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN, 1);
+
         getContext().getContentResolver().insert(DbContent.InstructorTable.CONTENT_URI, contentValues2 );
         ContentValues contentValues1 = new ContentValues();
         contentValues1.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN, 1);
@@ -56,14 +62,20 @@ public class MainActivityFragment extends Fragment {
         getContext().getContentResolver().insert(DbContent.CourseInstructorTable.CONTENT_URI, contentValues1 );
 
         Cursor cursor = getContext().getContentResolver().query(
-                DbContent.CourseInstructorTable.CONTENT_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME).appendPath(String.valueOf(2)).build(),
+                DbContent.CourseInstructorTable.CONTENT_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME).appendPath(String.valueOf(1)).build(),
                 null,
                 null,
                 null,
                 null);
+        Log.e("result",String.valueOf(cursor.getCount()));
+        for(String name: cursor.getColumnNames()){
+            Log.e("result",name);
+        }
         if(cursor.getCount() != 0) {
             cursor.moveToFirst();
             Log.e("result", cursor.getString(cursor.getColumnIndex(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN)));
+            Log.e("result", cursor.getString(cursor.getColumnIndex(DbContent.CourseTable.COURSE_NAME_COLUMN)));
+
         }
         cursor.close();
     }

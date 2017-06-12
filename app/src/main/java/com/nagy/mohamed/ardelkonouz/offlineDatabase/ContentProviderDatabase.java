@@ -46,7 +46,12 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.SPACE + ON + DbContent.SPACE +  DbContent.InstructorTable.TABLE_NAME +
                         "." + DbContent.InstructorTable._ID +
                         "=" + DbContent.CourseInstructorTable.TABLE_NAME + "." +
-                        DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN
+                        DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.CourseTable.TABLE_NAME +
+                        "." + DbContent.CourseTable._ID +
+                        "=" + DbContent.CourseInstructorTable.TABLE_NAME + "." +
+                        DbContent.CourseInstructorTable.COURSE_ID_COLUMN
         );
     }
 
@@ -60,7 +65,12 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.SPACE + ON + DbContent.SPACE + DbContent.ChildTable.TABLE_NAME +
                         "." + DbContent.ChildTable._ID +
                         "=" + DbContent.ChildCourseTable.TABLE_NAME + "." +
-                        DbContent.ChildCourseTable.CHILD_ID_COLUMN
+                        DbContent.ChildCourseTable.CHILD_ID_COLUMN + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.CourseTable.TABLE_NAME +
+                        "." + DbContent.CourseTable._ID +
+                        "=" + DbContent.ChildCourseTable.TABLE_NAME + "." +
+                        DbContent.ChildCourseTable.COURSE_ID_COLUMN
         );
     }
 
@@ -75,7 +85,8 @@ public class ContentProviderDatabase extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         int match = m_uriMatcher.match(uri);
-
+        Log.e("query",uri.toString());
+        Log.e("match",String.valueOf(match));
         switch(match){
             case CHILD_TABLE:
                 return m_dbHelper.getReadableDatabase().query(
