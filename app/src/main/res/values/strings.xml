@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Ard El Konouz</string>
     <string name="action_settings">Settings</string>
+
+    <string name="child_list">Kids</string>
+    <string name="course_list">Courses</string>
+    <string name="instructor_list">Instructors</string>
+    <string name="employee_list">Employees</string>
+
 </resources>
