@@ -7,5 +7,23 @@
     <string name="instructor_list">Instructors</string>
     <string name="employee_list">Employees</string>
     <string name="title_activity_kid">KidActivity</string>
+    <string name="title_activity_kid_profile">KidProfileActivity</string>
+
+    <string name="personal_info">Personal Info</string>
+    <string name="education_info">Education Info</string>
+    <string name="iq_questions">IQ Questions Info</string>
+    <string name="family_info">Family Info</string>
+    <string name="mother_name">Mother Name</string>
+    <string name="mother_mobile">Mother Mobile</string>
+    <string name="mother_qualification">Mother Qualification</string>
+    <string name="father_name">Father Name</string>
+    <string name="father_mobile">Father Mobile</string>
+    <string name="whats_app">WhatsApp</string>
+    <string name="academic_year">Academic Year</string>
+    <string name="education_type">Education Type</string>
+    <string name="iq_1q">What are the child characteristics ?</string>
+    <string name="iq_2q">How can the child deal with problems ?</string>
+    <string name="id_3q">What does the child do in free time ?</string>
+    <string name="empty_info">-------</string>
 
 </resources>

@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:2:1-36:12
 	package
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:3:5-43
 		INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml
@@ -14,7 +14,7 @@ ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\
 		INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml
 application
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:5:5-30:19
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:5:5-34:19
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-v4:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\AndroidManifest.xml:29:5-20
@@ -131,13 +131,21 @@ ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\
 	android:name
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:23:13-68
 activity#com.nagy.mohamed.ardelkonouz.KidActivity
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:26:9-29:68
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:26:9-29:59
 	android:label
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:28:13-55
 	android:theme
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:29:13-56
 	android:name
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:27:13-40
+activity#com.nagy.mohamed.ardelkonouz.KidProfileActivity
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:30:9-33:68
+	android:label
+		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:32:13-63
+	android:theme
+		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:33:13-56
+	android:name
+		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:31:13-47
 uses-sdk
 INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\AndroidManifest.xml:21:5-23:78

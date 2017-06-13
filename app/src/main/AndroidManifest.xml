@@ -26,6 +26,10 @@
         <activity
             android:name=".KidActivity"
             android:label="@string/title_activity_kid"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".KidProfileActivity"
+            android:label="@string/title_activity_kid_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

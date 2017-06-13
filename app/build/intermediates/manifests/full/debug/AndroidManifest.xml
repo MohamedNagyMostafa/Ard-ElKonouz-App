@@ -37,6 +37,10 @@
             android:name="com.nagy.mohamed.ardelkonouz.KidActivity"
             android:label="@string/title_activity_kid"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.KidProfileActivity"
+            android:label="@string/title_activity_kid_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
