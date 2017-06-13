@@ -18,9 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name=".offlineDatabase.ContentProviderDatabase"
             android:authorities="com.nagy.mohamed.ardelkonouz" />
+
+        <activity
+            android:name=".KidActivity"
+            android:label="@string/title_activity_kid"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

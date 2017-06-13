@@ -6,5 +6,6 @@
     <string name="course_list">Courses</string>
     <string name="instructor_list">Instructors</string>
     <string name="employee_list">Employees</string>
+    <string name="title_activity_kid">KidActivity</string>
 
 </resources>

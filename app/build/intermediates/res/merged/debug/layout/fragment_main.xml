@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/main_background"
+    android:background="@android:color/transparent"
     tools:context="com.nagy.mohamed.ardelkonouz.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
@@ -34,6 +34,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/child_list_layout"
                         android:layout_margin="8dp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -72,6 +73,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/employee_list_layout"
                         android:layout_margin="8dp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -129,6 +131,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/instructor_list_layout"
                         android:layout_margin="8dp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -165,6 +168,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/course_list_layout"
                         android:layout_margin="8dp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -210,6 +214,7 @@
 
 
         <LinearLayout
+            android:id="@+id/finance_layout"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -234,6 +239,7 @@
 
 
         <LinearLayout
+            android:id="@+id/salary_layout"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"

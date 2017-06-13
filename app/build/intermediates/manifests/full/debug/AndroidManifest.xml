@@ -32,6 +32,11 @@
         <provider
             android:name="com.nagy.mohamed.ardelkonouz.offlineDatabase.ContentProviderDatabase"
             android:authorities="com.nagy.mohamed.ardelkonouz" />
+
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.KidActivity"
+            android:label="@string/title_activity_kid"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
