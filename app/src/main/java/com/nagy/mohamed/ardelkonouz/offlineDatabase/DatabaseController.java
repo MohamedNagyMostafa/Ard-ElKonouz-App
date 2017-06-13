@@ -50,7 +50,9 @@ public class DatabaseController {
                 DbContent.ChildTable.CHILD_FREE_TIME_COLUMN,
                 DbContent.ChildTable.CHILD_TRAITS_COLUMN,
                 DbContent.ChildTable.CHILD_HANDLING_COLUMN,
-                DbContent.ChildTable.CHILD_BIRTH_ORDER_COLUMN
+                DbContent.ChildTable.CHILD_BIRTH_ORDER_COLUMN,
+                DbContent.ChildTable.CHILD_FATHER_JOB_COLUMN,
+                DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN
         };
 
         public static final int CHILD_ID = 0;
@@ -69,6 +71,8 @@ public class DatabaseController {
         public static final int CHILD_TRAITS = 13;
         public static final int CHILD_HANDLING = 14;
         public static final int CHILD_BIRTH_ORDER = 15;
+        public static final int CHILD_FATHER_JOB = 16;
+        public static final int CHILD_MOTHER_JOB = 17;
 
         public static final String[] EMPLOYEE_PROJECTION = {
                 DbContent.EmployeeTable.TABLE_NAME + "." + DbContent.EmployeeTable._ID,
@@ -165,6 +169,8 @@ public class DatabaseController {
                 DbContent.ChildTable.CHILD_TRAITS_COLUMN,
                 DbContent.ChildTable.CHILD_HANDLING_COLUMN,
                 DbContent.ChildTable.CHILD_BIRTH_ORDER_COLUMN,
+                DbContent.ChildTable.CHILD_FATHER_JOB_COLUMN,
+                DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN,
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED
@@ -193,10 +199,12 @@ public class DatabaseController {
         public static final int COURSE_CHILD_JOIN_CHILD_FREE_TIME_COLUMN = 20;
         public static final int COURSE_CHILD_JOIN_CHILD_TRAITS_COLUMN = 21;
         public static final int COURSE_CHILD_JOIN_CHILD_HANDLING_COLUMN = 22;
-        public static final int COURSE_CHILD_JOIN_CHILD_BIRTH_ORDER_COLUMN = 23;
-        public static final int COURSE_CHILD_JOIN_COURSE_ID_COLUMN = 24;
-        public static final int COURSE_CHILD_JOIN_CHILD_ID_COLUMN = 25;
-        public static final int COURSE_CHILD_JOIN_CHILD_COURSE_COMPLETED = 26;
+        public static final int COURSE_CHILD_JOIN_CHILD_FATHER_JOB_COLUMN = 23;
+        public static final int COURSE_CHILD_JOIN_CHILD_MOTHER_JOB_COLUMN = 24;
+        public static final int COURSE_CHILD_JOIN_CHILD_BIRTH_ORDER_COLUMN = 25;
+        public static final int COURSE_CHILD_JOIN_COURSE_ID_COLUMN = 26;
+        public static final int COURSE_CHILD_JOIN_CHILD_ID_COLUMN = 27;
+        public static final int COURSE_CHILD_JOIN_CHILD_COURSE_COMPLETED = 28;
 
         public static final String[] COURSE_INSTRUCTOR_JOIN_TABLE = {
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,

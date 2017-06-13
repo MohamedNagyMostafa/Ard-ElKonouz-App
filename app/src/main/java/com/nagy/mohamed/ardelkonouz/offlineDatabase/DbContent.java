@@ -148,6 +148,8 @@ public class DbContent {
         public static final String CHILD_TRAITS_COLUMN = "child_traits";
         public static final String CHILD_FREE_TIME_COLUMN = "child_free_time";
         public static final String CHILD_GENDER_COLUMN = "child_gender";
+        public static final String CHILD_FATHER_JOB_COLUMN = "father_job";
+        public static final String CHILD_MOTHER_JOB_COLUMN = "mother_job";
 
         public static final String CREATE_CHILD_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER +  SPACE +PRIMARY_KEY + "," +
@@ -165,7 +167,9 @@ public class DbContent {
                 CHILD_TRAITS_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_FREE_TIME_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_GENDER_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                CHILD_STUDY_YEAR_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
+                CHILD_STUDY_YEAR_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL +
+                CHILD_FATHER_JOB_COLUMN  + SPACE + TEXT + NOT_NULL + "," +
+                CHILD_MOTHER_JOB_COLUMN  + SPACE + TEXT + NOT_NULL + ");";
 
         public static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
