@@ -66,12 +66,12 @@ public class DbContent {
         public static final String INSTRUCTOR_NAME_COLUMN = "instructor_name";
         public static final String INSTRUCTOR_CV_COLUMN = "instructor_cv";
         public static final String INSTRUCTOR_ADDRESS_COLUMN = "instructor_address";
-        public static final String INSTRUCTOR_TOTAL_SALARY_COLUMN = "instructor_total_salary";
+        public static final String INSTRUCTOR_ORIGINAL_SALARY_COLUMN = "instructor_original_salary";
         public static final String INSTRUCTOR_MOBILE_COLUMN = "instructor_mobile";
         public static final String INSTRUCTOR_QUALIFICATION_COLUMN = "instructor_qualification";
         public static final String INSTRUCTOR_AGE_COLUMN = "instructor_age";
-        public static final String INSTRUCTOR_HOURS_PER_DAY_COLUMN = "instructor_hours_per_day";
-        public static final String INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN = "instructor_original_hours_per_day";
+        public static final String INSTRUCTOR_CHANGING_HOURS_COLUMN = "instructor_changing_hours";
+        public static final String INSTRUCTOR_ORIGINAL_HOURS_COLUMN = "instructor_original_hours";
         public static final String INSTRUCTOR_GENDER_COLUMN = "instructor_gender";
 
         public static final String CREATE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
@@ -79,11 +79,11 @@ public class DbContent {
                 INSTRUCTOR_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_CV_COLUMN  + SPACE + BLOB   + "," +
                 INSTRUCTOR_ADDRESS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
-                INSTRUCTOR_TOTAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
+                INSTRUCTOR_ORIGINAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_MOBILE_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_GENDER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                INSTRUCTOR_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                INSTRUCTOR_CHANGING_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
+                INSTRUCTOR_ORIGINAL_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_QUALIFICATION_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
@@ -101,23 +101,23 @@ public class DbContent {
 
         public static final String EMPLOYEE_NAME_COLUMN = "employee_name";
         public static final String EMPLOYEE_ADDRESS_COLUMN = "employee_address";
-        public static final String EMPLOYEE_TOTAL_SALARY_COLUMN = "employee_total_salary";
+        public static final String EMPLOYEE_ORIGINAL_SALARY_COLUMN = "employee_original_salary";
         public static final String EMPLOYEE_MOBILE_COLUMN = "employee_mobile";
         public static final String EMPLOYEE_QUALIFICATION_COLUMN = "employee_qualification";
         public static final String EMPLOYEE_AGE_COLUMN = "employee_age";
-        public static final String EMPLOYEE_HOURS_PER_DAY_COLUMN = "employee_hours_per_day";
-        public static final String EMPLOYEE_ORIGINAL_HOURS_PER_DAY_COLUMN = "employee_original_hours_per_day";
+        public static final String EMPLOYEE_CHANGING_HOURS_COLUMN = "employee_changing_hours";
+        public static final String EMPLOYEE_ORIGINAL_HOURS_COLUMN = "employee_original_hours";
         public static final String EMPLOYEE_GENDER_COLUMN = "employee_gender";
 
         public static final String CREATE_EMPLOYEE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 EMPLOYEE_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_ADDRESS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
-                EMPLOYEE_TOTAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
+                EMPLOYEE_ORIGINAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
                 EMPLOYEE_MOBILE_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_GENDER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                EMPLOYEE_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                EMPLOYEE_ORIGINAL_HOURS_PER_DAY_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                EMPLOYEE_CHANGING_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
+                EMPLOYEE_ORIGINAL_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 EMPLOYEE_QUALIFICATION_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 

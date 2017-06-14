@@ -79,11 +79,11 @@ public class DatabaseController {
                 DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN,
                 DbContent.EmployeeTable.EMPLOYEE_ADDRESS_COLUMN,
                 DbContent.EmployeeTable.EMPLOYEE_MOBILE_COLUMN,
-                DbContent.EmployeeTable.EMPLOYEE_TOTAL_SALARY_COLUMN,
+                DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_SALARY_COLUMN,
                 DbContent.EmployeeTable.EMPLOYEE_QUALIFICATION_COLUMN,
                 DbContent.EmployeeTable.EMPLOYEE_AGE_COLUMN,
-                DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_HOURS_PER_DAY_COLUMN,
-                DbContent.EmployeeTable.EMPLOYEE_HOURS_PER_DAY_COLUMN,
+                DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_HOURS_COLUMN,
+                DbContent.EmployeeTable.EMPLOYEE_CHANGING_HOURS_COLUMN,
                 DbContent.EmployeeTable.EMPLOYEE_GENDER_COLUMN
         };
 
@@ -91,11 +91,11 @@ public class DatabaseController {
         public static final int EMPLOYEE_NAME = 1;
         public static final int EMPLOYEE_ADDRESS = 2;
         public static final int EMPLOYEE_MOBILE = 3;
-        public static final int EMPLOYEE_TOTAL_SALARY = 4;
+        public static final int EMPLOYEE_ORIGINAL_SALARY = 4;
         public static final int EMPLOYEE_QUALIFICATION = 5;
         public static final int EMPLOYEE_AGE = 6;
-        public static final int EMPLOYEE_ORIGINAL_HOURS_PER_DAY = 7;
-        public static final int EMPLOYEE_HOURS_PER_DAY = 8;
+        public static final int EMPLOYEE_ORIGINAL_HOURS = 7;
+        public static final int EMPLOYEE_CHANGING_HOURS = 8;
         public static final int EMPLOYEE_GENDER = 9;
 
         public static final String[] INSTRUCTOR_TABLE_PROJECTION = {
@@ -103,12 +103,12 @@ public class DatabaseController {
                 DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_TOTAL_SALARY_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_SALARY_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_QUALIFICATION_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_CV_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_HOURS_PER_DAY_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_CHANGING_HOURS_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN
 
         };
@@ -117,12 +117,12 @@ public class DatabaseController {
         public static final int INSTRUCTOR_NAME = 1;
         public static final int INSTRUCTOR_ADDRESS = 2;
         public static final int INSTRUCTOR_MOBILE = 3;
-        public static final int INSTRUCTOR_TOTAL_SALARY = 4;
+        public static final int INSTRUCTOR_ORIGINAL_SALARY = 4;
         public static final int INSTRUCTOR_QUALIFICATION = 5;
         public static final int INSTRUCTOR_AGE = 6;
         public static final int INSTRUCTOR_CV = 7;
-        public static final int INSTRUCTOR_ORIGINAL_HOURS_PER_DAY = 8;
-        public static final int INSTRUCTOR_HOURS_PER_DAY = 9;
+        public static final int INSTRUCTOR_ORIGINAL_HOURS = 8;
+        public static final int INSTRUCTOR_CHANGING_HOURS = 9;
         public static final int INSTRUCTOR_GENDER = 10;
 
 
@@ -212,12 +212,12 @@ public class DatabaseController {
                 DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_TOTAL_SALARY_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_SALARY_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_QUALIFICATION_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_CV_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_HOURS_PER_DAY_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_CHANGING_HOURS_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseTable.COURSE_HOURS_COLUMN,
@@ -235,12 +235,12 @@ public class DatabaseController {
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_NAME_COLUMN = 2;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ADDRESS_COLUMN = 3;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_MOBILE_COLUMN = 4;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_TOTAL_SALARY_COLUMN = 5;
+        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ORIGINAL_SALARY_COLUMN = 5;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_QUALIFICATION_COLUMN = 6;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_AGE_COLUMN = 7;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_CV_COLUMN = 8;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN = 9;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_HOURS_PER_DAY_COLUMN = 10;
+        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ORIGINAL_HOURS_COLUMN = 9;
+        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_CHANGING_HOURS_COLUMN = 10;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_GENDER_COLUMN = 11;
         public static final int COURSE_INSTRUCTOR_JOIN_COURSE_NAME_COLUMN = 12;
         public static final int COURSE_INSTRUCTOR_JOIN_COURSE_HOURS_COLUMN = 13;
