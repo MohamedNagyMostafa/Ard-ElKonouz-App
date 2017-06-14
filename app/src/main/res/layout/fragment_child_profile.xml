@@ -27,6 +27,7 @@
                 android:layout_margin="8dp">
 
                 <ImageView
+                    android:contentDescription="@string/image_pf"
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:src="@drawable/user_profile_icon"/>
@@ -46,7 +47,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -59,8 +61,7 @@
                             <TextView
                                 android:id="@+id/child_pf_name_text_view"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
@@ -68,8 +69,7 @@
                             <TextView
                                 android:id="@+id/child_pf_age_text_view"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
@@ -86,8 +86,7 @@
                             <TextView
                                 android:id="@+id/child_pf_birth_order_text_view"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
@@ -95,8 +94,7 @@
                             <TextView
                                 android:id="@+id/child_pf_gender_text_view"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
@@ -137,6 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:baselineAligned="false"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp">
@@ -306,6 +305,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:baselineAligned="false"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp">
 

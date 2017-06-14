@@ -58,4 +58,6 @@
     <string name="course_state">Course State</string>
     <string name="available_levels">Available Levels For Course</string>
     <string name="age_range">Age Range</string>
+    <string name="image_pf">Pic profile</string>
+    <string name="image_dt">Delete item image</string>
 </resources>

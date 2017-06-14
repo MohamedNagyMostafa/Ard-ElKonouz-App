@@ -10,190 +10,88 @@
     tools:context="com.nagy.mohamed.ardelkonouz.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
-    <RelativeLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/first_layout"
+                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/first_layout"
+                    android:id="@+id/child_list_layout"
                     android:layout_margin="8dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/child_list_layout"
-                        android:layout_margin="8dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_marginTop="8dp"
-                            android:layout_width="62dp"
-                            android:layout_height="62dp"
-                            android:tint="#FFFFFF"
-                            android:src="@drawable/ic_face_black_48dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/child_list"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.8"
-                            android:fontFamily="sans-serif"
-                            android:textSize="16sp"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_margin="8dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/employee_list_layout"
-                        android:layout_margin="8dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_marginTop="8dp"
-                            android:layout_width="62dp"
-                            android:layout_height="62dp"
-                            android:tint="#FFFFFF"
-                            android:src="@drawable/ic_perm_identity_black_48dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/employee_list"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.8"
-                            android:fontFamily="sans-serif"
-                            android:textSize="16sp"/>
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_margin="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_marginTop="8dp"
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
                         android:tint="#FFFFFF"
-                        android:src="@drawable/ic_update_black_48dp"/>
+                        android:src="@drawable/ic_face_black_48dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/child_list"
+                        android:textColor="@android:color/black"
+                        android:alpha="0.8"
+                        android:fontFamily="sans-serif"
+                        android:textSize="16sp"/>
+
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/second_layout"
-                    android:layout_alignBottom="@id/first_layout"
                     android:layout_margin="8dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/instructor_list_layout"
-                        android:layout_margin="8dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/employee_list_layout"
+                    android:layout_margin="8dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:tint="#FFFFFF"
+                        android:src="@drawable/ic_perm_identity_black_48dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_marginTop="8dp"
-                            android:layout_width="62dp"
-                            android:layout_height="62dp"
-                            android:tint="#FFFFFF"
-                            android:src="@drawable/ic_record_voice_over_black_48dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/instructor_list"
-                            android:textColor="@android:color/black"
-                            android:fontFamily="sans-serif"
-                            android:alpha="0.8"
-                            android:textSize="16sp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_margin="8dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/course_list_layout"
-                        android:layout_margin="8dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_marginTop="8dp"
-                            android:layout_width="62dp"
-                            android:layout_height="62dp"
-                            android:tint="#FFFFFF"
-                            android:src="@drawable/ic_event_note_black_48dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/course_list"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.8"
-                            android:fontFamily="sans-serif"/>
-
-
-                    </LinearLayout>
+                        android:text="@string/employee_list"
+                        android:textColor="@android:color/black"
+                        android:alpha="0.8"
+                        android:fontFamily="sans-serif"
+                        android:textSize="16sp"/>
 
 
                 </LinearLayout>
@@ -201,9 +99,106 @@
 
             </LinearLayout>
 
-        </ScrollView>
 
-    </RelativeLayout>
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:tint="#FFFFFF"
+                    android:src="@drawable/ic_update_black_48dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/second_layout"
+                android:layout_alignBottom="@id/first_layout"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/instructor_list_layout"
+                    android:layout_margin="8dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:tint="#FFFFFF"
+                        android:src="@drawable/ic_record_voice_over_black_48dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/instructor_list"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="sans-serif"
+                        android:alpha="0.8"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="8dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/course_list_layout"
+                    android:layout_margin="8dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:tint="#FFFFFF"
+                        android:src="@drawable/ic_event_note_black_48dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/course_list"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:alpha="0.8"
+                        android:fontFamily="sans-serif"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <LinearLayout
         android:id="@+id/bottom_layout"
