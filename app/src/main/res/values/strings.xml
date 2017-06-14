@@ -47,5 +47,7 @@
     <string name="children">Children</string>
     <string name="child_name">Child Name</string>
     <string name="child_age">Child Age</string>
+    <string name="title_activity_employee">EmployeeActivity</string>
+    <string name="title_activity_employee_profile">EmployeeProfileActivity</string>
 
 </resources>
