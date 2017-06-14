@@ -15,7 +15,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
-    <include layout="@layout/content_kid_profile"/>
+    <include layout="@layout/content_child_profile"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

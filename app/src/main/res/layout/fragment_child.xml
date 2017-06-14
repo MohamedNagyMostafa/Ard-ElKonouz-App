@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.nagy.mohamed.ardelkonouz.KidActivityFragment"
-    tools:showIn="@layout/activity_kid">
+    tools:showIn="@layout/activity_child">
 
     <ListView
         android:layout_width="match_parent"
