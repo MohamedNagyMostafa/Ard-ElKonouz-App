@@ -42,6 +42,10 @@
         <activity
             android:name=".EmployeeActivity"
             android:label="@string/title_activity_employee"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EmployeeProfileActivity"
+            android:label="@string/title_activity_employee_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
