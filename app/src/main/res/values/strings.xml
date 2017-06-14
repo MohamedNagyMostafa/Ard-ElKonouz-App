@@ -32,5 +32,20 @@
     <string name="iq_2q">How can the child deal with problems ?</string>
     <string name="id_3q">What does the child do in free time ?</string>
     <string name="empty_info">-------</string>
+    <string name="title_activity_instructor">InstructorActivity</string>
+    <string name="title_activity_instructor_profile">InstructorProfileActivity</string>
+
+    <string name="work_info">Work Info</string>
+    <string name="qualification">Qualification</string>
+    <string name="cv">CV</string>
+    <string name="job_Info">Job Info</string>
+    <string name="original_work_hours">Original Work Hours</string>
+    <string name="work_hours_after_changing">Work Hours After Changing</string>
+    <string name="total_salary">Original Salary</string>
+    <string name="salary_after_changing">Salary After Changing</string>
+    <string name="courses_children">Courses &amp; Children</string>
+    <string name="children">Children</string>
+    <string name="child_name">Child Name</string>
+    <string name="child_age">Child Age</string>
 
 </resources>
