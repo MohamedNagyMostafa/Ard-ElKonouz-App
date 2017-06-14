@@ -32,5 +32,6 @@
     <string name="iq_2q">How can the child deal with problems ?</string>
     <string name="id_3q">What does the child do in free time ?</string>
     <string name="empty_info">-------</string>
+    <string name="title_activity_instructor">InstructorActivity</string>
 
 </resources>

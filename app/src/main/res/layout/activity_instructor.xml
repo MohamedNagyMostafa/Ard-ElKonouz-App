@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/feature_background"
     android:fitsSystemWindows="true"
-    tools:context="com.nagy.mohamed.ardelkonouz.KidActivity">
+    android:background="@drawable/feature_background"
+    tools:context="com.nagy.mohamed.ardelkonouz.InstructorActivity">
 
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/feature_toolbar_background"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/feature_toolbar_background"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
-    <include layout="@layout/content_child" />
+    <include layout="@layout/content_instructor" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/child_add_new_floating_button"
+        android:id="@+id/instructor_add_new_floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

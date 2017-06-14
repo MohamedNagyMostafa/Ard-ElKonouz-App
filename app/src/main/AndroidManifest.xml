@@ -30,6 +30,10 @@
         <activity
             android:name=".KidProfileActivity"
             android:label="@string/title_activity_kid_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InstructorActivity"
+            android:label="@string/title_activity_instructor"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
