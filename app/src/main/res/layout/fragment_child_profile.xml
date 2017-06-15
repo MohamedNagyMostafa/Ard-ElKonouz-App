@@ -34,7 +34,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
@@ -43,7 +43,7 @@
                         android:text="@string/personal_info"
                         android:textSize="16sp"
                         android:fontFamily="serif"
-                                android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -342,7 +342,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
-                        android:text="@string/academic_year"/>
+                        android:text="@string/education_stage"/>
 
                     <TextView
                         android:id="@+id/child_pf_academic_year_text_view"
