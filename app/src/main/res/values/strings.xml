@@ -20,7 +20,8 @@
     <string name="father_name">Father Name</string>
     <string name="father_mobile">Father Mobile</string>
     <string name="whats_app">WhatsApp</string>
-    <string name="academic_year">Academic Year</string>
+    <string name="education_stage">Education Stage</string>
+    <string name="Year">Year</string>
     <string name="education_type">Education Type</string>
     <string name="course">Course</string>
     <string name="instructor">Instructor</string>
@@ -51,7 +52,7 @@
     <string name="title_activity_employee_profile">EmployeeProfileActivity</string>
     <string name="title_activity_course_activty">CourseActivty</string>
     <string name="title_activity_course_profile">CourseProfileActivity</string>
-    
+
     <string name="course_info">Course Info</string>
     <string name="course_date">Course Date</string>
     <string name="more_detail">More Details</string>
@@ -60,4 +61,27 @@
     <string name="age_range">Age Range</string>
     <string name="image_pf">Pic profile</string>
     <string name="image_dt">Delete item image</string>
+    <string name="title_activity_child_input">ChildInputActivity</string>
+
+    <string name="english_governmental">English Governmental</string>
+    <string name="arabic_governmental">Arabic Governmental</string>
+    <string name="english_private">English Private</string>
+    <string name="arabic_private">Arabic Private</string>
+    <string name="none">None</string>
+    <string name="primary_education">Primary Education</string>
+    <string name="preparatory_education">Preparatory Education</string>
+    <string name="secondary_education">Secondary Education</string>
+    <string name="first_year">First</string>
+    <string name="second_year">Second</string>
+    <string name="third_year">Third</string>
+    <string name="forth_year">Forth</string>
+    <string name="fifth_year">Fifth</string>
+    <string name="sixth_year">Sixth</string>
+    <string name="first_birth">First</string>
+    <string name="middle_birth">Middle</string>
+    <string name="last_birth">Last</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="child_birth">Birth Order</string>
+    <string name="gender">Gender</string>
 </resources>

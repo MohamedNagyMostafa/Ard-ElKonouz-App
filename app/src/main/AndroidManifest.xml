@@ -54,6 +54,10 @@
         <activity
             android:name=".CourseProfileActivity"
             android:label="@string/title_activity_course_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ChildInputActivity"
+            android:label="@string/title_activity_child_input"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
