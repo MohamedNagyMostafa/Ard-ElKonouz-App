@@ -51,7 +51,7 @@
     <string name="title_activity_employee_profile">EmployeeProfileActivity</string>
     <string name="title_activity_course_activty">CourseActivty</string>
     <string name="title_activity_course_profile">CourseProfileActivity</string>
-    
+
     <string name="course_info">Course Info</string>
     <string name="course_date">Course Date</string>
     <string name="more_detail">More Details</string>
@@ -60,4 +60,7 @@
     <string name="age_range">Age Range</string>
     <string name="image_pf">Pic profile</string>
     <string name="image_dt">Delete item image</string>
+    <string name="title_activity_finance">FinanceActivity</string>
+
+    <string name="finance_settings">Finance Settings</string>
 </resources>
