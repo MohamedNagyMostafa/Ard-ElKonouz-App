@@ -84,4 +84,7 @@
     <string name="gender_female">Female</string>
     <string name="child_birth">Birth Order</string>
     <string name="gender">Gender</string>
+    <string name="title_activity_finance">FinanceActivity</string>
+
+    <string name="finance_settings">Finance Settings</string>
 </resources>

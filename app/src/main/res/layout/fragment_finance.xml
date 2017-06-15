@@ -1,0 +1,243 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.nagy.mohamed.ardelkonouz.FinanceActivityFragment"
+    tools:showIn="@layout/activity_finance">
+
+   <EditText
+       android:id="@+id/finance_search_edit_text"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       style="@style/RtlOverlay.Widget.AppCompat.Search.DropDown.Icon1"
+       android:layout_marginTop="8dp"
+       android:layout_marginBottom="8dp"
+       android:layout_marginEnd="16dp"
+       android:layout_marginStart="16dp"
+       android:drawableStart="@drawable/ic_search_black_24dp"
+       android:backgroundTint="@color/colorPrimaryDark" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <ListView
+            android:id="@+id/finance_choices_list_view"
+            android:layout_width="140dp"
+            android:layout_height="80dp"
+            android:numColumns="3"
+            android:visibility="gone"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:scrollbarStyle="insideInset"/>
+
+        <GridView
+            android:id="@+id/finance_selection_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:numColumns="3"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:scrollbarStyle="insideInset"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lost Hours"
+                    android:fontFamily="serif"
+                    android:layout_marginRight="6dp"
+                    android:textColor="@android:color/black"/>
+
+                <EditText
+                    android:id="@+id/finance_lost_hours_edit_text"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:text="2222"
+                    android:backgroundTint="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/finance_add_hour_button"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="Hour" />
+
+                    <Button
+                        android:id="@+id/finance_add_day_button"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_marginStart="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="Day" />
+
+                    <Button
+                        android:id="@+id/finance_add_three_hours_button"
+                        android:layout_below="@id/finance_add_hour_button"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="3 Hour" />
+
+                    <Button
+                        android:id="@+id/finance_add_three_days_button"
+                        android:layout_below="@id/finance_add_day_button"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_marginStart="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="3 Day" />
+
+                    <Button
+                        android:id="@+id/finance_add_five_hours_button"
+                        android:layout_below="@id/finance_add_three_hours_button"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="5 Hour" />
+
+                    <Button
+                        android:id="@+id/finance_add_five_days_button"
+                        android:layout_below="@id/finance_add_three_days_button"
+                        android:layout_width="62dp"
+                        android:layout_height="36dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_marginStart="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="5 Day" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:gravity="center_horizontal"
+                        android:fontFamily="serif"
+                        android:textColor="@android:color/black"/>
+
+                    <Switch
+                        android:id="@+id/finance_lost_hours_state_switch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Increase"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColorHighlight="@color/colorPrimary"
+                        android:textColorLink="@color/colorPrimary"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:checked="true"/>
+
+                    <Switch
+                        android:id="@+id/finance_selection_state_switch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Employee"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColorHighlight="@color/colorPrimary"
+                        android:textColorLink="@color/colorPrimary"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:checked="true"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/finance_apply_button"
+        android:layout_width="110dp"
+        android:layout_height="42dp"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Apply" />
+
+
+</LinearLayout>
