@@ -1,5 +1,10 @@
 package com.nagy.mohamed.ardelkonouz.component;
 
+import android.support.annotation.Nullable;
+
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * Created by mohamednagy on 6/10/2017.
  */
@@ -11,9 +16,11 @@ public class Instructor {
     private String m_mobile;
     private Short m_qualification;
     private Short m_age;
+    private HashMap<String, List<Course>> m_courses;
 
     public Instructor(String name, Byte cv, String address, Double totalSalary,
-                      String mobile, Short qualification, Short age){
+                      String mobile, Short qualification, Short age,
+                      @Nullable  List<Course> courses){
         m_name = name;
         m_cv = cv;
         m_address = address;
@@ -21,6 +28,11 @@ public class Instructor {
         m_mobile = mobile;
         m_qualification = qualification;
         m_age = age;
+
+        if(courses != null){
+            m_courses = new HashMap<>();
+            m_courses.put("Courses", courses);
+        }
     }
 
     public String getM_name() {
@@ -29,6 +41,10 @@ public class Instructor {
 
     public Byte getM_cv() {
         return m_cv;
+    }
+
+    public HashMap<String, List<Course>> getM_courses() {
+        return m_courses;
     }
 
     public Double getM_totalSalary() {
