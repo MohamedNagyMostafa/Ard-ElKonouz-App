@@ -78,6 +78,10 @@
         <activity
             android:name=".ChildCourseConnectorActivity"
             android:label="@string/title_activity_child_course_connector"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InstructorCourseConnectorActivity"
+            android:label="@string/title_activity_instructor_course_connector"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.nagy.mohamed.ardelkonouz.ChildCourseConnectorActivity">
+    tools:context="com.nagy.mohamed.ardelkonouz.InstructorCourseConnectorActivity">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -14,6 +14,8 @@
             android:background="@android:color/transparent"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <include layout="@layout/content_child_course_connector" />
+
+    <include layout="@layout/content_instructor_course_connector" />
+
 
 </android.support.design.widget.CoordinatorLayout>

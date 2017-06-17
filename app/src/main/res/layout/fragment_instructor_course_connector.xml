@@ -2,9 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nagy.mohamed.ardelkonouz.ChildCourseConnectorActivityFragment"
-    tools:showIn="@layout/activity_child_course_connector">
-
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.nagy.mohamed.ardelkonouz.InstructorCourseConnectorActivityFragment"
+    tools:showIn="@layout/activity_instructor_course_connector">
 
     <ListView
         android:layout_width="match_parent"
@@ -20,7 +23,7 @@
         android:layout_marginBottom="8dp">
 
         <Button
-            android:id="@+id/child_course_rest_button"
+            android:id="@+id/instructor_course_rest_button"
             android:layout_width="120dp"
             android:layout_height="42dp"
             android:text="Rest"
@@ -32,7 +35,7 @@
 
 
         <Button
-            android:id="@+id/child_course_submit_button"
+            android:id="@+id/instructor_course_submit_button"
             android:layout_width="120dp"
             android:layout_height="42dp"
             android:text="Submit"
