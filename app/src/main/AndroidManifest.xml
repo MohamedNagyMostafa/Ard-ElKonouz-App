@@ -70,6 +70,10 @@
         <activity
             android:name=".EmployeeInput"
             android:label="@string/title_activity_employee_input"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CourseInputActivity"
+            android:label="@string/title_activity_course_input"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
