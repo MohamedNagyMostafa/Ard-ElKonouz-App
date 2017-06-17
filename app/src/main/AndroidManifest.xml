@@ -86,6 +86,10 @@
         <activity
             android:name=".SalaryActivity"
             android:label="@string/title_activity_salary"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".offlineDatabase.InstructorSalaryActivity"
+            android:label="@string/title_activity_instructor_salary"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

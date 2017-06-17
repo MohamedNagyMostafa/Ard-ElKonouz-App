@@ -95,4 +95,5 @@
     <string name="title_activity_instructor_course_connector">InstructorCourseConnectorActivity
     </string>
     <string name="title_activity_salary">SalaryActivity</string>
+    <string name="title_activity_instructor_salary">InstructorSalaryActivity</string>
 </resources>
