@@ -159,7 +159,7 @@ public class DbContent {
                 CHILD_FATHER_MOBILE_COLUMN  + SPACE + TEXT  + "," +
                 CHILD_MOTHER_MOBILE_COLUMN  + SPACE + TEXT  + "," +
                 CHILD_MOBILE_WHATSUP_COLUMN  + SPACE + TEXT + NOT_NULL + "," +
-                CHILD_MOTHER_QUALIFICATION_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_MOTHER_QUALIFICATION_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 CHILD_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_EDUCATION_TYPE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_BIRTH_ORDER_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
