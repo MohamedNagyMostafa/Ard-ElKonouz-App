@@ -460,18 +460,20 @@
 
             </LinearLayout>
 
+            <GridView
+                android:id="@+id/child_pf_courses_instructors_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="116dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:numColumns="2"/>
+
         </LinearLayout>
 
 </ScrollView>
 
-    <GridView
-        android:id="@+id/child_pf_courses_instructors_grid_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:numColumns="2"/>
+
 
 </LinearLayout>
 

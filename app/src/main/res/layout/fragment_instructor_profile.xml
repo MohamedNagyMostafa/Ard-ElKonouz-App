@@ -1,14 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="com.nagy.mohamed.ardelkonouz.InstructorProfileActivityFragment"
     tools:showIn="@layout/activity_instructor_profile">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -326,20 +326,19 @@
 
             </LinearLayout>
 
-
+            <GridView
+                android:id="@+id/instructor_pf_courses_children_grid_view"
+                android:layout_width="wrap_content"
+                android:layout_height="116dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:numColumns="2"/>
 
         </LinearLayout>
 
     </ScrollView>
-
-    <GridView
-        android:id="@+id/instructor_pf_courses_children_grid_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:numColumns="2"/>
 
 
 </LinearLayout>
