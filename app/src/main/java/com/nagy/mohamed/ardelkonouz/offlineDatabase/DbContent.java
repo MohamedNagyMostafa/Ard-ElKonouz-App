@@ -31,12 +31,13 @@ public class DbContent {
         public static final String COURSE_NAME_COLUMN = "course_name";
         public static final String COURSE_HOURS_COLUMN = "course_hours";
         public static final String COURSE_COST_COLUMN = "course_cost";
-        public static final String COURSE_COMPLETE_COLUMN = "course_complete";
+        public static final String COURSE_AVAILABLE_POSITIONS_COLUMN = "available_positions";
         public static final String COURSE_START_DATE_COLUMN = "course_start_date";
         public static final String COURSE_END_DATE_COLUMN = "course_end_date";
         public static final String COURSE_START_AGE_COLUMN = "course_start_age";
         public static final String COURSE_END_AGE_COLUMN = "course_end_age";
         public static final String COURSE_LEVEL_COLUMN = "course_level";
+        public static final String COURSE_SALARY_PER_CHILD = "salary_per_child";
 
         public static final String CREATE_COURSE_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
@@ -44,11 +45,12 @@ public class DbContent {
                 COURSE_NAME_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 COURSE_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_COST_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
-                COURSE_COMPLETE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                COURSE_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_START_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_END_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                COURSE_SALARY_PER_CHILD + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_LEVEL_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
         public static final String CONTENT_TYPE =
@@ -66,12 +68,9 @@ public class DbContent {
         public static final String INSTRUCTOR_NAME_COLUMN = "instructor_name";
         public static final String INSTRUCTOR_CV_COLUMN = "instructor_cv";
         public static final String INSTRUCTOR_ADDRESS_COLUMN = "instructor_address";
-        public static final String INSTRUCTOR_ORIGINAL_SALARY_COLUMN = "instructor_original_salary";
         public static final String INSTRUCTOR_MOBILE_COLUMN = "instructor_mobile";
         public static final String INSTRUCTOR_QUALIFICATION_COLUMN = "instructor_qualification";
         public static final String INSTRUCTOR_AGE_COLUMN = "instructor_age";
-        public static final String INSTRUCTOR_CHANGING_HOURS_COLUMN = "instructor_changing_hours";
-        public static final String INSTRUCTOR_ORIGINAL_HOURS_COLUMN = "instructor_original_hours";
         public static final String INSTRUCTOR_GENDER_COLUMN = "instructor_gender";
 
         public static final String CREATE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
@@ -79,11 +78,8 @@ public class DbContent {
                 INSTRUCTOR_NAME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_CV_COLUMN  + SPACE + BLOB   + "," +
                 INSTRUCTOR_ADDRESS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
-                INSTRUCTOR_ORIGINAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_MOBILE_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_GENDER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                INSTRUCTOR_CHANGING_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
-                INSTRUCTOR_ORIGINAL_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_QUALIFICATION_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 INSTRUCTOR_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
@@ -105,8 +101,6 @@ public class DbContent {
         public static final String EMPLOYEE_MOBILE_COLUMN = "employee_mobile";
         public static final String EMPLOYEE_QUALIFICATION_COLUMN = "employee_qualification";
         public static final String EMPLOYEE_AGE_COLUMN = "employee_age";
-        public static final String EMPLOYEE_CHANGING_HOURS_COLUMN = "employee_changing_hours";
-        public static final String EMPLOYEE_ORIGINAL_HOURS_COLUMN = "employee_original_hours";
         public static final String EMPLOYEE_GENDER_COLUMN = "employee_gender";
 
         public static final String CREATE_EMPLOYEE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME + "(" +
@@ -116,8 +110,6 @@ public class DbContent {
                 EMPLOYEE_ORIGINAL_SALARY_COLUMN  + SPACE + REAL + SPACE + NOT_NULL + "," +
                 EMPLOYEE_MOBILE_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_GENDER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                EMPLOYEE_CHANGING_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
-                EMPLOYEE_ORIGINAL_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 EMPLOYEE_QUALIFICATION_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 EMPLOYEE_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
@@ -185,10 +177,14 @@ public class DbContent {
 
         public static final String COURSE_ID_COLUMN = "course_id";
         public static final String INSTRUCTOR_ID_COLUMN = "instructor_id";
+        public static final String TOTAL_SALARY_COLUMN = "total_salary";
+        public static final String PAY_STATE_COLUMN =" pay_state";
 
         public static final String CREATE_COURSE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + INSTRUCTOR_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + TOTAL_SALARY_COLUMN + SPACE + REAL + SPACE + NOT_NULL + ","
+                + PAY_STATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + INSTRUCTOR_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + InstructorTable.TABLE_NAME + SPACE + "(" + InstructorTable._ID + ")"+
                 FOREIGN_KEY + SPACE + "(" +COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
