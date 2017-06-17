@@ -62,7 +62,11 @@
         <activity
             android:name=".FinanceActivity"
             android:label="@string/title_activity_finance"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InstructorInputActivity"
+            android:label="@string/title_activity_instructor_input"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
