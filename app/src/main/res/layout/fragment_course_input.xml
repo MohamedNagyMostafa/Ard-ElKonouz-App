@@ -1,0 +1,379 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.nagy.mohamed.ardelkonouz.CourseInputActivityFragment"
+    tools:showIn="@layout/activity_course_input">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:src="@drawable/user_profile_icon"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/course_info"
+                    android:textSize="16sp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/course_input_name_edit_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:gravity="center_vertical"
+                            android:hint="Name"
+                            android:textColorHint="@color/colorPrimary"
+                            android:layout_marginEnd="4dp"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:layout_marginStart="4dp"
+                            android:inputType="text"/>
+
+                        <EditText
+                            android:id="@+id/course_input_hours_edit_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:gravity="center_vertical"
+                            android:hint="Hours"
+                            android:textColorHint="@color/colorPrimary"
+                            android:layout_marginEnd="4dp"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:layout_marginStart="4dp"
+                            android:inputType="numberDecimal|numberSigned"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/course_input_cost_edit_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:gravity="center_vertical"
+                            android:hint="Cost"
+                            android:textColorHint="@color/colorPrimary"
+                            android:layout_marginEnd="4dp"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:layout_marginStart="4dp"
+                            android:inputType="numberDecimal|numberSigned"/>
+
+                        <EditText
+                            android:id="@+id/course_input_level_edit_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:gravity="center_vertical"
+                            android:hint="LeveL"
+                            android:textColorHint="@color/colorPrimary"
+                            android:layout_marginEnd="4dp"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:layout_marginStart="4dp"
+                            android:inputType="text"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/course_date"
+                android:layout_marginStart="16dp"
+                android:fontFamily="serif"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="#039be5"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:text="@string/start_date"/>
+
+                <EditText
+                    android:id="@+id/course_input_start_date_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:layout_marginStart="4dp"
+                    android:inputType="datetime"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:text="@string/end_date"/>
+
+                <EditText
+                    android:id="@+id/course_input_end_date_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:inputType="datetime"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="@string/salary_per_child"/>
+
+            <EditText
+                android:id="@+id/course_input_salary_per_child_edit_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_marginStart="4dp"
+                android:inputType="numberDecimal|numberSigned"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/more_detail"
+                android:layout_marginStart="16dp"
+                android:fontFamily="serif"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="#039be5"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:gravity="center_vertical"
+                    android:text="@string/course_state"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/employee_input_male_gender_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:gravity="center_vertical"
+                        android:text="Complete"
+                        android:textColor="@android:color/black"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/ic_done_black_18dp"
+                        android:drawableTint="@android:color/holo_green_dark"/>
+
+                    <TextView
+                        android:id="@+id/employee_input_female_gender_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:gravity="center_vertical"
+                        android:text="Incomplete"
+                        android:drawablePadding="4dp"
+                        android:drawableTint="@android:color/holo_green_dark"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="serif"
+                    android:text="@string/age_range"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="serif"
+                        android:text="From"/>
+
+                    <EditText
+                        android:id="@+id/course_input_age_range_from_edit_view"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:gravity="center_vertical"
+                        android:layout_marginEnd="4dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_marginStart="4dp"
+                        android:inputType="numberDecimal|numberSigned"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="serif"
+                        android:text="To"/>
+
+                    <EditText
+                        android:id="@+id/course_input_age_range_to_edit_view"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:gravity="center_vertical"
+                        android:layout_marginEnd="4dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_marginStart="4dp"
+                        android:inputType="numberDecimal|numberSigned"/>
+                </LinearLayout>
+                
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/course_input_submit_application_button"
+            android:layout_width="120dp"
+            android:layout_height="52dp"
+            android:text="Submit"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:layout_margin="16dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
