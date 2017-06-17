@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:contentDescription="@string/image_pf"
+        android:id="@+id/instructor_image"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:src="@drawable/user_profile_icon"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="44dp">
+
+            <TextView
+                android:id="@+id/salary_list_instructor_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_info"
+                android:fontFamily="serif"
+                android:textColor="#039be5"
+                android:textStyle="bold"
+                android:layout_margin="4dp"/>
+
+
+
+            <TextView
+                android:id="@+id/salary_list_instructor_course_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:layout_margin="4dp"
+                android:text="@string/empty_info"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/recycle_list_salary_process_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:text="Paied"
+            android:textColor="#4caf50"
+            android:fontFamily="serif"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</LinearLayout>
