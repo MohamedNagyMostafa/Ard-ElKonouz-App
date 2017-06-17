@@ -94,4 +94,5 @@
     <string name="title_activity_child_course_connector">ChildCourseConnectorActivity</string>
     <string name="title_activity_instructor_course_connector">InstructorCourseConnectorActivity
     </string>
+    <string name="title_activity_salary">SalaryActivity</string>
 </resources>
