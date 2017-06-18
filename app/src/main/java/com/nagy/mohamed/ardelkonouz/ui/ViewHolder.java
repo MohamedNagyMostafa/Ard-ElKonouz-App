@@ -10,7 +10,7 @@ import com.nagy.mohamed.ardelkonouz.R;
  */
 public class ViewHolder {
 
-    public static class MainScreenViewHolder{
+    public static class MainScreenViewHolder {
 
         public final LinearLayout CHILD_LIST_LAYOUT;
         public final LinearLayout INSTRUCTOR_LIST_LAYOUT;
@@ -19,7 +19,7 @@ public class ViewHolder {
         public final LinearLayout UPDATE_ONLINE_LAYOUT;
         public final LinearLayout SALARY_LIST_LAYOUT;
 
-        public MainScreenViewHolder(View mainScreenView){
+        public MainScreenViewHolder(View mainScreenView) {
             CHILD_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.child_list_layout_view);
             INSTRUCTOR_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.instructor_list_layout_view);
             EMPLOYEE_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.employee_list_layout_view);
@@ -28,5 +28,5 @@ public class ViewHolder {
             SALARY_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.salary_layout_view);
         }
     }
-    
+
 }
