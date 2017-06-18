@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.InputScreens.ConnectorsScreen.ChildCourseConnectorActivity">
+    tools:context=".ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"

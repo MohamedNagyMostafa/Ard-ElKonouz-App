@@ -1,4 +1,4 @@
-package com.nagy.mohamed.ardelkonouz.ui.InputScreens.ConnectorsScreen;
+package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.InputScreens.ConnectorsScreen.ChildCourseConnectorActivityFragment"
+    tools:context=".ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivityFragment"
     tools:showIn="@layout/activity_child_course_connector">
 
 

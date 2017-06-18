@@ -1,9 +1,12 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nagy.mohamed.ardelkonouz.R;
@@ -208,5 +211,34 @@ public class ViewHolder {
 
         }
     }
+
+    public static class ChildListScreenViewHolder{
+
+        public final FloatingActionButton ADD_NEW_CHILD_BUTTON;
+        public final ListView CHILD_LIST_VIEW;
+
+        public ChildListScreenViewHolder(View childListView){
+            ADD_NEW_CHILD_BUTTON = (FloatingActionButton) childListView.findViewById(R.id.child_add_new_floating_button);
+            CHILD_LIST_VIEW = (ListView) childListView.findViewById(R.id.child_list_view);
+        }
+
+        public static class ChildListRecycleViewHolder{
+
+            public final TextView CHILD_NAME_TEXT_VIEW;
+            public final TextView CHILD_AGE_TEXT_VIEW;
+            public final TextView CHILD_COURSES_TEXT_VIEW;
+            public final ImageView CHILD_DELETE_IMAGE_VIEW;
+
+            public ChildListRecycleViewHolder(View childListRecycleView){
+
+                CHILD_NAME_TEXT_VIEW = (TextView) childListRecycleView.findViewById(R.id.child_list_name_text_view);
+                CHILD_AGE_TEXT_VIEW = (TextView) childListRecycleView.findViewById(R.id.child_list_age_text_view);
+                CHILD_COURSES_TEXT_VIEW = (TextView) childListRecycleView.findViewById(R.id.child_list_courses_text_view);
+                CHILD_DELETE_IMAGE_VIEW = (ImageView) childListRecycleView.findViewById(R.id.child_list_delete_child_image_view);
+            }
+        }
+    }
+
+
 
 }
