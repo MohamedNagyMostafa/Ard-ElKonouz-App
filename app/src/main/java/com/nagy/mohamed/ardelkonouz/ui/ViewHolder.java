@@ -433,5 +433,53 @@ public class ViewHolder {
         }
     }
 
-    
+    public static class InstructorProfileScreenViewHolder{
+
+        public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+        public final TextView INSTRUCTOR_AGE_TEXT_VIEW;
+        public final TextView INSTRUCTOR_GENDER_TEXT_VIEW;
+        public final TextView INSTRUCTOR_MOBILE_TEXT_VIEW;
+        public final TextView INSTRUCTOR_ADDRESS_TEXT_VIEW;
+        public final TextView INSTRUCTOR_QUALIFICATION_TEXT_VIEW;
+        public final TextView INSTRUCTOR_CV_TEXT_VIEW;
+        public final GridView INSTRUCTOR_COURSES_CHILD_GRID_VIEW;
+        public final FloatingActionButton INSTRUCTOR_EDIT_BUTTON;
+
+        public InstructorProfileScreenViewHolder(View instructorProfileView){
+
+            INSTRUCTOR_NAME_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_name_text_view);
+            INSTRUCTOR_AGE_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_age_text_view);
+            INSTRUCTOR_GENDER_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_gender_text_view);
+            INSTRUCTOR_MOBILE_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_mobile_text_view);
+            INSTRUCTOR_ADDRESS_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_address_text_view);
+            INSTRUCTOR_QUALIFICATION_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_qualification_text_view);
+            INSTRUCTOR_CV_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_cv_text_view);
+            INSTRUCTOR_COURSES_CHILD_GRID_VIEW = (GridView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_grid_view);
+            INSTRUCTOR_EDIT_BUTTON = (FloatingActionButton) instructorProfileView.findViewById(R.id.instructor_pf_edit_floating_button);
+        }
+
+        public static class InstructorCoursesViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final GridView COURSE_CHILDREN_GRID_VIEW;
+
+            public InstructorCoursesViewHolder(View instructorCoursesView){
+                COURSE_NAME_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_pf_course_name_text_view);
+                COURSE_CHILDREN_GRID_VIEW = (GridView) instructorCoursesView.findViewById(R.id.instructor_pf_children_grid_view);
+
+            }
+
+            public static class ChildrenViewHolder{
+
+                public final TextView CHILD_NAME;
+                public final TextView CHILD_AGE;
+
+                public ChildrenViewHolder(View childView){
+                    CHILD_NAME = (TextView) childView.findViewById(R.id.instructor_pf_child_name_text_view);
+                    CHILD_AGE = (TextView) childView.findViewById(R.id.instructor_pf_child_age_text_view);
+                }
+            }
+        }
+    }
+
 }
