@@ -291,5 +291,31 @@ public class ViewHolder {
         }
     }
 
+    public static class InstructorListScreenViewHolder{
+
+        public final FloatingActionButton ADD_NEW_INSTRUCTOR_BUTTON;
+        public final ListView INSTRUCTOR_LIST_VIEW;
+
+        public InstructorListScreenViewHolder(View instructorListView){
+            ADD_NEW_INSTRUCTOR_BUTTON = (FloatingActionButton) instructorListView.findViewById(R.id.instructor_add_new_floating_button);
+            INSTRUCTOR_LIST_VIEW = (ListView) instructorListView.findViewById(R.id.instructor_list_view);
+        }
+
+        public static class InstructorListRecycleViewHolder{
+
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView INSTRUCTOR_COURSES_TEXT_VIEW;
+            public final ImageView INSTRUCTOR_DELETE_IMAGE_VIEW;
+
+            public InstructorListRecycleViewHolder(View InstructorListRecycleView){
+
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) InstructorListRecycleView.findViewById(R.id.instructor_list_name_text_view);
+                INSTRUCTOR_COURSES_TEXT_VIEW = (TextView) InstructorListRecycleView.findViewById(R.id.instructor_list_courses_text_view);
+                INSTRUCTOR_DELETE_IMAGE_VIEW = (ImageView) InstructorListRecycleView.findViewById(R.id.instructor_list_delete_instructor_image_view);
+            }
+        }
+    }
+
+
 
 }

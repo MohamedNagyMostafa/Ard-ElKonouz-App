@@ -10,6 +10,7 @@
     tools:showIn="@layout/activity_instructor">
 
     <ListView
+        android:id="@+id/instructor_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/colorPrimary" />
