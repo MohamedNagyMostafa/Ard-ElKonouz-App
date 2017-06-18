@@ -159,4 +159,30 @@ public class ViewHolder {
         }
     }
 
+    public static class EmployeeInputScreenViewHolder{
+
+        public final EditText EMPLOYEE_NAME_EDIT_TEXT;
+        public final EditText EMPLOYEE_AGE_EDIT_TEXT;
+        public final EditText EMPLOYEE_ADDRESS_EDIT_TEXT;
+        public final EditText EMPLOYEE_MOBILE_EDIT_TEXT;
+        public final TextView EMPLOYEE_MALE_GENDER_TEXT_VIEW;
+        public final TextView EMPLOYEE_FEMALE_GENDER_TEXT_VIEW;
+        public final EditText EMPLOYEE_SALARY_EDIT_TEXT;
+        public final Button EMPLOYEE_SUBMIT_BUTTON;
+
+        public EmployeeInputScreenViewHolder(View employeeInputScreen){
+
+            EMPLOYEE_NAME_EDIT_TEXT = (EditText) employeeInputScreen.findViewById(R.id.employee_input_name_edit_view);
+            EMPLOYEE_AGE_EDIT_TEXT = (EditText) employeeInputScreen.findViewById(R.id.employee_input_age_edit_view);
+            EMPLOYEE_ADDRESS_EDIT_TEXT = (EditText) employeeInputScreen.findViewById(R.id.employee_input_address_edit_view;
+            EMPLOYEE_MOBILE_EDIT_TEXT = (EditText) employeeInputScreen.findViewById(R.id.employee_input_mobile_edit_view);
+            EMPLOYEE_MALE_GENDER_TEXT_VIEW = (TextView) employeeInputScreen.findViewById(R.id.employee_input_male_gender_text_view);
+            EMPLOYEE_FEMALE_GENDER_TEXT_VIEW = (TextView) employeeInputScreen.findViewById(R.id.employee_input_female_gender_text_view);
+            EMPLOYEE_SALARY_EDIT_TEXT = (EditText) employeeInputScreen.findViewById(R.id.employee_input_original_salary_edit_view);
+            EMPLOYEE_SUBMIT_BUTTON = (Button) employeeInputScreen.findViewById(R.id.employee_input_submit_application_button);
+
+        }
+    }
+
+    
 }
