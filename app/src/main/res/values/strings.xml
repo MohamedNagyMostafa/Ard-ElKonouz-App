@@ -1,4 +1,99 @@
 <resources>
     <string name="app_name">Ard El Konouz</string>
     <string name="action_settings">Settings</string>
+
+    <string name="child_list">Kids</string>
+    <string name="course_list">Courses</string>
+    <string name="instructor_list">Instructors</string>
+    <string name="employee_list">Employees</string>
+    <string name="title_activity_kid">KidActivity</string>
+    <string name="title_activity_kid_profile">KidProfileActivity</string>
+
+    <string name="personal_info">Personal Info</string>
+    <string name="education_info">Education Info</string>
+    <string name="iq_questions">IQ Questions Info</string>
+    <string name="courses_instructors">Courses &amp; Instructors</string>
+    <string name="family_info">Family Info</string>
+    <string name="mother_name">Mother Name</string>
+    <string name="mother_mobile">Mother Mobile</string>
+    <string name="mother_qualification">Mother Qualification</string>
+    <string name="father_name">Father Name</string>
+    <string name="father_mobile">Father Mobile</string>
+    <string name="whats_app">WhatsApp</string>
+    <string name="education_stage">Education Stage</string>
+    <string name="Year">Year</string>
+    <string name="education_type">Education Type</string>
+    <string name="course">Course</string>
+    <string name="instructor">Instructor</string>
+    <string name="start_date">The Beginning Date</string>
+    <string name="end_date">The Ending Date</string>
+    <string name="salary_per_child">Salary Per Child</string>
+    <string name="mother_job">Mother Job</string>
+    <string name="father_job">Father Job</string>
+    <string name="iq_1q">What are the child characteristics ?</string>
+    <string name="iq_2q">How can the child deal with problems ?</string>
+    <string name="id_3q">What does the child do in free time ?</string>
+    <string name="empty_info">-------</string>
+    <string name="title_activity_instructor">InstructorActivity</string>
+    <string name="title_activity_instructor_profile">InstructorProfileActivity</string>
+
+    <string name="work_info">Work Info</string>
+    <string name="qualification">Qualification</string>
+    <string name="cv">CV</string>
+    <string name="job_Info">Job Info</string>
+    <string name="original_work_hours">Original Work Hours</string>
+    <string name="work_hours_after_changing">Work Hours After Changing</string>
+    <string name="total_salary">Original Salary</string>
+    <string name="salary_after_changing">Salary After Changing</string>
+    <string name="courses_children">Courses &amp; Children</string>
+    <string name="children">Children</string>
+    <string name="child_name">Child Name</string>
+    <string name="child_age">Child Age</string>
+    <string name="title_activity_employee">EmployeeActivity</string>
+    <string name="title_activity_employee_profile">EmployeeProfileActivity</string>
+    <string name="title_activity_course_activty">CourseActivty</string>
+    <string name="title_activity_course_profile">CourseProfileActivity</string>
+
+    <string name="course_info">Course Info</string>
+    <string name="course_date">Course Date</string>
+    <string name="more_detail">More Details</string>
+    <string name="course_state">Course State</string>
+    <string name="available_levels">Available Levels For Course</string>
+    <string name="age_range">Age Range</string>
+    <string name="image_pf">Pic profile</string>
+    <string name="image_dt">Delete item image</string>
+    <string name="title_activity_child_input">ChildInputActivity</string>
+
+    <string name="english_governmental">English Governmental</string>
+    <string name="arabic_governmental">Arabic Governmental</string>
+    <string name="english_private">English Private</string>
+    <string name="arabic_private">Arabic Private</string>
+    <string name="none">None</string>
+    <string name="primary_education">Primary Education</string>
+    <string name="preparatory_education">Preparatory Education</string>
+    <string name="secondary_education">Secondary Education</string>
+    <string name="first_year">First</string>
+    <string name="second_year">Second</string>
+    <string name="third_year">Third</string>
+    <string name="forth_year">Forth</string>
+    <string name="fifth_year">Fifth</string>
+    <string name="sixth_year">Sixth</string>
+    <string name="first_birth">First</string>
+    <string name="middle_birth">Middle</string>
+    <string name="last_birth">Last</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="child_birth">Birth Order</string>
+    <string name="gender">Gender</string>
+    <string name="title_activity_finance">FinanceActivity</string>
+
+    <string name="finance_settings">Finance Settings</string>
+    <string name="title_activity_instructor_input">InstructorInputActivity</string>
+    <string name="title_activity_employee_input">EmployeeInput</string>
+    <string name="title_activity_course_input">CourseInputActivity</string>
+    <string name="title_activity_child_course_connector">ChildCourseConnectorActivity</string>
+    <string name="title_activity_instructor_course_connector">InstructorCourseConnectorActivity
+    </string>
+    <string name="title_activity_salary">SalaryActivity</string>
+    <string name="title_activity_instructor_salary">InstructorSalaryActivity</string>
 </resources>

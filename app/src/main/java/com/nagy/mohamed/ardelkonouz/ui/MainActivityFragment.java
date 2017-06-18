@@ -1,4 +1,4 @@
-package com.nagy.mohamed.ardelkonouz;
+package com.nagy.mohamed.ardelkonouz.ui;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 
 /**
