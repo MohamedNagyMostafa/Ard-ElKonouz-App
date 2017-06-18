@@ -379,5 +379,32 @@ public class ViewHolder {
         }
     }
 
+    public static class CourseProfileScreenViewHolder{
 
+        public final TextView COURSE_NAME_TEXT_VIEW;
+        public final TextView COURSE_HOURS_TEXT_VIEW;
+        public final TextView COURSE_LEVEL_TEXT_VIEW;
+        public final TextView COURSE_COST_TEXT_VIEW;
+        public final TextView COURSE_START_DATE_TEXT_VIEW;
+        public final TextView COURSE_END_DATE_TEXT_VIEW;
+        public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
+        public final TextView COURSE_START_TEXT_VIEW;
+        public final TextView COURSE_AVAILABLE_LEVELS_TEXT_VIEW;
+        public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
+        public final FloatingActionButton COURSE_EDIT_BUTTON;
+
+        public CourseProfileScreenViewHolder(View courseProfileView){
+            COURSE_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_name_text_view);
+            COURSE_HOURS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_hours_text_view);
+            COURSE_LEVEL_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_level_text_view);
+            COURSE_COST_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_cost_text_view);
+            COURSE_START_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_start_date_text_view);
+            COURSE_END_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_end_date_text_view);
+            COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_salary_per_child_text_view);
+            COURSE_START_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
+            COURSE_AVAILABLE_LEVELS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_available_levels_text_view);
+            COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_age_range_text_view);
+            COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
+        }
+    }
 }
