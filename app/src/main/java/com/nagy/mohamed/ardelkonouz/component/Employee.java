@@ -10,21 +10,27 @@ public class Employee {
     private String m_mobile;
     private Short m_qualification;
     private Short m_age;
+    private Short m_gender;
 
     public Employee(String name, String address, Double totalSalary,
-                      String mobile, Short qualification, Short age){
+                      String mobile, Short qualification, Short age,
+                    Short gender){
         m_name = name;
         m_address = address;
         m_totalSalary = totalSalary;
         m_mobile = mobile;
         m_qualification = qualification;
         m_age = age;
+        m_gender = gender;
     }
 
     public String getM_name() {
         return m_name;
     }
 
+    public Short getM_gender() {
+        return m_gender;
+    }
 
     public Double getM_totalSalary() {
         return m_totalSalary;
