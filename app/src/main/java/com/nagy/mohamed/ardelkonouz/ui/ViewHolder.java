@@ -4,6 +4,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -316,6 +317,67 @@ public class ViewHolder {
         }
     }
 
+    public static class ChildProfileScreenViewHolder{
+
+        public final TextView CHILD_NAME_TEXT_VIEW;
+        public final TextView CHILD_AGE_TEXT_VIEW;
+        public final TextView CHILD_GENDER_TEXT_VIEW;
+        public final TextView CHILD_BIRTH_ORDER_TEXT_VIEW;
+        public final TextView MOTHER_NAME_TEXT_VIEW;
+        public final TextView MOTHER_MOBILE_TEXT_VIEW;
+        public final TextView MOTHER_QUALIFICATION_TEXT_VIEW;
+        public final TextView MOTHER_JOB_TEXT_VIEW;
+        public final TextView FATHER_NAME_TEXT_VIEW;
+        public final TextView FATHER_MOBILE_TEXT_VIEW;
+        public final TextView FATHER_JOB_TEXT_VIEW;
+        public final TextView WHATSAPP_TEXT_VIEW;
+        public final TextView EDUCATION_TYPE_TEXT_VIEW;
+        public final TextView EDUCATION_STAGE_TEXT_VIEW;
+        public final TextView CHILD_CHARACTERISTIC_TEXT_VIEW;
+        public final TextView CHILD_HANDLING_PROBLEM_TEXT_VIEW;
+        public final TextView CHILD_FREE_TIME_TEXT_VIEW;
+        public final FloatingActionButton CHILD_EDIT_BUTTON;
+        public final GridView CHILD_COURSES_GRID_VIEW;
+
+        public ChildProfileScreenViewHolder(View childProfileView){
+
+            CHILD_NAME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_name_text_view);
+            CHILD_AGE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_age_text_view);
+            CHILD_GENDER_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_gender_text_view);
+            CHILD_BIRTH_ORDER_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_birth_order_text_view);
+            MOTHER_NAME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_name_text_view);
+            MOTHER_MOBILE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_mobile_text_view);
+            MOTHER_QUALIFICATION_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_qualification_text_view);
+            MOTHER_JOB_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_job_text_view);
+            FATHER_NAME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_father_name_text_view);
+            FATHER_MOBILE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_father_mobile_text_view);
+            FATHER_JOB_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_father_job_text_view);
+            WHATSAPP_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_whatsapp_text_view);
+            EDUCATION_TYPE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_education_type_text_view);
+            EDUCATION_STAGE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_education_stage__text_view);
+            CHILD_CHARACTERISTIC_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_characteristic_text_view);
+            CHILD_HANDLING_PROBLEM_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_problem_handling_text_view);
+            CHILD_FREE_TIME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_free_time_text_view);
+            CHILD_EDIT_BUTTON = (FloatingActionButton) childProfileView.findViewById(R.id.child_pf_edit_floating_button);
+            CHILD_COURSES_GRID_VIEW = (GridView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
+        }
+
+        public static class ChildProfileListViewHolder{
+
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final TextView START_DATE_TEXT_VIEW;
+            public final TextView END_DATE_TEXT_VIEW;
+
+            public ChildProfileListViewHolder(View childProfileListView){
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_instructor_name_text_view);
+                COURSE_NAME_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_name_text_view);
+                START_DATE_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_start_date_text_view);
+                END_DATE_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_end_date_text_view);
+
+            }
+        }
+    }
 
 
 }

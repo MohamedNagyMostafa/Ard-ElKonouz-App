@@ -28,7 +28,7 @@
             android:label="@string/title_activity_kid"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.ProfileScreens.KidProfileActivity"
+            android:name=".ui.ProfileScreens.ChildProfileActivity"
             android:label="@string/title_activity_kid_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
