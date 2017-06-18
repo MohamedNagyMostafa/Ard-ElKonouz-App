@@ -1,9 +1,12 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nagy.mohamed.ardelkonouz.R;
@@ -208,5 +211,111 @@ public class ViewHolder {
 
         }
     }
+
+    public static class ChildListScreenViewHolder{
+
+        public final FloatingActionButton ADD_NEW_CHILD_BUTTON;
+        public final ListView CHILD_LIST_VIEW;
+
+        public ChildListScreenViewHolder(View childListView){
+            ADD_NEW_CHILD_BUTTON = (FloatingActionButton) childListView.findViewById(R.id.child_add_new_floating_button);
+            CHILD_LIST_VIEW = (ListView) childListView.findViewById(R.id.child_list_view);
+        }
+
+        public static class ChildListRecycleViewHolder{
+
+            public final TextView CHILD_NAME_TEXT_VIEW;
+            public final TextView CHILD_AGE_TEXT_VIEW;
+            public final TextView CHILD_COURSES_TEXT_VIEW;
+            public final ImageView CHILD_DELETE_IMAGE_VIEW;
+
+            public ChildListRecycleViewHolder(View childListRecycleView){
+
+                CHILD_NAME_TEXT_VIEW = (TextView) childListRecycleView.findViewById(R.id.child_list_name_text_view);
+                CHILD_AGE_TEXT_VIEW = (TextView) childListRecycleView.findViewById(R.id.child_list_age_text_view);
+                CHILD_COURSES_TEXT_VIEW = (TextView) childListRecycleView.findViewById(R.id.child_list_courses_text_view);
+                CHILD_DELETE_IMAGE_VIEW = (ImageView) childListRecycleView.findViewById(R.id.child_list_delete_child_image_view);
+            }
+        }
+    }
+
+    public static class CourseListScreenViewHolder{
+
+        public final FloatingActionButton ADD_NEW_COURSE_BUTTON;
+        public final ListView COURSE_LIST_VIEW;
+
+        public CourseListScreenViewHolder(View courseListView){
+            ADD_NEW_COURSE_BUTTON = (FloatingActionButton) courseListView.findViewById(R.id.course_add_new_floating_button);
+            COURSE_LIST_VIEW = (ListView) courseListView.findViewById(R.id.course_list_view);
+        }
+
+        public static class CourseListRecycleViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final TextView COURSE_COST_TEXT_VIEW;
+            public final TextView COURSE_HOURS_TEXT_VIEW;
+            public final ImageView COURSE_DELETE_IMAGE_VIEW;
+
+            public CourseListRecycleViewHolder(View courseListRecycleView){
+
+                COURSE_NAME_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_name_text_view);
+                COURSE_COST_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_cost_text_view);
+                COURSE_HOURS_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_hours_text_view);
+                COURSE_DELETE_IMAGE_VIEW = (ImageView) courseListRecycleView.findViewById(R.id.course_list_delete_course_image_view);
+            }
+        }
+    }
+
+    public static class EmployeeListScreenViewHolder{
+
+        public final FloatingActionButton ADD_NEW_EMPLOYEE_BUTTON;
+        public final ListView EMPLOYEE_LIST_VIEW;
+
+        public EmployeeListScreenViewHolder(View employeeListView){
+            ADD_NEW_EMPLOYEE_BUTTON = (FloatingActionButton) employeeListView.findViewById(R.id.employee_add_new_floating_button);
+            EMPLOYEE_LIST_VIEW = (ListView) employeeListView.findViewById(R.id.employee_list_view);
+        }
+
+        public static class EmployeeListRecycleViewHolder{
+
+            public final TextView EMPLOYEE_NAME_TEXT_VIEW;
+            public final TextView EMPLOYEE_MOBILE_TEXT_VIEW;
+            public final ImageView EMPLOYEE_DELETE_IMAGE_VIEW;
+
+            public EmployeeListRecycleViewHolder(View employeeListRecycleView){
+
+                EMPLOYEE_NAME_TEXT_VIEW = (TextView) employeeListRecycleView.findViewById(R.id.employee_list_name_text_view);
+                EMPLOYEE_MOBILE_TEXT_VIEW = (TextView) employeeListRecycleView.findViewById(R.id.employee_List_mobile_text_view);
+                EMPLOYEE_DELETE_IMAGE_VIEW = (ImageView) employeeListRecycleView.findViewById(R.id.employee_list_delete_employee_image_view);
+            }
+        }
+    }
+
+    public static class InstructorListScreenViewHolder{
+
+        public final FloatingActionButton ADD_NEW_INSTRUCTOR_BUTTON;
+        public final ListView INSTRUCTOR_LIST_VIEW;
+
+        public InstructorListScreenViewHolder(View instructorListView){
+            ADD_NEW_INSTRUCTOR_BUTTON = (FloatingActionButton) instructorListView.findViewById(R.id.instructor_add_new_floating_button);
+            INSTRUCTOR_LIST_VIEW = (ListView) instructorListView.findViewById(R.id.instructor_list_view);
+        }
+
+        public static class InstructorListRecycleViewHolder{
+
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView INSTRUCTOR_COURSES_TEXT_VIEW;
+            public final ImageView INSTRUCTOR_DELETE_IMAGE_VIEW;
+
+            public InstructorListRecycleViewHolder(View InstructorListRecycleView){
+
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) InstructorListRecycleView.findViewById(R.id.instructor_list_name_text_view);
+                INSTRUCTOR_COURSES_TEXT_VIEW = (TextView) InstructorListRecycleView.findViewById(R.id.instructor_list_courses_text_view);
+                INSTRUCTOR_DELETE_IMAGE_VIEW = (ImageView) InstructorListRecycleView.findViewById(R.id.instructor_list_delete_instructor_image_view);
+            }
+        }
+    }
+
+
 
 }

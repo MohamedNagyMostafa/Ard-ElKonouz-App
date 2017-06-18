@@ -6,10 +6,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ui.ListScreens.KidActivityFragment"
+    tools:context=".ui.ListScreens.ChildActivityFragment"
     tools:showIn="@layout/activity_child">
 
     <ListView
+        android:id="@+id/child_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/colorPrimary" />

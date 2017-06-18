@@ -1,4 +1,4 @@
-package com.nagy.mohamed.ardelkonouz.ui.ListScreens;
+package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,12 +9,12 @@ import android.view.View;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
-public class KidActivity extends AppCompatActivity {
+public class InstructorCourseConnectorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child);
+        setContentView(R.layout.activity_instructor_course_connector);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

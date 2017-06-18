@@ -24,7 +24,7 @@
             android:authorities="com.nagy.mohamed.ardelkonouz" />
 
         <activity
-            android:name=".ui.ListScreens.KidActivity"
+            android:name=".ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -76,11 +76,11 @@
             android:label="@string/title_activity_course_input"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.InputScreens.ConnectorsScreen.ChildCourseConnectorActivity"
+            android:name=".ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity"
             android:label="@string/title_activity_child_course_connector"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.InputScreens.ConnectorsScreen.InstructorCourseConnectorActivity"
+            android:name=".ui.ProfileScreens.ConnectorsScreen.InstructorCourseConnectorActivity"
             android:label="@string/title_activity_instructor_course_connector"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

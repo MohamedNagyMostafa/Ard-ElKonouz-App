@@ -1,4 +1,4 @@
-package com.nagy.mohamed.ardelkonouz.ui.InputScreens.ConnectorsScreen;
+package com.nagy.mohamed.ardelkonouz.ui.ListScreens;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,14 +11,14 @@ import com.nagy.mohamed.ardelkonouz.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ChildCourseConnectorActivityFragment extends Fragment {
+public class ChildActivityFragment extends Fragment {
 
-    public ChildCourseConnectorActivityFragment() {
+    public ChildActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_child_course_connector, container, false);
+        return inflater.inflate(R.layout.fragment_child, container, false);
     }
 }
