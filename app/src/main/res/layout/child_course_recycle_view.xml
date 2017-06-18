@@ -22,7 +22,7 @@
             android:layout_marginEnd="44dp">
 
             <TextView
-                android:id="@+id/course_child_list_name_text_view"
+                android:id="@+id/child_course_list_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/empty_info"
@@ -34,7 +34,7 @@
 
 
             <TextView
-                android:id="@+id/course_child_list_cost_text_view"
+                android:id="@+id/child_course_list_cost_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -42,7 +42,7 @@
                 android:text="@string/empty_info"/>
 
             <TextView
-                android:id="@+id/course_child_list_hours_text_view"
+                android:id="@+id/child_course_list_hours_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -50,7 +50,7 @@
                 android:text="@string/empty_info"/>
 
             <TextView
-                android:id="@+id/course_child_list_duration_text_view"
+                android:id="@+id/child_course_list_duration_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -61,7 +61,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/course_child_list_select__image_view"
+            android:id="@+id/child_course_list_select__image_view"
             android:contentDescription="@string/image_dt"
             android:layout_width="24dp"
             android:layout_height="24dp"

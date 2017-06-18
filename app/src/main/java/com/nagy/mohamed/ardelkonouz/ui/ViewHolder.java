@@ -482,4 +482,36 @@ public class ViewHolder {
         }
     }
 
+    public static class ChildCourseConnectorViewHolder{
+
+        public final Button SUBMIT_BUTTON;
+        public final Button REST_BUTTON;
+        public final ListView COURSES_LIST_VIEW;
+
+        public ChildCourseConnectorViewHolder(View childCourseView){
+
+            SUBMIT_BUTTON = (Button) childCourseView.findViewById(R.id.child_course_submit_button);
+            REST_BUTTON = (Button) childCourseView.findViewById(R.id.child_course_rest_button);
+            COURSES_LIST_VIEW = (ListView) childCourseView.findViewById(R.id.child_course_courses_list_view);
+        }
+
+        public static class CoursesViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final TextView COURSE_COST_TEXT_VIEW;
+            public final TextView COURSE_HOURS_TEXT_VIEW;
+            public final TextView COURSE_DURATION_TEXT_VIEW;
+            public final ImageView COURSE_SELECT_IMAGE_VIEW;
+
+            public CoursesViewHolder(View coursesView){
+
+                COURSE_NAME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_name_text_view);
+                COURSE_COST_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_cost_text_view);
+                COURSE_HOURS_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_hours_text_view);
+                COURSE_DURATION_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_duration_text_view);
+                COURSE_SELECT_IMAGE_VIEW = (ImageView) coursesView.findViewById(R.id.child_course_list_select__image_view);
+            }
+        }
+    }
+
 }
