@@ -44,7 +44,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/recycle_list_salary_process_text_view"
+            android:id="@+id/salary_list_salary_process_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

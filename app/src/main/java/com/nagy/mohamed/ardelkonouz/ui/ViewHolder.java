@@ -482,13 +482,13 @@ public class ViewHolder {
         }
     }
 
-    public static class ChildCourseConnectorViewHolder{
+    public static class ChildCourseConnectorScreenViewHolder{
 
         public final Button SUBMIT_BUTTON;
         public final Button REST_BUTTON;
         public final ListView COURSES_LIST_VIEW;
 
-        public ChildCourseConnectorViewHolder(View childCourseView){
+        public ChildCourseConnectorScreenViewHolder(View childCourseView){
 
             SUBMIT_BUTTON = (Button) childCourseView.findViewById(R.id.child_course_submit_button);
             REST_BUTTON = (Button) childCourseView.findViewById(R.id.child_course_rest_button);
@@ -514,14 +514,13 @@ public class ViewHolder {
         }
     }
 
-
-    public static class InstructorCourseConnectorViewHolder{
+    public static class InstructorCourseConnectorScreenViewHolder{
 
         public final Button SUBMIT_BUTTON;
         public final Button REST_BUTTON;
         public final ListView COURSES_LIST_VIEW;
 
-        public InstructorCourseConnectorViewHolder(View instructorCourseView){
+        public InstructorCourseConnectorScreenViewHolder(View instructorCourseView){
 
             SUBMIT_BUTTON = (Button) instructorCourseView.findViewById(R.id.instructor_course_submit_button);
             REST_BUTTON = (Button) instructorCourseView.findViewById(R.id.instructor_course_rest_button);
@@ -543,6 +542,68 @@ public class ViewHolder {
                 COURSE_HOURS_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_hours_text_view);
                 COURSE_DURATION_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_duration_text_view);
                 COURSE_SELECT_IMAGE_VIEW = (ImageView) coursesView.findViewById(R.id.instructor_course_list_select__image_view);
+            }
+        }
+    }
+
+    public static class InstructorSalaryScreenViewHolder{
+
+        public final TextView COMPLETED_COURSES_TEXT_VIEW;
+        public final TextView UNDER_PROGRESS_COURSES_TEXT_VIEW;
+        public final TextView TOTAL_PAID_SALARY_TEXT_VIEW;
+        public final ListView INSTRUCTOR_COURSES_LIST_VIEW;
+
+        public InstructorSalaryScreenViewHolder(View instructorSalaryView){
+
+            COMPLETED_COURSES_TEXT_VIEW = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_completed_courses_text_view);
+            UNDER_PROGRESS_COURSES_TEXT_VIEW = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_under_progress_text_view);
+            TOTAL_PAID_SALARY_TEXT_VIEW = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_total_paid_salary_text_view);
+            INSTRUCTOR_COURSES_LIST_VIEW = (ListView) instructorSalaryView.findViewById(R.id.instructor_salary_instructors_list_view);
+        }
+
+        public static class InstructorCoursesViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final TextView COURSE_DURATION_TEXT_VIEW;
+            public final TextView COURSE_SALARY_TEXT_VIEW;
+            public final Button COURSE_SALARY_STATE_BUTTON;
+
+            public InstructorCoursesViewHolder(View instructorCoursesView){
+
+                COURSE_NAME_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_course_name_text_view);
+                COURSE_DURATION_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_course_date_text_view);
+                COURSE_SALARY_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_course_salary_text_view);
+                COURSE_SALARY_STATE_BUTTON = (Button) instructorCoursesView.findViewById(R.id.instructor_salary_instructor_salary_state_button);
+            }
+        }
+    }
+
+    public static class SalaryScreenViewHolder{
+
+        public final TextView TOTAL_UNPAID_SALARY_TEXT_VIEW;
+        public final TextView TOTAL_PAID_SALARY_TEXT_VIEW;
+        public final TextView UNPAID_SALARY_NUMBER_TEXT_VIEW;
+        public final ListView INSTRUCTORS_LIST_VIEW;
+
+        public SalaryScreenViewHolder(View salaryView){
+
+            TOTAL_UNPAID_SALARY_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_total_unpaid_text_view);
+            TOTAL_PAID_SALARY_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_total_paid_text_view);
+            UNPAID_SALARY_NUMBER_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_number_of_unpaid_text_view);
+            INSTRUCTORS_LIST_VIEW = (ListView) salaryView.findViewById(R.id.salary_instructors_list_view);
+        }
+
+        public static class InstructorsViewHolder{
+
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView INSTRUCTOR_COURSE_TEXT_VIEW;
+            public final TextView INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW;
+
+            public InstructorsViewHolder(View instructorsView){
+
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_instructor_name_text_view);
+                INSTRUCTOR_COURSE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_instructor_course_text_view);
+                INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_salary_process_text_view);
             }
         }
     }
