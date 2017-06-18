@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.nagy.mohamed.ardelkonouz.InstructorProfileActivityFragment"
+    tools:context=".ui.ProfileScreens.InstructorProfileActivityFragment"
     tools:showIn="@layout/activity_instructor_profile">
 
     <ScrollView

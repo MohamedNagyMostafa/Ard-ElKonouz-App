@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.nagy.mohamed.ardelkonouz.InstructorCourseConnectorActivityFragment"
+    tools:context=".ui.InputScreens.ConnectorsScreen.InstructorCourseConnectorActivityFragment"
     tools:showIn="@layout/activity_instructor_course_connector">
 
     <ListView

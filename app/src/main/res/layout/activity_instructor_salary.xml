@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/finances_background"
-    tools:context="com.nagy.mohamed.ardelkonouz.offlineDatabase.InstructorSalaryActivity">
+    tools:context=".ui.SalaryScreens.InstructorSalaryActivity">
 
 
         <android.support.v7.widget.Toolbar

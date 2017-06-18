@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/feature_background"
-    tools:context="com.nagy.mohamed.ardelkonouz.CourseActivty">
+    tools:context=".ui.ListScreens.CourseActivty">
 
 
         <android.support.v7.widget.Toolbar

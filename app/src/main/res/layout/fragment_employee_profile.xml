@@ -1,7 +1,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.nagy.mohamed.ardelkonouz.EmployeeProfileActivityFragment"
+    tools:context=".ui.ProfileScreens.EmployeeProfileActivityFragment"
     tools:showIn="@layout/activity_employee_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

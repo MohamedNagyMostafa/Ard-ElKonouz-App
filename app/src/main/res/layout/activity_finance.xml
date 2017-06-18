@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:background="@drawable/finances_background"
-    tools:context="com.nagy.mohamed.ardelkonouz.FinanceActivity">
+    tools:context=".ui.FinanceActivity">
 
 
         <android.support.v7.widget.Toolbar
