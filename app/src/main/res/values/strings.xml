@@ -100,6 +100,10 @@
     <string name="watching_tv">Watching TV</string>
     <string name="handwork">Handwork</string>
 
+    <string name="incomplete">Incomplete</string>
+    <string name="complete">complete</string>
+    <string name="to">To</string>
+    <string name="from">From</string>
     <string name="finance_settings">Finance Settings</string>
     <string name="title_activity_instructor_input">InstructorInputActivity</string>
     <string name="title_activity_employee_input">EmployeeInput</string>
