@@ -86,6 +86,19 @@
     <string name="child_birth">Birth Order</string>
     <string name="gender">Gender</string>
     <string name="title_activity_finance">FinanceActivity</string>
+    <string name="collaborator_characteristic">Collaborator</string>
+    <string name="good_speaker_characteristic">Good Speaker</string>
+    <string name="social_characteristic">Social</string>
+    <string name="leading_characteristic">Leading</string>
+    <string name="neural_characteristic">Neural</string>
+    <string name="quietly_asks_for_help">Quietly Asks For Help</string>
+    <string name="worries_and_get_angry">Worries And Get Angry</string>
+    <string name="leaves_the_problem_totally">Leaves The Problem Totally</string>
+    <string name="tries_to_solve_the_problem">Tries To Solve The Problem</string>
+    <string name="drawing_coloring">Drawing/Coloring</string>
+    <string name="electronic_games">Electronic Games</string>
+    <string name="watching_tv">Watching TV</string>
+    <string name="handwork">Handwork</string>
 
     <string name="finance_settings">Finance Settings</string>
     <string name="title_activity_instructor_input">InstructorInputActivity</string>
