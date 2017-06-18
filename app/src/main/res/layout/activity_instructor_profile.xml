@@ -19,7 +19,7 @@
     <include layout="@layout/content_instructor_profile" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/instructor_profile_edit_floating_button"
+        android:id="@+id/instructor_pf_edit_floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

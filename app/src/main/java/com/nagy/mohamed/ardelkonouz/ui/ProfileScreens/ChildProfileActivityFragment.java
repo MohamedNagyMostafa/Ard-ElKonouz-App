@@ -11,9 +11,9 @@ import com.nagy.mohamed.ardelkonouz.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class KidProfileActivityFragment extends Fragment {
+public class ChildProfileActivityFragment extends Fragment {
 
-    public KidProfileActivityFragment() {
+    public ChildProfileActivityFragment() {
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -316,6 +317,169 @@ public class ViewHolder {
         }
     }
 
+    public static class ChildProfileScreenViewHolder{
 
+        public final TextView CHILD_NAME_TEXT_VIEW;
+        public final TextView CHILD_AGE_TEXT_VIEW;
+        public final TextView CHILD_GENDER_TEXT_VIEW;
+        public final TextView CHILD_BIRTH_ORDER_TEXT_VIEW;
+        public final TextView MOTHER_NAME_TEXT_VIEW;
+        public final TextView MOTHER_MOBILE_TEXT_VIEW;
+        public final TextView MOTHER_QUALIFICATION_TEXT_VIEW;
+        public final TextView MOTHER_JOB_TEXT_VIEW;
+        public final TextView FATHER_NAME_TEXT_VIEW;
+        public final TextView FATHER_MOBILE_TEXT_VIEW;
+        public final TextView FATHER_JOB_TEXT_VIEW;
+        public final TextView WHATSAPP_TEXT_VIEW;
+        public final TextView EDUCATION_TYPE_TEXT_VIEW;
+        public final TextView EDUCATION_STAGE_TEXT_VIEW;
+        public final TextView CHILD_CHARACTERISTIC_TEXT_VIEW;
+        public final TextView CHILD_HANDLING_PROBLEM_TEXT_VIEW;
+        public final TextView CHILD_FREE_TIME_TEXT_VIEW;
+        public final FloatingActionButton CHILD_EDIT_BUTTON;
+        public final GridView CHILD_COURSES_GRID_VIEW;
+
+        public ChildProfileScreenViewHolder(View childProfileView){
+
+            CHILD_NAME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_name_text_view);
+            CHILD_AGE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_age_text_view);
+            CHILD_GENDER_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_gender_text_view);
+            CHILD_BIRTH_ORDER_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_birth_order_text_view);
+            MOTHER_NAME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_name_text_view);
+            MOTHER_MOBILE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_mobile_text_view);
+            MOTHER_QUALIFICATION_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_qualification_text_view);
+            MOTHER_JOB_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_mother_job_text_view);
+            FATHER_NAME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_father_name_text_view);
+            FATHER_MOBILE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_father_mobile_text_view);
+            FATHER_JOB_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_father_job_text_view);
+            WHATSAPP_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_whatsapp_text_view);
+            EDUCATION_TYPE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_education_type_text_view);
+            EDUCATION_STAGE_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_education_stage__text_view);
+            CHILD_CHARACTERISTIC_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_characteristic_text_view);
+            CHILD_HANDLING_PROBLEM_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_problem_handling_text_view);
+            CHILD_FREE_TIME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_free_time_text_view);
+            CHILD_EDIT_BUTTON = (FloatingActionButton) childProfileView.findViewById(R.id.child_pf_edit_floating_button);
+            CHILD_COURSES_GRID_VIEW = (GridView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
+        }
+
+        public static class ChildProfileListViewHolder{
+
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final TextView START_DATE_TEXT_VIEW;
+            public final TextView END_DATE_TEXT_VIEW;
+
+            public ChildProfileListViewHolder(View childProfileListView){
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_instructor_name_text_view);
+                COURSE_NAME_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_name_text_view);
+                START_DATE_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_start_date_text_view);
+                END_DATE_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_end_date_text_view);
+
+            }
+        }
+    }
+
+    public static class CourseProfileScreenViewHolder{
+
+        public final TextView COURSE_NAME_TEXT_VIEW;
+        public final TextView COURSE_HOURS_TEXT_VIEW;
+        public final TextView COURSE_LEVEL_TEXT_VIEW;
+        public final TextView COURSE_COST_TEXT_VIEW;
+        public final TextView COURSE_START_DATE_TEXT_VIEW;
+        public final TextView COURSE_END_DATE_TEXT_VIEW;
+        public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
+        public final TextView COURSE_START_TEXT_VIEW;
+        public final TextView COURSE_AVAILABLE_LEVELS_TEXT_VIEW;
+        public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
+        public final FloatingActionButton COURSE_EDIT_BUTTON;
+
+        public CourseProfileScreenViewHolder(View courseProfileView){
+
+            COURSE_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_name_text_view);
+            COURSE_HOURS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_hours_text_view);
+            COURSE_LEVEL_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_level_text_view);
+            COURSE_COST_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_cost_text_view);
+            COURSE_START_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_start_date_text_view);
+            COURSE_END_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_end_date_text_view);
+            COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_salary_per_child_text_view);
+            COURSE_START_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
+            COURSE_AVAILABLE_LEVELS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_available_levels_text_view);
+            COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_age_range_text_view);
+            COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
+        }
+    }
+
+    public static class EmployeeProfileScreenViewHolder{
+
+        public final TextView EMPLOYEE_NAME_TEXT_VIEW;
+        public final TextView EMPLOYEE_AGE_TEXT_VIEW;
+        public final TextView EMPLOYEE_GENDER_TEXT_VIEW;
+        public final TextView EMPLOYEE_MOBILE_TEXT_VIEW;
+        public final TextView EMPLOYEE_ADDRESS_TEXT_VIEW;
+        public final TextView EMPLOYEE_QUALIFICATION_TEXT_VIEW;
+        public final TextView EMPLOYEE_SALARY_TEXT_VIEW;
+        public final FloatingActionButton EMPLOYEE_EDIT_BUTTON;
+
+        public EmployeeProfileScreenViewHolder(View employeeProfileView){
+
+            EMPLOYEE_NAME_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_name_text_view);
+            EMPLOYEE_AGE_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_age_text_view);
+            EMPLOYEE_GENDER_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_gender_text_view);
+            EMPLOYEE_MOBILE_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_mobile_text_view);
+            EMPLOYEE_ADDRESS_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_address_text_view);
+            EMPLOYEE_QUALIFICATION_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_qualification_text_view);
+            EMPLOYEE_SALARY_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_original_salary_text_view);
+            EMPLOYEE_EDIT_BUTTON = (FloatingActionButton) employeeProfileView.findViewById(R.id.employee_pf_edit_floating_button);
+        }
+    }
+
+    public static class InstructorProfileScreenViewHolder{
+
+        public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+        public final TextView INSTRUCTOR_AGE_TEXT_VIEW;
+        public final TextView INSTRUCTOR_GENDER_TEXT_VIEW;
+        public final TextView INSTRUCTOR_MOBILE_TEXT_VIEW;
+        public final TextView INSTRUCTOR_ADDRESS_TEXT_VIEW;
+        public final TextView INSTRUCTOR_QUALIFICATION_TEXT_VIEW;
+        public final TextView INSTRUCTOR_CV_TEXT_VIEW;
+        public final GridView INSTRUCTOR_COURSES_CHILD_GRID_VIEW;
+        public final FloatingActionButton INSTRUCTOR_EDIT_BUTTON;
+
+        public InstructorProfileScreenViewHolder(View instructorProfileView){
+
+            INSTRUCTOR_NAME_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_name_text_view);
+            INSTRUCTOR_AGE_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_age_text_view);
+            INSTRUCTOR_GENDER_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_gender_text_view);
+            INSTRUCTOR_MOBILE_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_mobile_text_view);
+            INSTRUCTOR_ADDRESS_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_address_text_view);
+            INSTRUCTOR_QUALIFICATION_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_qualification_text_view);
+            INSTRUCTOR_CV_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_cv_text_view);
+            INSTRUCTOR_COURSES_CHILD_GRID_VIEW = (GridView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_grid_view);
+            INSTRUCTOR_EDIT_BUTTON = (FloatingActionButton) instructorProfileView.findViewById(R.id.instructor_pf_edit_floating_button);
+        }
+
+        public static class InstructorCoursesViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final GridView COURSE_CHILDREN_GRID_VIEW;
+
+            public InstructorCoursesViewHolder(View instructorCoursesView){
+                COURSE_NAME_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_pf_course_name_text_view);
+                COURSE_CHILDREN_GRID_VIEW = (GridView) instructorCoursesView.findViewById(R.id.instructor_pf_children_grid_view);
+
+            }
+
+            public static class ChildrenViewHolder{
+
+                public final TextView CHILD_NAME;
+                public final TextView CHILD_AGE;
+
+                public ChildrenViewHolder(View childView){
+                    CHILD_NAME = (TextView) childView.findViewById(R.id.instructor_pf_child_name_text_view);
+                    CHILD_AGE = (TextView) childView.findViewById(R.id.instructor_pf_child_age_text_view);
+                }
+            }
+        }
+    }
 
 }
