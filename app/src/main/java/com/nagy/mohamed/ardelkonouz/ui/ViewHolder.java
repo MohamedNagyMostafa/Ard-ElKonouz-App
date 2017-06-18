@@ -394,6 +394,7 @@ public class ViewHolder {
         public final FloatingActionButton COURSE_EDIT_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
+
             COURSE_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_name_text_view);
             COURSE_HOURS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_hours_text_view);
             COURSE_LEVEL_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_level_text_view);
@@ -407,4 +408,30 @@ public class ViewHolder {
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
         }
     }
+
+    public static class EmployeeProfileScreenViewHolder{
+
+        public final TextView EMPLOYEE_NAME_TEXT_VIEW;
+        public final TextView EMPLOYEE_AGE_TEXT_VIEW;
+        public final TextView EMPLOYEE_GENDER_TEXT_VIEW;
+        public final TextView EMPLOYEE_MOBILE_TEXT_VIEW;
+        public final TextView EMPLOYEE_ADDRESS_TEXT_VIEW;
+        public final TextView EMPLOYEE_QUALIFICATION_TEXT_VIEW;
+        public final TextView EMPLOYEE_SALARY_TEXT_VIEW;
+        public final FloatingActionButton EMPLOYEE_EDIT_BUTTON;
+
+        public EmployeeProfileScreenViewHolder(View employeeProfileView){
+
+            EMPLOYEE_NAME_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_name_text_view);
+            EMPLOYEE_AGE_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_age_text_view);
+            EMPLOYEE_GENDER_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_gender_text_view);
+            EMPLOYEE_MOBILE_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_mobile_text_view);
+            EMPLOYEE_ADDRESS_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_address_text_view);
+            EMPLOYEE_QUALIFICATION_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_qualification_text_view);
+            EMPLOYEE_SALARY_TEXT_VIEW = (TextView) employeeProfileView.findViewById(R.id.employee_pf_original_salary_text_view);
+            EMPLOYEE_EDIT_BUTTON = (FloatingActionButton) employeeProfileView.findViewById(R.id.employee_pf_edit_floating_button);
+        }
+    }
+
+    
 }
