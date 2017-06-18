@@ -42,7 +42,7 @@
                 android:text="@string/empty_info"/>
 
             <TextView
-                android:id="@+id/instructor_child_list_hours_text_view"
+                android:id="@+id/instructor_course_list_hours_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"

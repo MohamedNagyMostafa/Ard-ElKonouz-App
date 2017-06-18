@@ -6,10 +6,6 @@
     tools:showIn="@layout/activity_child_course_connector">
 
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <LinearLayout
         android:id="@+id/buttons_frame"
         android:layout_width="match_parent"
@@ -44,9 +40,16 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/line_frame"
         android:layout_alignTop="@id/buttons_frame"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimary"/>
+
+    <ListView
+        android:id="@+id/child_course_courses_list_view"
+        android:layout_above="@id/line_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
