@@ -266,6 +266,30 @@ public class ViewHolder {
         }
     }
 
+    public static class EmployeeListScreenViewHolder{
+
+        public final FloatingActionButton ADD_NEW_EMPLOYEE_BUTTON;
+        public final ListView EMPLOYEE_LIST_VIEW;
+
+        public EmployeeListScreenViewHolder(View employeeListView){
+            ADD_NEW_EMPLOYEE_BUTTON = (FloatingActionButton) employeeListView.findViewById(R.id.employee_add_new_floating_button);
+            EMPLOYEE_LIST_VIEW = (ListView) employeeListView.findViewById(R.id.employee_list_view);
+        }
+
+        public static class EmployeeListRecycleViewHolder{
+
+            public final TextView EMPLOYEE_NAME_TEXT_VIEW;
+            public final TextView EMPLOYEE_MOBILE_TEXT_VIEW;
+            public final ImageView EMPLOYEE_DELETE_IMAGE_VIEW;
+
+            public EmployeeListRecycleViewHolder(View employeeListRecycleView){
+
+                EMPLOYEE_NAME_TEXT_VIEW = (TextView) employeeListRecycleView.findViewById(R.id.employee_list_name_text_view);
+                EMPLOYEE_MOBILE_TEXT_VIEW = (TextView) employeeListRecycleView.findViewById(R.id.employee_List_mobile_text_view);
+                EMPLOYEE_DELETE_IMAGE_VIEW = (ImageView) employeeListRecycleView.findViewById(R.id.employee_list_delete_employee_image_view);
+            }
+        }
+    }
 
 
 }
