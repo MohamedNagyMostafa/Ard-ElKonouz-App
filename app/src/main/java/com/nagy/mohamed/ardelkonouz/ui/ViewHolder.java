@@ -578,4 +578,34 @@ public class ViewHolder {
         }
     }
 
+    public static class SalaryScreenViewHolder{
+
+        public final TextView TOTAL_UNPAID_SALARY_TEXT_VIEW;
+        public final TextView TOTAL_PAID_SALARY_TEXT_VIEW;
+        public final TextView UNPAID_SALARY_NUMBER_TEXT_VIEW;
+        public final ListView INSTRUCTORS_LIST_VIEW;
+
+        public SalaryScreenViewHolder(View salaryView){
+
+            TOTAL_UNPAID_SALARY_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_total_unpaid_text_view);
+            TOTAL_PAID_SALARY_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_total_paid_text_view);
+            UNPAID_SALARY_NUMBER_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_number_of_unpaid_text_view);
+            INSTRUCTORS_LIST_VIEW = (ListView) salaryView.findViewById(R.id.salary_instructors_list_view);
+        }
+
+        public static class InstructorsViewHolder{
+
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView INSTRUCTOR_COURSE_TEXT_VIEW;
+            public final TextView INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW;
+
+            public InstructorsViewHolder(View instructorsView){
+
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_instructor_name_text_view);
+                INSTRUCTOR_COURSE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_instructor_course_text_view);
+                INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_salary_process_text_view);
+            }
+        }
+    }
+
 }
