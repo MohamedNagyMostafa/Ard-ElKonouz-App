@@ -126,9 +126,6 @@
                             android:drawablePadding="4dp"
                             android:drawableTint="@android:color/holo_green_dark"/>
 
-
-
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -681,15 +678,67 @@
                 android:fontFamily="serif"
                 android:text="@string/iq_1q"/>
 
-            <EditText
-                android:id="@+id/child_input_traits_edit_view"
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/child_input_good_speaker_text_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:inputType="text"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:layout_marginStart="4dp"
-                android:textColor="@android:color/black"/>
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center_vertical"
+                android:text="@string/good_speaker_characteristic"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_social_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/social_characteristic"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_leading_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/leading_characteristic"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="2dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_neural_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:text="@string/neural_characteristic"
+                android:textColor="@android:color/black"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/ic_done_black_18dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_collaborator_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center_vertical"
+                android:text="@string/collaborator_characteristic"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -698,15 +747,54 @@
                 android:fontFamily="serif"
                 android:text="@string/iq_2q"/>
 
-            <EditText
-                android:id="@+id/child_input_handling_edit_view"
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/child_input_ans1_problem_text_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:inputType="text"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:layout_marginStart="4dp"
-                android:textColor="@android:color/black"/>
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/quietly_asks_for_help"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_ans2_problem_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/worries_and_get_angry"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="2dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_ans3_problem_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/leaves_the_problem_totally"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_ans4_problem_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/tries_to_solve_the_problem"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -715,15 +803,54 @@
                 android:fontFamily="serif"
                 android:text="@string/id_3q"/>
 
-            <EditText
-                android:id="@+id/child_input_free_time_edit_view"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/child_input_ans1_time_text_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:inputType="text"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:layout_marginStart="4dp"
-                android:textColor="@android:color/black"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:text="@string/drawing_coloring"
+                android:textColor="@android:color/black"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/ic_done_black_18dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_ans2_time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center_vertical"
+                android:text="@string/electronic_games"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_ans3_time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/watching_tv"
+                android:drawablePadding="4dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/child_input_ans4_time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginStart="28dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/handwork"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="2dp"
+                android:drawableTint="@android:color/holo_green_dark"/>
 
         </LinearLayout>
 
