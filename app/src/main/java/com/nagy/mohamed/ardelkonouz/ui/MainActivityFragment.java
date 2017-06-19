@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivty;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
@@ -83,52 +86,96 @@ public class MainActivityFragment extends Fragment {
         mainScreenViewHolder.INSTRUCTOR_LIST_LAYOUT.setOnClickListener(instructorListClickListener);
         mainScreenViewHolder.SALARY_LIST_LAYOUT.setOnClickListener(salaryListClickListener);
 
+        databaseTesting();
+
         return rootView;
     }
 
-//    private v//d databaseTesting(){
-//        // Test inserting.
-//       //ontentValues contentValues = new ContentValues();
-//        contentValues//ut(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 1);
-//        contentValues.put//bContent.CourseTable.COURSE_START_AGE_COLUMN, 1);
-//        contentValues.p//(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 1);
-//        contentValues.put(//Content.CourseTable.COURSE_START_DATE_COLUMN, 1);
-//        contentValues.pu//DbContent.CourseTable.COURSE_END_DATE_COLUMN, 1)COURSE_COMPLETE_COLUMNues.pu//DbContent.CourseTable.COURSE_COMPLETE_COLUMN, 1);
-//        contentValue//put(DbContent.CourseTable.COURSE_COST_COLUMN, 1);
-//        contentValues//ut(DbContent.CourseTable.COURSE_HOURS_COLUMN, 1);
-//        contentValues.put(Db//ntent.CourseTable.COURSE_NAME_COLUMN, "android");DbContent.CourseTable.CONTENT_URItResolver().insert(//Content.CourseTable.C//TENT_URI, contentValues );
-//        // Test Join
-//        //ntentValcontentValues2.put(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN, "Mohamed");
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN, "giza");
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_TOTAL_SALARY_COLUMN, 2);
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN, 2);
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_QUALIFICATION_COLUMN, 2);
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN, 2);
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN, 1);
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_HOURS_PER_DAY_COLUMN, 1);
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN, 1);r//b//.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN, 1);
-//
-//        getContext().getContentResolver().insert(DbCon//nt.InstructorTable.CONTENT_URI, contentValues2 );
-//        //ntentValues contentValues1 = new ContentValues();
-//        contentValues1.put(Db//ntent.CourseInstructorTable.COURSE_ID_COLUMN, 1);
-//        contentValues1.put(DbCont//t.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, 1);
-//        getContext().getContentResolver().insert(DbContent.C//r//InstructorTable.CONTENT_URI, contentValues1 );
-//
-//        Curso//cursor = getContext().getContentResolver().query(
-//                DbContent.CourseInstructorTable.CONTENT_URI.buildUpon().appendPath(DbContent.CourseTable//ABLE_NAME).appendPath(//ring.valueOf(1)).build//,
-//                nu//,
-//                nul//
-//                null,
-//                null);
-//       //og.e("result",String.valueOf(cursor.getCount()));
-///       for(String name: cursor.get//lumnNames(//{
-//            Log.e("result",name);///        }
-//        if(cursor.get//unt() != 0) {
-//            cursor.moveToFirst();
-//            Log.e("result", cursor.getString(cursor.getColumnIndex(D//ontent.InstructorTable.INSTRUCTOR_NAME_COLUMN)));
-//            Log.e("result", cursor.getString(cursor.getColum//n//x(DbConten//CourseTable.COURSE_NAME_//LUMN)));
-//
-//        }
-//        cursor.close();
-//    }
+    private void databaseTesting(){
+
+        // Dummy Data Child Table
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DbContent.ChildTable.CHILD_NAME_COLUMN, "mohamed");
+        contentValues.put(DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN, "Nagy");
+        contentValues.put(DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN, "Awatef");
+        contentValues.put(DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN, 1123123);
+        contentValues.put(DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN, 1123323);
+        contentValues.put(DbContent.ChildTable.CHILD_MOBILE_WHATSUP_COLUMN, 232123);
+        contentValues.put(DbContent.ChildTable.CHILD_MOTHER_QUALIFICATION_COLUMN, "B.S");
+        contentValues.put(DbContent.ChildTable.CHILD_FATHER_JOB_COLUMN, "Employee");
+        contentValues.put(DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN, "None");
+        contentValues.put(DbContent.ChildTable.CHILD_AGE_COLUMN, 12);
+        contentValues.put(DbContent.ChildTable.CHILD_EDUCATION_TYPE_COLUMN, 1);
+        contentValues.put(DbContent.ChildTable.CHILD_STUDY_YEAR_COLUMN, 1);
+        contentValues.put(DbContent.ChildTable.CHILD_GENDER_COLUMN, 1);
+        contentValues.put(DbContent.ChildTable.CHILD_FREE_TIME_COLUMN, 1);
+        contentValues.put(DbContent.ChildTable.CHILD_TRAITS_COLUMN, 1);
+        contentValues.put(DbContent.ChildTable.CHILD_HANDLING_COLUMN, 1);
+        contentValues.put(DbContent.ChildTable.CHILD_BIRTH_ORDER_COLUMN, 1);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.CHILD_TABLE_URI,contentValues);
+
+        // Dummy Data Course Table.
+        ContentValues contentValues1 = new ContentValues();
+        contentValues1.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "Android");
+        contentValues1.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 22);
+        contentValues1.put(DbContent.CourseTable.COURSE_COST_COLUMN, 133);
+        contentValues1.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,2);
+        contentValues1.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, 10);
+        contentValues1.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 15);
+        contentValues1.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, 2016);
+        contentValues1.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, 2017);
+        contentValues1.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 2);
+        contentValues1.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, 12);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_TABLE_URI,contentValues1);
+
+        ContentValues contentValues3 = new ContentValues();
+        contentValues3.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "Java");
+        contentValues3.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 22);
+        contentValues3.put(DbContent.CourseTable.COURSE_COST_COLUMN, 133);
+        contentValues3.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,5);
+        contentValues3.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, 10);
+        contentValues3.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 15);
+        contentValues3.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, 2016);
+        contentValues3.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, 2017);
+        contentValues3.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 2);
+        contentValues3.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, 12);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_TABLE_URI,contentValues3);
+
+        ContentValues contentValues6 = new ContentValues();
+        contentValues6.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "VS");
+        contentValues6.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 22);
+        contentValues6.put(DbContent.CourseTable.COURSE_COST_COLUMN, 133);
+        contentValues6.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,4);
+        contentValues6.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, 10);
+        contentValues6.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 15);
+        contentValues6.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, 2016);
+        contentValues6.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, 2017);
+        contentValues6.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 2);
+        contentValues6.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, 12);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_TABLE_URI,contentValues6);
+
+        // set Dummy Join CourseChild Table.
+        ContentValues contentValues2 = new ContentValues();
+        contentValues2.put(DbContent.ChildCourseTable.CHILD_ID_COLUMN, 1);
+        contentValues2.put(DbContent.ChildCourseTable.COURSE_ID_COLUMN, 1);
+        contentValues2.put(DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN, 0);
+        contentValues2.put(DbContent.ChildCourseTable._ID,1);
+
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues2);
+        ContentValues contentValues4 = new ContentValues();
+        contentValues4.put(DbContent.ChildCourseTable.CHILD_ID_COLUMN, 1);
+        contentValues4.put(DbContent.ChildCourseTable.COURSE_ID_COLUMN, 2);
+        contentValues4.put(DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN, 0);
+
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues4);
+
+        ContentValues contentValues5 = new ContentValues();
+        contentValues5.put(DbContent.ChildCourseTable.CHILD_ID_COLUMN, 1);
+        contentValues5.put(DbContent.ChildCourseTable.COURSE_ID_COLUMN, 3);
+        contentValues5.put(DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN, 0);
+
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues5);
+
+
+    }
 }

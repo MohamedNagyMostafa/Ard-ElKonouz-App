@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ChildProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -47,7 +48,7 @@ public class ChildActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
-        childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);
+//        childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);
         childListScreenViewHolder.CHILD_LIST_VIEW.setAdapter(databaseCursorAdapter);
 
         getLoaderManager().initLoader(Constants.LOADER_CHILD_LIST, null, this);
@@ -57,7 +58,8 @@ public class ChildActivityFragment extends Fragment
 
     @Override
     public View newListView(ViewGroup viewGroup, Cursor cursor) {
-        return View.inflate(getContext(), R.layout.child_list_recycle_view, viewGroup);
+        return LayoutInflater.from(getContext())
+                .inflate(R.layout.child_list_recycle_view, viewGroup, false);
     }
 
     @Override
@@ -66,23 +68,25 @@ public class ChildActivityFragment extends Fragment
         ViewHolder.ChildListScreenViewHolder.ChildListRecycleViewHolder childListRecycleViewHolder
                 = new ViewHolder.ChildListScreenViewHolder.ChildListRecycleViewHolder(view);
 
-        if(cursor.moveToFirst()) {
 
             childListRecycleViewHolder.CHILD_NAME_TEXT_VIEW.setText(
                     cursor.getString(
                             DatabaseController.ProjectionDatabase
-                                    .COURSE_CHILD_JOIN_CHILD_NAME_COLUMN_LIST
+                                    .CHILD_LIST_NAME
                     ));
 
             childListRecycleViewHolder.CHILD_AGE_TEXT_VIEW.setText(
-                    cursor.getInt(
-                            DatabaseController.ProjectionDatabase
-                                    .COURSE_CHILD_JOIN_CHILD_AGE_COLUMN_LIST
-                    ));
+                    String.valueOf(
+                        cursor.getInt(
+                                DatabaseController.ProjectionDatabase
+                                        .CHILD_LIST_AGE
+                        )
+                    )
+            );
 
 
             final int childId = cursor.getInt(
-                    DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_CHILD_ID_COLUMN_LIST
+                    DatabaseController.ProjectionDatabase.CHILD_LIST_ID
             );
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -94,21 +98,30 @@ public class ChildActivityFragment extends Fragment
                 }
             });
 
+        Cursor cursorCourses = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(childId),
+                new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                null,
+                null,
+                null
+        );
+
+        if(cursorCourses != null) {
+
+            cursorCourses.moveToFirst();
             StringBuilder stringBuilderCourses = new StringBuilder(
-                    cursor.getString(
-                            DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_COURSE_NAME_COLUMN_LIST
-                    )
+                    cursorCourses.getString(0)
             );
 
-            while(cursor.moveToNext()){
-                stringBuilderCourses.append(" - ").append(cursor.getString(
-                        DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_COURSE_NAME_COLUMN_LIST
-                ));
+            while (cursorCourses.moveToNext()) {
+                stringBuilderCourses.append(" - ").append(cursorCourses.getString(0));
             }
 
             childListRecycleViewHolder.CHILD_COURSES_TEXT_VIEW.setText(
                     stringBuilderCourses.toString()
             );
+
+            cursorCourses.close();
 
         }
 
@@ -118,8 +131,8 @@ public class ChildActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.COURSE_CHILD_URI,
-                DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_TABLE_RECYCLE_LIST,
+                DatabaseController.UriDatabase.CHILD_TABLE_URI,
+                DatabaseController.ProjectionDatabase.CHILD_LIST_PROJECTION,
                 null,
                 null,
                 null
