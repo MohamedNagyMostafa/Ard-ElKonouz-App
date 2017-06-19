@@ -357,6 +357,7 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN);
 
         }
+
         return 0;
     }
 

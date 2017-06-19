@@ -61,7 +61,7 @@ public class EmployeeActivityFragment extends Fragment
     }
 
     @Override
-    public void bindListView(final View view, Cursor cursor) {
+    public void bindListView(final View view, final Cursor cursor) {
         ViewHolder.EmployeeListScreenViewHolder.EmployeeListRecycleViewHolder
                 employeeListRecycleViewHolder = new ViewHolder.EmployeeListScreenViewHolder
                 .EmployeeListRecycleViewHolder(view);
@@ -89,8 +89,7 @@ public class EmployeeActivityFragment extends Fragment
                                 null
                         );
 
-                        view.setVisibility(View.GONE);
-                        databaseCursorAdapter.notifyDataSetChanged();
+                        restartLoader();
                     }
                 }
         );
@@ -125,5 +124,10 @@ public class EmployeeActivityFragment extends Fragment
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         databaseCursorAdapter.swapCursor(null);
+    }
+
+    private void restartLoader(){
+        getLoaderManager().restartLoader(Constants.LOADER_EMPLOYEE_LIST, null, this);
+
     }
 }

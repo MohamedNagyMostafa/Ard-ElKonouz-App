@@ -103,9 +103,7 @@ public class ChildActivityFragment extends Fragment
                                 null
                         );
 
-                        view.setVisibility(View.GONE);
-
-                        databaseCursorAdapter.notifyDataSetChanged();
+                        restartLoader();
                     }
                 }
         );
@@ -171,4 +169,8 @@ public class ChildActivityFragment extends Fragment
         databaseCursorAdapter.swapCursor(null);
     }
 
+    private void restartLoader(){
+        getLoaderManager().restartLoader(Constants.LOADER_CHILD_LIST, null, this);
+
+    }
 }
