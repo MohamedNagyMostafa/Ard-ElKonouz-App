@@ -34,7 +34,11 @@ public class Constants {
 
     // EXTRAS
     public static final String CHILD_ID_EXTRA = "child extra";
+    public static final String EMPLOYEE_ID_EXTRA = "employee extra";
+
 
     // Loaders Id
     public static final int LOADER_CHILD_LIST = 11;
+    public static final int LOADER_EMPLOYEE_LIST = 10;
+
 }

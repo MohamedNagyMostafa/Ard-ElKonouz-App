@@ -105,6 +105,17 @@ public class DatabaseController {
         public static final int EMPLOYEE_AGE = 6;
         public static final int EMPLOYEE_GENDER = 7;
 
+        public static final String[] EMPLOYEE_LIST_PROJECTION = {
+                DbContent.EmployeeTable.TABLE_NAME + "." + DbContent.EmployeeTable._ID,
+                DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN,
+                DbContent.EmployeeTable.EMPLOYEE_MOBILE_COLUMN,
+        };
+
+        public static final int EMPLOYEE_LIST_ID = 0;
+        public static final int EMPLOYEE_LIST_NAME = 1;
+        public static final int EMPLOYEE_LIST_MOBILE = 2;
+
+
         public static final String[] INSTRUCTOR_PROJECTION = {
                 DbContent.InstructorTable.TABLE_NAME + "." + DbContent.InstructorTable._ID,
                 DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
