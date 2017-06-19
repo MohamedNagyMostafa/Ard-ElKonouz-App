@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
@@ -47,6 +49,14 @@ public class ChildProfileActivityFragment extends Fragment
         }
 
         childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setAdapter(databaseCursorAdapter);
+        childProfileScreenViewHolder.CHILD_EDIT_BUTTON.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inputChildScreen = new Intent(getContext(), ChildInputActivity.class);
+                inputChildScreen.putExtra(Constants.CHILD_ID_EXTRA, childId);
+                startActivity(inputChildScreen);
+            }
+        });
 
         getLoaderManager().initLoader(Constants.LOADER_COURSE_CHILD_JOIN_LIST, null, this);
 

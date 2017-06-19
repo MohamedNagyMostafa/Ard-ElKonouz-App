@@ -63,6 +63,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+
             android:numColumns="2"/>
 
 
@@ -497,8 +498,6 @@
         </LinearLayout>
 
     </ScrollView>
-
-
 
 </RelativeLayout>
 
