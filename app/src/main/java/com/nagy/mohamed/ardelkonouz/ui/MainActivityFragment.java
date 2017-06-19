@@ -195,6 +195,29 @@ public class MainActivityFragment extends Fragment {
         contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_AGE_COLUMN, 18);
         getActivity().getContentResolver().insert(DatabaseController.UriDatabase.EMPLOYEE_TABLE_URI, contentValues8);
 
+        ContentValues contentValues9 = new ContentValues();
+        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN, "yomo");
+        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN, 112322590);
+        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN, 1);
+        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_QUALIFICATION_COLUMN, "D.R");
+        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN, "giza");
+        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN, 18);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.INSTRUCTOR_TABLE_URI, contentValues9);
+
+        ContentValues contentValues10 = new ContentValues();
+        contentValues10.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,1);
+        contentValues10.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN,1);
+        contentValues10.put(DbContent.CourseInstructorTable.PAY_STATE_COLUMN,1);
+        contentValues10.put(DbContent.CourseInstructorTable.TOTAL_SALARY_COLUMN,1);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI, contentValues10);
+
+        ContentValues contentValues11 = new ContentValues();
+        contentValues11.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,1);
+        contentValues11.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN,2);
+        contentValues11.put(DbContent.CourseInstructorTable.PAY_STATE_COLUMN,1);
+        contentValues11.put(DbContent.CourseInstructorTable.TOTAL_SALARY_COLUMN,1);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI, contentValues11);
+
 
     }
 }
