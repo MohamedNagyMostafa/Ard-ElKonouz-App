@@ -196,7 +196,7 @@ public class DbContent {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
-    public static class ChildCourseTable{
+    public static class ChildCourseTable implements BaseColumns{
 
         public static final String TABLE_NAME = "child_course_table";
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
@@ -207,7 +207,8 @@ public class DbContent {
         public static final String CHILD_COURSE_COMPLETED_COLUMN = "child_course_completed";
 
         public static final String CREATE_CHILD_COURSE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
-                + "(" + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
+                + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_COURSE_COMPLETED_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
