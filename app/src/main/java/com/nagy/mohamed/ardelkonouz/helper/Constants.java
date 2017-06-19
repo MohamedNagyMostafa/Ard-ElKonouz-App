@@ -41,5 +41,7 @@ public class Constants {
     public static final int LOADER_CHILD_LIST = 11;
     public static final int LOADER_EMPLOYEE_LIST = 10;
     public static final int LOADER_INSTRUCTOR_LIST = 111;
+    public static final int LOADER_COURSE_LIST = 110;
+
 
 }

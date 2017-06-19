@@ -35,6 +35,19 @@ public class DatabaseController {
         public static final int COURSE_LEVEL = 9;
         public static final int COURSE_SALARY_PER_CHILD = 10;
 
+        public static final String[] COURSE_LIST_PROJECTION = {
+                DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+        };
+
+        public static final int COURSE_LIST_ID = 0;
+        public static final int COURSE_LIST_NAME = 1;
+        public static final int COURSE_LIST_START_DATE = 2;
+        public static final int COURSE_LIST_END_DATE = 3;
+
+
         public static final String[] CHILD_PROJECTION = {
                 DbContent.ChildTable.TABLE_NAME + "." + DbContent.ChildTable._ID,
                 DbContent.ChildTable.CHILD_NAME_COLUMN,
