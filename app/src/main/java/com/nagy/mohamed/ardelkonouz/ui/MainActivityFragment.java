@@ -12,7 +12,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
-import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivty;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity;
 import com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.SalaryActivity;
@@ -28,7 +28,7 @@ public class MainActivityFragment extends Fragment {
     private View.OnClickListener courseListClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent courseListScreen = new Intent(getActivity(), CourseActivty.class);
+            Intent courseListScreen = new Intent(getActivity(), CourseActivity.class);
             startActivity(courseListScreen);
         }
     };

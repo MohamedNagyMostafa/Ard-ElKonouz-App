@@ -11,9 +11,9 @@ import com.nagy.mohamed.ardelkonouz.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class CourseActivtyFragment extends Fragment {
+public class CourseActivityFragment extends Fragment {
 
-    public CourseActivtyFragment() {
+    public CourseActivityFragment() {
     }
 
     @Override
