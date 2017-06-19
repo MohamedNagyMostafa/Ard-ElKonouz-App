@@ -36,7 +36,6 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ChildProfileActivity"

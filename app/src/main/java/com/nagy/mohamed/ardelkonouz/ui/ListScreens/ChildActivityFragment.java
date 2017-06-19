@@ -28,6 +28,7 @@ public class ChildActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor> {
 
     private DatabaseCursorAdapter databaseCursorAdapter;
+    private ViewHolder.ChildListScreenViewHolder childListScreenViewHolder;
 
     private View.OnClickListener addNewChildListener =
             new View.OnClickListener() {
@@ -42,8 +43,7 @@ public class ChildActivityFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_child, container, false);
-        ViewHolder.ChildListScreenViewHolder childListScreenViewHolder =
-                new ViewHolder.ChildListScreenViewHolder(rootView);
+        childListScreenViewHolder = new ViewHolder.ChildListScreenViewHolder(rootView);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
@@ -62,40 +62,62 @@ public class ChildActivityFragment extends Fragment
     }
 
     @Override
-    public void bindListView(View view, Cursor cursor) {
+    public void bindListView(final View view, final Cursor cursor) {
 
         ViewHolder.ChildListScreenViewHolder.ChildListRecycleViewHolder childListRecycleViewHolder
                 = new ViewHolder.ChildListScreenViewHolder.ChildListRecycleViewHolder(view);
 
+        childListRecycleViewHolder.CHILD_NAME_TEXT_VIEW.setText(
+                cursor.getString(
+                        DatabaseController.ProjectionDatabase
+                                .CHILD_LIST_NAME
+                ));
 
-            childListRecycleViewHolder.CHILD_NAME_TEXT_VIEW.setText(
-                    cursor.getString(
-                            DatabaseController.ProjectionDatabase
-                                    .CHILD_LIST_NAME
-                    ));
-
-            childListRecycleViewHolder.CHILD_AGE_TEXT_VIEW.setText(
-                    String.valueOf(
+        childListRecycleViewHolder.CHILD_AGE_TEXT_VIEW.setText(
+                String.valueOf(
                         cursor.getInt(
                                 DatabaseController.ProjectionDatabase
                                         .CHILD_LIST_AGE
                         )
-                    )
-            );
+                )
+        );
 
+        final int childId = cursor.getInt(
+                DatabaseController.ProjectionDatabase.CHILD_LIST_ID
+        );
 
-            final int childId = cursor.getInt(
-                    DatabaseController.ProjectionDatabase.CHILD_LIST_ID
-            );
+        childListRecycleViewHolder.CHILD_DELETE_IMAGE_VIEW.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view1) {
+                        // Delete child from child table.
+                        getActivity().getContentResolver().delete(
+                                DatabaseController.UriDatabase.getChildTableWithIdUri(childId),
+                                null,
+                                null
+                        );
+                        // Delete child from child course table.
+                        getActivity().getContentResolver().delete(
+                                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(childId),
+                                null,
+                                null
+                        );
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent childProfile = new Intent(getActivity(), ChildProfileActivity.class);
-                    childProfile.putExtra(Constants.CHILD_ID_EXTRA, childId);
-                    startActivity(childProfile);
+                        view.setVisibility(View.GONE);
+
+                        databaseCursorAdapter.notifyDataSetChanged();
+                    }
                 }
-            });
+        );
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent childProfile = new Intent(getActivity(), ChildProfileActivity.class);
+                childProfile.putExtra(Constants.CHILD_ID_EXTRA, childId);
+                startActivity(childProfile);
+            }
+        });
 
         Cursor cursorCourses = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(childId),
