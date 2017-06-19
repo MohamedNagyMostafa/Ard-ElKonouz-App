@@ -15,6 +15,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.InstructorProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
@@ -31,7 +32,7 @@ public class InstructorActivityFragment extends Fragment
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent instructorInputScreen = new Intent(getContext(), InstructorActivity.class);
+                    Intent instructorInputScreen = new Intent(getContext(), InstructorProfileActivity.class);
                     startActivity(instructorInputScreen);
                 }
             };
@@ -45,7 +46,7 @@ public class InstructorActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
-//        instructorListScreenViewHolder.ADD_NEW_INSTRUCTOR_BUTTON.setOnClickListener(addNewInstructor);
+        instructorListScreenViewHolder.ADD_NEW_INSTRUCTOR_BUTTON.setOnClickListener(addNewInstructor);
         instructorListScreenViewHolder.INSTRUCTOR_LIST_VIEW.setAdapter(databaseCursorAdapter);
 
         getLoaderManager().initLoader(Constants.LOADER_INSTRUCTOR_LIST, null, this);
