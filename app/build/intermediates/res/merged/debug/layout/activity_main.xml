@@ -8,7 +8,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:background="@drawable/main_background"
-    tools:context="com.nagy.mohamed.ardelkonouz.MainActivity">
+    tools:context=".ui.MainActivity">
 
 
         <android.support.v7.widget.Toolbar

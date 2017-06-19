@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:name="com.nagy.mohamed.ardelkonouz.ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -34,12 +34,72 @@
             android:authorities="com.nagy.mohamed.ardelkonouz" />
 
         <activity
-            android:name="com.nagy.mohamed.ardelkonouz.KidActivity"
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.nagy.mohamed.ardelkonouz.KidProfileActivity"
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ChildProfileActivity"
             android:label="@string/title_activity_kid_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity"
+            android:label="@string/title_activity_instructor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.InstructorProfileActivity"
+            android:label="@string/title_activity_instructor_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity"
+            android:label="@string/title_activity_employee"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.EmployeeProfileActivity"
+            android:label="@string/title_activity_employee_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivty"
+            android:label="@string/title_activity_course_activty"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity"
+            android:label="@string/title_activity_course_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity"
+            android:label="@string/title_activity_child_input"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.FinanceActivity"
+            android:label="@string/title_activity_finance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.InstructorInputActivity"
+            android:label="@string/title_activity_instructor_input"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.EmployeeInput"
+            android:label="@string/title_activity_employee_input"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity"
+            android:label="@string/title_activity_course_input"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity"
+            android:label="@string/title_activity_child_course_connector"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen.InstructorCourseConnectorActivity"
+            android:label="@string/title_activity_instructor_course_connector"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.SalaryActivity"
+            android:label="@string/title_activity_salary"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.InstructorSalaryActivity"
+            android:label="@string/title_activity_instructor_salary"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

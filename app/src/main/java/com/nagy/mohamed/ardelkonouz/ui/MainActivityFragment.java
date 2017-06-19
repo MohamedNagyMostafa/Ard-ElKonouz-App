@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,11 +8,62 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivty;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity;
+import com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.SalaryActivity;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+
+
+    private ViewHolder.MainScreenViewHolder mainScreenViewHolder;
+
+    private View.OnClickListener courseListClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent courseListScreen = new Intent(getActivity(), CourseActivty.class);
+            startActivity(courseListScreen);
+        }
+    };
+
+    private View.OnClickListener employeeListClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent employeeListScreen = new Intent(getActivity(), EmployeeActivity.class);
+            startActivity(employeeListScreen);
+        }
+    };
+
+
+    private View.OnClickListener instructorListClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent instructorListScreen = new Intent(getActivity(), InstructorActivity.class);
+            startActivity(instructorListScreen);
+        }
+    };
+
+    private View.OnClickListener salaryListClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent salaryListScreen = new Intent(getActivity(), SalaryActivity.class);
+            startActivity(salaryListScreen);
+        }
+    };
+
+
+    private View.OnClickListener childListClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent childListScreen = new Intent(getActivity(), ChildActivity.class);
+            startActivity(childListScreen);
+        }
+    };
+
 
 
     public MainActivityFragment() {
@@ -21,8 +73,17 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
 
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        mainScreenViewHolder = new ViewHolder.MainScreenViewHolder(rootView);
+
+        mainScreenViewHolder.CHILD_LIST_LAYOUT.setOnClickListener(childListClickListener);
+        mainScreenViewHolder.COURSES_LIST_LAYOUT.setOnClickListener(courseListClickListener);
+        mainScreenViewHolder.EMPLOYEE_LIST_LAYOUT.setOnClickListener(employeeListClickListener);
+        mainScreenViewHolder.INSTRUCTOR_LIST_LAYOUT.setOnClickListener(instructorListClickListener);
+        mainScreenViewHolder.SALARY_LIST_LAYOUT.setOnClickListener(salaryListClickListener);
+
+        return rootView;
     }
 
 //    private void databaseTesting(){
