@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/profile_background"
     tools:context=".ui.ProfileScreens.ChildProfileActivity">
 
         <android.support.v7.widget.Toolbar
@@ -17,14 +18,5 @@
 
     <include layout="@layout/content_child_profile"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/child_pf_edit_floating_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:tint="@android:color/white"
-        app:backgroundTint="#81d4fa"
-        android:src="@drawable/ic_mode_edit_black_36dp" />
 
 </android.support.design.widget.CoordinatorLayout>
