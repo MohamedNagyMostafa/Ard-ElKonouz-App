@@ -82,7 +82,7 @@ public class ChildActivityFragment extends Fragment
                 )
         );
 
-        final int childId = cursor.getInt(
+        final int CHILD_ID = cursor.getInt(
                 DatabaseController.ProjectionDatabase.CHILD_LIST_ID
         );
 
@@ -92,13 +92,13 @@ public class ChildActivityFragment extends Fragment
                     public void onClick(View view1) {
                         // Delete child from child table.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getChildTableWithIdUri(childId),
+                                DatabaseController.UriDatabase.getChildTableWithIdUri(CHILD_ID),
                                 null,
                                 null
                         );
                         // Delete child from child course table.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(childId),
+                                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(CHILD_ID),
                                 null,
                                 null
                         );
@@ -112,13 +112,13 @@ public class ChildActivityFragment extends Fragment
             @Override
             public void onClick(View view) {
                 Intent childProfile = new Intent(getActivity(), ChildProfileActivity.class);
-                childProfile.putExtra(Constants.CHILD_ID_EXTRA, childId);
+                childProfile.putExtra(Constants.CHILD_ID_EXTRA, CHILD_ID);
                 startActivity(childProfile);
             }
         });
 
         Cursor cursorCourses = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(childId),
+                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(CHILD_ID),
                 new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
                 null,
                 null,

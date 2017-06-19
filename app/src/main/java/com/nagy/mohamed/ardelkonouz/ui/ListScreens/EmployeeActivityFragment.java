@@ -76,7 +76,7 @@ public class EmployeeActivityFragment extends Fragment
                 .insert(0,'0').toString()
         );
 
-        final int employeeId = cursor.getInt(DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_ID);
+        final int EMPLOYEE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_ID);
 
         employeeListRecycleViewHolder.EMPLOYEE_DELETE_IMAGE_VIEW.setOnClickListener(
                 new View.OnClickListener() {
@@ -84,7 +84,7 @@ public class EmployeeActivityFragment extends Fragment
                     public void onClick(View view1) {
                         // Delete Employee from employee table.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getEmployeeTableWithIdUri(employeeId),
+                                DatabaseController.UriDatabase.getEmployeeTableWithIdUri(EMPLOYEE_ID),
                                 null,
                                 null
                         );
@@ -98,7 +98,7 @@ public class EmployeeActivityFragment extends Fragment
             @Override
             public void onClick(View view) {
                 Intent employeeProfile = new Intent(getContext(), EmployeeProfileActivity.class);
-                employeeProfile.putExtra(Constants.EMPLOYEE_ID_EXTRA, employeeId);
+                employeeProfile.putExtra(Constants.EMPLOYEE_ID_EXTRA, EMPLOYEE_ID);
                 startActivity(employeeProfile);
             }
         });

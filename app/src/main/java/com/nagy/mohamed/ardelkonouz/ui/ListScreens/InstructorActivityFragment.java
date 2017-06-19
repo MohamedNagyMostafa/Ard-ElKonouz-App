@@ -120,6 +120,15 @@ public class InstructorActivityFragment extends Fragment
                     }
                 });
 
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent instructorProfileScreen = new Intent(getContext(), InstructorProfileActivity.class);
+                instructorProfileScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, INSTRUCTOR_ID);
+                startActivity(instructorProfileScreen);
+            }
+        });
+
     }
 
     @Override
