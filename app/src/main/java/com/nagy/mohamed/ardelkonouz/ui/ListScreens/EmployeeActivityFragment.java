@@ -27,7 +27,6 @@ public class EmployeeActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor>{
 
     private DatabaseCursorAdapter databaseCursorAdapter;
-    private ViewHolder.EmployeeListScreenViewHolder employeeListScreenViewHolder;
 
     private View.OnClickListener addNewEmployeeListener =
             new View.OnClickListener() {
@@ -42,11 +41,12 @@ public class EmployeeActivityFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_employee, container, false);
-        employeeListScreenViewHolder = new ViewHolder.EmployeeListScreenViewHolder(rootView);
+        ViewHolder.EmployeeListScreenViewHolder employeeListScreenViewHolder =
+                new ViewHolder.EmployeeListScreenViewHolder(rootView);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
-//        employeeListScreenViewHolder.ADD_NEW_EMPLOYEE_BUTTON.setOnClickListener(addNewEmployeeListener);
+        employeeListScreenViewHolder.ADD_NEW_EMPLOYEE_BUTTON.setOnClickListener(addNewEmployeeListener);
         employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setAdapter(databaseCursorAdapter);
 
         getLoaderManager().initLoader(Constants.LOADER_EMPLOYEE_LIST, null, this);

@@ -28,7 +28,6 @@ public class ChildActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor> {
 
     private DatabaseCursorAdapter databaseCursorAdapter;
-    private ViewHolder.ChildListScreenViewHolder childListScreenViewHolder;
 
     private View.OnClickListener addNewChildListener =
             new View.OnClickListener() {
@@ -43,7 +42,8 @@ public class ChildActivityFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_child, container, false);
-        childListScreenViewHolder = new ViewHolder.ChildListScreenViewHolder(rootView);
+        ViewHolder.ChildListScreenViewHolder childListScreenViewHolder =
+                new ViewHolder.ChildListScreenViewHolder(rootView);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
