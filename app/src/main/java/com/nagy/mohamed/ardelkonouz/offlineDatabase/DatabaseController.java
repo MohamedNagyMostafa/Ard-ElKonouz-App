@@ -180,8 +180,6 @@ public class DatabaseController {
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN,
-                DbContent.ChildCourseTable._ID
-
         };
 
         public static final int COURSE_CHILD_JOIN_COURSE_NAME_COLUMN = 0;
@@ -213,7 +211,6 @@ public class DatabaseController {
         public static final int COURSE_CHILD_JOIN_COURSE_ID_COLUMN = 26;
         public static final int COURSE_CHILD_JOIN_CHILD_ID_COLUMN = 27;
         public static final int COURSE_CHILD_JOIN_CHILD_COURSE_COMPLETED = 28;
-        public static final int COURSE_CHILD_JOIN_CHILD_ID = 29;
 
         public static final String[] COURSE_INSTRUCTOR_JOIN_TABLE = {
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,

@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class ChildActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
-//        childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);
+        childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);
         childListScreenViewHolder.CHILD_LIST_VIEW.setAdapter(databaseCursorAdapter);
 
         getLoaderManager().initLoader(Constants.LOADER_CHILD_LIST, null, this);
@@ -107,19 +106,20 @@ public class ChildActivityFragment extends Fragment
         );
 
         if(cursorCourses != null) {
+            if(cursorCourses.getCount() != 0) {
+                cursorCourses.moveToFirst();
+                StringBuilder stringBuilderCourses = new StringBuilder(
+                        cursorCourses.getString(0)
+                );
 
-            cursorCourses.moveToFirst();
-            StringBuilder stringBuilderCourses = new StringBuilder(
-                    cursorCourses.getString(0)
-            );
+                while (cursorCourses.moveToNext()) {
+                    stringBuilderCourses.append(" - ").append(cursorCourses.getString(0));
+                }
 
-            while (cursorCourses.moveToNext()) {
-                stringBuilderCourses.append(" - ").append(cursorCourses.getString(0));
+                childListRecycleViewHolder.CHILD_COURSES_TEXT_VIEW.setText(
+                        stringBuilderCourses.toString()
+                );
             }
-
-            childListRecycleViewHolder.CHILD_COURSES_TEXT_VIEW.setText(
-                    stringBuilderCourses.toString()
-            );
 
             cursorCourses.close();
 
@@ -142,7 +142,6 @@ public class ChildActivityFragment extends Fragment
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         databaseCursorAdapter.swapCursor(data);
-        Log.e("load finished","vvvvvvvvvvvvvvvvvvvv");
     }
 
     @Override

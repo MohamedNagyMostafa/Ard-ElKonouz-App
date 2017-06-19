@@ -159,7 +159,6 @@ public class MainActivityFragment extends Fragment {
         contentValues2.put(DbContent.ChildCourseTable.CHILD_ID_COLUMN, 1);
         contentValues2.put(DbContent.ChildCourseTable.COURSE_ID_COLUMN, 1);
         contentValues2.put(DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN, 0);
-        contentValues2.put(DbContent.ChildCourseTable._ID,1);
 
         getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues2);
         ContentValues contentValues4 = new ContentValues();
