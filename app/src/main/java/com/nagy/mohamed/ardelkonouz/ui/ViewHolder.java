@@ -253,15 +253,15 @@ public class ViewHolder {
         public static class CourseListRecycleViewHolder{
 
             public final TextView COURSE_NAME_TEXT_VIEW;
-            public final TextView COURSE_COST_TEXT_VIEW;
-            public final TextView COURSE_HOURS_TEXT_VIEW;
+            public final TextView COURSE_INSTRUCTOR_TEXT_VIEW;
+            public final TextView COURSE_DURATION_TEXT_VIEW;
             public final ImageView COURSE_DELETE_IMAGE_VIEW;
 
             public CourseListRecycleViewHolder(View courseListRecycleView){
 
                 COURSE_NAME_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_name_text_view);
-                COURSE_COST_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_cost_text_view);
-                COURSE_HOURS_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_hours_text_view);
+                COURSE_INSTRUCTOR_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_instructor_text_view);
+                COURSE_DURATION_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_duration_text_view);
                 COURSE_DELETE_IMAGE_VIEW = (ImageView) courseListRecycleView.findViewById(R.id.course_list_delete_course_image_view);
             }
         }

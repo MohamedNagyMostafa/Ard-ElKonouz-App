@@ -30,10 +30,8 @@
                 android:textStyle="bold"
                 android:layout_margin="4dp"/>
 
-
-
             <TextView
-                android:id="@+id/course_list_cost_text_view"
+                android:id="@+id/course_list_instructor_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -41,7 +39,7 @@
                 android:text="@string/empty_info"/>
 
             <TextView
-                android:id="@+id/course_list_hours_text_view"
+                android:id="@+id/course_list_duration_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
