@@ -86,22 +86,19 @@ public class MainActivityFragment extends Fragment {
         return rootView;
     }
 
-//    private void databaseTesting(){
+//    private v//d databaseTesting(){
 //        // Test inserting.
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_COMPLETE_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_COST_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 1);
-//        contentValues.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "android");
-//        getContext().getContentResolver().insert(DbContent.CourseTable.CONTENT_URI, contentValues );
+//       //ontentValues contentValues = new ContentValues();
+//        contentValues//ut(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 1);
+//        contentValues.put//bContent.CourseTable.COURSE_START_AGE_COLUMN, 1);
+//        contentValues.p//(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 1);
+//        contentValues.put(//Content.CourseTable.COURSE_START_DATE_COLUMN, 1);
+//        contentValues.pu//DbContent.CourseTable.COURSE_END_DATE_COLUMN, 1)COURSE_COMPLETE_COLUMNues.pu//DbContent.CourseTable.COURSE_COMPLETE_COLUMN, 1);
+//        contentValue//put(DbContent.CourseTable.COURSE_COST_COLUMN, 1);
+//        contentValues//ut(DbContent.CourseTable.COURSE_HOURS_COLUMN, 1);
+//        contentValues.put(Db//ntent.CourseTable.COURSE_NAME_COLUMN, "android");DbContent.CourseTable.CONTENT_URItResolver().insert(//Content.CourseTable.C//TENT_URI, contentValues );
 //        // Test Join
-//        ContentValues contentValues2 = new ContentValues();
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN, "Mohamed");
+//        //ntentValcontentValues2.put(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN, "Mohamed");
 //        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN, "giza");
 //        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_TOTAL_SALARY_COLUMN, 2);
 //        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN, 2);
@@ -109,28 +106,27 @@ public class MainActivityFragment extends Fragment {
 //        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN, 2);
 //        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN, 1);
 //        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_HOURS_PER_DAY_COLUMN, 1);
-//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN, 1);
+//        contentValues2.put(DbContent.InstructorTable.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN, 1);r//b//.INSTRUCTOR_ORIGINAL_HOURS_PER_DAY_COLUMN, 1);
 //
-//        getContext().getContentResolver().insert(DbContent.InstructorTable.CONTENT_URI, contentValues2 );
-//        ContentValues contentValues1 = new ContentValues();
-//        contentValues1.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN, 1);
-//        contentValues1.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, 1);
-//        getContext().getContentResolver().insert(DbContent.CourseInstructorTable.CONTENT_URI, contentValues1 );
+//        getContext().getContentResolver().insert(DbCon//nt.InstructorTable.CONTENT_URI, contentValues2 );
+//        //ntentValues contentValues1 = new ContentValues();
+//        contentValues1.put(Db//ntent.CourseInstructorTable.COURSE_ID_COLUMN, 1);
+//        contentValues1.put(DbCont//t.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, 1);
+//        getContext().getContentResolver().insert(DbContent.C//r//InstructorTable.CONTENT_URI, contentValues1 );
 //
-//        Cursor cursor = getContext().getContentResolver().query(
-//                DbContent.CourseInstructorTable.CONTENT_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME).appendPath(String.valueOf(1)).build(),
-//                null,
-//                null,
+//        Curso//cursor = getContext().getContentResolver().query(
+//                DbContent.CourseInstructorTable.CONTENT_URI.buildUpon().appendPath(DbContent.CourseTable//ABLE_NAME).appendPath(//ring.valueOf(1)).build//,
+//                nu//,
+//                nul//
 //                null,
 //                null);
-//        Log.e("result",String.valueOf(cursor.getCount()));
-//        for(String name: cursor.getColumnNames()){
-//            Log.e("result",name);
-//        }
-//        if(cursor.getCount() != 0) {
+//       //og.e("result",String.valueOf(cursor.getCount()));
+///       for(String name: cursor.get//lumnNames(//{
+//            Log.e("result",name);///        }
+//        if(cursor.get//unt() != 0) {
 //            cursor.moveToFirst();
-//            Log.e("result", cursor.getString(cursor.getColumnIndex(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN)));
-//            Log.e("result", cursor.getString(cursor.getColumnIndex(DbContent.CourseTable.COURSE_NAME_COLUMN)));
+//            Log.e("result", cursor.getString(cursor.getColumnIndex(D//ontent.InstructorTable.INSTRUCTOR_NAME_COLUMN)));
+//            Log.e("result", cursor.getString(cursor.getColum//n//x(DbConten//CourseTable.COURSE_NAME_//LUMN)));
 //
 //        }
 //        cursor.close();

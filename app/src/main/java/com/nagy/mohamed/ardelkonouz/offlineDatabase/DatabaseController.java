@@ -203,6 +203,18 @@ public class DatabaseController {
         public static final int COURSE_CHILD_JOIN_CHILD_ID_COLUMN = 27;
         public static final int COURSE_CHILD_JOIN_CHILD_COURSE_COMPLETED = 28;
 
+        public static final String[] COURSE_CHILD_JOIN_TABLE_RECYCLE_LIST = {
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.ChildTable.CHILD_NAME_COLUMN,
+                DbContent.ChildTable.CHILD_AGE_COLUMN,
+                DbContent.ChildCourseTable.CHILD_ID_COLUMN,
+        };
+
+        public static final int COURSE_CHILD_JOIN_COURSE_NAME_COLUMN_LIST = 0;
+        public static final int COURSE_CHILD_JOIN_CHILD_NAME_COLUMN_LIST = 1;
+        public static final int COURSE_CHILD_JOIN_CHILD_AGE_COLUMN_LIST = 2;
+        public static final int COURSE_CHILD_JOIN_CHILD_ID_COLUMN_LIST = 3;
+
         public static final String[] COURSE_INSTRUCTOR_JOIN_TABLE = {
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
                 DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
