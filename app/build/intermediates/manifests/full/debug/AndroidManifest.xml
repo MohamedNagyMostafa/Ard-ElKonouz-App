@@ -58,7 +58,7 @@
             android:label="@string/title_activity_employee_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivty"
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity"
             android:label="@string/title_activity_course_activty"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

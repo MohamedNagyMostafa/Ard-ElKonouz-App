@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
-public class CourseActivty extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

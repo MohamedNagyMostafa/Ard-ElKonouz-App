@@ -137,6 +137,14 @@ public class DatabaseController {
         public static final int INSTRUCTOR_CV = 6;
         public static final int INSTRUCTOR_GENDER = 7;
 
+        public static final String[] INSTRUCTOR_LIST_PROJECTION = {
+                DbContent.InstructorTable.TABLE_NAME + "." + DbContent.InstructorTable._ID,
+                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
+
+        };
+
+        public static final int INSTRUCTOR_LIST_ID = 0;
+        public static final int INSTRUCTOR_LIST_NAME = 1;
 
         public static final String[] COURSE_INSTRUCTOR_TABLE = {
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
