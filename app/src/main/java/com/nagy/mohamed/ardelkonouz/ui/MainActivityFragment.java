@@ -175,6 +175,26 @@ public class MainActivityFragment extends Fragment {
 
         getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues5);
 
+        ContentValues contentValues7 = new ContentValues();
+        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN, "KeKO");
+        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_MOBILE_COLUMN, 1123122590);
+        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_GENDER_COLUMN, 1);
+        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_QUALIFICATION_COLUMN, "D.R");
+        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_SALARY_COLUMN, 190);
+        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_ADDRESS_COLUMN, "giza");
+        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_AGE_COLUMN, 18);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.EMPLOYEE_TABLE_URI, contentValues7);
+
+        ContentValues contentValues8 = new ContentValues();
+        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN, "momo");
+        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_MOBILE_COLUMN, 112322590);
+        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_GENDER_COLUMN, 1);
+        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_QUALIFICATION_COLUMN, "D.R");
+        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_SALARY_COLUMN, 190);
+        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_ADDRESS_COLUMN, "giza");
+        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_AGE_COLUMN, 18);
+        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.EMPLOYEE_TABLE_URI, contentValues8);
+
 
     }
 }

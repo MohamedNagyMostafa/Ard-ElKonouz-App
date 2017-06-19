@@ -46,7 +46,7 @@ public class EmployeeActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
-        employeeListScreenViewHolder.ADD_NEW_EMPLOYEE_BUTTON.setOnClickListener(addNewEmployeeListener);
+//        employeeListScreenViewHolder.ADD_NEW_EMPLOYEE_BUTTON.setOnClickListener(addNewEmployeeListener);
         employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setAdapter(databaseCursorAdapter);
 
         getLoaderManager().initLoader(Constants.LOADER_EMPLOYEE_LIST, null, this);
@@ -71,7 +71,9 @@ public class EmployeeActivityFragment extends Fragment
         );
 
         employeeListRecycleViewHolder.EMPLOYEE_MOBILE_TEXT_VIEW.setText(
-                cursor.getString(DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_MOBILE)
+               new StringBuilder(
+                       cursor.getString(DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_MOBILE))
+                .insert(0,'0').toString()
         );
 
         final int employeeId = cursor.getInt(DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_ID);
