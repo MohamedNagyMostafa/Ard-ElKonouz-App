@@ -47,7 +47,7 @@ public class CourseActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
-//        courseListScreenViewHolder.ADD_NEW_COURSE_BUTTON.setOnClickListener(addNewCourseListener);
+        courseListScreenViewHolder.ADD_NEW_COURSE_BUTTON.setOnClickListener(addNewCourseListener);
         courseListScreenViewHolder.COURSE_LIST_VIEW.setAdapter(databaseCursorAdapter);
 
         getLoaderManager().initLoader(Constants.LOADER_COURSE_LIST, null, this);
