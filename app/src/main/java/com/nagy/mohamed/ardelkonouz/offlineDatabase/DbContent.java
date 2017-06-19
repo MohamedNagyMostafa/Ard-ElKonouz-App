@@ -159,9 +159,9 @@ public class DbContent {
                 CHILD_TRAITS_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_FREE_TIME_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_GENDER_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                CHILD_STUDY_YEAR_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL +
-                CHILD_FATHER_JOB_COLUMN  + SPACE + TEXT + NOT_NULL + "," +
-                CHILD_MOTHER_JOB_COLUMN  + SPACE + TEXT + NOT_NULL + ");";
+                CHILD_STUDY_YEAR_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_FATHER_JOB_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
+                CHILD_MOTHER_JOB_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + ");";
 
         public static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
@@ -204,12 +204,12 @@ public class DbContent {
 
         public static final String COURSE_ID_COLUMN = "course_id";
         public static final String CHILD_ID_COLUMN = "child_id";
-        public static final String CHILD_COURSE_COMPLETED = "child_course_completed";
+        public static final String CHILD_COURSE_COMPLETED_COLUMN = "child_course_completed";
 
         public static final String CREATE_CHILD_COURSE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
-                + CHILD_COURSE_COMPLETED + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + CHILD_COURSE_COMPLETED_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" + ","
                 + FOREIGN_KEY + SPACE + "(" + CHILD_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE

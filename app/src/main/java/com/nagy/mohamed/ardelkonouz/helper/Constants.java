@@ -31,4 +31,10 @@ public class Constants {
     // GENDER
     public static final int MALE = 0;
     public static final int FEMALE = 1;
+
+    // EXTRAS
+    public static final String CHILD_ID_EXTRA = "child extra";
+
+    // Loaders Id
+    public static final int LOADER_CHILD_LIST = 11;
 }

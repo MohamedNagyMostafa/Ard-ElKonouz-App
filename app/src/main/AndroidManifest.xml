@@ -26,7 +26,7 @@
         <activity
             android:name=".ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.ProfileScreens.ChildProfileActivity"
             android:label="@string/title_activity_kid_profile"

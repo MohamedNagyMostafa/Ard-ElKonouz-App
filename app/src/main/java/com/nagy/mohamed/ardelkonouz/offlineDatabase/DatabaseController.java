@@ -9,7 +9,6 @@ public class DatabaseController {
 
     public static class ProjectionDatabase {
 
-
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
@@ -76,6 +75,16 @@ public class DatabaseController {
         public static final int CHILD_FATHER_JOB = 16;
         public static final int CHILD_MOTHER_JOB = 17;
 
+        public static final String[] CHILD_LIST_PROJECTION = {
+                DbContent.ChildTable.TABLE_NAME + "." + DbContent.ChildTable._ID,
+                DbContent.ChildTable.CHILD_NAME_COLUMN,
+                DbContent.ChildTable.CHILD_AGE_COLUMN,
+        };
+
+        public static final int CHILD_LIST_ID = 0;
+        public static final int CHILD_LIST_NAME = 1;
+        public static final int CHILD_LIST_AGE = 2;
+
         public static final String[] EMPLOYEE_PROJECTION = {
                 DbContent.EmployeeTable.TABLE_NAME + "." + DbContent.EmployeeTable._ID,
                 DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN,
@@ -134,7 +143,7 @@ public class DatabaseController {
         public static final String[] COURSE_CHILD_TABLE_PROJECTION = {
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_ID_COLUMN,
-                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED
+                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN
         };
 
         public static final int COURSE_CHILD_COURSE_ID = 0;
@@ -170,7 +179,7 @@ public class DatabaseController {
                 DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN,
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_ID_COLUMN,
-                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED
+                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN,
         };
 
         public static final int COURSE_CHILD_JOIN_COURSE_NAME_COLUMN = 0;
