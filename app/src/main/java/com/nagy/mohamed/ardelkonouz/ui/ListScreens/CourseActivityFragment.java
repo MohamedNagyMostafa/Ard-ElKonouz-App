@@ -16,6 +16,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
@@ -46,7 +47,7 @@ public class CourseActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
-        courseListScreenViewHolder.ADD_NEW_COURSE_BUTTON.setOnClickListener(addNewCourseListener);
+//        courseListScreenViewHolder.ADD_NEW_COURSE_BUTTON.setOnClickListener(addNewCourseListener);
         courseListScreenViewHolder.COURSE_LIST_VIEW.setAdapter(databaseCursorAdapter);
 
         getLoaderManager().initLoader(Constants.LOADER_COURSE_LIST, null, this);
@@ -90,6 +91,7 @@ public class CourseActivityFragment extends Fragment
                         null,
                         null
                 );
+
         if(instructorCourse != null){
             if(instructorCourse.getCount() > 0){
                 instructorCourse.moveToFirst();
@@ -97,7 +99,7 @@ public class CourseActivityFragment extends Fragment
                 while (instructorCourse.moveToNext()){
                     stringBuilder.append(" - ").append(instructorCourse.getString(0));
                 }
-                courseListRecycleViewHolder.COURSE_DURATION_TEXT_VIEW.setText(stringBuilder.toString());
+                courseListRecycleViewHolder.COURSE_INSTRUCTOR_TEXT_VIEW.setText(stringBuilder.toString());
             }
             instructorCourse.close();
         }
@@ -128,6 +130,15 @@ public class CourseActivityFragment extends Fragment
                         restartLoader();
                     }
                 });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent courseProfileScreen = new Intent(getContext(), CourseProfileActivity.class);
+                courseProfileScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
+                startActivity(courseProfileScreen);
+            }
+        });
     }
 
     @Override

@@ -844,9 +844,9 @@ int id course_input_name_edit_view 0x7f0d00e5
 int id course_input_salary_per_child_edit_view 0x7f0d00eb
 int id course_input_start_date_edit_view 0x7f0d00e9
 int id course_input_submit_application_button 0x7f0d00f0
-int id course_list_cost_text_view 0x7f0d008a
 int id course_list_delete_course_image_view 0x7f0d008c
-int id course_list_hours_text_view 0x7f0d008b
+int id course_list_duration_text_view 0x7f0d008b
+int id course_list_instructor_text_view 0x7f0d008a
 int id course_list_layout_view 0x7f0d013b
 int id course_list_name_text_view 0x7f0d0089
 int id course_list_view 0x7f0d00e4

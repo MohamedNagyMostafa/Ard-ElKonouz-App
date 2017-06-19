@@ -2822,9 +2822,9 @@ containing a value of this type.
         public static final int course_input_salary_per_child_edit_view=0x7f0d00eb;
         public static final int course_input_start_date_edit_view=0x7f0d00e9;
         public static final int course_input_submit_application_button=0x7f0d00f0;
-        public static final int course_list_cost_text_view=0x7f0d008a;
         public static final int course_list_delete_course_image_view=0x7f0d008c;
-        public static final int course_list_hours_text_view=0x7f0d008b;
+        public static final int course_list_duration_text_view=0x7f0d008b;
+        public static final int course_list_instructor_text_view=0x7f0d008a;
         public static final int course_list_layout_view=0x7f0d013b;
         public static final int course_list_name_text_view=0x7f0d0089;
         public static final int course_list_view=0x7f0d00e4;
