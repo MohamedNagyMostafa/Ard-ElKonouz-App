@@ -5,21 +5,16 @@ package com.nagy.mohamed.ardelkonouz.helper;
  */
 public class Constants {
 
-    public static enum EDUCATION{
-        NONE_EDUCATION_TYPE(-1),
-        PRIMARY_EDUCATION_TYPE(100000),
-        PREPARATORY_EDUCATION_TYPE(100),
-        SECONDARY_EDUCATION_TYPE(200),
-        ACADEMIC_EDUCATION_TYPE(10000),
-        SPECIAL_ENGLISH(12),SPECIAL_ARABIC(21),
-        GOVERNMENTAL_ARABIC(22),GOVERNMENTAL_ENGLISH(122);
-
-
-        final int EDUCATION_TYPE;
-        EDUCATION(int educationType){
-            this.EDUCATION_TYPE = educationType;
-        }
-    }
+    // Education
+    public static final int NONE_EDUCATION_TYPE = 1;
+    public static final int PRIMARY_EDUCATION_TYPE = 2;
+    public static final int PREPARATORY_EDUCATION_TYPE = 3;
+    public static final int SECONDARY_EDUCATION_TYPE = 4;
+    public static final int ACADEMIC_EDUCATION_TYPE = 5;
+    public static final int SPECIAL_ENGLISH = 6;
+    public static final int SPECIAL_ARABIC = 7;
+    public static final int GOVERNMENTAL_ARABIC = 8;
+    public static final int GOVERNMENTAL_ENGLISH = 9;
 
     // Qualification Type
     public static final int NONE_QUALIFICATION = -1;
@@ -43,6 +38,37 @@ public class Constants {
     public static final int LOADER_EMPLOYEE_LIST = 10;
     public static final int LOADER_INSTRUCTOR_LIST = 111;
     public static final int LOADER_COURSE_LIST = 110;
+    public static final int LOADER_COURSE_CHILD_JOIN_LIST =1110;
+    //Birth Order
+    public static final int FIRST_BIRTH = 11;
+    public static final int MIDDLE_BIRTH = 101;
+    public static final int LAST_BIRTH = 111;
 
+    // Year
+    public static final int YEAR_STAGE_FIRST = 1;
+    public static final int YEAR_STAGE_SECOND = 2;
+    public static final int YEAR_STAGE_THIRD = 3;
+    public static final int YEAR_STAGE_FOURTH = 4;
+    public static final int YEAR_STAGE_FIFTH = 5;
+    public static final int YEAR_STAGE_SIXTH = 6;
+    public static final int YEAR_STAGE_NONE = 7;
 
+    // Characteristic
+    public static final int GOOD_SPEAKER = 1;
+    public static final int SOCIAL = 2;
+    public static final int LEADING = 3;
+    public static final int NEURAL = 4;
+    public static final int COLLABORATOR = 5;
+
+    // Handling Problem
+    public static final int ASK_FOR_HELP = 1;
+    public static final int WORRIES_ANGRY = 2;
+    public static final int LEAVE_PROBLE = 3;
+    public static final int TRIES_TO_SOLVE = 4;
+
+    // FreeTime
+    public static final int DRAWING = 1;
+    public static final int ELECTRONIC_GAMES = 2;
+    public static final int WATCHING_TV = 3;
+    public static final int HANDWORK = 4;
 }

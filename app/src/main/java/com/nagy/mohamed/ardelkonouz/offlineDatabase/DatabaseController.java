@@ -182,6 +182,21 @@ public class DatabaseController {
         public static final int COURSE_CHILD_CHILD_ID = 1;
         public static final int COURSE_CHILD_COURSE_COMPLETED = 2;
 
+        public static final String[] COURSE_CHILD_JOIN_LIST_TABLE = {
+                 DbContent.ChildCourseTable.TABLE_NAME+"."+ DbContent.ChildCourseTable._ID,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                DbContent.ChildCourseTable.COURSE_ID_COLUMN
+
+        };
+        public static final int COURSE_CHILD_JOIN_LIST_ID = 0;
+        public static final int COURSE_CHILD_JOIN_LIST_COURSE_NAME_COLUMN = 1;
+        public static final int COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN = 2;
+        public static final int COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN = 3;
+        public static final int COURSE_CHILD_JOIN_LIST_COURSE_ID_COLUMN = 4;
+
+
         public static final String[] COURSE_CHILD_JOIN_TABLE = {
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseTable.COURSE_HOURS_COLUMN,
@@ -211,7 +226,8 @@ public class DatabaseController {
                 DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN,
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_ID_COLUMN,
-                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN,
+                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN
+
         };
 
         public static final int COURSE_CHILD_JOIN_COURSE_NAME_COLUMN = 0;
