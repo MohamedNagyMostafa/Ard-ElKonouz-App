@@ -261,7 +261,7 @@ public class DatabaseController {
         public static final int COURSE_CHILD_JOIN_CHILD_COURSE_COMPLETED = 28;
 
         public static final String[] COURSE_INSTRUCTOR_LIST_JOIN_TABLE = {
-                DbContent.CourseInstructorTable._ID,
+                DbContent.CourseInstructorTable.TABLE_NAME +"."+ DbContent.CourseInstructorTable._ID,
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseTable.COURSE_START_DATE_COLUMN,

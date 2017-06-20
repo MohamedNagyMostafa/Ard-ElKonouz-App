@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,13 @@ public class InstructorProfileActivityFragment extends Fragment
         View rootView =  inflater.inflate(R.layout.fragment_instructor_profile, container, false);
         ViewHolder.InstructorProfileScreenViewHolder instructorProfileScreenViewHolder =
                 new ViewHolder.InstructorProfileScreenViewHolder(rootView);
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+
+        instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_GRID_VIEW.setLayoutManager(linearLayoutManager);
+        linearSnapHelper.attachToRecyclerView(instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_GRID_VIEW);
+        
         recycleViewInstructorProfileAdapter = new RecycleViewInstructorProfileAdapter(getContext());
         instructorId = getActivity().getIntent().getExtras().getInt(Constants.INSTRUCTOR_ID_EXTRA);
 
@@ -70,6 +79,7 @@ public class InstructorProfileActivityFragment extends Fragment
 
     private void setDataToViews(Cursor cursor,
                                 ViewHolder.InstructorProfileScreenViewHolder instructorProfileScreenViewHolder){
+        cursor.moveToFirst();
         instructorProfileScreenViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
                 cursor.getString(
                         DatabaseController.ProjectionDatabase.INSTRUCTOR_NAME

@@ -1,7 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.ProfileScreens.InstructorProfileActivityFragment"
     tools:showIn="@layout/activity_instructor_profile">
@@ -24,6 +25,7 @@
                 <ImageView
                     android:contentDescription="@string/image_pf"
                     android:layout_width="92dp"
+                    android:layout_marginTop="8dp"
                     android:layout_height="92dp"
                     android:src="@drawable/user_profile_icon"/>
 
@@ -54,6 +56,13 @@
                             android:layout_height="match_parent">
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:layout_marginTop="8dp"
+                                android:text="Name"/>
+
+                            <TextView
                                 android:id="@+id/instructor_pf_name_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -62,12 +71,26 @@
                                 android:text="@string/empty_info"/>
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:layout_marginTop="4dp"
+                                android:text="Age"/>
+
+                            <TextView
                                 android:id="@+id/instructor_pf_age_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:layout_marginTop="4dp"
+                                android:text="Gender"/>
 
                             <TextView
                                 android:id="@+id/instructor_pf_gender_text_view"
@@ -87,12 +110,26 @@
                             android:layout_height="match_parent">
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:layout_marginTop="8dp"
+                                android:text="Mobile"/>
+
+                            <TextView
                                 android:id="@+id/instructor_pf_mobile_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:layout_marginTop="4dp"
+                                android:text="Address"/>
 
                             <TextView
                                 android:id="@+id/instructor_pf_address_text_view"
@@ -216,19 +253,30 @@
 
             </LinearLayout>
 
-            <GridView
-                android:id="@+id/instructor_pf_courses_children_grid_view"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/instructor_pf_courses_children_recycle_view"
                 android:layout_width="wrap_content"
-                android:layout_height="116dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:numColumns="2"/>
+                android:layout_marginBottom="16dp"/>
 
         </LinearLayout>
 
     </ScrollView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/instructor_pf_edit_floating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@android:color/white"
+        app:backgroundTint="#81d4fa"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_mode_edit_black_36dp" />
 
-</LinearLayout>
+
+</RelativeLayout>
