@@ -155,4 +155,6 @@ public class Utility {
     public static String decodeAgeRangeByInt(int firstAge, int lastAge){
         return String.valueOf(firstAge) + (" ~ ") + String.valueOf(lastAge);
     }
+
+
 }
