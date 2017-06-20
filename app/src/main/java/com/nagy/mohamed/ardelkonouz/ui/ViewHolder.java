@@ -444,7 +444,7 @@ public class ViewHolder {
         public final TextView INSTRUCTOR_ADDRESS_TEXT_VIEW;
         public final TextView INSTRUCTOR_QUALIFICATION_TEXT_VIEW;
         public final TextView INSTRUCTOR_CV_TEXT_VIEW;
-        public final RecyclerView INSTRUCTOR_COURSES_CHILD_GRID_VIEW;
+        public final RecyclerView INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW;
         public final FloatingActionButton INSTRUCTOR_EDIT_BUTTON;
 
         public InstructorProfileScreenViewHolder(View instructorProfileView){
@@ -456,7 +456,7 @@ public class ViewHolder {
             INSTRUCTOR_ADDRESS_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_address_text_view);
             INSTRUCTOR_QUALIFICATION_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_qualification_text_view);
             INSTRUCTOR_CV_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_cv_text_view);
-            INSTRUCTOR_COURSES_CHILD_GRID_VIEW = (RecyclerView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_recycle_view);
+            INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW = (RecyclerView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_recycle_view);
             INSTRUCTOR_EDIT_BUTTON = (FloatingActionButton) instructorProfileView.findViewById(R.id.instructor_pf_edit_floating_button);
         }
 

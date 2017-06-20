@@ -40,11 +40,13 @@ public class InstructorProfileActivityFragment extends Fragment
                 new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
 
-        instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_GRID_VIEW.setLayoutManager(linearLayoutManager);
-        linearSnapHelper.attachToRecyclerView(instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_GRID_VIEW);
-        
         recycleViewInstructorProfileAdapter = new RecycleViewInstructorProfileAdapter(getContext());
         instructorId = getActivity().getIntent().getExtras().getInt(Constants.INSTRUCTOR_ID_EXTRA);
+
+
+        instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW.setAdapter(recycleViewInstructorProfileAdapter);
+        instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW.setLayoutManager(linearLayoutManager);
+        linearSnapHelper.attachToRecyclerView(instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW);
 
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getInstructorTableWithIdUri(instructorId),
