@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class InstructorProfileActivityFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private RecycleViewInstructorProfileAdapter recycleViewInstructorProfileAdapter;
+    private int instructorId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,10 +34,11 @@ public class InstructorProfileActivityFragment extends Fragment
         View rootView =  inflater.inflate(R.layout.fragment_instructor_profile, container, false);
         ViewHolder.InstructorProfileScreenViewHolder instructorProfileScreenViewHolder =
                 new ViewHolder.InstructorProfileScreenViewHolder(rootView);
-        final int INSTRUCTOR_ID = getActivity().getIntent().getExtras().getInt(Constants.INSTRUCTOR_ID_EXTRA);
+        recycleViewInstructorProfileAdapter = new RecycleViewInstructorProfileAdapter(getContext());
+        instructorId = getActivity().getIntent().getExtras().getInt(Constants.INSTRUCTOR_ID_EXTRA);
 
         Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getInstructorTableWithIdUri(INSTRUCTOR_ID),
+                DatabaseController.UriDatabase.getInstructorTableWithIdUri(instructorId),
                 DatabaseController.ProjectionDatabase.INSTRUCTOR_PROJECTION,
                 null,
                 null,
@@ -54,7 +57,7 @@ public class InstructorProfileActivityFragment extends Fragment
                     @Override
                     public void onClick(View view) {
                         Intent instructorInputScreen = new Intent(getContext(), InstructorInputActivity.class);
-                        instructorInputScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, INSTRUCTOR_ID);
+                        instructorInputScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, instructorId);
                         startActivity(instructorInputScreen);
                     }
                 }
@@ -109,16 +112,23 @@ public class InstructorProfileActivityFragment extends Fragment
     }
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
+        return new CursorLoader(
+                getContext(),
+                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
+                DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_TABLE,
+                null,
+                null,
+                null
+        );
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
+        recycleViewInstructorProfileAdapter.setCursor(data);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        recycleViewInstructorProfileAdapter.setCursor(null);
     }
 }

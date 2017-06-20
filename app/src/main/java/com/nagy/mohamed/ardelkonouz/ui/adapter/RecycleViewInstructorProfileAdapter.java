@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 /**
@@ -34,8 +36,44 @@ public class RecycleViewInstructorProfileAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder.InstructorProfileScreenViewHolder.InstructorCoursesViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder.InstructorProfileScreenViewHolder
+                                             .InstructorCoursesViewHolder instructorCoursesViewHolder,
+                                 int position) {
+        if(cursor != null && cursor.getCount() > 0){
+            cursor.moveToPosition(position);
+            instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
+                    cursor.getString(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_NAME)
+            );
+            instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                    String.valueOf(
+                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_END_DATE)
+                    )
+            );
+            instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                    String.valueOf(
+                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_START_DATE)
+                    )
+            );
 
+            final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_ID);
+            Cursor courseCursor = context.getContentResolver().query(
+                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                    new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                    null,
+                    null,
+                    null
+            );
+
+            if(courseCursor != null){
+                if(courseCursor.getCount() > 0){
+                    courseCursor.moveToFirst();
+                    instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
+                            courseCursor.getString(0)
+                    );
+                }
+                courseCursor.close();
+            }
+        }
     }
 
     @Override
