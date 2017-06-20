@@ -39,6 +39,8 @@ public class Constants {
     public static final int LOADER_INSTRUCTOR_LIST = 111;
     public static final int LOADER_COURSE_LIST = 110;
     public static final int LOADER_COURSE_CHILD_JOIN_LIST =1110;
+    public static final int LOADER_INSTRUCTOR_COURSE_JOIN_LIST = 1111;
+
     //Birth Order
     public static final int FIRST_BIRTH = 11;
     public static final int MIDDLE_BIRTH = 101;
