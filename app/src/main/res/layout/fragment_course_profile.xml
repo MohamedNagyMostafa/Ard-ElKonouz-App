@@ -24,6 +24,7 @@
                 <ImageView
                     android:layout_width="92dp"
                     android:layout_height="92dp"
+                    android:layout_marginTop="8dp"
                     android:src="@drawable/user_profile_icon"/>
 
                 <LinearLayout
@@ -52,12 +53,25 @@
                             android:layout_height="match_parent">
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:text="Name"/>
+
+                            <TextView
                                 android:id="@+id/course_pf_name_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:layout_marginTop="4dp"
+                                android:text="Hours"/>
 
                             <TextView
                                 android:id="@+id/course_pf_hours_text_view"
@@ -77,12 +91,25 @@
                             android:layout_height="match_parent">
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:text="Cost"/>
+
+                            <TextView
                                 android:id="@+id/course_pf_cost_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="serif"
+                                android:layout_marginTop="4dp"
+                                android:text="Level"/>
 
                             <TextView
                                 android:id="@+id/course_pf_level_text_view"
