@@ -153,6 +153,6 @@ public class Utility {
     }
 
     public static String decodeAgeRangeByInt(int firstAge, int lastAge){
-        return new StringBuilder(firstAge).append(" ~ ").append(lastAge).toString();
+        return String.valueOf(firstAge) + (" ~ ") + String.valueOf(lastAge);
     }
 }
