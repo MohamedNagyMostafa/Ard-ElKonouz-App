@@ -19,7 +19,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
-import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewAdapter;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewChildProfileAdapter;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -28,7 +28,7 @@ public class ChildProfileActivityFragment extends Fragment
         implements  LoaderManager.LoaderCallbacks<Cursor> {
 
     private int childId;
-    private RecycleViewAdapter recycleViewAdapter;
+    private RecycleViewChildProfileAdapter recycleViewChildProfileAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class ChildProfileActivityFragment extends Fragment
         ViewHolder.ChildProfileScreenViewHolder childProfileScreenViewHolder =
                 new ViewHolder.ChildProfileScreenViewHolder(rootView);
         childId = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
-        recycleViewAdapter = new RecycleViewAdapter();
+        recycleViewChildProfileAdapter = new RecycleViewChildProfileAdapter();
 
         Cursor childProfileData = getQueryChildData();
 
@@ -48,7 +48,7 @@ public class ChildProfileActivityFragment extends Fragment
             childProfileData.close();
         }
 
-        childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setAdapter(recycleViewAdapter);
+        childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setAdapter(recycleViewChildProfileAdapter);
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         LinearSnapHelper snapHelper = new LinearSnapHelper();
@@ -230,12 +230,12 @@ public class ChildProfileActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        recycleViewAdapter.setCursor(data, getContext());
+        recycleViewChildProfileAdapter.setCursor(data, getContext());
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        recycleViewAdapter.setCursor(null, getContext());
+        recycleViewChildProfileAdapter.setCursor(null, getContext());
 
     }
 
