@@ -169,7 +169,7 @@ public class DbContent {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
-    public static class CourseInstructorTable{
+    public static class CourseInstructorTable implements BaseColumns{
 
         public static final String TABLE_NAME = "course_instructor";
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
@@ -181,7 +181,8 @@ public class DbContent {
         public static final String PAY_STATE_COLUMN =" pay_state";
 
         public static final String CREATE_COURSE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
-                + "(" + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
+                + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + INSTRUCTOR_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + TOTAL_SALARY_COLUMN + SPACE + REAL + SPACE + NOT_NULL + ","
                 + PAY_STATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
