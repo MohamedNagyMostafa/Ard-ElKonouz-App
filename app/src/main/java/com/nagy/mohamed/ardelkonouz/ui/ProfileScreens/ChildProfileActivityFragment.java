@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +17,18 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
-import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
-import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
-import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewAdapter;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class ChildProfileActivityFragment extends Fragment
-        implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor> {
+        implements  LoaderManager.LoaderCallbacks<Cursor> {
 
     private int childId;
-    private DatabaseCursorAdapter databaseCursorAdapter;
+    private RecycleViewAdapter recycleViewAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class ChildProfileActivityFragment extends Fragment
         ViewHolder.ChildProfileScreenViewHolder childProfileScreenViewHolder =
                 new ViewHolder.ChildProfileScreenViewHolder(rootView);
         childId = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
-        databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
+        recycleViewAdapter = new RecycleViewAdapter();
 
         Cursor childProfileData = getQueryChildData();
 
@@ -48,7 +48,15 @@ public class ChildProfileActivityFragment extends Fragment
             childProfileData.close();
         }
 
-        childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setAdapter(databaseCursorAdapter);
+        childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setAdapter(recycleViewAdapter);
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        LinearSnapHelper snapHelper = new LinearSnapHelper();
+
+        childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setLayoutManager(linearLayoutManager);
+
+        snapHelper.attachToRecyclerView(childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW);
+
         childProfileScreenViewHolder.CHILD_EDIT_BUTTON.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,54 +167,54 @@ public class ChildProfileActivityFragment extends Fragment
         );
     }
 
-    @Override
-    public View newListView(ViewGroup viewGroup, Cursor cursor) {
-        return LayoutInflater.from(getContext())
-                .inflate(R.layout.child_pf_courses_instructors_recycle, viewGroup, false);
-    }
+//    @Override
+//    public View newListView(ViewGroup viewGroup, Cursor cursor) {
+//        return LayoutInflater.from(getContext())
+//                .inflate(R.layout.child_pf_courses_instructors_recycle, viewGroup, false);
+//    }
 
-    @Override
-    public void bindListView(View view, Cursor cursor) {
-        ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder
-                childProfileListViewHolder = new ViewHolder
-                .ChildProfileScreenViewHolder.ChildProfileListViewHolder(view);
-
-        if(cursor != null && cursor.getCount() > 0){
-            childProfileListViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-                    cursor.getString(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_NAME_COLUMN)
-            );
-            childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
-                    String.valueOf(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN)
-                    )
-            );
-            childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
-                    String.valueOf(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN)
-                    )
-            );
-
-            final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_ID_COLUMN);
-            Cursor instructorCursor =
-                    getActivity().getContentResolver().query(
-                            DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
-                            new String[]{DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN},
-                            null,
-                            null,
-                            null
-                    );
-            if(instructorCursor != null){
-                if(instructorCursor.getCount() > 0){
-                    instructorCursor.moveToFirst();
-                    childProfileListViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
-                            instructorCursor.getString(0)
-                    );
-                }
-                instructorCursor.close();
-            }
-        }
-
-    }
+//    @Override
+//    public void bindListView(View view, Cursor cursor) {
+//        ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder
+//                childProfileListViewHolder = new ViewHolder
+//                .ChildProfileScreenViewHolder.ChildProfileListViewHolder(view);
+//
+//        if(cursor != null && cursor.getCount() > 0){
+//            childProfileListViewHolder.COURSE_NAME_TEXT_VIEW.setText(
+//                    cursor.getString(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_NAME_COLUMN)
+//            );
+//            childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
+//                    String.valueOf(
+//                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN)
+//                    )
+//            );
+//            childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
+//                    String.valueOf(
+//                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN)
+//                    )
+//            );
+//
+//            final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_ID_COLUMN);
+//            Cursor instructorCursor =
+//                    getActivity().getContentResolver().query(
+//                            DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
+//                            new String[]{DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN},
+//                            null,
+//                            null,
+//                            null
+//                    );
+//            if(instructorCursor != null){
+//                if(instructorCursor.getCount() > 0){
+//                    instructorCursor.moveToFirst();
+//                    childProfileListViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
+//                            instructorCursor.getString(0)
+//                    );
+//                }
+//                instructorCursor.close();
+//            }
+//        }
+//
+//    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -222,12 +230,13 @@ public class ChildProfileActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        databaseCursorAdapter.swapCursor(data);
+        recycleViewAdapter.setCursor(data, getContext());
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        databaseCursorAdapter.swapCursor(null);
+        recycleViewAdapter.setCursor(null, getContext());
+
     }
 
 }

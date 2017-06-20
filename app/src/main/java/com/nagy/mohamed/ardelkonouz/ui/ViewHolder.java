@@ -1,6 +1,7 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ import com.nagy.mohamed.ardelkonouz.R;
  * Created by mohamednagy on 6/18/2017.
  */
 public class ViewHolder {
+
+
 
     public static class MainScreenViewHolder {
 
@@ -337,7 +340,7 @@ public class ViewHolder {
         public final TextView CHILD_HANDLING_PROBLEM_TEXT_VIEW;
         public final TextView CHILD_FREE_TIME_TEXT_VIEW;
         public final FloatingActionButton CHILD_EDIT_BUTTON;
-        public final GridView CHILD_COURSES_GRID_VIEW;
+        public final RecyclerView CHILD_COURSES_GRID_VIEW;
 
         public ChildProfileScreenViewHolder(View childProfileView){
 
@@ -359,10 +362,10 @@ public class ViewHolder {
             CHILD_HANDLING_PROBLEM_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_problem_handling_text_view);
             CHILD_FREE_TIME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_free_time_text_view);
             CHILD_EDIT_BUTTON = (FloatingActionButton) childProfileView.findViewById(R.id.child_pf_edit_floating_button);
-            CHILD_COURSES_GRID_VIEW = (GridView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
+            CHILD_COURSES_GRID_VIEW = (RecyclerView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
         }
 
-        public static class ChildProfileListViewHolder{
+        public static class ChildProfileListViewHolder extends RecyclerView.ViewHolder{
 
             public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
             public final TextView COURSE_NAME_TEXT_VIEW;
@@ -370,6 +373,7 @@ public class ViewHolder {
             public final TextView END_DATE_TEXT_VIEW;
 
             public ChildProfileListViewHolder(View childProfileListView){
+                super(childProfileListView);
                 INSTRUCTOR_NAME_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_instructor_name_text_view);
                 COURSE_NAME_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_name_text_view);
                 START_DATE_TEXT_VIEW = (TextView) childProfileListView.findViewById(R.id.child_pf_course_start_date_text_view);
