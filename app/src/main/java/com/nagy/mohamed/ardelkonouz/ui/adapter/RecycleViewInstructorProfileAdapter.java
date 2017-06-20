@@ -42,7 +42,9 @@ public class RecycleViewInstructorProfileAdapter extends
         if(cursor != null && cursor.getCount() > 0){
             cursor.moveToPosition(position);
             instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-                    cursor.getString(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_NAME)
+                    cursor.getString(
+                            DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_NAME
+                    )
             );
             instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                     String.valueOf(
@@ -55,23 +57,40 @@ public class RecycleViewInstructorProfileAdapter extends
                     )
             );
 
+
             final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_ID);
             Cursor courseCursor = context.getContentResolver().query(
-                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                    new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                    DatabaseController.UriDatabase.getCourseChildTableWithCourseIdUri(COURSE_ID),
+                    new String[]{DbContent.ChildTable.CHILD_NAME_COLUMN},
                     null,
                     null,
                     null
             );
 
+            String children = null;
+
             if(courseCursor != null){
                 if(courseCursor.getCount() > 0){
                     courseCursor.moveToFirst();
-                    instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-                            courseCursor.getString(0)
-                    );
+                    StringBuilder stringBuilder = new StringBuilder(courseCursor.getString(0));
+
+                    while (courseCursor.moveToNext()){
+                        stringBuilder.append("\n").append(courseCursor.getString(0));
+                    }
+
+                    children = stringBuilder.toString();
                 }
                 courseCursor.close();
+            }
+
+            if(children == null) {
+                instructorCoursesViewHolder.COURSE_CHILDREN_TEXT_VIEW.setText(
+                        context.getString(R.string.empty_info)
+                );
+            }else {
+                instructorCoursesViewHolder.COURSE_CHILDREN_TEXT_VIEW.setText(
+                        children
+                );
             }
         }
     }
