@@ -85,11 +85,13 @@ public class EmployeeProfileActivityFragment extends Fragment {
                 )
         );
         employeeProfileScreenViewHolder.EMPLOYEE_MOBILE_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getLong(
+                new StringBuilder(
+                        String.valueOf(
+                                cursor.getLong(
                                 DatabaseController.ProjectionDatabase.EMPLOYEE_MOBILE
+                                )
                         )
-                )
+                ).insert(0,'0').toString()
         );
         employeeProfileScreenViewHolder.EMPLOYEE_QUALIFICATION_TEXT_VIEW.setText(
                 cursor.getString(
