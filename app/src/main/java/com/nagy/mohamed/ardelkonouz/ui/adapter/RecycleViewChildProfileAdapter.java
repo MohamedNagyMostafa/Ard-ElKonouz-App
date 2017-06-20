@@ -15,7 +15,7 @@ import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 /**
  * Created by mohamednagy on 6/20/2017.
  */
-public class RecycleViewAdapter extends RecyclerView.Adapter<ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder> {
+public class RecycleViewChildProfileAdapter extends RecyclerView.Adapter<ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder> {
 
     private Cursor cursor;
     private Context context;
