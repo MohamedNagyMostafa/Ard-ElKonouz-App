@@ -3,7 +3,6 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:foreground="@drawable/profile_background"
     android:background="@android:drawable/dialog_holo_light_frame">
 
     <TextView

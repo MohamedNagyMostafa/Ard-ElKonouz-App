@@ -141,4 +141,18 @@ public class Utility {
         }
     }
 
+    public static String decodeCourseStateByInt(int courseState, Context context){
+        switch (courseState){
+            case Constants.COURSE_COMPLETE:
+                return context.getString(R.string.complete);
+            case Constants.COURSE_INCOMPLETE:
+                return context.getString(R.string.incomplete);
+            default:
+                return context.getString(R.string.empty_info);
+        }
+    }
+
+    public static String decodeAgeRangeByInt(int firstAge, int lastAge){
+        return String.valueOf(firstAge) + (" ~ ") + String.valueOf(lastAge);
+    }
 }
