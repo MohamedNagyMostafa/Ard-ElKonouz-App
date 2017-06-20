@@ -9,7 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.ListScreens.ChildActivity">
 
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -17,9 +16,6 @@
                 android:background="@drawable/feature_toolbar_background"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-
             <include layout="@layout/content_child"/>
-
-
 
 </LinearLayout>

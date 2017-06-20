@@ -3,7 +3,6 @@ package com.nagy.mohamed.ardelkonouz.ui.adapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -15,7 +14,8 @@ import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 /**
  * Created by mohamednagy on 6/20/2017.
  */
-public class RecycleViewChildProfileAdapter extends RecyclerView.Adapter<ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder> {
+public class RecycleViewChildProfileAdapter extends
+        RecyclerView.Adapter<ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder> {
 
     private Cursor cursor;
     private Context context;
@@ -28,12 +28,13 @@ public class RecycleViewChildProfileAdapter extends RecyclerView.Adapter<ViewHol
 
     @Override
     public ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder(LayoutInflater.from(context).inflate(R.layout.child_pf_courses_instructors_recycle,parent,false));
+        return new ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.child_pf_courses_instructors_recycle,parent,false)
+        );
     }
 
     @Override
     public void onBindViewHolder(ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder childProfileListViewHolder, int position) {
-        Log.e("done","eeeeeeeeeeeeeeeeeeeeeeeeeeee");
         if(cursor != null && cursor.getCount() > 0){
             cursor.moveToPosition(position);
             childProfileListViewHolder.COURSE_NAME_TEXT_VIEW.setText(

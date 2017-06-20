@@ -340,7 +340,7 @@ public class ViewHolder {
         public final TextView CHILD_HANDLING_PROBLEM_TEXT_VIEW;
         public final TextView CHILD_FREE_TIME_TEXT_VIEW;
         public final FloatingActionButton CHILD_EDIT_BUTTON;
-        public final RecyclerView CHILD_COURSES_GRID_VIEW;
+        public final RecyclerView CHILD_COURSES_RECYCLE_VIEW;
 
         public ChildProfileScreenViewHolder(View childProfileView){
 
@@ -362,7 +362,7 @@ public class ViewHolder {
             CHILD_HANDLING_PROBLEM_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_problem_handling_text_view);
             CHILD_FREE_TIME_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_free_time_text_view);
             CHILD_EDIT_BUTTON = (FloatingActionButton) childProfileView.findViewById(R.id.child_pf_edit_floating_button);
-            CHILD_COURSES_GRID_VIEW = (RecyclerView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
+            CHILD_COURSES_RECYCLE_VIEW = (RecyclerView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
         }
 
         public static class ChildProfileListViewHolder extends RecyclerView.ViewHolder{

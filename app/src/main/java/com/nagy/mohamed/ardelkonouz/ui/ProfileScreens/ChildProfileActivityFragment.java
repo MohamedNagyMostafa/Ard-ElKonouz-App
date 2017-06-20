@@ -48,14 +48,15 @@ public class ChildProfileActivityFragment extends Fragment
             childProfileData.close();
         }
 
-        childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setAdapter(recycleViewChildProfileAdapter);
+        childProfileScreenViewHolder.CHILD_COURSES_RECYCLE_VIEW.setAdapter(recycleViewChildProfileAdapter);
+
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         LinearSnapHelper snapHelper = new LinearSnapHelper();
 
-        childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW.setLayoutManager(linearLayoutManager);
+        childProfileScreenViewHolder.CHILD_COURSES_RECYCLE_VIEW.setLayoutManager(linearLayoutManager);
 
-        snapHelper.attachToRecyclerView(childProfileScreenViewHolder.CHILD_COURSES_GRID_VIEW);
+        snapHelper.attachToRecyclerView(childProfileScreenViewHolder.CHILD_COURSES_RECYCLE_VIEW);
 
         childProfileScreenViewHolder.CHILD_EDIT_BUTTON.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,55 +167,6 @@ public class ChildProfileActivityFragment extends Fragment
                 )
         );
     }
-
-//    @Override
-//    public View newListView(ViewGroup viewGroup, Cursor cursor) {
-//        return LayoutInflater.from(getContext())
-//                .inflate(R.layout.child_pf_courses_instructors_recycle, viewGroup, false);
-//    }
-
-//    @Override
-//    public void bindListView(View view, Cursor cursor) {
-//        ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder
-//                childProfileListViewHolder = new ViewHolder
-//                .ChildProfileScreenViewHolder.ChildProfileListViewHolder(view);
-//
-//        if(cursor != null && cursor.getCount() > 0){
-//            childProfileListViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-//                    cursor.getString(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_NAME_COLUMN)
-//            );
-//            childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
-//                    String.valueOf(
-//                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN)
-//                    )
-//            );
-//            childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
-//                    String.valueOf(
-//                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN)
-//                    )
-//            );
-//
-//            final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_ID_COLUMN);
-//            Cursor instructorCursor =
-//                    getActivity().getContentResolver().query(
-//                            DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
-//                            new String[]{DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN},
-//                            null,
-//                            null,
-//                            null
-//                    );
-//            if(instructorCursor != null){
-//                if(instructorCursor.getCount() > 0){
-//                    instructorCursor.moveToFirst();
-//                    childProfileListViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
-//                            instructorCursor.getString(0)
-//                    );
-//                }
-//                instructorCursor.close();
-//            }
-//        }
-//
-//    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
