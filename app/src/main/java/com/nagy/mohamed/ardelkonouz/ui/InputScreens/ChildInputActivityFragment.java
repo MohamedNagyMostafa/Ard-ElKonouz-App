@@ -50,10 +50,37 @@ public class ChildInputActivityFragment extends Fragment {
                 setChoiceFreeTimeItems(childInputScreenViewHolder);
 
         // Set Choices Listeners
-        
+        setChoiceListListeners(
+                BIRTH_ORDER_LIST,
+                GENDER_LIST,
+                EDUCATION_TYPE_LIST,
+                EDUCATION_STAGE_LIST,
+                YEAR_LIST,
+                CHARACTERISTIC_LIST,
+                DEAL_PROBLEM_LIST,
+                FREE_TIME_LIST
+        );
 
+        
     }
 
+    @SafeVarargs
+    private final void setChoiceListListeners(final ArrayList<DoubleChoice>... arrayLists){
+        for(final ArrayList<DoubleChoice> list : arrayLists){
+            for(int i = 0 ; i < list.size(); i++){
+                final int INDEX = i;
+                list.get(i).getTextView().setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(!list.get(INDEX).isSelected())
+                                    Utility.selectionProcess(INDEX, list);
+                            }
+                        }
+                );
+            }
+        }
+    }
 
     private ArrayList<DoubleChoice> setChoiceFreeTimeItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
