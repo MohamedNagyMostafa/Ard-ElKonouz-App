@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -311,11 +310,10 @@ public class ViewHolder {
             public final TextView INSTRUCTOR_COURSES_TEXT_VIEW;
             public final ImageView INSTRUCTOR_DELETE_IMAGE_VIEW;
 
-            public InstructorListRecycleViewHolder(View InstructorListRecycleView){
-
-                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) InstructorListRecycleView.findViewById(R.id.instructor_list_name_text_view);
-                INSTRUCTOR_COURSES_TEXT_VIEW = (TextView) InstructorListRecycleView.findViewById(R.id.instructor_list_courses_text_view);
-                INSTRUCTOR_DELETE_IMAGE_VIEW = (ImageView) InstructorListRecycleView.findViewById(R.id.instructor_list_delete_instructor_image_view);
+            public InstructorListRecycleViewHolder(View instructorListRecycleView){
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) instructorListRecycleView.findViewById(R.id.instructor_list_name_text_view);
+                INSTRUCTOR_COURSES_TEXT_VIEW = (TextView) instructorListRecycleView.findViewById(R.id.instructor_list_courses_text_view);
+                INSTRUCTOR_DELETE_IMAGE_VIEW = (ImageView) instructorListRecycleView.findViewById(R.id.instructor_list_delete_instructor_image_view);
             }
         }
     }
@@ -446,7 +444,7 @@ public class ViewHolder {
         public final TextView INSTRUCTOR_ADDRESS_TEXT_VIEW;
         public final TextView INSTRUCTOR_QUALIFICATION_TEXT_VIEW;
         public final TextView INSTRUCTOR_CV_TEXT_VIEW;
-        public final GridView INSTRUCTOR_COURSES_CHILD_GRID_VIEW;
+        public final RecyclerView INSTRUCTOR_COURSES_CHILD_GRID_VIEW;
         public final FloatingActionButton INSTRUCTOR_EDIT_BUTTON;
 
         public InstructorProfileScreenViewHolder(View instructorProfileView){
@@ -458,30 +456,23 @@ public class ViewHolder {
             INSTRUCTOR_ADDRESS_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_address_text_view);
             INSTRUCTOR_QUALIFICATION_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_qualification_text_view);
             INSTRUCTOR_CV_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_cv_text_view);
-            INSTRUCTOR_COURSES_CHILD_GRID_VIEW = (GridView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_grid_view);
+            INSTRUCTOR_COURSES_CHILD_GRID_VIEW = (RecyclerView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_recycle_view);
             INSTRUCTOR_EDIT_BUTTON = (FloatingActionButton) instructorProfileView.findViewById(R.id.instructor_pf_edit_floating_button);
         }
 
-        public static class InstructorCoursesViewHolder{
+        public static class InstructorCoursesViewHolder extends RecyclerView.ViewHolder{
 
             public final TextView COURSE_NAME_TEXT_VIEW;
-            public final GridView COURSE_CHILDREN_GRID_VIEW;
+            public final TextView COURSE_CHILDREN_TEXT_VIEW;
+            public final TextView COURSE_START_DATE_TEXT_VIEW;
+            public final TextView COURSE_END_DATE_TEXT_VIEW;
 
             public InstructorCoursesViewHolder(View instructorCoursesView){
+                super(instructorCoursesView);
                 COURSE_NAME_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_pf_course_name_text_view);
-                COURSE_CHILDREN_GRID_VIEW = (GridView) instructorCoursesView.findViewById(R.id.instructor_pf_children_grid_view);
-
-            }
-
-            public static class ChildrenViewHolder{
-
-                public final TextView CHILD_NAME;
-                public final TextView CHILD_AGE;
-
-                public ChildrenViewHolder(View childView){
-                    CHILD_NAME = (TextView) childView.findViewById(R.id.instructor_pf_child_name_text_view);
-                    CHILD_AGE = (TextView) childView.findViewById(R.id.instructor_pf_child_age_text_view);
-                }
+                COURSE_CHILDREN_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_pf_children_text_view);
+                COURSE_START_DATE_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_pf_course_start_date_text_view);
+                COURSE_END_DATE_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_pf_course_end_date_text_view);
             }
         }
     }
