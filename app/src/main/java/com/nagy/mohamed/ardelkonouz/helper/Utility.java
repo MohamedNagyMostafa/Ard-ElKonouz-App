@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by mohamednagy on 6/10/2017.
  */
@@ -154,6 +156,18 @@ public class Utility {
 
     public static String decodeAgeRangeByInt(int firstAge, int lastAge){
         return String.valueOf(firstAge) + (" ~ ") + String.valueOf(lastAge);
+    }
+
+    public static void selectionProcess(
+            int selectedIndex, ArrayList<DoubleChoice> doubleChoiceArrayList){
+        for(int i = 0 ; i < doubleChoiceArrayList.size(); i++){
+            if(i == selectedIndex){
+                doubleChoiceArrayList.get(i).setChoiceSelect();
+            }else{
+                doubleChoiceArrayList.get(i).setChoiceNotSelect();
+            }
+
+        }
     }
 
 

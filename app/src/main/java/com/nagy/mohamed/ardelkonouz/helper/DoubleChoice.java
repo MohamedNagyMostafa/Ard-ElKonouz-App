@@ -17,6 +17,12 @@ public class DoubleChoice {
     Context context;
     boolean isSelect;
 
+    public DoubleChoice(Context context, TextView textView, boolean isSelect){
+        this.context = context;
+        this.isSelect = isSelect;
+        this.textView = textView;
+    }
+
     public DoubleChoice(TextView textView, ImageView imageView, Context context){
         this.textView = textView;
         this.imageView = imageView;
@@ -34,11 +40,25 @@ public class DoubleChoice {
     public void setChoiceNotSelect(){
         imageView.setVisibility(View.INVISIBLE);
         textView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        isSelect = false;
     }
 
     public void setChoiceSelect(){
         imageView.setVisibility(View.VISIBLE);
         textView.setTextColor(Color.BLACK);
+        isSelect = true;
+    }
+
+    public void setImageView(ImageView imageView){
+        this.imageView = imageView;
+    }
+
+    public boolean isSelected(){
+        return isSelect;
+    }
+
+    public TextView getTextView(){
+        return textView;
     }
 
 }
