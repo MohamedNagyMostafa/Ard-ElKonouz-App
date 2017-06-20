@@ -63,6 +63,7 @@ public class ChildProfileActivityFragment extends Fragment
             public void onClick(View view) {
                 Intent inputChildScreen = new Intent(getContext(), ChildInputActivity.class);
                 inputChildScreen.putExtra(Constants.CHILD_ID_EXTRA, childId);
+                inputChildScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                 startActivity(inputChildScreen);
             }
         });

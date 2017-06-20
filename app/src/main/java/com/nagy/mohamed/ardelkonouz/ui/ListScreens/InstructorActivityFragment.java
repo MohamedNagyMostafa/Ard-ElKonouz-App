@@ -33,6 +33,7 @@ public class InstructorActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     Intent instructorInputScreen = new Intent(getContext(), InstructorProfileActivity.class);
+                    instructorInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(instructorInputScreen);
                 }
             };

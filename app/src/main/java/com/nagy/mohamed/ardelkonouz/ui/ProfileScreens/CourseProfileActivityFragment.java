@@ -50,6 +50,7 @@ public class CourseProfileActivityFragment extends Fragment {
                     public void onClick(View view) {
                         Intent courseInputScreen = new Intent(getContext(), CourseInputActivity.class);
                         courseInputScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
+                        courseInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(courseInputScreen);
                     }
                 }

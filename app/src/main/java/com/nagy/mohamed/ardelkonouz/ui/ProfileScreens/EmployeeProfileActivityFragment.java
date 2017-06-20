@@ -51,6 +51,7 @@ public class EmployeeProfileActivityFragment extends Fragment {
                     public void onClick(View view) {
                         Intent employeeInputScreen = new Intent(getContext(), EmployeeInput.class);
                         employeeInputScreen.putExtra(Constants.EMPLOYEE_ID_EXTRA, EMPLOYEE_ID);
+                        employeeInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(employeeInputScreen);
                     }
                 }

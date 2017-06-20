@@ -69,6 +69,7 @@ public class InstructorProfileActivityFragment extends Fragment
                     public void onClick(View view) {
                         Intent instructorInputScreen = new Intent(getContext(), InstructorInputActivity.class);
                         instructorInputScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, instructorId);
+                        instructorInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(instructorInputScreen);
                     }
                 }

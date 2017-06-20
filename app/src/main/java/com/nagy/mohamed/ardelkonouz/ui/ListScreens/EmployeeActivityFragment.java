@@ -33,6 +33,7 @@ public class EmployeeActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     Intent employeeInputScreen = new Intent(getContext(), EmployeeInput.class);
+                    employeeInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(employeeInputScreen);
                 }
             };

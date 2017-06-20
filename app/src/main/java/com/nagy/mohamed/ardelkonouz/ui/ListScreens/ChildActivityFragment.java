@@ -34,6 +34,7 @@ public class ChildActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     Intent childInputScreen = new Intent(getContext(), ChildInputActivity.class);
+                    childInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(childInputScreen);
                 }
             };
