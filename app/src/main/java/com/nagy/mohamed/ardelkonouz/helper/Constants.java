@@ -71,4 +71,8 @@ public class Constants {
     public static final int ELECTRONIC_GAMES = 2;
     public static final int WATCHING_TV = 3;
     public static final int HANDWORK = 4;
+
+    // Course State
+    public static final int COURSE_COMPLETE = 1;
+    public static final int COURSE_INCOMPLETE = 2;
 }

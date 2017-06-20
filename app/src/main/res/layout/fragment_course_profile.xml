@@ -228,6 +228,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:baselineAligned="false"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp">
 
@@ -279,15 +280,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:text="@string/available_levels"/>
+                    android:text="Instructor Name"/>
 
                 <TextView
-                    android:id="@+id/course_pf_available_levels_text_view"
+                    android:id="@+id/course_pf_instructor_name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:layout_marginStart="4dp"
                     android:text="@string/empty_info"/>
+
 
             </LinearLayout>
 
