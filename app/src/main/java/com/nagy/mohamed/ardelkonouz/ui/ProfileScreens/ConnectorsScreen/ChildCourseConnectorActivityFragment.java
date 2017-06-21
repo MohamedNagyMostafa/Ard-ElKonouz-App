@@ -119,9 +119,10 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     }
 
     @Override
-    public void bindListView(View view, Cursor cursor) {
-        ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
+    public void bindListView(View view, final Cursor cursor) {
+        final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
+        final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_ID);
 
         coursesViewHolder.COURSE_COST_TEXT_VIEW.setText(
                 String.valueOf(
@@ -153,7 +154,39 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         );
 
         //check if course is selected before or not.
-        
+        Cursor cursor1 = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getCourseChildTableWithChildIDAndCourseIdUri(
+                        childId,
+                        COURSE_ID
+                ),
+                new String[]{DbContent.ChildCourseTable.COURSE_ID_COLUMN},
+                null,
+                null,
+                null
+        );
+
+        if(cursor1 != null){
+            if(cursor1.getCount() > 0){
+
+                selectedCourses.add(COURSE_ID);
+
+                coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
+            }
+            cursor1.close();
+        }
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(selectedCourses.contains(COURSE_ID)){
+                    selectedCourses.remove(COURSE_ID);
+                    coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
+                }else{
+                    selectedCourses.add(COURSE_ID);
+                    coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     /**
