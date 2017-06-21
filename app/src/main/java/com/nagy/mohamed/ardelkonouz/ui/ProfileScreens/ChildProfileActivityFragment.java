@@ -151,19 +151,19 @@ public class ChildProfileActivityFragment extends Fragment
         );
         childProfileScreenViewHolder.CHILD_CHARACTERISTIC_TEXT_VIEW.setText(
                 Utility.decodeCharacteristicByInt(
-                        childProfileData.getInt(DatabaseController.ProjectionDatabase.CHILD_TRAITS),
+                        childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_TRAITS),
                         getContext()
                 )
         );
         childProfileScreenViewHolder.CHILD_HANDLING_PROBLEM_TEXT_VIEW.setText(
                 Utility.decodeDealingProblemByInt(
-                        childProfileData.getInt(DatabaseController.ProjectionDatabase.CHILD_HANDLING),
+                        childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_HANDLING),
                         getContext()
                 )
         );
         childProfileScreenViewHolder.CHILD_FREE_TIME_TEXT_VIEW.setText(
                 Utility.decodeFreeTimeByInt(
-                        childProfileData.getInt(DatabaseController.ProjectionDatabase.CHILD_FREE_TIME),
+                        childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_FREE_TIME),
                         getContext()
                 )
         );

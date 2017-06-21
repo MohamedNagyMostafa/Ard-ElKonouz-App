@@ -120,51 +120,63 @@ public class Utility {
         }
     }
 
-    public static String decodeCharacteristicByInt(int characteristic, Context context){
-        switch (characteristic){
-            case Constants.GOOD_SPEAKER:
-                return context.getString(R.string.good_speaker_characteristic);
-            case Constants.SOCIAL:
-                return context.getString(R.string.social_characteristic);
-            case Constants.LEADING:
-                return context.getString(R.string.leading_characteristic);
-            case Constants.NEURAL:
-                return context.getString(R.string.neural_characteristic);
-            case Constants.COLLABORATOR:
-                return context.getString(R.string.collaborator_characteristic);
-            default:
-                return context.getString(R.string.none);
-        }
+    public static String decodeCharacteristicByInt(String characteristicChoice, Context context){
+        ArrayList<String> choices = new ArrayList<>();
+
+        if(characteristicChoice.charAt(0) == Constants.SELECTED)
+            choices.add(context.getString(R.string.good_speaker_characteristic));
+        if(characteristicChoice.charAt(1) == Constants.SELECTED)
+            choices.add(context.getString(R.string.social_characteristic));
+        if(characteristicChoice.charAt(2) == Constants.SELECTED)
+            choices.add(context.getString(R.string.leading_characteristic));
+        if(characteristicChoice.charAt(3) == Constants.SELECTED)
+            choices.add(context.getString(R.string.neural_characteristic));
+        if(characteristicChoice.charAt(4) == Constants.SELECTED)
+            choices.add(context.getString(R.string.collaborator_characteristic));
+
+        String result = choices.get(0);
+        for(int i = 1 ; i < choices.size() ;i++)
+            result += "\n" + choices.get(i);
+
+        return result;
     }
 
-    public static String decodeDealingProblemByInt(int dealingProblem, Context context){
-        switch (dealingProblem){
-            case Constants.ASK_FOR_HELP:
-                return context.getString(R.string.quietly_asks_for_help);
-            case Constants.WORRIES_ANGRY:
-                return context.getString(R.string.worries_and_get_angry);
-            case Constants.LEAVE_PROBLE:
-                return context.getString(R.string.leaves_the_problem_totally);
-            case Constants.TRIES_TO_SOLVE:
-                return context.getString(R.string.tries_to_solve_the_problem);
-            default:
-                return context.getString(R.string.none);
-        }
+    public static String decodeDealingProblemByInt(String dealingProblemChoice, Context context){
+        ArrayList<String> choices = new ArrayList<>();
+
+        if(dealingProblemChoice.charAt(0) == Constants.SELECTED)
+            choices.add(context.getString(R.string.quietly_asks_for_help));
+        if(dealingProblemChoice.charAt(1) == Constants.SELECTED)
+            choices.add(context.getString(R.string.worries_and_get_angry));
+        if(dealingProblemChoice.charAt(2) == Constants.SELECTED)
+            choices.add(context.getString(R.string.leaves_the_problem_totally));
+        if(dealingProblemChoice.charAt(3) == Constants.SELECTED)
+            choices.add(context.getString(R.string.tries_to_solve_the_problem));
+
+        String result = choices.get(0);
+        for(int i = 1 ; i < choices.size() ;i++)
+            result += "\n" + choices.get(i);
+
+        return result;
     }
 
-    public static String decodeFreeTimeByInt(int freeTime, Context context){
-        switch (freeTime){
-            case Constants.DRAWING:
-                return context.getString(R.string.drawing_coloring);
-            case Constants.ELECTRONIC_GAMES:
-                return context.getString(R.string.electronic_games);
-            case Constants.WATCHING_TV:
-                return context.getString(R.string.watching_tv);
-            case Constants.HANDWORK:
-                return context.getString(R.string.handwork);
-            default:
-                return context.getString(R.string.none);
-        }
+    public static String decodeFreeTimeByInt(String freeTimeChoice, Context context){
+        ArrayList<String> choices = new ArrayList<>();
+
+        if(freeTimeChoice.charAt(0) == Constants.SELECTED)
+            choices.add(context.getString(R.string.drawing_coloring));
+        if(freeTimeChoice.charAt(1) == Constants.SELECTED)
+            choices.add(context.getString(R.string.electronic_games));
+        if(freeTimeChoice.charAt(2) == Constants.SELECTED)
+            choices.add(context.getString(R.string.watching_tv));
+        if(freeTimeChoice.charAt(3) == Constants.SELECTED)
+            choices.add(context.getString(R.string.handwork));
+
+        String result = choices.get(0);
+        for(int i = 1 ; i < choices.size() ;i++)
+            result += "\n" + choices.get(i);
+
+        return result;
     }
 
     public static String decodeCourseStateByInt(int courseState, Context context){
