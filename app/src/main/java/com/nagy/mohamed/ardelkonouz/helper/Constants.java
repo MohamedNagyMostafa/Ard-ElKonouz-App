@@ -6,22 +6,14 @@ package com.nagy.mohamed.ardelkonouz.helper;
 public class Constants {
 
     // Education
-    public static final int NONE_EDUCATION_TYPE = 1;
-    public static final int PRIMARY_EDUCATION_TYPE = 2;
-    public static final int PREPARATORY_EDUCATION_TYPE = 3;
-    public static final int SECONDARY_EDUCATION_TYPE = 4;
-    public static final int ACADEMIC_EDUCATION_TYPE = 5;
-    public static final int SPECIAL_ENGLISH = 6;
-    public static final int SPECIAL_ARABIC = 7;
-    public static final int GOVERNMENTAL_ARABIC = 8;
-    public static final int GOVERNMENTAL_ENGLISH = 9;
-
-    // Qualification Type
-    public static final int NONE_QUALIFICATION = -1;
-    public static final int UNDER_BACHELOR_QUALIFICATION= 0;
-    public static final int BACHELOR_QUALIFICATION = 1;
-    public static final int MASTER_QUALIFICATION = 2;
-    public static final int PHD_QUALIFICATION = 3;
+    public static final int NONE_EDUCATION_TYPE = 0;
+    public static final int PRIMARY_EDUCATION_TYPE = 1;
+    public static final int PREPARATORY_EDUCATION_TYPE = 2;
+    public static final int SECONDARY_EDUCATION_TYPE = 3;
+    public static final int SPECIAL_ENGLISH = 3;
+    public static final int SPECIAL_ARABIC = 2;
+    public static final int GOVERNMENTAL_ARABIC = 0;
+    public static final int GOVERNMENTAL_ENGLISH = 1;
 
     // GENDER
     public static final int MALE = 0;
@@ -45,39 +37,44 @@ public class Constants {
     public static final int LOADER_INSTRUCTOR_COURSE_JOIN_LIST = 1111;
 
     //Birth Order
-    public static final int FIRST_BIRTH = 11;
-    public static final int MIDDLE_BIRTH = 101;
-    public static final int LAST_BIRTH = 111;
+    public static final int FIRST_BIRTH = 0;
+    public static final int MIDDLE_BIRTH = 1;
+    public static final int LAST_BIRTH = 2;
+    public static final int ALONE_ORDER = 3;
 
     // Year
-    public static final int YEAR_STAGE_FIRST = 1;
-    public static final int YEAR_STAGE_SECOND = 2;
-    public static final int YEAR_STAGE_THIRD = 3;
-    public static final int YEAR_STAGE_FOURTH = 4;
-    public static final int YEAR_STAGE_FIFTH = 5;
-    public static final int YEAR_STAGE_SIXTH = 6;
-    public static final int YEAR_STAGE_NONE = 7;
+    public static final int YEAR_STAGE_FIRST = 0;
+    public static final int YEAR_STAGE_SECOND = 1;
+    public static final int YEAR_STAGE_THIRD = 2;
+    public static final int YEAR_STAGE_FOURTH = 3;
+    public static final int YEAR_STAGE_FIFTH = 4;
+    public static final int YEAR_STAGE_SIXTH = 5;
+    public static final int YEAR_STAGE_NONE = 6;
 
     // Characteristic
-    public static final int GOOD_SPEAKER = 1;
-    public static final int SOCIAL = 2;
-    public static final int LEADING = 3;
-    public static final int NEURAL = 4;
-    public static final int COLLABORATOR = 5;
+    public static final int GOOD_SPEAKER = 0;
+    public static final int SOCIAL = 1;
+    public static final int LEADING = 2;
+    public static final int NEURAL = 3;
+    public static final int COLLABORATOR = 4;
 
     // Handling Problem
-    public static final int ASK_FOR_HELP = 1;
-    public static final int WORRIES_ANGRY = 2;
-    public static final int LEAVE_PROBLE = 3;
-    public static final int TRIES_TO_SOLVE = 4;
+    public static final int ASK_FOR_HELP = 0;
+    public static final int WORRIES_ANGRY = 1;
+    public static final int LEAVE_PROBLE = 2;
+    public static final int TRIES_TO_SOLVE = 3;
 
     // FreeTime
-    public static final int DRAWING = 1;
-    public static final int ELECTRONIC_GAMES = 2;
-    public static final int WATCHING_TV = 3;
-    public static final int HANDWORK = 4;
+    public static final int DRAWING = 0;
+    public static final int ELECTRONIC_GAMES = 1;
+    public static final int WATCHING_TV = 2;
+    public static final int HANDWORK = 3;
 
     // Course State
     public static final int COURSE_COMPLETE = 1;
     public static final int COURSE_INCOMPLETE = 2;
+
+    // double choices
+    public static final char SELECTED = 1;
+    public static final char NOT_SELECTED = 2;
 }

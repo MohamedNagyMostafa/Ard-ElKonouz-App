@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
+import android.media.Image;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -45,6 +46,7 @@ public class ViewHolder {
         public final TextView FIRST_ORDER_TEXT_VIEW;
         public final TextView MIDDLE_ORDER_TEXT_VIEW;
         public final TextView LAST_ORDER_TEXT_VIEW;
+        public final TextView ALONE_ORDER_TEXT_VIEW;
         public final TextView MALE_GENDER_TEXT_VIEW;
         public final TextView FEMALE_GENDER_TEXT_VIEW;
         public final EditText MOTHER_NAME_EDIT_TEXT;
@@ -84,6 +86,40 @@ public class ViewHolder {
         public final TextView WATCHING_TV_TEXT_VIEW;
         public final TextView HANDWORK_TEXT_VIEW;
         public final Button SUBMIT_CHILD_BUTTON;
+        public final ImageView ARABIC_GOVERNMENTAL_IMAGE_VIEW;
+        public final ImageView ENGLISH_GOVERNMENTAL_IMAGE_VIEW;
+        public final ImageView ARABIC_PRIVATE_IMAGE_VIEW;
+        public final ImageView ENGLISH_PRIVATE_IMAGE_VIEW;
+        public final ImageView NONE_EDUCATION_IMAGE_VIEW;
+        public final ImageView PRIMARY_EDUCATION_IMAGE_VIEW;
+        public final ImageView PREPARATORY_IMAGE_VIEW;
+        public final ImageView SECONDARY_EDUCATION_IMAGE_VIEW;
+        public final ImageView NONE_YEAR_IMAGE_VIEW;
+        public final ImageView FIRST_YEAR_IMAGE_VIEW;
+        public final ImageView SECOND_YEAR_IMAGE_VIEW;
+        public final ImageView THIRD_YEAR_IMAGE_VIEW;
+        public final ImageView FORTH_YEAR_IMAGE_VIEW;
+        public final ImageView FIFTH_YEAR_IMAGE_VIEW;
+        public final ImageView SIXTH_YEAR_IMAGE_VIEW;
+        public final ImageView GOOD_SPEAKER_IMAGE_VIEW;
+        public final ImageView SOCIAL_IMAGE_VIEW;
+        public final ImageView LEADING_IMAGE_VIEW;
+        public final ImageView NEURAL_IMAGE_VIEW;
+        public final ImageView COLLABORATOR_IMAGE_VIEW;
+        public final ImageView ASKS_FOR_HELP_IMAGE_VIEW;
+        public final ImageView WORRIES_IMAGE_VIEW;
+        public final ImageView LEAVES_PROBLEMS_IMAGE_VIEW;
+        public final ImageView TRIES_SOLVE_IMAGE_VIEW;
+        public final ImageView DRAWING_IMAGE_VIEW;
+        public final ImageView ELECTRONIC_IMAGE_VIEW;
+        public final ImageView WATCHING_TV_IMAGE_VIEW;
+        public final ImageView HANDWORK_IMAGE_VIEW;
+        public final ImageView FIRST_ORDER_IMAGE_VIEW;
+        public final ImageView MIDDLE_ORDER_IMAGE_VIEW;
+        public final ImageView LAST_ORDER_IMAGE_VIEW;
+        public final ImageView ALONE_ORDER_IMAGE_VIEW;
+        public final ImageView MALE_GENDER_IMAGE_VIEW;
+        public final ImageView FEMALE_GENDER_IMAGE_VIEW;
 
         public ChildInputScreenViewHolder(View childInputView){
 
@@ -130,7 +166,42 @@ public class ViewHolder {
             ELECTRONIC_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_ans2_time_text_view);
             WATCHING_TV_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_ans3_time_text_view);
             HANDWORK_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_ans4_time_text_view);
+            ALONE_ORDER_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_alone_order_text_view);
             SUBMIT_CHILD_BUTTON = (Button) childInputView.findViewById(R.id.child_input_submit_application_button);
+            ARABIC_GOVERNMENTAL_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_government_arabic_image_view);
+            ENGLISH_GOVERNMENTAL_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_government_english_image_view);
+            ARABIC_PRIVATE_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_private_arabic_image_view);
+            ENGLISH_PRIVATE_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_private_english_image_view);
+            NONE_EDUCATION_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_none_academic_image_view);
+            PRIMARY_EDUCATION_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_primary_academic_image_view);
+            PREPARATORY_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_preparatory_academic_image_view);
+            SECONDARY_EDUCATION_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_secondary_academic_image_view);
+            NONE_YEAR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_none_year_image_view);
+            FIRST_YEAR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_first_year_image_view);
+            SECOND_YEAR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_second_year_image_view);
+            THIRD_YEAR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_third_year_image_view);
+            FORTH_YEAR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_forth_year_image_view);
+            FIFTH_YEAR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_fifth_year_image_view);
+            SIXTH_YEAR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_sixth_year_image_view);
+            GOOD_SPEAKER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_good_speaker_image_view);
+            SOCIAL_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_social_image_view);
+            LEADING_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_leading_image_view);
+            NEURAL_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_neural_image_view);
+            COLLABORATOR_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_collaborator_image_view);
+            ASKS_FOR_HELP_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans1_problem_image_view);
+            WORRIES_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans2_problem_image_view);
+            LEAVES_PROBLEMS_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans3_problem_image_view);
+            TRIES_SOLVE_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans4_problem_image_view);
+            DRAWING_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans1_time_image_view);
+            ELECTRONIC_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans2_time_image_view);
+            WATCHING_TV_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans3_time_image_view);
+            HANDWORK_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_ans4_time_image_view);
+            FIRST_ORDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_first_order_image_view);
+            MIDDLE_ORDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_middle_order_image_view);
+            LAST_ORDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_last_order_image_view);
+            MALE_GENDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_male_gender_image_view);
+            FEMALE_GENDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_female_gender_image_view);
+            ALONE_ORDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_alone_order_image_view);
         }
 
     }

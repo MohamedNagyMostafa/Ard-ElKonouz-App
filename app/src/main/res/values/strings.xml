@@ -81,6 +81,7 @@
     <string name="first_birth">First</string>
     <string name="middle_birth">Middle</string>
     <string name="last_birth">Last</string>
+    <string name="alone_birth">Alone</string>
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
     <string name="child_birth">Birth Order</string>
