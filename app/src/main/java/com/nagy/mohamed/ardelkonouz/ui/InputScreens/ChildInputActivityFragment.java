@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui.InputScreens;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class ChildInputActivityFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_child_input, container, false);
         final ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder =
@@ -68,11 +70,96 @@ public class ChildInputActivityFragment extends Fragment {
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_NAME_COLUMN,
+                                    childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_AGE_COLUMN,
+                                    childInputScreenViewHolder.CHILD_AGE_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_BIRTH_ORDER_COLUMN,
+                                    getSelectionFromList(BIRTH_ORDER_LIST)
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_GENDER_COLUMN,
+                                    getSelectionFromList(GENDER_LIST)
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN,
+                                    childInputScreenViewHolder.MOTHER_NAME_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN,
+                                    childInputScreenViewHolder.MOTHER_MOBILE_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN,
+                                    childInputScreenViewHolder.MOTHER_JOB_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_MOTHER_QUALIFICATION_COLUMN,
+                                    childInputScreenViewHolder.MOTHER_QUALIFICATION_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN,
+                                    childInputScreenViewHolder.FATHER_NAME_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_FATHER_JOB_COLUMN,
+                                    childInputScreenViewHolder.FATHER_JOB_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN,
+                                    childInputScreenViewHolder.FATHER_MOBILE_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_MOBILE_WHATSUP_COLUMN,
+                                    childInputScreenViewHolder.WHATSAPP_EDIT_TEXT.getText().toString()
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_EDUCATION_TYPE_COLUMN,
+                                    getSelectionFromList(EDUCATION_TYPE_LIST)
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_STUDY_YEAR_COLUMN,
+                                    Utility.encodeEducationStageByInt(
+                                            getSelectionFromList(YEAR_LIST),
+                                            getSelectionFromList(EDUCATION_STAGE_LIST),
+                                            getContext()
+                                    )
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_TRAITS_COLUMN,
+                                    getSelectionFromList(CHARACTERISTIC_LIST)
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_FREE_TIME_COLUMN,
+                                    getSelectionFromList(FREE_TIME_LIST)
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_HANDLING_COLUMN,
+                                    getSelectionFromList(DEAL_PROBLEM_LIST)
+                            );
+
                             switch (INPUT_TYPE) {
                                 case Constants.INPUT_ADD_EXTRA:
-                                    
+                                    getActivity().getContentResolver().insert(
+                                            DatabaseController.UriDatabase.CHILD_TABLE_URI,
+                                            contentValues
+                                    );
                                     break;
                                 case Constants.INPUT_EDIT_EXTRA:
+                                    getActivity().getContentResolver().update(
+                                            DatabaseController.UriDatabase.getChildTableWithIdUri(CHILD_ID),
+                                            contentValues,
+                                            null,
+                                            null
+                                    );
+
                                     break;
                             }
                         }
@@ -380,6 +467,14 @@ public class ChildInputActivityFragment extends Fragment {
 
         for(int i = 0 ; i < textViews.length ; i++)
             doubleChoiceArrayList.get(i).setImageView(textViews[i]);
+    }
+
+    private int getSelectionFromList(ArrayList<DoubleChoice> arrayList){
+        for(int i = 0 ; i < arrayList.size() ; i++){
+            if(arrayList.get(i).isSelected())
+                return i;
+        }
+        return -1;
     }
 
 }
