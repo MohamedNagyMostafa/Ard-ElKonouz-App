@@ -1,6 +1,7 @@
 package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ChildProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
@@ -49,7 +51,6 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                 new ViewHolder.ChildCourseConnectorScreenViewHolder(rootView);
 
         childId = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
-        final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
         childCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
@@ -78,6 +79,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                                 null,
                                 null
                         );
+                        Log.e("submit for items size",String.valueOf(selectedCourses.size()));
 
                         // Insert all selection
                         ArrayList<ContentValues> contentValuesArrayList = new ArrayList<ContentValues>();
@@ -100,10 +102,15 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                             contentValuesArrayList.add(contentValues);
                         }
 
+                        ContentValues[] contentValues = new ContentValues[contentValuesArrayList.size()];
+                        contentValuesArrayList.toArray(contentValues);
+
                         getActivity().getContentResolver().bulkInsert(
                                 DatabaseController.UriDatabase.COURSE_CHILD_URI,
-                                (ContentValues[]) contentValuesArrayList.toArray()
+                                contentValues
                         );
+
+                        openChildProfile();
                     }
                 }
         );
@@ -169,9 +176,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         if(cursor1 != null){
             if(cursor1.getCount() > 0){
-                Log.e("there are peviou course",String.valueOf(cursor1.getCount()));
                 selectedCourses.add(COURSE_ID);
-
             }
             cursor1.close();
         }
@@ -182,16 +187,20 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                 if(selectedCourses.contains(COURSE_ID)){
                     selectedCourses.remove(COURSE_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
+                    Log.e("remove one item size is",String.valueOf(selectedCourses.size()));
+
                 }else{
                     selectedCourses.add(COURSE_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
+                    Log.e("add one item size is",String.valueOf(selectedCourses.size()));
                 }
             }
         });
 
-        // rotate view.
         if(selectedCourses.contains(COURSE_ID)){
             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
+        }else{
+            coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -245,6 +254,11 @@ public class ChildCourseConnectorActivityFragment extends Fragment
             cursor.close();
         }
     }
-    
+
+    private void openChildProfile(){
+        Intent childProfile = new Intent(getContext(), ChildProfileActivity.class);
+        childProfile.putExtra(Constants.CHILD_ID_EXTRA, childId);
+        startActivity(childProfile);
+    }
 
 }

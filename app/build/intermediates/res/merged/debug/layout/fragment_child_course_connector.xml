@@ -1,18 +1,29 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivityFragment"
     tools:showIn="@layout/activity_child_course_connector">
 
 
+    <ListView
+        android:id="@+id/child_course_courses_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View
+        android:id="@+id/line_frame"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
     <LinearLayout
-        android:id="@+id/buttons_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp">
 
         <Button
@@ -39,17 +50,4 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/line_frame"
-        android:layout_alignTop="@id/buttons_frame"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary"/>
-
-    <ListView
-        android:id="@+id/child_course_courses_list_view"
-        android:layout_above="@id/line_frame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-</RelativeLayout>
+</LinearLayout>
