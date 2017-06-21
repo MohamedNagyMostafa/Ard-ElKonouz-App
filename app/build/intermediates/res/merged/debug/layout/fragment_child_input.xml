@@ -169,6 +169,32 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:id="@+id/child_input_alone_order_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:visibility="invisible"
+                                android:tint="@android:color/holo_green_dark"/>
+
+                            <TextView
+                                android:id="@+id/child_input_alone_order_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:text="@string/alone_birth"/>
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
