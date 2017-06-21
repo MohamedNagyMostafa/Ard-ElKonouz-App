@@ -1,10 +1,10 @@
 package com.nagy.mohamed.ardelkonouz.ui.InputScreens;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,7 @@ import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 import java.util.ArrayList;
@@ -152,6 +153,7 @@ public class ChildInputActivityFragment extends Fragment {
                                             DatabaseController.UriDatabase.CHILD_TABLE_URI,
                                             contentValues
                                     );
+                                    openCoursesSelectionWindow(INPUT_TYPE, CHILD_ID);
                                     break;
                                 case Constants.INPUT_EDIT_EXTRA:
                                     getActivity().getContentResolver().update(
@@ -160,9 +162,10 @@ public class ChildInputActivityFragment extends Fragment {
                                             null,
                                             null
                                     );
-
+                                    openCoursesSelectionWindow(INPUT_TYPE, CHILD_ID);
                                     break;
                             }
+
                         }
                     }
             );
@@ -218,9 +221,7 @@ public class ChildInputActivityFragment extends Fragment {
                                 Utility.getYearCodeFromEducationStageString(
                                         cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR)
                                 );
-                        Log.e("Education Type = ",String.valueOf(EDUCATION_TYPE));
-                        Log.e("Education Stage = ",String.valueOf(EDUCATION_STAGE));
-                        Log.e("Education YEAR = ",String.valueOf(EDUCATION_YEAR));
+
                         final short CHARACTERISTIC =
                                 cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_TRAITS);
                         final short DEAL_PROBLEM =
@@ -477,6 +478,13 @@ public class ChildInputActivityFragment extends Fragment {
                 return i;
         }
         return -1;
+    }
+
+    private void openCoursesSelectionWindow(String inputType, int childId){
+        Intent coursesSelectionWindow = new Intent(getContext(), ChildCourseConnectorActivity.class);
+        coursesSelectionWindow.putExtra(Constants.CHILD_ID_EXTRA, childId);
+        coursesSelectionWindow.putExtra(Constants.INPUT_TYPE_EXTRA, inputType);
+        startActivity(coursesSelectionWindow);
     }
 
 }
