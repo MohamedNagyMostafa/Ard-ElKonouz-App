@@ -67,6 +67,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:hint="@string/child_age"
+                            android:maxLength="2"
                             android:inputType="number"
                             android:textColorHint="@color/colorPrimary"
                             android:backgroundTint="@color/colorPrimaryDark"
@@ -298,6 +299,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:layout_marginEnd="4dp"
+                    android:maxLength="13"
                     android:backgroundTint="@color/colorPrimaryDark"
                     android:layout_marginStart="4dp"
                     android:textColor="@android:color/black"/>
@@ -377,6 +379,7 @@
                     android:inputType="phone"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
+                    android:maxLength="13"
                     android:backgroundTint="@color/colorPrimaryDark"/>
 
                 <TextView
@@ -393,6 +396,7 @@
                     android:textColor="@android:color/black"
                     android:layout_marginStart="4dp"
                     android:inputType="phone"
+                    android:maxLength="13"
                     android:layout_marginEnd="4dp"
                     android:backgroundTint="@color/colorPrimaryDark"/>
 
@@ -596,7 +600,7 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="invisible"
                                 android:src="@drawable/ic_done_black_18dp"
-                                android:tint="@color/colorPrimaryDark"/>
+                                android:tint="@android:color/holo_green_dark"/>
 
                             <TextView
                                 android:id="@+id/child_input_none_year_text_view"
@@ -621,7 +625,7 @@
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_done_black_18dp"
                                 android:visibility="invisible"
-                                android:tint="@color/colorPrimaryDark"/>
+                                android:tint="@android:color/holo_green_dark"/>
 
 
                             <TextView
@@ -646,7 +650,7 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="invisible"
                                 android:src="@drawable/ic_done_black_18dp"
-                                android:tint="@color/colorPrimaryDark"/>
+                                android:tint="@android:color/holo_green_dark"/>
 
                             <TextView
                                 android:id="@+id/child_input_second_year_text_view"
@@ -671,7 +675,7 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="invisible"
                                 android:src="@drawable/ic_done_black_18dp"
-                                android:tint="@color/colorPrimaryDark"/>
+                                android:tint="@android:color/holo_green_dark"/>
 
                             <TextView
                                 android:id="@+id/child_input_third_year_text_view"
@@ -936,11 +940,12 @@
                 android:layout_marginTop="8dp">
 
                 <ImageView
-                    android:id="@+id/child_input_good_speaker_image_view"                    android:layout_width="wrap_content"
+                    android:id="@+id/child_input_good_speaker_image_view"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_good_speaker_text_view"                    android:layout_width="wrap_content"
@@ -963,7 +968,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_done_black_18dp"
                     android:visibility="invisible"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
 
                 <TextView
@@ -986,7 +991,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_leading_text_view"                    android:layout_width="wrap_content"
@@ -1009,7 +1014,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_neural_text_view"                    android:layout_width="wrap_content"
@@ -1033,7 +1038,7 @@
                     android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1065,7 +1070,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_ans1_problem_text_view"
@@ -1090,7 +1095,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_done_black_18dp"
                     android:visibility="invisible"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
 
                 <TextView
@@ -1115,7 +1120,7 @@
                     android:layout_width="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_ans3_problem_text_view"
@@ -1140,7 +1145,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_ans4_problem_text_view"
@@ -1171,7 +1176,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_ans1_time_text_view"
@@ -1196,7 +1201,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_done_black_18dp"
                     android:visibility="invisible"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
 
                 <TextView
@@ -1221,7 +1226,7 @@
                     android:layout_width="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_ans3_time_text_view"
@@ -1246,7 +1251,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:src="@drawable/ic_done_black_18dp"
-                    android:tint="@color/colorPrimaryDark"/>
+                    android:tint="@android:color/holo_green_dark"/>
 
                 <TextView
                     android:id="@+id/child_input_ans4_time_text_view"
@@ -1273,4 +1278,3 @@
     </LinearLayout>
 
 </ScrollView>
-

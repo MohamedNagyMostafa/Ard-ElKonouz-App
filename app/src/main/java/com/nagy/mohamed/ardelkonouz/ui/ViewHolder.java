@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
+import android.media.Image;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -45,6 +46,7 @@ public class ViewHolder {
         public final TextView FIRST_ORDER_TEXT_VIEW;
         public final TextView MIDDLE_ORDER_TEXT_VIEW;
         public final TextView LAST_ORDER_TEXT_VIEW;
+        public final TextView ALONE_ORDER_TEXT_VIEW;
         public final TextView MALE_GENDER_TEXT_VIEW;
         public final TextView FEMALE_GENDER_TEXT_VIEW;
         public final EditText MOTHER_NAME_EDIT_TEXT;
@@ -115,6 +117,7 @@ public class ViewHolder {
         public final ImageView FIRST_ORDER_IMAGE_VIEW;
         public final ImageView MIDDLE_ORDER_IMAGE_VIEW;
         public final ImageView LAST_ORDER_IMAGE_VIEW;
+        public final ImageView ALONE_ORDER_IMAGE_VIEW;
         public final ImageView MALE_GENDER_IMAGE_VIEW;
         public final ImageView FEMALE_GENDER_IMAGE_VIEW;
 
@@ -163,6 +166,7 @@ public class ViewHolder {
             ELECTRONIC_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_ans2_time_text_view);
             WATCHING_TV_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_ans3_time_text_view);
             HANDWORK_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_ans4_time_text_view);
+            ALONE_ORDER_TEXT_VIEW = (TextView) childInputView.findViewById(R.id.child_input_alone_order_text_view);
             SUBMIT_CHILD_BUTTON = (Button) childInputView.findViewById(R.id.child_input_submit_application_button);
             ARABIC_GOVERNMENTAL_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_government_arabic_image_view);
             ENGLISH_GOVERNMENTAL_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_government_english_image_view);
@@ -197,6 +201,7 @@ public class ViewHolder {
             LAST_ORDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_last_order_image_view);
             MALE_GENDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_male_gender_image_view);
             FEMALE_GENDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_female_gender_image_view);
+            ALONE_ORDER_IMAGE_VIEW = (ImageView) childInputView.findViewById(R.id.child_input_alone_order_image_view);
         }
 
     }

@@ -40,6 +40,7 @@ public class Constants {
     public static final int FIRST_BIRTH = 0;
     public static final int MIDDLE_BIRTH = 1;
     public static final int LAST_BIRTH = 2;
+    public static final int ALONE_ORDER = 3;
 
     // Year
     public static final int YEAR_STAGE_FIRST = 0;

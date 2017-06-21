@@ -481,14 +481,16 @@ public class ChildInputActivityFragment extends Fragment {
                 birthOrderArrayList,
                 childInputScreenViewHolder.FIRST_ORDER_TEXT_VIEW,
                 childInputScreenViewHolder.MIDDLE_ORDER_TEXT_VIEW,
-                childInputScreenViewHolder.LAST_ORDER_TEXT_VIEW
+                childInputScreenViewHolder.LAST_ORDER_TEXT_VIEW,
+                childInputScreenViewHolder.ALONE_ORDER_TEXT_VIEW
         );
 
         setChoiceImageViewSystem(
                 birthOrderArrayList,
                 childInputScreenViewHolder.FIRST_ORDER_IMAGE_VIEW,
                 childInputScreenViewHolder.MIDDLE_ORDER_IMAGE_VIEW,
-                childInputScreenViewHolder.LAST_ORDER_IMAGE_VIEW
+                childInputScreenViewHolder.LAST_ORDER_IMAGE_VIEW,
+                childInputScreenViewHolder.ALONE_ORDER_IMAGE_VIEW
         );
 
         return birthOrderArrayList;

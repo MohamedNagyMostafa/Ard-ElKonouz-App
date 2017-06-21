@@ -20,6 +20,8 @@ public class Utility {
                 return context.getString(R.string.middle_birth);
             case Constants.LAST_BIRTH:
                 return context.getString(R.string.last_birth);
+            case Constants.ALONE_ORDER:
+                return context.getString(R.string.alone_birth);
             default:
                 return null;
         }
@@ -32,6 +34,8 @@ public class Utility {
            return Constants.MIDDLE_BIRTH;
        }else if(birthOrder.equals(context.getString(R.string.last_birth))){
            return Constants.LAST_BIRTH;
+       }else if(birthOrder.equals(context.getString(R.string.alone_birth))){
+           return Constants.ALONE_ORDER;
        }else{
            return null;
        }
