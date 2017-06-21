@@ -73,4 +73,8 @@ public class Constants {
     // Course State
     public static final int COURSE_COMPLETE = 1;
     public static final int COURSE_INCOMPLETE = 2;
+
+    // double choices
+    public static final char SELECTED = 1;
+    public static final char NOT_SELECTED = 2;
 }

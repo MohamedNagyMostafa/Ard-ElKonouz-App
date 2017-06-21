@@ -194,5 +194,15 @@ public class Utility {
         }
     }
 
+    private static boolean isSelectedIQChoice(String iqAnswer, int index){
+        return (iqAnswer.charAt(index) == Constants.SELECTED);
+    }
 
+    public static void doubleSelectionProcess(ArrayList<DoubleChoice> doubleChoiceArrayList,
+                                              String result){
+        for(int i = 0 ; i < doubleChoiceArrayList.size() ; i ++){
+            if(result.charAt(i) == Constants.SELECTED)
+                doubleChoiceArrayList.get(i).setChoiceSelect();
+        }
+    }
 }

@@ -155,9 +155,9 @@ public class DbContent {
                 CHILD_AGE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_EDUCATION_TYPE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_BIRTH_ORDER_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                CHILD_HANDLING_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                CHILD_TRAITS_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                CHILD_FREE_TIME_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                CHILD_HANDLING_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
+                CHILD_TRAITS_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
+                CHILD_FREE_TIME_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 CHILD_GENDER_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_STUDY_YEAR_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 CHILD_FATHER_JOB_COLUMN  + SPACE + TEXT + SPACE + NOT_NULL + "," +

@@ -63,10 +63,12 @@ public class ChildInputActivityFragment extends Fragment {
                 GENDER_LIST,
                 EDUCATION_TYPE_LIST,
                 EDUCATION_STAGE_LIST,
-                YEAR_LIST,
+                YEAR_LIST
+        );
+        setDoubleChoicesListListeners(
                 CHARACTERISTIC_LIST,
-                DEAL_PROBLEM_LIST,
-                FREE_TIME_LIST
+                FREE_TIME_LIST,
+                DEAL_PROBLEM_LIST
         );
 
         if(INPUT_TYPE != null) {
@@ -172,17 +174,21 @@ public class ChildInputActivityFragment extends Fragment {
                                             getContext()
                                     )
                             );
+                            String characteristicChoices = getDoubleChoicesResult(CHARACTERISTIC_LIST);
+                            String dealingProblemChoices = getDoubleChoicesResult(DEAL_PROBLEM_LIST);
+                            String freeTimeChoices = getDoubleChoicesResult(FREE_TIME_LIST);
+
                             contentValues.put(
                                     DbContent.ChildTable.CHILD_TRAITS_COLUMN,
-                                    getSelectionFromList(CHARACTERISTIC_LIST)
-                            );
-                            contentValues.put(
-                                    DbContent.ChildTable.CHILD_FREE_TIME_COLUMN,
-                                    getSelectionFromList(FREE_TIME_LIST)
+                                    characteristicChoices
                             );
                             contentValues.put(
                                     DbContent.ChildTable.CHILD_HANDLING_COLUMN,
-                                    getSelectionFromList(DEAL_PROBLEM_LIST)
+                                    dealingProblemChoices
+                            );
+                            contentValues.put(
+                                    DbContent.ChildTable.CHILD_FREE_TIME_COLUMN,
+                                    freeTimeChoices
                             );
 
                             switch (INPUT_TYPE) {
@@ -260,12 +266,12 @@ public class ChildInputActivityFragment extends Fragment {
                                         cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR)
                                 );
 
-                        final short CHARACTERISTIC =
-                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_TRAITS);
-                        final short DEAL_PROBLEM =
-                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_HANDLING);
-                        final short FREE_TIME =
-                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_FREE_TIME);
+                        final String CHARACTERISTIC =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_TRAITS);
+                        final String DEAL_PROBLEM =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_HANDLING);
+                        final String FREE_TIME =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_FREE_TIME);
 
                         // set data
                         childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT.setText(CHILD_NAME);
@@ -284,9 +290,10 @@ public class ChildInputActivityFragment extends Fragment {
                         Utility.selectionProcess(EDUCATION_TYPE, EDUCATION_TYPE_LIST);
                         Utility.selectionProcess(EDUCATION_STAGE, EDUCATION_STAGE_LIST);
                         Utility.selectionProcess(EDUCATION_YEAR, YEAR_LIST);
-                        Utility.selectionProcess(CHARACTERISTIC, CHARACTERISTIC_LIST);
-                        Utility.selectionProcess(FREE_TIME, FREE_TIME_LIST);
-                        Utility.selectionProcess(DEAL_PROBLEM, DEAL_PROBLEM_LIST);
+
+                        Utility.doubleSelectionProcess(CHARACTERISTIC_LIST, CHARACTERISTIC);
+                        Utility.doubleSelectionProcess(FREE_TIME_LIST, FREE_TIME);
+                        Utility.doubleSelectionProcess(DEAL_PROBLEM_LIST, DEAL_PROBLEM);
 
                     }
 
@@ -337,7 +344,6 @@ public class ChildInputActivityFragment extends Fragment {
 
         return freeTimeList;
     }
-
 
     private ArrayList<DoubleChoice> setChoiceDealProblemItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
@@ -541,5 +547,37 @@ public class ChildInputActivityFragment extends Fragment {
 
         return validation;
     }
+
+    @SafeVarargs
+    private final void setDoubleChoicesListListeners(ArrayList<DoubleChoice>... doubleChoiceArrayLists){
+        for(ArrayList<DoubleChoice> doubleChoiceArrayList : doubleChoiceArrayLists){
+            for(final DoubleChoice doubleChoice : doubleChoiceArrayList){
+                doubleChoice.getTextView().setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(doubleChoice.isSelected())
+                                    doubleChoice.setChoiceNotSelect();
+                                else
+                                    doubleChoice.setChoiceSelect();
+                            }
+                        }
+                );
+            }
+        }
+    }
+
+    private String getDoubleChoicesResult(ArrayList<DoubleChoice> doubleChoiceArrayList){
+        StringBuilder stringBuilder = new StringBuilder("");
+        for(DoubleChoice doubleChoice : doubleChoiceArrayList){
+            if(doubleChoice.isSelected()) {
+                stringBuilder.append(Constants.SELECTED);
+            }else{
+                stringBuilder.append(Constants.NOT_SELECTED);
+            }
+        }
+        return stringBuilder.toString();
+    }
+
 
 }
