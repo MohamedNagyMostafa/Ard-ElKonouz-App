@@ -101,13 +101,9 @@ public class InstructorProfileActivityFragment extends Fragment
                 )
         );
         instructorProfileScreenViewHolder.INSTRUCTOR_MOBILE_TEXT_VIEW.setText(
-                new StringBuilder(
-                        String.valueOf(
-                                cursor.getLong(
+                                cursor.getString(
                                         DatabaseController.ProjectionDatabase.INSTRUCTOR_MOBILE
                                 )
-                        )
-                ).insert(0, '0').toString()
         );
         instructorProfileScreenViewHolder.INSTRUCTOR_GENDER_TEXT_VIEW.setText(
                 Utility.decodeGenderByInt(

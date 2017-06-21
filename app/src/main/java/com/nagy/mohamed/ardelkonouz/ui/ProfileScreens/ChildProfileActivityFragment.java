@@ -109,10 +109,7 @@ public class ChildProfileActivityFragment extends Fragment
                 childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_MOTHER_NAME)
         );
         childProfileScreenViewHolder.MOTHER_MOBILE_TEXT_VIEW.setText(
-                new StringBuilder(String.valueOf(
-                        childProfileData.getLong(DatabaseController.ProjectionDatabase.CHILD_MOTHER_MOBILE)
-                    )
-                ).insert(0,'0').toString()
+                        childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_MOTHER_MOBILE)
         );
         childProfileScreenViewHolder.MOTHER_QUALIFICATION_TEXT_VIEW.setText(
                 childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_MOTHER_QUALIFICATION)
@@ -124,19 +121,13 @@ public class ChildProfileActivityFragment extends Fragment
                 childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_FATHER_NAME)
         );
         childProfileScreenViewHolder.FATHER_MOBILE_TEXT_VIEW.setText(
-                new StringBuilder(String.valueOf(
-                        childProfileData.getLong(DatabaseController.ProjectionDatabase.CHILD_FATHER_MOBILE)
-                )).insert(0,'0').toString()
+                        childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_FATHER_MOBILE)
         );
         childProfileScreenViewHolder.FATHER_JOB_TEXT_VIEW.setText(
                 childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_FATHER_JOB)
         );
         childProfileScreenViewHolder.WHATSAPP_TEXT_VIEW.setText(
-                new StringBuilder(
-                        String.valueOf(
-                                childProfileData.getLong(DatabaseController.ProjectionDatabase.CHILD_MOBILE_WHATSUP)
-                        )
-                ).insert(0,'0').toString()
+                                childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_MOBILE_WHATSUP)
         );
         childProfileScreenViewHolder.EDUCATION_TYPE_TEXT_VIEW.setText(
                 Utility.decodeEducationTypeByInt(
