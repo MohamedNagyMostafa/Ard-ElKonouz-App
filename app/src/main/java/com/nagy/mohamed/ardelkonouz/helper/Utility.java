@@ -81,6 +81,22 @@ public class Utility {
         return stringBuilder.toString();
     }
 
+
+    public static int getYearCodeFromEducationStageString(String educationStage){
+        StringBuilder stringBuilder = new StringBuilder(educationStage);
+        return stringBuilder.charAt(0);
+    }
+
+    public static short decodeEducationStageByString(String educationStage, Context context){
+        StringBuilder stringBuilder = new StringBuilder(educationStage);
+        if(stringBuilder.substring(2).equals(context.getString(R.string.none)))
+            return Constants.NONE_EDUCATION_TYPE;
+        else if(stringBuilder.substring(2).equals(context.getString(R.string.primary_education)))
+            return Constants.PRIMARY_EDUCATION_TYPE;
+        else
+            return Constants.SECONDARY_EDUCATION_TYPE;
+    }
+
     public static String decodeEducationTypeByInt(int educationType, Context context){
         switch (educationType){
             case Constants.GOVERNMENTAL_ARABIC:

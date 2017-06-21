@@ -1,7 +1,8 @@
 package com.nagy.mohamed.ardelkonouz.ui.InputScreens;
 
-import android.support.v4.app.Fragment;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class ChildInputActivityFragment extends Fragment {
         final ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder =
                 new ViewHolder.ChildInputScreenViewHolder(rootView);
         final int CHILD_ID = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
-        final int INPUT_TYPE = getActivity().getIntent().getExtras().getInt(Constants.INPUT_TYPE_EXTRA);
+        final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
         // Set Choices process.
         final ArrayList<DoubleChoice> BIRTH_ORDER_LIST =
@@ -61,7 +63,112 @@ public class ChildInputActivityFragment extends Fragment {
                 FREE_TIME_LIST
         );
 
-        
+        if(INPUT_TYPE != null) {
+            childInputScreenViewHolder.SUBMIT_CHILD_BUTTON.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            switch (INPUT_TYPE) {
+                                case Constants.INPUT_ADD_EXTRA:
+                                    
+                                    break;
+                                case Constants.INPUT_EDIT_EXTRA:
+                                    break;
+                            }
+                        }
+                    }
+            );
+
+            if (INPUT_TYPE.equals(Constants.INPUT_EDIT_EXTRA)) {
+                // Set Current Data.
+                Cursor cursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getChildTableWithIdUri(CHILD_ID),
+                        DatabaseController.ProjectionDatabase.CHILD_PROJECTION,
+                        null,
+                        null,
+                        null
+                );
+
+                if(cursor != null){
+                    if(cursor.getCount() > 0){
+                        final String CHILD_NAME =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_NAME);
+                        final short CHILD_AGE =
+                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_AGE);
+                        final short BIRTH_ORDER =
+                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_BIRTH_ORDER);
+                        final short GENDER =
+                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_GENDER);
+                        final String MOTHER_NAME =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_MOTHER_NAME);
+                        final String MOTHER_MOBILE =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_MOTHER_MOBILE);
+                        final String MOTHER_JOB =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_MOTHER_JOB);
+                        final String MOTHER_QUALIFICATION =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_MOTHER_QUALIFICATION);
+                        final String FATHER_NAME =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_FATHER_NAME);
+                        final String FATHER_MOBILE =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_FATHER_MOBILE);
+                        final String WHATS_APP =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_MOBILE_WHATSUP);
+                        final String FATHER_JOB =
+                                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_FATHER_JOB);
+                        final short EDUCATION_TYPE =
+                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_EDUCATION_TYPE);
+
+                        final int EDUCATION_STAGE =(
+                                Utility.encodeBirthOrderByString(
+                                        cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR),
+                                        getContext()
+                                ) == null)?Constants.NONE_EDUCATION_TYPE :
+                                Utility.encodeBirthOrderByString(
+                                        cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR),
+                                        getContext()
+                                );
+
+                        final int EDUCATION_YEAR =
+                                Utility.getYearCodeFromEducationStageString(
+                                        cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR)
+                                );
+                        final short CHARACTERISTIC =
+                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_TRAITS);
+                        final short DEAL_PROBLEM =
+                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_HANDLING);
+                        final short FREE_TIME =
+                                cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_FREE_TIME);
+
+                        // set data
+                        childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT.setText(CHILD_NAME);
+                        childInputScreenViewHolder.CHILD_AGE_EDIT_TEXT.setText(CHILD_AGE);
+                        childInputScreenViewHolder.FATHER_NAME_EDIT_TEXT.setText(FATHER_NAME);
+                        childInputScreenViewHolder.FATHER_JOB_EDIT_TEXT.setText(FATHER_JOB);
+                        childInputScreenViewHolder.FATHER_MOBILE_EDIT_TEXT.setText(FATHER_MOBILE);
+                        childInputScreenViewHolder.MOTHER_JOB_EDIT_TEXT.setText(MOTHER_JOB);
+                        childInputScreenViewHolder.MOTHER_NAME_EDIT_TEXT.setText(MOTHER_NAME);
+                        childInputScreenViewHolder.MOTHER_MOBILE_EDIT_TEXT.setText(MOTHER_MOBILE);
+                        childInputScreenViewHolder.MOTHER_QUALIFICATION_EDIT_TEXT.setText(MOTHER_QUALIFICATION);
+                        childInputScreenViewHolder.WHATSAPP_EDIT_TEXT.setText(WHATS_APP);
+                        // set choices
+                        Utility.selectionProcess(BIRTH_ORDER, BIRTH_ORDER_LIST);
+                        Utility.selectionProcess(GENDER, GENDER_LIST);
+                        Utility.selectionProcess(EDUCATION_TYPE, EDUCATION_STAGE_LIST);
+                        Utility.selectionProcess(EDUCATION_STAGE, EDUCATION_STAGE_LIST);
+                        Utility.selectionProcess(EDUCATION_YEAR, YEAR_LIST);
+                        Utility.selectionProcess(CHARACTERISTIC, CHARACTERISTIC_LIST);
+                        Utility.selectionProcess(FREE_TIME, FREE_TIME_LIST);
+                        Utility.selectionProcess(DEAL_PROBLEM, DEAL_PROBLEM_LIST);
+
+                    }
+
+                    cursor.close();
+                }
+            }
+        }
+
+        return rootView;
+
     }
 
     @SafeVarargs
