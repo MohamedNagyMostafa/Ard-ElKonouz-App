@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -72,6 +74,42 @@ public class ChildInputActivityFragment extends Fragment {
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            if(checkValidation(
+                                    childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT,
+                                    childInputScreenViewHolder.CHILD_AGE_EDIT_TEXT,
+                                    childInputScreenViewHolder.MOTHER_NAME_EDIT_TEXT,
+                                    childInputScreenViewHolder.FATHER_NAME_EDIT_TEXT,
+                                    childInputScreenViewHolder.MOTHER_JOB_EDIT_TEXT,
+                                    childInputScreenViewHolder.FATHER_JOB_EDIT_TEXT,
+                                    childInputScreenViewHolder.MOTHER_QUALIFICATION_EDIT_TEXT,
+                                    childInputScreenViewHolder.WHATSAPP_EDIT_TEXT,
+                                    childInputScreenViewHolder.MOTHER_MOBILE_EDIT_TEXT,
+                                    childInputScreenViewHolder.FATHER_MOBILE_EDIT_TEXT
+                            )){
+                                if(getSelectionFromList(BIRTH_ORDER_LIST) == -1){
+                                    Toast.makeText(getContext(), "Please choice your birth order", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }else if(getSelectionFromList(GENDER_LIST) == -1){
+                                    Toast.makeText(getContext(), "Please choice your gender", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }else if(getSelectionFromList(EDUCATION_STAGE_LIST) == -1){
+                                    Toast.makeText(getContext(), "Please choice your education stage", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }else if(getSelectionFromList(EDUCATION_TYPE_LIST) == -1){
+                                    Toast.makeText(getContext(), "Please choice your education type", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }else if(getSelectionFromList(YEAR_LIST) == -1){
+                                    Toast.makeText(getContext(), "Please choice your current education year", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }else if(getSelectionFromList(CHARACTERISTIC_LIST) == -1 ||getSelectionFromList(DEAL_PROBLEM_LIST) == -1 ||
+                                getSelectionFromList(FREE_TIME_LIST) == -1){
+                                    Toast.makeText(getContext(), "Please complete your iq questions", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }else {
+                                return;
+                            }
 
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(
@@ -485,6 +523,21 @@ public class ChildInputActivityFragment extends Fragment {
         coursesSelectionWindow.putExtra(Constants.CHILD_ID_EXTRA, childId);
         coursesSelectionWindow.putExtra(Constants.INPUT_TYPE_EXTRA, inputType);
         startActivity(coursesSelectionWindow);
+    }
+
+    private boolean checkValidation(
+            EditText... editTexts){
+        boolean validation = true;
+        // check IQ questions section.
+        for(EditText editText : editTexts){
+            if(editText.length() == 0) {
+                validation = false;
+                editText.setError("This Field Can Not Be Empty");
+            }
+
+        }
+
+        return validation;
     }
 
 }

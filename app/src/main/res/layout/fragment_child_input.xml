@@ -67,6 +67,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:hint="@string/child_age"
+                            android:maxLength="2"
                             android:inputType="number"
                             android:textColorHint="@color/colorPrimary"
                             android:backgroundTint="@color/colorPrimaryDark"
@@ -298,6 +299,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:layout_marginEnd="4dp"
+                    android:maxLength="13"
                     android:backgroundTint="@color/colorPrimaryDark"
                     android:layout_marginStart="4dp"
                     android:textColor="@android:color/black"/>
@@ -377,6 +379,7 @@
                     android:inputType="phone"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
+                    android:maxLength="13"
                     android:backgroundTint="@color/colorPrimaryDark"/>
 
                 <TextView
@@ -393,6 +396,7 @@
                     android:textColor="@android:color/black"
                     android:layout_marginStart="4dp"
                     android:inputType="phone"
+                    android:maxLength="13"
                     android:layout_marginEnd="4dp"
                     android:backgroundTint="@color/colorPrimaryDark"/>
 
