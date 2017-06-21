@@ -804,6 +804,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(age)
         };
 
+        Log.e("query done", "done");
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.CourseTable.TABLE_NAME,
                 projection,
@@ -824,6 +825,9 @@ public class ContentProviderDatabase extends ContentProvider {
         String selection = DbContent.ChildCourseTable.CHILD_ID_COLUMN + "=?" + " AND " +
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(childId), String.valueOf(courseId)};
+
+        Log.e("child id", String.valueOf(childId));
+        Log.e("course id", String.valueOf(courseId));
 
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.ChildCourseTable.TABLE_NAME,

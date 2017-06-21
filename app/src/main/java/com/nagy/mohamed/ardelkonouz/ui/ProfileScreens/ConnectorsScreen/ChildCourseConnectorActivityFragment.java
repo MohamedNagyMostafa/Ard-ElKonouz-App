@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         selectedCourses = new ArrayList<>();
+
     }
 
     @Override
@@ -122,7 +124,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     public void bindListView(View view, final Cursor cursor) {
         final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
-        final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_ID);
+        final Integer COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_ID);
 
         coursesViewHolder.COURSE_COST_TEXT_VIEW.setText(
                 String.valueOf(
@@ -167,10 +169,9 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         if(cursor1 != null){
             if(cursor1.getCount() > 0){
-
+                Log.e("there are peviou course",String.valueOf(cursor1.getCount()));
                 selectedCourses.add(COURSE_ID);
 
-                coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
             }
             cursor1.close();
         }
@@ -187,6 +188,11 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                 }
             }
         });
+
+        // rotate view.
+        if(selectedCourses.contains(COURSE_ID)){
+            coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -239,4 +245,6 @@ public class ChildCourseConnectorActivityFragment extends Fragment
             cursor.close();
         }
     }
+    
+
 }

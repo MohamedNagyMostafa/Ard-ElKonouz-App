@@ -2,6 +2,7 @@ package com.nagy.mohamed.ardelkonouz.ui.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
@@ -27,5 +28,13 @@ public class DatabaseCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         m_cursorAdapterList.bindListView(view, cursor);
+    }
+
+    @Override
+    public int getCount() {
+        if(getCursor() != null)
+            Log.e("result get",String.valueOf(getCursor().getCount()));
+
+        return super.getCount();
     }
 }
