@@ -1,6 +1,5 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
-import android.media.Image;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -219,6 +218,9 @@ public class ViewHolder {
         public final EditText COURSE_AGE_RANGE_TO_EDIT_TEXT;
         public final TextView COURSE_COMPLETE_TEXT_VIEW;
         public final TextView COURSE_INCOMPLETE_TEXT_VIEW;
+        public final ImageView COURSE_COMPLETE_IMAGE_VIEW;
+        public final ImageView COURSE_INCOMPLETE_IMAGE_VIEW;
+        public final Button SUBMIT_COURSE_BUTTON;
 
         public CourseInputScreenViewHolder(View courseInputScreen){
 
@@ -233,6 +235,9 @@ public class ViewHolder {
             COURSE_AGE_RANGE_TO_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_to_edit_view);
             COURSE_COMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_complete_text_view);
             COURSE_INCOMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_incomplete_text_view);
+            COURSE_COMPLETE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_complete_image_view);
+            COURSE_INCOMPLETE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_incomplete_image_view);
+            SUBMIT_COURSE_BUTTON = (Button) courseInputScreen.findViewById(R.id.course_input_submit_application_button);
         }
     }
 

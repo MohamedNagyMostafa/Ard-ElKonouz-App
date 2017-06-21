@@ -32,8 +32,8 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor>{
 
     private DatabaseCursorAdapter databaseCursorAdapter;
-    private ArrayList<Integer> selectedCourses;
-    private int childId;
+    private ArrayList<Long> selectedCourses;
+    private long childId;
     private int childAge;
 
     @Override
@@ -50,7 +50,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         ViewHolder.ChildCourseConnectorScreenViewHolder childCourseConnectorScreenViewHolder =
                 new ViewHolder.ChildCourseConnectorScreenViewHolder(rootView);
 
-        childId = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
+        childId = getActivity().getIntent().getExtras().getLong(Constants.CHILD_ID_EXTRA);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
         childCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
@@ -62,7 +62,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        selectedCourses = new ArrayList<Integer>();
+                        selectedCourses = new ArrayList<Long>();
                         restartLoader();
                     }
                 }
@@ -84,7 +84,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         // Insert all selection
                         ArrayList<ContentValues> contentValuesArrayList = new ArrayList<ContentValues>();
 
-                        for(final Integer COURSE_ID : selectedCourses){
+                        for(final Long COURSE_ID : selectedCourses){
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(
                                     DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN,
@@ -131,7 +131,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     public void bindListView(View view, final Cursor cursor) {
         final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
-        final Integer COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_ID);
+        final Long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
 
         coursesViewHolder.COURSE_COST_TEXT_VIEW.setText(
                 String.valueOf(

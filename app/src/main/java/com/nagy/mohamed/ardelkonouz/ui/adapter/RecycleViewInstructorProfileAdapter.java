@@ -58,7 +58,7 @@ public class RecycleViewInstructorProfileAdapter extends
             );
 
 
-            final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_ID);
+            final long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_ID);
             Cursor courseCursor = context.getContentResolver().query(
                     DatabaseController.UriDatabase.getCourseChildTableWithCourseIdUri(COURSE_ID),
                     new String[]{DbContent.ChildTable.CHILD_NAME_COLUMN},

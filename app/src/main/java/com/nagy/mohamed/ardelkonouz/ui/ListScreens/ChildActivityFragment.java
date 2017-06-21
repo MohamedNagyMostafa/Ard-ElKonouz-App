@@ -83,7 +83,7 @@ public class ChildActivityFragment extends Fragment
                 )
         );
 
-        final int CHILD_ID = cursor.getInt(
+        final long CHILD_ID = cursor.getLong(
                 DatabaseController.ProjectionDatabase.CHILD_LIST_ID
         );
 

@@ -2,6 +2,8 @@ package com.nagy.mohamed.ardelkonouz.helper;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
@@ -216,5 +218,21 @@ public class Utility {
             if(result.charAt(i) == Constants.SELECTED)
                 doubleChoiceArrayList.get(i).setChoiceSelect();
         }
+    }
+
+    public static void setChoiceTextViewSystem(
+            ArrayList<DoubleChoice> doubleChoiceArrayList, Context context,
+            TextView... textViews){
+        for(TextView textView :textViews){
+            doubleChoiceArrayList.add(new DoubleChoice(context, textView, false));
+        }
+    }
+
+    public static void setChoiceImageViewSystem(
+            ArrayList<DoubleChoice> doubleChoiceArrayList,
+            ImageView... textViews){
+
+        for(int i = 0 ; i < textViews.length ; i++)
+            doubleChoiceArrayList.get(i).setImageView(textViews[i]);
     }
 }

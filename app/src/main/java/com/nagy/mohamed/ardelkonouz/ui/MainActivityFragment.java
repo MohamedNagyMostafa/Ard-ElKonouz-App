@@ -77,7 +77,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseTesting();
+//        databaseTesting();
     }
 
     @Override

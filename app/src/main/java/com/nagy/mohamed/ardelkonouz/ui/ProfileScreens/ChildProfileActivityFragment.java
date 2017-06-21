@@ -27,7 +27,7 @@ import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewChildProfileAdapter;
 public class ChildProfileActivityFragment extends Fragment
         implements  LoaderManager.LoaderCallbacks<Cursor> {
 
-    private int childId;
+    private long childId;
     private RecycleViewChildProfileAdapter recycleViewChildProfileAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +35,7 @@ public class ChildProfileActivityFragment extends Fragment
         View rootView =  inflater.inflate(R.layout.fragment_child_profile, container, false);
         ViewHolder.ChildProfileScreenViewHolder childProfileScreenViewHolder =
                 new ViewHolder.ChildProfileScreenViewHolder(rootView);
-        childId = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
+        childId = getActivity().getIntent().getExtras().getLong(Constants.CHILD_ID_EXTRA);
         recycleViewChildProfileAdapter = new RecycleViewChildProfileAdapter();
 
         Cursor childProfileData = getQueryChildData();

@@ -72,8 +72,8 @@ public class Constants {
     public static final int HANDWORK = 3;
 
     // Course State
-    public static final int COURSE_COMPLETE = 1;
-    public static final int COURSE_INCOMPLETE = 2;
+    public static final int COURSE_COMPLETE = 0;
+    public static final int COURSE_INCOMPLETE = 1;
 
     // child course state.
     public static final int CHILD_COMPLETE_COURSE = 1;

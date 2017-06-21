@@ -27,7 +27,7 @@ public class EmployeeProfileActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_employee_profile, container, false);
         ViewHolder.EmployeeProfileScreenViewHolder employeeProfileScreenViewHolder =
                 new ViewHolder.EmployeeProfileScreenViewHolder(rootView);
-        final int EMPLOYEE_ID = getActivity().getIntent().getExtras().getInt(Constants.EMPLOYEE_ID_EXTRA);
+        final long EMPLOYEE_ID = getActivity().getIntent().getExtras().getLong(Constants.EMPLOYEE_ID_EXTRA);
 
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getEmployeeTableWithIdUri(EMPLOYEE_ID),

@@ -67,7 +67,7 @@ public class CourseActivityFragment extends Fragment
         ViewHolder.CourseListScreenViewHolder.CourseListRecycleViewHolder
                 courseListRecycleViewHolder = new ViewHolder.CourseListScreenViewHolder
                 .CourseListRecycleViewHolder(view);
-        final int COURSE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_LIST_ID);
+        final long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_ID);
 
         courseListRecycleViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(

@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
@@ -36,7 +34,7 @@ public class ChildInputActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_child_input, container, false);
         final ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder =
                 new ViewHolder.ChildInputScreenViewHolder(rootView);
-        final int CHILD_ID = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
+        final long CHILD_ID = getActivity().getIntent().getExtras().getLong(Constants.CHILD_ID_EXTRA);
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
         // Set Choices process.
@@ -327,14 +325,14 @@ public class ChildInputActivityFragment extends Fragment {
     private ArrayList<DoubleChoice> setChoiceFreeTimeItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> freeTimeList = new ArrayList<>();
-        setChoiceTextViewSystem(
-                freeTimeList,
+        Utility.setChoiceTextViewSystem(
+                freeTimeList, getContext(),
                 childInputScreenViewHolder.DRAWING_TEXT_VIEW,
                 childInputScreenViewHolder.ELECTRONIC_TEXT_VIEW,
                 childInputScreenViewHolder.WATCHING_TV_TEXT_VIEW,
                 childInputScreenViewHolder.HANDWORK_TEXT_VIEW
         );
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 freeTimeList,
                 childInputScreenViewHolder.DRAWING_IMAGE_VIEW,
                 childInputScreenViewHolder.ELECTRONIC_IMAGE_VIEW,
@@ -348,15 +346,15 @@ public class ChildInputActivityFragment extends Fragment {
     private ArrayList<DoubleChoice> setChoiceDealProblemItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> dealProblemList = new ArrayList<>();
-        setChoiceTextViewSystem(
-                dealProblemList,
+        Utility.setChoiceTextViewSystem(
+                dealProblemList, getContext(),
                 childInputScreenViewHolder.ASKS_FOR_HELP_TEXT_VIEW,
                 childInputScreenViewHolder.WORRIES_TEXT_VIEW,
                 childInputScreenViewHolder.LEAVES_PROBLEMS_TEXT_VIEW,
                 childInputScreenViewHolder.TRIES_SOLVE_TEXT_VIEW
 
         );
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 dealProblemList,
                 childInputScreenViewHolder.ASKS_FOR_HELP_IMAGE_VIEW,
                 childInputScreenViewHolder.WORRIES_IMAGE_VIEW,
@@ -370,15 +368,15 @@ public class ChildInputActivityFragment extends Fragment {
     private ArrayList<DoubleChoice> setChoiceCharacteristicItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> characteristicList = new ArrayList<>();
-        setChoiceTextViewSystem(
-                characteristicList,
+        Utility.setChoiceTextViewSystem(
+                characteristicList, getContext(),
                 childInputScreenViewHolder.GOOD_SPEAKER_TEXT_VIEW,
                 childInputScreenViewHolder.SOCIAL_TEXT_VIEW,
                 childInputScreenViewHolder.LEADING_TEXT_VIEW,
                 childInputScreenViewHolder.NEURAL_TEXT_VIEW,
                 childInputScreenViewHolder.COLLABORATOR_TEXT_VIEW
         );
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 characteristicList,
                 childInputScreenViewHolder.GOOD_SPEAKER_IMAGE_VIEW,
                 childInputScreenViewHolder.SOCIAL_IMAGE_VIEW,
@@ -393,8 +391,8 @@ public class ChildInputActivityFragment extends Fragment {
     private ArrayList<DoubleChoice> setChoiceYearItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> yearList = new ArrayList<>();
-        setChoiceTextViewSystem(
-                yearList,
+        Utility.setChoiceTextViewSystem(
+                yearList, getContext(),
                 childInputScreenViewHolder.NONE_YEAR_TEXT_VIEW,
                 childInputScreenViewHolder.FIRST_YEAR_TEXT_VIEW,
                 childInputScreenViewHolder.SECOND_YEAR_TEXT_VIEW,
@@ -403,7 +401,7 @@ public class ChildInputActivityFragment extends Fragment {
                 childInputScreenViewHolder.FIFTH_YEAR_TEXT_VIEW,
                 childInputScreenViewHolder.SIXTH_YEAR_TEXT_VIEW
         );
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 yearList,
                 childInputScreenViewHolder.NONE_YEAR_IMAGE_VIEW,
                 childInputScreenViewHolder.FIRST_YEAR_IMAGE_VIEW,
@@ -420,15 +418,15 @@ public class ChildInputActivityFragment extends Fragment {
     private ArrayList<DoubleChoice> setChoiceEducationStageItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> educationStageList = new ArrayList<>();
-        setChoiceTextViewSystem(
-                educationStageList,
+        Utility.setChoiceTextViewSystem(
+                educationStageList, getContext(),
                 childInputScreenViewHolder.NONE_EDUCATION_TEXT_VIEW,
                 childInputScreenViewHolder.PRIMARY_EDUCATION_TEXT_VIEW,
                 childInputScreenViewHolder.PREPARATORY_TEXT_VIEW,
                 childInputScreenViewHolder.SECONDARY_EDUCATION_TEXT_VIEW
 
         );
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 educationStageList,
                 childInputScreenViewHolder.NONE_EDUCATION_IMAGE_VIEW,
                 childInputScreenViewHolder.PRIMARY_EDUCATION_IMAGE_VIEW,
@@ -442,15 +440,15 @@ public class ChildInputActivityFragment extends Fragment {
     private ArrayList<DoubleChoice> setChoiceEducationTypeItems(
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> educationTypeList = new ArrayList<>();
-        setChoiceTextViewSystem(
-                educationTypeList,
+        Utility.setChoiceTextViewSystem(
+                educationTypeList, getContext(),
                 childInputScreenViewHolder.ARABIC_GOVERNMENTAL_TEXT_VIEW,
                 childInputScreenViewHolder.ENGLISH_GOVERNMENTAL_TEXT_VIEW,
                 childInputScreenViewHolder.ARABIC_PRIVATE_TEXT_VIEW,
                 childInputScreenViewHolder.ENGLISH_PRIVATE_TEXT_VIEW
         );
 
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 educationTypeList,
                 childInputScreenViewHolder.ARABIC_GOVERNMENTAL_IMAGE_VIEW,
                 childInputScreenViewHolder.ENGLISH_GOVERNMENTAL_IMAGE_VIEW,
@@ -464,13 +462,13 @@ public class ChildInputActivityFragment extends Fragment {
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> genderArrayList = new ArrayList<>();
 
-        setChoiceTextViewSystem(
-                genderArrayList,
+        Utility.setChoiceTextViewSystem(
+                genderArrayList, getContext(),
                 childInputScreenViewHolder.MALE_GENDER_TEXT_VIEW,
                 childInputScreenViewHolder.FEMALE_GENDER_TEXT_VIEW
         );
 
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 genderArrayList,
                 childInputScreenViewHolder.MALE_GENDER_IMAGE_VIEW,
                 childInputScreenViewHolder.FEMALE_GENDER_IMAGE_VIEW
@@ -483,15 +481,15 @@ public class ChildInputActivityFragment extends Fragment {
             ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
         ArrayList<DoubleChoice> birthOrderArrayList = new ArrayList<>();
 
-        setChoiceTextViewSystem(
-                birthOrderArrayList,
+        Utility.setChoiceTextViewSystem(
+                birthOrderArrayList, getContext(),
                 childInputScreenViewHolder.FIRST_ORDER_TEXT_VIEW,
                 childInputScreenViewHolder.MIDDLE_ORDER_TEXT_VIEW,
                 childInputScreenViewHolder.LAST_ORDER_TEXT_VIEW,
                 childInputScreenViewHolder.ALONE_ORDER_TEXT_VIEW
         );
 
-        setChoiceImageViewSystem(
+        Utility.setChoiceImageViewSystem(
                 birthOrderArrayList,
                 childInputScreenViewHolder.FIRST_ORDER_IMAGE_VIEW,
                 childInputScreenViewHolder.MIDDLE_ORDER_IMAGE_VIEW,
@@ -501,22 +499,7 @@ public class ChildInputActivityFragment extends Fragment {
 
         return birthOrderArrayList;
     }
-
-    private void setChoiceTextViewSystem(
-            ArrayList<DoubleChoice> doubleChoiceArrayList,
-            TextView... textViews){
-        for(TextView textView :textViews){
-            doubleChoiceArrayList.add(new DoubleChoice(getContext(), textView, false));
-        }
-    }
-
-    private void setChoiceImageViewSystem(
-            ArrayList<DoubleChoice> doubleChoiceArrayList,
-            ImageView... textViews){
-
-        for(int i = 0 ; i < textViews.length ; i++)
-            doubleChoiceArrayList.get(i).setImageView(textViews[i]);
-    }
+    
 
     private int getSelectionFromList(ArrayList<DoubleChoice> arrayList){
         for(int i = 0 ; i < arrayList.size() ; i++){
@@ -526,7 +509,7 @@ public class ChildInputActivityFragment extends Fragment {
         return -1;
     }
 
-    private void openCoursesSelectionWindow(String inputType, int childId){
+    private void openCoursesSelectionWindow(String inputType, long childId){
         Intent coursesSelectionWindow = new Intent(getContext(), ChildCourseConnectorActivity.class);
         coursesSelectionWindow.putExtra(Constants.CHILD_ID_EXTRA, childId);
         coursesSelectionWindow.putExtra(Constants.INPUT_TYPE_EXTRA, inputType);
