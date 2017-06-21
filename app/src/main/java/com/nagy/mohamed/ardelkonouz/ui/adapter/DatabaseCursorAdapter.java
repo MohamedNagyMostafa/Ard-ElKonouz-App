@@ -23,10 +23,6 @@ public class DatabaseCursorAdapter extends CursorAdapter {
         return m_cursorAdapterList.newListView(viewGroup, cursor);
     }
 
-    @Override
-    public int getCount() {
-        return super.getCount();
-    }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {

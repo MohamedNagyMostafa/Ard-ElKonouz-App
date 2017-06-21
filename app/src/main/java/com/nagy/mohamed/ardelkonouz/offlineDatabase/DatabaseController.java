@@ -349,6 +349,12 @@ public class DatabaseController {
             return COURSE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
+        public static Uri getCourseTableWithCompleteIdWithAgeRangeUri(int age){
+            return COURSE_TABLE_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN)
+                    .appendPath(String.valueOf(age)).build();
+        }
+
         public static Uri getCourseChildTableWithChildIdUri(int id){
             return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();

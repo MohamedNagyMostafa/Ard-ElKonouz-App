@@ -35,6 +35,7 @@ public class Constants {
     public static final int LOADER_COURSE_LIST = 110;
     public static final int LOADER_COURSE_CHILD_JOIN_LIST =1110;
     public static final int LOADER_INSTRUCTOR_COURSE_JOIN_LIST = 1111;
+    public static final int LOADER_CHILD_COURSE_CONNECTOR =1212;
 
     //Birth Order
     public static final int FIRST_BIRTH = 0;
@@ -73,6 +74,10 @@ public class Constants {
     // Course State
     public static final int COURSE_COMPLETE = 1;
     public static final int COURSE_INCOMPLETE = 2;
+
+    // child course state.
+    public static final int CHILD_COMPLETE_COURSE = 1;
+    public static final int CHILD_NOT_COMPLETE_COURSE = 2;
 
     // double choices
     public static final char SELECTED = 1;

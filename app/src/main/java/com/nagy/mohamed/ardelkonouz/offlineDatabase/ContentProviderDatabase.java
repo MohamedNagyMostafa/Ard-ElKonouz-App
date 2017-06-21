@@ -7,7 +7,10 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.nagy.mohamed.ardelkonouz.helper.Constants;
 
 /**
  * Created by mohamednagy on 6/10/2017.
@@ -31,6 +34,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE = 10101;
     private static final int INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE = 10011;
     private static final int EMPLOYEE_WITH_ID_TABLE = 10111;
+    private static final int COURSE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 2;
 
 
     private static final String INNER_JOIN = "INNER JOIN";
@@ -82,7 +86,7 @@ public class ContentProviderDatabase extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         int match = m_uriMatcher.match(uri);
         Log.e("query",uri.toString());
@@ -176,13 +180,16 @@ public class ContentProviderDatabase extends ContentProvider {
             case CHILD_COURSE_WITH_COURSE_ID_TABLE:
                 return getCourseChildWithCourseId(uri, projection, sortOrder);
 
+            case COURSE_WITH_COMPLETE_ID_AGE_RANGE_TABLE:
+                return getCourseWithCompleteAndAgeRangeTable(uri, projection, sortOrder);
+
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
         }
     }
 
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
 
         int match = m_uriMatcher.match(uri);
 
@@ -217,10 +224,9 @@ public class ContentProviderDatabase extends ContentProvider {
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues contentValues) {
+    public Uri insert(@NonNull Uri uri, ContentValues contentValues) {
         int match = m_uriMatcher.match(uri);
         Long insertResult = null;
-        Log.e("vvvvvvvvvvvvvvvvvvv",uri.toString() + "vvvvvvvvvvvvvvvvvvv");
 
         switch (match){
             case INSTRUCTOR_TABLE:
@@ -281,7 +287,7 @@ public class ContentProviderDatabase extends ContentProvider {
     }
 
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         int match = m_uriMatcher.match(uri);
 
         switch (match){
@@ -362,7 +368,7 @@ public class ContentProviderDatabase extends ContentProvider {
     }
 
     @Override
-    public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
+    public int update(@NonNull Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
         int match = m_uriMatcher.match(uri);
 
         switch (match){
@@ -484,7 +490,7 @@ public class ContentProviderDatabase extends ContentProvider {
     }
 
     @Override
-    public int bulkInsert(Uri uri, ContentValues[] values) {
+    public int bulkInsert(@NonNull Uri uri, @NonNull ContentValues[] values) {
         int match = m_uriMatcher.match(uri);
         int counter = 0;
 
@@ -576,6 +582,8 @@ public class ContentProviderDatabase extends ContentProvider {
         final String CHILD_WITH_ID_PATH = DbContent.ChildTable.TABLE_NAME + "/#";
         final String EMPLOYEE_WITH_ID_PATH = DbContent.EmployeeTable.TABLE_NAME + "/#";
         final String COURSE_WITH_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/#";
+        final String COURSE_WITH_COMPLETE_ID_AGE_RANGE_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
+                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN+ "/#";
         final String INSTRUCTOR_WITH_ID_PATH = DbContent.InstructorTable.TABLE_NAME + "/#";
         final String CHILD_COURSE_WITH_CHILD_ID_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
                 DbContent.ChildTable.TABLE_NAME + "/#";
@@ -594,6 +602,7 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_PATH, INSTRUCTOR_COURSE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_ID_PATH, CHILD_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_ID_PATH, COURSE_WITH_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_COMPLETE_ID_AGE_RANGE_PATH, COURSE_WITH_COMPLETE_ID_AGE_RANGE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_PATH, EMPLOYEE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_ID_PATH, EMPLOYEE_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_ID_PATH, INSTRUCTOR_WITH_ID_TABLE);
@@ -601,6 +610,7 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_COURSE_ID_PATH, CHILD_COURSE_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_PATH, INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_WITH_COURSE_ID_PATH, INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE);
+
         return uriMatcher;
     }
 
@@ -767,4 +777,28 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
+    private Cursor getCourseWithCompleteAndAgeRangeTable(Uri uri, String[] projection, String sortOrder){
+        long age = ContentUris.parseId(uri);
+
+        String selection =
+                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN + "=?" + " AND " +
+                DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
+                DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?";
+
+        String selectionArgs[] = {
+                String.valueOf(Constants.COURSE_INCOMPLETE),
+                String.valueOf(age),
+                String.valueOf(age)
+        };
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
 }
