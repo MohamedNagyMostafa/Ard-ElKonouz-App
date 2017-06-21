@@ -333,51 +333,51 @@ public class DatabaseController {
         public static final Uri COURSE_INSTRUCTOR_URI = DbContent.CourseInstructorTable.CONTENT_URI;
 
 
-        public static Uri getChildTableWithIdUri(int id){
+        public static Uri getChildTableWithIdUri(long id){
             return CHILD_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getEmployeeTableWithIdUri(int id){
+        public static Uri getEmployeeTableWithIdUri(long id){
             return EMPLOYEE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getInstructorTableWithIdUri(int id){
+        public static Uri getInstructorTableWithIdUri(long id){
             return INSTRUCTOR_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseTableWithIdUri(int id){
+        public static Uri getCourseTableWithIdUri(long id){
             return COURSE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseTableWithCompleteIdWithAgeRangeUri(int age){
+        public static Uri getCourseTableWithCompleteIdWithAgeRangeUri(long age){
             return COURSE_TABLE_URI.buildUpon()
                     .appendPath(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN)
                     .appendPath(String.valueOf(age)).build();
         }
 
-        public static Uri getCourseChildTableWithChildIdUri(int id){
+        public static Uri getCourseChildTableWithChildIdUri(long id){
             return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseChildTableWithCourseIdUri(int id){
+        public static Uri getCourseChildTableWithCourseIdUri(long id){
             return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseChildTableWithChildIDAndCourseIdUri(int childId, int courseId){
+        public static Uri getCourseChildTableWithChildIDAndCourseIdUri(long childId, long courseId){
             return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(DbContent.CourseTable.TABLE_NAME)
                     .appendPath(String.valueOf(childId))
                     .appendPath(String.valueOf(courseId)).build();
         }
 
-        public static Uri getCourseInstructorTableWithCourseIdUri(int id){
+        public static Uri getCourseInstructorTableWithCourseIdUri(long id){
             return COURSE_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseInstructorTableWithInstructorIdUri(int id){
+        public static Uri getCourseInstructorTableWithInstructorIdUri(long id){
             return COURSE_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.InstructorTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }

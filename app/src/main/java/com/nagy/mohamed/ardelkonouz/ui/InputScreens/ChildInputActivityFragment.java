@@ -34,7 +34,7 @@ public class ChildInputActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_child_input, container, false);
         final ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder =
                 new ViewHolder.ChildInputScreenViewHolder(rootView);
-        final int CHILD_ID = getActivity().getIntent().getExtras().getInt(Constants.CHILD_ID_EXTRA);
+        final long CHILD_ID = getActivity().getIntent().getExtras().getLong(Constants.CHILD_ID_EXTRA);
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
         // Set Choices process.
@@ -509,7 +509,7 @@ public class ChildInputActivityFragment extends Fragment {
         return -1;
     }
 
-    private void openCoursesSelectionWindow(String inputType, int childId){
+    private void openCoursesSelectionWindow(String inputType, long childId){
         Intent coursesSelectionWindow = new Intent(getContext(), ChildCourseConnectorActivity.class);
         coursesSelectionWindow.putExtra(Constants.CHILD_ID_EXTRA, childId);
         coursesSelectionWindow.putExtra(Constants.INPUT_TYPE_EXTRA, inputType);

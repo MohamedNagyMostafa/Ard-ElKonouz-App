@@ -66,8 +66,8 @@ public class InstructorActivityFragment extends Fragment
         ViewHolder.InstructorListScreenViewHolder.InstructorListRecycleViewHolder
                 instructorListRecycleViewHolder = new ViewHolder.InstructorListScreenViewHolder
                 .InstructorListRecycleViewHolder(view);
-        final int INSTRUCTOR_ID =
-                cursor.getInt(DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_ID);
+        final long INSTRUCTOR_ID =
+                cursor.getLong(DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_ID);
         instructorListRecycleViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
                 cursor.getString(
                         DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_NAME

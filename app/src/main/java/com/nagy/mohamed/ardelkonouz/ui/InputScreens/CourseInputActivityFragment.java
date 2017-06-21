@@ -59,7 +59,7 @@ public class CourseInputActivityFragment extends Fragment {
 
     private void setOptionsAsEditCourse(final ArrayList<DoubleChoice> COURSE_STATE_LIST,
                                         final ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
-        final int COURSE_ID = getActivity().getIntent().getExtras().getInt(Constants.COURSE_ID_EXTRA);
+        final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
 
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),

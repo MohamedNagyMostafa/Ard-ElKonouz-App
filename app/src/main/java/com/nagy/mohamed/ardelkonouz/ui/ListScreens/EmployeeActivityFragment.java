@@ -77,7 +77,7 @@ public class EmployeeActivityFragment extends Fragment
                 .insert(0,'0').toString()
         );
 
-        final int EMPLOYEE_ID = cursor.getInt(DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_ID);
+        final long EMPLOYEE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_ID);
 
         employeeListRecycleViewHolder.EMPLOYEE_DELETE_IMAGE_VIEW.setOnClickListener(
                 new View.OnClickListener() {

@@ -28,7 +28,7 @@ public class InstructorProfileActivityFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private RecycleViewInstructorProfileAdapter recycleViewInstructorProfileAdapter;
-    private int instructorId;
+    private long instructorId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +41,7 @@ public class InstructorProfileActivityFragment extends Fragment
         LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
 
         recycleViewInstructorProfileAdapter = new RecycleViewInstructorProfileAdapter(getContext());
-        instructorId = getActivity().getIntent().getExtras().getInt(Constants.INSTRUCTOR_ID_EXTRA);
+        instructorId = getActivity().getIntent().getExtras().getLong(Constants.INSTRUCTOR_ID_EXTRA);
 
 
         instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW.setAdapter(recycleViewInstructorProfileAdapter);

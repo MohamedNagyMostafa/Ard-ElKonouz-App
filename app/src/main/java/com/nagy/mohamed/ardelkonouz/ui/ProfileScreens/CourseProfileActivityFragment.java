@@ -28,7 +28,7 @@ public class CourseProfileActivityFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_course_profile, container, false);
         ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder =
                 new ViewHolder.CourseProfileScreenViewHolder(rootView);
-        final int COURSE_ID = getActivity().getIntent().getExtras().getInt(Constants.COURSE_ID_EXTRA);
+        final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
         Cursor courseData = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
@@ -61,7 +61,7 @@ public class CourseProfileActivityFragment extends Fragment {
 
     private void setDataToView(Cursor cursor,
                                ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder,
-                               final int COURSE_ID){
+                               final long COURSE_ID){
         courseProfileScreenViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
                         DatabaseController.ProjectionDatabase.COURSE_NAME
@@ -131,7 +131,7 @@ public class CourseProfileActivityFragment extends Fragment {
         );
     }
 
-    private String getCourseInstructorName(int courseId){
+    private String getCourseInstructorName(long courseId){
         String instructorName = null;
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(courseId),
