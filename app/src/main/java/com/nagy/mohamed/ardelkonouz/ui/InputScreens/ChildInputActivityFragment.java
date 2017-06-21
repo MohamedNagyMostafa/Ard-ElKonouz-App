@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -178,6 +179,7 @@ public class ChildInputActivityFragment extends Fragment {
 
                 if(cursor != null){
                     if(cursor.getCount() > 0){
+                        cursor.moveToFirst();
                         final String CHILD_NAME =
                                 cursor.getString(DatabaseController.ProjectionDatabase.CHILD_NAME);
                         final short CHILD_AGE =
@@ -202,15 +204,12 @@ public class ChildInputActivityFragment extends Fragment {
                                 cursor.getString(DatabaseController.ProjectionDatabase.CHILD_MOBILE_WHATSUP);
                         final String FATHER_JOB =
                                 cursor.getString(DatabaseController.ProjectionDatabase.CHILD_FATHER_JOB);
+
                         final short EDUCATION_TYPE =
                                 cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_EDUCATION_TYPE);
 
-                        final int EDUCATION_STAGE =(
-                                Utility.encodeBirthOrderByString(
-                                        cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR),
-                                        getContext()
-                                ) == null)?Constants.NONE_EDUCATION_TYPE :
-                                Utility.encodeBirthOrderByString(
+                        final int EDUCATION_STAGE =
+                                Utility.decodeEducationStageByString(
                                         cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR),
                                         getContext()
                                 );
@@ -219,6 +218,9 @@ public class ChildInputActivityFragment extends Fragment {
                                 Utility.getYearCodeFromEducationStageString(
                                         cursor.getString(DatabaseController.ProjectionDatabase.CHILD_STUDY_YEAR)
                                 );
+                        Log.e("Education Type = ",String.valueOf(EDUCATION_TYPE));
+                        Log.e("Education Stage = ",String.valueOf(EDUCATION_STAGE));
+                        Log.e("Education YEAR = ",String.valueOf(EDUCATION_YEAR));
                         final short CHARACTERISTIC =
                                 cursor.getShort(DatabaseController.ProjectionDatabase.CHILD_TRAITS);
                         final short DEAL_PROBLEM =
@@ -228,7 +230,7 @@ public class ChildInputActivityFragment extends Fragment {
 
                         // set data
                         childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT.setText(CHILD_NAME);
-                        childInputScreenViewHolder.CHILD_AGE_EDIT_TEXT.setText(CHILD_AGE);
+                        childInputScreenViewHolder.CHILD_AGE_EDIT_TEXT.setText(String.valueOf(CHILD_AGE));
                         childInputScreenViewHolder.FATHER_NAME_EDIT_TEXT.setText(FATHER_NAME);
                         childInputScreenViewHolder.FATHER_JOB_EDIT_TEXT.setText(FATHER_JOB);
                         childInputScreenViewHolder.FATHER_MOBILE_EDIT_TEXT.setText(FATHER_MOBILE);
@@ -240,7 +242,7 @@ public class ChildInputActivityFragment extends Fragment {
                         // set choices
                         Utility.selectionProcess(BIRTH_ORDER, BIRTH_ORDER_LIST);
                         Utility.selectionProcess(GENDER, GENDER_LIST);
-                        Utility.selectionProcess(EDUCATION_TYPE, EDUCATION_STAGE_LIST);
+                        Utility.selectionProcess(EDUCATION_TYPE, EDUCATION_TYPE_LIST);
                         Utility.selectionProcess(EDUCATION_STAGE, EDUCATION_STAGE_LIST);
                         Utility.selectionProcess(EDUCATION_YEAR, YEAR_LIST);
                         Utility.selectionProcess(CHARACTERISTIC, CHARACTERISTIC_LIST);

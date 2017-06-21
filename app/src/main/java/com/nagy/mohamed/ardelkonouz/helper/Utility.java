@@ -1,6 +1,7 @@
 package com.nagy.mohamed.ardelkonouz.helper;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
@@ -58,7 +59,8 @@ public class Utility {
     }
 
     public static String encodeEducationStageByInt(int stageYear, int educationStage, Context context){
-        StringBuilder stringBuilder = new StringBuilder(stageYear);
+        String stringBuilder = String.valueOf(stageYear);
+
         String educationStageAsString = null;
         switch (educationStage){
             case Constants.PRIMARY_EDUCATION_TYPE:
@@ -75,16 +77,18 @@ public class Utility {
                 break;
         }
         if(educationStageAsString != null) {
-            stringBuilder.append("-").append(educationStageAsString);
+            stringBuilder += "-" + educationStageAsString;
         }
 
-        return stringBuilder.toString();
+        return stringBuilder;
     }
 
 
     public static int getYearCodeFromEducationStageString(String educationStage){
         StringBuilder stringBuilder = new StringBuilder(educationStage);
-        return stringBuilder.charAt(0);
+        Log.e("output", String.valueOf(stringBuilder.charAt(0)));
+        return Integer.valueOf(String.valueOf(stringBuilder.charAt(0)));
+
     }
 
     public static short decodeEducationStageByString(String educationStage, Context context){
