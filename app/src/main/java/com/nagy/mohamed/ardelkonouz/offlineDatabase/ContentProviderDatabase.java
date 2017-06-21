@@ -12,6 +12,8 @@ import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 
+import java.net.URISyntaxException;
+
 /**
  * Created by mohamednagy on 6/10/2017.
  */
@@ -31,6 +33,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int INSTRUCTOR_WITH_ID_TABLE = 1111;
     private static final int CHILD_COURSE_WITH_CHILD_ID_TABLE = 11110;
     private static final int CHILD_COURSE_WITH_COURSE_ID_TABLE = 11111;
+    private static final int CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE = 3;
     private static final int INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE = 10101;
     private static final int INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE = 10011;
     private static final int EMPLOYEE_WITH_ID_TABLE = 10111;
@@ -182,6 +185,13 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case COURSE_WITH_COMPLETE_ID_AGE_RANGE_TABLE:
                 return getCourseWithCompleteAndAgeRangeTable(uri, projection, sortOrder);
+
+            case CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE:
+                try {
+                    return getCourseChildWithChildIdCourseId(uri, projection, sortOrder);
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -589,6 +599,8 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.ChildTable.TABLE_NAME + "/#";
         final String CHILD_COURSE_WITH_COURSE_ID_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
                 DbContent.CourseTable.TABLE_NAME + "/#";
+        final String CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
+                DbContent.ChildTable.TABLE_NAME + "/" + DbContent.CourseTable.TABLE_NAME + "/#" + "/#";
         final String INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_PATH = DbContent.CourseInstructorTable.TABLE_NAME + "/" +
                 DbContent.InstructorTable.TABLE_NAME +"/#";
         final String INSTRUCTOR_COURSE_WITH_COURSE_ID_PATH = DbContent.CourseInstructorTable.TABLE_NAME + "/" +
@@ -607,6 +619,7 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_ID_PATH, EMPLOYEE_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_ID_PATH, INSTRUCTOR_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_CHILD_ID_PATH, CHILD_COURSE_WITH_CHILD_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE_PATH, CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_COURSE_ID_PATH, CHILD_COURSE_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_PATH, INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_WITH_COURSE_ID_PATH, INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE);
@@ -793,6 +806,27 @@ public class ContentProviderDatabase extends ContentProvider {
 
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCourseChildWithChildIdCourseId(Uri uri, String[] projection, String sortOrder) throws URISyntaxException {
+        long courseId = ContentUris.parseId(uri);
+        String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
+        Uri childUri = Uri.parse(newUriString);
+        long childId = ContentUris.parseId(childUri);
+
+        String selection = DbContent.ChildCourseTable.CHILD_ID_COLUMN + "=?" + " AND " +
+                DbContent.ChildCourseTable.COURSE_ID_COLUMN + "=?";
+        String[] selectionArgs = {String.valueOf(childId), String.valueOf(courseId)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ChildCourseTable.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,

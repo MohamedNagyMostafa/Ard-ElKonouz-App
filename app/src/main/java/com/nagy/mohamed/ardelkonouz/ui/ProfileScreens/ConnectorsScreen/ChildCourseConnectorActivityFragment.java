@@ -31,6 +31,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     private DatabaseCursorAdapter databaseCursorAdapter;
     private ArrayList<Integer> selectedCourses;
     private int childId;
+    private int childAge;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +51,9 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
         childCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
+
+        // get child age.
+        getChildAge();
 
         childCourseConnectorScreenViewHolder.REST_BUTTON.setOnClickListener(
                 new View.OnClickListener() {
@@ -124,11 +128,36 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_COST)
                 )
         );
+        coursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
+                new StringBuilder().append(getContext().getString(R.string.from)).append(" ").append(
+                        String.valueOf(
+                                cursor.getLong(
+                                        DatabaseController.ProjectionDatabase.COURSE_START_DATE
+                                )
+                        )
+                ).append(" ").append(getContext().getString(R.string.to)).append(" ").append(
+                        String.valueOf(
+                                cursor.getLong(
+                                        DatabaseController.ProjectionDatabase.COURSE_END_DATE
+                                )
+                        )
+                )
+        );
+        coursesViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
+                String.valueOf(
+                        cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_HOURS)
+                )
+        );
+        coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
+                cursor.getString(DatabaseController.ProjectionDatabase.COURSE_NAME)
+        );
 
+        //check if course is selected before or not.
+        
     }
 
     /**
-     * get courses only have available positions.
+     * get courses only have available positions with child's age range.
      * @param id
      * @param args
      * @return
@@ -137,7 +166,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithCompleteIdUri(Constants.COURSE_INCOMPLETE),
+                DatabaseController.UriDatabase.getCourseTableWithCompleteIdWithAgeRangeUri(childAge),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                 null,
                 null,
@@ -160,4 +189,21 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     }
 
 
+    private void getChildAge(){
+        Cursor cursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getChildTableWithIdUri(childId),
+                new String[]{DbContent.ChildTable.CHILD_AGE_COLUMN},
+                null,
+                null,
+                null
+        );
+
+        if(cursor != null){
+            if(cursor.getCount() > 0){
+                cursor.moveToFirst();
+                childAge = cursor.getInt(0);
+            }
+            cursor.close();
+        }
+    }
 }
