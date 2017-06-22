@@ -65,6 +65,7 @@
             android:contentDescription="@string/image_dt"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:visibility="invisible"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
