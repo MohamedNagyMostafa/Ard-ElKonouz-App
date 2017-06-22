@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
@@ -77,10 +78,14 @@ public class CourseActivityFragment extends Fragment
 
         String stringBuilderDuration = getActivity().getString(R.string.from) +
                 " " +
-                cursor.getString(DatabaseController.ProjectionDatabase.COURSE_LIST_START_DATE) +
+                Utility.getTimeFormat(
+                        cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_START_DATE)
+                )+
                 " " +
                 getActivity().getString(R.string.to) +
-                cursor.getString(DatabaseController.ProjectionDatabase.COURSE_LIST_END_DATE);
+                Utility.getTimeFormat(
+                        cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_END_DATE)
+                );
 
         courseListRecycleViewHolder.COURSE_DURATION_TEXT_VIEW.setText(stringBuilderDuration);
 

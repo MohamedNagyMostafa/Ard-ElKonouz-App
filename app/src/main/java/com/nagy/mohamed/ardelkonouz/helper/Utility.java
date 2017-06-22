@@ -7,8 +7,11 @@ import android.widget.TextView;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by mohamednagy on 6/10/2017.
@@ -240,5 +243,13 @@ public class Utility {
     public static long getCurrentDateAsMills(){
         Calendar calendar = Calendar.getInstance();
         return calendar.getTimeInMillis();
+    }
+
+    public static String getTimeFormat(long date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ssZ", Locale.ENGLISH);
+        Date date1 = new Date();
+        date1.setTime(date);
+
+        return simpleDateFormat.format(date);
     }
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -47,12 +48,12 @@ public class RecycleViewInstructorProfileAdapter extends
                     )
             );
             instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                    String.valueOf(
+                    Utility.getTimeFormat(
                             cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_END_DATE)
                     )
             );
             instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-                    String.valueOf(
+                    Utility.getTimeFormat(
                             cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_COURSE_START_DATE)
                     )
             );
