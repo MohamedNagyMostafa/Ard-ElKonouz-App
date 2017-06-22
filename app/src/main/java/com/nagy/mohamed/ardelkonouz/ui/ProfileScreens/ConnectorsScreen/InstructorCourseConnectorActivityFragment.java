@@ -95,7 +95,6 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                                 contentValues
                         );
 
-
                         openInstructorProfile();
                     }
                 }
