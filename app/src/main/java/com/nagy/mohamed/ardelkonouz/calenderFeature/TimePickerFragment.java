@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.view.View;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -16,9 +17,23 @@ public class TimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener{
 
     private CurrentDateWithTime currentDateWithTime;
+    private View view;
+    private int year;
+    private int month;
+    private int day;
 
     public void setCurrentDateWithTime(CurrentDateWithTime currentDateWithTime){
         this.currentDateWithTime = currentDateWithTime;
+    }
+
+    public void setView(View view){
+        this.view = view;
+    }
+
+    public void setDate(int year, int month, int day){
+        this.day = day;
+        this.month = month;
+        this.year = year;
     }
 
     @NonNull
@@ -36,6 +51,6 @@ public class TimePickerFragment extends DialogFragment
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int mint) {
-        currentDateWithTime.onTimeSet(hour, mint);
+        currentDateWithTime.onTimeSet(year, month, day, hour, mint, view);
     }
 }

@@ -4,7 +4,7 @@ package com.nagy.mohamed.ardelkonouz.helper;
  * Created by mohamednagy on 6/10/2017.
  */
 public class Constants {
-
+    public static final String TAG = "ArdElKonouz";
     // Education
     public static final int NONE_EDUCATION_TYPE = 0;
     public static final int PRIMARY_EDUCATION_TYPE = 1;

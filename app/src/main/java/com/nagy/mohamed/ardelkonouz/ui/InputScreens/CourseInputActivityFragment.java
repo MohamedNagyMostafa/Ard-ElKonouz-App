@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.DatePickerFragment;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.TimePickerFragment;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
@@ -24,12 +27,23 @@ import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class CourseInputActivityFragment extends Fragment {
+public class CourseInputActivityFragment extends Fragment
+        implements CurrentDateWithTime{
 
+    private final View.OnClickListener DATE_EDIT_TEXT_LISTENER =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DatePickerFragment datePickerFragment = new DatePickerFragment();
+                    setSettings(datePickerFragment, view);
+                    datePickerFragment.show(getFragmentManager(), Constants.TAG);
+                }
+            };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -324,5 +338,35 @@ public class CourseInputActivityFragment extends Fragment {
         }
 
         return isValid;
+    }
+
+    @Override
+    public void onTimeSet(int year, int month, int day, int hour, int mint, View view) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_WEEK, day);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, mint);
+        EditText editText = (EditText) view;
+        editText.setText(String.valueOf(calendar.getTimeInMillis()));
+    }
+
+    @Override
+    public void onDateSet(int year, int month, int day, View view) {
+        TimePickerFragment timePickerFragment = new TimePickerFragment();
+        setSettings(timePickerFragment, view, year, month, day);
+        timePickerFragment.show(getFragmentManager(), Constants.TAG);
+    }
+
+    private void setSettings(DatePickerFragment datePickerFragment, View view){
+        datePickerFragment.setCurrentDateWithTime(this);
+        datePickerFragment.setView(view);
+    }
+
+    private void setSettings(TimePickerFragment timePickerFragment, View view, int year, int month, int day){
+        timePickerFragment.setCurrentDateWithTime(this);
+        timePickerFragment.setView(view);
+        timePickerFragment.setDate(year, month, day);
     }
 }

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.view.View;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
@@ -16,9 +17,14 @@ public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener{
 
     private CurrentDateWithTime currentDateWithTime;
+    private View view;
 
     public void setCurrentDateWithTime(CurrentDateWithTime currentDateWithTime){
         this.currentDateWithTime = currentDateWithTime;
+    }
+
+    public void setView(View view){
+        this.view = view;
     }
 
     @NonNull
@@ -37,6 +43,6 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        currentDateWithTime.onDateSet(year, month, day);
+        currentDateWithTime.onDateSet(year, month, day, view);
     }
 }
