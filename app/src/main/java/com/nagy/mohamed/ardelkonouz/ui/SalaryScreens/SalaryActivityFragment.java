@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,8 @@ public class SalaryActivityFragment extends Fragment
 
         //set paid, unpaid, values views.
         setPaidValues(salaryScreenViewHolder);
-
+        salaryScreenViewHolder.INSTRUCTORS_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        getLoaderManager().initLoader(Constants.LOADER_SALARY_LIST, null, this);
         return rootView;
     }
 
@@ -61,20 +63,23 @@ public class SalaryActivityFragment extends Fragment
 
         if(instructorCourseCursor != null){
             if(instructorCourseCursor.getCount() > 0){
-                switch (instructorCourseCursor.getInt(
-                        DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_PAID)){
+                while (instructorCourseCursor.moveToNext()) {
+                    switch (instructorCourseCursor.getInt(
+                            DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_PAID)) {
 
-                    case Constants.PAID_COURSE:
-                        paidCoursesId.add(instructorCourseCursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_COURSE_ID
-                        ));
-                        break;
-                    case Constants.NOT_PAID_COURSE:
-                        unpaidCoursesId.add(instructorCourseCursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_COURSE_ID
-                        ));
-                        unpaidInstructorNumber++;
-                        break;
+                        case Constants.PAID_COURSE:
+                            paidCoursesId.add(instructorCourseCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_COURSE_ID
+                            ));
+                            break;
+                        case Constants.NOT_PAID_COURSE:
+                            unpaidCoursesId.add(instructorCourseCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_COURSE_ID
+                            ));
+                            unpaidInstructorNumber++;
+                            break;
+
+                    }
                 }
             }
             instructorCourseCursor.close();
@@ -118,15 +123,15 @@ public class SalaryActivityFragment extends Fragment
     public void bindListView(View view, final Cursor cursor) {
         ViewHolder.SalaryScreenViewHolder.InstructorsViewHolder instructorsViewHolder =
                 new ViewHolder.SalaryScreenViewHolder.InstructorsViewHolder(view);
-
+        Log.e("cursor",String.valueOf(cursor.getCount()));
         instructorsViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
-                cursor.getString(2)
+                cursor.getString(3)
         );
         instructorsViewHolder.INSTRUCTOR_COURSE_TEXT_VIEW.setText(
-                cursor.getString(1)
+                cursor.getString(2)
         );
 
-        if(cursor.getInt(0) == Constants.PAID_COURSE){
+        if(cursor.getInt(1) == Constants.PAID_COURSE){
             instructorsViewHolder.INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW.setText(
                     getString(R.string.paid)
             );
@@ -142,7 +147,7 @@ public class SalaryActivityFragment extends Fragment
             @Override
             public void onClick(View view) {
                 Intent openInstructorScreen = new Intent(getContext(), InstructorSalaryActivity.class);
-                openInstructorScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, cursor.getLong(3));
+                openInstructorScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, cursor.getLong(4));
                 startActivity(openInstructorScreen);
             }
         });
@@ -154,6 +159,7 @@ public class SalaryActivityFragment extends Fragment
                 getContext(),
                 DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI,
                 new String[]{
+                        DbContent.CourseInstructorTable.TABLE_NAME + "."+ DbContent.CourseInstructorTable._ID,
                         DbContent.CourseInstructorTable.PAID_COLUMN,
                         DbContent.CourseTable.COURSE_NAME_COLUMN,
                         DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
