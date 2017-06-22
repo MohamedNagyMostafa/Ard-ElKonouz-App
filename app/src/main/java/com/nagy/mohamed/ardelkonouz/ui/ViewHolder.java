@@ -278,9 +278,11 @@ public class ViewHolder {
         public final EditText INSTRUCTOR_AGE_EDIT_TEXT;
         public final EditText INSTRUCTOR_ADDRESS_EDIT_TEXT;
         public final EditText INSTRUCTOR_MOBILE_EDIT_TEXT;
+        public final ImageView INSTRUCTOR_MALE_GENDER_IMAGE_VIEW;
+        public final ImageView INSTRUCTOR_FEMALE_GENDER_IMAGE_VIEW;
         public final TextView INSTRUCTOR_MALE_GENDER_TEXT_VIEW;
         public final TextView INSTRUCTOR_FEMALE_GENDER_TEXT_VIEW;
-        public final EditText INSTRUCTOR_SALARY_EDIT_TEXT;
+        public final EditText INSTRUCTOR_QUALIFICATION_EDIT_TEXT;
         public final Button  INSTRUCTOR_SUBMIT_BUTTON;
 
         public InstructorInputScreenViewHolder(View  InstructorInputScreen){
@@ -291,7 +293,9 @@ public class ViewHolder {
             INSTRUCTOR_MOBILE_EDIT_TEXT = (EditText)  InstructorInputScreen.findViewById(R.id.instructor_input_mobile_edit_view);
             INSTRUCTOR_MALE_GENDER_TEXT_VIEW = (TextView)  InstructorInputScreen.findViewById(R.id.instructor_input_male_gender_text_view);
             INSTRUCTOR_FEMALE_GENDER_TEXT_VIEW = (TextView)  InstructorInputScreen.findViewById(R.id.instructor_input_female_gender_text_view);
-            INSTRUCTOR_SALARY_EDIT_TEXT = (EditText)  InstructorInputScreen.findViewById(R.id.instructor_input_qualification_edit_view);
+            INSTRUCTOR_MALE_GENDER_IMAGE_VIEW = (ImageView)  InstructorInputScreen.findViewById(R.id.instructor_input_male_gender_image_view);
+            INSTRUCTOR_FEMALE_GENDER_IMAGE_VIEW = (ImageView)  InstructorInputScreen.findViewById(R.id.instructor_input_female_gender_image_view);
+            INSTRUCTOR_QUALIFICATION_EDIT_TEXT = (EditText)  InstructorInputScreen.findViewById(R.id.instructor_input_qualification_edit_view);
             INSTRUCTOR_SUBMIT_BUTTON = (Button)  InstructorInputScreen.findViewById(R.id.instructor_input_submit_application_button);
 
         }

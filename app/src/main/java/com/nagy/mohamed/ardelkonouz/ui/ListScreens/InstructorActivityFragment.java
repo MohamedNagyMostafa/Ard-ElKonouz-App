@@ -15,6 +15,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.InputScreens.InstructorInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.InstructorProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
@@ -32,7 +33,7 @@ public class InstructorActivityFragment extends Fragment
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent instructorInputScreen = new Intent(getContext(), InstructorProfileActivity.class);
+                    Intent instructorInputScreen = new Intent(getContext(), InstructorInputActivity.class);
                     instructorInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(instructorInputScreen);
                 }
