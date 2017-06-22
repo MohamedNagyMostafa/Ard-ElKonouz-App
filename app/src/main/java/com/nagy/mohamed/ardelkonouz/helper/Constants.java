@@ -15,6 +15,9 @@ public class Constants {
     public static final int GOVERNMENTAL_ARABIC = 0;
     public static final int GOVERNMENTAL_ENGLISH = 1;
 
+    //Paid
+    public static final int PAID_COURSE = 1;
+    public static final int NOT_PAID_COURSE = 2;
     // GENDER
     public static final int MALE = 0;
     public static final int FEMALE = 1;

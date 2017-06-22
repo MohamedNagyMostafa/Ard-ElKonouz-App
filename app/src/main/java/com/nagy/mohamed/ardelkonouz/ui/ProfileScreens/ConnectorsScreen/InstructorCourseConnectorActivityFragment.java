@@ -43,10 +43,12 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 new ViewHolder.InstructorCourseConnectorScreenViewHolder(rootView);
         instructorId = getActivity().getIntent().getExtras().getLong(Constants.INSTRUCTOR_ID_EXTRA);
         selectedCourses = new ArrayList<>();
+        final ArrayList<Long> paidCourses = new ArrayList<>();
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
+
         // set previous courses.
-        setPreviousCourses();
+        setPreviousCourses(paidCourses);
 
         // set listener.
         instructorCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
@@ -55,7 +57,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                     @Override
                     public void onClick(View view) {
                         selectedCourses = new ArrayList<Long>();
-                        setPreviousCourses();
+                        setPreviousCourses(paidCourses);
                         restartLoader();
                     }
                 }
@@ -84,6 +86,15 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                                     DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
                                     COURSE_ID
                             );
+                            if(paidCourses.contains(COURSE_ID)) {
+                                contentValues.put(
+                                        DbContent.CourseInstructorTable.PAID_COLUMN,Constants.PAID_COURSE
+                                        );
+                            }else{
+                                contentValues.put(
+                                        DbContent.CourseInstructorTable.PAID_COLUMN,Constants.NOT_PAID_COURSE
+                                );
+                            }
 
                             contentValuesArrayList.add(contentValues);
                         }
@@ -112,10 +123,11 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         startActivity(instructorProfileScreen);
     }
 
-    private void setPreviousCourses(){
+    private void setPreviousCourses(ArrayList<Long> paidList){
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
-                new String[]{DbContent.CourseInstructorTable.COURSE_ID_COLUMN},
+                new String[]{DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
+                        DbContent.CourseInstructorTable.PAID_COLUMN},
                 null,
                 null,
                 null
@@ -123,7 +135,12 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
         if(cursor != null){
             if(cursor.getCount() > 0){
-                selectedCourses.add(cursor.getLong(0));
+                while (cursor.moveToNext()){
+                    selectedCourses.add(cursor.getLong(0));
+                    if(cursor.getInt(1) == Constants.PAID_COURSE){
+                        paidList.add(cursor.getLong(0));
+                    }
+                }
             }
             cursor.close();
         }
@@ -144,14 +161,14 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
                 new StringBuilder("").append(getContext().getString(R.string.from)).append(" ")
                 .append(
-                        String.valueOf(
+                        Utility.getTimeFormat(
                                 cursor.getLong(
                                         DatabaseController.ProjectionDatabase.COURSE_START_DATE
                                 )
                         )
                 ).append(" ").append(getContext().getString(R.string.to)).append(" ")
                         .append(
-                                String.valueOf(
+                                Utility.getTimeFormat(
                                         cursor.getLong(
                                                 DatabaseController.ProjectionDatabase.COURSE_END_DATE
                                         )

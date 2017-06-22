@@ -137,13 +137,13 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         );
         coursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
                 new StringBuilder().append(getContext().getString(R.string.from)).append(" ").append(
-                        String.valueOf(
+                        Utility.getTimeFormat(
                                 cursor.getLong(
                                         DatabaseController.ProjectionDatabase.COURSE_START_DATE
                                 )
                         )
                 ).append(" ").append(getContext().getString(R.string.to)).append(" ").append(
-                        String.valueOf(
+                        Utility.getTimeFormat(
                                 cursor.getLong(
                                         DatabaseController.ProjectionDatabase.COURSE_END_DATE
                                 )

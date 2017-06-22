@@ -854,7 +854,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getCourseWithEndDateId(Uri uri, String[] projection, String sortType){
         long date = ContentUris.parseId(uri);
 
-        String selection = DbContent.CourseTable.COURSE_END_DATE_COLUMN + "<?";
+        String selection = DbContent.CourseTable.COURSE_END_DATE_COLUMN + ">?";
         String[] selectionArgs = {String.valueOf(date)};
 
         return m_dbHelper.getReadableDatabase().query(

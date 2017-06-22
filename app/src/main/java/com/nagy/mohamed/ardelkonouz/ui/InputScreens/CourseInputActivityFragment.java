@@ -358,9 +358,7 @@ public class CourseInputActivityFragment extends Fragment
         Date d = null;
         try {
             d = formatter.parse(strThatDay);//catch exception
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (java.text.ParseException e) {
+        } catch (ParseException | java.text.ParseException e) {
             e.printStackTrace();
         }
         d.setMonth(d.getMonth()  + 1);

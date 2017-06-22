@@ -177,10 +177,12 @@ public class DbContent {
 
         public static final String COURSE_ID_COLUMN = "course_id";
         public static final String INSTRUCTOR_ID_COLUMN = "instructor_id";
+        public static final String PAID_COLUMN = "paid";
 
         public static final String CREATE_COURSE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
                 + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + PAID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + INSTRUCTOR_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + INSTRUCTOR_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + InstructorTable.TABLE_NAME + SPACE + "(" + InstructorTable._ID + ")"+
