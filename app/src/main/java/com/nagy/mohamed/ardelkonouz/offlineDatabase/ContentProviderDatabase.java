@@ -37,7 +37,8 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE = 10101;
     private static final int INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE = 10011;
     private static final int EMPLOYEE_WITH_ID_TABLE = 10111;
-    private static final int COURSE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 2;
+    private static final int COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 2;
+    private static final int COURSE_WITH_END_DATE_TABLE = 4;
 
 
     private static final String INNER_JOIN = "INNER JOIN";
@@ -183,8 +184,8 @@ public class ContentProviderDatabase extends ContentProvider {
             case CHILD_COURSE_WITH_COURSE_ID_TABLE:
                 return getCourseChildWithCourseId(uri, projection, sortOrder);
 
-            case COURSE_WITH_COMPLETE_ID_AGE_RANGE_TABLE:
-                return getCourseWithCompleteAndAgeRangeTable(uri, projection, sortOrder);
+            case COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE:
+                return getCourseWithEndDateWithCompleteAndAgeRangeTable(uri, projection, sortOrder);
 
             case CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE:
                 try {
@@ -192,6 +193,8 @@ public class ContentProviderDatabase extends ContentProvider {
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
+            case COURSE_WITH_END_DATE_TABLE:
+                return getCourseWithEndDateId(uri, projection, sortOrder);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -592,8 +595,9 @@ public class ContentProviderDatabase extends ContentProvider {
         final String CHILD_WITH_ID_PATH = DbContent.ChildTable.TABLE_NAME + "/#";
         final String EMPLOYEE_WITH_ID_PATH = DbContent.EmployeeTable.TABLE_NAME + "/#";
         final String COURSE_WITH_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/#";
-        final String COURSE_WITH_COMPLETE_ID_AGE_RANGE_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN+ "/#";
+        final String COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/" +
+                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN+ "/#" + "/#";
         final String INSTRUCTOR_WITH_ID_PATH = DbContent.InstructorTable.TABLE_NAME + "/#";
         final String CHILD_COURSE_WITH_CHILD_ID_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
                 DbContent.ChildTable.TABLE_NAME + "/#";
@@ -605,6 +609,8 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.InstructorTable.TABLE_NAME +"/#";
         final String INSTRUCTOR_COURSE_WITH_COURSE_ID_PATH = DbContent.CourseInstructorTable.TABLE_NAME + "/" +
                 DbContent.CourseTable.TABLE_NAME +"/#";
+        final String COURSE_WITH_END_DATE_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN;
 
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_PATH, CHILD_TABLE);
@@ -614,7 +620,8 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_COURSE_PATH, INSTRUCTOR_COURSE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_ID_PATH, CHILD_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_ID_PATH, COURSE_WITH_ID_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_COMPLETE_ID_AGE_RANGE_PATH, COURSE_WITH_COMPLETE_ID_AGE_RANGE_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_END_DATE_ID_PATH, COURSE_WITH_END_DATE_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_PATH, COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_PATH, EMPLOYEE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_ID_PATH, EMPLOYEE_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_ID_PATH, INSTRUCTOR_WITH_ID_TABLE);
@@ -790,18 +797,22 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseWithCompleteAndAgeRangeTable(Uri uri, String[] projection, String sortOrder){
+    private Cursor getCourseWithEndDateWithCompleteAndAgeRangeTable(Uri uri, String[] projection, String sortOrder){
         long age = ContentUris.parseId(uri);
+        String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
+        long date = ContentUris.parseId(Uri.parse(newUriString));
 
         String selection =
                 DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN + "=?" + " AND " +
                 DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
-                DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?";
+                DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?" + " AND " +
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN + " <?";
 
         String selectionArgs[] = {
                 String.valueOf(Constants.COURSE_INCOMPLETE),
                 String.valueOf(age),
-                String.valueOf(age)
+                String.valueOf(age),
+                String.valueOf(date)
         };
 
         Log.e("query done", "done");
@@ -837,6 +848,23 @@ public class ContentProviderDatabase extends ContentProvider {
                 null,
                 null,
                 sortOrder
+        );
+    }
+
+    private Cursor getCourseWithEndDateId(Uri uri, String[] projection, String sortType){
+        long date = ContentUris.parseId(uri);
+
+        String selection = DbContent.CourseTable.COURSE_END_DATE_COLUMN + "<?";
+        String[] selectionArgs = {String.valueOf(date)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortType
         );
     }
 }
