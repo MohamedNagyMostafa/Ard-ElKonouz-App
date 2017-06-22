@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -41,12 +42,12 @@ public class RecycleViewChildProfileAdapter extends
                     cursor.getString(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_NAME_COLUMN)
             );
             childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
-                    String.valueOf(
+                    Utility.getTimeFormat(
                             cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN)
                     )
             );
             childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
-                    String.valueOf(
+                    Utility.getTimeFormat(
                             cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN)
                     )
             );

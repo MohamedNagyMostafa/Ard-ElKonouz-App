@@ -89,14 +89,14 @@ public class CourseProfileActivityFragment extends Fragment {
                 )
         );
         courseProfileScreenViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-                String.valueOf(
+                Utility.getTimeFormat(
                         cursor.getLong(
                                 DatabaseController.ProjectionDatabase.COURSE_START_DATE
                         )
                 )
         );
         courseProfileScreenViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                String.valueOf(
+                Utility.getTimeFormat(
                         cursor.getLong(
                                 DatabaseController.ProjectionDatabase.COURSE_END_DATE
                         )

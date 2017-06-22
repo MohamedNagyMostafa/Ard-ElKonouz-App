@@ -338,10 +338,19 @@ public class DatabaseController {
             return COURSE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseTableWithCompleteIdWithAgeRangeUri(long age){
+        public static Uri getCourseTableWithEndDateIdWithCompleteIdWithAgeRangeUri(long age, long date){
             return COURSE_TABLE_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.COURSE_END_DATE_COLUMN)
                     .appendPath(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN)
-                    .appendPath(String.valueOf(age)).build();
+                    .appendPath(String.valueOf(date))
+                    .appendPath(String.valueOf(age))
+                    .build();
+        }
+
+        public static Uri getCourseTableWithEndDate(long date){
+            return COURSE_TABLE_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.COURSE_END_DATE_COLUMN)
+                    .appendPath(String.valueOf(date)).build();
         }
 
         public static Uri getCourseChildTableWithChildIdUri(long id){

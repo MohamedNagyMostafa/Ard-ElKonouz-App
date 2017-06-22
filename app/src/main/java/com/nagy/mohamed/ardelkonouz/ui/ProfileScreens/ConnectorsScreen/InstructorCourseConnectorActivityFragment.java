@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.InstructorProfileActivity;
@@ -202,9 +203,10 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        long dateAsMills = Utility.getCurrentDateAsMills();
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.COURSE_TABLE_URI,
+                DatabaseController.UriDatabase.getCourseTableWithEndDate(dateAsMills),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                 null,
                 null,
