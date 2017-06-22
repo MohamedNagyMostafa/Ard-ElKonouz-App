@@ -76,7 +76,7 @@ public class EmployeeInputFragment extends Fragment {
 
         if(cursor != null){
             if(cursor.getCount() > 0){
-
+                cursor.moveToFirst();
                 employeeInputScreenViewHolder.EMPLOYEE_NAME_EDIT_TEXT.setText(
                         cursor.getString(
                                 DatabaseController.ProjectionDatabase.EMPLOYEE_NAME
