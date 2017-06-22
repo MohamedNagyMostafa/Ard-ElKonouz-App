@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ChildProfileActivity;
@@ -208,9 +209,11 @@ public class ChildCourseConnectorActivityFragment extends Fragment
      */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        long dateAsMills = Utility.getCurrentDateAsMills();
+
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithCompleteIdWithAgeRangeUri(childAge),
+                DatabaseController.UriDatabase.getCourseTableWithEndDateIdWithCompleteIdWithAgeRangeUri(childAge, dateAsMills),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                 null,
                 null,

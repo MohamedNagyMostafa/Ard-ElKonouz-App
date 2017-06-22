@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.nagy.mohamed.ardelkonouz.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by mohamednagy on 6/10/2017.
@@ -234,5 +235,10 @@ public class Utility {
 
         for(int i = 0 ; i < textViews.length ; i++)
             doubleChoiceArrayList.get(i).setImageView(textViews[i]);
+    }
+
+    public static long getCurrentDateAsMills(){
+        Calendar calendar = Calendar.getInstance();
+        return calendar.getTimeInMillis();
     }
 }
