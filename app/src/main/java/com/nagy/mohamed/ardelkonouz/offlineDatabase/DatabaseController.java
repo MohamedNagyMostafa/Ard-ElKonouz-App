@@ -347,6 +347,12 @@ public class DatabaseController {
                     .build();
         }
 
+        public static Uri getCourseTableWithEndDate(long date){
+            return CHILD_TABLE_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.COURSE_END_DATE_COLUMN)
+                    .appendPath(String.valueOf(date)).build();
+        }
+
         public static Uri getCourseChildTableWithChildIdUri(long id){
             return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
