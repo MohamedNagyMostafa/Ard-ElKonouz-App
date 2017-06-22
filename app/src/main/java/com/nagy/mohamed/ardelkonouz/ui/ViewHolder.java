@@ -252,6 +252,7 @@ public class ViewHolder {
         public final ImageView EMPLOYEE_MALE_GENDER_IMAGE_VIEW;
         public final ImageView EMPLOYEE_FEMALE_GENDER_IMAGE_VIEW;
         public final EditText EMPLOYEE_SALARY_EDIT_TEXT;
+        public final EditText EMPLOYEE_QUALIFICATION_EDIT_TEXT;
         public final Button EMPLOYEE_SUBMIT_BUTTON;
 
         public EmployeeInputScreenViewHolder(View employeeInputScreen){
@@ -266,6 +267,7 @@ public class ViewHolder {
             EMPLOYEE_FEMALE_GENDER_IMAGE_VIEW = (ImageView) employeeInputScreen.findViewById(R.id.employee_input_female_gender_image_view);
             EMPLOYEE_SALARY_EDIT_TEXT = (EditText) employeeInputScreen.findViewById(R.id.employee_input_original_salary_edit_view);
             EMPLOYEE_SUBMIT_BUTTON = (Button) employeeInputScreen.findViewById(R.id.employee_input_submit_application_button);
+            EMPLOYEE_QUALIFICATION_EDIT_TEXT = (EditText) employeeInputScreen.findViewById(R.id.employee_input_qualification_edit_view);
 
         }
     }

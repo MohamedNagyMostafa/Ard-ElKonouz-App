@@ -106,6 +106,11 @@ public class EmployeeInputFragment extends Fragment {
                                 )
                         )
                 );
+                employeeInputScreenViewHolder.EMPLOYEE_QUALIFICATION_EDIT_TEXT.setText(
+                        cursor.getString(
+                                DatabaseController.ProjectionDatabase.EMPLOYEE_QUALIFICATION
+                        )
+                );
                 Utility.selectionProcess(
                         cursor.getInt(
                                 DatabaseController.ProjectionDatabase.EMPLOYEE_GENDER
@@ -123,7 +128,8 @@ public class EmployeeInputFragment extends Fragment {
                                         employeeInputScreenViewHolder.EMPLOYEE_AGE_EDIT_TEXT,
                                         employeeInputScreenViewHolder.EMPLOYEE_MOBILE_EDIT_TEXT,
                                         employeeInputScreenViewHolder.EMPLOYEE_NAME_EDIT_TEXT,
-                                        employeeInputScreenViewHolder.EMPLOYEE_SALARY_EDIT_TEXT
+                                        employeeInputScreenViewHolder.EMPLOYEE_SALARY_EDIT_TEXT,
+                                        employeeInputScreenViewHolder.EMPLOYEE_QUALIFICATION_EDIT_TEXT
                                 )){
                                     getActivity().getContentResolver().update(
                                             DatabaseController.UriDatabase.getEmployeeTableWithIdUri(EMPLOYEE_ID),
@@ -162,7 +168,8 @@ public class EmployeeInputFragment extends Fragment {
                                 employeeInputScreenViewHolder.EMPLOYEE_AGE_EDIT_TEXT,
                                 employeeInputScreenViewHolder.EMPLOYEE_MOBILE_EDIT_TEXT,
                                 employeeInputScreenViewHolder.EMPLOYEE_SALARY_EDIT_TEXT,
-                                employeeInputScreenViewHolder.EMPLOYEE_NAME_EDIT_TEXT
+                                employeeInputScreenViewHolder.EMPLOYEE_NAME_EDIT_TEXT,
+                                employeeInputScreenViewHolder.EMPLOYEE_QUALIFICATION_EDIT_TEXT
                                 )){
 
                             Uri employeeUri = getActivity().getContentResolver().insert(
@@ -198,7 +205,7 @@ public class EmployeeInputFragment extends Fragment {
             isValid = false;
         }
 
-        return true;
+        return isValid;
     }
 
     private ContentValues getDataInputs(
@@ -212,6 +219,8 @@ public class EmployeeInputFragment extends Fragment {
         final Integer EMPLOYEE_AGE = Integer.valueOf(
                 employeeInputScreenViewHolder.EMPLOYEE_AGE_EDIT_TEXT.getText().toString()
         );
+        final String EMPLOYEE_QUALIFICATION =
+                employeeInputScreenViewHolder.EMPLOYEE_QUALIFICATION_EDIT_TEXT.getText().toString();
         final String EMPLOYEE_ADDRESS =
                 employeeInputScreenViewHolder.EMPLOYEE_ADDRESS_EDIT_TEXT.getText().toString();
         final Integer EMPLOYEE_GENDER = getSelectionFromList(GENDER_LIST);
@@ -243,6 +252,10 @@ public class EmployeeInputFragment extends Fragment {
         contentValues.put(
                 DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_SALARY_COLUMN,
                 EMPLOYEE_SALARY
+        );
+        contentValues.put(
+                DbContent.EmployeeTable.EMPLOYEE_QUALIFICATION_COLUMN,
+                EMPLOYEE_QUALIFICATION
         );
 
         return contentValues;
