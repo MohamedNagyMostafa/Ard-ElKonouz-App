@@ -31,7 +31,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
     private ArrayList<Long> selectedCourses;
     private DatabaseCursorAdapter databaseCursorAdapter;
-    private long instructorId;
+    private Long instructorId;
 
 
     @Override
@@ -55,6 +55,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                     public void onClick(View view) {
                         selectedCourses = new ArrayList<Long>();
                         setPreviousCourses();
+                        restartLoader();
                     }
                 }
         );
@@ -70,29 +71,37 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                         );
 
                         // inset new courses.
-                        ContentValues[] contentValues = new ContentValues[selectedCourses.size()];
+                        ArrayList<ContentValues> contentValuesArrayList = new ArrayList<ContentValues>();
 
-                        for(int i = 0 ; i < selectedCourses.size() ; i++){
-                            contentValues[i].put(
-                                    DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                                    selectedCourses.get(i)
-                            );
-                            contentValues[i].put(
+                        for(final Long COURSE_ID : selectedCourses){
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put(
                                     DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
                                     instructorId
                             );
+                            contentValues.put(
+                                    DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
+                                    COURSE_ID
+                            );
+
+                            contentValuesArrayList.add(contentValues);
                         }
+
+                        ContentValues[] contentValues = new ContentValues[contentValuesArrayList.size()];
+                        contentValuesArrayList.toArray(contentValues);
 
                         getActivity().getContentResolver().bulkInsert(
                                 DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI,
                                 contentValues
                         );
 
+
                         openInstructorProfile();
                     }
                 }
         );
 
+        getLoaderManager().initLoader(Constants.LOADER_INSTRUCTOR_COURSE_CONNECTOR, null, this);
         return rootView;
 
     }
@@ -212,5 +221,10 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         databaseCursorAdapter.swapCursor(null);
+    }
+
+    private void restartLoader(){
+        getLoaderManager().restartLoader(Constants.LOADER_INSTRUCTOR_COURSE_CONNECTOR, null, this);
+
     }
 }

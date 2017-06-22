@@ -1,6 +1,5 @@
 package com.nagy.mohamed.ardelkonouz.ui;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
-import com.nagy.mohamed.ardelkonouz.helper.Constants;
-import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
-import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
@@ -98,112 +94,4 @@ public class MainActivityFragment extends Fragment {
         return rootView;
     }
 
-    private void databaseTesting(){
-
-        // Dummy Data Course Table.
-        ContentValues contentValues1 = new ContentValues();
-        contentValues1.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "Android");
-        contentValues1.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 22);
-        contentValues1.put(DbContent.CourseTable.COURSE_COST_COLUMN, 133);
-        contentValues1.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN, Constants.COURSE_INCOMPLETE);
-        contentValues1.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, 10);
-        contentValues1.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 15);
-        contentValues1.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, 2016);
-        contentValues1.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, 2017);
-        contentValues1.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 2);
-        contentValues1.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, 12);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_TABLE_URI,contentValues1);
-
-        ContentValues contentValues3 = new ContentValues();
-        contentValues3.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "Java");
-        contentValues3.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 22);
-        contentValues3.put(DbContent.CourseTable.COURSE_COST_COLUMN, 133);
-        contentValues3.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN, Constants.COURSE_INCOMPLETE);
-        contentValues3.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, 20);
-        contentValues3.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 22);
-        contentValues3.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, 2016);
-        contentValues3.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, 2017);
-        contentValues3.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 2);
-        contentValues3.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, 12);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_TABLE_URI,contentValues3);
-
-        ContentValues contentValues6 = new ContentValues();
-        contentValues6.put(DbContent.CourseTable.COURSE_NAME_COLUMN, "VS");
-        contentValues6.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, 22);
-        contentValues6.put(DbContent.CourseTable.COURSE_COST_COLUMN, 133);
-        contentValues6.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,Constants.COURSE_COMPLETE);
-        contentValues6.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, 10);
-        contentValues6.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, 15);
-        contentValues6.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, 2016);
-        contentValues6.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, 2017);
-        contentValues6.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, 2);
-        contentValues6.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, 12);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_TABLE_URI,contentValues6);
-
-        // set Dummy Join CourseChild Table.
-//        ContentValues contentValues2 = new ContentValues();
-//        contentValues2.put(DbContent.ChildCourseTable.CHILD_ID_COLUMN, 1);
-//        contentValues2.put(DbContent.ChildCourseTable.COURSE_ID_COLUMN, 1);
-//        contentValues2.put(DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN, 0);
-//
-//        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues2);
-//        ContentValues contentValues4 = new ContentValues();
-//        contentValues4.put(DbContent.ChildCourseTable.CHILD_ID_COLUMN, 1);
-//        contentValues4.put(DbContent.ChildCourseTable.COURSE_ID_COLUMN, 2);
-//        contentValues4.put(DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN, 0);
-//
-//        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues4);
-//
-//        ContentValues contentValues5 = new ContentValues();
-//        contentValues5.put(DbContent.ChildCourseTable.CHILD_ID_COLUMN, 1);
-//        contentValues5.put(DbContent.ChildCourseTable.COURSE_ID_COLUMN, 3);
-//        contentValues5.put(DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN, 0);
-//
-//        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_CHILD_URI,contentValues5);
-
-        ContentValues contentValues7 = new ContentValues();
-        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN, "KeKO");
-        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_MOBILE_COLUMN, 1123122590);
-        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_GENDER_COLUMN, 1);
-        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_QUALIFICATION_COLUMN, "D.R");
-        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_SALARY_COLUMN, 190);
-        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_ADDRESS_COLUMN, "giza");
-        contentValues7.put(DbContent.EmployeeTable.EMPLOYEE_AGE_COLUMN, 18);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.EMPLOYEE_TABLE_URI, contentValues7);
-
-        ContentValues contentValues8 = new ContentValues();
-        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN, "momo");
-        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_MOBILE_COLUMN, 112322590);
-        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_GENDER_COLUMN, 1);
-        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_QUALIFICATION_COLUMN, "D.R");
-        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_ORIGINAL_SALARY_COLUMN, 190);
-        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_ADDRESS_COLUMN, "giza");
-        contentValues8.put(DbContent.EmployeeTable.EMPLOYEE_AGE_COLUMN, 18);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.EMPLOYEE_TABLE_URI, contentValues8);
-
-        ContentValues contentValues9 = new ContentValues();
-        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN, "yomo");
-        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN, 112322590);
-        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN, 1);
-        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_QUALIFICATION_COLUMN, "D.R");
-        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN, "giza");
-        contentValues9.put(DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN, 18);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.INSTRUCTOR_TABLE_URI, contentValues9);
-
-        ContentValues contentValues10 = new ContentValues();
-        contentValues10.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,1);
-        contentValues10.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN,1);
-        contentValues10.put(DbContent.CourseInstructorTable.PAY_STATE_COLUMN,1);
-        contentValues10.put(DbContent.CourseInstructorTable.TOTAL_SALARY_COLUMN,1);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI, contentValues10);
-
-        ContentValues contentValues11 = new ContentValues();
-        contentValues11.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,1);
-        contentValues11.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN,2);
-        contentValues11.put(DbContent.CourseInstructorTable.PAY_STATE_COLUMN,1);
-        contentValues11.put(DbContent.CourseInstructorTable.TOTAL_SALARY_COLUMN,1);
-        getActivity().getContentResolver().insert(DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI, contentValues11);
-
-
-    }
 }
