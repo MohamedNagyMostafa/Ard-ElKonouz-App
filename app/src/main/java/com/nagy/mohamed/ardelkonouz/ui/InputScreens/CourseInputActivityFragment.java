@@ -4,6 +4,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ParseException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,8 +27,10 @@ import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -57,6 +60,8 @@ public class CourseInputActivityFragment extends Fragment
         final ArrayList<DoubleChoice> COURSE_STATE_LIST =
                 setCourseStateListItem(courseInputScreenViewHolder);
 
+        courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
+        courseInputScreenViewHolder.COURSE_ENDING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
         // setChoice listener.
         setCourseStateListener(COURSE_STATE_LIST);
 
@@ -115,14 +120,14 @@ public class CourseInputActivityFragment extends Fragment
                 );
                 courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.setText(
                         String.valueOf(
-                                cursor.getInt(
+                                cursor.getLong(
                                         DatabaseController.ProjectionDatabase.COURSE_START_DATE
                                 )
                         )
                 );
                 courseInputScreenViewHolder.COURSE_ENDING_DATE_EDIT_TEXT.setText(
                         String.valueOf(
-                                cursor.getInt(
+                                cursor.getLong(
                                         DatabaseController.ProjectionDatabase.COURSE_END_DATE
                                 )
                         )
@@ -313,7 +318,7 @@ public class CourseInputActivityFragment extends Fragment
         contentValues.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, COURSE_START_AGE);
         contentValues.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, COURSE_END_AGE);
         contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, COURSE_HOURS);
-
+        Log.e("set data to database",String.valueOf(COURSE_START_DATE));
         return contentValues;
     }
 
@@ -342,14 +347,29 @@ public class CourseInputActivityFragment extends Fragment
 
     @Override
     public void onTimeSet(int year, int month, int day, int hour, int mint, View view) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_WEEK, day);
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, mint);
+        String strThatDay =
+                String.valueOf(year) + "/" +
+                        String.valueOf(month) + "/" +
+                        String.valueOf(day) + " - " +
+                        String.valueOf(hour) + ":" +
+                        String.valueOf(mint);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd - hh:mm");
+        Date d = null;
+        try {
+            d = formatter.parse(strThatDay);//catch exception
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        d.setMonth(d.getMonth()  + 1);
+        Calendar thatDay = Calendar.getInstance();
+        thatDay.setTime(d);
+
         EditText editText = (EditText) view;
-        editText.setText(String.valueOf(calendar.getTimeInMillis()));
+
+        editText.setText(String.valueOf(thatDay.getTimeInMillis()));
     }
 
     @Override

@@ -610,7 +610,7 @@ public class ContentProviderDatabase extends ContentProvider {
         final String INSTRUCTOR_COURSE_WITH_COURSE_ID_PATH = DbContent.CourseInstructorTable.TABLE_NAME + "/" +
                 DbContent.CourseTable.TABLE_NAME +"/#";
         final String COURSE_WITH_END_DATE_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN;
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/#";
 
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_PATH, CHILD_TABLE);
@@ -806,7 +806,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN + "=?" + " AND " +
                 DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
                 DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?" + " AND " +
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN + " <?";
+                 DbContent.CourseTable.COURSE_END_DATE_COLUMN + " > ?";
 
         String selectionArgs[] = {
                 String.valueOf(Constants.COURSE_INCOMPLETE),
