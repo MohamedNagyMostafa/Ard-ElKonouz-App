@@ -177,15 +177,11 @@ public class DbContent {
 
         public static final String COURSE_ID_COLUMN = "course_id";
         public static final String INSTRUCTOR_ID_COLUMN = "instructor_id";
-        public static final String TOTAL_SALARY_COLUMN = "total_salary";
-        public static final String PAY_STATE_COLUMN =" pay_state";
 
         public static final String CREATE_COURSE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
                 + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + INSTRUCTOR_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
-                + TOTAL_SALARY_COLUMN + SPACE + REAL + SPACE + NOT_NULL + ","
-                + PAY_STATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + INSTRUCTOR_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + InstructorTable.TABLE_NAME + SPACE + "(" + InstructorTable._ID + ")"+
                 FOREIGN_KEY + SPACE + "(" +COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
@@ -205,13 +201,11 @@ public class DbContent {
 
         public static final String COURSE_ID_COLUMN = "course_id";
         public static final String CHILD_ID_COLUMN = "child_id";
-        public static final String CHILD_COURSE_COMPLETED_COLUMN = "child_course_completed";
 
         public static final String CREATE_CHILD_COURSE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
                 + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
-                + CHILD_COURSE_COMPLETED_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" + ","
                 + FOREIGN_KEY + SPACE + "(" + CHILD_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE

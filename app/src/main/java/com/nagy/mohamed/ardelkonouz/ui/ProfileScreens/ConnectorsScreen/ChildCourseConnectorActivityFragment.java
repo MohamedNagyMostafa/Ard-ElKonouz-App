@@ -87,10 +87,6 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         for(final Long COURSE_ID : selectedCourses){
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(
-                                    DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN,
-                                    Constants.CHILD_NOT_COMPLETE_COURSE
-                            );
-                            contentValues.put(
                                     DbContent.ChildCourseTable.CHILD_ID_COLUMN,
                                     childId
                             );

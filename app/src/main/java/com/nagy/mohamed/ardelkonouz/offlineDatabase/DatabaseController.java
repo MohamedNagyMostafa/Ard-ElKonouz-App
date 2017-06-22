@@ -162,25 +162,20 @@ public class DatabaseController {
         public static final String[] COURSE_INSTRUCTOR_TABLE = {
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
                 DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
-                DbContent.CourseInstructorTable.TOTAL_SALARY_COLUMN,
-                DbContent.CourseInstructorTable.PAY_STATE_COLUMN
+
         };
 
         public static final int COURSE_INSTRUCTOR_COURSE_ID = 0;
         public static final int COURSE_INSTRUCTOR_INSTRUCTOR_ID = 1;
-        public static final int COURSE_INSTRUCTOR_TOTAL_SALARY = 2;
-        public static final int COURSE_INSTRUCTOR_PAY_STATE = 3;
 
 
         public static final String[] COURSE_CHILD_TABLE_PROJECTION = {
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_ID_COLUMN,
-                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN
         };
 
         public static final int COURSE_CHILD_COURSE_ID = 0;
         public static final int COURSE_CHILD_CHILD_ID = 1;
-        public static final int COURSE_CHILD_COURSE_COMPLETED = 2;
 
         public static final String[] COURSE_CHILD_JOIN_LIST_TABLE = {
                  DbContent.ChildCourseTable.TABLE_NAME+"."+ DbContent.ChildCourseTable._ID,
@@ -226,7 +221,6 @@ public class DatabaseController {
                 DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN,
                 DbContent.ChildCourseTable.COURSE_ID_COLUMN,
                 DbContent.ChildCourseTable.CHILD_ID_COLUMN,
-                DbContent.ChildCourseTable.CHILD_COURSE_COMPLETED_COLUMN
 
         };
 
@@ -258,7 +252,6 @@ public class DatabaseController {
         public static final int COURSE_CHILD_JOIN_CHILD_BIRTH_ORDER_COLUMN = 25;
         public static final int COURSE_CHILD_JOIN_COURSE_ID_COLUMN = 26;
         public static final int COURSE_CHILD_JOIN_CHILD_ID_COLUMN = 27;
-        public static final int COURSE_CHILD_JOIN_CHILD_COURSE_COMPLETED = 28;
 
         public static final String[] COURSE_INSTRUCTOR_LIST_JOIN_TABLE = {
                 DbContent.CourseInstructorTable.TABLE_NAME +"."+ DbContent.CourseInstructorTable._ID,
@@ -278,8 +271,6 @@ public class DatabaseController {
         public static final String[] COURSE_INSTRUCTOR_JOIN_TABLE = {
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
                 DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
-                DbContent.CourseInstructorTable.TOTAL_SALARY_COLUMN,
-                DbContent.CourseInstructorTable.PAY_STATE_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN,
                 DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN,
@@ -301,8 +292,6 @@ public class DatabaseController {
 
         public static final int COURSE_INSTRUCTOR_JOIN_COURSE_ID = 0;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ID = 1;
-        public static final int COURSE_INSTRUCTOR_JOIN_TOTAL_SALARY = 2;
-        public static final int COURSE_INSTRUCTOR_JOIN_PAY_STATE = 3;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_NAME = 4;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ADDRESS = 5;
         public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_MOBILE = 6;
