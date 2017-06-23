@@ -1,6 +1,7 @@
 package com.nagy.mohamed.ardelkonouz.ui.SalaryScreens;
 
 import android.content.ContentValues;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,17 +30,17 @@ public class InstructorSalaryActivityFragment extends Fragment
 
     DatabaseCursorAdapter databaseCursorAdapter;
     Long instructorId;
+    ViewHolder.InstructorSalaryScreenViewHolder instructorSalaryScreenViewHolder;
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_instructor_salary, container, false);
-        ViewHolder.InstructorSalaryScreenViewHolder instructorSalaryScreenViewHolder =
-                new ViewHolder.InstructorSalaryScreenViewHolder(rootView);
+         instructorSalaryScreenViewHolder = new ViewHolder.InstructorSalaryScreenViewHolder(rootView);
+        databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
         instructorId = getActivity().getIntent().getExtras().getLong(Constants.INSTRUCTOR_ID_EXTRA);
 
         // set paid settings.
-        setSettingsData(instructorSalaryScreenViewHolder, instructorId);
+        setSettingsData();
         // set list adapter.
         instructorSalaryScreenViewHolder.INSTRUCTOR_COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
         // initialize loader.
@@ -48,14 +49,13 @@ public class InstructorSalaryActivityFragment extends Fragment
         return rootView;
     }
 
-    private void setSettingsData(ViewHolder.InstructorSalaryScreenViewHolder instructorSalaryScreenViewHolder,
-                                 final long INSTRUCTOR_ID){
+    private void setSettingsData(){
         long completeCourses = 0;
         long underProgressCourses = 0;
         double totalPaidSalary = 0;
 
         Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
+                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
                 new String[]{
                 DbContent.CourseTable.COURSE_END_DATE_COLUMN,
                 DbContent.CourseInstructorTable.PAID_COLUMN,
@@ -130,11 +130,11 @@ public class InstructorSalaryActivityFragment extends Fragment
         );
 
         if(cursor.getInt(5) == Constants.PAID_COURSE){
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundColor(Color.GREEN);
-            instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.setText(getString(R.string.paid));
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
         }else{
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundColor(Color.RED);
-            instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.setText(getString(R.string.unpaid));
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
 
         }
 
@@ -162,8 +162,8 @@ public class InstructorSalaryActivityFragment extends Fragment
                     @Override
                     public void onClick(View view) {
                         if(cursor.getInt(5) == Constants.PAID_COURSE){
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundColor(Color.GREEN);
-                            instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.setText(getString(R.string.paid));
+                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
 
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
@@ -176,9 +176,10 @@ public class InstructorSalaryActivityFragment extends Fragment
                                     null
                             );
 
+                            setSettingsData();
                         }else{
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundColor(Color.RED);
-                            instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.setText(getString(R.string.unpaid));
+                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
 
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.PAID_COURSE);
@@ -190,6 +191,8 @@ public class InstructorSalaryActivityFragment extends Fragment
                                     null,
                                     null
                             );
+                            setSettingsData();
+
                         }
                     }
                 }
