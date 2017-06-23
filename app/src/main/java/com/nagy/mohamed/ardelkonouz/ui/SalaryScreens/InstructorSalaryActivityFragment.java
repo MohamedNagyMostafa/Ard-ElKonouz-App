@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,11 +131,11 @@ public class InstructorSalaryActivityFragment extends Fragment
         );
 
         if(cursor.getInt(5) == Constants.PAID_COURSE){
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
-        }else{
             instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
+        }else{
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
 
         }
 
@@ -167,7 +168,7 @@ public class InstructorSalaryActivityFragment extends Fragment
 
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
-                            getActivity().getContentResolver().update(
+                            int l = getActivity().getContentResolver().update(
                                     DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
                                             cursor.getLong(6)
                                     ),
@@ -175,15 +176,15 @@ public class InstructorSalaryActivityFragment extends Fragment
                                     null,
                                     null
                             );
+                            Log.e("update result ", String.valueOf(l));
 
-                            setSettingsData();
                         }else{
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
+                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
 
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.PAID_COURSE);
-                            getActivity().getContentResolver().update(
+                            int l = getActivity().getContentResolver().update(
                                     DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
                                             cursor.getLong(6)
                                     ),
@@ -191,9 +192,13 @@ public class InstructorSalaryActivityFragment extends Fragment
                                     null,
                                     null
                             );
-                            setSettingsData();
+                            Log.e("update result ", String.valueOf(l));
+
+
 
                         }
+                        setSettingsData();
+                        restartLoader();
                     }
                 }
         );
@@ -226,5 +231,9 @@ public class InstructorSalaryActivityFragment extends Fragment
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         databaseCursorAdapter.swapCursor(null);
+    }
+
+    private void restartLoader(){
+        getLoaderManager().restartLoader(Constants.LOADER_INSTRUCTOR_SALARY, null, this);
     }
 }
