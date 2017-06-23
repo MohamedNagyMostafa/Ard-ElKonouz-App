@@ -47,8 +47,8 @@ public class SalaryActivityFragment extends Fragment
     }
 
     private void setPaidValues(ViewHolder.SalaryScreenViewHolder salaryScreenViewHolder){
-        long totalPaidValue = 0;
-        long totalUnpaidValue = 0;
+        double totalPaidValue = 0;
+        double totalUnpaidValue = 0;
         long unpaidInstructorNumber = 0;
         ArrayList<Long> paidCoursesId = new ArrayList<>();
         ArrayList<Long> unpaidCoursesId = new ArrayList<>();
