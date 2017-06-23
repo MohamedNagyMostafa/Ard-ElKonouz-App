@@ -411,6 +411,7 @@
     <string name="neural_characteristic">Neural</string>
     <string name="none">None</string>
     <string name="original_work_hours">Original Work Hours</string>
+    <string name="paid">Paid</string>
     <string name="password_toggle_content_description">Toggle password visibility</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
@@ -452,6 +453,7 @@
     <string name="to">To</string>
     <string name="total_salary">Original Salary</string>
     <string name="tries_to_solve_the_problem">Tries To Solve The Problem</string>
+    <string name="unpaid">Unpaid</string>
     <string name="watching_tv">Watching TV</string>
     <string name="whats_app">WhatsApp</string>
     <string name="work_hours_after_changing">Work Hours After Changing</string>

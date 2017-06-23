@@ -101,6 +101,9 @@
     <string name="watching_tv">Watching TV</string>
     <string name="handwork">Handwork</string>
 
+    <string name="paid">Paid</string>
+    <string name="unpaid">Unpaid</string>
+
     <string name="incomplete">Incomplete</string>
     <string name="complete">complete</string>
     <string name="to">To</string>

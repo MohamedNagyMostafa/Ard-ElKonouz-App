@@ -162,11 +162,12 @@ public class DatabaseController {
         public static final String[] COURSE_INSTRUCTOR_TABLE = {
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
                 DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
-
+                DbContent.CourseInstructorTable.PAID_COLUMN
         };
 
         public static final int COURSE_INSTRUCTOR_COURSE_ID = 0;
         public static final int COURSE_INSTRUCTOR_INSTRUCTOR_ID = 1;
+        public static final int COURSE_INSTRUCTOR_PAID =2;
 
 
         public static final String[] COURSE_CHILD_TABLE_PROJECTION = {
@@ -178,7 +179,7 @@ public class DatabaseController {
         public static final int COURSE_CHILD_CHILD_ID = 1;
 
         public static final String[] COURSE_CHILD_JOIN_LIST_TABLE = {
-                 DbContent.ChildCourseTable.TABLE_NAME+"."+ DbContent.ChildCourseTable._ID,
+                DbContent.ChildCourseTable.TABLE_NAME+"."+ DbContent.ChildCourseTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseTable.COURSE_START_DATE_COLUMN,
                 DbContent.CourseTable.COURSE_END_DATE_COLUMN,
@@ -268,47 +269,7 @@ public class DatabaseController {
         public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_END_DATE = 4;
 
 
-        public static final String[] COURSE_INSTRUCTOR_JOIN_TABLE = {
-                DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_ADDRESS_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_MOBILE_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_QUALIFICATION_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_AGE_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_CV_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_GENDER_COLUMN,
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_HOURS_COLUMN,
-                DbContent.CourseTable.COURSE_COST_COLUMN,
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_START_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_END_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_LEVEL_COLUMN,
-                DbContent.CourseTable.COURSE_SALARY_PER_CHILD
-        };
 
-        public static final int COURSE_INSTRUCTOR_JOIN_COURSE_ID = 0;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ID = 1;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_NAME = 4;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_ADDRESS = 5;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_MOBILE = 6;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_QUALIFICATION = 7;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_AGE = 8;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_CV = 9;
-        public static final int COURSE_INSTRUCTOR_JOIN_INSTRUCTOR_GENDER = 10;
-        public static final int COURSE_INSTRUCTOR_COURSE_NAME = 11;
-        public static final int COURSE_INSTRUCTOR_COURSE_HOURS = 12;
-        public static final int COURSE_INSTRUCTOR_COURSE_COST = 13;
-        public static final int COURSE_INSTRUCTOR_COURSE_AVAILABLE_POSITIONS = 14;
-        public static final int COURSE_INSTRUCTOR_COURSE_START_DATE = 15;
-        public static final int COURSE_INSTRUCTOR_COURSE_END_DATE = 16;
-        public static final int COURSE_INSTRUCTOR_COURSE_START_AGE = 17;
-        public static final int COURSE_INSTRUCTOR_COURSE_END_AGE = 18;
-        public static final int COURSE_INSTRUCTOR_COURSE_LEVEL = 19;
-        public static final int COURSE_INSTRUCTOR_COURSE_SALARY_PER_CHILD = 20;
 
     }
 
