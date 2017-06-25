@@ -41,6 +41,7 @@ public class Constants {
     public static final int LOADER_CHILD_COURSE_CONNECTOR =1212;
     public static final int LOADER_INSTRUCTOR_COURSE_CONNECTOR = 2121;
     public static final int LOADER_SALARY_LIST = 33;
+    public static final int LOADER_INSTRUCTOR_SALARY = 44;
 
     //Birth Order
     public static final int FIRST_BIRTH = 0;

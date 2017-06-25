@@ -785,7 +785,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
     private int updateRowWithId(Uri uri, ContentValues contentValues, String tableName, String column){
         long columnId = ContentUris.parseId(uri);
-
+        Log.e("id ", String.valueOf(columnId));
         String selection = column + "=?";
         String[] selectionArgs = {String.valueOf(columnId)};
 
