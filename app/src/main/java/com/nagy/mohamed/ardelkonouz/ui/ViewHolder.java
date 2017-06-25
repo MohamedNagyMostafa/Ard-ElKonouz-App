@@ -632,6 +632,9 @@ public class ViewHolder {
         public final TextView COMPLETED_COURSES_TEXT_VIEW;
         public final TextView UNDER_PROGRESS_COURSES_TEXT_VIEW;
         public final TextView TOTAL_PAID_SALARY_TEXT_VIEW;
+        public final TextView TOTAL_UNPAID_SALARY_TEXT_VIEW;
+        public final TextView NUMBER_OF_PAID_COURSES;
+        public final TextView NUMBER_OF_UNPAID_COURSES;
         public final ListView INSTRUCTOR_COURSES_LIST_VIEW;
 
         public InstructorSalaryScreenViewHolder(View instructorSalaryView){
@@ -639,6 +642,9 @@ public class ViewHolder {
             COMPLETED_COURSES_TEXT_VIEW = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_completed_courses_text_view);
             UNDER_PROGRESS_COURSES_TEXT_VIEW = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_under_progress_text_view);
             TOTAL_PAID_SALARY_TEXT_VIEW = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_total_paid_salary_text_view);
+            TOTAL_UNPAID_SALARY_TEXT_VIEW = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_total_unpaid_salary_text_view);
+            NUMBER_OF_PAID_COURSES = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_number_of_paid_courses_text_view);
+            NUMBER_OF_UNPAID_COURSES = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_number_of_unpaid_courses_text_view);
             INSTRUCTOR_COURSES_LIST_VIEW = (ListView) instructorSalaryView.findViewById(R.id.instructor_salary_instructors_list_view);
         }
 
