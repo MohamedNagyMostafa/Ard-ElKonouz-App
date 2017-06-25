@@ -54,6 +54,10 @@ public class InstructorSalaryActivityFragment extends Fragment
         long completeCourses = 0;
         long underProgressCourses = 0;
         double totalPaidSalary = 0;
+        double totalUnpaidSalary = 0;
+        long paidCoursesNumber = 0;
+        long unpaidCoursesNumber = 0;
+
 
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
@@ -70,24 +74,41 @@ public class InstructorSalaryActivityFragment extends Fragment
         if(cursor != null){
             if(cursor.getCount() > 0){
                 while(cursor.moveToNext()){
+                    // course state
                     if(cursor.getLong(0) - Utility.getCurrentDateAsMills() > 0){
                         underProgressCourses++;
                     }else{
                         completeCourses++;
-                    }
-                    Cursor coursesCursor = getActivity().getContentResolver().query(
-                            DatabaseController.UriDatabase.getCourseChildTableWithCourseIdUri(
-                                    cursor.getLong(3)),
-                            null,
-                            null,
-                            null,
-                            null
 
-                            );
-                    if(coursesCursor != null){
-                        totalPaidSalary += coursesCursor.getCount() * cursor.getDouble(2);
-                        coursesCursor.close();
+                        Cursor coursesCursor = getActivity().getContentResolver().query(
+                                DatabaseController.UriDatabase.getCourseChildTableWithCourseIdUri(
+                                        cursor.getLong(3)),
+                                null,
+                                null,
+                                null,
+                                null
+
+                        );
+
+                        // paid
+                        if(cursor.getInt(1) == Constants.PAID_COURSE) {
+                            paidCoursesNumber++;
+
+                            if (coursesCursor != null) {
+                                totalPaidSalary += coursesCursor.getCount() * cursor.getDouble(2);
+                                coursesCursor.close();
+                            }
+                        }else{
+                            unpaidCoursesNumber++;
+
+                            if (coursesCursor != null) {
+                                totalUnpaidSalary += coursesCursor.getCount() * cursor.getDouble(2);
+                                coursesCursor.close();
+                            }
+                        }
                     }
+
+
                 }
             }
             cursor.close();
@@ -101,6 +122,15 @@ public class InstructorSalaryActivityFragment extends Fragment
         );
         instructorSalaryScreenViewHolder.UNDER_PROGRESS_COURSES_TEXT_VIEW.setText(
                 String.valueOf(underProgressCourses)
+        );
+        instructorSalaryScreenViewHolder.NUMBER_OF_PAID_COURSES.setText(
+                String.valueOf(paidCoursesNumber)
+        );
+        instructorSalaryScreenViewHolder.NUMBER_OF_UNPAID_COURSES.setText(
+                String.valueOf(unpaidCoursesNumber)
+        );
+        instructorSalaryScreenViewHolder.TOTAL_UNPAID_SALARY_TEXT_VIEW.setText(
+                String.valueOf(totalUnpaidSalary)
         );
     }
 
