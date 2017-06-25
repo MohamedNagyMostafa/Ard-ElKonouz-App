@@ -160,13 +160,62 @@ public class InstructorSalaryActivityFragment extends Fragment
                 cursor.getString(4)
         );
 
-        if(cursor.getInt(5) == Constants.PAID_COURSE){
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
-        }else{
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
+        if(cursor.getLong(3) - Utility.getCurrentDateAsMills() > 0){
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText("Under Progress");
+        }else {
+            if (cursor.getInt(5) == Constants.PAID_COURSE) {
+                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
+            } else {
+                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
+            }
 
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if((instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.getText().toString()).equals(
+                                    getString(R.string.paid))){
+                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
+
+                                ContentValues contentValues = new ContentValues();
+                                contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
+                                int l = getActivity().getContentResolver().update(
+                                        DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
+                                                COURSE_ID
+                                        ),
+                                        contentValues,
+                                        null,
+                                        null
+                                );
+                                Log.e("update result1 ", String.valueOf(l));
+
+                            }else{
+                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
+
+                                ContentValues contentValues = new ContentValues();
+                                contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.PAID_COURSE);
+                                int l = getActivity().getContentResolver().update(
+                                        DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
+                                                COURSE_ID
+                                        ),
+                                        contentValues,
+                                        null,
+                                        null
+                                );
+                                Log.e("update result 2", String.valueOf(l));
+
+                            }
+
+                            setSettingsData();
+                            restartLoader();
+                        }
+                    }
+            );
         }
 
         Cursor coursesCursor = getActivity().getContentResolver().query(
@@ -188,49 +237,6 @@ public class InstructorSalaryActivityFragment extends Fragment
                 )
         );
 
-        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if((instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.getText().toString()).equals(
-                                getString(R.string.paid))){
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
-
-                            ContentValues contentValues = new ContentValues();
-                            contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
-                            int l = getActivity().getContentResolver().update(
-                                    DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
-                                            COURSE_ID
-                                    ),
-                                    contentValues,
-                                    null,
-                                    null
-                            );
-                            Log.e("update result1 ", String.valueOf(l));
-
-                        }else{
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
-
-                            ContentValues contentValues = new ContentValues();
-                            contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.PAID_COURSE);
-                            int l = getActivity().getContentResolver().update(
-                                    DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
-                                            COURSE_ID
-                                    ),
-                                    contentValues,
-                                    null,
-                                    null
-                            );
-                            Log.e("update result 2", String.valueOf(l));
-
-                        }
-//                        setSettingsData();
-                        restartLoader();
-                    }
-                }
-        );
     }
 
     @Override
