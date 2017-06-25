@@ -115,7 +115,7 @@ public class InstructorSalaryActivityFragment extends Fragment
         double totalSalary = 0;
         final ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder instructorCoursesViewHolder =
                 new ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder(view);
-
+        final long COURSE_ID = cursor.getLong(6);
         instructorCoursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
                 new StringBuilder("").append(getString(R.string.from)).append(" ")
                 .append(Utility.getTimeFormat(
@@ -162,7 +162,8 @@ public class InstructorSalaryActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(cursor.getInt(5) == Constants.PAID_COURSE){
+                        if((instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.getText().toString()).equals(
+                                getString(R.string.paid))){
                             instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
                             instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
 
@@ -170,13 +171,13 @@ public class InstructorSalaryActivityFragment extends Fragment
                             contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
                             int l = getActivity().getContentResolver().update(
                                     DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
-                                            cursor.getLong(6)
+                                            COURSE_ID
                                     ),
                                     contentValues,
                                     null,
                                     null
                             );
-                            Log.e("update result ", String.valueOf(l));
+                            Log.e("update result1 ", String.valueOf(l));
 
                         }else{
                             instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
@@ -186,18 +187,16 @@ public class InstructorSalaryActivityFragment extends Fragment
                             contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.PAID_COURSE);
                             int l = getActivity().getContentResolver().update(
                                     DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
-                                            cursor.getLong(6)
+                                            COURSE_ID
                                     ),
                                     contentValues,
                                     null,
                                     null
                             );
-                            Log.e("update result ", String.valueOf(l));
-
-
+                            Log.e("update result 2", String.valueOf(l));
 
                         }
-                        setSettingsData();
+//                        setSettingsData();
                         restartLoader();
                     }
                 }
