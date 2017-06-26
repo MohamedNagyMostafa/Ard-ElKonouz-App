@@ -8,6 +8,7 @@
         android:id="@+id/employee_image"
         android:layout_width="82dp"
         android:layout_height="82dp"
+        android:tint="@color/colorPrimaryDark"
         android:src="@drawable/user_profile_icon"/>
 
         <LinearLayout
@@ -24,29 +25,44 @@
                 android:layout_height="wrap_content"
                 android:text="@string/empty_info"
                 android:fontFamily="serif"
-                android:textColor="#039be5"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:layout_margin="4dp"/>
 
-
-
-            <TextView
-                android:id="@+id/employee_List_mobile_text_view"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:layout_margin="4dp"
-                android:text="@string/empty_info"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobile"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:fontFamily="serif"
+                    android:layout_marginEnd="4dp"/>
+
+                <TextView
+                    android:id="@+id/employee_List_mobile_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_margin="4dp"
+                    android:text="@string/empty_info"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/employee_list_delete_employee_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="16dp"
             android:layout_gravity="center_vertical"
-            android:tint="@android:color/holo_red_dark"
+            android:tint="@color/colorAccent"
             android:src="@drawable/ic_close_black_36dp"/>
 
 

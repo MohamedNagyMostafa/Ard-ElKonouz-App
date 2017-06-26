@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@drawable/feature_background"
+    android:background="@android:color/white"
     tools:context=".ui.ListScreens.InstructorActivity">
 
 

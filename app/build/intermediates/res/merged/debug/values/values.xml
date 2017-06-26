@@ -363,7 +363,7 @@
     <string name="course_state_paid">Paid</string>
     <string name="course_state_under_progress">Under Progress</string>
     <string name="course_state_unpaid">Unpaid</string>
-    <string name="courses">Coruses</string>
+    <string name="courses">Courses</string>
     <string name="courses_children">Courses &amp; Children</string>
     <string name="courses_instructors">Courses &amp; Instructors</string>
     <string name="cv">CV</string>
@@ -406,6 +406,7 @@
     <string name="leading_characteristic">Leading</string>
     <string name="leaves_the_problem_totally">Leaves The Problem Totally</string>
     <string name="middle_birth">Middle</string>
+    <string name="mobile">Mobile</string>
     <string name="more_detail">More Details</string>
     <string name="mother_job">Mother Job</string>
     <string name="mother_mobile">Mother Mobile</string>
