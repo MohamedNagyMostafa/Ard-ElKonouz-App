@@ -1,257 +1,219 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@android:color/transparent"
+    android:background="@android:color/white"
     tools:context=".ui.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/first_layout"
+            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/first_layout"
+                android:id="@+id/child_list_layout_view"
                 android:layout_margin="8dp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/child_list_layout_view"
-                    android:layout_margin="8dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_marginTop="8dp"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:tint="@android:color/white"
-                        android:src="@drawable/ic_face_black_48dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/child_list"
-                        android:textColor="@android:color/black"
-                        android:alpha="0.8"
-                        android:fontFamily="sans-serif"
-                        android:textSize="16sp"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_margin="8dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/employee_list_layout_view"
-                    android:layout_margin="8dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_marginTop="8dp"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:tint="@android:color/white"
-                        android:src="@drawable/ic_perm_identity_black_48dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/employee_list"
-                        android:textColor="@android:color/black"
-                        android:alpha="0.8"
-                        android:fontFamily="sans-serif"
-                        android:textSize="16sp"/>
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:id="@+id/child_update_online_layout_view"
-                android:layout_margin="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_marginTop="8dp"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:tint="@android:color/white"
-                    android:src="@drawable/ic_update_black_48dp"/>
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:tint="@color/colorPrimary"
+                    android:src="@drawable/ic_face_black_48dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/child_list"
+                    android:textColor="@android:color/black"
+                    android:alpha="0.8"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif"
+                    android:textSize="16sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorAccent"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/second_layout"
-                android:layout_alignBottom="@id/first_layout"
                 android:layout_margin="8dp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/instructor_list_layout_view"
-                    android:layout_margin="8dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/employee_list_layout_view"
+                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:tint="@color/colorPrimary"
+                    android:src="@drawable/ic_perm_identity_black_48dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:text="@string/employee_list"
+                    android:textColor="@android:color/black"
+                    android:alpha="0.8"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif"
+                    android:textSize="16sp"/>
 
-                    <ImageView
-                        android:layout_marginTop="8dp"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:tint="@android:color/white"
-                        android:src="@drawable/ic_record_voice_over_black_48dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/instructor_list"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="sans-serif"
-                        android:alpha="0.8"
-                        android:textSize="16sp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_margin="8dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/course_list_layout_view"
-                    android:layout_margin="8dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_marginTop="8dp"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:tint="@android:color/white"
-                        android:src="@drawable/ic_event_note_black_48dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/course_list"
-                        android:textSize="16sp"
-                        android:textColor="@android:color/black"
-                        android:alpha="0.8"
-                        android:fontFamily="sans-serif"/>
-
-
-                </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorAccent"/>
 
             </LinearLayout>
 
 
         </LinearLayout>
-
-    </ScrollView>
-
-
-    <LinearLayout
-        android:id="@+id/bottom_layout"
-        android:gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
-
-
-        <LinearLayout
-            android:id="@+id/finance_layout_view"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="@android:color/white"
-                android:src="@drawable/ic_equalizer_black_48dp"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"/>
 
 
 
         <LinearLayout
             android:id="@+id/salary_layout_view"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/circle_background"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="@android:color/white"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:tint="@color/colorPrimary"
                 android:src="@drawable/ic_attach_money_black_48dp"/>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/second_layout"
+            android:layout_alignBottom="@id/first_layout"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/instructor_list_layout_view"
+                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:tint="@color/colorPrimary"
+                    android:src="@drawable/ic_record_voice_over_black_48dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/instructor_list"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="sans-serif"
+                    android:alpha="0.8"
+                    android:textSize="16sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorAccent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/course_list_layout_view"
+                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:tint="@color/colorPrimary"
+                    android:src="@drawable/ic_event_note_black_48dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/course_list"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:alpha="0.8"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorAccent"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
