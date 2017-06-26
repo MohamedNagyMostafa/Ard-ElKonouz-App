@@ -104,6 +104,8 @@
     <string name="paid">Paid</string>
     <string name="unpaid">Unpaid</string>
 
+    <string name="course_duration">Course Duration</string>
+
     <string name="incomplete">Incomplete</string>
     <string name="complete">complete</string>
     <string name="to">To</string>

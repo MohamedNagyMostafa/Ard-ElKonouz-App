@@ -356,6 +356,7 @@
     <string name="complete">complete</string>
     <string name="course">Course</string>
     <string name="course_date">Course Date</string>
+    <string name="course_duration">Course Duration</string>
     <string name="course_info">Course Info</string>
     <string name="course_list">Courses</string>
     <string name="course_state">Course State</string>
