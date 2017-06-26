@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
     tools:context=".ui.ListScreens.ChildActivityFragment"
-    android:background="@drawable/feature_background"
     tools:showIn="@layout/activity_child">
 
     <ListView
         android:id="@+id/child_list_view"
         android:layout_width="match_parent"
+        android:background="@android:color/white"
         android:layout_height="wrap_content"
         android:divider="@color/colorPrimary" />
 
@@ -23,6 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         app:backgroundTint="@color/colorAccent"
+
         android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

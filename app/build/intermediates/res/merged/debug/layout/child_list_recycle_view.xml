@@ -87,7 +87,8 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center_vertical"
-        android:tint="@android:color/holo_red_dark"
+        android:tint="@color/colorPrimary"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_close_black_36dp"/>
 
 
