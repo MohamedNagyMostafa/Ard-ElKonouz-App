@@ -124,5 +124,6 @@
     <string name="course_state_unpaid">Unpaid</string>
     <string name="course_state_under_progress">Under Progress</string>
     <string name="age">Age</string>
-    <string name="courses">Coruses</string>
+    <string name="courses">Courses</string>
+    <string name="mobile">Mobile</string>
 </resources>
