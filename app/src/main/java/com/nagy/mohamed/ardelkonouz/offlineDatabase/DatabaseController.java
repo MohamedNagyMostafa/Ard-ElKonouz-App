@@ -341,6 +341,9 @@ public class DatabaseController {
                     .appendPath(String.valueOf(id)).build();
         }
 
+        public static Uri getChildTableWithSearchUri(String searchChars){
+            return CHILD_TABLE_URI.buildUpon().appendPath(searchChars).build();
+        }
     }
 
 }

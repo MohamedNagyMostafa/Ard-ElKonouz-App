@@ -152,7 +152,7 @@ public class ChildActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.CHILD_TABLE_URI,
+                DatabaseController.UriDatabase.getChildTableWithSearchUri("mohamed"),
                 DatabaseController.ProjectionDatabase.CHILD_LIST_PROJECTION,
                 null,
                 null,
