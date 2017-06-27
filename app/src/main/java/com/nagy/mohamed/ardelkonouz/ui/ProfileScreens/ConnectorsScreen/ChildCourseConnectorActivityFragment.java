@@ -49,7 +49,8 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
         childCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
-
+        childCourseConnectorScreenViewHolder.COURSES_LIST_VIEW
+                .setEmptyView(childCourseConnectorScreenViewHolder.EMPTY_LIST_LAYOUT);
         // get child age.
         getChildAge();
 

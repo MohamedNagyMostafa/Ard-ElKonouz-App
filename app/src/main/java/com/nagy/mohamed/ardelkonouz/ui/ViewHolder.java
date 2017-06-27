@@ -568,12 +568,14 @@ public class ViewHolder {
         public final Button SUBMIT_BUTTON;
         public final Button REST_BUTTON;
         public final ListView COURSES_LIST_VIEW;
+        public final LinearLayout EMPTY_LIST_LAYOUT;
 
         public ChildCourseConnectorScreenViewHolder(View childCourseView){
 
             SUBMIT_BUTTON = (Button) childCourseView.findViewById(R.id.child_course_submit_button);
             REST_BUTTON = (Button) childCourseView.findViewById(R.id.child_course_rest_button);
             COURSES_LIST_VIEW = (ListView) childCourseView.findViewById(R.id.child_course_courses_list_view);
+            EMPTY_LIST_LAYOUT = (LinearLayout) childCourseView.findViewById(R.id.child_pf_connector_empty_view_layout);
         }
 
         public static class CoursesViewHolder{
