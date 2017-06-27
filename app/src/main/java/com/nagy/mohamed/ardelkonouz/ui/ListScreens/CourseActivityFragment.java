@@ -29,6 +29,7 @@ public class CourseActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor>{
 
     private DatabaseCursorAdapter databaseCursorAdapter;
+    private String searchChars = "";
 
     private View.OnClickListener addNewCourseListener =
             new View.OnClickListener() {
@@ -151,7 +152,7 @@ public class CourseActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.COURSE_TABLE_URI,
+                DatabaseController.UriDatabase.getCourseTableWithSearchUri(searchChars),
                 DatabaseController.ProjectionDatabase.COURSE_LIST_PROJECTION,
                 null,
                 null,

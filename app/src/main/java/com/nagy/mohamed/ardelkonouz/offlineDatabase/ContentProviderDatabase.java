@@ -40,6 +40,9 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 2;
     private static final int COURSE_WITH_END_DATE_TABLE = 4;
     private static final int CHILD_WITH_SEARCH_TABLE = 5;
+    private static final int COURSE_WITH_SEARCH_TABLE = 6;
+    private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 7;
+    private static final int EMPLOYEE_WITH_SEARCH_TABLE = 8;
 
 
     private static final String INNER_JOIN = "INNER JOIN";
@@ -199,6 +202,15 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case CHILD_WITH_SEARCH_TABLE:
                 return getChildWithSearch(uri, projection, sortOrder);
+
+            case COURSE_WITH_SEARCH_TABLE:
+                return getCourseWithSearch(uri, projection, sortOrder);
+
+            case INSTRUCTOR_WITH_SEARCH_TABLE:
+                return getInstructorWithSearch(uri, projection, sortOrder);
+
+            case EMPLOYEE_WITH_SEARCH_TABLE:
+                return getEmployeeWithSearch(uri, projection, sortOrder);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -616,9 +628,15 @@ public class ContentProviderDatabase extends ContentProvider {
         final String COURSE_WITH_END_DATE_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
                 DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/#";
         final String CHILD_WITH_SEARCH_PATH = DbContent.ChildTable.TABLE_NAME + "/*";
+        final String INSTRUCTOR_WITH_SEARCH_PATH = DbContent.InstructorTable.TABLE_NAME + "/*";
+        final String COURSE_WITH_SEARCH_PATH = DbContent.CourseTable.TABLE_NAME + "/*";
+        final String EMPLOYEE_WITH_SEARCH_PATH = DbContent.EmployeeTable.TABLE_NAME + "/*";
 
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_PATH, CHILD_WITH_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_SEARCH_PATH, INSTRUCTOR_WITH_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_SEARCH_PATH, COURSE_WITH_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_SEARCH_PATH, EMPLOYEE_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_PATH, CHILD_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_PATH, COURSE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_PATH, INSTRUCTOR_TABLE);
@@ -884,6 +902,63 @@ public class ContentProviderDatabase extends ContentProvider {
 
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.ChildTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortType
+        );
+    }
+
+    private Cursor getCourseWithSearch(Uri uri, String[] projection, String sortType){
+        String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
+                + "%";
+        Log.e("search is", searchChars);
+
+        String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
+        String[] selectionArgs = {searchChars};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortType
+        );
+    }
+
+    private Cursor getInstructorWithSearch(Uri uri, String[] projection, String sortType){
+        String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
+                + "%";
+        Log.e("search is", searchChars);
+
+        String selection = DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN + " LIKE ?";
+        String[] selectionArgs = {searchChars};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.InstructorTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortType
+        );
+    }
+
+    private Cursor getEmployeeWithSearch(Uri uri, String[] projection, String sortType){
+        String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
+                + "%";
+        Log.e("search is", searchChars);
+
+        String selection = DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + " LIKE ?";
+        String[] selectionArgs = {searchChars};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.EmployeeTable.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,

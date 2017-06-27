@@ -27,6 +27,7 @@ public class EmployeeActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor>{
 
     private DatabaseCursorAdapter databaseCursorAdapter;
+    private String searchChars = "";
 
     private View.OnClickListener addNewEmployeeListener =
             new View.OnClickListener() {
@@ -109,7 +110,7 @@ public class EmployeeActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.EMPLOYEE_TABLE_URI,
+                DatabaseController.UriDatabase.getEmployeeTableWithSearchUri(searchChars),
                 DatabaseController.ProjectionDatabase.EMPLOYEE_LIST_PROJECTION,
                 null,
                 null,

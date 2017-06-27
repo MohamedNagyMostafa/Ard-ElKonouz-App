@@ -28,6 +28,7 @@ public class InstructorActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor>{
 
     private DatabaseCursorAdapter databaseCursorAdapter;
+    private String searchChars = "";
 
     private View.OnClickListener addNewInstructor =
             new View.OnClickListener() {
@@ -137,7 +138,7 @@ public class InstructorActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.INSTRUCTOR_TABLE_URI,
+                DatabaseController.UriDatabase.getInstructorTableWithSearchUri(searchChars),
                 DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_PROJECTION,
                 null,
                 null,

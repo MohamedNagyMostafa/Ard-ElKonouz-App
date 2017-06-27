@@ -28,6 +28,7 @@ public class ChildActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor> {
 
     private DatabaseCursorAdapter databaseCursorAdapter;
+    private String searchChars = "";
 
     private View.OnClickListener addNewChildListener =
             new View.OnClickListener() {
@@ -152,7 +153,7 @@ public class ChildActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getChildTableWithSearchUri("mohamed"),
+                DatabaseController.UriDatabase.getChildTableWithSearchUri(searchChars),
                 DatabaseController.ProjectionDatabase.CHILD_LIST_PROJECTION,
                 null,
                 null,

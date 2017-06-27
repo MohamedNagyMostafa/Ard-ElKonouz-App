@@ -344,6 +344,18 @@ public class DatabaseController {
         public static Uri getChildTableWithSearchUri(String searchChars){
             return CHILD_TABLE_URI.buildUpon().appendPath(searchChars).build();
         }
+
+        public static Uri getCourseTableWithSearchUri(String searchChars){
+            return COURSE_TABLE_URI.buildUpon().appendPath(searchChars).build();
+        }
+
+        public static Uri getEmployeeTableWithSearchUri(String searchChars){
+            return EMPLOYEE_TABLE_URI.buildUpon().appendPath(searchChars).build();
+        }
+
+        public static Uri getInstructorTableWithSearchUri(String searchChars){
+            return INSTRUCTOR_TABLE_URI.buildUpon().appendPath(searchChars).build();
+        }
     }
 
 }
