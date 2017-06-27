@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
     tools:context=".ui.ProfileScreens.CourseProfileActivityFragment"
     tools:showIn="@layout/activity_course_profile">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,6 +27,7 @@
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:layout_marginTop="8dp"
+                    android:tint="@color/colorPrimaryDark"
                     android:src="@drawable/user_profile_icon"/>
 
                 <LinearLayout
@@ -38,7 +41,8 @@
                         android:text="@string/course_info"
                         android:textSize="16sp"
                         android:fontFamily="serif"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -56,6 +60,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="Name"/>
 
                             <TextView
@@ -71,6 +76,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
                                 android:layout_marginTop="4dp"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="Hours"/>
 
                             <TextView
@@ -94,6 +100,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="Cost"/>
 
                             <TextView
@@ -109,6 +116,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
                                 android:layout_marginTop="4dp"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="Level"/>
 
                             <TextView
@@ -140,14 +148,15 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="serif"
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:background="#039be5"/>
+                    android:background="@color/colorAccent"/>
 
             </LinearLayout>
 
@@ -170,6 +179,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/start_date"/>
 
                     <TextView
@@ -192,6 +202,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/end_date"/>
 
                     <TextView
@@ -218,6 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/salary_per_child"/>
 
                 <TextView
@@ -245,14 +257,15 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="serif"
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:background="#039be5"/>
+                    android:background="@color/colorAccent"/>
 
             </LinearLayout>
 
@@ -274,6 +287,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/course_state"/>
 
                     <TextView
@@ -289,6 +303,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/age_range"/>
 
                     <TextView
@@ -312,6 +327,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="Instructor Name"/>
 
                     <TextView
@@ -338,8 +354,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/white"
-        app:backgroundTint="#81d4fa"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_mode_edit_black_36dp" />
 </RelativeLayout>
