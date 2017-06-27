@@ -21,6 +21,7 @@
                 android:contentDescription="@string/image_pf"
                 android:layout_width="92dp"
                 android:layout_height="92dp"
+                android:tint="@color/colorPrimaryDark"
                 android:src="@drawable/user_profile_icon"/>
 
             <LinearLayout
@@ -34,7 +35,8 @@
                     android:text="@string/personal_info"
                     android:textSize="16sp"
                     android:fontFamily="serif"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,9 +57,10 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/child_name"
                             android:textSize="16sp"
+                            android:layout_marginTop="8dp"
                             android:inputType="textPersonName"
-                            android:textColorHint="@color/colorPrimary"
-                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark"
+                            android:backgroundTint="@color/colorAccent"
                             android:textColor="@android:color/black"
                             android:gravity="center_vertical"/>
 
@@ -66,11 +69,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
+                            android:layout_marginTop="8dp"
                             android:hint="@string/child_age"
                             android:maxLength="2"
                             android:inputType="number"
-                            android:textColorHint="@color/colorPrimary"
-                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark"
+                            android:backgroundTint="@color/colorAccent"
                             android:textColor="@android:color/black"
                             android:gravity="center_vertical" />
 
@@ -87,7 +91,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="serif"
+                            android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
+                            android:textColor="@color/colorPrimaryDark"
                             android:text="@string/child_birth"/>
 
                         <LinearLayout
@@ -102,6 +108,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:visibility="invisible"
+                                android:layout_gravity="center_vertical"
                                 android:src="@drawable/ic_done_black_18dp"
                                 android:tint="@android:color/holo_green_dark"/>
 
@@ -110,9 +117,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:gravity="center_vertical"
+                                android:layout_gravity="center_vertical"
                                 android:text="@string/first_birth"
-                                android:textColor="@color/colorPrimaryDark"/>
+                                android:textColor="@color/colorPrimary"/>
 
                         </LinearLayout>
 
@@ -129,14 +136,16 @@
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_done_black_18dp"
                                 android:visibility="invisible"
+                                android:layout_gravity="center_vertical"
                                 android:tint="@android:color/holo_green_dark"/>
 
                             <TextView
                                 android:id="@+id/child_input_middle_order_text_view"
                                 android:layout_width="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:gravity="center_vertical"
                                 android:text="@string/middle_birth" />
 
@@ -156,15 +165,16 @@
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_done_black_18dp"
                                 android:visibility="invisible"
+                                android:layout_gravity="center_vertical"
                                 android:tint="@android:color/holo_green_dark"/>
 
                             <TextView
                                 android:id="@+id/child_input_last_order_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
+                                android:layout_gravity="center_vertical"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:text="@string/last_birth"/>
 
                         </LinearLayout>
@@ -182,15 +192,16 @@
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_done_black_18dp"
                                 android:visibility="invisible"
+                                android:layout_gravity="center_vertical"
                                 android:tint="@android:color/holo_green_dark"/>
 
                             <TextView
                                 android:id="@+id/child_input_alone_order_text_view"
                                 android:layout_width="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:text="@string/alone_birth"/>
 
                         </LinearLayout>
@@ -205,11 +216,14 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/gender"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -218,6 +232,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_done_black_18dp"
                         android:layout_marginStart="4dp"
+                        android:layout_gravity="center_vertical"
                         android:visibility="invisible"
                         android:tint="@android:color/holo_green_dark"/>
 
@@ -225,10 +240,11 @@
                         android:id="@+id/child_input_male_gender_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:gravity="center_vertical"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
+                        android:layout_gravity="center_vertical"
                         android:text="@string/gender_male"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorPrimary"
                         android:drawablePadding="4dp" />
 
                     <ImageView
@@ -237,6 +253,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_done_black_18dp"
                         android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"
                         android:visibility="invisible"
                         android:tint="@android:color/holo_green_dark"/>
 
@@ -244,8 +261,10 @@
                         android:id="@+id/child_input_female_gender_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimary"
                         android:gravity="center_vertical"
                         android:text="@string/gender_female"/>
 
@@ -269,15 +288,16 @@
                 android:text="@string/family_info"
                 android:layout_marginStart="16dp"
                 android:fontFamily="serif"
+                android:textStyle="bold"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimary" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="#039be5"/>
+                android:background="@color/colorAccent"/>
 
         </LinearLayout>
 
@@ -300,6 +320,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/mother_name"/>
 
                 <EditText
@@ -307,8 +329,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
+                    android:layout_marginTop="4dp"
                     android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:backgroundTint="@color/colorAccent"
                     android:layout_marginStart="4dp"
                     android:textColor="@android:color/black"/>
 
@@ -316,7 +339,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/mother_mobile"/>
 
                 <EditText
@@ -324,9 +348,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
                     android:maxLength="13"
-                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:backgroundTint="@color/colorAccent"
                     android:layout_marginStart="4dp"
                     android:textColor="@android:color/black"/>
 
@@ -334,8 +359,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/mother_job"/>
 
                 <EditText
@@ -343,15 +369,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
-                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:backgroundTint="@color/colorAccent"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:textColor="@android:color/black"
                     android:inputType="text" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:fontFamily="serif"
                     android:text="@string/mother_qualification"/>
 
@@ -360,8 +388,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
+                    android:layout_marginTop="4dp"
                     android:inputType="text"
-                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:backgroundTint="@color/colorAccent"
                     android:layout_marginStart="4dp"
                     android:textColor="@android:color/black"/>
 
@@ -378,6 +407,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/father_name"/>
 
                 <EditText
@@ -387,14 +418,16 @@
                     android:textColor="@android:color/black"
                     android:inputType="textPersonName"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:backgroundTint="@color/colorAccent" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/father_mobile"/>
 
                 <EditText
@@ -404,15 +437,17 @@
                     android:textColor="@android:color/black"
                     android:inputType="phone"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
                     android:maxLength="13"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:backgroundTint="@color/colorAccent"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/whats_app"/>
 
                 <EditText
@@ -421,16 +456,17 @@
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:inputType="phone"
                     android:maxLength="13"
                     android:layout_marginEnd="4dp"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
-
+                    android:backgroundTint="@color/colorAccent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/father_job"/>
 
                 <EditText
@@ -439,9 +475,11 @@
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
                     android:inputType="text"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:backgroundTint="@color/colorAccent"
+                    />
 
             </LinearLayout>
 
@@ -460,15 +498,16 @@
                 android:text="@string/education_info"
                 android:layout_marginStart="16dp"
                 android:fontFamily="serif"
+                android:textStyle="bold"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimary" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="#039be5"/>
+                android:background="@color/colorAccent"/>
 
         </LinearLayout>
 
@@ -490,6 +529,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/education_type"/>
 
                 <LinearLayout
@@ -503,6 +544,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"
                         android:visibility="invisible"
                         android:tint="@android:color/holo_green_dark"
                         android:src="@drawable/ic_done_black_18dp"/>
@@ -512,8 +554,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:text="@string/arabic_governmental"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@string/arabic_governmental"/>
 
                 </LinearLayout>
 
@@ -529,6 +572,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:visibility="invisible"
+                        android:layout_gravity="center_vertical"
                         android:tint="@android:color/holo_green_dark"
                         android:src="@drawable/ic_done_black_18dp"/>
 
@@ -537,7 +581,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimary"
                         android:text="@string/english_governmental" />
 
 
@@ -555,6 +600,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:visibility="invisible"
+                        android:layout_gravity="center_vertical"
                         android:tint="@android:color/holo_green_dark"
                         android:src="@drawable/ic_done_black_18dp"/>
 
@@ -563,7 +609,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimary"
                         android:text="@string/arabic_private" />
 
 
@@ -580,6 +627,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"
                         android:visibility="invisible"
                         android:tint="@android:color/holo_green_dark"
                         android:src="@drawable/ic_done_black_18dp"/>
@@ -589,7 +637,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimary"
                         android:text="@string/english_private" />
 
 
@@ -599,7 +648,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/Year"/>
 
                 <LinearLayout
@@ -618,6 +668,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_marginStart="4dp"
+                            android:gravity="center_vertical"
                             android:layout_marginTop="8dp">
 
                             <ImageView
@@ -633,7 +684,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:text="@string/none" />
 
                         </LinearLayout>
@@ -642,6 +693,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:gravity="center_vertical"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp">
 
@@ -660,7 +712,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:text="@string/first_year"
-                                android:textColor="@color/colorPrimaryDark" />
+                                android:textColor="@color/colorPrimary"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -668,6 +720,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_marginStart="4dp"
+                            android:gravity="center_vertical"
                             android:layout_marginTop="4dp">
 
                             <ImageView
@@ -683,7 +736,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:text="@string/second_year"/>
 
                         </LinearLayout>
@@ -692,6 +745,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:gravity="center_vertical"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp">
 
@@ -708,7 +762,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:text="@string/third_year"/>
 
                         </LinearLayout>
@@ -725,6 +779,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:gravity="center_vertical"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="8dp">
 
@@ -741,7 +796,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:text="@string/forth_year" />
 
                         </LinearLayout>
@@ -750,6 +805,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:gravity="center_vertical"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp">
 
@@ -768,13 +824,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:text="@string/fifth_year"
-                                android:textColor="@color/colorPrimaryDark" />
+                                android:textColor="@color/colorPrimary" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:gravity="center_vertical"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp">
 
@@ -791,7 +848,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/colorPrimary"
                                 android:text="@string/sixth_year"/>
 
                         </LinearLayout>
@@ -812,6 +869,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
                     android:text="@string/education_stage"/>
 
                 <LinearLayout
@@ -833,7 +892,7 @@
                         android:id="@+id/child_input_none_academic_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorPrimary"
                         android:layout_marginStart="4dp"
                         android:text="@string/none"/>
 
@@ -860,7 +919,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="@string/primary_education"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/colorPrimary" />
 
                 </LinearLayout>
 
@@ -885,8 +944,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="@string/preparatory_education" />
+                        android:text="@string/preparatory_education"
+                        android:textColor="@color/colorPrimary" />
 
                 </LinearLayout>
 
@@ -910,7 +969,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorPrimary"
                         android:text="@string/secondary_education" />
 
                 </LinearLayout>
@@ -933,14 +992,15 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="serif"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="#039be5"/>
+                android:background="@color/colorAccent"/>
 
         </LinearLayout>
 
@@ -956,12 +1016,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/iq_1q"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp">
 
@@ -977,7 +1040,7 @@
                     android:id="@+id/child_input_good_speaker_text_view"                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/good_speaker_characteristic" />
 
             </LinearLayout>
@@ -986,6 +1049,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp">
 
@@ -1002,13 +1066,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="@string/social_characteristic"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp">
 
@@ -1023,7 +1088,7 @@
                     android:id="@+id/child_input_leading_text_view"                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/leading_characteristic"/>
 
             </LinearLayout>
@@ -1033,6 +1098,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
 
                 <ImageView
@@ -1046,7 +1112,7 @@
                     android:id="@+id/child_input_neural_text_view"                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/neural_characteristic"/>
 
             </LinearLayout>
@@ -1056,6 +1122,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
 
                 <ImageView
@@ -1071,7 +1138,7 @@
                     android:id="@+id/child_input_collaborator_text_view"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/collaborator_characteristic"/>
 
             </LinearLayout>
@@ -1079,8 +1146,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="serif"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/iq_2q"/>
 
 
@@ -1089,6 +1157,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="8dp">
 
                 <ImageView
@@ -1103,7 +1172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/quietly_asks_for_help" />
 
             </LinearLayout>
@@ -1113,6 +1182,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
 
                 <ImageView
@@ -1130,7 +1200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="@string/worries_and_get_angry"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -1138,6 +1208,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
 
                 <ImageView
@@ -1153,7 +1224,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/leaves_the_problem_totally"/>
 
             </LinearLayout>
@@ -1163,6 +1234,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
 
                 <ImageView
@@ -1178,7 +1250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/tries_to_solve_the_problem"/>
 
             </LinearLayout>
@@ -1186,8 +1258,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="serif"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/id_3q"/>
 
             <LinearLayout
@@ -1195,6 +1268,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="8dp">
 
                 <ImageView
@@ -1209,7 +1283,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/drawing_coloring" />
 
             </LinearLayout>
@@ -1219,6 +1293,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
 
                 <ImageView
@@ -1236,7 +1311,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="@string/electronic_games"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -1244,6 +1319,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
 
                 <ImageView
@@ -1259,7 +1335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/watching_tv"/>
 
             </LinearLayout>
@@ -1268,6 +1344,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp">
 
@@ -1284,7 +1361,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@string/handwork"/>
 
             </LinearLayout>
@@ -1297,7 +1374,7 @@
             android:layout_height="52dp"
             android:text="Submit"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_margin="16dp"/>
         
