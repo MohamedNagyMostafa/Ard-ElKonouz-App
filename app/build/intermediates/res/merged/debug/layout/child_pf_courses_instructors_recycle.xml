@@ -3,8 +3,9 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="16dp"
+    android:translationZ="3dp"
     android:backgroundTint="@android:color/white"
-    android:background="@android:drawable/dialog_holo_light_frame">
+    android:background="@drawable/recycle_background">
 
     <TextView
         android:id="@+id/child_pf_course_name_text_view"
