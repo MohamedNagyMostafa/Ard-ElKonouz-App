@@ -142,7 +142,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                                         DatabaseController.ProjectionDatabase.COURSE_START_DATE
                                 )
                         )
-                ).append(" ").append(getContext().getString(R.string.to)).append(" ").append(
+                ).append("\n").append(getContext().getString(R.string.to)).append(" ").append(
                         Utility.getTimeFormat(
                                 cursor.getLong(
                                         DatabaseController.ProjectionDatabase.COURSE_END_DATE

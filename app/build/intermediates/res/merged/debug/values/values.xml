@@ -386,7 +386,7 @@
     <string name="first_birth">First</string>
     <string name="first_year">First</string>
     <string name="forth_year">Forth</string>
-    <string name="from">From</string>
+    <string name="from">&lt;b>From : &lt;/b></string>
     <string name="gender">Gender</string>
     <string name="gender_female">Female</string>
     <string name="gender_male">Male</string>
@@ -454,7 +454,7 @@
     <string name="title_activity_kid">KidActivity</string>
     <string name="title_activity_kid_profile">KidProfileActivity</string>
     <string name="title_activity_salary">SalaryActivity</string>
-    <string name="to">To</string>
+    <string name="to"><b>To : </b></string>
     <string name="total_salary">Original Salary</string>
     <string name="tries_to_solve_the_problem">Tries To Solve The Problem</string>
     <string name="unpaid">Unpaid</string>
