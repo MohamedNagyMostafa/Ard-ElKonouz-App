@@ -2853,13 +2853,13 @@ containing a value of this type.
         public static final int course_input_complete_image_view=0x7f0d010c;
         public static final int course_input_complete_text_view=0x7f0d010d;
         public static final int course_input_cost_edit_view=0x7f0d0107;
-        public static final int course_input_end_date_edit_view=0x7f0d010a;
+        public static final int course_input_end_date_edit_view=0x7f0d010b;
         public static final int course_input_hours_edit_view=0x7f0d0106;
         public static final int course_input_incomplete_image_view=0x7f0d010e;
         public static final int course_input_incomplete_text_view=0x7f0d010f;
         public static final int course_input_level_edit_view=0x7f0d0108;
         public static final int course_input_name_edit_view=0x7f0d0105;
-        public static final int course_input_salary_per_child_edit_view=0x7f0d010b;
+        public static final int course_input_salary_per_child_edit_view=0x7f0d010a;
         public static final int course_input_start_date_edit_view=0x7f0d0109;
         public static final int course_input_submit_application_button=0x7f0d0112;
         public static final int course_list_delete_course_image_view=0x7f0d0087;

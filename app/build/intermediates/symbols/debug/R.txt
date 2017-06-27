@@ -875,13 +875,13 @@ int id course_input_age_range_to_edit_view 0x7f0d0111
 int id course_input_complete_image_view 0x7f0d010c
 int id course_input_complete_text_view 0x7f0d010d
 int id course_input_cost_edit_view 0x7f0d0107
-int id course_input_end_date_edit_view 0x7f0d010a
+int id course_input_end_date_edit_view 0x7f0d010b
 int id course_input_hours_edit_view 0x7f0d0106
 int id course_input_incomplete_image_view 0x7f0d010e
 int id course_input_incomplete_text_view 0x7f0d010f
 int id course_input_level_edit_view 0x7f0d0108
 int id course_input_name_edit_view 0x7f0d0105
-int id course_input_salary_per_child_edit_view 0x7f0d010b
+int id course_input_salary_per_child_edit_view 0x7f0d010a
 int id course_input_start_date_edit_view 0x7f0d0109
 int id course_input_submit_application_button 0x7f0d0112
 int id course_list_delete_course_image_view 0x7f0d0087
