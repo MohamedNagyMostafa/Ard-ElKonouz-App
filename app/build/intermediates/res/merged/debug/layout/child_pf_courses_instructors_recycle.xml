@@ -15,6 +15,7 @@
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/colorPrimary"
+        android:fontFamily="serif"
         android:text="@string/empty_info"/>
 
     <TextView
@@ -23,7 +24,7 @@
         android:fontFamily="serif"
         android:layout_marginStart="8dp"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:text="@string/instructor"/>
 
     <TextView
@@ -31,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         android:textColor="@android:color/black"
         android:text="@string/empty_info"/>
 
@@ -47,6 +49,7 @@
         android:id="@+id/child_pf_course_start_date_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:textColor="@android:color/black"
         android:layout_marginStart="12dp"
         android:text="@string/empty_info"/>
@@ -54,7 +57,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/colorPrimaryDark"
         android:fontFamily="serif"
@@ -66,6 +69,7 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         android:text="@string/empty_info"/>
 
