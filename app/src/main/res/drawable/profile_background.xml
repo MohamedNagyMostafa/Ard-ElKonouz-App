@@ -3,6 +3,7 @@
     <item>
         <shape android:shape="rectangle" android:thickness="4dp">
             <stroke android:color="@color/colorPrimary" android:width="3dp"/>
+            <solid android:color="@android:color/white"/>
         </shape>
     </item>
 </selector>

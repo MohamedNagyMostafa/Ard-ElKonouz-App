@@ -115,7 +115,7 @@
             <ImageView
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:tint="@color/colorPrimary"
+                android:tint="@android:color/white"
                 android:src="@drawable/ic_attach_money_black_48dp"/>
 
         </LinearLayout>

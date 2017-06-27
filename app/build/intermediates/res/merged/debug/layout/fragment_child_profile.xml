@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.ProfileScreens.ChildProfileActivityFragment"
     tools:showIn="@layout/activity_child_profile"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -27,6 +28,7 @@
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:layout_marginTop="8dp"
+                    android:tint="@color/colorPrimaryDark"
                     android:src="@drawable/user_profile_icon"/>
 
                 <LinearLayout
@@ -39,9 +41,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/personal_info"
+                        android:textStyle="bold"
                         android:textSize="16sp"
                         android:fontFamily="serif"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/colorPrimary" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -60,6 +63,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="Name"/>
 
                             <TextView
@@ -75,6 +79,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:layout_marginTop="4dp"
                                 android:text="Age"/>
 
@@ -100,6 +105,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="Birth Order"/>
 
                             <TextView
@@ -116,6 +122,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
                                 android:layout_marginTop="4dp"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="Gender"/>
 
                             <TextView
@@ -146,16 +153,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/family_info"
                     android:layout_marginStart="16dp"
+                    android:textStyle="bold"
                     android:fontFamily="serif"
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:background="#039be5"/>
+                    android:background="@color/colorAccent"/>
 
             </LinearLayout>
 
@@ -178,6 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/mother_name"/>
 
                     <TextView
@@ -193,6 +202,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
                         android:layout_marginTop="4dp"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/mother_mobile"/>
 
                     <TextView
@@ -207,6 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:textColor="@color/colorPrimaryDark"
                         android:fontFamily="serif"
                         android:text="@string/mother_qualification"/>
 
@@ -223,6 +234,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/mother_job"/>
 
                     <TextView
@@ -245,6 +257,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/father_name"/>
 
                     <TextView
@@ -259,6 +272,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_marginTop="4dp"
                         android:text="@string/father_mobile"/>
 
@@ -275,6 +289,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
                         android:layout_marginTop="4dp"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/whats_app"/>
 
                     <TextView
@@ -290,6 +305,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/father_job"/>
 
                     <TextView
@@ -317,15 +333,16 @@
                     android:text="@string/education_info"
                     android:layout_marginStart="16dp"
                     android:fontFamily="serif"
+                    android:textStyle="bold"
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:background="#039be5"/>
+                    android:background="@color/colorAccent"/>
 
             </LinearLayout>
 
@@ -347,6 +364,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/education_type"/>
 
                     <TextView
@@ -370,6 +388,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/education_stage"/>
 
                     <TextView
@@ -398,14 +417,15 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="serif"
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:background="#039be5"/>
+                    android:background="@color/colorAccent"/>
 
             </LinearLayout>
 
@@ -421,6 +441,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/iq_1q"/>
 
                 <TextView
@@ -436,6 +457,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/iq_2q"/>
 
                 <TextView
@@ -451,6 +473,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/id_3q"/>
 
                 <TextView
@@ -477,26 +500,57 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="serif"
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:background="#039be5"/>
+                    android:background="@color/colorAccent"/>
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/child_pf_courses_instructors_grid_view"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:numColumns="1"/>
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/child_pf_courses_instructors_grid_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:numColumns="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="32dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_record_voice_over_black_48dp"
+                        android:tint="@color/colorPrimaryDark"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:fontFamily="serif"
+                        android:text="There Are No Courses Available"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -513,7 +567,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:alpha="0.8"
-        app:backgroundTint="#81d4fa"
+        app:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_mode_edit_black_36dp" />
 
 </RelativeLayout>

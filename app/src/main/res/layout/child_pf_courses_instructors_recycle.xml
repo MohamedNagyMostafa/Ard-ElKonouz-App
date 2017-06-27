@@ -3,23 +3,17 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="16dp"
+    android:backgroundTint="@android:color/white"
     android:background="@android:drawable/dialog_holo_light_frame">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/course"/>
 
     <TextView
         android:id="@+id/child_pf_course_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_margin="16dp"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorPrimary"
         android:text="@string/empty_info"/>
 
     <TextView
@@ -27,6 +21,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:layout_marginStart="8dp"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="4dp"
         android:text="@string/instructor"/>
 
@@ -35,14 +30,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/black"
         android:text="@string/empty_info"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorPrimaryDark"
         android:fontFamily="serif"
         android:layout_marginStart="8dp"
         android:text="@string/start_date"/>
@@ -60,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginStart="8dp"
+        android:textColor="@color/colorPrimaryDark"
         android:fontFamily="serif"
         android:text="@string/end_date"/>
 
@@ -69,7 +65,7 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:layout_marginStart="12dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/empty_info"/>
 
 </LinearLayout>
