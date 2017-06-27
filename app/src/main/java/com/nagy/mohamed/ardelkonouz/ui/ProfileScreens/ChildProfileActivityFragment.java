@@ -29,12 +29,12 @@ public class ChildProfileActivityFragment extends Fragment
 
     private long childId;
     private RecycleViewChildProfileAdapter recycleViewChildProfileAdapter;
+    private ViewHolder.ChildProfileScreenViewHolder childProfileScreenViewHolder;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_child_profile, container, false);
-        ViewHolder.ChildProfileScreenViewHolder childProfileScreenViewHolder =
-                new ViewHolder.ChildProfileScreenViewHolder(rootView);
+        childProfileScreenViewHolder = new ViewHolder.ChildProfileScreenViewHolder(rootView);
         childId = getActivity().getIntent().getExtras().getLong(Constants.CHILD_ID_EXTRA);
         recycleViewChildProfileAdapter = new RecycleViewChildProfileAdapter();
 
@@ -174,6 +174,12 @@ public class ChildProfileActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // set empty view
+        if(data.getCount() > 0){
+            childProfileScreenViewHolder.EMPTY_VIEW_LAYOUT.setVisibility(View.GONE);
+        }else{
+            childProfileScreenViewHolder.EMPTY_VIEW_LAYOUT.setVisibility(View.VISIBLE);
+        }
         recycleViewChildProfileAdapter.setCursor(data, getContext());
     }
 
