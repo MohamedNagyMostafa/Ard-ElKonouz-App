@@ -81,7 +81,7 @@ public class CourseActivityFragment extends Fragment
                 Utility.getTimeFormat(
                         cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_START_DATE)
                 )+
-                " " +
+                "\n" +
                 getActivity().getString(R.string.to) +
                 Utility.getTimeFormat(
                         cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_END_DATE)
