@@ -135,18 +135,17 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_COST)
                 )
         );
-        coursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
-                new StringBuilder().append(getContext().getString(R.string.from)).append(" ").append(
-                        Utility.getTimeFormat(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_START_DATE
-                                )
+        coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                Utility.getTimeFormat(
+                        cursor.getLong(
+                                DatabaseController.ProjectionDatabase.COURSE_START_DATE
                         )
-                ).append("\n").append(getContext().getString(R.string.to)).append(" ").append(
-                        Utility.getTimeFormat(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_END_DATE
-                                )
+                )
+        );
+        coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                Utility.getTimeFormat(
+                        cursor.getLong(
+                                DatabaseController.ProjectionDatabase.COURSE_END_DATE
                         )
                 )
         );
