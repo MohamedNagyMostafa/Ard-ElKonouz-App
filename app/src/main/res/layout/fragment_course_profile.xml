@@ -60,6 +60,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Name"/>
 
@@ -69,13 +70,14 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Hours"/>
 
@@ -85,6 +87,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                         </LinearLayout>
@@ -100,6 +103,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Cost"/>
 
@@ -109,13 +113,14 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Level"/>
 
@@ -125,6 +130,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                         </LinearLayout>
@@ -179,6 +185,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/start_date"/>
 
@@ -186,6 +193,7 @@
                         android:id="@+id/course_pf_start_date_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:layout_marginStart="4dp"
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
@@ -202,6 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/end_date"/>
 
@@ -209,6 +218,7 @@
                         android:id="@+id/course_pf_end_date_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
@@ -229,6 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@string/salary_per_child"/>
 
@@ -237,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:textColor="@android:color/black"
                     android:text="@string/empty_info"/>
 
@@ -287,6 +299,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/course_state"/>
 
@@ -295,13 +308,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="serif"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/age_range"/>
@@ -311,6 +325,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
 
@@ -327,6 +342,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="Instructor Name"/>
 
@@ -336,6 +352,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/empty_info"/>
 
 

@@ -63,6 +63,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Name"/>
 
@@ -73,14 +74,15 @@
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:layout_marginTop="4dp"
                                 android:text="Age"/>
 
                             <TextView
@@ -90,6 +92,7 @@
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                         </LinearLayout>
@@ -105,6 +108,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Birth Order"/>
 
@@ -114,6 +118,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:layout_marginStart="4dp"
                                 android:text="@string/empty_info"/>
 
@@ -121,7 +126,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Gender"/>
 
@@ -130,6 +135,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
@@ -186,6 +192,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/mother_name"/>
 
@@ -193,6 +200,7 @@
                         android:id="@+id/child_pf_mother_name_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:layout_marginStart="4dp"
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
@@ -201,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/mother_mobile"/>
 
@@ -210,13 +218,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:fontFamily="serif"
                         android:text="@string/mother_qualification"/>
@@ -225,6 +234,7 @@
                         android:id="@+id/child_pf_mother_qualification_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
@@ -232,7 +242,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="serif"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/mother_job"/>
@@ -243,6 +253,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/empty_info"/>
 
                 </LinearLayout>
@@ -257,6 +268,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/father_name"/>
 
@@ -264,6 +276,7 @@
                         android:id="@+id/child_pf_father_name_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
@@ -273,13 +286,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
                         android:textColor="@color/colorPrimaryDark"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/father_mobile"/>
 
                     <TextView
                         android:id="@+id/child_pf_father_mobile_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
@@ -288,7 +302,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/whats_app"/>
 
@@ -296,6 +310,7 @@
                         android:id="@+id/child_pf_whatsapp_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
@@ -303,7 +318,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="serif"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/father_job"/>
@@ -312,6 +327,7 @@
                         android:id="@+id/child_pf_father_job_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
@@ -364,6 +380,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/education_type"/>
 
@@ -372,6 +389,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
 
@@ -388,6 +406,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="@string/education_stage"/>
 
@@ -395,6 +414,7 @@
                         android:id="@+id/child_pf_education_stage__text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:textColor="@android:color/black"
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
@@ -441,6 +461,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@string/iq_1q"/>
 
@@ -449,14 +470,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:textColor="@android:color/black"
                     android:text="@string/empty_info"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:fontFamily="serif"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@string/iq_2q"/>
 
@@ -465,13 +487,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:textColor="@android:color/black"
                     android:text="@string/empty_info"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="serif"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@string/id_3q"/>
@@ -481,6 +504,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:textColor="@android:color/black"
                     android:text="@string/empty_info"/>
 
@@ -513,6 +537,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.RecyclerView

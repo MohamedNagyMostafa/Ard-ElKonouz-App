@@ -69,6 +69,7 @@
                                 android:id="@+id/employee_pf_name_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:text="@string/empty_info"/>
@@ -76,7 +77,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="8dp"
                                 android:fontFamily="serif"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Age"/>
@@ -87,13 +88,14 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Gender"/>
 
@@ -103,6 +105,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                         </LinearLayout>
@@ -128,13 +131,14 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="serif"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="Address"/>
 
@@ -144,6 +148,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
+                                android:layout_marginTop="4dp"
                                 android:text="@string/empty_info"/>
 
                         </LinearLayout>
@@ -192,6 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@string/qualification"/>
 
@@ -200,6 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:textColor="@android:color/black"
                     android:text="@string/empty_info"/>
 
@@ -246,6 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@string/total_salary"/>
 
