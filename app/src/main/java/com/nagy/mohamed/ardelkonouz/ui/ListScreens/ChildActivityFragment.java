@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,24 @@ public class ChildActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private TextWatcher searchTextWatcher =
+            new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    searchChars = charSequence.toString();
+                    restartLoader();
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            };
 
     private View.OnClickListener addNewChildListener =
             new View.OnClickListener() {
@@ -45,13 +65,15 @@ public class ChildActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_child, container, false);
         ViewHolder.ChildListScreenViewHolder childListScreenViewHolder =
-                new ViewHolder.ChildListScreenViewHolder(rootView);
+                new ViewHolder.ChildListScreenViewHolder(rootView,
+                        getActivity().findViewById(R.id.child_list_search_edit_view));
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);
         childListScreenViewHolder.CHILD_LIST_VIEW.setAdapter(databaseCursorAdapter);
         childListScreenViewHolder.CHILD_LIST_VIEW.setEmptyView(childListScreenViewHolder.CHILD_LIST_EMPTY_VIEW);
+        childListScreenViewHolder.CHILD_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
 
         getLoaderManager().initLoader(Constants.LOADER_CHILD_LIST, null, this);
 

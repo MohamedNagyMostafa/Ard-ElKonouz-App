@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,24 @@ public class InstructorActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private TextWatcher searchTextWatcher =
+            new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    searchChars = charSequence.toString();
+                    restartLoader();
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            };
 
     private View.OnClickListener addNewInstructor =
             new View.OnClickListener() {
@@ -45,13 +65,15 @@ public class InstructorActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_instructor, container, false);
         ViewHolder.InstructorListScreenViewHolder instructorListScreenViewHolder =
-                new ViewHolder.InstructorListScreenViewHolder(rootView);
+                new ViewHolder.InstructorListScreenViewHolder(rootView,
+                        getActivity().findViewById(R.id.instructor_list_search_edit_view));
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         instructorListScreenViewHolder.ADD_NEW_INSTRUCTOR_BUTTON.setOnClickListener(addNewInstructor);
         instructorListScreenViewHolder.INSTRUCTOR_LIST_VIEW.setAdapter(databaseCursorAdapter);
         instructorListScreenViewHolder.INSTRUCTOR_LIST_VIEW.setEmptyView(instructorListScreenViewHolder.INSTRUCT0R_LIST_EMPTY_VIEW);
+        instructorListScreenViewHolder.INSTRUCTOR_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
 
         getLoaderManager().initLoader(Constants.LOADER_INSTRUCTOR_LIST, null, this);
 

@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,24 @@ public class EmployeeActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private TextWatcher searchTextWatcher =
+            new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    searchChars = charSequence.toString();
+                    restartLoader();
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            };
 
     private View.OnClickListener addNewEmployeeListener =
             new View.OnClickListener() {
@@ -44,13 +64,15 @@ public class EmployeeActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_employee, container, false);
         ViewHolder.EmployeeListScreenViewHolder employeeListScreenViewHolder =
-                new ViewHolder.EmployeeListScreenViewHolder(rootView);
+                new ViewHolder.EmployeeListScreenViewHolder(rootView,
+                        getActivity().findViewById(R.id.employee_list_search_edit_view));
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         employeeListScreenViewHolder.ADD_NEW_EMPLOYEE_BUTTON.setOnClickListener(addNewEmployeeListener);
         employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setAdapter(databaseCursorAdapter);
         employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setEmptyView(employeeListScreenViewHolder.EMPLOYEE_LIST_EMPTY_VIEW);
+        employeeListScreenViewHolder.EMPLOYEE_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
 
         getLoaderManager().initLoader(Constants.LOADER_EMPLOYEE_LIST, null, this);
 

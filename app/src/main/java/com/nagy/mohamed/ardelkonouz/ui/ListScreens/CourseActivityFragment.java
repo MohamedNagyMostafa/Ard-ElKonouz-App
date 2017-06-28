@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,24 @@ public class CourseActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private TextWatcher searchTextWatcher =
+            new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    searchChars = charSequence.toString();
+                    restartLoader();
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            };
 
     private View.OnClickListener addNewCourseListener =
             new View.OnClickListener() {
@@ -46,13 +66,15 @@ public class CourseActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_course, container, false);
         ViewHolder.CourseListScreenViewHolder courseListScreenViewHolder =
-                new ViewHolder.CourseListScreenViewHolder(rootView);
+                new ViewHolder.CourseListScreenViewHolder(rootView,
+                        getActivity().findViewById(R.id.course_list_search_edit_view));
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         courseListScreenViewHolder.ADD_NEW_COURSE_BUTTON.setOnClickListener(addNewCourseListener);
         courseListScreenViewHolder.COURSE_LIST_VIEW.setAdapter(databaseCursorAdapter);
         courseListScreenViewHolder.COURSE_LIST_VIEW.setEmptyView(courseListScreenViewHolder.COURSE_LIST_EMPTY_VIEW);
+        courseListScreenViewHolder.COURSE_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
 
         getLoaderManager().initLoader(Constants.LOADER_COURSE_LIST, null, this);
 
