@@ -52,6 +52,9 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
         // set listener.
         instructorCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        instructorCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setEmptyView(
+                instructorCourseConnectorScreenViewHolder.INSTRUCTOR_COURSE_LIST_EMPTY_VIEW
+        );
         instructorCourseConnectorScreenViewHolder.REST_BUTTON.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

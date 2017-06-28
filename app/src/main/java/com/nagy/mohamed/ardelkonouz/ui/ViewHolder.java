@@ -17,8 +17,6 @@ import com.nagy.mohamed.ardelkonouz.R;
  */
 public class ViewHolder {
 
-
-
     public static class MainScreenViewHolder {
 
         public final LinearLayout CHILD_LIST_LAYOUT;
@@ -303,10 +301,12 @@ public class ViewHolder {
 
         public final FloatingActionButton ADD_NEW_CHILD_BUTTON;
         public final ListView CHILD_LIST_VIEW;
+        public final LinearLayout CHILD_LIST_EMPTY_VIEW;
 
         public ChildListScreenViewHolder(View childListView){
             ADD_NEW_CHILD_BUTTON = (FloatingActionButton) childListView.findViewById(R.id.child_add_new_floating_button);
             CHILD_LIST_VIEW = (ListView) childListView.findViewById(R.id.child_list_view);
+            CHILD_LIST_EMPTY_VIEW = (LinearLayout) childListView.findViewById(R.id.child_list_empty_view);
         }
 
         public static class ChildListRecycleViewHolder{
@@ -330,10 +330,12 @@ public class ViewHolder {
 
         public final FloatingActionButton ADD_NEW_COURSE_BUTTON;
         public final ListView COURSE_LIST_VIEW;
+        public final LinearLayout COURSE_LIST_EMPTY_VIEW;
 
         public CourseListScreenViewHolder(View courseListView){
             ADD_NEW_COURSE_BUTTON = (FloatingActionButton) courseListView.findViewById(R.id.course_add_new_floating_button);
             COURSE_LIST_VIEW = (ListView) courseListView.findViewById(R.id.course_list_view);
+            COURSE_LIST_EMPTY_VIEW = (LinearLayout) courseListView.findViewById(R.id.course_list_empty_view);
         }
 
         public static class CourseListRecycleViewHolder{
@@ -357,10 +359,12 @@ public class ViewHolder {
 
         public final FloatingActionButton ADD_NEW_EMPLOYEE_BUTTON;
         public final ListView EMPLOYEE_LIST_VIEW;
+        public final LinearLayout EMPLOYEE_LIST_EMPTY_VIEW;
 
         public EmployeeListScreenViewHolder(View employeeListView){
             ADD_NEW_EMPLOYEE_BUTTON = (FloatingActionButton) employeeListView.findViewById(R.id.employee_add_new_floating_button);
             EMPLOYEE_LIST_VIEW = (ListView) employeeListView.findViewById(R.id.employee_list_view);
+            EMPLOYEE_LIST_EMPTY_VIEW = (LinearLayout) employeeListView.findViewById(R.id.employee_list_empty_view);
         }
 
         public static class EmployeeListRecycleViewHolder{
@@ -382,10 +386,12 @@ public class ViewHolder {
 
         public final FloatingActionButton ADD_NEW_INSTRUCTOR_BUTTON;
         public final ListView INSTRUCTOR_LIST_VIEW;
+        public final LinearLayout INSTRUCT0R_LIST_EMPTY_VIEW;
 
         public InstructorListScreenViewHolder(View instructorListView){
             ADD_NEW_INSTRUCTOR_BUTTON = (FloatingActionButton) instructorListView.findViewById(R.id.instructor_add_new_floating_button);
             INSTRUCTOR_LIST_VIEW = (ListView) instructorListView.findViewById(R.id.instructor_list_view);
+            INSTRUCT0R_LIST_EMPTY_VIEW = (LinearLayout) instructorListView.findViewById(R.id.instructor_list_empty_view);
         }
 
         public static class InstructorListRecycleViewHolder{
@@ -532,6 +538,7 @@ public class ViewHolder {
         public final TextView INSTRUCTOR_CV_TEXT_VIEW;
         public final RecyclerView INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW;
         public final FloatingActionButton INSTRUCTOR_EDIT_BUTTON;
+        public final LinearLayout INSTRUCTOR_COURSES_LIST_EMPTY_VIEW;
 
         public InstructorProfileScreenViewHolder(View instructorProfileView){
 
@@ -544,6 +551,7 @@ public class ViewHolder {
             INSTRUCTOR_CV_TEXT_VIEW = (TextView) instructorProfileView.findViewById(R.id.instructor_pf_cv_text_view);
             INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW = (RecyclerView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_recycle_view);
             INSTRUCTOR_EDIT_BUTTON = (FloatingActionButton) instructorProfileView.findViewById(R.id.instructor_pf_edit_floating_button);
+            INSTRUCTOR_COURSES_LIST_EMPTY_VIEW = (LinearLayout) instructorProfileView.findViewById(R.id.instructor_pf_empty_view_layout);
         }
 
         public static class InstructorCoursesViewHolder extends RecyclerView.ViewHolder{
@@ -604,12 +612,14 @@ public class ViewHolder {
         public final Button SUBMIT_BUTTON;
         public final Button REST_BUTTON;
         public final ListView COURSES_LIST_VIEW;
+        public final LinearLayout INSTRUCTOR_COURSE_LIST_EMPTY_VIEW;
 
         public InstructorCourseConnectorScreenViewHolder(View instructorCourseView){
 
             SUBMIT_BUTTON = (Button) instructorCourseView.findViewById(R.id.instructor_course_submit_button);
             REST_BUTTON = (Button) instructorCourseView.findViewById(R.id.instructor_course_rest_button);
             COURSES_LIST_VIEW = (ListView) instructorCourseView.findViewById(R.id.instructor_course_list_view);
+            INSTRUCTOR_COURSE_LIST_EMPTY_VIEW = (LinearLayout) instructorCourseView.findViewById(R.id.instructor_course_connector_empty_view_layout);
         }
 
         public static class CoursesViewHolder{

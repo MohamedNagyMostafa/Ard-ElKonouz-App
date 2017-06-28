@@ -7,6 +7,30 @@
     tools:context=".ui.ListScreens.EmployeeActivityFragment"
     tools:showIn="@layout/activity_employee">
 
+    <LinearLayout
+        android:id="@+id/employee_list_empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_perm_identity_black_48dp"
+            android:tint="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="serif"
+            android:text="There Are No Employees Available"/>
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/employee_list_view"
         android:layout_width="match_parent"
