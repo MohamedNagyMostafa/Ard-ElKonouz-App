@@ -657,14 +657,16 @@ public class ViewHolder {
         public static class InstructorCoursesViewHolder{
 
             public final TextView COURSE_NAME_TEXT_VIEW;
-            public final TextView COURSE_DURATION_TEXT_VIEW;
+            public final TextView COURSE_START_DATE_TEXT_VIEW;
+            public final TextView COURSE_END_DATE_TEXT_VIEW;
             public final TextView COURSE_SALARY_TEXT_VIEW;
             public final Button COURSE_SALARY_STATE_BUTTON;
 
             public InstructorCoursesViewHolder(View instructorCoursesView){
 
                 COURSE_NAME_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_course_name_text_view);
-                COURSE_DURATION_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_course_date_text_view);
+                COURSE_START_DATE_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_start_date_text_view);
+                COURSE_END_DATE_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_end_date_text_view);
                 COURSE_SALARY_TEXT_VIEW = (TextView) instructorCoursesView.findViewById(R.id.instructor_salary_course_salary_text_view);
                 COURSE_SALARY_STATE_BUTTON = (Button) instructorCoursesView.findViewById(R.id.instructor_salary_instructor_salary_state_button);
             }
