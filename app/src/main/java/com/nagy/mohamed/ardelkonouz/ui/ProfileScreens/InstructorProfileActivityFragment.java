@@ -138,7 +138,7 @@ public class InstructorProfileActivityFragment extends Fragment
         }else{
             instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_LIST_EMPTY_VIEW.setVisibility(View.VISIBLE);
         }
-        
+
         recycleViewInstructorProfileAdapter.setCursor(data);
     }
 
