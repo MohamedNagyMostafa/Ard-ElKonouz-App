@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     tools:context=".ui.InputScreens.InstructorInputActivityFragment"
     tools:showIn="@layout/activity_instructor_input">
 
@@ -21,6 +22,8 @@
                 android:contentDescription="@string/image_pf"
                 android:layout_width="92dp"
                 android:layout_height="92dp"
+                android:layout_marginTop="8dp"
+                android:tint="@color/colorPrimaryDark"
                 android:src="@drawable/user_profile_icon"/>
 
             <LinearLayout
@@ -34,7 +37,8 @@
                     android:text="@string/personal_info"
                     android:textSize="16sp"
                     android:fontFamily="serif"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,12 +59,13 @@
                             android:layout_height="wrap_content"
                             android:textColor="@android:color/black"
                             android:gravity="center_vertical"
+                            android:layout_marginTop="8dp"
                             android:hint="Name"
-                            android:textColorHint="@color/colorPrimary"
+                            android:textColorHint="@color/colorPrimaryDark"
                             android:layout_marginEnd="4dp"
-                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:backgroundTint="@color/colorAccent"
                             android:layout_marginStart="4dp"
-                            android:inputType="text"/>
+                            android:inputType="textPersonName"/>
 
                         <EditText
                             android:id="@+id/instructor_input_age_edit_view"
@@ -68,12 +73,14 @@
                             android:layout_height="wrap_content"
                             android:textColor="@android:color/black"
                             android:gravity="center_vertical"
+                            android:layout_marginTop="8dp"
                             android:hint="Age"
-                            android:textColorHint="@color/colorPrimary"
+                            android:maxLength="2"
+                            android:textColorHint="@color/colorPrimaryDark"
                             android:layout_marginEnd="4dp"
-                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:backgroundTint="@color/colorAccent"
                             android:layout_marginStart="4dp"
-                            android:inputType="numberSigned"/>
+                            android:inputType="number"/>
 
 
                     </LinearLayout>
@@ -89,12 +96,14 @@
                             android:id="@+id/instructor_input_mobile_edit_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:textColor="@android:color/black"
                             android:gravity="center_vertical"
                             android:hint="Mobile"
-                            android:textColorHint="@color/colorPrimary"
+                            android:textColorHint="@color/colorPrimaryDark"
                             android:layout_marginEnd="4dp"
-                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:maxLength="13"
+                            android:backgroundTint="@color/colorAccent"
                             android:layout_marginStart="4dp"
                             android:inputType="phone"/>
 
@@ -102,12 +111,13 @@
                             android:id="@+id/instructor_input_address_edit_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:textColor="@android:color/black"
                             android:gravity="center_vertical"
                             android:hint="Address"
-                            android:textColorHint="@color/colorPrimary"
+                            android:textColorHint="@color/colorPrimaryDark"
                             android:layout_marginEnd="4dp"
-                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:backgroundTint="@color/colorAccent"
                             android:layout_marginStart="4dp"
                             android:inputType="text"/>
 
@@ -120,12 +130,15 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/gender"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -142,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@string/gender_male"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/colorPrimary" />
 
                     <ImageView
                         android:id="@+id/instructor_input_female_gender_image_view"
@@ -158,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorPrimary"
                         android:text="@string/gender_female" />
 
                 </LinearLayout>
@@ -179,15 +192,16 @@
                 android:text="@string/work_info"
                 android:layout_marginStart="16dp"
                 android:fontFamily="serif"
+                android:textStyle="bold"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimary" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="#039be5"/>
+                android:background="@color/colorAccent"/>
 
         </LinearLayout>
 
@@ -197,6 +211,7 @@
             android:orientation="horizontal"
             android:baselineAligned="false"
             android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
 
@@ -204,6 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/qualification"/>
 
             <EditText
@@ -213,7 +229,7 @@
                 android:layout_marginStart="16dp"
                 android:textColor="@android:color/black"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorAccent"
                 android:inputType="text"/>
 
 
@@ -225,7 +241,7 @@
             android:layout_height="52dp"
             android:text="Submit"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_margin="16dp"/>
 

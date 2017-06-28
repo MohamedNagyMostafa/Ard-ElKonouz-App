@@ -51,6 +51,7 @@ public class ChildActivityFragment extends Fragment
 
         childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);
         childListScreenViewHolder.CHILD_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        childListScreenViewHolder.CHILD_LIST_VIEW.setEmptyView(childListScreenViewHolder.CHILD_LIST_EMPTY_VIEW);
 
         getLoaderManager().initLoader(Constants.LOADER_CHILD_LIST, null, this);
 

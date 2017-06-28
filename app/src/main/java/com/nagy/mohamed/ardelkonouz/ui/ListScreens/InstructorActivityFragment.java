@@ -51,6 +51,7 @@ public class InstructorActivityFragment extends Fragment
 
         instructorListScreenViewHolder.ADD_NEW_INSTRUCTOR_BUTTON.setOnClickListener(addNewInstructor);
         instructorListScreenViewHolder.INSTRUCTOR_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        instructorListScreenViewHolder.INSTRUCTOR_LIST_VIEW.setEmptyView(instructorListScreenViewHolder.INSTRUCT0R_LIST_EMPTY_VIEW);
 
         getLoaderManager().initLoader(Constants.LOADER_INSTRUCTOR_LIST, null, this);
 

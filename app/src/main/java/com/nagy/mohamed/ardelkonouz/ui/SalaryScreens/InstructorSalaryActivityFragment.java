@@ -146,16 +146,18 @@ public class InstructorSalaryActivityFragment extends Fragment
         final ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder instructorCoursesViewHolder =
                 new ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder(view);
         final long COURSE_ID = cursor.getLong(6);
-        instructorCoursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
-                new StringBuilder("").append(getString(R.string.from)).append(" ")
-                .append(Utility.getTimeFormat(
+        instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+               Utility.getTimeFormat(
                         cursor.getLong(2)
-                )).append(" ").append(getString(R.string.to)).append(" ")
-                        .append(Utility.getTimeFormat(
+                )
+        );
+        instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                        Utility.getTimeFormat(
                                 cursor.getLong(3)
-                            )
+
                         )
         );
+
         instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(4)
         );

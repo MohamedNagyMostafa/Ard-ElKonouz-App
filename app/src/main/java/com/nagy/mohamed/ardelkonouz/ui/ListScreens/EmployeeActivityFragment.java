@@ -50,6 +50,7 @@ public class EmployeeActivityFragment extends Fragment
 
         employeeListScreenViewHolder.ADD_NEW_EMPLOYEE_BUTTON.setOnClickListener(addNewEmployeeListener);
         employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setEmptyView(employeeListScreenViewHolder.EMPLOYEE_LIST_EMPTY_VIEW);
 
         getLoaderManager().initLoader(Constants.LOADER_EMPLOYEE_LIST, null, this);
 

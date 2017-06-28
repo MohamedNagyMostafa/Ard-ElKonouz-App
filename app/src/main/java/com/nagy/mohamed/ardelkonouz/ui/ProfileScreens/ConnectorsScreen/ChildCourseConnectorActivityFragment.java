@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -37,17 +36,12 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     private long childId;
     private int childAge;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        selectedCourses = new ArrayList<>();
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_child_course_connector, container, false);
+        selectedCourses = new ArrayList<>();
         ViewHolder.ChildCourseConnectorScreenViewHolder childCourseConnectorScreenViewHolder =
                 new ViewHolder.ChildCourseConnectorScreenViewHolder(rootView);
 
@@ -55,7 +49,8 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
         childCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
-
+        childCourseConnectorScreenViewHolder.COURSES_LIST_VIEW
+                .setEmptyView(childCourseConnectorScreenViewHolder.EMPTY_LIST_LAYOUT);
         // get child age.
         getChildAge();
 
@@ -126,6 +121,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
     @Override
     public void bindListView(View view, final Cursor cursor) {
+        Log.e("bind called","done");
         final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
         final Long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
@@ -135,18 +131,17 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_COST)
                 )
         );
-        coursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
-                new StringBuilder().append(getContext().getString(R.string.from)).append(" ").append(
-                        Utility.getTimeFormat(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_START_DATE
-                                )
+        coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                Utility.getTimeFormat(
+                        cursor.getLong(
+                                DatabaseController.ProjectionDatabase.COURSE_START_DATE
                         )
-                ).append(" ").append(getContext().getString(R.string.to)).append(" ").append(
-                        Utility.getTimeFormat(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_END_DATE
-                                )
+                )
+        );
+        coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                Utility.getTimeFormat(
+                        cursor.getLong(
+                                DatabaseController.ProjectionDatabase.COURSE_END_DATE
                         )
                 )
         );
@@ -173,7 +168,9 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         if(cursor1 != null){
             if(cursor1.getCount() > 0){
-                selectedCourses.add(COURSE_ID);
+                Log.e("courses selected before",String.valueOf(cursor1.getCount()));
+                if(!selectedCourses.contains(COURSE_ID))
+                    selectedCourses.add(COURSE_ID);
             }
             cursor1.close();
         }
@@ -182,14 +179,20 @@ public class ChildCourseConnectorActivityFragment extends Fragment
             @Override
             public void onClick(View view) {
                 if(selectedCourses.contains(COURSE_ID)){
+                    Log.e("b remove one item size",String.valueOf(selectedCourses.size()));
+                    for(Long c : selectedCourses){
+                        Log.e("id is ", String.valueOf(c));
+                    }
                     selectedCourses.remove(COURSE_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
-                    Log.e("remove one item size is",String.valueOf(selectedCourses.size()));
+                    Log.e("a remove one item size",String.valueOf(selectedCourses.size()));
 
                 }else{
+                    Log.e("b add one item size",String.valueOf(selectedCourses.size()));
+
                     selectedCourses.add(COURSE_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
-                    Log.e("add one item size is",String.valueOf(selectedCourses.size()));
+                    Log.e("a add one item size",String.valueOf(selectedCourses.size()));
                 }
             }
         });
@@ -223,6 +226,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        Log.e("no of coming courses",String.valueOf(data.getCount()));
         databaseCursorAdapter.swapCursor(data);
     }
 

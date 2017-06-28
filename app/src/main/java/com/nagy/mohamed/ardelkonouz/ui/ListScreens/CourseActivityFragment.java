@@ -52,6 +52,7 @@ public class CourseActivityFragment extends Fragment
 
         courseListScreenViewHolder.ADD_NEW_COURSE_BUTTON.setOnClickListener(addNewCourseListener);
         courseListScreenViewHolder.COURSE_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        courseListScreenViewHolder.COURSE_LIST_VIEW.setEmptyView(courseListScreenViewHolder.COURSE_LIST_EMPTY_VIEW);
 
         getLoaderManager().initLoader(Constants.LOADER_COURSE_LIST, null, this);
 
@@ -82,7 +83,7 @@ public class CourseActivityFragment extends Fragment
                 Utility.getTimeFormat(
                         cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_START_DATE)
                 )+
-                " " +
+                "\n" +
                 getActivity().getString(R.string.to) +
                 Utility.getTimeFormat(
                         cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_END_DATE)

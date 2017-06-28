@@ -1,18 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.ProfileScreens.ConnectorsScreen.InstructorCourseConnectorActivityFragment"
     tools:showIn="@layout/activity_instructor_course_connector">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/instructor_course_list_view"
+            android:layout_width="match_parent"
+            android:background="@android:color/white"
+            android:layout_height="0dp"
+            android:divider="@android:color/transparent"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:id="@+id/instructor_course_connector_empty_view_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_event_note_black_48dp"
+                android:tint="@color/colorPrimaryDark"
+                android:layout_marginEnd="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="serif"
+                android:text="There Are No Courses Available"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
     <LinearLayout
-        android:id="@+id/buttons_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp">
+        android:background="@color/colorAccent"
+        android:paddingBottom="4dp">
 
         <Button
             android:id="@+id/instructor_course_rest_button"
@@ -21,8 +62,8 @@
             android:text="Rest"
             android:clickable="false"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:layout_marginEnd="12dp"/>
 
 
@@ -32,23 +73,11 @@
             android:layout_height="42dp"
             android:text="Submit"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:layout_marginStart="4dp"/>
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/line_frame2"
-        android:layout_alignTop="@id/buttons_frame"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary"/>
 
-    <ListView
-        android:layout_above="@id/line_frame2"
-        android:id="@+id/instructor_course_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-</RelativeLayout>
+</LinearLayout>

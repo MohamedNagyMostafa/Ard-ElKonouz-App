@@ -3,18 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.ListScreens.CourseActivityFragment"
+    android:background="@android:color/white"
     tools:showIn="@layout/activity_course">
+
+    <LinearLayout
+        android:id="@+id/course_list_empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event_note_black_48dp"
+            android:tint="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="serif"
+            android:text="There Are No Courses Available"/>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/course_list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/colorPrimary" />
+        android:background="@android:color/white"
+        android:divider="@color/colorPrimary"
+        android:layout_height="wrap_content" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -26,7 +48,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/white"
-        app:backgroundTint="#81d4fa"
+        app:backgroundTint="@color/colorAccent"
         android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

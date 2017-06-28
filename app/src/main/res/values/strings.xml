@@ -104,6 +104,8 @@
     <string name="paid">Paid</string>
     <string name="unpaid">Unpaid</string>
 
+    <string name="course_duration">Course Duration</string>
+
     <string name="incomplete">Incomplete</string>
     <string name="complete">complete</string>
     <string name="to">To</string>
@@ -121,4 +123,7 @@
     <string name="course_state_paid">Paid</string>
     <string name="course_state_unpaid">Unpaid</string>
     <string name="course_state_under_progress">Under Progress</string>
+    <string name="age">Age</string>
+    <string name="courses">Courses</string>
+    <string name="mobile">Mobile</string>
 </resources>

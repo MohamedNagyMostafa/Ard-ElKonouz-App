@@ -52,6 +52,9 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
         // set listener.
         instructorCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        instructorCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setEmptyView(
+                instructorCourseConnectorScreenViewHolder.INSTRUCTOR_COURSE_LIST_EMPTY_VIEW
+        );
         instructorCourseConnectorScreenViewHolder.REST_BUTTON.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -158,23 +161,21 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 new ViewHolder.InstructorCourseConnectorScreenViewHolder.CoursesViewHolder(view);
         final Long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
 
-        coursesViewHolder.COURSE_DURATION_TEXT_VIEW.setText(
-                new StringBuilder("").append(getContext().getString(R.string.from)).append(" ")
-                .append(
-                        Utility.getTimeFormat(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_START_DATE
-                                )
+        coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                Utility.getTimeFormat(
+                        cursor.getLong(
+                                DatabaseController.ProjectionDatabase.COURSE_START_DATE
                         )
-                ).append(" ").append(getContext().getString(R.string.to)).append(" ")
-                        .append(
-                                Utility.getTimeFormat(
-                                        cursor.getLong(
-                                                DatabaseController.ProjectionDatabase.COURSE_END_DATE
-                                        )
-                                )
-                        )
+                )
         );
+        coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                Utility.getTimeFormat(
+                        cursor.getLong(
+                                DatabaseController.ProjectionDatabase.COURSE_END_DATE
+                        )
+                )
+        );
+
         coursesViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(

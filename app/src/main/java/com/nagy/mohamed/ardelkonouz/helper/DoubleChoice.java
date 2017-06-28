@@ -39,7 +39,7 @@ public class DoubleChoice {
 
     public void setChoiceNotSelect(){
         imageView.setVisibility(View.INVISIBLE);
-        textView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        textView.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         isSelect = false;
     }
 

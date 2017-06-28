@@ -3,15 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Course Name"
+            android:layout_marginTop="4dp"
             android:fontFamily="serif"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -20,44 +16,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:text="Android"
             android:textStyle="bold"
             android:textColor="@android:color/black"/>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/start_date"
+        android:fontFamily="serif"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+        android:textColor="@color/colorPrimaryDark"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Course Date"
-            android:fontFamily="serif"
-            android:textColor="@color/colorPrimaryDark"/>
-
-        <TextView
-            android:id="@+id/instructor_salary_course_date_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="From --/00/-- To --/00/--"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/instructor_salary_start_date_text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/empty_info"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
 
-        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end_date"
+        android:fontFamily="serif"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/instructor_salary_end_date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/empty_info"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
 
         <TextView
+            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Instructor Salary"
@@ -70,35 +73,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="22.5 L.E"
+            android:layout_marginTop="4dp"
             android:textStyle="bold"
             android:textColor="@android:color/black"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Salary State"
-            android:fontFamily="serif"
-            android:textColor="@color/colorPrimaryDark"/>
 
         <Button
             android:id="@+id/instructor_salary_instructor_salary_state_button"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="8dp"
             android:text="Unpaid"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-smallcaps"
             android:backgroundTint="#FF0000"
             android:textColor="@android:color/white"/>
 
-    </LinearLayout>
 
 </LinearLayout>

@@ -29,13 +29,13 @@ public class InstructorProfileActivityFragment extends Fragment
 
     private RecycleViewInstructorProfileAdapter recycleViewInstructorProfileAdapter;
     private long instructorId;
+    private ViewHolder.InstructorProfileScreenViewHolder instructorProfileScreenViewHolder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_instructor_profile, container, false);
-        ViewHolder.InstructorProfileScreenViewHolder instructorProfileScreenViewHolder =
-                new ViewHolder.InstructorProfileScreenViewHolder(rootView);
+        instructorProfileScreenViewHolder = new ViewHolder.InstructorProfileScreenViewHolder(rootView);
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
@@ -133,6 +133,12 @@ public class InstructorProfileActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if(data.getCount() > 0){
+            instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_LIST_EMPTY_VIEW.setVisibility(View.GONE);
+        }else{
+            instructorProfileScreenViewHolder.INSTRUCTOR_COURSES_LIST_EMPTY_VIEW.setVisibility(View.VISIBLE);
+        }
+
         recycleViewInstructorProfileAdapter.setCursor(data);
     }
 
