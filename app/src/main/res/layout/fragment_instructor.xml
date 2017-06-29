@@ -6,6 +6,13 @@
     tools:context=".ui.ListScreens.InstructorActivityFragment"
     tools:showIn="@layout/activity_instructor">
 
+    <ListView
+        android:id="@+id/instructor_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:divider="@color/colorPrimary" />
+
     <LinearLayout
         android:id="@+id/instructor_list_empty_view"
         android:layout_width="wrap_content"
@@ -30,12 +37,6 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/instructor_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:divider="@color/colorPrimary" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/instructor_add_new_floating_button"

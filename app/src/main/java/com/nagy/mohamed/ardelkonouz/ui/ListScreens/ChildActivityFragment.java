@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -31,6 +32,8 @@ public class ChildActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private View childSearchView;
+
     private TextWatcher searchTextWatcher =
             new TextWatcher() {
                 @Override
@@ -65,15 +68,20 @@ public class ChildActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_child, container, false);
         ViewHolder.ChildListScreenViewHolder childListScreenViewHolder =
-                new ViewHolder.ChildListScreenViewHolder(rootView,
-                        getActivity().findViewById(R.id.child_list_search_edit_view));
+                new ViewHolder.ChildListScreenViewHolder(rootView);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
+
+        // searching..
+        if(childSearchView != null){
+            final EditText CHILD_SEARCH_EDIT_TEXT = (EditText) childSearchView;
+            CHILD_SEARCH_EDIT_TEXT.addTextChangedListener(searchTextWatcher);
+
+        }
 
         childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);
         childListScreenViewHolder.CHILD_LIST_VIEW.setAdapter(databaseCursorAdapter);
         childListScreenViewHolder.CHILD_LIST_VIEW.setEmptyView(childListScreenViewHolder.CHILD_LIST_EMPTY_VIEW);
-        childListScreenViewHolder.CHILD_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
 
         getLoaderManager().initLoader(Constants.LOADER_CHILD_LIST, null, this);
 
@@ -197,5 +205,9 @@ public class ChildActivityFragment extends Fragment
     private void restartLoader(){
         getLoaderManager().restartLoader(Constants.LOADER_CHILD_LIST, null, this);
 
+    }
+
+    public void setEditTextView(View childSearchView){
+        this.childSearchView = childSearchView;
     }
 }

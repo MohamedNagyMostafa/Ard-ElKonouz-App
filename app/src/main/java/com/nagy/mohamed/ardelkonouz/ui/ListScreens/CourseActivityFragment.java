@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -32,6 +33,8 @@ public class CourseActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private View courseSearchView;
+
     private TextWatcher searchTextWatcher =
             new TextWatcher() {
                 @Override
@@ -66,15 +69,20 @@ public class CourseActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_course, container, false);
         ViewHolder.CourseListScreenViewHolder courseListScreenViewHolder =
-                new ViewHolder.CourseListScreenViewHolder(rootView,
-                        getActivity().findViewById(R.id.course_list_search_edit_view));
+                new ViewHolder.CourseListScreenViewHolder(rootView);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         courseListScreenViewHolder.ADD_NEW_COURSE_BUTTON.setOnClickListener(addNewCourseListener);
         courseListScreenViewHolder.COURSE_LIST_VIEW.setAdapter(databaseCursorAdapter);
         courseListScreenViewHolder.COURSE_LIST_VIEW.setEmptyView(courseListScreenViewHolder.COURSE_LIST_EMPTY_VIEW);
-        courseListScreenViewHolder.COURSE_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
+
+        // searching..
+        if(courseSearchView != null){
+            final EditText COURSE_SEARCH_EDIT_TEXT = (EditText) courseSearchView;
+            COURSE_SEARCH_EDIT_TEXT.addTextChangedListener(searchTextWatcher);
+
+        }
 
         getLoaderManager().initLoader(Constants.LOADER_COURSE_LIST, null, this);
 
@@ -195,5 +203,9 @@ public class CourseActivityFragment extends Fragment
 
     private void restartLoader(){
         getLoaderManager().restartLoader(Constants.LOADER_COURSE_LIST, null, this);
+    }
+
+    public void setEditTextView(View courseSearchView){
+        this.courseSearchView = courseSearchView;
     }
 }

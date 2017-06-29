@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -30,6 +31,8 @@ public class EmployeeActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private View employeeSearchView;
+
     private TextWatcher searchTextWatcher =
             new TextWatcher() {
                 @Override
@@ -64,15 +67,21 @@ public class EmployeeActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_employee, container, false);
         ViewHolder.EmployeeListScreenViewHolder employeeListScreenViewHolder =
-                new ViewHolder.EmployeeListScreenViewHolder(rootView,
-                        getActivity().findViewById(R.id.employee_list_search_edit_view));
+                new ViewHolder.EmployeeListScreenViewHolder(rootView);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         employeeListScreenViewHolder.ADD_NEW_EMPLOYEE_BUTTON.setOnClickListener(addNewEmployeeListener);
         employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setAdapter(databaseCursorAdapter);
         employeeListScreenViewHolder.EMPLOYEE_LIST_VIEW.setEmptyView(employeeListScreenViewHolder.EMPLOYEE_LIST_EMPTY_VIEW);
-        employeeListScreenViewHolder.EMPLOYEE_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
+
+        // searching..
+        if(employeeSearchView != null){
+            final EditText EMPLOYEE_SEARCH_EDIT_TEXT = (EditText) employeeSearchView;
+            EMPLOYEE_SEARCH_EDIT_TEXT.addTextChangedListener(searchTextWatcher);
+
+        }
+
 
         getLoaderManager().initLoader(Constants.LOADER_EMPLOYEE_LIST, null, this);
 
@@ -154,5 +163,9 @@ public class EmployeeActivityFragment extends Fragment
     private void restartLoader(){
         getLoaderManager().restartLoader(Constants.LOADER_EMPLOYEE_LIST, null, this);
 
+    }
+
+    public void setEditTextView(View employeeSearchView){
+        this.employeeSearchView = employeeSearchView;
     }
 }

@@ -18,7 +18,15 @@ public class EmployeeActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if(savedInstanceState == null) {
 
+            EmployeeActivityFragment employeeActivityFragment = new EmployeeActivityFragment();
+
+            employeeActivityFragment.setEditTextView(findViewById(R.id.employee_list_search_edit_view));
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment, employeeActivityFragment, "").commit();
+        }
     }
 
 }

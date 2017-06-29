@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class CourseProfileActivityFragment extends Fragment {
         ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder =
                 new ViewHolder.CourseProfileScreenViewHolder(rootView);
         final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
+        Log.e("course id is ",String.valueOf(COURSE_ID));
         Cursor courseData = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
@@ -38,6 +40,8 @@ public class CourseProfileActivityFragment extends Fragment {
         );
         if(courseData != null){
             if(courseData.getCount() > 0){
+                Log.e("course id is ","founded");
+
                 courseData.moveToFirst();
                 setDataToView(courseData, courseProfileScreenViewHolder, COURSE_ID);
             }

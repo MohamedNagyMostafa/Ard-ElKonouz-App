@@ -15,9 +15,18 @@ public class ChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_child);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        if(savedInstanceState == null) {
+
+            ChildActivityFragment childActivityFragment = new ChildActivityFragment();
+
+            childActivityFragment.setEditTextView(findViewById(R.id.child_list_search_edit_view));
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment, childActivityFragment, "").commit();
+        }
 
     }
 

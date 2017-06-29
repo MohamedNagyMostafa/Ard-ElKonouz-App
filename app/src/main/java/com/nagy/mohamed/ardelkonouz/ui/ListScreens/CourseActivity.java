@@ -18,6 +18,15 @@ public class CourseActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if(savedInstanceState == null) {
+
+            CourseActivityFragment courseActivityFragment = new CourseActivityFragment();
+
+            courseActivityFragment.setEditTextView(findViewById(R.id.course_list_search_edit_view));
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment, courseActivityFragment, "").commit();
+        }
     }
 
 }

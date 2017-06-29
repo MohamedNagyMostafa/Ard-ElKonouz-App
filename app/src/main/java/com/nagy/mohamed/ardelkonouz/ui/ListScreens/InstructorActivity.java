@@ -18,6 +18,14 @@ public class InstructorActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if(savedInstanceState == null) {
+            InstructorActivityFragment instructorActivityFragment = new InstructorActivityFragment();
+
+            instructorActivityFragment.setEditTextView(findViewById(R.id.instructor_list_search_edit_view));
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment, instructorActivityFragment, "").commit();
+        }
     }
 
 }

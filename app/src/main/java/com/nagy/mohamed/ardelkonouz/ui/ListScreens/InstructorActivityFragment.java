@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -31,6 +32,8 @@ public class InstructorActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private String searchChars = "";
+    private View instructorSearchView;
+
     private TextWatcher searchTextWatcher =
             new TextWatcher() {
                 @Override
@@ -65,15 +68,20 @@ public class InstructorActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_instructor, container, false);
         ViewHolder.InstructorListScreenViewHolder instructorListScreenViewHolder =
-                new ViewHolder.InstructorListScreenViewHolder(rootView,
-                        getActivity().findViewById(R.id.instructor_list_search_edit_view));
+                new ViewHolder.InstructorListScreenViewHolder(rootView);
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         instructorListScreenViewHolder.ADD_NEW_INSTRUCTOR_BUTTON.setOnClickListener(addNewInstructor);
         instructorListScreenViewHolder.INSTRUCTOR_LIST_VIEW.setAdapter(databaseCursorAdapter);
         instructorListScreenViewHolder.INSTRUCTOR_LIST_VIEW.setEmptyView(instructorListScreenViewHolder.INSTRUCT0R_LIST_EMPTY_VIEW);
-        instructorListScreenViewHolder.INSTRUCTOR_LIST_SEARCH_EDIT_tEXT.addTextChangedListener(searchTextWatcher);
+
+        // searching..
+        if(instructorSearchView != null){
+            final EditText INSTRUCTOR_LIST_SEARCH_EDIT_TEXT = (EditText) instructorSearchView;
+            INSTRUCTOR_LIST_SEARCH_EDIT_TEXT.addTextChangedListener(searchTextWatcher);
+
+        }
 
         getLoaderManager().initLoader(Constants.LOADER_INSTRUCTOR_LIST, null, this);
 
@@ -181,5 +189,9 @@ public class InstructorActivityFragment extends Fragment
 
     private void restartLoader(){
         getLoaderManager().restartLoader(Constants.LOADER_INSTRUCTOR_LIST, null, this);
+    }
+
+    public void setEditTextView(View instructorSearchView){
+        this.instructorSearchView = instructorSearchView;
     }
 }
