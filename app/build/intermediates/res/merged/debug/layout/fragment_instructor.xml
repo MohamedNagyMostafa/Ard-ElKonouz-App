@@ -13,6 +13,7 @@
         android:background="@android:color/white"
         android:divider="@color/colorPrimary" />
 
+
     <LinearLayout
         android:id="@+id/instructor_list_empty_view"
         android:layout_width="wrap_content"
