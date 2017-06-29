@@ -628,15 +628,28 @@ public class ContentProviderDatabase extends ContentProvider {
         final String COURSE_WITH_END_DATE_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
                 DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/#";
         final String CHILD_WITH_SEARCH_PATH = DbContent.ChildTable.TABLE_NAME + "/*";
-        final String INSTRUCTOR_WITH_SEARCH_PATH = DbContent.InstructorTable.TABLE_NAME + "/*";
+        final String CHILD_WITH_SEARCH_NULL_PATH = DbContent.ChildTable.TABLE_NAME + "/"
+                + DbContent.ChildTable.CHILD_NAME_COLUMN +"/*";
+        final String INSTRUCTOR_WITH_SEARCH_PATH = DbContent.InstructorTable.TABLE_NAME + "/"
+                + DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN + "/*";
+        final String INSTRUCTOR_WITH_SEARCH_NULL_PATH = DbContent.InstructorTable.TABLE_NAME + "/"
+                + DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN + "/";
+        final String COURSE_WITH_SEARCH_NULL_PATH = DbContent.CourseTable.TABLE_NAME + "/"
+                + DbContent.CourseTable.COURSE_NAME_COLUMN + "/";
+        final String EMPLOYEE_WITH_SEARCH_NULL_PATH = DbContent.EmployeeTable.TABLE_NAME + "/"
+                + DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + "/";
         final String COURSE_WITH_SEARCH_PATH = DbContent.CourseTable.TABLE_NAME + "/*";
         final String EMPLOYEE_WITH_SEARCH_PATH = DbContent.EmployeeTable.TABLE_NAME + "/*";
 
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_PATH, CHILD_WITH_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_NULL_PATH, CHILD_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_SEARCH_PATH, INSTRUCTOR_WITH_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_SEARCH_NULL_PATH, INSTRUCTOR_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_SEARCH_PATH, COURSE_WITH_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_SEARCH_NULL_PATH, COURSE_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_SEARCH_PATH, EMPLOYEE_WITH_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_SEARCH_NULL_PATH, EMPLOYEE_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_PATH, CHILD_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_PATH, COURSE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_PATH, INSTRUCTOR_TABLE);

@@ -268,9 +268,6 @@ public class DatabaseController {
         public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_START_DATE = 3;
         public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_END_DATE = 4;
 
-
-
-
     }
 
     public static class UriDatabase{
@@ -342,19 +339,23 @@ public class DatabaseController {
         }
 
         public static Uri getChildTableWithSearchUri(String searchChars){
-            return CHILD_TABLE_URI.buildUpon().appendPath(searchChars).build();
+            return CHILD_TABLE_URI.buildUpon().appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN)
+                    .appendPath(searchChars).build();
         }
 
         public static Uri getCourseTableWithSearchUri(String searchChars){
-            return COURSE_TABLE_URI.buildUpon().appendPath(searchChars).build();
+            return COURSE_TABLE_URI.buildUpon().appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
+                    .appendPath(searchChars).build();
         }
 
         public static Uri getEmployeeTableWithSearchUri(String searchChars){
-            return EMPLOYEE_TABLE_URI.buildUpon().appendPath(searchChars).build();
+            return EMPLOYEE_TABLE_URI.buildUpon().appendPath(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN)
+                    .appendPath(searchChars).build();
         }
 
         public static Uri getInstructorTableWithSearchUri(String searchChars){
-            return INSTRUCTOR_TABLE_URI.buildUpon().appendPath(searchChars).build();
+            return INSTRUCTOR_TABLE_URI.buildUpon().appendPath(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN)
+                    .appendPath(searchChars).build();
         }
     }
 
