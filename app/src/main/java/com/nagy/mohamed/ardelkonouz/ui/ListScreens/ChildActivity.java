@@ -9,6 +9,8 @@ import com.nagy.mohamed.ardelkonouz.R;
 
 public class ChildActivity extends AppCompatActivity {
 
+    public static final String CHILD_TAG = "child";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,14 @@ public class ChildActivity extends AppCompatActivity {
             childActivityFragment.setEditTextView(findViewById(R.id.child_list_search_edit_view));
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment, childActivityFragment, "").commit();
+                    .add(R.id.fragment, childActivityFragment, CHILD_TAG).commit();
+        }else{
+
+            ChildActivityFragment childActivityFragment =(ChildActivityFragment) getSupportFragmentManager()
+                    .findFragmentByTag(CHILD_TAG);
+
+            childActivityFragment.setEditTextView(findViewById(R.id.child_list_search_edit_view));
+
         }
 
     }
