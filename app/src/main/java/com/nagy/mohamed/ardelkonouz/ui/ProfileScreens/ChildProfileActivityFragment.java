@@ -9,6 +9,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +37,15 @@ public class ChildProfileActivityFragment extends Fragment
         View rootView =  inflater.inflate(R.layout.fragment_child_profile, container, false);
         childProfileScreenViewHolder = new ViewHolder.ChildProfileScreenViewHolder(rootView);
         childId = getActivity().getIntent().getExtras().getLong(Constants.CHILD_ID_EXTRA);
+        Log.e("child id ", String.valueOf(childId));
         recycleViewChildProfileAdapter = new RecycleViewChildProfileAdapter();
 
         Cursor childProfileData = getQueryChildData();
 
         if(childProfileData != null){
+            Log.e("cursor not null ", String.valueOf(childId));
             if(childProfileData.getCount() > 0){
+                Log.e("cursor have value ", String.valueOf(childId));
                 childProfileData.moveToFirst();
                 setDataToViews(childProfileScreenViewHolder, childProfileData);
             }

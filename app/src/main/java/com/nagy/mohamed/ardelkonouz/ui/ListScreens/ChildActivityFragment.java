@@ -9,6 +9,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,6 +147,7 @@ public class ChildActivityFragment extends Fragment
             public void onClick(View view) {
                 Intent childProfile = new Intent(getActivity(), ChildProfileActivity.class);
                 childProfile.putExtra(Constants.CHILD_ID_EXTRA, CHILD_ID);
+                Log.e("child id ", String.valueOf(CHILD_ID));
                 startActivity(childProfile);
             }
         });
