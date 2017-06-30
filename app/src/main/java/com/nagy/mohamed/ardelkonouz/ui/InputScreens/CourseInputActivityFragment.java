@@ -216,7 +216,13 @@ public class CourseInputActivityFragment extends Fragment
                                     getDataFromInputs(COURSE_STATE_LIST, courseInputScreenViewHolder)
                             );
                             final long COURSE_ID = ContentUris.parseId(uri);
-                            Log.e("Course id", String.valueOf(COURSE_ID));
+
+                            Uri uri2 = getActivity().getContentResolver().insert(
+                                    DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI,
+                                    getData(COURSE_ID)
+                            );
+
+                            Log.e("Course id", String.valueOf(ContentUris.parseId(uri)));
                             openProfileCourseScreen(COURSE_ID);
                         }
                     }
@@ -386,5 +392,14 @@ public class CourseInputActivityFragment extends Fragment
         timePickerFragment.setCurrentDateWithTime(this);
         timePickerFragment.setView(view);
         timePickerFragment.setDate(year, month, day);
+    }
+
+    private ContentValues getData(final long COURSE_ID){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN, COURSE_ID);
+        contentValues.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, Constants.NO_INSTRUCTOR);
+        contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
+
+        return contentValues;
     }
 }

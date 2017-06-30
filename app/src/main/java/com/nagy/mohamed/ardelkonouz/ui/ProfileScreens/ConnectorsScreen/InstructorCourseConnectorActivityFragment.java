@@ -69,46 +69,20 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // delete all previous courses.
-                        getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
-                                null,
-                                null
-                        );
 
-                        // inset new courses.
-                        ArrayList<ContentValues> contentValuesArrayList = new ArrayList<ContentValues>();
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, instructorId);
 
                         for(final Long COURSE_ID : selectedCourses){
-                            ContentValues contentValues = new ContentValues();
-                            contentValues.put(
-                                    DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
-                                    instructorId
-                            );
-                            contentValues.put(
-                                    DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                                    COURSE_ID
-                            );
-                            if(paidCourses.contains(COURSE_ID)) {
-                                contentValues.put(
-                                        DbContent.CourseInstructorTable.PAID_COLUMN,Constants.PAID_COURSE
-                                        );
-                            }else{
-                                contentValues.put(
-                                        DbContent.CourseInstructorTable.PAID_COLUMN,Constants.NOT_PAID_COURSE
-                                );
-                            }
 
-                            contentValuesArrayList.add(contentValues);
+                            getActivity().getContentResolver().update(
+                                    DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
+                                    contentValues,
+                                    null,
+                                    null
+                            );
+
                         }
-
-                        ContentValues[] contentValues = new ContentValues[contentValuesArrayList.size()];
-                        contentValuesArrayList.toArray(contentValues);
-
-                        getActivity().getContentResolver().bulkInsert(
-                                DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI,
-                                contentValues
-                        );
 
                         openInstructorProfile();
                     }
@@ -164,14 +138,14 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_START_DATE
+                                4
                         )
                 )
         );
         coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_END_DATE
+                                5
                         )
                 )
         );
@@ -179,19 +153,19 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                DatabaseController.ProjectionDatabase.COURSE_HOURS
+                                3
                         )
                 )
         );
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
-                        DatabaseController.ProjectionDatabase.COURSE_NAME
+                        1
                 )
         );
         coursesViewHolder.COURSE_SALARY_PER_CHILD_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                DatabaseController.ProjectionDatabase.COURSE_SALARY_PER_CHILD
+                                2
                         )
                 )
         );

@@ -48,6 +48,20 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
 
+    private static final SQLiteQueryBuilder COURSE_INSTRUCTOR_JOIN_COURSE_QUERY =
+            new SQLiteQueryBuilder();
+
+    static {
+        COURSE_INSTRUCTOR_JOIN_COURSE_QUERY.setTables(
+                DbContent.CourseInstructorTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.CourseTable.TABLE_NAME +
+                        "." + DbContent.CourseTable._ID +
+                        "=" + DbContent.CourseInstructorTable.TABLE_NAME + "." +
+                        DbContent.CourseInstructorTable.COURSE_ID_COLUMN
+        );
+    }
+
     private static final SQLiteQueryBuilder COURSE_INSTRUCTOR_QUERY =
             new SQLiteQueryBuilder();
 
@@ -898,11 +912,12 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getCourseWithEndDateId(Uri uri, String[] projection, String sortType){
         long date = ContentUris.parseId(uri);
 
-        String selection = DbContent.CourseTable.COURSE_END_DATE_COLUMN + ">?";
-        String[] selectionArgs = {String.valueOf(date)};
+        String selection = DbContent.CourseTable.COURSE_END_DATE_COLUMN + ">?" + " AND " +
+                DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN + " =?";
+        String[] selectionArgs = {String.valueOf(date), String.valueOf(Constants.NO_INSTRUCTOR)};
 
-        return m_dbHelper.getReadableDatabase().query(
-                DbContent.CourseTable.TABLE_NAME,
+        return COURSE_INSTRUCTOR_JOIN_COURSE_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
                 selectionArgs,
