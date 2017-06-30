@@ -249,13 +249,11 @@ public class Utility {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy", Locale.ENGLISH);
         Date date1 = new Date();
         date1.setMonth(Calendar.MONTH);
         date1.setYear(Calendar.YEAR);
         date1.setHours(Calendar.HOUR);
-        date1.setMinutes(Calendar.MINUTE);
-        date1.setSeconds(Calendar.SECOND);
         date1.setDate(Calendar.DATE);
         return simpleDateFormat.format(date);
     }

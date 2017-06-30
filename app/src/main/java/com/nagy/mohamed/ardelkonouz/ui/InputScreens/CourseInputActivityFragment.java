@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.DatePickerFragment;
-import com.nagy.mohamed.ardelkonouz.calenderFeature.TimePickerFragment;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
@@ -352,17 +351,17 @@ public class CourseInputActivityFragment extends Fragment
         return isValid;
     }
 
+
     @Override
-    public void onTimeSet(int year, int month, int day, int hour, int mint, View view) {
+    public void onDateSet(int year, int month, int day, View view) {
         String strThatDay =
                 String.valueOf(year) + "/" +
                         String.valueOf(month) + "/" +
-                        String.valueOf(day) + " - " +
-                        String.valueOf(hour) + ":" +
-                        String.valueOf(mint);
+                        String.valueOf(day);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd - hh:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
         Date d = null;
+
         try {
             d = formatter.parse(strThatDay);//catch exception
         } catch (ParseException | java.text.ParseException e) {
@@ -377,22 +376,9 @@ public class CourseInputActivityFragment extends Fragment
         editText.setText(String.valueOf(thatDay.getTimeInMillis()));
     }
 
-    @Override
-    public void onDateSet(int year, int month, int day, View view) {
-        TimePickerFragment timePickerFragment = new TimePickerFragment();
-        setSettings(timePickerFragment, view, year, month, day);
-        timePickerFragment.show(getFragmentManager(), Constants.TAG);
-    }
-
     private void setSettings(DatePickerFragment datePickerFragment, View view){
         datePickerFragment.setCurrentDateWithTime(this);
         datePickerFragment.setView(view);
-    }
-
-    private void setSettings(TimePickerFragment timePickerFragment, View view, int year, int month, int day){
-        timePickerFragment.setCurrentDateWithTime(this);
-        timePickerFragment.setView(view);
-        timePickerFragment.setDate(year, month, day);
     }
 
     private ContentValues getData(final long COURSE_ID){
