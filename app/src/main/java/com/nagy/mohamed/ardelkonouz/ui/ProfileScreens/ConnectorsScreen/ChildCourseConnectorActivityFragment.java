@@ -262,6 +262,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         Intent childProfile = new Intent(getContext(), ChildProfileActivity.class);
         childProfile.putExtra(Constants.CHILD_ID_EXTRA, childId);
         startActivity(childProfile);
+        getActivity().finish();
     }
 
 }

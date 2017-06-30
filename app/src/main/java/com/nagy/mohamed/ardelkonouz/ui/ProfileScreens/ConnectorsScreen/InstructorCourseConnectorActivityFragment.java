@@ -122,6 +122,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         Intent instructorProfileScreen = new Intent(getContext(), InstructorProfileActivity.class);
         instructorProfileScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, instructorId);
         startActivity(instructorProfileScreen);
+        getActivity().finish();
     }
 
     private void setPreviousCourses(ArrayList<Long> previousCourses){
