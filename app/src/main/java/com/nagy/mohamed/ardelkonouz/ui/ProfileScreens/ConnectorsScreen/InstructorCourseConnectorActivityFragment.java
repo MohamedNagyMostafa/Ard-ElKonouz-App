@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor>{
 
     private ArrayList<Long> selectedCourses;
+    private ArrayList<Long> previousSelectedCourses;
     private DatabaseCursorAdapter databaseCursorAdapter;
     private Long instructorId;
 
@@ -43,12 +45,13 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 new ViewHolder.InstructorCourseConnectorScreenViewHolder(rootView);
         instructorId = getActivity().getIntent().getExtras().getLong(Constants.INSTRUCTOR_ID_EXTRA);
         selectedCourses = new ArrayList<>();
-        final ArrayList<Long> paidCourses = new ArrayList<>();
+        previousSelectedCourses = new ArrayList<>();
+
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
 
         // set previous courses.
-        setPreviousCourses(paidCourses);
+        setPreviousCourses(previousSelectedCourses);
 
         // set listener.
         instructorCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
@@ -60,7 +63,9 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                     @Override
                     public void onClick(View view) {
                         selectedCourses = new ArrayList<Long>();
-                        setPreviousCourses(paidCourses);
+                        previousSelectedCourses = new ArrayList<Long>();
+
+                        setPreviousCourses(previousSelectedCourses);
                         restartLoader();
                     }
                 }
@@ -70,18 +75,37 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                     @Override
                     public void onClick(View view) {
 
-                        ContentValues contentValues = new ContentValues();
-                        contentValues.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, instructorId);
+                        ContentValues selectedContentValues = new ContentValues();
+                        selectedContentValues.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, instructorId);
+                        Log.e("selected course count", String.valueOf(selectedCourses.size()));
+                        Log.e("preselected corse count", String.valueOf(previousSelectedCourses.size()));
 
                         for(final Long COURSE_ID : selectedCourses){
 
                             getActivity().getContentResolver().update(
                                     DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
-                                    contentValues,
+                                    selectedContentValues,
                                     null,
                                     null
                             );
 
+                            if(previousSelectedCourses.contains(COURSE_ID)){
+                                previousSelectedCourses.remove(COURSE_ID);
+                            }
+                        }
+
+                        ContentValues unselectedContentValues = new ContentValues();
+                        unselectedContentValues.put(
+                                DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
+                                Constants.NO_INSTRUCTOR);
+
+                        for(final Long COURSE_ID : previousSelectedCourses) {
+                            getActivity().getContentResolver().update(
+                                    DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
+                                    unselectedContentValues,
+                                    null,
+                                    null
+                            );
                         }
 
                         openInstructorProfile();
@@ -100,11 +124,10 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         startActivity(instructorProfileScreen);
     }
 
-    private void setPreviousCourses(ArrayList<Long> paidList){
+    private void setPreviousCourses(ArrayList<Long> previousCourses){
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
-                new String[]{DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                        DbContent.CourseInstructorTable.PAID_COLUMN},
+                new String[]{DbContent.CourseInstructorTable.COURSE_ID_COLUMN},
                 null,
                 null,
                 null
@@ -113,10 +136,8 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         if(cursor != null){
             if(cursor.getCount() > 0){
                 while (cursor.moveToNext()){
+                    previousCourses.add(cursor.getLong(0));
                     selectedCourses.add(cursor.getLong(0));
-                    if(cursor.getInt(1) == Constants.PAID_COURSE){
-                        paidList.add(cursor.getLong(0));
-                    }
                 }
             }
             cursor.close();
@@ -185,7 +206,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 }
         );
 
-        if(selectedCourses.contains(COURSE_ID)){
+        if(selectedCourses.contains(COURSE_ID) || previousSelectedCourses.contains(COURSE_ID)){
             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
         }else{
             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
@@ -198,7 +219,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         long dateAsMills = Utility.getCurrentDateAsMills();
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithEndDate(dateAsMills),
+                DatabaseController.UriDatabase.getCourseTableWithIdWithEndDate(dateAsMills, instructorId),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                 null,
                 null,

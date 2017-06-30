@@ -305,9 +305,10 @@ public class DatabaseController {
                     .build();
         }
 
-        public static Uri getCourseTableWithEndDate(long date){
+        public static Uri getCourseTableWithIdWithEndDate(long date, long id){
             return COURSE_TABLE_URI.buildUpon()
                     .appendPath(DbContent.CourseTable.COURSE_END_DATE_COLUMN)
+                    .appendPath(String.valueOf(id))
                     .appendPath(String.valueOf(date)).build();
         }
 
