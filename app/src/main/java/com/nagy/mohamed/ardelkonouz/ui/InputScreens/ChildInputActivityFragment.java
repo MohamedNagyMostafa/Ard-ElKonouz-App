@@ -548,6 +548,7 @@ public class ChildInputActivityFragment extends Fragment {
         Intent coursesSelectionWindow = new Intent(getContext(), ChildCourseConnectorActivity.class);
         coursesSelectionWindow.putExtra(Constants.CHILD_ID_EXTRA, childId);
         startActivity(coursesSelectionWindow);
+        getActivity().finish();
     }
 
     private boolean checkValidation(

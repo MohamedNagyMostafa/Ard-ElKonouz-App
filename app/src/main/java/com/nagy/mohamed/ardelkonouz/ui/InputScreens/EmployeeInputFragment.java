@@ -190,6 +190,7 @@ public class EmployeeInputFragment extends Fragment {
         Intent employeeProfileScreen = new Intent(getContext(), EmployeeProfileActivity.class);
         employeeProfileScreen.putExtra(Constants.EMPLOYEE_ID_EXTRA, EMPLOYEE_ID);
         startActivity(employeeProfileScreen);
+        getActivity().finish();
     }
 
     private boolean checkValidation(ArrayList<DoubleChoice> GENDER_LIST, EditText... editTexts){

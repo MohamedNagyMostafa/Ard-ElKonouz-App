@@ -180,6 +180,7 @@ public class InstructorInputActivityFragment extends Fragment {
         Intent instructorCourseConnectorScreen = new Intent(getContext(), InstructorCourseConnectorActivity.class);
         instructorCourseConnectorScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, INSTRUCTOR_ID);
         startActivity(instructorCourseConnectorScreen);
+        getActivity().finish();
     }
 
     private boolean checkValidation(ArrayList<DoubleChoice> GENDER_LIST, EditText... editTexts){

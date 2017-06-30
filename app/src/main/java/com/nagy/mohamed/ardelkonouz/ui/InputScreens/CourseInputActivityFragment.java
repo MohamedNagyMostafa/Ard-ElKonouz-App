@@ -332,6 +332,7 @@ public class CourseInputActivityFragment extends Fragment
         Intent profileCourseScreen = new Intent(getContext(), CourseProfileActivity.class);
         profileCourseScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
         startActivity(profileCourseScreen);
+        getActivity().finish();
     }
 
     private boolean checkValidation(ArrayList<DoubleChoice> doubleChoiceArrayList,
