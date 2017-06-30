@@ -26,71 +26,104 @@
         <activity
             android:name=".ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.MainActivity"/>
+
         <activity
             android:name=".ui.ProfileScreens.ChildProfileActivity"
             android:label="@string/title_activity_kid_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.ChildActivity"/>
+
         <activity
             android:name=".ui.ListScreens.InstructorActivity"
             android:label="@string/title_activity_instructor"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.MainActivity"/>
+
         <activity
             android:name=".ui.ProfileScreens.InstructorProfileActivity"
             android:label="@string/title_activity_instructor_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.InstructorActivity"/>
+
         <activity
             android:name=".ui.ListScreens.EmployeeActivity"
             android:label="@string/title_activity_employee"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.MainActivity"/>
+
         <activity
             android:name=".ui.ProfileScreens.EmployeeProfileActivity"
             android:label="@string/title_activity_employee_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.EmployeeActivity"/>
+
         <activity
             android:name=".ui.ListScreens.CourseActivity"
             android:label="@string/title_activity_course_activty"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.MainActivity"/>
+
         <activity
             android:name=".ui.ProfileScreens.CourseProfileActivity"
             android:label="@string/title_activity_course_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.CourseActivity"/>
+
         <activity
             android:name=".ui.InputScreens.ChildInputActivity"
             android:label="@string/title_activity_child_input"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.ChildActivity"/>
+
         <activity
             android:name=".ui.FinanceActivity"
             android:label="@string/title_activity_finance"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ui.InputScreens.InstructorInputActivity"
             android:label="@string/title_activity_instructor_input"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.InstructorActivity"/>
+
         <activity
             android:name=".ui.InputScreens.EmployeeInput"
             android:label="@string/title_activity_employee_input"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.EmployeeActivity"/>
+
         <activity
             android:name=".ui.InputScreens.CourseInputActivity"
             android:label="@string/title_activity_course_input"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.CourseActivity"/>
+
         <activity
             android:name=".ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity"
             android:label="@string/title_activity_child_course_connector"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.ChildActivity"/>
+
         <activity
             android:name=".ui.ProfileScreens.ConnectorsScreen.InstructorCourseConnectorActivity"
             android:label="@string/title_activity_instructor_course_connector"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.InstructorActivity"/>
+
         <activity
             android:name=".ui.SalaryScreens.SalaryActivity"
             android:label="@string/title_activity_salary"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.MainActivity"/>
+
         <activity
             android:name=".ui.SalaryScreens.InstructorSalaryActivity"
             android:label="@string/title_activity_instructor_salary"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.SalaryScreens.SalaryActivity"/>
+
     </application>
 
 </manifest>
