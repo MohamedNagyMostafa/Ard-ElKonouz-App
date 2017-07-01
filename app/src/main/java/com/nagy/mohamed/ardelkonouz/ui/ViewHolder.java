@@ -211,6 +211,7 @@ public class ViewHolder {
         public final EditText COURSE_SALARY_PER_CHILD_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_FROM_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_TO_EDIT_TEXT;
+        public final EditText COURSE_SESSIONS_NUMBER_EDIT_TEXT;
         public final TextView COURSE_COMPLETE_TEXT_VIEW;
         public final TextView COURSE_INCOMPLETE_TEXT_VIEW;
         public final ImageView COURSE_COMPLETE_IMAGE_VIEW;
@@ -241,6 +242,7 @@ public class ViewHolder {
             COURSE_SALARY_PER_CHILD_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_salary_per_child_edit_view);
             COURSE_AGE_RANGE_FROM_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_from_edit_view);
             COURSE_AGE_RANGE_TO_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_to_edit_view);
+            COURSE_SESSIONS_NUMBER_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_sessions_number_edit_view);
             COURSE_COMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_complete_text_view);
             COURSE_INCOMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_incomplete_text_view);
             COURSE_COMPLETE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_complete_image_view);

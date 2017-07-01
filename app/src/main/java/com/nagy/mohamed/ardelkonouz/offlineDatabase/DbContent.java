@@ -39,7 +39,7 @@ public class DbContent {
         public static final String COURSE_LEVEL_COLUMN = "course_level";
         public static final String COURSE_SALARY_PER_CHILD = "salary_per_child";
         public static final String COURSE_DAYS_COLUMN = "course_days";
-        public static final String COURSE_SESSIONS_NUMBER_COLUMN = "course sessions number";
+        public static final String COURSE_SESSIONS_NUMBER_COLUMN = "course_sessions_number";
 
         public static final String CREATE_COURSE_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +

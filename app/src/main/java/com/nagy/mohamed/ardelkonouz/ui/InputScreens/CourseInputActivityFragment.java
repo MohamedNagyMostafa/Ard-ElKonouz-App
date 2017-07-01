@@ -58,24 +58,57 @@ public class CourseInputActivityFragment extends Fragment
 
         final ArrayList<DoubleChoice> COURSE_STATE_LIST =
                 setCourseStateListItem(courseInputScreenViewHolder);
+        final ArrayList<DoubleChoice> COURSE_DAYS_LIST =
+                setCourseDaysListItem(courseInputScreenViewHolder);
 
         courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
 
         // setChoice listener.
         setCourseStateListener(COURSE_STATE_LIST);
+        setDoubleChoicesListListeners(COURSE_DAYS_LIST);
 
         if(INPUT_TYPE.equals(Constants.INPUT_ADD_EXTRA)) {
-            setOptionsAsAddNewCourse(COURSE_STATE_LIST, courseInputScreenViewHolder);
+            setOptionsAsAddNewCourse(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder);
         }else {
-            setOptionsAsEditCourse(COURSE_STATE_LIST, courseInputScreenViewHolder);
+            setOptionsAsEditCourse(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder);
         }
 
         return rootView;
 
     }
 
+    private ArrayList<DoubleChoice> setCourseDaysListItem(
+            ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
+        ArrayList<DoubleChoice> courseDaysList = new ArrayList<>();
+
+        Utility.setChoiceTextViewSystem(
+                courseDaysList, getContext(),
+                courseInputScreenViewHolder.COURSE_SAT_TEXT_VIEW,
+                courseInputScreenViewHolder.COURSE_SUN_TEXT_VIEW,
+                courseInputScreenViewHolder.COURSE_MON_TEXT_VIEW,
+                courseInputScreenViewHolder.COURSE_TUE_TEXT_VIEW,
+                courseInputScreenViewHolder.COURSE_WED_TEXT_VIEW,
+                courseInputScreenViewHolder.COURSE_THU_TEXT_VIEW,
+                courseInputScreenViewHolder.COURSE_FRI_TEXT_VIEW
+        );
+
+        Utility.setChoiceImageViewSystem(
+                courseDaysList,
+                courseInputScreenViewHolder.COURSE_SAT_IMAGE_VIEW,
+                courseInputScreenViewHolder.COURSE_SUN_IMAGE_VIEW,
+                courseInputScreenViewHolder.COURSE_MON_IMAGE_VIEW,
+                courseInputScreenViewHolder.COURSE_TUE_IMAGE_VIEW,
+                courseInputScreenViewHolder.COURSE_WED_IMAGE_VIEW,
+                courseInputScreenViewHolder.COURSE_THU_IMAGE_VIEW,
+                courseInputScreenViewHolder.COURSE_FRI_IMAGE_VIEW
+        );
+
+        return courseDaysList;
+    }
+
 
     private void setOptionsAsEditCourse(final ArrayList<DoubleChoice> COURSE_STATE_LIST,
+                                        final ArrayList<DoubleChoice> COURSE_DAYS_LIST,
                                         final ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
         final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
 
@@ -124,13 +157,6 @@ public class CourseInputActivityFragment extends Fragment
                                 )
                         )
                 );
-                courseInputScreenViewHolder.COURSE_ENDING_DATE_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_END_DATE
-                                )
-                        )
-                );
                 courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getDouble(
@@ -158,17 +184,24 @@ public class CourseInputActivityFragment extends Fragment
                                 )
                         )
                 );
+                courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT.setText(
+                        String.valueOf(
+                                cursor.getInt(
+                                        DatabaseController.ProjectionDatabase.COURSE_SESSIONS_NUMBER_COLUMN
+                                )
+                        )
+                );
 
                 courseInputScreenViewHolder.SUBMIT_COURSE_BUTTON.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(checkValidation(COURSE_STATE_LIST,
+                                if(checkValidation(COURSE_STATE_LIST, COURSE_DAYS_LIST,
                                         courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_ENDING_DATE_EDIT_TEXT,
+                                        courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
@@ -176,7 +209,7 @@ public class CourseInputActivityFragment extends Fragment
 
                                     getActivity().getContentResolver().update(
                                             DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                                            getDataFromInputs(COURSE_STATE_LIST, courseInputScreenViewHolder),
+                                            getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder),
                                             null,
                                             null
                                     );
@@ -194,17 +227,18 @@ public class CourseInputActivityFragment extends Fragment
     }
 
     private void setOptionsAsAddNewCourse(final ArrayList<DoubleChoice> COURSE_STATE_LIST,
+                                          final ArrayList<DoubleChoice> COURSE_DAYS_LIST,
                                           final ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
         courseInputScreenViewHolder.SUBMIT_COURSE_BUTTON.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(checkValidation(COURSE_STATE_LIST,
+                        if(checkValidation(COURSE_STATE_LIST, COURSE_DAYS_LIST,
                                 courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_ENDING_DATE_EDIT_TEXT,
+                                courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
@@ -212,8 +246,9 @@ public class CourseInputActivityFragment extends Fragment
 
                             Uri uri = getActivity().getContentResolver().insert(
                                     DatabaseController.UriDatabase.COURSE_TABLE_URI,
-                                    getDataFromInputs(COURSE_STATE_LIST, courseInputScreenViewHolder)
+                                    getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder)
                             );
+
                             final long COURSE_ID = ContentUris.parseId(uri);
 
                             Uri uri2 = getActivity().getContentResolver().insert(
@@ -246,6 +281,25 @@ public class CourseInputActivityFragment extends Fragment
         }
     }
 
+    @SafeVarargs
+    private final void setDoubleChoicesListListeners(ArrayList<DoubleChoice>... doubleChoiceArrayLists){
+        for(ArrayList<DoubleChoice> doubleChoiceArrayList : doubleChoiceArrayLists){
+            for(final DoubleChoice doubleChoice : doubleChoiceArrayList){
+                doubleChoice.getTextView().setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(doubleChoice.isSelected())
+                                    doubleChoice.setChoiceNotSelect();
+                                else
+                                    doubleChoice.setChoiceSelect();
+                            }
+                        }
+                );
+            }
+        }
+    }
+
     private ArrayList<DoubleChoice> setCourseStateListItem(
             ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
         ArrayList<DoubleChoice> doubleChoiceArrayList = new ArrayList<>();
@@ -275,6 +329,7 @@ public class CourseInputActivityFragment extends Fragment
     }
 
     private ContentValues getDataFromInputs(ArrayList<DoubleChoice> COURSE_STATE_LIST,
+                                            ArrayList<DoubleChoice> COURSE_DAYS_LIST,
                                             ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
         final String COURSE_NAME =
                 courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT.getText().toString();
@@ -294,10 +349,6 @@ public class CourseInputActivityFragment extends Fragment
                 Long.valueOf(
                         courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.getText().toString()
                 );
-        final Long COURSE_END_DATE =
-                Long.valueOf(
-                        courseInputScreenViewHolder.COURSE_ENDING_DATE_EDIT_TEXT.getText().toString()
-                );
         final Double COURSE_SALARY_PER_CHILD =
                 Double.valueOf(
                         courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT.getText().toString()
@@ -310,12 +361,22 @@ public class CourseInputActivityFragment extends Fragment
                 Integer.valueOf(
                         courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT.getText().toString()
                 );
+        final Integer COURSE_SESSIONS_NUMBER =
+                Integer.valueOf(
+                        courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT.getText().toString()
+                );
+
         final Integer COURSE_STATE = getSelectionFromList(COURSE_STATE_LIST);
+        final String COURSE_SESSION_DAYS = getDoubleChoicesResult(COURSE_DAYS_LIST);
+
+        Log.e("course_days", COURSE_SESSION_DAYS);
+        Log.e("course_days", COURSE_SESSION_DAYS);
+        Log.e("course_sessions_number", String.valueOf(COURSE_SESSIONS_NUMBER));
+
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, COURSE_LEVEL);
         contentValues.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, COURSE_SALARY_PER_CHILD);
-        contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, COURSE_END_DATE);
         contentValues.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, COURSE_START_DATE);
         contentValues.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN, COURSE_STATE);
         contentValues.put(DbContent.CourseTable.COURSE_COST_COLUMN, COURSE_COST);
@@ -323,8 +384,24 @@ public class CourseInputActivityFragment extends Fragment
         contentValues.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, COURSE_START_AGE);
         contentValues.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, COURSE_END_AGE);
         contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, COURSE_HOURS);
+        contentValues.put(DbContent.CourseTable.COURSE_DAYS_COLUMN, COURSE_SESSION_DAYS);
+        contentValues.put(DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN, COURSE_SESSIONS_NUMBER);
+
         Log.e("set data to database",String.valueOf(COURSE_START_DATE));
         return contentValues;
+    }
+
+    private String getDoubleChoicesResult(ArrayList<DoubleChoice> doubleChoiceArrayList){
+        StringBuilder stringBuilder = new StringBuilder("");
+        for(DoubleChoice doubleChoice : doubleChoiceArrayList){
+            if(doubleChoice.isSelected()) {
+                stringBuilder.append(Constants.SELECTED);
+                Log.e("day select", doubleChoice.getTextView().getText().toString());
+            }else{
+                stringBuilder.append(Constants.NOT_SELECTED);
+            }
+        }
+        return stringBuilder.toString();
     }
 
     private void openProfileCourseScreen(final long COURSE_ID){
@@ -334,7 +411,8 @@ public class CourseInputActivityFragment extends Fragment
         getActivity().finish();
     }
 
-    private boolean checkValidation(ArrayList<DoubleChoice> doubleChoiceArrayList,
+    private boolean checkValidation(ArrayList<DoubleChoice> doubleChoiceStateArrayList,
+                                    ArrayList<DoubleChoice> doubleChoiceDaysArrayList,
                                     EditText... editTexts){
         boolean isValid = true;
         for(EditText editText : editTexts){
@@ -343,9 +421,13 @@ public class CourseInputActivityFragment extends Fragment
                 editText.setError("This field can not be empty");
             }
         }
-        if(getSelectionFromList(doubleChoiceArrayList) == -1) {
+        if(getSelectionFromList(doubleChoiceStateArrayList) == -1) {
             isValid = false;
             Toast.makeText(getContext(), "Please choose the state of course",Toast.LENGTH_SHORT).show();
+        }
+        if(getSelectionFromList(doubleChoiceDaysArrayList) == -1) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please choose the days of sessions",Toast.LENGTH_SHORT).show();
         }
 
         return isValid;
