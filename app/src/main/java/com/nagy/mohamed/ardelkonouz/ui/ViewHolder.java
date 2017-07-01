@@ -517,6 +517,7 @@ public class ViewHolder {
         public final TextView COURSE_START_TEXT_VIEW;
         public final TextView COURSE_INSTRUCTOR_NAME_TEXT_VIEW;
         public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
+        public final TextView COURSE_SESSIONS_DAYS_TEXT_VIEW;
         public final FloatingActionButton COURSE_EDIT_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
@@ -531,6 +532,7 @@ public class ViewHolder {
             COURSE_START_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
             COURSE_INSTRUCTOR_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_instructor_name_text_view);
             COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_age_range_text_view);
+            COURSE_SESSIONS_DAYS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_session_days_text_view);
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
         }
     }

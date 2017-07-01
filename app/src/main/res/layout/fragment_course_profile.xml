@@ -241,10 +241,10 @@
                     android:fontFamily="serif"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:text="@string/salary_per_child"/>
+                    android:text="Sessions Days"/>
 
                 <TextView
-                    android:id="@+id/course_pf_salary_per_child_text_view"
+                    android:id="@+id/course_pf_session_days_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -322,6 +322,23 @@
 
                     <TextView
                         android:id="@+id/course_pf_age_range_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@android:color/black"
+                        android:text="@string/empty_info"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Percent Per Child"/>
+
+                    <TextView
+                        android:id="@+id/course_pf_salary_per_child_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"

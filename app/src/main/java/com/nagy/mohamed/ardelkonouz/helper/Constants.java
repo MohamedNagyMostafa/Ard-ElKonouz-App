@@ -90,4 +90,16 @@ public class Constants {
     public static final char NOT_SELECTED = 2;
 
     public static final short NO_INSTRUCTOR = -1;
+
+    // Days
+    public static final char SAT_DAY = 0;
+    public static final char SUN_DAY = 1;
+    public static final char MON_DAY = 2;
+    public static final char TUE_DAY = 3;
+    public static final char WED_DAY = 4;
+    public static final char THU_DAY = 5;
+    public static final char FRI_DAY = 6;
+
+    public static final Long DAY_IN_MILS = Long.valueOf(24* 60 * 60 * 1000);
+
 }

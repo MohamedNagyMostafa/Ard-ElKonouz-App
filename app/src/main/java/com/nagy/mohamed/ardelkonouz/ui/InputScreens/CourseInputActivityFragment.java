@@ -368,6 +368,7 @@ public class CourseInputActivityFragment extends Fragment
 
         final Integer COURSE_STATE = getSelectionFromList(COURSE_STATE_LIST);
         final String COURSE_SESSION_DAYS = getDoubleChoicesResult(COURSE_DAYS_LIST);
+        final Long COURSE_END_DATE = Utility.getEndDate(COURSE_START_DATE, COURSE_SESSION_DAYS, COURSE_SESSIONS_NUMBER);
 
         Log.e("course_days", COURSE_SESSION_DAYS);
         Log.e("course_days", COURSE_SESSION_DAYS);
@@ -378,6 +379,7 @@ public class CourseInputActivityFragment extends Fragment
         contentValues.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, COURSE_LEVEL);
         contentValues.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, COURSE_SALARY_PER_CHILD);
         contentValues.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, COURSE_START_DATE);
+        contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, COURSE_END_DATE);
         contentValues.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN, COURSE_STATE);
         contentValues.put(DbContent.CourseTable.COURSE_COST_COLUMN, COURSE_COST);
         contentValues.put(DbContent.CourseTable.COURSE_NAME_COLUMN, COURSE_NAME);

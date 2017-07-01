@@ -17,6 +17,134 @@ import java.util.Locale;
  * Created by mohamednagy on 6/10/2017.
  */
 public class Utility {
+    // This Method Calculate The End Day.
+    public static Long getEndDate(final Long COURSE_START_DATE, final String COURSE_SESSIONS_DAYS,
+                            final Integer SESSIONS_NUMBER){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(COURSE_START_DATE);
+
+        int startDay = getStartDay(calendar);
+        long daysDiff = 0;
+
+        for(int i = SESSIONS_NUMBER -1 ; i > 0 ; i--){
+            while(COURSE_SESSIONS_DAYS.indexOf(++startDay % 7) != Constants.SELECTED)
+                ++daysDiff;
+            ++daysDiff;
+        }
+
+        return calendar.getTimeInMillis() +  (daysDiff * Constants.DAY_IN_MILS);
+    }
+
+    public static boolean isCourseEnd(final long COURSE_END_DATE){
+        Calendar todayCalender = Calendar.getInstance();
+        Calendar courseEndCalender = Calendar.getInstance();
+
+        courseEndCalender.setTimeInMillis(COURSE_END_DATE);
+
+        return todayCalender.after(courseEndCalender);
+    }
+        
+    // get remains day for course ... if course is not ended.
+    public static int getRemainDaysNumberWithNextDay(final Long COURSE_START_DATE,
+                                             final String COURSE_SESSIONS_DAYS,
+                                             final Integer COURSE_SESSIONS_NUMBER,
+                                                        String nextSessionDay){
+
+        Calendar startCalender = Calendar.getInstance();
+        Calendar todayCalender = Calendar.getInstance();
+
+        startCalender.setTimeInMillis(COURSE_START_DATE);
+
+        int lastSelectionDay = 0;
+        int startDay = lastSelectionDay;
+        int dayLeft = 0;
+        long dayInMillsCounter = COURSE_START_DATE;
+
+        while (startCalender.before(todayCalender)){
+
+            if(COURSE_SESSIONS_DAYS.indexOf(startDay++ % 7) == Constants.SELECTED ){
+                lastSelectionDay = startDay;
+                ++dayLeft;
+            }
+
+            dayInMillsCounter += Constants.DAY_IN_MILS;
+
+            startCalender.setTimeInMillis(dayInMillsCounter);
+        }
+
+        if(dayLeft == 0){
+            // Course is not started yet
+            nextSessionDay = getDayFromIndex(startDay);
+        }else{
+            // session is not completed
+            if(dayLeft < COURSE_SESSIONS_NUMBER){
+                // Check if today or not
+                if(COURSE_SESSIONS_DAYS.indexOf(startDay) == Constants.SELECTED){
+                    nextSessionDay = "Today";
+                }else{
+                    while(COURSE_SESSIONS_DAYS.indexOf(++startDay % 7) != Constants.SELECTED);
+                    nextSessionDay = getDayFromIndex(startDay);
+                }
+            }
+        }
+
+        return COURSE_SESSIONS_NUMBER - dayLeft;
+    }
+
+    public static String getDaysAsString(final String COURSES_SESSIONS_DAYS){
+        StringBuilder stringBuilder = new StringBuilder("");
+
+        for(int i = 0 ; i < COURSES_SESSIONS_DAYS.length() ; i++){
+            if(COURSES_SESSIONS_DAYS.indexOf(i) == Constants.SELECTED){
+                if(stringBuilder.length() > 1)
+                    stringBuilder.append(" - ").append(getDayFromIndex(i));
+                else
+                    stringBuilder.append(getDayFromIndex(i));
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private static String getDayFromIndex(int index){
+        switch (index){
+            case Constants.SAT_DAY:
+                return "SAT";
+            case Constants.SUN_DAY:
+                return "SUN";
+            case Constants.TUE_DAY:
+                return "TUE";
+            case Constants.WED_DAY:
+                return "WED";
+            case Constants.THU_DAY:
+                return "THU";
+            case Constants.FRI_DAY:
+                return "FRI";
+            default:
+                return "";
+        }
+    }
+
+    private static int getStartDay(Calendar calendar){
+        switch (calendar.get(Calendar.DAY_OF_WEEK)){
+            case Calendar.SATURDAY:
+                return Constants.SAT_DAY;
+            case Calendar.SUNDAY:
+                return Constants.SUN_DAY;
+            case Calendar.MONDAY:
+                return Constants.MON_DAY;
+            case Calendar.TUESDAY:
+                return Constants.TUE_DAY;
+            case Calendar.WEDNESDAY:
+                return Constants.WED_DAY;
+            case Calendar.THURSDAY:
+                return Constants.THU_DAY;
+            case Calendar.FRIDAY:
+                return Constants.FRI_DAY;
+            default:
+                return 0;
+        }
+    }
 
     public static String decodeBirthOrderByInt(int birthOrder, Context context){
         switch (birthOrder){
