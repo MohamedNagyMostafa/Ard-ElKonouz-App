@@ -60,7 +60,7 @@ public class CourseInputActivityFragment extends Fragment
                 setCourseStateListItem(courseInputScreenViewHolder);
 
         courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
-        courseInputScreenViewHolder.COURSE_ENDING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
+
         // setChoice listener.
         setCourseStateListener(COURSE_STATE_LIST);
 
