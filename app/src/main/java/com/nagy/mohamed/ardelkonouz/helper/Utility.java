@@ -247,6 +247,7 @@ public class Utility {
 
     public static String getTimeFormat(long date){
         Calendar calendar = Calendar.getInstance();
+
         calendar.setTimeInMillis(date);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy", Locale.ENGLISH);
@@ -255,6 +256,7 @@ public class Utility {
         date1.setYear(Calendar.YEAR);
         date1.setHours(Calendar.HOUR);
         date1.setDate(Calendar.DATE);
+
         return simpleDateFormat.format(date);
     }
 }
