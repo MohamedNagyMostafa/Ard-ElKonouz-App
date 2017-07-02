@@ -43,7 +43,7 @@ public class Utility {
 
         return todayCalender.after(courseEndCalender);
     }
-        
+
     // get remains day for course ... if course is not ended.
     public static int getRemainDaysNumberWithNextDay(final Long COURSE_START_DATE,
                                              final String COURSE_SESSIONS_DAYS,
@@ -51,19 +51,18 @@ public class Utility {
                                                         String nextSessionDay){
 
         Calendar startCalender = Calendar.getInstance();
-        Calendar todayCalender = Calendar.getInstance();
+        Calendar todayCalender = getInitialCalendar(Calendar.getInstance());
 
         startCalender.setTimeInMillis(COURSE_START_DATE);
+        startCalender = getInitialCalendar(startCalender);
 
-        int lastSelectionDay = 0;
-        int startDay = lastSelectionDay;
+        int startDay = getStartDay(startCalender);
         int dayLeft = 0;
         long dayInMillsCounter = COURSE_START_DATE;
 
-        while (startCalender.before(todayCalender)){
+        while (startCalender.getTimeInMillis() < todayCalender.getTimeInMillis()){
 
             if(COURSE_SESSIONS_DAYS.indexOf(startDay++ % 7) == Constants.SELECTED ){
-                lastSelectionDay = startDay;
                 ++dayLeft;
             }
 
@@ -340,6 +339,15 @@ public class Utility {
         }
     }
 
+    private static Calendar getInitialCalendar(Calendar calendar){
+        calendar.set(Calendar.HOUR,0);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        return calendar;
+    }
+
     private static boolean isSelectedIQChoice(String iqAnswer, int index){
         return (iqAnswer.charAt(index) == Constants.SELECTED);
     }
@@ -378,7 +386,7 @@ public class Utility {
 
         calendar.setTimeInMillis(date);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm:ss", Locale.ENGLISH);
         Date date1 = new Date();
         date1.setMonth(Calendar.MONTH);
         date1.setYear(Calendar.YEAR);

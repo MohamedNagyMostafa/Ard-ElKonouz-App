@@ -198,6 +198,23 @@
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Sessions Days"/>
+
+                    <TextView
+                        android:id="@+id/course_pf_session_days_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@android:color/black"
+                        android:text="@string/empty_info"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -223,34 +240,24 @@
                         android:layout_marginStart="4dp"
                         android:text="@string/empty_info"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Next Session Day"/>
+
+                    <TextView
+                        android:id="@+id/course_pf_next_session_day_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@android:color/black"
+                        android:text="@string/empty_info"/>
+
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="Sessions Days"/>
-
-                <TextView
-                    android:id="@+id/course_pf_session_days_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@android:color/black"
-                    android:text="@string/empty_info"/>
 
             </LinearLayout>
 
@@ -346,6 +353,22 @@
                         android:textColor="@android:color/black"
                         android:text="@string/empty_info"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Finished sessions"/>
+
+                    <TextView
+                        android:id="@+id/course_pf_finished_sessions_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/empty_info"/>
 
                 </LinearLayout>
 
@@ -365,6 +388,41 @@
 
                     <TextView
                         android:id="@+id/course_pf_instructor_name_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/empty_info"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Number Of Sessions"/>
+
+                    <TextView
+                        android:id="@+id/course_pf_sessions_number_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/empty_info"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Remaining sessions"/>
+
+                    <TextView
+                        android:id="@+id/course_pf_remaining_sessions_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
