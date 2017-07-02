@@ -19,14 +19,14 @@ import java.util.Locale;
 public class Utility {
     // This Method Calculate The End Day.
     public static Long getEndDate(final Long COURSE_START_DATE, final String COURSE_SESSIONS_DAYS,
-                            final Integer SESSIONS_NUMBER){
+                            final Integer SESSIONS_NUMBER, final Integer COURSE_SHIFT_NUMBER){
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(COURSE_START_DATE);
 
         int startDay = getStartDay(calendar);
         long daysDiff = 0;
 
-        for(int i = SESSIONS_NUMBER -1 ; i > 0 ; i--){
+        for(int i = (SESSIONS_NUMBER + COURSE_SHIFT_NUMBER) -1 ; i > 0 ; i--){
             while(COURSE_SESSIONS_DAYS.indexOf(++startDay % 7) != Constants.SELECTED)
                 ++daysDiff;
             ++daysDiff;
@@ -48,7 +48,7 @@ public class Utility {
     public static int getRemainDaysNumberWithNextDay(final Long COURSE_START_DATE,
                                              final String COURSE_SESSIONS_DAYS,
                                              final Integer COURSE_SESSIONS_NUMBER,
-                                                        String nextSessionDay){
+                                                        StringBuilder nextSessionDay){
 
         Calendar startCalender = Calendar.getInstance();
         Calendar todayCalender = getInitialCalendar(Calendar.getInstance());
@@ -73,16 +73,16 @@ public class Utility {
 
         if(dayLeft == 0){
             // Course is not started yet
-            nextSessionDay = getDayFromIndex(startDay);
+            nextSessionDay.append(getDayFromIndex(startDay));
         }else{
             // session is not completed
             if(dayLeft < COURSE_SESSIONS_NUMBER){
                 // Check if today or not
                 if(COURSE_SESSIONS_DAYS.indexOf(startDay) == Constants.SELECTED){
-                    nextSessionDay = "Today";
+                    nextSessionDay.append("Today");
                 }else{
                     while(COURSE_SESSIONS_DAYS.indexOf(++startDay % 7) != Constants.SELECTED);
-                    nextSessionDay = getDayFromIndex(startDay);
+                    nextSessionDay.append(getDayFromIndex(startDay));
                 }
             }
         }

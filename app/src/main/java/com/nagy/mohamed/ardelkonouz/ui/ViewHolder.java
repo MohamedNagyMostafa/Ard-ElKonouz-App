@@ -514,10 +514,14 @@ public class ViewHolder {
         public final TextView COURSE_START_DATE_TEXT_VIEW;
         public final TextView COURSE_END_DATE_TEXT_VIEW;
         public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
-        public final TextView COURSE_START_TEXT_VIEW;
+        public final TextView COURSE_STATE_TEXT_VIEW;
         public final TextView COURSE_INSTRUCTOR_NAME_TEXT_VIEW;
         public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
         public final TextView COURSE_SESSIONS_DAYS_TEXT_VIEW;
+        public final TextView COURSE_NEXT_SESSION_DAY_TEXT_VIEW;
+        public final TextView COURSE_REMAINING_SESSIONS_TEXT_VIEW;
+        public final TextView COURSE_SESSIONS_NUMBER_TEXT_VIEW;
+        public final TextView COURSE_FINISHED_SESSIONS_TEXT_VIEW;
         public final FloatingActionButton COURSE_EDIT_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
@@ -529,10 +533,14 @@ public class ViewHolder {
             COURSE_START_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_start_date_text_view);
             COURSE_END_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_end_date_text_view);
             COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_salary_per_child_text_view);
-            COURSE_START_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
+            COURSE_STATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
             COURSE_INSTRUCTOR_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_instructor_name_text_view);
             COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_age_range_text_view);
             COURSE_SESSIONS_DAYS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_session_days_text_view);
+            COURSE_NEXT_SESSION_DAY_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_next_session_day_text_view);
+            COURSE_REMAINING_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_remaining_sessions_text_view);
+            COURSE_SESSIONS_NUMBER_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_sessions_number_text_view);
+            COURSE_FINISHED_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_finished_sessions_text_view);
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
         }
     }

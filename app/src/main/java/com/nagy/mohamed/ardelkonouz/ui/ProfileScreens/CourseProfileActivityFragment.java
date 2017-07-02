@@ -66,59 +66,52 @@ public class CourseProfileActivityFragment extends Fragment {
     private void setDataToView(Cursor cursor,
                                ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder,
                                final long COURSE_ID){
-        courseProfileScreenViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-                cursor.getString(
-                        DatabaseController.ProjectionDatabase.COURSE_NAME
-                )
+
+        final String COURSE_NAME =
+                cursor.getString(DatabaseController.ProjectionDatabase.COURSE_NAME);
+        final double COURSE_COST =
+                cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_COST);
+        final double COURSE_HOURS =
+                cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_HOURS);
+        final int COURSE_LEVEL =
+                cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_LEVEL);
+        final long COURSE_START_DATE =
+                cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_START_DATE);
+        final long COURSE_END_DATE =
+                cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_END_DATE);
+        final double COURSE_PERCENT_PER_CHILD =
+                cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_SALARY_PER_CHILD);
+        final int COURSE_STATE =
+                cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_AVAILABLE_POSITIONS);
+        final int COURSE_SESSIONS_NUMBER =
+                cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_SESSIONS_NUMBER_COLUMN);
+        final String COURSE_SESSIONS_DAYS =
+                cursor.getString(DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN);
+        StringBuilder nextSessionDay = new StringBuilder("");
+        final int REMAINING_SESSIONS = Utility.getRemainDaysNumberWithNextDay(
+                COURSE_START_DATE,
+                COURSE_SESSIONS_DAYS,
+                COURSE_SESSIONS_NUMBER,
+                nextSessionDay
         );
-        courseProfileScreenViewHolder.COURSE_COST_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getDouble(
-                                DatabaseController.ProjectionDatabase.COURSE_COST
-                        )
-                )
+        final int FINISHED_SESSIONS = COURSE_SESSIONS_NUMBER - REMAINING_SESSIONS;
+
+        courseProfileScreenViewHolder.COURSE_NAME_TEXT_VIEW.setText(COURSE_NAME);
+        courseProfileScreenViewHolder.COURSE_COST_TEXT_VIEW.setText(String.valueOf(COURSE_COST));
+        courseProfileScreenViewHolder.COURSE_HOURS_TEXT_VIEW.setText(String.valueOf(COURSE_HOURS));
+        courseProfileScreenViewHolder.COURSE_LEVEL_TEXT_VIEW.setText(String.valueOf(COURSE_LEVEL));
+        courseProfileScreenViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(COURSE_START_DATE));
+        courseProfileScreenViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(COURSE_END_DATE));
+        courseProfileScreenViewHolder.COURSE_SALARY_PER_CHILD_TEXT_VIEW.setText(String.valueOf(COURSE_PERCENT_PER_CHILD));
+        courseProfileScreenViewHolder.COURSE_SESSIONS_NUMBER_TEXT_VIEW.setText(String.valueOf(COURSE_SESSIONS_NUMBER));
+        courseProfileScreenViewHolder.COURSE_REMAINING_SESSIONS_TEXT_VIEW.setText(REMAINING_SESSIONS);
+        courseProfileScreenViewHolder.COURSE_FINISHED_SESSIONS_TEXT_VIEW.setText(FINISHED_SESSIONS);
+        courseProfileScreenViewHolder.COURSE_NEXT_SESSION_DAY_TEXT_VIEW.setText(nextSessionDay);
+        courseProfileScreenViewHolder.COURSE_SESSIONS_DAYS_TEXT_VIEW.setText(
+                Utility.getDaysAsString(COURSE_SESSIONS_DAYS)
         );
-        courseProfileScreenViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getDouble(
-                                DatabaseController.ProjectionDatabase.COURSE_HOURS
-                        )
-                )
-        );
-        courseProfileScreenViewHolder.COURSE_LEVEL_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getInt(
-                                DatabaseController.ProjectionDatabase.COURSE_LEVEL
-                        )
-                )
-        );
-        courseProfileScreenViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_START_DATE
-                        )
-                )
-        );
-        courseProfileScreenViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_END_DATE
-                        )
-                )
-        );
-        courseProfileScreenViewHolder.COURSE_SALARY_PER_CHILD_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getDouble(
-                                DatabaseController.ProjectionDatabase.COURSE_SALARY_PER_CHILD
-                        )
-                )
-        );
-        courseProfileScreenViewHolder.COURSE_START_TEXT_VIEW.setText(
-                Utility.decodeCourseStateByInt(
-                        cursor.getInt(
-                                DatabaseController.ProjectionDatabase.COURSE_AVAILABLE_POSITIONS
-                        ),getContext()
-                )
+        courseProfileScreenViewHolder.COURSE_STATE_TEXT_VIEW.setText(
+                Utility.decodeCourseStateByInt(COURSE_STATE, getContext())
         );
         courseProfileScreenViewHolder.COURSE_INSTRUCTOR_NAME_TEXT_VIEW.setText(
                 getCourseInstructorName(COURSE_ID)
@@ -133,6 +126,7 @@ public class CourseProfileActivityFragment extends Fragment {
                         )
                 )
         );
+
     }
 
     private String getCourseInstructorName(long courseId){

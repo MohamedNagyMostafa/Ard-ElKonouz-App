@@ -112,7 +112,7 @@ public class CourseInputActivityFragment extends Fragment
                                         final ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
         final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
 
-        Cursor cursor = getActivity().getContentResolver().query(
+        final Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                 null,
@@ -207,9 +207,26 @@ public class CourseInputActivityFragment extends Fragment
                                         courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
 
+                                    Cursor shiftCursor = getActivity().getContentResolver().query(
+                                            DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                            new String[]{DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN},
+                                            null,
+                                            null,
+                                            null
+                                    );
+                                    int courseShiftNumber = 0;
+
+                                    if(shiftCursor != null){
+                                        if(cursor.getCount() > 0){
+                                            courseShiftNumber = shiftCursor.getInt(0);
+                                        }
+                                        cursor.close();
+                                    }
+
                                     getActivity().getContentResolver().update(
                                             DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                                            getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder),
+                                            getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST,
+                                                    courseShiftNumber ,courseInputScreenViewHolder),
                                             null,
                                             null
                                     );
@@ -244,9 +261,12 @@ public class CourseInputActivityFragment extends Fragment
                                 courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
 
+                            final Integer COURSE_SHIFT_NUMBER = 0;
+
                             Uri uri = getActivity().getContentResolver().insert(
                                     DatabaseController.UriDatabase.COURSE_TABLE_URI,
-                                    getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder)
+                                    getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST, COURSE_SHIFT_NUMBER,
+                                            courseInputScreenViewHolder)
                             );
 
                             final long COURSE_ID = ContentUris.parseId(uri);
@@ -330,6 +350,7 @@ public class CourseInputActivityFragment extends Fragment
 
     private ContentValues getDataFromInputs(ArrayList<DoubleChoice> COURSE_STATE_LIST,
                                             ArrayList<DoubleChoice> COURSE_DAYS_LIST,
+                                            Integer COURSE_SHIFT_NUMBER,
                                             ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
         final String COURSE_NAME =
                 courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT.getText().toString();
@@ -368,7 +389,11 @@ public class CourseInputActivityFragment extends Fragment
 
         final Integer COURSE_STATE = getSelectionFromList(COURSE_STATE_LIST);
         final String COURSE_SESSION_DAYS = getDoubleChoicesResult(COURSE_DAYS_LIST);
-        final Long COURSE_END_DATE = Utility.getEndDate(COURSE_START_DATE, COURSE_SESSION_DAYS, COURSE_SESSIONS_NUMBER);
+        final Long COURSE_END_DATE = Utility.getEndDate(
+                COURSE_START_DATE,
+                COURSE_SESSION_DAYS,
+                COURSE_SESSIONS_NUMBER,
+                COURSE_SHIFT_NUMBER);
 
         Log.e("course_days", COURSE_SESSION_DAYS);
         Log.e("course_days", COURSE_SESSION_DAYS);
