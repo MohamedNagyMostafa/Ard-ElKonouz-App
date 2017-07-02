@@ -22,16 +22,24 @@ public class Utility {
                             final Integer SESSIONS_NUMBER, final Integer COURSE_SHIFT_NUMBER){
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(COURSE_START_DATE);
+        calendar = getInitialCalendar(calendar);
 
         int startDay = getStartDay(calendar);
-        long daysDiff = 0;
+        long daysDiff = -1;
+        Log.e("start day is ",getDayFromIndex(startDay));
+        //2
+        for(int i = (SESSIONS_NUMBER + COURSE_SHIFT_NUMBER) ; i > 0 ; i--){
+            while(COURSE_SESSIONS_DAYS.charAt(startDay) != Constants.SELECTED) {
+                startDay = (startDay + 1) % 7;
 
-        for(int i = (SESSIONS_NUMBER + COURSE_SHIFT_NUMBER) -1 ; i > 0 ; i--){
-            while(COURSE_SESSIONS_DAYS.indexOf(++startDay % 7) != Constants.SELECTED)
+                Log.e("Day not select", getDayFromIndex(startDay));
                 ++daysDiff;
+            }
+            startDay = (startDay + 1) % 7;
+            Log.e("i = ", String.valueOf(i));
             ++daysDiff;
         }
-
+        Log.e("calculation is end","done");
         return calendar.getTimeInMillis() +  (daysDiff * Constants.DAY_IN_MILS);
     }
 
@@ -45,10 +53,13 @@ public class Utility {
     }
 
     // get remains day for course ... if course is not ended.
-    public static int getRemainDaysNumberWithNextDay(final Long COURSE_START_DATE,
-                                             final String COURSE_SESSIONS_DAYS,
-                                             final Integer COURSE_SESSIONS_NUMBER,
-                                                        StringBuilder nextSessionDay){
+    public static int getRemainDaysNumberWithNextDay(
+            final Long COURSE_START_DATE,
+            final String COURSE_SESSIONS_DAYS,
+            final Integer COURSE_SESSIONS_NUMBER,
+            StringBuilder nextSessionDay,
+            final Long COURSE_SHIFT_END_DATE,
+            final Long COURSE_END_DATE){
 
         Calendar startCalender = Calendar.getInstance();
         Calendar todayCalender = getInitialCalendar(Calendar.getInstance());
@@ -62,10 +73,11 @@ public class Utility {
 
         while (startCalender.getTimeInMillis() < todayCalender.getTimeInMillis()){
 
-            if(COURSE_SESSIONS_DAYS.indexOf(startDay++ % 7) == Constants.SELECTED ){
+            if(COURSE_SESSIONS_DAYS.charAt(startDay) == Constants.SELECTED ){
                 ++dayLeft;
             }
 
+            startDay = (startDay + 1) % 7;
             dayInMillsCounter += Constants.DAY_IN_MILS;
 
             startCalender.setTimeInMillis(dayInMillsCounter);
@@ -78,10 +90,13 @@ public class Utility {
             // session is not completed
             if(dayLeft < COURSE_SESSIONS_NUMBER){
                 // Check if today or not
-                if(COURSE_SESSIONS_DAYS.indexOf(startDay) == Constants.SELECTED){
+                if(COURSE_SESSIONS_DAYS.charAt(startDay) == Constants.SELECTED &&
+                        COURSE_SHIFT_END_DATE != COURSE_END_DATE){
                     nextSessionDay.append("Today");
                 }else{
-                    while(COURSE_SESSIONS_DAYS.indexOf(++startDay % 7) != Constants.SELECTED);
+                    do {
+                        startDay = (startDay + 1) % 7;
+                    }while(COURSE_SESSIONS_DAYS.charAt(startDay) != Constants.SELECTED);
                     nextSessionDay.append(getDayFromIndex(startDay));
                 }
             }
@@ -94,7 +109,7 @@ public class Utility {
         StringBuilder stringBuilder = new StringBuilder("");
 
         for(int i = 0 ; i < COURSES_SESSIONS_DAYS.length() ; i++){
-            if(COURSES_SESSIONS_DAYS.indexOf(i) == Constants.SELECTED){
+            if(COURSES_SESSIONS_DAYS.charAt(i) == Constants.SELECTED){
                 if(stringBuilder.length() > 1)
                     stringBuilder.append(" - ").append(getDayFromIndex(i));
                 else
@@ -111,6 +126,8 @@ public class Utility {
                 return "SAT";
             case Constants.SUN_DAY:
                 return "SUN";
+            case Constants.MON_DAY:
+                return "MON";
             case Constants.TUE_DAY:
                 return "TUE";
             case Constants.WED_DAY:
@@ -386,7 +403,7 @@ public class Utility {
 
         calendar.setTimeInMillis(date);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm:ss", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy", Locale.ENGLISH);
         Date date1 = new Date();
         date1.setMonth(Calendar.MONTH);
         date1.setYear(Calendar.YEAR);

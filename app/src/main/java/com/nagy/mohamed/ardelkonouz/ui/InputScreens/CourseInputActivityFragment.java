@@ -2,7 +2,6 @@ package com.nagy.mohamed.ardelkonouz.ui.InputScreens;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.ParseException;
 import android.net.Uri;
@@ -23,7 +22,6 @@ import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
-import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 import java.text.SimpleDateFormat;
@@ -413,6 +411,7 @@ public class CourseInputActivityFragment extends Fragment
         contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, COURSE_HOURS);
         contentValues.put(DbContent.CourseTable.COURSE_DAYS_COLUMN, COURSE_SESSION_DAYS);
         contentValues.put(DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN, COURSE_SESSIONS_NUMBER);
+        contentValues.put(DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN, COURSE_SHIFT_NUMBER);
 
         Log.e("set data to database",String.valueOf(COURSE_START_DATE));
         return contentValues;
@@ -428,14 +427,15 @@ public class CourseInputActivityFragment extends Fragment
                 stringBuilder.append(Constants.NOT_SELECTED);
             }
         }
+        Log.e("result ", stringBuilder.toString());
         return stringBuilder.toString();
     }
 
     private void openProfileCourseScreen(final long COURSE_ID){
-        Intent profileCourseScreen = new Intent(getContext(), CourseProfileActivity.class);
-        profileCourseScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
-        startActivity(profileCourseScreen);
-        getActivity().finish();
+//        Intent profileCourseScreen = new Intent(getContext(), CourseProfileActivity.class);
+//        profileCourseScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
+//        startActivity(profileCourseScreen);
+//        getActivity().finish();
     }
 
     private boolean checkValidation(ArrayList<DoubleChoice> doubleChoiceStateArrayList,
