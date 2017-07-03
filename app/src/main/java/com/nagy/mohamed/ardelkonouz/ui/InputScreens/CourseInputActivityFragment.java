@@ -2,6 +2,7 @@ package com.nagy.mohamed.ardelkonouz.ui.InputScreens;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ParseException;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 import java.text.SimpleDateFormat;
@@ -168,6 +170,13 @@ public class CourseInputActivityFragment extends Fragment
                         ),
                         COURSE_STATE_LIST
                 );
+                Utility.doubleSelectionProcess(
+                        COURSE_DAYS_LIST,
+                        cursor.getString(
+                                DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN
+                        )
+
+                );
                 courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
@@ -215,10 +224,15 @@ public class CourseInputActivityFragment extends Fragment
                                     int courseShiftNumber = 0;
 
                                     if(shiftCursor != null){
-                                        if(cursor.getCount() > 0){
-                                            courseShiftNumber = shiftCursor.getInt(0);
+                                        if(shiftCursor.getCount() > 0){
+                                            shiftCursor.moveToFirst();
+                                            courseShiftNumber = shiftCursor
+                                                    .getInt(shiftCursor.getColumnIndex(
+                                                            DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN
+                                                            )
+                                                        );
                                         }
-                                        cursor.close();
+                                        shiftCursor.close();
                                     }
 
                                     getActivity().getContentResolver().update(
@@ -432,10 +446,10 @@ public class CourseInputActivityFragment extends Fragment
     }
 
     private void openProfileCourseScreen(final long COURSE_ID){
-//        Intent profileCourseScreen = new Intent(getContext(), CourseProfileActivity.class);
-//        profileCourseScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
-//        startActivity(profileCourseScreen);
-//        getActivity().finish();
+        Intent profileCourseScreen = new Intent(getContext(), CourseProfileActivity.class);
+        profileCourseScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
+        startActivity(profileCourseScreen);
+        getActivity().finish();
     }
 
     private boolean checkValidation(ArrayList<DoubleChoice> doubleChoiceStateArrayList,
