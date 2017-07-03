@@ -87,8 +87,8 @@ public class CourseProfileActivityFragment extends Fragment {
                 cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_SESSIONS_NUMBER_COLUMN);
         final String COURSE_SESSIONS_DAYS =
                 cursor.getString(DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN);
-        final Integer COURSE_SHIFTS_NUMBER =
-                cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_SHIFT_NUMBER_COLUMN);
+//        final Integer COURSE_SHIFTS_NUMBER =
+//                cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_SHIFT_NUMBER_COLUMN);
         final Long COURSE_SHIFT_END_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_SHIFT_END_DATE_COLUMN);
 
@@ -96,20 +96,16 @@ public class CourseProfileActivityFragment extends Fragment {
         int REMAINING_SESSIONS;
         int FINISHED_SESSIONS;
 
-        if(!Utility.isCourseEnd(COURSE_END_DATE)) {
-            REMAINING_SESSIONS = Utility.getRemainDaysNumberWithNextDay(
+            REMAINING_SESSIONS = Utility.getRemainsDaysWithNextDay(
+                    COURSE_END_DATE,
                     COURSE_START_DATE,
-                    COURSE_SESSIONS_DAYS,
-                    COURSE_SESSIONS_NUMBER,
-                    nextSessionDay,
                     COURSE_SHIFT_END_DATE,
-                    COURSE_END_DATE
+                    COURSE_SESSIONS_DAYS,
+                    nextSessionDay,
+                    getContext()
             );
-            FINISHED_SESSIONS = COURSE_SESSIONS_NUMBER - REMAINING_SESSIONS - COURSE_SHIFTS_NUMBER;
-        }else{
-            REMAINING_SESSIONS = 0;
-            FINISHED_SESSIONS = COURSE_SESSIONS_NUMBER - COURSE_SHIFTS_NUMBER;
-        }
+
+            FINISHED_SESSIONS = COURSE_SESSIONS_NUMBER - REMAINING_SESSIONS ;
 
         courseProfileScreenViewHolder.COURSE_NAME_TEXT_VIEW.setText(COURSE_NAME);
         courseProfileScreenViewHolder.COURSE_COST_TEXT_VIEW.setText(String.valueOf(COURSE_COST));

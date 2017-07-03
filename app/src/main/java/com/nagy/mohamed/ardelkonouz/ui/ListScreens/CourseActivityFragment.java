@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui.ListScreens;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -65,9 +66,22 @@ public class CourseActivityFragment extends Fragment
                                     COURSE_SESSIONS_DAYS
                             );
                             final Long COURSE_SHIFT_NUMBER_ADD = Long.valueOf(COURSE_SHIFT_NUMBER + 1);
+                            final Long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
 
                             //set data.
-                            // TODO ... set new shift number , set new end date, set shift day
+                            // TODO ... set new shift number , set new end date.
+
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put(DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN,
+                                    COURSE_SHIFT_NUMBER_ADD);
+                            contentValues.put(DbContent.CourseTable.COURSE_SHIFT_END_DATE_COLUMN,
+                                    COURSE_END_DATE_SHIFT);
+
+                            getActivity().getContentResolver().insert(
+                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                    contentValues
+                            );
+
                         }
                     }
                 }

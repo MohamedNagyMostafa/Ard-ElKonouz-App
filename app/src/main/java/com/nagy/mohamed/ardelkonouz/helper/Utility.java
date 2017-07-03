@@ -84,66 +84,69 @@ public class Utility {
         return calendar.getTimeInMillis() +  (daysDiff * Constants.DAY_IN_MILS);
     }
 
-    public static boolean isCourseEnd(final long COURSE_END_DATE){
+    public static boolean isAfterToday(final long DATE){
         Calendar todayCalender = Calendar.getInstance();
-        Calendar courseEndCalender = Calendar.getInstance();
+        todayCalender = getInitialCalendar(todayCalender);
 
-        courseEndCalender.setTimeInMillis(COURSE_END_DATE);
-
-        return todayCalender.after(courseEndCalender);
+        return (todayCalender.getTimeInMillis() < DATE);
     }
 
-    // get remains day for course ... if course is not ended.
-    public static int getRemainDaysNumberWithNextDay(
-            final Long COURSE_START_DATE,
-            final String COURSE_SESSIONS_DAYS,
-            final Integer COURSE_SESSIONS_NUMBER,
-            StringBuilder nextSessionDay,
-            final Long COURSE_SHIFT_END_DATE,
-            final Long COURSE_END_DATE){
+    public static int getRemainsDaysWithNextDay(final Long COURSE_END_DATE,
+                                                final Long COURSE_START_DATE,
+                                                final Long COURSE_DAY_DATE_SHIFT,
+                                                final String COURSE_SESSIONS_DAYS,
+                                                StringBuilder nextSessionDay,
+                                                Context context){
+        int remainSessions = 0;
 
-        Calendar startCalender = Calendar.getInstance();
-        Calendar todayCalender = getInitialCalendar(Calendar.getInstance());
+        if(isAfterToday(COURSE_END_DATE) || COURSE_END_DATE == getCurrentDateAsMills()){
+            // get last date.
+            long updateDay = (COURSE_DAY_DATE_SHIFT != null &&
+                    getCurrentDateAsMills() < COURSE_DAY_DATE_SHIFT)? COURSE_DAY_DATE_SHIFT :
+                    getCurrentDateAsMills();
+            Calendar calendarEnd = Calendar.getInstance();
+            calendarEnd.setTimeInMillis(COURSE_END_DATE);
 
-        startCalender.setTimeInMillis(COURSE_START_DATE);
-        startCalender = getInitialCalendar(startCalender);
+            int index = getStartDay(calendarEnd);
+            int lastIndexDay = 0;
 
-        int startDay = getStartDay(startCalender);
-        int dayLeft = 0;
-        long dayInMillsCounter = COURSE_START_DATE;
+            long endDate = COURSE_END_DATE;
 
-        while (startCalender.getTimeInMillis() < todayCalender.getTimeInMillis()){
+            while (updateDay != endDate){
 
-            if(COURSE_SESSIONS_DAYS.charAt(startDay) == Constants.SELECTED ){
-                ++dayLeft;
-            }
-
-            startDay = (startDay + 1) % 7;
-            dayInMillsCounter += Constants.DAY_IN_MILS;
-
-            startCalender.setTimeInMillis(dayInMillsCounter);
-        }
-
-        if(dayLeft == 0){
-            // Course is not started yet
-            nextSessionDay.append(getDayFromIndex(startDay));
-        }else{
-            // session is not completed
-            if(dayLeft < COURSE_SESSIONS_NUMBER){
-                // Check if today or not
-                if(COURSE_SESSIONS_DAYS.charAt(startDay) == Constants.SELECTED &&
-                        COURSE_SHIFT_END_DATE != COURSE_END_DATE){
-                    nextSessionDay.append("Today");
-                }else{
-                    do {
-                        startDay = (startDay + 1) % 7;
-                    }while(COURSE_SESSIONS_DAYS.charAt(startDay) != Constants.SELECTED);
-                    nextSessionDay.append(getDayFromIndex(startDay));
+                if(COURSE_SESSIONS_DAYS.charAt(index) == Constants.SELECTED) {
+                    remainSessions++;
+                    Log.e("course day is ", getDayFromIndex(index) + " remain is " + String.valueOf(remainSessions) + " index " + String.valueOf(index));
+                    lastIndexDay = index;
                 }
+                index = (index == 0)?(6):(index-1) % 7;
+                endDate -= Constants.DAY_IN_MILS;
+
+            }
+
+
+            Calendar calendar = Calendar.getInstance();
+            calendar = getInitialCalendar(calendar);
+
+            if(COURSE_SESSIONS_DAYS.charAt(getStartDay(calendar)) == Constants.SELECTED){
+                nextSessionDay.append("Today");
+            }else{
+                nextSessionDay.append(getDayFromIndex(lastIndexDay));
+            }
+
+
+        }else{
+            if(!isAfterToday(COURSE_START_DATE)) {
+                remainSessions = 5;
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(COURSE_START_DATE);
+                nextSessionDay.append(getDayFromIndex(getStartDay(calendar)));
+            }else{
+                nextSessionDay.append(context.getString(R.string.empty_info));
             }
         }
 
-        return COURSE_SESSIONS_NUMBER - dayLeft;
+        return remainSessions;
     }
 
     public static String getDaysAsString(final String COURSES_SESSIONS_DAYS){
