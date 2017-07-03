@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -22,30 +23,39 @@ import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
  */
 public class CourseProfileActivityFragment extends Fragment {
 
+    private Cursor shiftCursor;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_course_profile, container, false);
-        ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder =
+        final ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder =
                 new ViewHolder.CourseProfileScreenViewHolder(rootView);
         final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
         Log.e("course id is ",String.valueOf(COURSE_ID));
-        Cursor courseData = getActivity().getContentResolver().query(
+
+        shiftCursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                 null,
                 null,
                 null
         );
-        if(courseData != null){
-            if(courseData.getCount() > 0){
+
+
+        if(shiftCursor != null){
+            if(shiftCursor.getCount() > 0){
                 Log.e("course id is ","founded");
 
-                courseData.moveToFirst();
-                setDataToView(courseData, courseProfileScreenViewHolder, COURSE_ID);
+                // TODO .. CHECK IF TODAY_SHIFT IS DONE OR NOT.
+                // TODO .. CHECK IF YESTERDAY SHIFT IS DONE OR NOT.
+                // TODO .. CHECK IF TOMORROW SHIFT IS DONE OR NOT.
+                shiftCursor.moveToFirst();
+
+                setDataToView(shiftCursor, courseProfileScreenViewHolder, COURSE_ID);
+
+
             }
-            courseData.close();
         }
 
         courseProfileScreenViewHolder.COURSE_EDIT_BUTTON.setOnClickListener(
@@ -59,6 +69,61 @@ public class CourseProfileActivityFragment extends Fragment {
                     }
                 }
         );
+
+        courseProfileScreenViewHolder.COURSE_TODAY_SHIFT_BUTTON.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+                        if(shiftCursor != null){
+                            if(shiftCursor.getCount() > 0){
+                                shiftCursor.moveToFirst();
+
+                                //TODO .. set today as last shift day, update end date
+
+                                ContentValues contentValues = new ContentValues();
+
+                                contentValues.put(
+                                        DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN,
+                                        shiftCursor.getInt(
+                                                DatabaseController.ProjectionDatabase.COURSE_SHIFT_NUMBER_COLUMN
+                                        ) + 1
+                                );
+
+                                contentValues.put(
+                                        DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                                        Utility.setShift(
+                                                shiftCursor.getLong(
+                                                        DatabaseController.ProjectionDatabase.COURSE_END_DATE
+                                                ),
+                                                shiftCursor.getString(
+                                                        DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN
+                                                )
+                                        )
+                                );
+
+                                contentValues.put(
+                                        DbContent.CourseTable.COURSE_SHIFT_END_DATE_COLUMN,
+                                        Utility.getCurrentDateAsMills()
+                                );
+
+                                getActivity().getContentResolver().update(
+                                        DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                        contentValues,
+                                        null,
+                                        null
+                                );
+
+                                setDataToView(shiftCursor, courseProfileScreenViewHolder, COURSE_ID);
+
+                            }
+
+                        }
+                    }
+                }
+        );
+
 
         return rootView;
     }
@@ -161,5 +226,11 @@ public class CourseProfileActivityFragment extends Fragment {
 
         return (instructorName == null)? getContext().getString(R.string.empty_info):
                 instructorName;
+    }
+
+    @Override
+    public void onDestroy() {
+        shiftCursor.close();
+        super.onDestroy();
     }
 }

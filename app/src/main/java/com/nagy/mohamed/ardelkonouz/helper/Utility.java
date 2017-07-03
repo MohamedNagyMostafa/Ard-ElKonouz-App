@@ -129,7 +129,11 @@ public class Utility {
             calendar = getInitialCalendar(calendar);
 
             if(COURSE_SESSIONS_DAYS.charAt(getStartDay(calendar)) == Constants.SELECTED){
-                nextSessionDay.append("Today");
+                if(COURSE_DAY_DATE_SHIFT != calendar.getTimeInMillis()) {
+                    nextSessionDay.append("Today");
+                }else{
+                    nextSessionDay.append(getDayFromIndex(lastIndexDay));
+                }
             }else{
                 nextSessionDay.append(getDayFromIndex(lastIndexDay));
             }

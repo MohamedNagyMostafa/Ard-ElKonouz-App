@@ -523,6 +523,9 @@ public class ViewHolder {
         public final TextView COURSE_SESSIONS_NUMBER_TEXT_VIEW;
         public final TextView COURSE_FINISHED_SESSIONS_TEXT_VIEW;
         public final FloatingActionButton COURSE_EDIT_BUTTON;
+        public final Button COURSE_TODAY_SHIFT_BUTTON;
+        public final Button COURSE_YESTERDAY_SHIFT_BUTTON;
+        public final Button COURSE_TOMORROW_SHIFT_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
 
@@ -542,6 +545,9 @@ public class ViewHolder {
             COURSE_SESSIONS_NUMBER_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_sessions_number_text_view);
             COURSE_FINISHED_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_finished_sessions_text_view);
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
+            COURSE_TODAY_SHIFT_BUTTON = (Button) courseProfileView.findViewById(R.id.course_pf_today_shift_button);
+            COURSE_YESTERDAY_SHIFT_BUTTON = (Button) courseProfileView.findViewById(R.id.course_pf_yesterday_shift_button);
+            COURSE_TOMORROW_SHIFT_BUTTON = (Button) courseProfileView.findViewById(R.id.course_pf_tomorrow_shift_button);
         }
     }
 
