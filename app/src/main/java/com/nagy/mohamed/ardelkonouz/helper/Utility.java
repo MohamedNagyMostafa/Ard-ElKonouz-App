@@ -17,6 +17,47 @@ import java.util.Locale;
  * Created by mohamednagy on 6/10/2017.
  */
 public class Utility {
+
+    // Do Shift For Course
+    public static Long setShift(final Long COURSE_END_DATE, final String COURSE_SESSIONS_DAYS){
+        Long shiftEndDate = COURSE_END_DATE;
+
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.set(Calendar.MILLISECOND, 0);
+        todayCalendar.set(Calendar.SECOND, 0);
+        todayCalendar.set(Calendar.MINUTE, 0);
+        todayCalendar.set(Calendar.HOUR, 0);
+        todayCalendar.set(Calendar.HOUR_OF_DAY, 0);
+
+        int startDay = getStartDay(todayCalendar);
+        startDay = (startDay + 1) % 7;
+
+        while(COURSE_SESSIONS_DAYS.charAt(startDay) != Constants.SELECTED) {
+            shiftEndDate += Constants.DAY_IN_MILS;
+            startDay = (startDay + 1) % 7;
+        }
+
+        return shiftEndDate;
+
+    }
+
+    // check if course has a session today.
+    public static boolean hasSessionToday(final String COURSE_SESSIONS_DAYS){
+
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.set(Calendar.MILLISECOND, 0);
+        todayCalendar.set(Calendar.SECOND, 0);
+        todayCalendar.set(Calendar.MINUTE, 0);
+        todayCalendar.set(Calendar.HOUR, 0);
+        todayCalendar.set(Calendar.HOUR_OF_DAY, 0);
+
+        int startDay = getStartDay(todayCalendar);
+        startDay = (startDay + 1) % 7;
+
+        return (COURSE_SESSIONS_DAYS.charAt(startDay) == Constants.SELECTED);
+
+    }
+
     // This Method Calculate The End Day.
     public static Long getEndDate(final Long COURSE_START_DATE, final String COURSE_SESSIONS_DAYS,
                             final Integer SESSIONS_NUMBER, final Integer COURSE_SHIFT_NUMBER){
@@ -395,6 +436,11 @@ public class Utility {
 
     public static long getCurrentDateAsMills(){
         Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 0);
         return calendar.getTimeInMillis();
     }
 
