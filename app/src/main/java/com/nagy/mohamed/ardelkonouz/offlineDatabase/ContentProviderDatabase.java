@@ -43,7 +43,10 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int COURSE_WITH_SEARCH_TABLE = 6;
     private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 7;
     private static final int EMPLOYEE_WITH_SEARCH_TABLE = 8;
-
+    private static final int SHIFT_WITH_COURSE_ID_TABLE = 9;
+    private static final int SHIFT_TABLE = 14;
+    private static final int SHIFT_WITH_COURSE_ID_JOIN_TABLE = 12;
+    private static final int COURSE_WITH_DAY_TABLE = 13;
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
@@ -78,6 +81,20 @@ public class ContentProviderDatabase extends ContentProvider {
                         "." + DbContent.CourseTable._ID +
                         "=" + DbContent.CourseInstructorTable.TABLE_NAME + "." +
                         DbContent.CourseInstructorTable.COURSE_ID_COLUMN
+        );
+    }
+
+    private static final SQLiteQueryBuilder SHIFT_WITH_COURSE_QUERY =
+            new SQLiteQueryBuilder();
+
+    static {
+        SHIFT_WITH_COURSE_QUERY.setTables(
+                DbContent.ShiftDaysTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.CourseTable.TABLE_NAME +
+                        "." + DbContent.CourseTable._ID +
+                        "=" + DbContent.ShiftDaysTable.TABLE_NAME + "." +
+                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN
         );
     }
 
@@ -226,6 +243,15 @@ public class ContentProviderDatabase extends ContentProvider {
             case EMPLOYEE_WITH_SEARCH_TABLE:
                 return getEmployeeWithSearch(uri, projection, sortOrder);
 
+            case SHIFT_WITH_COURSE_ID_TABLE:
+                return getShiftWithCourseId(uri, projection, sortOrder);
+
+            case SHIFT_WITH_COURSE_ID_JOIN_TABLE:
+                return getShiftWithCourseIdJoin(uri, projection, sortOrder);
+
+            case COURSE_WITH_DAY_TABLE:
+                return getCourseWithDay(uri, projection, sortOrder);
+
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
         }
@@ -320,6 +346,12 @@ public class ContentProviderDatabase extends ContentProvider {
                 );
                 break;
 
+            case SHIFT_TABLE:
+                insertResult = m_dbHelper.getWritableDatabase().insert(
+                        DbContent.ShiftDaysTable.TABLE_NAME,
+                        null,
+                        contentValues
+                );
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -377,32 +409,49 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
+            case SHIFT_WITH_COURSE_ID_TABLE:
+                return deleteRowWithId(DbContent.ShiftDaysTable.TABLE_NAME,
+                        uri,
+                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN);
+
             case EMPLOYEE_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.EmployeeTable.TABLE_NAME, uri, DbContent.EmployeeTable._ID);
+                return deleteRowWithId(DbContent.EmployeeTable.TABLE_NAME,
+                        uri,
+                        DbContent.EmployeeTable._ID);
 
             case COURSE_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.CourseTable.TABLE_NAME, uri, DbContent.CourseTable._ID);
+                return deleteRowWithId(DbContent.CourseTable.TABLE_NAME,
+                        uri,
+                        DbContent.CourseTable._ID);
 
             case INSTRUCTOR_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.InstructorTable.TABLE_NAME, uri, DbContent.InstructorTable._ID);
+                return deleteRowWithId(DbContent.InstructorTable.TABLE_NAME,
+                        uri,
+                        DbContent.InstructorTable._ID);
 
             case CHILD_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildTable.TABLE_NAME, uri, DbContent.ChildTable._ID);
+                return deleteRowWithId(DbContent.ChildTable.TABLE_NAME,
+                        uri,
+                        DbContent.ChildTable._ID);
 
             case CHILD_COURSE_WITH_CHILD_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME,
+                        uri,
                         DbContent.ChildCourseTable.CHILD_ID_COLUMN);
 
             case CHILD_COURSE_WITH_COURSE_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME,
+                        uri,
                         DbContent.ChildCourseTable.COURSE_ID_COLUMN);
 
             case INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE:
-                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME,
+                        uri,
                         DbContent.CourseInstructorTable.COURSE_ID_COLUMN);
 
             case INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE:
-                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME,
+                        uri,
                         DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN);
 
         }
@@ -528,6 +577,14 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.ChildCourseTable.COURSE_ID_COLUMN
                 );
 
+            case SHIFT_WITH_COURSE_ID_TABLE:
+                return updateRowWithId(
+                        uri,
+                        contentValues,
+                        DbContent.ShiftDaysTable.TABLE_NAME,
+                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN
+                );
+            
         }
         return 0;
     }
@@ -1006,6 +1063,57 @@ public class ContentProviderDatabase extends ContentProvider {
                 null,
                 null,
                 sortType
+        );
+    }
+
+    private Cursor getShiftWithCourseId(Uri uri, String[] projection, String sortOrder){
+        long id = ContentUris.parseId(uri);
+        String selection = DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "=?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ShiftDaysTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getShiftWithCourseIdJoin(Uri uri, String[] projection, String sortOrder){
+        long id = ContentUris.parseId(uri);
+        String selection = DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "=?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        return SHIFT_WITH_COURSE_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+
+    }
+
+    private Cursor getCourseWithDay(Uri uri, String[] projection, String sortOrder){
+        long dayIndex = ContentUris.parseId(uri);
+
+        String selection = "substr(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+                String.valueOf(dayIndex) + "," + String.valueOf(dayIndex + 1) + ") =?";
+        String[] selectionArgs = {String.valueOf(Constants.SELECTED)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
         );
     }
 }
