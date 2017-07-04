@@ -23,8 +23,6 @@ import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
  */
 public class CourseProfileActivityFragment extends Fragment {
 
-    private Cursor shiftCursor;
-
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,7 +32,7 @@ public class CourseProfileActivityFragment extends Fragment {
         final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
         Log.e("course id is ",String.valueOf(COURSE_ID));
 
-        shiftCursor = getActivity().getContentResolver().query(
+        Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
                 DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                 null,
@@ -43,19 +41,15 @@ public class CourseProfileActivityFragment extends Fragment {
         );
 
 
-        if(shiftCursor != null){
-            if(shiftCursor.getCount() > 0){
+        if(cursor != null){
+            if(cursor.getCount() > 0){
                 Log.e("course id is ","founded");
 
-                // TODO .. CHECK IF TODAY_SHIFT IS DONE OR NOT.
-                // TODO .. CHECK IF YESTERDAY SHIFT IS DONE OR NOT.
-                // TODO .. CHECK IF TOMORROW SHIFT IS DONE OR NOT.
-                shiftCursor.moveToFirst();
-
-                setDataToView(shiftCursor, courseProfileScreenViewHolder, COURSE_ID);
-
+                cursor.moveToFirst();
+                setDataToView(cursor, courseProfileScreenViewHolder, COURSE_ID);
 
             }
+            cursor.close();
         }
 
         courseProfileScreenViewHolder.COURSE_EDIT_BUTTON.setOnClickListener(
@@ -242,7 +236,6 @@ public class CourseProfileActivityFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        shiftCursor.close();
         super.onDestroy();
     }
 }
