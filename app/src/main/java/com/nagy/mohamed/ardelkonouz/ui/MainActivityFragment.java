@@ -89,6 +89,7 @@ public class MainActivityFragment extends Fragment{
         mainScreenViewHolder.EMPLOYEE_LIST_LAYOUT.setOnClickListener(employeeListClickListener);
         mainScreenViewHolder.INSTRUCTOR_LIST_LAYOUT.setOnClickListener(instructorListClickListener);
         mainScreenViewHolder.SALARY_LIST_LAYOUT.setOnClickListener(salaryListClickListener);
+
 //
 //        DatePickerFragment datePickerFragment = new DatePickerFragment();
 //        TimePickerFragment timePickerFragment = new TimePickerFragment();
