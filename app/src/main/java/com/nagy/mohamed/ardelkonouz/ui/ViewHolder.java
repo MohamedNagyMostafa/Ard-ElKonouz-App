@@ -385,6 +385,40 @@ public class ViewHolder {
         }
     }
 
+    public static class ShiftListScreenViewHolder{
+
+        public final FloatingActionButton ADD_SHIFT_BUTTON;
+        public final ListView SHIFT_LIST_VIEW;
+        public final TextView YESTERDAY_TEXT_VIEW;
+        public final TextView TODAY_TEXT_VIEW;
+        public final TextView TOMORROW_TEXT_VIEW;
+        public final LinearLayout SHIFT_LIST_EMPTY_VIEW;
+
+
+        public ShiftListScreenViewHolder(View shiftListView){
+            ADD_SHIFT_BUTTON = (FloatingActionButton) shiftListView.findViewById(R.id.shift_add_shift_floating_button);
+            SHIFT_LIST_VIEW = (ListView) shiftListView.findViewById(R.id.shift_list_view);
+            SHIFT_LIST_EMPTY_VIEW = (LinearLayout) shiftListView.findViewById(R.id.shift_list_empty_view);
+            YESTERDAY_TEXT_VIEW = (TextView) shiftListView.findViewById(R.id.shift_list_yesterday_courses);
+            TODAY_TEXT_VIEW = (TextView) shiftListView.findViewById(R.id.shift_list_today_courses);
+            TOMORROW_TEXT_VIEW = (TextView) shiftListView.findViewById(R.id.shift_list_tomorrow_courses);
+        }
+
+        public static class ShiftListRecycleViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView NEXT_SECTION_TEXT_VIEW;
+
+            public ShiftListRecycleViewHolder(View shiftListRecycleView){
+
+                COURSE_NAME_TEXT_VIEW = (TextView) shiftListRecycleView.findViewById(R.id.shift_list_course_name_text_view);
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) shiftListRecycleView.findViewById(R.id.shift_list_instructor_name_text_view);
+                NEXT_SECTION_TEXT_VIEW = (TextView) shiftListRecycleView.findViewById(R.id.shift_list_next_session);
+            }
+        }
+    }
+
     public static class EmployeeListScreenViewHolder{
 
         public final FloatingActionButton ADD_NEW_EMPLOYEE_BUTTON;

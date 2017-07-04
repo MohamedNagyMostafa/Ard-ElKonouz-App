@@ -11,7 +11,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 
 public class EmployeeActivity extends AppCompatActivity {
 
-    public static final String EMPLOYEE_TAG = "child";
+    public static final String EMPLOYEE_TAG = "employee";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

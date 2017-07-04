@@ -108,7 +108,7 @@
             android:parentActivityName=".ui.SalaryScreens.SalaryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.ShiftListActivity"
+            android:name=".ui.ListScreens.ShiftListActivity"
             android:label="@string/title_activity_shift_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

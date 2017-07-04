@@ -189,7 +189,7 @@ public class Utility {
         }
     }
 
-    private static int getStartDay(Calendar calendar){
+    public static int getStartDay(Calendar calendar){
         switch (calendar.get(Calendar.DAY_OF_WEEK)){
             case Calendar.SATURDAY:
                 return Constants.SAT_DAY;

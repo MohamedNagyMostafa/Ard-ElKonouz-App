@@ -11,7 +11,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 
 public class CourseActivity extends AppCompatActivity {
 
-    public static final String COURSE_TAG = "child";
+    public static final String COURSE_TAG = "course";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,14 +9,14 @@ import android.view.WindowManager;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
-public class InstructorActivity extends AppCompatActivity {
+public class ShiftListActivity extends AppCompatActivity {
 
-    public static final String INSTRUCTOR_TAG = "instructor";
+    public static final String SHIFT_TAG = "shift";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_instructor);
+        setContentView(R.layout.activity_shift_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,18 +31,18 @@ public class InstructorActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         if(savedInstanceState == null) {
-            InstructorActivityFragment instructorActivityFragment = new InstructorActivityFragment();
+            ShiftListActivityFragment shiftListActivityFragment = new ShiftListActivityFragment();
 
-            instructorActivityFragment.setEditTextView(findViewById(R.id.instructor_list_search_edit_view));
+            shiftListActivityFragment.setEditTextView(findViewById(R.id.shift_list_search_edit_view));
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment, instructorActivityFragment, INSTRUCTOR_TAG).commit();
+                    .add(R.id.fragment, shiftListActivityFragment, SHIFT_TAG).commit();
         }else{
 
-            InstructorActivityFragment instructorActivityFragment =(InstructorActivityFragment) getSupportFragmentManager()
-                    .findFragmentByTag(INSTRUCTOR_TAG);
+            ShiftListActivityFragment shiftListActivityFragment =(ShiftListActivityFragment) getSupportFragmentManager()
+                    .findFragmentByTag(SHIFT_TAG);
 
-            instructorActivityFragment.setEditTextView(findViewById(R.id.instructor_list_search_edit_view));
+            shiftListActivityFragment.setEditTextView(findViewById(R.id.shift_list_search_edit_view));
 
         }
     }

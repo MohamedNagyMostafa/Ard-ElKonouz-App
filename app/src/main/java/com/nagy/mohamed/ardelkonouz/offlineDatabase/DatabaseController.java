@@ -276,6 +276,17 @@ public class DatabaseController {
         public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_START_DATE = 3;
         public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_END_DATE = 4;
 
+        public static final String[] SHIFT_LIST_PROJECTION = {
+                DbContent.CourseInstructorTable.TABLE_NAME + "." + DbContent.CourseInstructorTable._ID,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN
+        };
+
+        public static final int SHIFT_COURSE_NAME = 1;
+        public static final int SHIFT_COURSE_ID = 2;
+        public static final int SHIFT_INSTRUCTOR_NAME = 3;
+
     }
 
     public static class UriDatabase{
@@ -368,8 +379,10 @@ public class DatabaseController {
                     .appendPath(searchChars).build();
         }
 
-        public static Uri getCoursesByDayUri(long indexDay){
-            return COURSE_TABLE_URI.buildUpon().appendPath("day").appendPath(String.valueOf(indexDay))
+        public static Uri getCoursesByDaySearchUri(String searchChars, long indexDay){
+            return COURSE_TABLE_URI.buildUpon().appendPath("day")
+                    .appendPath(searchChars)
+                    .appendPath(String.valueOf(indexDay))
                     .build();
         }
 
