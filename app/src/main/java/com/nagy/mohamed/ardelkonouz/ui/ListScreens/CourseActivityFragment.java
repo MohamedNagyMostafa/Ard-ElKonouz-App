@@ -237,7 +237,7 @@ public class CourseActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithSearchUri(searchChars),
+                DatabaseController.UriDatabase.getCoursesByDayUri(Constants.FRI_DAY),
                 DatabaseController.ProjectionDatabase.COURSE_LIST_PROJECTION,
                 null,
                 null,

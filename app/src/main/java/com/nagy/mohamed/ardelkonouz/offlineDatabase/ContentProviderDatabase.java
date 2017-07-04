@@ -1110,9 +1110,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
     private Cursor getCourseWithDay(Uri uri, String[] projection, String sortOrder){
         long dayIndex = ContentUris.parseId(uri);
-
-        String selection = "substr(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
-                String.valueOf(dayIndex) + "," + String.valueOf(dayIndex + 1) + ") =?";
+        /// TODO ... index validation.
+        String selection = "SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ?";
         String[] selectionArgs = {String.valueOf(Constants.SELECTED)};
 
         return m_dbHelper.getReadableDatabase().query(
