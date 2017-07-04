@@ -48,6 +48,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int SHIFT_TABLE = 14;
     private static final int SHIFT_WITH_COURSE_ID_JOIN_TABLE = 12;
     private static final int COURSE_WITH_DAY_SEARCH_TABLE = 13;
+    private static final int COURSE_WITH_DAY_TABLE = 14;
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
@@ -252,6 +253,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case COURSE_WITH_DAY_SEARCH_TABLE:
                 return getCourseWithDaySearch(uri, projection, sortOrder);
+
+            case COURSE_WITH_DAY_TABLE:
+                return getCourseWithDay(uri, projection, sortOrder);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -720,13 +724,16 @@ public class ContentProviderDatabase extends ContentProvider {
         final String EMPLOYEE_WITH_SEARCH_PATH = DbContent.EmployeeTable.TABLE_NAME + "/"
                 + DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + "/*";
 
-        final String COURSE_WITH_DAY_SEARCH_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/";
+        final String COURSE_WITH_DAY_SEARCH_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#/*";
+        final String COURSE_WITH_DAY_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#";
+
         final String SHIFT_PATH = DbContent.ShiftDaysTable.TABLE_NAME;
         final String SHIFT_WITH_COURSE_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/#";
         final String SHIFT_WITH_COURSE_ID_JOIN_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "/#";
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_SEARCH_PATH, COURSE_WITH_DAY_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_PATH, COURSE_WITH_DAY_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_PATH, SHIFT_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_PATH, SHIFT_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_JOIN_PATH, SHIFT_WITH_COURSE_ID_JOIN_TABLE);
@@ -1108,27 +1115,44 @@ public class ContentProviderDatabase extends ContentProvider {
         );
 
     }
-
-    private Cursor getCourseWithDaySearch(Uri uri, String[] projection, String sortOrder){
+    private Cursor getCourseWithDay(Uri uri, String[] projection, String sortOrder){
         long dayIndex = ContentUris.parseId(uri);
-        /// TODO ... index validation.
-        String newUri = uri.toString().substring(0,uri.toString().lastIndexOf('/'));
-        String searchWord = newUri.substring(newUri.lastIndexOf('/') + 1,newUri.length());
-        String encodeWord = searchWord + "%";
+        String selection = "(SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
+                "(" + DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?" + ")";
 
-        String selection = "SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
-                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ?" + " AND " +
-                DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?" + " AND " +
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?";
-
+        Log.e("index",String.valueOf(dayIndex));
         String[] selectionArgs = {
                 String.valueOf(Constants.SELECTED),
-                encodeWord,
                 String.valueOf(Utility.getCurrentDateAsMills())
         };
 
         return COURSE_INSTRUCTOR_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCourseWithDaySearch(Uri uri, String[] projection, String sortOrder){
+        String searchWord = uri.toString().substring(uri.toString().lastIndexOf('/') + 1,uri.toString().length());
+        String newUri = uri.toString().substring(0,uri.toString().lastIndexOf('/'));
+        long dayIndex = ContentUris.parseId(Uri.parse(newUri));
+        /// TODO ... index validation.
+        String encodeWord = searchWord + "%";
+
+        String selection = "SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ?" ;
+        Log.e("index",String.valueOf(dayIndex));
+        String[] selectionArgs = {
+                String.valueOf(Constants.SELECTED)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,

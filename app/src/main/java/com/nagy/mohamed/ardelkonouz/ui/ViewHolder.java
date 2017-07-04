@@ -24,6 +24,7 @@ public class ViewHolder {
         public final LinearLayout EMPLOYEE_LIST_LAYOUT;
         public final LinearLayout COURSES_LIST_LAYOUT;
         public final LinearLayout SALARY_LIST_LAYOUT;
+        public final LinearLayout SHIFT_LIST_LAYOUT;
 
         public MainScreenViewHolder(View mainScreenView) {
             CHILD_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.child_list_layout_view);
@@ -31,6 +32,7 @@ public class ViewHolder {
             EMPLOYEE_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.employee_list_layout_view);
             COURSES_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.course_list_layout_view);
             SALARY_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.salary_layout_view);
+            SHIFT_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.shift_list_layout_view);
         }
     }
 

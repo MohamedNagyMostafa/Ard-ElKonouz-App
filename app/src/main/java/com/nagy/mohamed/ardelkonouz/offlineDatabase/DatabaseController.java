@@ -381,8 +381,8 @@ public class DatabaseController {
 
         public static Uri getCoursesByDaySearchUri(String searchChars, long indexDay){
             return COURSE_TABLE_URI.buildUpon().appendPath("day")
-                    .appendPath(searchChars)
                     .appendPath(String.valueOf(indexDay))
+                    .appendPath(searchChars)
                     .build();
         }
 

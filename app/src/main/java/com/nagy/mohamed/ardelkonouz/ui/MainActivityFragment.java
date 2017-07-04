@@ -13,6 +13,7 @@ import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ShiftListActivity;
 import com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.SalaryActivity;
 
 /**
@@ -64,7 +65,13 @@ public class MainActivityFragment extends Fragment{
         }
     };
 
-
+    private View.OnClickListener shiftListClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent shiftListScreen = new Intent(getActivity(), ShiftListActivity.class);
+            startActivity(shiftListScreen);
+        }
+    };
 
     public MainActivityFragment() {
     }
@@ -89,6 +96,7 @@ public class MainActivityFragment extends Fragment{
         mainScreenViewHolder.EMPLOYEE_LIST_LAYOUT.setOnClickListener(employeeListClickListener);
         mainScreenViewHolder.INSTRUCTOR_LIST_LAYOUT.setOnClickListener(instructorListClickListener);
         mainScreenViewHolder.SALARY_LIST_LAYOUT.setOnClickListener(salaryListClickListener);
+        mainScreenViewHolder.SHIFT_LIST_LAYOUT.setOnClickListener(shiftListClickListener);
 
 //
 //        DatePickerFragment datePickerFragment = new DatePickerFragment();

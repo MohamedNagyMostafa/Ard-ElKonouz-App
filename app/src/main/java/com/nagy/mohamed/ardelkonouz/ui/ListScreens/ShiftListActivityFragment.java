@@ -70,6 +70,8 @@ public class ShiftListActivityFragment extends Fragment
                     dayIndex = Utility.getStartDay(calendar);
                     setDayBarSelection(shiftListScreenViewHolder.TODAY_TEXT_VIEW);
 
+                    restartLoader();
+
                 }
             };
 
@@ -84,6 +86,7 @@ public class ShiftListActivityFragment extends Fragment
                     dayIndex = Utility.getStartDay(calendar);
 
                     setDayBarSelection(shiftListScreenViewHolder.YESTERDAY_TEXT_VIEW);
+                    restartLoader();
                 }
             };
 
@@ -97,7 +100,7 @@ public class ShiftListActivityFragment extends Fragment
 
                     dayIndex = Utility.getStartDay(calendar);
                     setDayBarSelection(shiftListScreenViewHolder.TOMORROW_TEXT_VIEW);
-
+                    restartLoader();
                 }
             };
 
@@ -110,11 +113,7 @@ public class ShiftListActivityFragment extends Fragment
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         if(dayIndex == null){
-            Calendar calendar = Calendar.getInstance();
-            dayDate = Utility.getCurrentDateAsMills();
-            calendar.setTimeInMillis(dayDate);
-
-            dayIndex = Utility.getStartDay(calendar);
+            setInitialDayBar(shiftListScreenViewHolder.TODAY_TEXT_VIEW);
         }
 
         // searching..
@@ -179,6 +178,7 @@ public class ShiftListActivityFragment extends Fragment
                     null,
                     null
             );
+
         else
             return null;
     }
@@ -212,6 +212,17 @@ public class ShiftListActivityFragment extends Fragment
             }
 
         }
+    }
+
+    private void setInitialDayBar(TextView textView){
+        Calendar calendar = Calendar.getInstance();
+        dayDate = Utility.getCurrentDateAsMills();
+        calendar.setTimeInMillis(dayDate);
+
+        textView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        textView.setTextColor(Color.WHITE);
+
+        dayIndex = Utility.getStartDay(calendar);
     }
 
 }
