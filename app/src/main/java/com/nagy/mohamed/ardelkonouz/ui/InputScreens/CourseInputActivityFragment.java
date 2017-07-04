@@ -214,31 +214,10 @@ public class CourseInputActivityFragment extends Fragment
                                         courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
 
-                                    Cursor shiftCursor = getActivity().getContentResolver().query(
-                                            DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                                            new String[]{DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN},
-                                            null,
-                                            null,
-                                            null
-                                    );
-                                    int courseShiftNumber = 0;
-
-                                    if(shiftCursor != null){
-                                        if(shiftCursor.getCount() > 0){
-                                            shiftCursor.moveToFirst();
-                                            courseShiftNumber = shiftCursor
-                                                    .getInt(shiftCursor.getColumnIndex(
-                                                            DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN
-                                                            )
-                                                        );
-                                        }
-                                        shiftCursor.close();
-                                    }
-
                                     getActivity().getContentResolver().update(
                                             DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
                                             getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST,
-                                                    courseShiftNumber ,courseInputScreenViewHolder),
+                                                    courseInputScreenViewHolder),
                                             null,
                                             null
                                     );
@@ -273,11 +252,10 @@ public class CourseInputActivityFragment extends Fragment
                                 courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
 
-                            final Integer COURSE_SHIFT_NUMBER = 0;
-
+                            /// TODO shift .. modify
                             Uri uri = getActivity().getContentResolver().insert(
                                     DatabaseController.UriDatabase.COURSE_TABLE_URI,
-                                    getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST, COURSE_SHIFT_NUMBER,
+                                    getDataFromInputs(COURSE_STATE_LIST, COURSE_DAYS_LIST,
                                             courseInputScreenViewHolder)
                             );
 
@@ -362,7 +340,6 @@ public class CourseInputActivityFragment extends Fragment
 
     private ContentValues getDataFromInputs(ArrayList<DoubleChoice> COURSE_STATE_LIST,
                                             ArrayList<DoubleChoice> COURSE_DAYS_LIST,
-                                            Integer COURSE_SHIFT_NUMBER,
                                             ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
         final String COURSE_NAME =
                 courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT.getText().toString();
@@ -405,7 +382,7 @@ public class CourseInputActivityFragment extends Fragment
                 COURSE_START_DATE,
                 COURSE_SESSION_DAYS,
                 COURSE_SESSIONS_NUMBER,
-                COURSE_SHIFT_NUMBER);
+                0);
 
         Log.e("course_days", COURSE_SESSION_DAYS);
         Log.e("course_days", COURSE_SESSION_DAYS);
@@ -425,7 +402,6 @@ public class CourseInputActivityFragment extends Fragment
         contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, COURSE_HOURS);
         contentValues.put(DbContent.CourseTable.COURSE_DAYS_COLUMN, COURSE_SESSION_DAYS);
         contentValues.put(DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN, COURSE_SESSIONS_NUMBER);
-        contentValues.put(DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN, COURSE_SHIFT_NUMBER);
 
         Log.e("set data to database",String.valueOf(COURSE_START_DATE));
         return contentValues;

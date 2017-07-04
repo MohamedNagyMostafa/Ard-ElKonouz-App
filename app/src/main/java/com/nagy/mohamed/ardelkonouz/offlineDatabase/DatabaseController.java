@@ -23,8 +23,6 @@ public class DatabaseController {
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
                 DbContent.CourseTable.COURSE_DAYS_COLUMN,
                 DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN,
-                DbContent.CourseTable.COURSE_SHIFT_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN
         };
 
         public static final int COURSE_ID = 0;
@@ -40,8 +38,6 @@ public class DatabaseController {
         public static final int COURSE_SALARY_PER_CHILD = 10;
         public static final int COURSE_DAYS_COLUMN = 11;
         public static final int COURSE_SESSIONS_NUMBER_COLUMN = 12;
-        public static final int COURSE_SHIFT_END_DATE_COLUMN = 13;
-        public static final int COURSE_SHIFT_NUMBER_COLUMN = 14;
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -280,12 +276,41 @@ public class DatabaseController {
                 DbContent.CourseInstructorTable.TABLE_NAME + "." + DbContent.CourseInstructorTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN
+                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
+                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_DAYS_COLUMN
         };
 
-        public static final int SHIFT_COURSE_NAME = 1;
-        public static final int SHIFT_COURSE_ID = 2;
-        public static final int SHIFT_INSTRUCTOR_NAME = 3;
+        public static final int SHIFT_LIST_COURSE_NAME = 1;
+        public static final int SHIFT_LIST_COURSE_ID = 2;
+        public static final int SHIFT_LIST_INSTRUCTOR_NAME = 3;
+        public static final int SHIFT_LIST_COURSE_START_dATE = 4;
+        public static final int SHIFT_LIST_COURSE_END_dATE = 5;
+        public static final int SHIFT_LIST_COURSE_DAYS = 6;
+
+        public static final String[] SHIFT_TABLE_PROJECTION = {
+                DbContent.ShiftDaysTable.TABLE_NAME + "."  + DbContent.ShiftDaysTable._ID,
+                DbContent.ShiftDaysTable.DAYS_NUMBER_COLUMN,
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN,
+                DbContent.ShiftDaysTable.START_DATE_COLUMN,
+                DbContent.ShiftDaysTable.END_DATE_COLUMN
+        };
+
+        public static final int SHIFT_DAYS_NUMBER = 1;
+        public static final int SHIFT_COURSE_ID_COLUMN = 2;
+        public static final int SHIFT_START_DATE_COLUMN = 3;
+        public static final int SHIFT_END_DATE_COLUMN = 4;
+
+        public static final String[] SHIFT_COURSE_JOIN_EDIT_INPUT_PROJECTION = {
+                DbContent.ShiftDaysTable.TABLE_NAME + "." + DbContent.ShiftDaysTable._ID,
+                DbContent.ShiftDaysTable.DAYS_NUMBER_COLUMN,
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN
+        };
+
+        public static final int SHIFT_EDIT_INPUT_DAYS_NUMBER_COLUMN = 2;
+        public static final int SHIFT_EDIT_INPUT_COURSE_END_DATE_COLUMN = 3;
+
 
     }
 

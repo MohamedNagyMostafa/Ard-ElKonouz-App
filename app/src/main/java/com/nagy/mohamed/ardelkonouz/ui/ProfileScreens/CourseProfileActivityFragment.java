@@ -1,6 +1,5 @@
 package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -64,74 +63,9 @@ public class CourseProfileActivityFragment extends Fragment {
                 }
         );
 
-        courseProfileScreenViewHolder.COURSE_TODAY_SHIFT_BUTTON.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        setClickListener(COURSE_ID, courseProfileScreenViewHolder);
-                    }
-                }
-        );
 
 
         return rootView;
-    }
-
-    private  void setClickListener(final Long COURSE_ID, ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder){
-        Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
-                null,
-                null,
-                null
-        );
-
-        ContentValues contentValues = new ContentValues();
-
-        if(cursor != null){
-            if(cursor.getCount() > 0){
-                cursor.moveToFirst();
-
-
-                contentValues.put(
-                        DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN,
-                        cursor.getInt(
-                                DatabaseController.ProjectionDatabase.COURSE_SHIFT_NUMBER_COLUMN
-                        ) + 1
-                );
-
-                contentValues.put(
-                        DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                        Utility.setShift(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_END_DATE
-                                ),
-                                cursor.getString(
-                                        DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN
-                                )
-                        )
-                );
-
-                contentValues.put(
-                        DbContent.CourseTable.COURSE_SHIFT_END_DATE_COLUMN,
-                        Utility.getCurrentDateAsMills()
-                );
-
-            }
-
-            getActivity().getContentResolver().update(
-                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                    contentValues,
-                    null,
-                    null
-            );
-
-            setDataToView(cursor, courseProfileScreenViewHolder, COURSE_ID);
-
-            cursor.close();
-
-        }
     }
 
     private void setDataToView(Cursor cursor,
@@ -160,21 +94,12 @@ public class CourseProfileActivityFragment extends Fragment {
                 cursor.getString(DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN);
 //        final Integer COURSE_SHIFTS_NUMBER =
 //                cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_SHIFT_NUMBER_COLUMN);
-        final Long COURSE_SHIFT_END_DATE =
-                cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_SHIFT_END_DATE_COLUMN);
 
         StringBuilder nextSessionDay = new StringBuilder("");
         int REMAINING_SESSIONS;
         int FINISHED_SESSIONS;
 
-            REMAINING_SESSIONS = Utility.getRemainsDaysWithNextDay(
-                    COURSE_END_DATE,
-                    COURSE_START_DATE,
-                    COURSE_SHIFT_END_DATE,
-                    COURSE_SESSIONS_DAYS,
-                    nextSessionDay,
-                    getContext()
-            );
+            REMAINING_SESSIONS = 0;
 
             FINISHED_SESSIONS = COURSE_SESSIONS_NUMBER - REMAINING_SESSIONS ;
 

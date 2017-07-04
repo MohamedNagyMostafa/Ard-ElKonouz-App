@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
@@ -151,18 +152,67 @@ public class ShiftListActivityFragment extends Fragment
 
         shiftListRecycleViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
-                        DatabaseController.ProjectionDatabase.SHIFT_COURSE_NAME
+                        DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_NAME
                 )
         );
         shiftListRecycleViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
                 cursor.getString(
-                        DatabaseController.ProjectionDatabase.SHIFT_INSTRUCTOR_NAME
+                        DatabaseController.ProjectionDatabase.SHIFT_LIST_INSTRUCTOR_NAME
                 )
         );
 
+        final Long COURSE_ID =
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_ID);
+
+        Cursor shiftCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getShiftWithCourseId(COURSE_ID),
+                DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                null,
+                null,
+                null
+        );
+
+        ArrayList<Shift> shifts = new ArrayList<>();
+
+        if(shiftCursor != null) {
+            if(shiftCursor.getCount() > 0) {
+                while (shiftCursor.moveToNext()){
+                    final Long START_SHIFT_DATE =
+                            shiftCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                            );
+                    final Long END_SHIFT_DATE =
+                            shiftCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
+                            );
+                    Shift shift = new Shift(START_SHIFT_DATE, END_SHIFT_DATE, null, null);
+
+                    shifts.add(shift);
+                }
+            }
+            shiftCursor.close();
+        }
+
+        // Test.
+//        Shift shift = new Shift(1499637600000l, 1499637600000l,null,null);
+//        shifts.add(shift);
 
         shiftListRecycleViewHolder.NEXT_SECTION_TEXT_VIEW.setText(
-                Utility.getTimeFormat(dayDate + Constants.DAY_IN_MILS)
+                Utility.getTimeFormat(
+                        Utility.getNextSessionDay(
+                                shifts,
+                                cursor.getString(
+                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_DAYS
+                                ),
+                                cursor.getLong(
+                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_END_dATE
+                                ),
+                                cursor.getLong(
+                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_START_dATE
+                                )
+
+                        )
+                )
         );
 
     }

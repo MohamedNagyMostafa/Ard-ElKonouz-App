@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.component.Shift;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,27 +19,81 @@ import java.util.Locale;
  */
 public class Utility {
 
-    // Do Shift For Course
-    public static Long setShift(final Long COURSE_END_DATE, final String COURSE_SESSIONS_DAYS){
-        Long shiftEndDate = COURSE_END_DATE;
+    public static Long getNextSessionDay(ArrayList<Shift> shifts,
+                                         final String COURSE_SESSION_DAYS,
+                                         final Long COURSE_END_DATE,
+                                         final Long COURSE_START_DATE){
+        long nextSessionDay = 0;
+        long todayDate = getCurrentDateAsMills();
+        Calendar calendar = Calendar.getInstance();
 
-        Calendar todayCalendar = Calendar.getInstance();
-        todayCalendar.set(Calendar.MILLISECOND, 0);
-        todayCalendar.set(Calendar.SECOND, 0);
-        todayCalendar.set(Calendar.MINUTE, 0);
-        todayCalendar.set(Calendar.HOUR, 0);
-        todayCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        if(COURSE_START_DATE < todayDate){
 
-        int startDay = getStartDay(todayCalendar);
-        startDay = (startDay + 1) % 7;
+            if(COURSE_END_DATE < todayDate){
+                nextSessionDay = COURSE_END_DATE;
+            }else{
 
-        while(COURSE_SESSIONS_DAYS.charAt(startDay) != Constants.SELECTED) {
-            shiftEndDate += Constants.DAY_IN_MILS;
-            startDay = (startDay + 1) % 7;
+                nextSessionDay =  todayDate;
+                int counter = 0;
+
+                calendar.setTimeInMillis(nextSessionDay);
+                int dayIndex = getStartDay(calendar);
+                //get near session day.
+                while (COURSE_SESSION_DAYS.charAt(dayIndex) != Constants.SELECTED){
+                    counter++;
+                    dayIndex = (dayIndex + 1) % 7;
+                }
+
+                nextSessionDay = nextSessionDay + (Constants.DAY_IN_MILS * counter);
+                counter = 0;
+
+                if(shifts.size() > 0) {
+                    // Check shift.
+                    for (Shift shift : shifts) {
+                        if (nextSessionDay >= shift.getStartShiftDay() && nextSessionDay <= shift.getEndShiftDay()) {
+                            nextSessionDay = shift.getEndShiftDay() + Constants.DAY_IN_MILS;
+
+                            calendar = Calendar.getInstance();
+                            calendar.setTimeInMillis(nextSessionDay);
+
+                            int startDayIndex = getStartDay(calendar);
+
+                            while(COURSE_SESSION_DAYS.charAt(startDayIndex) != Constants.SELECTED){
+                                startDayIndex = (startDayIndex + 1) % 7;
+                                counter++;
+                            }
+                        }
+                    }
+                }
+                nextSessionDay = nextSessionDay + (Constants.DAY_IN_MILS * counter);
+            }
+
+        }else{
+            nextSessionDay = COURSE_START_DATE;
+
+            if(shifts.size() > 0) {
+                for (Shift shift : shifts) {
+                    if (nextSessionDay >= shift.getStartShiftDay() && nextSessionDay <= shift.getEndShiftDay()) {
+                        nextSessionDay = shift.getEndShiftDay() + Constants.DAY_IN_MILS;
+
+                        calendar.setTimeInMillis(nextSessionDay);
+
+                        int startDayIndex = getStartDay(calendar);
+                        int counter = 1;
+
+                        while(COURSE_SESSION_DAYS.charAt(startDayIndex) != Constants.SELECTED){
+                            startDayIndex = (startDayIndex + 1) % 7;
+                            counter++;
+                        }
+
+                        nextSessionDay = nextSessionDay + (Constants.DAY_IN_MILS * counter);
+
+                    }
+                }
+            }
         }
 
-        return shiftEndDate;
-
+        return nextSessionDay;
     }
 
     // check if course has a session today.
@@ -91,67 +146,6 @@ public class Utility {
         return (todayCalender.getTimeInMillis() < DATE);
     }
 
-    public static int getRemainsDaysWithNextDay(final Long COURSE_END_DATE,
-                                                final Long COURSE_START_DATE,
-                                                final Long COURSE_DAY_DATE_SHIFT,
-                                                final String COURSE_SESSIONS_DAYS,
-                                                StringBuilder nextSessionDay,
-                                                Context context){
-        int remainSessions = 0;
-
-        if(isAfterToday(COURSE_END_DATE) || COURSE_END_DATE == getCurrentDateAsMills()){
-            // get last date.
-            long updateDay = (COURSE_DAY_DATE_SHIFT != null &&
-                    getCurrentDateAsMills() < COURSE_DAY_DATE_SHIFT)? COURSE_DAY_DATE_SHIFT :
-                    getCurrentDateAsMills();
-            Calendar calendarEnd = Calendar.getInstance();
-            calendarEnd.setTimeInMillis(COURSE_END_DATE);
-
-            int index = getStartDay(calendarEnd);
-            int lastIndexDay = 0;
-
-            long endDate = COURSE_END_DATE;
-
-            while (updateDay != endDate){
-
-                if(COURSE_SESSIONS_DAYS.charAt(index) == Constants.SELECTED) {
-                    remainSessions++;
-                    Log.e("course day is ", getDayFromIndex(index) + " remain is " + String.valueOf(remainSessions) + " index " + String.valueOf(index));
-                    lastIndexDay = index;
-                }
-                index = (index == 0)?(6):(index-1) % 7;
-                endDate -= Constants.DAY_IN_MILS;
-
-            }
-
-
-            Calendar calendar = Calendar.getInstance();
-            calendar = getInitialCalendar(calendar);
-
-            if(COURSE_SESSIONS_DAYS.charAt(getStartDay(calendar)) == Constants.SELECTED){
-                if(COURSE_DAY_DATE_SHIFT != calendar.getTimeInMillis()) {
-                    nextSessionDay.append("Today");
-                }else{
-                    nextSessionDay.append(getDayFromIndex(lastIndexDay));
-                }
-            }else{
-                nextSessionDay.append(getDayFromIndex(lastIndexDay));
-            }
-
-
-        }else{
-            if(!isAfterToday(COURSE_START_DATE)) {
-                remainSessions = 5;
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(COURSE_START_DATE);
-                nextSessionDay.append(getDayFromIndex(getStartDay(calendar)));
-            }else{
-                nextSessionDay.append(context.getString(R.string.empty_info));
-            }
-        }
-
-        return remainSessions;
-    }
 
     public static String getDaysAsString(final String COURSES_SESSIONS_DAYS){
         StringBuilder stringBuilder = new StringBuilder("");

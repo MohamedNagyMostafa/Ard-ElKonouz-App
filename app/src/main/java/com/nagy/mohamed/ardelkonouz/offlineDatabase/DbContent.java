@@ -39,8 +39,6 @@ public class DbContent {
         public static final String COURSE_LEVEL_COLUMN = "course_level";
         public static final String COURSE_SALARY_PER_CHILD = "salary_per_child";
         public static final String COURSE_DAYS_COLUMN = "course_days";
-        public static final String COURSE_SHIFT_NUMBER_COLUMN = "course_shift_number";
-        public static final String COURSE_SHIFT_END_DATE_COLUMN = "course_shift_end_date";
         public static final String COURSE_SESSIONS_NUMBER_COLUMN = "course_sessions_number";
 
         public static final String CREATE_COURSE_TABLE = CREATE_TABLE
@@ -52,8 +50,6 @@ public class DbContent {
                 COURSE_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                COURSE_SHIFT_END_DATE_COLUMN + SPACE + INTEGER + SPACE  + "," +
-                COURSE_SHIFT_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_START_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_END_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
