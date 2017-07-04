@@ -1139,20 +1139,25 @@ public class ContentProviderDatabase extends ContentProvider {
     }
 
     private Cursor getCourseWithDaySearch(Uri uri, String[] projection, String sortOrder){
-        String searchWord = uri.toString().substring(uri.toString().lastIndexOf('/') + 1,uri.toString().length());
-        String newUri = uri.toString().substring(0,uri.toString().lastIndexOf('/'));
-        long dayIndex = ContentUris.parseId(Uri.parse(newUri));
-        /// TODO ... index validation.
+        String searchWord = uri.toString().substring(uri.toString().lastIndexOf('/') + 1, uri.toString().length());
         String encodeWord = searchWord + "%";
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        long dayIndex = ContentUris.parseId(Uri.parse(newUri));
 
-        String selection = "SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
-                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ?" ;
+        String selection = "(SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
+                "(" + DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
+                "(" + DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?" + ")";
+
         Log.e("index",String.valueOf(dayIndex));
         String[] selectionArgs = {
-                String.valueOf(Constants.SELECTED)};
+                String.valueOf(Constants.SELECTED),
+                String.valueOf(Utility.getCurrentDateAsMills()),
+                encodeWord
+        };
 
-        return m_dbHelper.getReadableDatabase().query(
-                DbContent.CourseTable.TABLE_NAME,
+        return COURSE_INSTRUCTOR_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
                 selectionArgs,
