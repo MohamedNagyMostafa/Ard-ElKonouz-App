@@ -230,7 +230,7 @@ public class DbContent {
     public static class ShiftDaysTable implements BaseColumns{
 
         public static final String TABLE_NAME = "shift_day";
-        public static final Uri SHIFT_DAY_URI_TABLE =
+        public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(TABLE_NAME).build();
 
         public static final String COURSE_ID_COLUMN = "course_id";

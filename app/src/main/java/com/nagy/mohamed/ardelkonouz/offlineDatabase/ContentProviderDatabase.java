@@ -584,7 +584,7 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.ShiftDaysTable.TABLE_NAME,
                         DbContent.ShiftDaysTable.COURSE_ID_COLUMN
                 );
-            
+
         }
         return 0;
     }
@@ -719,7 +719,16 @@ public class ContentProviderDatabase extends ContentProvider {
         final String EMPLOYEE_WITH_SEARCH_PATH = DbContent.EmployeeTable.TABLE_NAME + "/"
                 + DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + "/*";
 
+        final String COURSE_WITH_DAY_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#";
+        final String SHIFT_PATH = DbContent.ShiftDaysTable.TABLE_NAME;
+        final String SHIFT_WITH_COURSE_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/#";
+        final String SHIFT_WITH_COURSE_ID_JOIN_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "/#";
 
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_PATH, COURSE_WITH_DAY_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_PATH, SHIFT_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_PATH, SHIFT_WITH_COURSE_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_JOIN_PATH, SHIFT_WITH_COURSE_ID_JOIN_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_PATH, CHILD_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_NULL_PATH, CHILD_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_SEARCH_PATH, INSTRUCTOR_WITH_SEARCH_TABLE);
