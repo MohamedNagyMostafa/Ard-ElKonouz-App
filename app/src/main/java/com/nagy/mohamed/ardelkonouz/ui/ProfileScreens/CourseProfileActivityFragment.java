@@ -140,12 +140,17 @@ public class CourseProfileActivityFragment extends Fragment {
         );
 
         int FINISHED_SESSIONS = COURSE_SESSIONS_NUMBER - REMAINING_SESSIONS;
+
         final Long NEXT_SESSION_DAY = Utility.getNextSessionDay(
                 shifts,
                 COURSE_SESSIONS_DAYS,
                 COURSE_END_DATE,
                 COURSE_START_DATE
         );
+        final String NEXT_SESSION_DAY_STRING =
+                (NEXT_SESSION_DAY == Utility.getCurrentDateAsMills())? "Today" :
+                        Utility.getTimeFormat(NEXT_SESSION_DAY);
+
 
 
         courseProfileScreenViewHolder.COURSE_NAME_TEXT_VIEW.setText(COURSE_NAME);
@@ -159,7 +164,7 @@ public class CourseProfileActivityFragment extends Fragment {
         courseProfileScreenViewHolder.COURSE_SESSIONS_NUMBER_TEXT_VIEW.setText(String.valueOf(COURSE_SESSIONS_NUMBER));
         courseProfileScreenViewHolder.COURSE_REMAINING_SESSIONS_TEXT_VIEW.setText(String.valueOf(REMAINING_SESSIONS));
         courseProfileScreenViewHolder.COURSE_FINISHED_SESSIONS_TEXT_VIEW.setText(String.valueOf(FINISHED_SESSIONS));
-        courseProfileScreenViewHolder.COURSE_NEXT_SESSION_DAY_TEXT_VIEW.setText(Utility.getTimeFormat(NEXT_SESSION_DAY));
+        courseProfileScreenViewHolder.COURSE_NEXT_SESSION_DAY_TEXT_VIEW.setText(NEXT_SESSION_DAY_STRING);
         courseProfileScreenViewHolder.COURSE_SESSIONS_DAYS_TEXT_VIEW.setText(Utility.getDaysAsString(COURSE_SESSIONS_DAYS));
         courseProfileScreenViewHolder.COURSE_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(COURSE_STATE, getContext()));
         courseProfileScreenViewHolder.COURSE_INSTRUCTOR_NAME_TEXT_VIEW.setText(getCourseInstructorName(COURSE_ID));
