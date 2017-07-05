@@ -69,7 +69,7 @@
             android:parentActivityName=".ui.ListScreens.ChildActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.ShiftInputActivity"
+            android:name=".ui.InputScreens.ShiftInputActivity"
             android:label="@string/title_activity_finance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

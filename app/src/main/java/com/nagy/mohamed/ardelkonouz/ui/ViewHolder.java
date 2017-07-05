@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -789,6 +790,53 @@ public class ViewHolder {
                 INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_salary_process_text_view);
             }
         }
+    }
+
+    public static class ShiftInputScreenViewHolder{
+
+        public final EditText COURSE_SEARCH_EDIT_TEXT;
+        public final ListView COURSE_CHOICES_LIST_VIEW;
+        public final GridView COURSE_SELECTION_GRID_VIEW;
+        public final EditText COURSE_START_SHIFT_DATE_EDIT_TEXT;
+        public final EditText COURSE_END_SHIFT_DATE_EDIT_TEXT;
+        public final Button TODAY_SHIFT_BUTTON;
+        public final Button YESTERDAY_SHIFT_BUTTON;
+        public final Button TOMORROW_SHIFT_BUTTON;
+        public final Button NEXT_WEEK_SHIFT_BUTTON;
+
+        public ShiftInputScreenViewHolder(View shiftView){
+            COURSE_SEARCH_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_search_edit_text);
+            COURSE_CHOICES_LIST_VIEW = (ListView) shiftView.findViewById(R.id.shift_input_choices_list_view);
+            COURSE_SELECTION_GRID_VIEW = (GridView) shiftView.findViewById(R.id.shift_input_selection_grid_view);
+            COURSE_START_SHIFT_DATE_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_start_date_edit_view);
+            COURSE_END_SHIFT_DATE_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_end_date_edit_view);
+            TODAY_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_today_button);
+            YESTERDAY_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_yesterday_button);
+            TOMORROW_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_tomorrow_button);
+            NEXT_WEEK_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_next_week_button);
+        }
+
+        public static class SelectionCoursesViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final ImageView COURSE_DELETE_IMAGE_VIEW;
+
+            public SelectionCoursesViewHolder(View selectionCourseView){
+
+                COURSE_NAME_TEXT_VIEW = (TextView) selectionCourseView.findViewById(R.id.shift_input_selection_course_name_chips);
+                COURSE_DELETE_IMAGE_VIEW = (ImageView) selectionCourseView.findViewById(R.id.shift_input_selection_delete_course_chips);
+            }
+        }
+
+        public static class ListCourseChoiceViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+
+            public ListCourseChoiceViewHolder(View listCourseChoiceView){
+                COURSE_NAME_TEXT_VIEW = (TextView) listCourseChoiceView.findViewById(R.id.shift_input_list_course_name_text_view);
+            }
+        }
+
     }
 
 }

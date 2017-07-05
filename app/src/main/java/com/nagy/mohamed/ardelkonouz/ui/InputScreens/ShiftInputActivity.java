@@ -1,4 +1,4 @@
-package com.nagy.mohamed.ardelkonouz.ui;
+package com.nagy.mohamed.ardelkonouz.ui.InputScreens;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

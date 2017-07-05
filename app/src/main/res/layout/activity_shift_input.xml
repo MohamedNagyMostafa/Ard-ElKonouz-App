@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:background="@android:color/white"
-    tools:context=".ui.ShiftInputActivity">
+    tools:context=".ui.InputScreens.ShiftInputActivity">
 
 
         <android.support.v7.widget.Toolbar

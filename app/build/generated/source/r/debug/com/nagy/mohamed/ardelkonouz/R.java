@@ -3241,8 +3241,8 @@ containing a value of this type.
         public static final int design_navigation_menu_item=0x7f040051;
         public static final int design_text_input_password_icon=0x7f040052;
         public static final int employee_list_recycle_view=0x7f040053;
-        public static final int finance_choices_recycle_view=0x7f040054;
-        public static final int finance_selection_chips_recycle_view=0x7f040055;
+        public static final int shift_choices_recycle_view =0x7f040054;
+        public static final int shift_selection_chips_recycle_view =0x7f040055;
         public static final int fragment_child=0x7f040056;
         public static final int fragment_child_course_connector=0x7f040057;
         public static final int fragment_child_input=0x7f040058;

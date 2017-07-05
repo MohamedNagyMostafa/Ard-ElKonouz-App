@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    tools:context=".ui.ShiftInputActivityFragment"
+    tools:context=".ui.InputScreens.ShiftInputActivityFragment"
     tools:showIn="@layout/activity_shift_input">
 
    <EditText
-       android:id="@+id/shift_search_edit_text"
+       android:id="@+id/shift_input_search_edit_text"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        style="@style/RtlOverlay.Widget.AppCompat.Search.DropDown.Icon1"
@@ -25,7 +25,7 @@
         android:layout_height="90dp">
 
         <ListView
-            android:id="@+id/shift_choices_list_view"
+            android:id="@+id/shift_input_choices_list_view"
             android:layout_width="140dp"
             android:layout_height="80dp"
             android:numColumns="3"
@@ -35,7 +35,7 @@
             android:scrollbarStyle="insideInset"/>
 
         <GridView
-            android:id="@+id/shift_selection_grid_view"
+            android:id="@+id/shift_input_selection_grid_view"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:numColumns="3"
@@ -176,7 +176,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/shift_add_yesterday_button"
+                    android:id="@+id/shift_input_add_yesterday_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -188,7 +188,7 @@
                     android:text="YESTERDAY" />
 
                 <Button
-                    android:id="@+id/shift_add_today_button"
+                    android:id="@+id/shift_input_add_today_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -208,7 +208,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/shift_add_tomorrow_button"
+                    android:id="@+id/shift_input_add_tomorrow_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -220,7 +220,7 @@
                     android:text="TOMORROW" />
 
                 <Button
-                    android:id="@+id/shift_add_next_week_button"
+                    android:id="@+id/shift_input_add_next_week_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
