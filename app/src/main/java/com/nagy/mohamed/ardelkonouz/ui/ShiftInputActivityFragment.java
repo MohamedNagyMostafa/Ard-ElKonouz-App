@@ -11,14 +11,14 @@ import com.nagy.mohamed.ardelkonouz.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class FinanceActivityFragment extends Fragment {
+public class ShiftInputActivityFragment extends Fragment {
 
-    public FinanceActivityFragment() {
+    public ShiftInputActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_finance, container, false);
+        return inflater.inflate(R.layout.fragment_shift_input, container, false);
     }
 }

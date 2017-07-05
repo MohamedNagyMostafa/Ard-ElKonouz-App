@@ -3194,7 +3194,7 @@ containing a value of this type.
         public static final int activity_employee=0x7f040022;
         public static final int activity_employee_input=0x7f040023;
         public static final int activity_employee_profile=0x7f040024;
-        public static final int activity_finance=0x7f040025;
+        public static final int activity_shift_input =0x7f040025;
         public static final int activity_instructor=0x7f040026;
         public static final int activity_instructor_course_connector=0x7f040027;
         public static final int activity_instructor_input=0x7f040028;
@@ -3216,7 +3216,7 @@ containing a value of this type.
         public static final int content_employee=0x7f040038;
         public static final int content_employee_input=0x7f040039;
         public static final int content_employee_profile=0x7f04003a;
-        public static final int content_finance=0x7f04003b;
+        public static final int content_shift_input =0x7f04003b;
         public static final int content_instructor=0x7f04003c;
         public static final int content_instructor_course_connector=0x7f04003d;
         public static final int content_instructor_input=0x7f04003e;
@@ -3253,7 +3253,7 @@ containing a value of this type.
         public static final int fragment_employee=0x7f04005d;
         public static final int fragment_employee_input=0x7f04005e;
         public static final int fragment_employee_profile=0x7f04005f;
-        public static final int fragment_finance=0x7f040060;
+        public static final int fragment_shift_input =0x7f040060;
         public static final int fragment_instructor=0x7f040061;
         public static final int fragment_instructor_course_connector=0x7f040062;
         public static final int fragment_instructor_input=0x7f040063;

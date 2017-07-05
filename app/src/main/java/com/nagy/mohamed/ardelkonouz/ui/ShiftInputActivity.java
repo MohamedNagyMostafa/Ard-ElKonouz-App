@@ -6,12 +6,12 @@ import android.support.v7.widget.Toolbar;
 
 import com.nagy.mohamed.ardelkonouz.R;
 
-public class FinanceActivity extends AppCompatActivity {
+public class ShiftInputActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_finance);
+        setContentView(R.layout.activity_shift_input);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="@drawable/finances_background"
-    tools:context=".ui.FinanceActivity">
+    android:background="@android:color/white"
+    tools:context=".ui.ShiftInputActivity">
 
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/finances_toolbar_background"
+            android:background="@drawable/feature_toolbar_background"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
-    <include layout="@layout/content_finance" />
+    <include layout="@layout/content_shift_input" />
 
 </LinearLayout>
