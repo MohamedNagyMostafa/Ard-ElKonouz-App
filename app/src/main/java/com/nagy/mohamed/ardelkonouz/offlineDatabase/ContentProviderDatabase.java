@@ -249,7 +249,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 return getShiftWithCourseId(uri, projection);
 
             case SHIFT_WITH_COURSE_ID_JOIN_TABLE:
-                return getShiftWithCourseIdJoin(uri, projection, sortOrder);
+                return getShiftWithCourseIdJoin(uri, projection);
 
             case COURSE_WITH_DAY_SEARCH_TABLE:
                 return getCourseWithDaySearch(uri, projection, sortOrder);
@@ -1101,10 +1101,11 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getShiftWithCourseIdJoin(Uri uri, String[] projection, String sortOrder){
+    private Cursor getShiftWithCourseIdJoin(Uri uri, String[] projection){
         long id = ContentUris.parseId(uri);
         String selection = DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(id)};
+        String sortOrder = DbContent.ShiftDaysTable.START_DATE_COLUMN + " ASC";
 
         return SHIFT_WITH_COURSE_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
@@ -1115,7 +1116,6 @@ public class ContentProviderDatabase extends ContentProvider {
                 null,
                 sortOrder
         );
-
     }
 
     private Cursor getCourseWithDay(Uri uri, String[] projection, String sortOrder){

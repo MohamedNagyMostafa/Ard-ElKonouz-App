@@ -19,6 +19,85 @@ import java.util.Locale;
  */
 public class Utility {
 
+    public static Integer getRemainDays(ArrayList<Shift> shifts,
+                                        final String COURSE_SESSION_DAYS,
+                                        final Long COURSE_START_DATE,
+                                        final Long COURSE_END_DATE,
+                                        final Integer COURSE_SESSIONS_NUMBER){
+
+        final Long TODAY_DATE = getCurrentDateAsMills();
+        Long diffTodayStart = Math.abs(COURSE_START_DATE - TODAY_DATE);
+        Long diffTodayEnd = Math.abs(COURSE_END_DATE - TODAY_DATE);
+        Integer remainSession;
+
+        if(COURSE_START_DATE < TODAY_DATE) {
+            if(COURSE_END_DATE > TODAY_DATE) {
+                if (diffTodayEnd > diffTodayStart) {
+                    int finishedSessionsNumber = 0;
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(COURSE_START_DATE);
+
+                    int startDateIndex = getStartDay(calendar);
+                    long courseStartDateCounter = COURSE_START_DATE;
+
+                    do{
+                        if(COURSE_SESSION_DAYS.charAt(startDateIndex) == Constants.SELECTED) {
+                            if (shifts != null) {
+                                    for (Shift shift : shifts) {
+                                        if (!(shift.getStartShiftDay() <= courseStartDateCounter &&
+                                                shift.getEndShiftDay() >= courseStartDateCounter)) {
+                                            finishedSessionsNumber++;
+                                        }
+                                    }
+                                }else{
+                                    finishedSessionsNumber++;
+                                }
+                            }
+                        courseStartDateCounter += Constants.DAY_IN_MILS;
+                        startDateIndex = (startDateIndex + 1 ) % 7;
+
+                    }while(courseStartDateCounter != COURSE_END_DATE);
+
+                    remainSession = COURSE_SESSIONS_NUMBER - finishedSessionsNumber;
+
+                } else {
+
+                    remainSession = 0;
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(COURSE_END_DATE);
+
+                    int endDateIndex = getStartDay(calendar);
+                    long courseEndDateCounter = COURSE_END_DATE;
+
+                    while (courseEndDateCounter != TODAY_DATE) {
+                        if (COURSE_SESSION_DAYS.charAt(endDateIndex) == Constants.SELECTED) {
+                            if(shifts != null) {
+                                for (Shift shift : shifts) {
+                                    if (!(shift.getStartShiftDay() <= courseEndDateCounter &&
+                                            shift.getEndShiftDay() >= courseEndDateCounter)) {
+                                        remainSession++;
+                                    }
+                                }
+                            }else{
+                                remainSession++;
+                            }
+                        }
+                    endDateIndex = Math.abs(((endDateIndex + 1 ) % 7) - 6);
+                        courseEndDateCounter += Constants.DAY_IN_MILS;
+                    }
+
+                }
+            }else{
+                remainSession = 0;
+            }
+        }else{
+            remainSession = COURSE_SESSIONS_NUMBER;
+        }
+
+        return remainSession;
+
+    }
+
     public static Long getNextSessionDay(ArrayList<Shift> shifts,
                                          final String COURSE_SESSION_DAYS,
                                          final Long COURSE_END_DATE,
@@ -47,7 +126,7 @@ public class Utility {
                 nextSessionDay = nextSessionDay + (Constants.DAY_IN_MILS * counter);
                 counter = 0;
 
-                if(shifts.size() > 0) {
+                if(shifts != null && shifts.size() > 0) {
                     // Check shift.
                     for (Shift shift : shifts) {
                         if (nextSessionDay >= shift.getStartShiftDay() && nextSessionDay <= shift.getEndShiftDay()) {
@@ -71,7 +150,7 @@ public class Utility {
         }else{
             nextSessionDay = COURSE_START_DATE;
 
-            if(shifts.size() > 0) {
+            if(shifts != null && shifts.size() > 0) {
                 for (Shift shift : shifts) {
                     if (nextSessionDay >= shift.getStartShiftDay() && nextSessionDay <= shift.getEndShiftDay()) {
                         nextSessionDay = shift.getEndShiftDay() + Constants.DAY_IN_MILS;
@@ -96,23 +175,6 @@ public class Utility {
         return nextSessionDay;
     }
 
-    // check if course has a session today.
-    public static boolean hasSessionToday(final String COURSE_SESSIONS_DAYS){
-
-        Calendar todayCalendar = Calendar.getInstance();
-        todayCalendar.set(Calendar.MILLISECOND, 0);
-        todayCalendar.set(Calendar.SECOND, 0);
-        todayCalendar.set(Calendar.MINUTE, 0);
-        todayCalendar.set(Calendar.HOUR, 0);
-        todayCalendar.set(Calendar.HOUR_OF_DAY, 0);
-
-        int startDay = getStartDay(todayCalendar);
-        startDay = (startDay + 1) % 7;
-
-        return (COURSE_SESSIONS_DAYS.charAt(startDay) == Constants.SELECTED);
-
-    }
-
     // This Method Calculate The End Day.
     public static Long getEndDate(final Long COURSE_START_DATE, final String COURSE_SESSIONS_DAYS,
                             final Integer SESSIONS_NUMBER, final Integer COURSE_SHIFT_NUMBER){
@@ -134,14 +196,6 @@ public class Utility {
 
         return COURSE_START_DATE + (Constants.DAY_IN_MILS * (daysCounter + COURSE_SHIFT_NUMBER));
     }
-
-    public static boolean isAfterToday(final long DATE){
-        Calendar todayCalender = Calendar.getInstance();
-        todayCalender = getInitialCalendar(todayCalender);
-
-        return (todayCalender.getTimeInMillis() < DATE);
-    }
-
 
     public static String getDaysAsString(final String COURSES_SESSIONS_DAYS){
         StringBuilder stringBuilder = new StringBuilder("");
@@ -215,20 +269,6 @@ public class Utility {
         }
     }
 
-    public static Integer encodeBirthOrderByString(String birthOrder, Context context){
-       if(birthOrder.equals(context.getString(R.string.first_birth))){
-           return Constants.FIRST_BIRTH;
-       }else if(birthOrder.equals(context.getString(R.string.middle_birth))){
-           return Constants.MIDDLE_BIRTH;
-       }else if(birthOrder.equals(context.getString(R.string.last_birth))){
-           return Constants.LAST_BIRTH;
-       }else if(birthOrder.equals(context.getString(R.string.alone_birth))){
-           return Constants.ALONE_ORDER;
-       }else{
-           return null;
-       }
-    }
-
     public static String decodeGenderByInt(int gender, Context context){
         switch (gender){
             case Constants.MALE:
@@ -237,16 +277,6 @@ public class Utility {
                 return context.getString(R.string.gender_female);
             default:
                 return null;
-        }
-    }
-
-    public static Integer encodeGenderByString(String gender, Context context){
-        if(gender.equals(context.getString(R.string.gender_male))){
-            return Constants.MALE;
-        }else if(gender.equals(context.getString(R.string.gender_female))){
-            return Constants.FEMALE;
-        }else{
-            return null;
         }
     }
 
@@ -274,7 +304,6 @@ public class Utility {
 
         return stringBuilder;
     }
-
 
     public static int getYearCodeFromEducationStageString(String educationStage){
         StringBuilder stringBuilder = new StringBuilder(educationStage);
@@ -401,10 +430,6 @@ public class Utility {
         calendar.set(Calendar.MINUTE,0);
         calendar.set(Calendar.SECOND,0);
         return calendar;
-    }
-
-    private static boolean isSelectedIQChoice(String iqAnswer, int index){
-        return (iqAnswer.charAt(index) == Constants.SELECTED);
     }
 
     public static void doubleSelectionProcess(ArrayList<DoubleChoice> doubleChoiceArrayList,
