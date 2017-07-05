@@ -116,27 +116,23 @@ public class Utility {
     // This Method Calculate The End Day.
     public static Long getEndDate(final Long COURSE_START_DATE, final String COURSE_SESSIONS_DAYS,
                             final Integer SESSIONS_NUMBER, final Integer COURSE_SHIFT_NUMBER){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(COURSE_START_DATE);
-        calendar = getInitialCalendar(calendar);
 
-        int startDay = getStartDay(calendar);
-        long daysDiff = -1;
-        Log.e("start day is ",getDayFromIndex(startDay));
-        //2
-        for(int i = (SESSIONS_NUMBER + COURSE_SHIFT_NUMBER) ; i > 0 ; i--){
-            while(COURSE_SESSIONS_DAYS.charAt(startDay) != Constants.SELECTED) {
-                startDay = (startDay + 1) % 7;
+        Calendar startDateCalendar = Calendar.getInstance();
+        startDateCalendar.setTimeInMillis(COURSE_START_DATE);
+        startDateCalendar = getInitialCalendar(startDateCalendar);
 
-                Log.e("Day not select", getDayFromIndex(startDay));
-                ++daysDiff;
+        int daysCounter = 0;
+        int sessionCounter = 0;
+        int startDayIndex = getStartDay(startDateCalendar);
+
+        for(int i = 0 ; i < SESSIONS_NUMBER ; sessionCounter++){
+            if(COURSE_SESSIONS_DAYS.charAt(startDayIndex) == Constants.SELECTED){
+                i++;
+                daysCounter++;
             }
-            startDay = (startDay + 1) % 7;
-            Log.e("i = ", String.valueOf(i));
-            ++daysDiff;
         }
-        Log.e("calculation is end","done");
-        return calendar.getTimeInMillis() +  (daysDiff * Constants.DAY_IN_MILS);
+
+        return COURSE_START_DATE + (Constants.DAY_IN_MILS * (daysCounter + COURSE_SHIFT_NUMBER));
     }
 
     public static boolean isAfterToday(final long DATE){
