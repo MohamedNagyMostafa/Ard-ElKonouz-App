@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui.ListScreens;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ShiftInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
@@ -105,6 +107,15 @@ public class ShiftListActivityFragment extends Fragment
                 }
             };
 
+    private View.OnClickListener addShiftFloatingButtonListener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent shiftInputScreen = new Intent(getContext(), ShiftInputActivity.class);
+                    startActivity(shiftInputScreen);
+                }
+            };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -133,6 +144,7 @@ public class ShiftListActivityFragment extends Fragment
         shiftListScreenViewHolder.TODAY_TEXT_VIEW.setOnClickListener(todayTextViewListener);
         shiftListScreenViewHolder.YESTERDAY_TEXT_VIEW.setOnClickListener(yesterdayTextViewListener);
         shiftListScreenViewHolder.TOMORROW_TEXT_VIEW.setOnClickListener(tomorrowTextViewListener);
+        shiftListScreenViewHolder.ADD_SHIFT_BUTTON.setOnClickListener(addShiftFloatingButtonListener);
 
         getLoaderManager().initLoader(Constants.LOADER_SHIFT_LIST, null, this);
 

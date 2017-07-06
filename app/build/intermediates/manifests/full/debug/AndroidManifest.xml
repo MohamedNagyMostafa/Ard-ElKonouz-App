@@ -79,8 +79,9 @@
             android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.nagy.mohamed.ardelkonouz.ui.FinanceActivity"
+            android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.ShiftInputActivity"
             android:label="@string/title_activity_finance"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ShiftListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.InstructorInputActivity"

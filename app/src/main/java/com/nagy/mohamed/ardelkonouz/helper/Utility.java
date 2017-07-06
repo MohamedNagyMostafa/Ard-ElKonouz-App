@@ -38,6 +38,7 @@ public class Utility {
 
         while(getStartDay(calendar) != Constants.FRI_DAY){
             startDayDate += Constants.DAY_IN_MILS;
+            calendar.setTimeInMillis(startDayDate);
         }
 
         return startDayDate;

@@ -1,6 +1,7 @@
 package com.nagy.mohamed.ardelkonouz.ui.InputScreens;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ParseException;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ShiftListActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterChoices;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterSelection;
@@ -72,8 +75,9 @@ public class ShiftInputActivityFragment extends Fragment
                         @Override
                         public void onClick(View view) {
                             selectedID.add(COURSE_ID);
-                            restartChoicesLoader();
+                            Log.e("course is added size is", String.valueOf(selectedID.size()));
                             restartSelectionLoader();
+                            restartChoicesLoader();
                         }
                     }
             );
@@ -169,7 +173,7 @@ public class ShiftInputActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     Long startDate = Utility.getNextFridayDate();
-                    Long endDate = startDate * 7;
+                    Long endDate = startDate + (Constants.DAY_IN_MILS * 7);
 
                     shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT.setText(
                             String.valueOf(startDate)
@@ -201,7 +205,12 @@ public class ShiftInputActivityFragment extends Fragment
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     searchChars = charSequence.toString();
-                    restartChoicesLoader();
+                    if(searchChars.length() > 0) {
+                        restartChoicesLoader();
+                    }else{
+                        databaseAdapterChoices.swapCursor(null);
+                        shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
+                    }
                 }
 
                 @Override
@@ -274,6 +283,7 @@ public class ShiftInputActivityFragment extends Fragment
                                 coursesSelectedContentValuesAsArray
                         );
 
+                        openShiftListScreen();
                     }
                 }
         );
@@ -281,10 +291,6 @@ public class ShiftInputActivityFragment extends Fragment
         // Set Adapters
         shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setAdapter(databaseAdapterChoices);
         shiftInputScreenViewHolder.COURSE_SELECTION_GRID_VIEW.setAdapter(databaseAdapterSelection);
-
-        // Loaders..
-        getLoaderManager().initLoader(Constants.LOADER_CHOICES_LIST, null, this);
-        getLoaderManager().initLoader(Constants.LOADER_SELECTED_LIST, null, this);
 
         return rootView;
     }
@@ -320,6 +326,7 @@ public class ShiftInputActivityFragment extends Fragment
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.e("loader id", String.valueOf(id));
         switch (id) {
             case Constants.LOADER_CHOICES_LIST:
                 if (searchChars.length() > 0) {
@@ -334,8 +341,19 @@ public class ShiftInputActivityFragment extends Fragment
                             null,
                             null
                     );
+                }else{
+                    return new CursorLoader(
+                            getContext(),
+                            DatabaseController.UriDatabase.getCourseChoices(
+                                    selectedID,
+                                    searchChars
+                            ),
+                            DatabaseController.ProjectionDatabase.CHOICES_SELECTION_PROJECTION,
+                            null,
+                            null,
+                            null
+                    );
                 }
-                break;
             case Constants.LOADER_SELECTED_LIST:
                 if(selectedID.size() > 0){
                     return new CursorLoader(
@@ -347,6 +365,7 @@ public class ShiftInputActivityFragment extends Fragment
                             null
                     );
                 }
+                Log.e("selection list","null");
                 break;
         }
         return null;
@@ -354,33 +373,67 @@ public class ShiftInputActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        switch (getId()){
+        Log.e("output", String.valueOf(data.getCount()));
+        switch (loader.getId()){
             case Constants.LOADER_SELECTED_LIST:
-                databaseAdapterSelection.swapCursor(data);
+                if(selectedID.size() > 0) {
+                    databaseAdapterSelection.swapCursor(data);
+                    shiftInputScreenViewHolder.COURSE_SELECTION_GRID_VIEW.setVisibility(View.VISIBLE);
+                }else{
+                    databaseAdapterSelection.swapCursor(null);
+                    shiftInputScreenViewHolder.COURSE_SELECTION_GRID_VIEW.setVisibility(View.GONE);
+                }
                 break;
             case Constants.LOADER_CHOICES_LIST:
-                databaseAdapterChoices.swapCursor(data);
+                if(data.getCount() > 0 && searchChars.length() > 0) {
+                    databaseAdapterChoices.swapCursor(data);
+                    shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.VISIBLE);
+                }else{
+                    databaseAdapterChoices.swapCursor(null);
+                    shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
+                }
                 break;
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        switch (getId()){
+
+        switch (loader.getId()){
             case Constants.LOADER_SELECTED_LIST:
                 databaseAdapterSelection.swapCursor(null);
+                shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                 break;
             case Constants.LOADER_CHOICES_LIST:
                 databaseAdapterChoices.swapCursor(null);
+                shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                 break;
         }
     }
 
     private void restartChoicesLoader(){
-        getLoaderManager().restartLoader(Constants.LOADER_CHOICES_LIST, null, this);
+        if(getLoaderManager().getLoader(Constants.LOADER_CHOICES_LIST) != null) {
+            Log.e("reseter done", "done");
+            getLoaderManager().restartLoader(Constants.LOADER_CHOICES_LIST, null, this);
+        }else{
+            Log.e("ini done", "done");
+            getLoaderManager().initLoader(Constants.LOADER_CHOICES_LIST, null, this);
+        }
     }
 
     private void restartSelectionLoader(){
-        getLoaderManager().restartLoader(Constants.LOADER_SELECTED_LIST, null, this);
+        if(getLoaderManager().getLoader(Constants.LOADER_SELECTED_LIST) != null) {
+            Log.e("reseter done", "done");
+            getLoaderManager().restartLoader(Constants.LOADER_SELECTED_LIST, null, this);
+        }else{
+            Log.e("ini done", "done");
+            getLoaderManager().initLoader(Constants.LOADER_SELECTED_LIST, null, this);
+        }
+    }
+
+    private void openShiftListScreen(){
+        Intent shiftListScreen = new Intent(getContext(), ShiftListActivity.class);
+        startActivity(shiftListScreen);
+        getActivity().finish();
     }
 }

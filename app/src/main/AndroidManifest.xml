@@ -71,7 +71,8 @@
         <activity
             android:name=".ui.InputScreens.ShiftInputActivity"
             android:label="@string/title_activity_finance"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.ListScreens.ShiftListActivity"/>
         <activity
             android:name=".ui.InputScreens.InstructorInputActivity"
             android:label="@string/title_activity_instructor_input"

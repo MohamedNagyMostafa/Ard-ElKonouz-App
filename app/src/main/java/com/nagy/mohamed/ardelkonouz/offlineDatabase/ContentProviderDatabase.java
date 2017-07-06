@@ -1212,17 +1212,22 @@ public class ContentProviderDatabase extends ContentProvider {
                 String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
                 idUri = idUri.substring(0, idUri.lastIndexOf('k'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =! ?");
+                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" != ?");
             }else{
                 String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
-                idUri = idUri.substring(0, idUri.lastIndexOf('l'));
+                idUri = idUri.substring(0, idUri.lastIndexOf('/'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =! ?");
+                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" != ?");
             }
         }while (idUri.length() > 1);
 
         String[] selectionArgsArray = new String[selectionArgs.size()];
         selectionArgs.toArray(selectionArgsArray);
+
+        Log.e("selection",selection.toString());
+        for(String selectionAr : selectionArgs){
+            Log.e("selectionArgs", selectionAr);
+        }
 
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.CourseTable.TABLE_NAME,
@@ -1255,7 +1260,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
             }else{
                 String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
-                idUri = idUri.substring(0, idUri.lastIndexOf('l'));
+                idUri = idUri.substring(0, idUri.lastIndexOf('/'));
                 selectionArgs.add(courseId);
 
                 if(selection.length() > 1) {

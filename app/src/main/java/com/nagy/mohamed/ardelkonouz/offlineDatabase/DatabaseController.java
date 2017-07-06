@@ -456,7 +456,8 @@ public class DatabaseController {
 
         public static Uri getCourseChoices(ArrayList<Long> ids, String searchChars){
             StringBuilder encodeIds  = new StringBuilder("");
-            encodeIds.append(ids.get(0));
+            if(ids.size() > 0)
+                encodeIds.append(ids.get(0));
 
             for(int i = 1 ; i < ids.size(); i++){
                 encodeIds.append("k").append(ids.get(i));
@@ -476,7 +477,7 @@ public class DatabaseController {
                 encodeIds.append("k").append(ids.get(i));
             }
 
-            return COURSE_TABLE_URI.buildUpon().appendPath(encodeIds.toString())
+            return COURSE_TABLE_URI.buildUpon()
                     .appendPath(DbContent.CourseTable._ID)
                     .appendPath(encodeIds.toString())
                     .build();
