@@ -19,6 +19,30 @@ import java.util.Locale;
  */
 public class Utility {
 
+    public static Integer getDaysNumber(final Long START_DATE,
+                                        final Long END_DATE){
+        int daysNumber = 0;
+        Long dayCounter = START_DATE;
+
+        while (dayCounter <= END_DATE){
+            dayCounter += Constants.DAY_IN_MILS;
+            daysNumber++;
+        }
+
+        return daysNumber;
+    }
+    public static Long getNextFridayDate(){
+        Long startDayDate = getCurrentDateAsMills();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(startDayDate);
+
+        while(getStartDay(calendar) != Constants.FRI_DAY){
+            startDayDate += Constants.DAY_IN_MILS;
+        }
+
+        return startDayDate;
+    }
+
     public static Integer getRemainDays(ArrayList<Shift> shifts,
                                         final String COURSE_SESSION_DAYS,
                                         final Long COURSE_START_DATE,

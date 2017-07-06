@@ -339,6 +339,13 @@ public class DatabaseController {
         public static final int SHIFT_COURSE_JOIN_COURSE_DAYS_COLUMN = 14;
         public static final int SHIFT_COURSE_JOIN_COURSE_SESSIONS_NUMBER_COLUMN = 15;
 
+        public static final String[] CHOICES_SELECTION_PROJECTION = {
+                DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+        };
+
+        public static final int CHOICES_SELECTION_ID = 0;
+        public static final int CHOICES_SELECTION_COURSE_NAME = 1;
     }
 
     public static class UriDatabase{

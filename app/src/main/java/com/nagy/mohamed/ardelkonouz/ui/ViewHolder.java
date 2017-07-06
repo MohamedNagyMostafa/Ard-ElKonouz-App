@@ -803,8 +803,10 @@ public class ViewHolder {
         public final Button YESTERDAY_SHIFT_BUTTON;
         public final Button TOMORROW_SHIFT_BUTTON;
         public final Button NEXT_WEEK_SHIFT_BUTTON;
+        public final Button APPLY_BUTTON;
 
         public ShiftInputScreenViewHolder(View shiftView){
+
             COURSE_SEARCH_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_search_edit_text);
             COURSE_CHOICES_LIST_VIEW = (ListView) shiftView.findViewById(R.id.shift_input_choices_list_view);
             COURSE_SELECTION_GRID_VIEW = (GridView) shiftView.findViewById(R.id.shift_input_selection_grid_view);
@@ -814,6 +816,8 @@ public class ViewHolder {
             YESTERDAY_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_yesterday_button);
             TOMORROW_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_tomorrow_button);
             NEXT_WEEK_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_next_week_button);
+            APPLY_BUTTON = (Button) shiftView.findViewById(R.id.shift_apply_button);
+
         }
 
         public static class SelectionCoursesViewHolder{

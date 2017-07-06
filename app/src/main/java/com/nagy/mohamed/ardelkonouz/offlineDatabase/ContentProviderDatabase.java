@@ -675,6 +675,16 @@ public class ContentProviderDatabase extends ContentProvider {
                 }
                 break;
 
+            case SHIFT_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.CourseInstructorTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);

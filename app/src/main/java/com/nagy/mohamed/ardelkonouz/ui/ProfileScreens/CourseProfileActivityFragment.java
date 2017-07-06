@@ -130,6 +130,10 @@ public class CourseProfileActivityFragment extends Fragment {
                 cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_COURSE_SESSIONS_NUMBER_COLUMN);
         final String COURSE_SESSIONS_DAYS =
                 cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_COURSE_DAYS_COLUMN);
+        final int COURSE_START_AGE =
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_COURSE_START_AGE_COLUMN);
+        final int COURSE_END_AGE =
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_COURSE_END_AGE_COLUMN);
 
         final int REMAINING_SESSIONS = Utility.getRemainDays(
                 shifts,
@@ -169,15 +173,7 @@ public class CourseProfileActivityFragment extends Fragment {
         courseProfileScreenViewHolder.COURSE_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(COURSE_STATE, getContext()));
         courseProfileScreenViewHolder.COURSE_INSTRUCTOR_NAME_TEXT_VIEW.setText(getCourseInstructorName(COURSE_ID));
         courseProfileScreenViewHolder.COURSE_AGE_RANGE_TEXT_VIEW.setText(
-                Utility.decodeAgeRangeByInt(
-                        cursor.getInt(
-                                DatabaseController.ProjectionDatabase.COURSE_START_AGE
-                        ),
-                        cursor.getInt(
-                                DatabaseController.ProjectionDatabase.COURSE_END_AGE
-                        )
-                )
-        );
+                Utility.decodeAgeRangeByInt(COURSE_START_AGE,COURSE_END_AGE));
 
     }
 
