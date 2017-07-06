@@ -77,7 +77,7 @@ public class ShiftInputActivityFragment extends Fragment
                             selectedID.add(COURSE_ID);
                             Log.e("course is added size is", String.valueOf(selectedID.size()));
                             restartSelectionLoader();
-                            restartChoicesLoader();
+                            shiftInputScreenViewHolder.COURSE_SEARCH_EDIT_TEXT.setText("");
                         }
                     }
             );
@@ -111,7 +111,6 @@ public class ShiftInputActivityFragment extends Fragment
                         @Override
                         public void onClick(View view) {
                             selectedID.remove(COURSE_ID);
-                            restartChoicesLoader();
                             restartSelectionLoader();
                         }
                     }
@@ -209,7 +208,6 @@ public class ShiftInputActivityFragment extends Fragment
                         restartChoicesLoader();
                     }else{
                         databaseAdapterChoices.swapCursor(null);
-                        shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                     }
                 }
 
@@ -356,6 +354,7 @@ public class ShiftInputActivityFragment extends Fragment
                 }
             case Constants.LOADER_SELECTED_LIST:
                 if(selectedID.size() > 0){
+                    Log.e("selection list","called1");
                     return new CursorLoader(
                             getContext(),
                             DatabaseController.UriDatabase.getCourseSelection(selectedID),
@@ -364,6 +363,10 @@ public class ShiftInputActivityFragment extends Fragment
                             null,
                             null
                     );
+
+                }else{
+                    Log.e("selection list","called2");
+                    databaseAdapterSelection.swapCursor(null);
                 }
                 Log.e("selection list","null");
                 break;
@@ -378,19 +381,15 @@ public class ShiftInputActivityFragment extends Fragment
             case Constants.LOADER_SELECTED_LIST:
                 if(selectedID.size() > 0) {
                     databaseAdapterSelection.swapCursor(data);
-                    shiftInputScreenViewHolder.COURSE_SELECTION_GRID_VIEW.setVisibility(View.VISIBLE);
                 }else{
                     databaseAdapterSelection.swapCursor(null);
-                    shiftInputScreenViewHolder.COURSE_SELECTION_GRID_VIEW.setVisibility(View.GONE);
                 }
                 break;
             case Constants.LOADER_CHOICES_LIST:
                 if(data.getCount() > 0 && searchChars.length() > 0) {
                     databaseAdapterChoices.swapCursor(data);
-                    shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.VISIBLE);
                 }else{
                     databaseAdapterChoices.swapCursor(null);
-                    shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                 }
                 break;
         }
@@ -402,11 +401,9 @@ public class ShiftInputActivityFragment extends Fragment
         switch (loader.getId()){
             case Constants.LOADER_SELECTED_LIST:
                 databaseAdapterSelection.swapCursor(null);
-                shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                 break;
             case Constants.LOADER_CHOICES_LIST:
                 databaseAdapterChoices.swapCursor(null);
-                shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                 break;
         }
     }
@@ -422,13 +419,9 @@ public class ShiftInputActivityFragment extends Fragment
     }
 
     private void restartSelectionLoader(){
-        if(getLoaderManager().getLoader(Constants.LOADER_SELECTED_LIST) != null) {
             Log.e("reseter done", "done");
             getLoaderManager().restartLoader(Constants.LOADER_SELECTED_LIST, null, this);
-        }else{
-            Log.e("ini done", "done");
-            getLoaderManager().initLoader(Constants.LOADER_SELECTED_LIST, null, this);
-        }
+
     }
 
     private void openShiftListScreen(){

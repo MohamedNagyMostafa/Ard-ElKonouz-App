@@ -679,7 +679,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 for(ContentValues contentValues : values) {
                     counter++;
                     m_dbHelper.getWritableDatabase().insert(
-                            DbContent.CourseInstructorTable.TABLE_NAME,
+                            DbContent.ShiftDaysTable.TABLE_NAME,
                             null,
                             contentValues
                     );
@@ -1173,6 +1173,8 @@ public class ContentProviderDatabase extends ContentProvider {
         String newUri = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
         long dayIndex = ContentUris.parseId(Uri.parse(newUri));
 
+        /// TODO ... Check start Date...
+
         String selection = "(SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
                 "(" + DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
@@ -1205,7 +1207,7 @@ public class ContentProviderDatabase extends ContentProvider {
         ArrayList<String> selectionArgs = new ArrayList<>();
         selectionArgs.add(encodeWord);
         StringBuilder selection = new StringBuilder("");
-        selection.append(DbContent.CourseTable.COURSE_NAME_COLUMN).append(" =?");
+        selection.append(DbContent.CourseTable.COURSE_NAME_COLUMN).append(" LIKE ?");
 
         do{
             if(idUri.contains("k")) {
@@ -1253,7 +1255,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 selectionArgs.add(courseId);
 
                 if(selection.length() > 1) {
-                    selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =?");
+                    selection.append(" OR ").append(DbContent.CourseTable._ID).append(" =?");
                 }else{
                     selection.append(DbContent.CourseTable._ID).append(" =?");
                 }
@@ -1264,7 +1266,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 selectionArgs.add(courseId);
 
                 if(selection.length() > 1) {
-                    selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =?");
+                    selection.append(" OR ").append(DbContent.CourseTable._ID).append(" =?");
                 }else{
                     selection.append(DbContent.CourseTable._ID).append(" =?");
                 }
@@ -1274,6 +1276,10 @@ public class ContentProviderDatabase extends ContentProvider {
         String[] selectionArgsArray = new String[selectionArgs.size()];
         selectionArgs.toArray(selectionArgsArray);
 
+        Log.e("selection", selection.toString());
+        for(String id : selectionArgsArray){
+            Log.e("selectionArg", id);
+        }
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.CourseTable.TABLE_NAME,
                 projection,
