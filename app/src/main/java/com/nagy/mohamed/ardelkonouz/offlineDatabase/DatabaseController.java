@@ -2,6 +2,8 @@ package com.nagy.mohamed.ardelkonouz.offlineDatabase;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 /**
  * Created by mohamednagy on 6/12/2017.
  */
@@ -443,6 +445,34 @@ public class DatabaseController {
         public static Uri getShiftWithCourseJoinId(long id){
             return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.COURSE_ID_COLUMN)
                     .appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getCourseChoices(ArrayList<Long> ids, String searchChars){
+            StringBuilder encodeIds  = new StringBuilder("");
+            encodeIds.append(ids.get(0));
+
+            for(int i = 1 ; i < ids.size(); i++){
+                encodeIds.append("k").append(ids.get(i));
+            }
+
+            return COURSE_TABLE_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
+                    .appendPath(encodeIds.toString())
+                    .appendPath(searchChars).build();
+        }
+
+        public static Uri getCourseSelection(ArrayList<Long> ids){
+            StringBuilder encodeIds  = new StringBuilder("");
+            encodeIds.append(ids.get(0));
+
+            for(int i = 1 ; i < ids.size(); i++){
+                encodeIds.append("k").append(ids.get(i));
+            }
+
+            return COURSE_TABLE_URI.buildUpon().appendPath(encodeIds.toString())
+                    .appendPath(DbContent.CourseTable._ID)
+                    .appendPath(encodeIds.toString())
+                    .build();
         }
 
     }

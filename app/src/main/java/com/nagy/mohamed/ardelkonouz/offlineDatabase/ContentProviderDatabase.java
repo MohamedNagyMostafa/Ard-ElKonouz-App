@@ -14,6 +14,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 /**
  * Created by mohamednagy on 6/10/2017.
@@ -49,6 +50,8 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int SHIFT_WITH_COURSE_ID_JOIN_TABLE = 12;
     private static final int COURSE_WITH_DAY_SEARCH_TABLE = 13;
     private static final int COURSE_WITH_DAY_TABLE = 14;
+    private static final int COURSES_CHOICES_TABLE = 15;
+    private static final int COURSES_SELECTION_TABLE = 16;
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
@@ -256,6 +259,12 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case COURSE_WITH_DAY_TABLE:
                 return getCourseWithDay(uri, projection, sortOrder);
+
+            case COURSES_CHOICES_TABLE:
+                return getCoursesChoices(uri, projection, sortOrder);
+
+            case COURSES_SELECTION_TABLE:
+                return getCoursesSelection(uri, projection, sortOrder);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -732,6 +741,13 @@ public class ContentProviderDatabase extends ContentProvider {
         final String SHIFT_WITH_COURSE_ID_JOIN_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "/#";
 
+        final String COURSES_CHOICES_PATH = DbContent.CourseTable.TABLE_NAME + "/"
+                + DbContent.CourseTable.COURSE_NAME_COLUMN + "/*/*";
+        final String COURSES_SELECTION_PATH = DbContent.CourseTable.TABLE_NAME + "/"
+                + DbContent.CourseTable._ID + "/*";
+
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_SELECTION_PATH, COURSES_SELECTION_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_CHOICES_PATH, COURSES_CHOICES_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_SEARCH_PATH, COURSE_WITH_DAY_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_PATH, COURSE_WITH_DAY_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_PATH, SHIFT_TABLE);
@@ -1169,4 +1185,89 @@ public class ContentProviderDatabase extends ContentProvider {
                 sortOrder
         );
     }
+
+    private Cursor getCoursesChoices(Uri uri, String[] projection, String sortOrder){
+        String searchWord = uri.toString().substring(uri.toString().lastIndexOf('/') + 1, uri.toString().length());
+        String encodeWord = searchWord + "%";
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        String idUri = newUri.substring(newUri.lastIndexOf('/'), newUri.length());
+
+        ArrayList<String> selectionArgs = new ArrayList<>();
+        selectionArgs.add(encodeWord);
+        StringBuilder selection = new StringBuilder("");
+        selection.append(DbContent.CourseTable.COURSE_NAME_COLUMN).append(" =?");
+
+        do{
+            if(idUri.contains("k")) {
+                String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('k'));
+                selectionArgs.add(courseId);
+                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =! ?");
+            }else{
+                String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('l'));
+                selectionArgs.add(courseId);
+                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =! ?");
+            }
+        }while (idUri.length() > 1);
+
+        String[] selectionArgsArray = new String[selectionArgs.size()];
+        selectionArgs.toArray(selectionArgsArray);
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection.toString(),
+                selectionArgsArray,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCoursesSelection (Uri uri, String[] projection, String sortOrder){
+        String idUri = uri.toString().substring(uri.toString().lastIndexOf('/'), uri.toString().length());
+
+        ArrayList<String> selectionArgs = new ArrayList<>();
+        StringBuilder selection = new StringBuilder("");
+
+        do{
+            if(idUri.contains("k")) {
+                String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('k'));
+                selectionArgs.add(courseId);
+
+                if(selection.length() > 1) {
+                    selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =?");
+                }else{
+                    selection.append(DbContent.CourseTable._ID).append(" =?");
+                }
+
+            }else{
+                String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('l'));
+                selectionArgs.add(courseId);
+
+                if(selection.length() > 1) {
+                    selection.append(" AND ").append(DbContent.CourseTable._ID).append(" =?");
+                }else{
+                    selection.append(DbContent.CourseTable._ID).append(" =?");
+                }
+            }
+        }while (idUri.length() > 1);
+
+        String[] selectionArgsArray = new String[selectionArgs.size()];
+        selectionArgs.toArray(selectionArgsArray);
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection.toString(),
+                selectionArgsArray,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
 }
