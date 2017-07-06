@@ -245,33 +245,75 @@ public class ShiftInputActivityFragment extends Fragment
 
                         for(final Long COURSE_ID : selectedID){
 
-                            ContentValues contentValues = new ContentValues();
-                            contentValues.put(DbContent.ShiftDaysTable.COURSE_ID_COLUMN, COURSE_ID);
-                            contentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN,
+                            ContentValues shiftContentValues = new ContentValues();
+                            ContentValues courseContentValues = new ContentValues();
+
+                            final Integer SHIFT_DAYS_NUMBER = Utility.getDaysNumber(
                                     Long.valueOf(
-                                    shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
-                                            .getText().toString()
-                                    )
-                            );
-                            contentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN,
+                                            shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
+                                                    .getText().toString()
+                                    ),
                                     Long.valueOf(
                                             shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
                                                     .getText().toString()
                                     )
                             );
-                            contentValues.put(DbContent.ShiftDaysTable.DAYS_NUMBER_COLUMN,
-                                    Utility.getDaysNumber(
-                                            Long.valueOf(
-                                                    shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
-                                                            .getText().toString()
-                                            ),
-                                            Long.valueOf(
-                                                    shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
-                                                            .getText().toString()
-                                            )
-                                    ));
 
-                            coursesSelectedContentValues.add(contentValues);
+                            shiftContentValues.put(DbContent.ShiftDaysTable.COURSE_ID_COLUMN, COURSE_ID);
+                            shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN,
+                                    Long.valueOf(
+                                    shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
+                                            .getText().toString()
+                                    )
+                            );
+                            shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN,
+                                    Long.valueOf(
+                                            shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
+                                                    .getText().toString()
+                                    )
+                            );
+                            shiftContentValues.put(DbContent.ShiftDaysTable.DAYS_NUMBER_COLUMN,SHIFT_DAYS_NUMBER);
+
+                            // update end date for courses.
+                            Cursor cursor = getActivity().getContentResolver().query(
+                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                    DatabaseController.ProjectionDatabase.COURSE_DATE_PROJECTION,
+                                    null,
+                                    null,
+                                    null
+                            );
+
+                            if(cursor != null){
+                                if(cursor.getCount() > 0){
+                                    cursor.moveToFirst();
+
+                                    courseContentValues.put(
+                                            DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                                            Utility.getEndDate(
+                                                    cursor.getLong(
+                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_START_DATE
+                                                    ),
+                                                    cursor.getString(
+                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_DAYS
+                                                    ),
+                                                    cursor.getInt(
+                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_SESSIONS_NUMBER
+                                                    ),
+                                                    SHIFT_DAYS_NUMBER
+                                            ));
+                                }
+                                cursor.close();
+                            }
+
+                            getActivity().getContentResolver().update(
+                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                    courseContentValues,
+                                    null,
+                                    null
+                            );
+
+                            coursesSelectedContentValues.add(shiftContentValues);
+
                         }
 
                         coursesSelectedContentValues.toArray(coursesSelectedContentValuesAsArray);

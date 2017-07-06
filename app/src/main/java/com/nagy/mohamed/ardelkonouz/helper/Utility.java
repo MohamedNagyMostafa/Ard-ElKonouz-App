@@ -31,6 +31,7 @@ public class Utility {
 
         return daysNumber;
     }
+
     public static Long getNextFridayDate(){
         Long startDayDate = getCurrentDateAsMills();
         Calendar calendar = Calendar.getInstance();
@@ -81,7 +82,7 @@ public class Utility {
                         courseStartDateCounter += Constants.DAY_IN_MILS;
                         startDateIndex = (startDateIndex + 1 ) % 7;
 
-                    }while(courseStartDateCounter != COURSE_END_DATE);
+                    }while(courseStartDateCounter != TODAY_DATE);
 
                     remainSession = COURSE_SESSIONS_NUMBER - finishedSessionsNumber;
 
@@ -199,7 +200,7 @@ public class Utility {
 
         return nextSessionDay;
     }
-
+// TODO ... End Date Modify...
     // This Method Calculate The End Day.
     public static Long getEndDate(final Long COURSE_START_DATE, final String COURSE_SESSIONS_DAYS,
                             final Integer SESSIONS_NUMBER, final Integer COURSE_SHIFT_NUMBER){
