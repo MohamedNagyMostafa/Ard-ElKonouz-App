@@ -200,27 +200,37 @@ public class Utility {
 
         return nextSessionDay;
     }
-// TODO ... End Date Modify...
-    // This Method Calculate The End Day.
-    public static Long getEndDate(final Long COURSE_START_DATE, final String COURSE_SESSIONS_DAYS,
-                            final Integer SESSIONS_NUMBER, final Integer COURSE_SHIFT_NUMBER){
 
-        Calendar startDateCalendar = Calendar.getInstance();
-        startDateCalendar.setTimeInMillis(COURSE_START_DATE);
-        startDateCalendar = getInitialCalendar(startDateCalendar);
+    public static Long getEndDate(ArrayList<Shift> shifts,
+                                  final String COURSE_SESSION_DAYS,
+                                  final int COURSE_SESSIONS_NUMBER,
+                                  final Long COURSE_START_DATE){
 
-        int daysCounter = 0;
-        int sessionCounter = 0;
-        int startDayIndex = getStartDay(startDateCalendar);
+        long endDateCounter = COURSE_START_DATE;
+        int sessionNumberCounter = 0;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(endDateCounter);
 
-        for(int i = 0 ; i < SESSIONS_NUMBER ; sessionCounter++){
-            if(COURSE_SESSIONS_DAYS.charAt(startDayIndex) == Constants.SELECTED){
-                i++;
-                daysCounter++;
+        int endDateCounterDayIndex = getStartDay(calendar);
+
+        while(sessionNumberCounter < COURSE_SESSIONS_NUMBER){
+            if(COURSE_SESSION_DAYS.charAt(endDateCounterDayIndex) == Constants.SELECTED){
+                boolean sessionShifted = false;
+                for(Shift shift : shifts){
+                    if(endDateCounter >= shift.getStartShiftDay() && endDateCounter <= shift.getEndShiftDay()){
+                        sessionShifted = true;
+                        break;
+                    }
+                }
+                if(!sessionShifted){
+                    sessionNumberCounter++;
+                }
             }
+            endDateCounter += Constants.DAY_IN_MILS;
+            endDateCounterDayIndex = (endDateCounterDayIndex + 1) % 7;
         }
 
-        return COURSE_START_DATE + (Constants.DAY_IN_MILS * (daysCounter + COURSE_SHIFT_NUMBER));
+        return endDateCounter;
     }
 
     public static String getDaysAsString(final String COURSES_SESSIONS_DAYS){
