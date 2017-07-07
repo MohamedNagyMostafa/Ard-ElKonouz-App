@@ -19,18 +19,6 @@ import java.util.Locale;
  */
 public class Utility {
 
-    public static Integer getDaysNumber(final Long START_DATE,
-                                        final Long END_DATE){
-        int daysNumber = 0;
-        Long dayCounter = START_DATE;
-
-        while (dayCounter <= END_DATE){
-            dayCounter += Constants.DAY_IN_MILS;
-            daysNumber++;
-        }
-
-        return daysNumber;
-    }
 
     public static Long getNextFridayDate(){
         Long startDayDate = getCurrentDateAsMills();
@@ -69,12 +57,16 @@ public class Utility {
                     do{
                         if(COURSE_SESSION_DAYS.charAt(startDateIndex) == Constants.SELECTED) {
                             if (shifts != null) {
+                                boolean shiftFounded = false;
                                     for (Shift shift : shifts) {
-                                        if (!(shift.getStartShiftDay() <= courseStartDateCounter &&
+                                        if ((shift.getStartShiftDay() <= courseStartDateCounter &&
                                                 shift.getEndShiftDay() >= courseStartDateCounter)) {
-                                            finishedSessionsNumber++;
+                                            shiftFounded = true;
                                         }
                                     }
+                                if(!shiftFounded){
+                                    finishedSessionsNumber++;
+                                }
                                 }else{
                                     finishedSessionsNumber++;
                                 }
@@ -98,11 +90,15 @@ public class Utility {
                     while (courseEndDateCounter != TODAY_DATE) {
                         if (COURSE_SESSION_DAYS.charAt(endDateIndex) == Constants.SELECTED) {
                             if(shifts != null) {
+                                boolean shiftFounded = false;
                                 for (Shift shift : shifts) {
-                                    if (!(shift.getStartShiftDay() <= courseEndDateCounter &&
+                                    if ((shift.getStartShiftDay() <= courseEndDateCounter &&
                                             shift.getEndShiftDay() >= courseEndDateCounter)) {
-                                        remainSession++;
+                                        shiftFounded = true;
                                     }
+                                }
+                                if(!shiftFounded){
+                                    remainSession++;
                                 }
                             }else{
                                 remainSession++;
@@ -165,12 +161,11 @@ public class Utility {
 
                             while(COURSE_SESSION_DAYS.charAt(startDayIndex) != Constants.SELECTED){
                                 startDayIndex = (startDayIndex + 1) % 7;
-                                counter++;
+                                 nextSessionDay += Constants.DAY_IN_MILS;
                             }
                         }
                     }
                 }
-                nextSessionDay = nextSessionDay + (Constants.DAY_IN_MILS * counter);
             }
 
         }else{
@@ -179,19 +174,16 @@ public class Utility {
             if(shifts != null && shifts.size() > 0) {
                 for (Shift shift : shifts) {
                     if (nextSessionDay >= shift.getStartShiftDay() && nextSessionDay <= shift.getEndShiftDay()) {
-                        nextSessionDay = shift.getEndShiftDay() + Constants.DAY_IN_MILS;
+                        nextSessionDay = shift.getEndShiftDay();
 
                         calendar.setTimeInMillis(nextSessionDay);
 
                         int startDayIndex = getStartDay(calendar);
-                        int counter = 1;
 
                         while(COURSE_SESSION_DAYS.charAt(startDayIndex) != Constants.SELECTED){
                             startDayIndex = (startDayIndex + 1) % 7;
-                            counter++;
+                            nextSessionDay += Constants.DAY_IN_MILS;
                         }
-
-                        nextSessionDay = nextSessionDay + (Constants.DAY_IN_MILS * counter);
 
                     }
                 }
@@ -213,24 +205,41 @@ public class Utility {
 
         int endDateCounterDayIndex = getStartDay(calendar);
 
-        while(sessionNumberCounter < COURSE_SESSIONS_NUMBER){
+        /**
+         * Cases 1- course has no shift.
+         * Case  2- course has shift.
+         */
+
+        while(sessionNumberCounter < COURSE_SESSIONS_NUMBER){ // 0 1
             if(COURSE_SESSION_DAYS.charAt(endDateCounterDayIndex) == Constants.SELECTED){
-                boolean sessionShifted = false;
-                for(Shift shift : shifts){
-                    if(endDateCounter >= shift.getStartShiftDay() && endDateCounter <= shift.getEndShiftDay()){
-                        sessionShifted = true;
-                        break;
+                if(shifts.size() > 0) {
+                    boolean shiftFounded = false;
+                    for (Shift shift : shifts) {
+                        if (endDateCounter >= shift.getStartShiftDay() && endDateCounter <= shift.getEndShiftDay()) {
+                            shiftFounded = true;
+                            while (endDateCounter < shift.getEndShiftDay()) {
+                                endDateCounter += Constants.DAY_IN_MILS;
+                                endDateCounterDayIndex = (endDateCounterDayIndex + 1) % 7;
+                            }
+                        }
                     }
-                }
-                if(!sessionShifted){
+                    if(!shiftFounded){
+                        sessionNumberCounter++;
+                    }
+                }else{
                     sessionNumberCounter++;
                 }
+
+                endDateCounter += Constants.DAY_IN_MILS; //1
+                endDateCounterDayIndex = (endDateCounterDayIndex + 1) % 7; //4
+
+            }else {
+                endDateCounter += Constants.DAY_IN_MILS;
+                endDateCounterDayIndex = (endDateCounterDayIndex + 1) % 7;
             }
-            endDateCounter += Constants.DAY_IN_MILS;
-            endDateCounterDayIndex = (endDateCounterDayIndex + 1) % 7;
         }
 
-        return endDateCounter;
+        return endDateCounter - Constants.DAY_IN_MILS;
     }
 
     public static String getDaysAsString(final String COURSES_SESSIONS_DAYS){

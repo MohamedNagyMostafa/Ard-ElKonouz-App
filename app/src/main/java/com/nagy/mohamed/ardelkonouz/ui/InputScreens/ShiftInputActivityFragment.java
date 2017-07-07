@@ -20,6 +20,7 @@ import android.widget.EditText;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.DatePickerFragment;
+import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
@@ -248,17 +249,6 @@ public class ShiftInputActivityFragment extends Fragment
                             ContentValues shiftContentValues = new ContentValues();
                             ContentValues courseContentValues = new ContentValues();
 
-                            final Integer SHIFT_DAYS_NUMBER = Utility.getDaysNumber(
-                                    Long.valueOf(
-                                            shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
-                                                    .getText().toString()
-                                    ),
-                                    Long.valueOf(
-                                            shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
-                                                    .getText().toString()
-                                    )
-                            );
-
                             shiftContentValues.put(DbContent.ShiftDaysTable.COURSE_ID_COLUMN, COURSE_ID);
                             shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN,
                                     Long.valueOf(
@@ -272,7 +262,18 @@ public class ShiftInputActivityFragment extends Fragment
                                                     .getText().toString()
                                     )
                             );
-                            shiftContentValues.put(DbContent.ShiftDaysTable.DAYS_NUMBER_COLUMN,SHIFT_DAYS_NUMBER);
+
+                            Shift shift = new Shift(
+                                    Long.valueOf(
+                                            shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
+                                                    .getText().toString()
+                                    ),
+                                    Long.valueOf(
+                                            shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
+                                                    .getText().toString()
+                                    ),
+                                    COURSE_ID
+                            );
 
                             // update end date for courses.
                             Cursor cursor = getActivity().getContentResolver().query(
@@ -286,21 +287,24 @@ public class ShiftInputActivityFragment extends Fragment
                             if(cursor != null){
                                 if(cursor.getCount() > 0){
                                     cursor.moveToFirst();
+                                    ArrayList<Shift> shiftArrayList = new ArrayList<Shift>();
+                                    shiftArrayList.add(shift);
 
                                     courseContentValues.put(
                                             DbContent.CourseTable.COURSE_END_DATE_COLUMN,
                                             Utility.getEndDate(
-                                                    cursor.getLong(
-                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_START_DATE
-                                                    ),
+                                                    shiftArrayList,
                                                     cursor.getString(
                                                             DatabaseController.ProjectionDatabase.COURSE_DATE_DAYS
                                                     ),
                                                     cursor.getInt(
                                                             DatabaseController.ProjectionDatabase.COURSE_DATE_SESSIONS_NUMBER
                                                     ),
-                                                    SHIFT_DAYS_NUMBER
-                                            ));
+                                                    cursor.getLong(
+                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_START_DATE
+                                                    )
+                                            )
+                                    );
                                 }
                                 cursor.close();
                             }

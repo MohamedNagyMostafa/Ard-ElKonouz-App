@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.DatePickerFragment;
+import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
@@ -204,7 +205,8 @@ public class CourseInputActivityFragment extends Fragment
                             @Override
                             public void onClick(View view) {
                                 if(checkValidation(COURSE_STATE_LIST, COURSE_DAYS_LIST,
-                                        courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
+
+                                         courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT,
@@ -273,7 +275,6 @@ public class CourseInputActivityFragment extends Fragment
                                     getData(COURSE_ID)
                             );
 
-                            Log.e("Course id", String.valueOf(ContentUris.parseId(uri)));
                             openProfileCourseScreen(COURSE_ID);
                         }
                     }
@@ -388,9 +389,10 @@ public class CourseInputActivityFragment extends Fragment
 
         final String COURSE_SESSION_DAYS = getDoubleChoicesResult(COURSE_DAYS_LIST);
 
-        Integer shiftsNumber = 0;
+        final ArrayList<Shift> SHIFT_ARRAY_LIST = new ArrayList<>();
 
             if(COURSE_ID != null){
+
                 Cursor cursor = getActivity().getContentResolver().query(
                         DatabaseController.UriDatabase.getShiftWithCourseId(COURSE_ID),
                         DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
@@ -402,9 +404,17 @@ public class CourseInputActivityFragment extends Fragment
                 if(cursor != null){
                     if(cursor.getCount() > 0){
                         while(cursor.moveToNext()){
-                            shiftsNumber += cursor.getInt(
-                                    DatabaseController.ProjectionDatabase.SHIFT_DAYS_NUMBER
+                            Shift shift = new Shift(
+                                    cursor.getLong(
+                                            DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                                    ),cursor.getLong(
+                                            DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
+                                    ),
+                                            COURSE_ID
+
                             );
+
+                            SHIFT_ARRAY_LIST.add(shift);
                         }
                     }
                     cursor.close();
@@ -412,10 +422,11 @@ public class CourseInputActivityFragment extends Fragment
             }
 
         final Long COURSE_END_DATE = Utility.getEndDate(
-                COURSE_START_DATE,
+                SHIFT_ARRAY_LIST,
                 COURSE_SESSION_DAYS,
                 COURSE_SESSIONS_NUMBER,
-                shiftsNumber);
+                COURSE_START_DATE
+        );
 
         Log.e("course_days", COURSE_SESSION_DAYS);
         Log.e("course_days", COURSE_SESSION_DAYS);
@@ -519,4 +530,5 @@ public class CourseInputActivityFragment extends Fragment
 
         return contentValues;
     }
+
 }

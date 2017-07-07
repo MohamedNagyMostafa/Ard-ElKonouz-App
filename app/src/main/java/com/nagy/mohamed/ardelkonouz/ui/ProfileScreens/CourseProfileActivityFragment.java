@@ -56,9 +56,6 @@ public class CourseProfileActivityFragment extends Fragment {
                                     cursor.getLong(
                                             DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_END_DATE_COLUMN
                                     ),
-                                    cursor.getLong(
-                                            DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_DAYS_NUMBER_COLUMN
-                                    ),
                                     COURSE_ID
                             );
 

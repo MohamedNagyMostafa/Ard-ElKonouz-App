@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ShiftInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity;
-import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ShiftListActivity;
 import com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.SalaryActivity;
 
 /**
@@ -68,7 +68,7 @@ public class MainActivityFragment extends Fragment{
     private View.OnClickListener shiftListClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent shiftListScreen = new Intent(getActivity(), ShiftListActivity.class);
+            Intent shiftListScreen = new Intent(getActivity(), ShiftInputActivity.class);
             startActivity(shiftListScreen);
         }
     };

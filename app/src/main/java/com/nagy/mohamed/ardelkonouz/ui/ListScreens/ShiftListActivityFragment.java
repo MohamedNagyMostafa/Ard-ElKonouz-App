@@ -197,7 +197,7 @@ public class ShiftListActivityFragment extends Fragment
                             shiftCursor.getLong(
                                     DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
                             );
-                    Shift shift = new Shift(START_SHIFT_DATE, END_SHIFT_DATE, null, null);
+                    Shift shift = new Shift(START_SHIFT_DATE, END_SHIFT_DATE, null);
 
                     shifts.add(shift);
                 }

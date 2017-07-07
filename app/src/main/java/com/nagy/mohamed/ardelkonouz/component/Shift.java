@@ -9,13 +9,11 @@ public class Shift {
 
     private Long startShiftDay;
     private Long endShiftDay;
-    private Long shiftDaysNumber;
     private Long courseId;
 
-    public Shift(Long startShiftDay, Long endShiftDay, @Nullable Long shiftDaysNumber, @Nullable Long courseId){
+    public Shift(Long startShiftDay, Long endShiftDay, @Nullable Long courseId){
         this.startShiftDay = startShiftDay;
         this.endShiftDay = endShiftDay;
-        this.shiftDaysNumber = shiftDaysNumber;
         this.courseId = courseId;
     }
 
@@ -27,9 +25,6 @@ public class Shift {
         return endShiftDay;
     }
 
-    public Long getShiftDaysNumber() {
-        return shiftDaysNumber;
-    }
 
     public Long getStartShiftDay() {
         return startShiftDay;
