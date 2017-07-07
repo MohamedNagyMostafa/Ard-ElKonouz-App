@@ -30,6 +30,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DbContent.EmployeeTable.CREATE_EMPLOYEE_TABLE);
         sqLiteDatabase.execSQL(DbContent.ChildCourseTable.CREATE_CHILD_COURSE_TABLE);
         sqLiteDatabase.execSQL(DbContent.CourseInstructorTable.CREATE_COURSE_INSTRUCTOR_TABLE);
+        sqLiteDatabase.execSQL(DbContent.ShiftDaysTable.CREATE_SHIFT_DAY_TABLE);
     }
 
     @Override
@@ -40,6 +41,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.CourseTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.CourseInstructorTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.ChildCourseTable.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.ShiftDaysTable.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }

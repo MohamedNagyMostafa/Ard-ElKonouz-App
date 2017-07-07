@@ -32,6 +32,10 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_perm_identity_black_48dp.png"
     },
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\ic_swap_horiz_black_48dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_swap_horiz_black_48dp.png"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\ic_mode_edit_black_36dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_mode_edit_black_36dp.png"
     },
@@ -154,6 +158,10 @@
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.1\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\ic_call_merge_black_36dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_call_merge_black_36dp.png"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png",

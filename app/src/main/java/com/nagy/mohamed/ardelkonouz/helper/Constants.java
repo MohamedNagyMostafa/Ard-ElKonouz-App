@@ -42,6 +42,9 @@ public class Constants {
     public static final int LOADER_INSTRUCTOR_COURSE_CONNECTOR = 2121;
     public static final int LOADER_SALARY_LIST = 33;
     public static final int LOADER_INSTRUCTOR_SALARY = 44;
+    public static final int LOADER_SHIFT_LIST = 55;
+    public static final int LOADER_CHOICES_LIST = 66;
+    public static final int LOADER_SELECTED_LIST = 77;
 
     //Birth Order
     public static final int FIRST_BIRTH = 0;
@@ -86,8 +89,20 @@ public class Constants {
     public static final int CHILD_NOT_COMPLETE_COURSE = 2;
 
     // double choices
-    public static final char SELECTED = 1;
-    public static final char NOT_SELECTED = 2;
+    public static final char SELECTED = '1';
+    public static final char NOT_SELECTED = '2';
 
     public static final short NO_INSTRUCTOR = -1;
+
+    // Days
+    public static final char SAT_DAY = 0;
+    public static final char SUN_DAY = 1;
+    public static final char MON_DAY = 2;
+    public static final char TUE_DAY = 3;
+    public static final char WED_DAY = 4;
+    public static final char THU_DAY = 5;
+    public static final char FRI_DAY = 6;
+
+    public static final Long DAY_IN_MILS = Long.valueOf(24* 60 * 60 * 1000);
+
 }

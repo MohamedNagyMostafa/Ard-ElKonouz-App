@@ -70,7 +70,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@android:color/black"
                             android:gravity="center_vertical"
-                            android:hint="Hours"
+                            android:hint="Session Hours"
                             android:layout_marginTop="8dp"
                             android:textColorHint="@color/colorPrimaryDark"
                             android:layout_marginEnd="4dp"
@@ -202,26 +202,220 @@
 
                 </LinearLayout>
 
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_marginTop="8dp"
-                    android:text="@string/salary_per_child"/>
+                    android:text="Sessions Days"/>
 
-                <EditText
-                    android:id="@+id/course_input_salary_per_child_edit_view"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@android:color/black"
-                    android:gravity="center_vertical"
-                    android:layout_marginEnd="4dp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:layout_marginStart="4dp"
-                    android:inputType="numberDecimal|numberSigned"/>
+                    android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginStart="4dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="8dp">
+
+                            <ImageView
+                                android:id="@+id/course_input_sat_day_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:tint="@android:color/holo_green_dark"/>
+
+                            <TextView
+                                android:id="@+id/course_input_sat_day_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="SAT" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:id="@+id/course_input_sun_day_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:visibility="invisible"
+                                android:tint="@android:color/holo_green_dark"/>
+
+
+                            <TextView
+                                android:id="@+id/course_input_sun_day_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="SUN"
+                                android:textColor="@color/colorPrimary"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginStart="4dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:id="@+id/course_input_mon_day_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:tint="@android:color/holo_green_dark"/>
+
+                            <TextView
+                                android:id="@+id/course_input_mon_day_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="MON"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:id="@+id/course_input_tue_day_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:tint="@android:color/holo_green_dark"/>
+
+                            <TextView
+                                android:id="@+id/course_input_tue_day_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="TUE"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp">
+
+                            <ImageView
+                                android:id="@+id/course_input_wed_day_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:tint="@color/colorPrimaryDark"/>
+
+                            <TextView
+                                android:id="@+id/course_input_wed_day_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="WED" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:id="@+id/course_input_thu_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:visibility="invisible"
+                                android:tint="@color/colorPrimaryDark"/>
+
+
+                            <TextView
+                                android:id="@+id/course_input_thu_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="THU"
+                                android:textColor="@color/colorPrimary" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:id="@+id/course_input_fri_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible"
+                                android:src="@drawable/ic_done_black_18dp"
+                                android:tint="@color/colorPrimaryDark"/>
+
+                            <TextView
+                                android:id="@+id/course_input_fri_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="FRI"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -237,38 +431,38 @@
                     android:fontFamily="serif"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:text="@string/end_date"/>
+                    android:text="Number Of Sessions"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginStart="4dp"
-                    android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/course_input_end_date_edit_view"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:id="@+id/course_input_sessions_number_edit_view"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:gravity="center_vertical"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
                         android:backgroundTint="@color/colorAccent"
-                        android:inputType="datetime"/>
+                        android:inputType="numberDecimal"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/colorPrimaryDark"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_av_timer_black_18dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
+                    android:text="Percent Per Child"/>
 
-                </LinearLayout>
+                <EditText
+                    android:id="@+id/course_input_salary_per_child_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@android:color/black"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_marginStart="4dp"
+                    android:inputType="numberDecimal|numberSigned"/>
+
 
             </LinearLayout>
 

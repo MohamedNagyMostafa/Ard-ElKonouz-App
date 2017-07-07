@@ -11,8 +11,10 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 /**
  * Created by mohamednagy on 6/10/2017.
@@ -43,7 +45,13 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int COURSE_WITH_SEARCH_TABLE = 6;
     private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 7;
     private static final int EMPLOYEE_WITH_SEARCH_TABLE = 8;
-
+    private static final int SHIFT_WITH_COURSE_ID_TABLE = 9;
+    private static final int SHIFT_TABLE = 14;
+    private static final int SHIFT_WITH_COURSE_ID_JOIN_TABLE = 12;
+    private static final int COURSE_WITH_DAY_SEARCH_TABLE = 13;
+    private static final int COURSE_WITH_DAY_TABLE = 14;
+    private static final int COURSES_CHOICES_TABLE = 15;
+    private static final int COURSES_SELECTION_TABLE = 16;
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
@@ -78,6 +86,20 @@ public class ContentProviderDatabase extends ContentProvider {
                         "." + DbContent.CourseTable._ID +
                         "=" + DbContent.CourseInstructorTable.TABLE_NAME + "." +
                         DbContent.CourseInstructorTable.COURSE_ID_COLUMN
+        );
+    }
+
+    private static final SQLiteQueryBuilder SHIFT_WITH_COURSE_QUERY =
+            new SQLiteQueryBuilder();
+
+    static {
+        SHIFT_WITH_COURSE_QUERY.setTables(
+                DbContent.ShiftDaysTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.CourseTable.TABLE_NAME +
+                        "." + DbContent.CourseTable._ID +
+                        "=" + DbContent.ShiftDaysTable.TABLE_NAME + "." +
+                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN
         );
     }
 
@@ -226,6 +248,24 @@ public class ContentProviderDatabase extends ContentProvider {
             case EMPLOYEE_WITH_SEARCH_TABLE:
                 return getEmployeeWithSearch(uri, projection, sortOrder);
 
+            case SHIFT_WITH_COURSE_ID_TABLE:
+                return getShiftWithCourseId(uri, projection);
+
+            case SHIFT_WITH_COURSE_ID_JOIN_TABLE:
+                return getShiftWithCourseIdJoin(uri, projection);
+
+            case COURSE_WITH_DAY_SEARCH_TABLE:
+                return getCourseWithDaySearch(uri, projection, sortOrder);
+
+            case COURSE_WITH_DAY_TABLE:
+                return getCourseWithDay(uri, projection, sortOrder);
+
+            case COURSES_CHOICES_TABLE:
+                return getCoursesChoices(uri, projection, sortOrder);
+
+            case COURSES_SELECTION_TABLE:
+                return getCoursesSelection(uri, projection, sortOrder);
+
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
         }
@@ -320,6 +360,12 @@ public class ContentProviderDatabase extends ContentProvider {
                 );
                 break;
 
+            case SHIFT_TABLE:
+                insertResult = m_dbHelper.getWritableDatabase().insert(
+                        DbContent.ShiftDaysTable.TABLE_NAME,
+                        null,
+                        contentValues
+                );
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -377,32 +423,49 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
+            case SHIFT_WITH_COURSE_ID_TABLE:
+                return deleteRowWithId(DbContent.ShiftDaysTable.TABLE_NAME,
+                        uri,
+                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN);
+
             case EMPLOYEE_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.EmployeeTable.TABLE_NAME, uri, DbContent.EmployeeTable._ID);
+                return deleteRowWithId(DbContent.EmployeeTable.TABLE_NAME,
+                        uri,
+                        DbContent.EmployeeTable._ID);
 
             case COURSE_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.CourseTable.TABLE_NAME, uri, DbContent.CourseTable._ID);
+                return deleteRowWithId(DbContent.CourseTable.TABLE_NAME,
+                        uri,
+                        DbContent.CourseTable._ID);
 
             case INSTRUCTOR_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.InstructorTable.TABLE_NAME, uri, DbContent.InstructorTable._ID);
+                return deleteRowWithId(DbContent.InstructorTable.TABLE_NAME,
+                        uri,
+                        DbContent.InstructorTable._ID);
 
             case CHILD_WITH_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildTable.TABLE_NAME, uri, DbContent.ChildTable._ID);
+                return deleteRowWithId(DbContent.ChildTable.TABLE_NAME,
+                        uri,
+                        DbContent.ChildTable._ID);
 
             case CHILD_COURSE_WITH_CHILD_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME,
+                        uri,
                         DbContent.ChildCourseTable.CHILD_ID_COLUMN);
 
             case CHILD_COURSE_WITH_COURSE_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME,
+                        uri,
                         DbContent.ChildCourseTable.COURSE_ID_COLUMN);
 
             case INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE:
-                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME,
+                        uri,
                         DbContent.CourseInstructorTable.COURSE_ID_COLUMN);
 
             case INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE:
-                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME, uri,
+                return deleteRowWithId(DbContent.CourseInstructorTable.TABLE_NAME,
+                        uri,
                         DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN);
 
         }
@@ -528,6 +591,14 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.ChildCourseTable.COURSE_ID_COLUMN
                 );
 
+            case SHIFT_WITH_COURSE_ID_TABLE:
+                return updateRowWithId(
+                        uri,
+                        contentValues,
+                        DbContent.ShiftDaysTable.TABLE_NAME,
+                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN
+                );
+
         }
         return 0;
     }
@@ -604,6 +675,16 @@ public class ContentProviderDatabase extends ContentProvider {
                 }
                 break;
 
+            case SHIFT_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.ShiftDaysTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -662,7 +743,26 @@ public class ContentProviderDatabase extends ContentProvider {
         final String EMPLOYEE_WITH_SEARCH_PATH = DbContent.EmployeeTable.TABLE_NAME + "/"
                 + DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + "/*";
 
+        final String COURSE_WITH_DAY_SEARCH_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#/*";
+        final String COURSE_WITH_DAY_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#";
 
+        final String SHIFT_PATH = DbContent.ShiftDaysTable.TABLE_NAME;
+        final String SHIFT_WITH_COURSE_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/#";
+        final String SHIFT_WITH_COURSE_ID_JOIN_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "/#";
+
+        final String COURSES_CHOICES_PATH = DbContent.CourseTable.TABLE_NAME + "/"
+                + DbContent.CourseTable.COURSE_NAME_COLUMN + "/*/*";
+        final String COURSES_SELECTION_PATH = DbContent.CourseTable.TABLE_NAME + "/"
+                + DbContent.CourseTable._ID + "/*";
+
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_SELECTION_PATH, COURSES_SELECTION_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_CHOICES_PATH, COURSES_CHOICES_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_SEARCH_PATH, COURSE_WITH_DAY_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_PATH, COURSE_WITH_DAY_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_PATH, SHIFT_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_PATH, SHIFT_WITH_COURSE_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_JOIN_PATH, SHIFT_WITH_COURSE_ID_JOIN_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_PATH, CHILD_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_NULL_PATH, CHILD_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_SEARCH_PATH, INSTRUCTOR_WITH_SEARCH_TABLE);
@@ -1008,4 +1108,187 @@ public class ContentProviderDatabase extends ContentProvider {
                 sortType
         );
     }
+
+    private Cursor getShiftWithCourseId(Uri uri, String[] projection){
+        long id = ContentUris.parseId(uri);
+        String selection = DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "=?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        String sortOrder = DbContent.ShiftDaysTable.START_DATE_COLUMN + " ASC";
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ShiftDaysTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getShiftWithCourseIdJoin(Uri uri, String[] projection){
+        long id = ContentUris.parseId(uri);
+        String selection = DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "=?";
+        String[] selectionArgs = {String.valueOf(id)};
+        String sortOrder = DbContent.ShiftDaysTable.START_DATE_COLUMN + " ASC";
+
+        return SHIFT_WITH_COURSE_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCourseWithDay(Uri uri, String[] projection, String sortOrder){
+        long dayIndex = ContentUris.parseId(uri);
+        String selection = "(SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
+                "(" + DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?" + ")";
+
+        Log.e("index",String.valueOf(dayIndex));
+        String[] selectionArgs = {
+                String.valueOf(Constants.SELECTED),
+                String.valueOf(Utility.getCurrentDateAsMills())
+        };
+
+        return COURSE_INSTRUCTOR_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCourseWithDaySearch(Uri uri, String[] projection, String sortOrder){
+        String searchWord = uri.toString().substring(uri.toString().lastIndexOf('/') + 1, uri.toString().length());
+        String encodeWord = searchWord + "%";
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        long dayIndex = ContentUris.parseId(Uri.parse(newUri));
+
+        /// TODO ... Check start Date...
+
+        String selection = "(SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+                String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
+                "(" + DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
+                "(" + DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?" + ")";
+
+        Log.e("index",String.valueOf(dayIndex));
+        String[] selectionArgs = {
+                String.valueOf(Constants.SELECTED),
+                String.valueOf(Utility.getCurrentDateAsMills()),
+                encodeWord
+        };
+
+        return COURSE_INSTRUCTOR_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCoursesChoices(Uri uri, String[] projection, String sortOrder){
+        String searchWord = uri.toString().substring(uri.toString().lastIndexOf('/') + 1, uri.toString().length());
+        String encodeWord = searchWord + "%";
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        String idUri = newUri.substring(newUri.lastIndexOf('/'), newUri.length());
+
+        ArrayList<String> selectionArgs = new ArrayList<>();
+        selectionArgs.add(encodeWord);
+        StringBuilder selection = new StringBuilder("");
+        selection.append(DbContent.CourseTable.COURSE_NAME_COLUMN).append(" LIKE ?");
+
+        do{
+            if(idUri.contains("k")) {
+                String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('k'));
+                selectionArgs.add(courseId);
+                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" != ?");
+            }else{
+                String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('/'));
+                selectionArgs.add(courseId);
+                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" != ?");
+            }
+        }while (idUri.length() > 1);
+
+        String[] selectionArgsArray = new String[selectionArgs.size()];
+        selectionArgs.toArray(selectionArgsArray);
+
+        Log.e("selection",selection.toString());
+        for(String selectionAr : selectionArgs){
+            Log.e("selectionArgs", selectionAr);
+        }
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection.toString(),
+                selectionArgsArray,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCoursesSelection (Uri uri, String[] projection, String sortOrder){
+        String idUri = uri.toString().substring(uri.toString().lastIndexOf('/'), uri.toString().length());
+
+        ArrayList<String> selectionArgs = new ArrayList<>();
+        StringBuilder selection = new StringBuilder("");
+
+        do{
+            if(idUri.contains("k")) {
+                String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('k'));
+                selectionArgs.add(courseId);
+
+                if(selection.length() > 1) {
+                    selection.append(" OR ").append(DbContent.CourseTable._ID).append(" =?");
+                }else{
+                    selection.append(DbContent.CourseTable._ID).append(" =?");
+                }
+
+            }else{
+                String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
+                idUri = idUri.substring(0, idUri.lastIndexOf('/'));
+                selectionArgs.add(courseId);
+
+                if(selection.length() > 1) {
+                    selection.append(" OR ").append(DbContent.CourseTable._ID).append(" =?");
+                }else{
+                    selection.append(DbContent.CourseTable._ID).append(" =?");
+                }
+            }
+        }while (idUri.length() > 1);
+
+        String[] selectionArgsArray = new String[selectionArgs.size()];
+        selectionArgs.toArray(selectionArgsArray);
+
+        Log.e("selection", selection.toString());
+        for(String id : selectionArgsArray){
+            Log.e("selectionArg", id);
+        }
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
+                projection,
+                selection.toString(),
+                selectionArgsArray,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
 }

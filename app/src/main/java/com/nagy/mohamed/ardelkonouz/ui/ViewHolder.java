@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ public class ViewHolder {
         public final LinearLayout EMPLOYEE_LIST_LAYOUT;
         public final LinearLayout COURSES_LIST_LAYOUT;
         public final LinearLayout SALARY_LIST_LAYOUT;
+        public final LinearLayout SHIFT_LIST_LAYOUT;
 
         public MainScreenViewHolder(View mainScreenView) {
             CHILD_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.child_list_layout_view);
@@ -31,6 +33,7 @@ public class ViewHolder {
             EMPLOYEE_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.employee_list_layout_view);
             COURSES_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.course_list_layout_view);
             SALARY_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.salary_layout_view);
+            SHIFT_LIST_LAYOUT = (LinearLayout) mainScreenView.findViewById(R.id.shift_list_layout_view);
         }
     }
 
@@ -208,14 +211,28 @@ public class ViewHolder {
         public final EditText COURSE_COST_EDIT_TEXT;
         public final EditText COURSE_LEVEL_EDIT_TEXT;
         public final EditText COURSE_BEGINNING_DATE_EDIT_TEXT;
-        public final EditText COURSE_ENDING_DATE_EDIT_TEXT;
         public final EditText COURSE_SALARY_PER_CHILD_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_FROM_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_TO_EDIT_TEXT;
+        public final EditText COURSE_SESSIONS_NUMBER_EDIT_TEXT;
         public final TextView COURSE_COMPLETE_TEXT_VIEW;
         public final TextView COURSE_INCOMPLETE_TEXT_VIEW;
         public final ImageView COURSE_COMPLETE_IMAGE_VIEW;
         public final ImageView COURSE_INCOMPLETE_IMAGE_VIEW;
+        public final TextView COURSE_SAT_TEXT_VIEW;
+        public final TextView COURSE_SUN_TEXT_VIEW;
+        public final TextView COURSE_MON_TEXT_VIEW;
+        public final TextView COURSE_TUE_TEXT_VIEW;
+        public final TextView COURSE_WED_TEXT_VIEW;
+        public final TextView COURSE_FRI_TEXT_VIEW;
+        public final TextView COURSE_THU_TEXT_VIEW;
+        public final ImageView COURSE_SAT_IMAGE_VIEW;
+        public final ImageView COURSE_SUN_IMAGE_VIEW;
+        public final ImageView COURSE_MON_IMAGE_VIEW;
+        public final ImageView COURSE_TUE_IMAGE_VIEW;
+        public final ImageView COURSE_WED_IMAGE_VIEW;
+        public final ImageView COURSE_FRI_IMAGE_VIEW;
+        public final ImageView COURSE_THU_IMAGE_VIEW;
         public final Button SUBMIT_COURSE_BUTTON;
 
         public CourseInputScreenViewHolder(View courseInputScreen){
@@ -225,15 +242,29 @@ public class ViewHolder {
             COURSE_COST_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_cost_edit_view);
             COURSE_LEVEL_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_level_edit_view);
             COURSE_BEGINNING_DATE_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_start_date_edit_view);
-            COURSE_ENDING_DATE_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_end_date_edit_view);
             COURSE_SALARY_PER_CHILD_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_salary_per_child_edit_view);
             COURSE_AGE_RANGE_FROM_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_from_edit_view);
             COURSE_AGE_RANGE_TO_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_to_edit_view);
+            COURSE_SESSIONS_NUMBER_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_sessions_number_edit_view);
             COURSE_COMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_complete_text_view);
             COURSE_INCOMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_incomplete_text_view);
             COURSE_COMPLETE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_complete_image_view);
             COURSE_INCOMPLETE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_incomplete_image_view);
             SUBMIT_COURSE_BUTTON = (Button) courseInputScreen.findViewById(R.id.course_input_submit_application_button);
+            COURSE_SAT_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_sat_day_text_view);
+            COURSE_SUN_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_sun_day_text_view);
+            COURSE_MON_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_mon_day_text_view);
+            COURSE_TUE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_tue_day_text_view);
+            COURSE_WED_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_wed_day_text_view);
+            COURSE_THU_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_thu_text_view);
+            COURSE_FRI_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_fri_text_view);
+            COURSE_SAT_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_sat_day_image_view);
+            COURSE_SUN_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_sun_day_image_view);
+            COURSE_MON_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_mon_day_image_view);
+            COURSE_TUE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_tue_day_image_view);
+            COURSE_WED_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_wed_day_image_view);
+            COURSE_THU_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_thu_image_view);
+            COURSE_FRI_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_fri_image_view);
         }
     }
 
@@ -353,6 +384,40 @@ public class ViewHolder {
                 COURSE_INSTRUCTOR_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_instructor_text_view);
                 COURSE_DURATION_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_duration_text_view);
                 COURSE_DELETE_IMAGE_VIEW = (ImageView) courseListRecycleView.findViewById(R.id.course_list_delete_course_image_view);
+            }
+        }
+    }
+
+    public static class ShiftListScreenViewHolder{
+
+        public final FloatingActionButton ADD_SHIFT_BUTTON;
+        public final ListView SHIFT_LIST_VIEW;
+        public final TextView YESTERDAY_TEXT_VIEW;
+        public final TextView TODAY_TEXT_VIEW;
+        public final TextView TOMORROW_TEXT_VIEW;
+        public final LinearLayout SHIFT_LIST_EMPTY_VIEW;
+
+
+        public ShiftListScreenViewHolder(View shiftListView){
+            ADD_SHIFT_BUTTON = (FloatingActionButton) shiftListView.findViewById(R.id.shift_add_shift_floating_button);
+            SHIFT_LIST_VIEW = (ListView) shiftListView.findViewById(R.id.shift_list_view);
+            SHIFT_LIST_EMPTY_VIEW = (LinearLayout) shiftListView.findViewById(R.id.shift_list_empty_view);
+            YESTERDAY_TEXT_VIEW = (TextView) shiftListView.findViewById(R.id.shift_list_yesterday_courses);
+            TODAY_TEXT_VIEW = (TextView) shiftListView.findViewById(R.id.shift_list_today_courses);
+            TOMORROW_TEXT_VIEW = (TextView) shiftListView.findViewById(R.id.shift_list_tomorrow_courses);
+        }
+
+        public static class ShiftListRecycleViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
+            public final TextView NEXT_SECTION_TEXT_VIEW;
+
+            public ShiftListRecycleViewHolder(View shiftListRecycleView){
+
+                COURSE_NAME_TEXT_VIEW = (TextView) shiftListRecycleView.findViewById(R.id.shift_list_course_name_text_view);
+                INSTRUCTOR_NAME_TEXT_VIEW = (TextView) shiftListRecycleView.findViewById(R.id.shift_list_instructor_name_text_view);
+                NEXT_SECTION_TEXT_VIEW = (TextView) shiftListRecycleView.findViewById(R.id.shift_list_next_session);
             }
         }
     }
@@ -486,9 +551,14 @@ public class ViewHolder {
         public final TextView COURSE_START_DATE_TEXT_VIEW;
         public final TextView COURSE_END_DATE_TEXT_VIEW;
         public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
-        public final TextView COURSE_START_TEXT_VIEW;
+        public final TextView COURSE_STATE_TEXT_VIEW;
         public final TextView COURSE_INSTRUCTOR_NAME_TEXT_VIEW;
         public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
+        public final TextView COURSE_SESSIONS_DAYS_TEXT_VIEW;
+        public final TextView COURSE_NEXT_SESSION_DAY_TEXT_VIEW;
+        public final TextView COURSE_REMAINING_SESSIONS_TEXT_VIEW;
+        public final TextView COURSE_SESSIONS_NUMBER_TEXT_VIEW;
+        public final TextView COURSE_FINISHED_SESSIONS_TEXT_VIEW;
         public final FloatingActionButton COURSE_EDIT_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
@@ -500,9 +570,14 @@ public class ViewHolder {
             COURSE_START_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_start_date_text_view);
             COURSE_END_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_end_date_text_view);
             COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_salary_per_child_text_view);
-            COURSE_START_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
+            COURSE_STATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
             COURSE_INSTRUCTOR_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_instructor_name_text_view);
             COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_age_range_text_view);
+            COURSE_SESSIONS_DAYS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_session_days_text_view);
+            COURSE_NEXT_SESSION_DAY_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_next_session_day_text_view);
+            COURSE_REMAINING_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_remaining_sessions_text_view);
+            COURSE_SESSIONS_NUMBER_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_sessions_number_text_view);
+            COURSE_FINISHED_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_finished_sessions_text_view);
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
         }
     }
@@ -715,6 +790,57 @@ public class ViewHolder {
                 INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_salary_process_text_view);
             }
         }
+    }
+
+    public static class ShiftInputScreenViewHolder{
+
+        public final EditText COURSE_SEARCH_EDIT_TEXT;
+        public final ListView COURSE_CHOICES_LIST_VIEW;
+        public final GridView COURSE_SELECTION_GRID_VIEW;
+        public final EditText COURSE_START_SHIFT_DATE_EDIT_TEXT;
+        public final EditText COURSE_END_SHIFT_DATE_EDIT_TEXT;
+        public final Button TODAY_SHIFT_BUTTON;
+        public final Button YESTERDAY_SHIFT_BUTTON;
+        public final Button TOMORROW_SHIFT_BUTTON;
+        public final Button NEXT_WEEK_SHIFT_BUTTON;
+        public final Button APPLY_BUTTON;
+
+        public ShiftInputScreenViewHolder(View shiftView){
+
+            COURSE_SEARCH_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_search_edit_text);
+            COURSE_CHOICES_LIST_VIEW = (ListView) shiftView.findViewById(R.id.shift_input_choices_list_view);
+            COURSE_SELECTION_GRID_VIEW = (GridView) shiftView.findViewById(R.id.shift_input_selection_grid_view);
+            COURSE_START_SHIFT_DATE_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_start_date_edit_view);
+            COURSE_END_SHIFT_DATE_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_end_date_edit_view);
+            TODAY_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_today_button);
+            YESTERDAY_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_yesterday_button);
+            TOMORROW_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_tomorrow_button);
+            NEXT_WEEK_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_next_week_button);
+            APPLY_BUTTON = (Button) shiftView.findViewById(R.id.shift_apply_button);
+
+        }
+
+        public static class SelectionCoursesViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+            public final ImageView COURSE_DELETE_IMAGE_VIEW;
+
+            public SelectionCoursesViewHolder(View selectionCourseView){
+
+                COURSE_NAME_TEXT_VIEW = (TextView) selectionCourseView.findViewById(R.id.shift_input_selection_course_name_chips);
+                COURSE_DELETE_IMAGE_VIEW = (ImageView) selectionCourseView.findViewById(R.id.shift_input_selection_delete_course_chips);
+            }
+        }
+
+        public static class ListCourseChoiceViewHolder{
+
+            public final TextView COURSE_NAME_TEXT_VIEW;
+
+            public ListCourseChoiceViewHolder(View listCourseChoiceView){
+                COURSE_NAME_TEXT_VIEW = (TextView) listCourseChoiceView.findViewById(R.id.shift_input_list_course_name_text_view);
+            }
+        }
+
     }
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="32dp"
+    android:paddingEnd="4dp"
+    android:background="@drawable/chips_background">
+
+     <TextView
+         android:id="@+id/shift_input_selection_course_name_chips"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:text="Instructor Name"
+         android:paddingStart="12dp"
+         android:paddingEnd="4dp"
+         android:gravity="center_vertical"
+         android:drawablePadding="4dp"/>
+
+    <ImageView
+        android:id="@+id/shift_input_selection_delete_course_chips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_black_18dp"
+        android:tint="@android:color/white"
+        android:paddingEnd="4dp"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>
