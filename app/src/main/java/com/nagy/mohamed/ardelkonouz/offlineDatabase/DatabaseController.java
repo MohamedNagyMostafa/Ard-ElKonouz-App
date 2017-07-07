@@ -2,6 +2,8 @@ package com.nagy.mohamed.ardelkonouz.offlineDatabase;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 /**
  * Created by mohamednagy on 6/12/2017.
  */
@@ -22,9 +24,7 @@ public class DatabaseController {
                 DbContent.CourseTable.COURSE_LEVEL_COLUMN,
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
                 DbContent.CourseTable.COURSE_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN,
-                DbContent.CourseTable.COURSE_SHIFT_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN
+                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
         };
 
         public static final int COURSE_ID = 0;
@@ -40,8 +40,6 @@ public class DatabaseController {
         public static final int COURSE_SALARY_PER_CHILD = 10;
         public static final int COURSE_DAYS_COLUMN = 11;
         public static final int COURSE_SESSIONS_NUMBER_COLUMN = 12;
-        public static final int COURSE_SHIFT_END_DATE_COLUMN = 13;
-        public static final int COURSE_SHIFT_NUMBER_COLUMN = 14;
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -177,15 +175,6 @@ public class DatabaseController {
         public static final int COURSE_INSTRUCTOR_INSTRUCTOR_ID = 1;
         public static final int COURSE_INSTRUCTOR_PAID =2;
 
-
-        public static final String[] COURSE_CHILD_TABLE_PROJECTION = {
-                DbContent.ChildCourseTable.COURSE_ID_COLUMN,
-                DbContent.ChildCourseTable.CHILD_ID_COLUMN,
-        };
-
-        public static final int COURSE_CHILD_COURSE_ID = 0;
-        public static final int COURSE_CHILD_CHILD_ID = 1;
-
         public static final String[] COURSE_CHILD_JOIN_LIST_TABLE = {
                 DbContent.ChildCourseTable.TABLE_NAME+"."+ DbContent.ChildCourseTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
@@ -199,68 +188,6 @@ public class DatabaseController {
         public static final int COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN = 2;
         public static final int COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN = 3;
         public static final int COURSE_CHILD_JOIN_LIST_COURSE_ID_COLUMN = 4;
-
-
-        public static final String[] COURSE_CHILD_JOIN_TABLE = {
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_HOURS_COLUMN,
-                DbContent.CourseTable.COURSE_COST_COLUMN,
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_START_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_END_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_LEVEL_COLUMN,
-                DbContent.ChildTable.CHILD_NAME_COLUMN,
-                DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN,
-                DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN,
-                DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN,
-                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN,
-                DbContent.ChildTable.CHILD_MOBILE_WHATSUP_COLUMN,
-                DbContent.ChildTable.CHILD_MOTHER_QUALIFICATION_COLUMN,
-                DbContent.ChildTable.CHILD_AGE_COLUMN,
-                DbContent.ChildTable.CHILD_EDUCATION_TYPE_COLUMN,
-                DbContent.ChildTable.CHILD_STUDY_YEAR_COLUMN,
-                DbContent.ChildTable.CHILD_GENDER_COLUMN,
-                DbContent.ChildTable.CHILD_FREE_TIME_COLUMN,
-                DbContent.ChildTable.CHILD_TRAITS_COLUMN,
-                DbContent.ChildTable.CHILD_HANDLING_COLUMN,
-                DbContent.ChildTable.CHILD_BIRTH_ORDER_COLUMN,
-                DbContent.ChildTable.CHILD_FATHER_JOB_COLUMN,
-                DbContent.ChildTable.CHILD_MOTHER_JOB_COLUMN,
-                DbContent.ChildCourseTable.COURSE_ID_COLUMN,
-                DbContent.ChildCourseTable.CHILD_ID_COLUMN,
-
-        };
-
-        public static final int COURSE_CHILD_JOIN_COURSE_NAME_COLUMN = 0;
-        public static final int COURSE_CHILD_JOIN_COURSE_HOURS_COLUMN = 1;
-        public static final int COURSE_CHILD_JOIN_COURSE_COST_COLUMN = 2;
-        public static final int COURSE_CHILD_JOIN_COURSE_AVAILABLE_POSITIONS = 3;
-        public static final int COURSE_CHILD_JOIN_COURSE_START_DATE_COLUMN = 4;
-        public static final int COURSE_CHILD_JOIN_COURSE_END_DATE_COLUMN = 5;
-        public static final int COURSE_CHILD_JOIN_COURSE_START_AGE_COLUMN = 6;
-        public static final int COURSE_CHILD_JOIN_COURSE_END_AGE_COLUMN = 7;
-        public static final int COURSE_CHILD_JOIN_COURSE_LEVEL_COLUMN = 8;
-        public static final int COURSE_CHILD_JOIN_CHILD_NAME_COLUMN = 9;
-        public static final int COURSE_CHILD_JOIN_CHILD_FATHER_NAME_COLUMN = 10;
-        public static final int COURSE_CHILD_JOIN_CHILD_MOTHER_NAME_COLUMN = 11;
-        public static final int COURSE_CHILD_JOIN_CHILD_FATHER_MOBILE_COLUMN = 12;
-        public static final int COURSE_CHILD_JOIN_CHILD_MOTHER_MOBILE_COLUMN = 13;
-        public static final int COURSE_CHILD_JOIN_CHILD_MOBILE_WHATSUP_COLUMN = 14;
-        public static final int COURSE_CHILD_JOIN_CHILD_MOTHER_QUALIFICATION_COLUMN = 15;
-        public static final int COURSE_CHILD_JOIN_CHILD_AGE_COLUMN = 16;
-        public static final int COURSE_CHILD_JOIN_CHILD_EDUCATION_TYPE_COLUMN = 17;
-        public static final int COURSE_CHILD_JOIN_CHILD_STUDY_YEAR_COLUMN = 18;
-        public static final int COURSE_CHILD_JOIN_CHILD_GENDER_COLUMN = 19;
-        public static final int COURSE_CHILD_JOIN_CHILD_FREE_TIME_COLUMN = 20;
-        public static final int COURSE_CHILD_JOIN_CHILD_TRAITS_COLUMN = 21;
-        public static final int COURSE_CHILD_JOIN_CHILD_HANDLING_COLUMN = 22;
-        public static final int COURSE_CHILD_JOIN_CHILD_FATHER_JOB_COLUMN = 23;
-        public static final int COURSE_CHILD_JOIN_CHILD_MOTHER_JOB_COLUMN = 24;
-        public static final int COURSE_CHILD_JOIN_CHILD_BIRTH_ORDER_COLUMN = 25;
-        public static final int COURSE_CHILD_JOIN_COURSE_ID_COLUMN = 26;
-        public static final int COURSE_CHILD_JOIN_CHILD_ID_COLUMN = 27;
 
         public static final String[] COURSE_INSTRUCTOR_LIST_JOIN_TABLE = {
                 DbContent.CourseInstructorTable.TABLE_NAME +"."+ DbContent.CourseInstructorTable._ID,
@@ -276,6 +203,88 @@ public class DatabaseController {
         public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_START_DATE = 3;
         public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_END_DATE = 4;
 
+        public static final String[] SHIFT_LIST_PROJECTION = {
+                DbContent.CourseInstructorTable.TABLE_NAME + "." + DbContent.CourseInstructorTable._ID,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
+                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
+                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_DAYS_COLUMN
+        };
+
+        public static final int SHIFT_LIST_COURSE_NAME = 1;
+        public static final int SHIFT_LIST_COURSE_ID = 2;
+        public static final int SHIFT_LIST_INSTRUCTOR_NAME = 3;
+        public static final int SHIFT_LIST_COURSE_START_dATE = 4;
+        public static final int SHIFT_LIST_COURSE_END_dATE = 5;
+        public static final int SHIFT_LIST_COURSE_DAYS = 6;
+
+        public static final String[] SHIFT_TABLE_PROJECTION = {
+                DbContent.ShiftDaysTable.TABLE_NAME + "."  + DbContent.ShiftDaysTable._ID,
+                DbContent.ShiftDaysTable.DAYS_NUMBER_COLUMN,
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN,
+                DbContent.ShiftDaysTable.START_DATE_COLUMN,
+                DbContent.ShiftDaysTable.END_DATE_COLUMN
+        };
+
+        public static final int SHIFT_DAYS_NUMBER = 1;
+        public static final int SHIFT_COURSE_ID_COLUMN = 2;
+        public static final int SHIFT_START_DATE_COLUMN = 3;
+        public static final int SHIFT_END_DATE_COLUMN = 4;
+
+        public static final String[] SHIFT_COURSE_JOIN_PROJECTION = {
+                DbContent.ShiftDaysTable.TABLE_NAME + "." + DbContent.ShiftDaysTable._ID,
+                DbContent.ShiftDaysTable.DAYS_NUMBER_COLUMN,
+                DbContent.ShiftDaysTable.START_DATE_COLUMN,
+                DbContent.ShiftDaysTable.END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.CourseTable.COURSE_HOURS_COLUMN,
+                DbContent.CourseTable.COURSE_COST_COLUMN,
+                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,
+                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_START_AGE_COLUMN,
+                DbContent.CourseTable.COURSE_END_AGE_COLUMN,
+                DbContent.CourseTable.COURSE_LEVEL_COLUMN,
+                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
+                DbContent.CourseTable.COURSE_DAYS_COLUMN,
+                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
+        };
+
+        public static final int SHIFT_COURSE_JOIN_DAYS_NUMBER_COLUMN = 1;
+        public static final int SHIFT_COURSE_JOIN_START_DATE_COLUMN = 2;
+        public static final int SHIFT_COURSE_JOIN_END_DATE_COLUMN =3 ;
+        public static final int SHIFT_COURSE_JOIN_COURSE_NAME_COLUMN = 4;
+        public static final int SHIFT_COURSE_JOIN_COURSE_HOURS_COLUMN = 5;
+        public static final int SHIFT_COURSE_JOIN_COURSE_COST_COLUMN = 6;
+        public static final int SHIFT_COURSE_JOIN_COURSE_AVAILABLE_POSITIONS_COLUMN = 7;
+        public static final int SHIFT_COURSE_JOIN_COURSE_START_DATE_COLUMN = 8;
+        public static final int SHIFT_COURSE_JOIN_COURSE_END_DATE_COLUMN = 9;
+        public static final int SHIFT_COURSE_JOIN_COURSE_START_AGE_COLUMN = 10;
+        public static final int SHIFT_COURSE_JOIN_COURSE_END_AGE_COLUMN = 11;
+        public static final int SHIFT_COURSE_JOIN_COURSE_LEVEL_COLUMN = 12;
+        public static final int SHIFT_COURSE_JOIN_COURSE_SALARY_PER_CHILD = 13;
+        public static final int SHIFT_COURSE_JOIN_COURSE_DAYS_COLUMN = 14;
+        public static final int SHIFT_COURSE_JOIN_COURSE_SESSIONS_NUMBER_COLUMN = 15;
+
+        public static final String[] CHOICES_SELECTION_PROJECTION = {
+                DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+        };
+
+        public static final int CHOICES_SELECTION_ID = 0;
+        public static final int CHOICES_SELECTION_COURSE_NAME = 1;
+
+        public static final String[] COURSE_DATE_PROJECTION = {
+                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_DAYS_COLUMN,
+                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
+        };
+
+        public static final int COURSE_DATE_START_DATE = 0;
+        public static final int COURSE_DATE_DAYS= 1;
+        public static final int COURSE_DATE_SESSIONS_NUMBER = 2;
     }
 
     public static class UriDatabase{
@@ -286,6 +295,7 @@ public class DatabaseController {
         public static final Uri COURSE_TABLE_URI = DbContent.CourseTable.CONTENT_URI;
         public static final Uri COURSE_CHILD_URI = DbContent.ChildCourseTable.CONTENT_URI;
         public static final Uri COURSE_INSTRUCTOR_URI = DbContent.CourseInstructorTable.CONTENT_URI;
+        public static final Uri SHIFT_URI = DbContent.ShiftDaysTable.CONTENT_URI;
 
 
         public static Uri getChildTableWithIdUri(long id){
@@ -366,6 +376,52 @@ public class DatabaseController {
             return INSTRUCTOR_TABLE_URI.buildUpon().appendPath(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN)
                     .appendPath(searchChars).build();
         }
+
+        public static Uri getCoursesByDaySearchUri(String searchChars, long indexDay){
+            return COURSE_TABLE_URI.buildUpon().appendPath("day")
+                    .appendPath(String.valueOf(indexDay))
+                    .appendPath(searchChars)
+                    .build();
+        }
+
+        public static Uri getShiftWithCourseId(long id){
+            return SHIFT_URI.buildUpon().appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getShiftWithCourseJoinId(long id){
+            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.COURSE_ID_COLUMN)
+                    .appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getCourseChoices(ArrayList<Long> ids, String searchChars){
+            StringBuilder encodeIds  = new StringBuilder("");
+            if(ids.size() > 0)
+                encodeIds.append(ids.get(0));
+
+            for(int i = 1 ; i < ids.size(); i++){
+                encodeIds.append("k").append(ids.get(i));
+            }
+
+            return COURSE_TABLE_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
+                    .appendPath(encodeIds.toString())
+                    .appendPath(searchChars).build();
+        }
+
+        public static Uri getCourseSelection(ArrayList<Long> ids){
+            StringBuilder encodeIds  = new StringBuilder("");
+            encodeIds.append(ids.get(0));
+
+            for(int i = 1 ; i < ids.size(); i++){
+                encodeIds.append("k").append(ids.get(i));
+            }
+
+            return COURSE_TABLE_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable._ID)
+                    .appendPath(encodeIds.toString())
+                    .build();
+        }
+
     }
 
 }

@@ -1,6 +1,5 @@
 package com.nagy.mohamed.ardelkonouz.ui.ListScreens;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -36,59 +35,6 @@ public class CourseActivityFragment extends Fragment
     private String searchChars = "";
     private View courseSearchView;
 
-    private View.OnClickListener shiftClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            // Get All Courses.
-            Cursor cursor = getActivity().getContentResolver().query(
-                    DatabaseController.UriDatabase.COURSE_TABLE_URI,
-                    DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
-                    null,
-                    null,
-                    null
-            );
-
-            if(cursor != null){
-                if(cursor.getColumnCount() > 0){
-                    while(cursor.moveToNext()){
-                        final String COURSE_SESSIONS_DAYS = cursor.getString(
-                                DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN
-                        );
-                        if(Utility.hasSessionToday(COURSE_SESSIONS_DAYS)){
-                            final Long COURSE_END_DATE = cursor.getLong(
-                                    DatabaseController.ProjectionDatabase.COURSE_END_DATE
-                            );
-                            final Integer COURSE_SHIFT_NUMBER = cursor.getInt(
-                                    DatabaseController.ProjectionDatabase.COURSE_SHIFT_NUMBER_COLUMN
-                            );
-                            final Long COURSE_END_DATE_SHIFT = Utility.setShift(
-                                    COURSE_END_DATE,
-                                    COURSE_SESSIONS_DAYS
-                            );
-                            final Long COURSE_SHIFT_NUMBER_ADD = Long.valueOf(COURSE_SHIFT_NUMBER + 1);
-                            final Long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
-
-                            //set data.
-                            // TODO ... set new shift number , set new end date.
-
-                            ContentValues contentValues = new ContentValues();
-                            contentValues.put(DbContent.CourseTable.COURSE_SHIFT_NUMBER_COLUMN,
-                                    COURSE_SHIFT_NUMBER_ADD);
-                            contentValues.put(DbContent.CourseTable.COURSE_SHIFT_END_DATE_COLUMN,
-                                    COURSE_END_DATE_SHIFT);
-
-                            getActivity().getContentResolver().insert(
-                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                                    contentValues
-                            );
-
-                        }
-                    }
-                }
-                cursor.close();
-            }
-        }
-    };
     private TextWatcher searchTextWatcher =
             new TextWatcher() {
                 @Override

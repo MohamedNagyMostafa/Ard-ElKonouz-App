@@ -77,7 +77,6 @@ public class ChildActivityFragment extends Fragment
         if(childSearchView != null){
             final EditText CHILD_SEARCH_EDIT_TEXT = (EditText) childSearchView;
             CHILD_SEARCH_EDIT_TEXT.addTextChangedListener(searchTextWatcher);
-
         }
 
         childListScreenViewHolder.ADD_NEW_CHILD_BUTTON.setOnClickListener(addNewChildListener);

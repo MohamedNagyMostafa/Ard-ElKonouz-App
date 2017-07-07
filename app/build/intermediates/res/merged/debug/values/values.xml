@@ -454,6 +454,8 @@
     <string name="title_activity_kid">KidActivity</string>
     <string name="title_activity_kid_profile">KidProfileActivity</string>
     <string name="title_activity_salary">SalaryActivity</string>
+    <string name="title_activity_shift_input">ShiftInputActivity</string>
+    <string name="title_activity_shift_list">ShiftListActivity</string>
     <string name="to">To</string>
     <string name="total_salary">Original Salary</string>
     <string name="tries_to_solve_the_problem">Tries To Solve The Problem</string>

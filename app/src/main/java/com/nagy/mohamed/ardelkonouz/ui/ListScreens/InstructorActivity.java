@@ -11,7 +11,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 
 public class InstructorActivity extends AppCompatActivity {
 
-    public static final String INSTRUCTOR_TAG = "child";
+    public static final String INSTRUCTOR_TAG = "instructor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
