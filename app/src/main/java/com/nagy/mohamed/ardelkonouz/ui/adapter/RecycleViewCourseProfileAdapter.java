@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
-import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivityFragment;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 /**
@@ -21,12 +20,12 @@ public class RecycleViewCourseProfileAdapter extends
 
     private Cursor cursor;
     private Context context;
-    private CourseProfileActivityFragment courseProfileActivityFragment;
+    private OnShiftDeleteListener onShiftDeleteListener;
 
     public RecycleViewCourseProfileAdapter(Context context,
-                                           CourseProfileActivityFragment courseProfileActivityFragment){
+                                           OnShiftDeleteListener onShiftDeleteListener){
         this.context = context;
-        this.courseProfileActivityFragment = courseProfileActivityFragment;
+        this.onShiftDeleteListener = onShiftDeleteListener;
     }
 
     public void setCursor(Cursor cursor){
@@ -45,7 +44,7 @@ public class RecycleViewCourseProfileAdapter extends
                                              .ShiftRecycleViewHolder shiftRecycleViewHolder,
                                  int position) {
         if(cursor != null && cursor.getCount() > 0) {
-            cursor.move(position);
+            cursor.moveToPosition(position);
 
             final Long _ID = cursor.getLong(
                     DatabaseController.ProjectionDatabase.SHIFT_ID
@@ -71,12 +70,7 @@ public class RecycleViewCourseProfileAdapter extends
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            context.getContentResolver().delete(
-                                    DatabaseController.UriDatabase.getShiftTableWithIdUri(_ID),
-                                    null,
-                                    null
-                            );
-
+                            onShiftDeleteListener.OnClickListener(_ID);
                         }
                     }
             );

@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.OnShiftDeleteListener;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewCourseProfileAdapter;
 
 import java.util.ArrayList;
@@ -34,6 +36,136 @@ public class CourseProfileActivityFragment extends Fragment
     
     private RecycleViewCourseProfileAdapter recycleViewCourseProfileAdapter;
     private Long courseId;
+    private OnShiftDeleteListener onShiftDeleteListener =
+            new OnShiftDeleteListener() {
+                @Override
+                public void OnClickListener(Long SHIFT_ID) {
+                    getActivity().getContentResolver().delete(
+                            DatabaseController.UriDatabase.getShiftTableWithIdUri(SHIFT_ID),
+                            null,
+                            null
+                    );
+
+                    // get current shifts.
+                    Cursor shiftCursor = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getShiftWithCourseId(courseId),
+                            DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                            null,
+                            null,
+                            null
+                    );
+                    ArrayList<Shift> shifts = new ArrayList<>();
+
+                    if(shiftCursor != null){
+                        while(shiftCursor.moveToNext()){
+                            Shift shift = new Shift(
+                                    shiftCursor.getLong(
+                                            DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                                    ),
+                                    shiftCursor.getLong(
+                                            DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
+                                    ),
+                                    courseId
+                            );
+
+                            shifts.add(shift);
+                        }
+                        shiftCursor.close();
+                    }
+
+                    // get Course date data.
+
+                    Cursor courseCursor = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
+                            DatabaseController.ProjectionDatabase.COURSE_DATE_PROJECTION,
+                            null,
+                            null,
+                            null
+                    );
+
+
+                    if(courseCursor != null){
+                        if(courseCursor.getCount() > 0){
+                            courseCursor.moveToNext();
+
+                            final String COURSE_SESSION_DAYS = courseCursor.getString(
+                                    DatabaseController.ProjectionDatabase.COURSE_DATE_DAYS
+                            );
+                            final int COURSE_SESSION_NUMBER = courseCursor.getInt(
+                                    DatabaseController.ProjectionDatabase.COURSE_DATE_SESSIONS_NUMBER
+                            );
+                            final Long COURSE_START_DATE = courseCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.COURSE_DATE_START_DATE
+                            );
+
+                            final Long COURSE_END_DATE = Utility.getEndDate(
+                                    shifts,
+                                    COURSE_SESSION_DAYS,
+                                    COURSE_SESSION_NUMBER,
+                                    COURSE_START_DATE
+                            );
+
+                            final int REMAINS_SESSIONS = Utility.getRemainDays(
+                                    shifts,
+                                    COURSE_SESSION_DAYS,
+                                    COURSE_START_DATE,
+                                    COURSE_END_DATE,
+                                    COURSE_SESSION_NUMBER
+                            );
+
+                            final int FINISHED_SESSIONS = COURSE_SESSION_NUMBER - REMAINS_SESSIONS;
+
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, COURSE_END_DATE);
+
+                            getActivity().getContentResolver().update(
+                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
+                                    contentValues,
+                                    null,
+                                    null
+                            );
+
+                            courseProfileScreenViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                                    String.valueOf(
+                                            Utility.getTimeFormat(
+                                            COURSE_END_DATE
+                                            )
+                                    )
+                            );
+
+                            courseProfileScreenViewHolder.COURSE_NEXT_SESSION_DAY_TEXT_VIEW.setText(
+                                    String.valueOf(
+                                            Utility.getTimeFormat(
+                                                    Utility.getNextSessionDay(
+                                                            shifts,
+                                                            COURSE_SESSION_DAYS,
+                                                            COURSE_END_DATE,
+                                                            COURSE_START_DATE
+                                                    )
+                                            )
+                                    )
+                            );
+
+                            courseProfileScreenViewHolder.COURSE_REMAINING_SESSIONS_TEXT_VIEW.setText(
+                                    String.valueOf(
+                                            REMAINS_SESSIONS
+                                    )
+                            );
+
+                            courseProfileScreenViewHolder.COURSE_FINISHED_SESSIONS_TEXT_VIEW.setText(
+                                    String.valueOf(
+                                            FINISHED_SESSIONS
+                                    )
+                            );
+
+                        }
+                        courseCursor.close();
+                    }
+
+                    restartLoader();
+                }
+            };
+
     private ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder;
 
     @Override
@@ -42,7 +174,7 @@ public class CourseProfileActivityFragment extends Fragment
         View rootView =  inflater.inflate(R.layout.fragment_course_profile, container, false);
         courseProfileScreenViewHolder = new ViewHolder.CourseProfileScreenViewHolder(rootView);
         courseId = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
-        recycleViewCourseProfileAdapter = new RecycleViewCourseProfileAdapter(getContext(), this);
+        recycleViewCourseProfileAdapter = new RecycleViewCourseProfileAdapter(getContext(), onShiftDeleteListener);
         
         courseProfileScreenViewHolder.COURSE_SHIFTS_RECYCLE_VIEW.setAdapter(recycleViewCourseProfileAdapter);
         LinearLayoutManager linearLayoutManager =
@@ -313,10 +445,16 @@ public class CourseProfileActivityFragment extends Fragment
             courseProfileScreenViewHolder.COURSE_SHIFT_EMPTY_LAYOUT.setVisibility(View.VISIBLE);
         }
         recycleViewCourseProfileAdapter.setCursor(data);
+        recycleViewCourseProfileAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         recycleViewCourseProfileAdapter.setCursor(null);
+        recycleViewCourseProfileAdapter.notifyDataSetChanged();
+    }
+
+    public void restartLoader(){
+        getLoaderManager().restartLoader(Constants.LOADER_SHIFT_COURSE_PROFILE, null, this);
     }
 }
