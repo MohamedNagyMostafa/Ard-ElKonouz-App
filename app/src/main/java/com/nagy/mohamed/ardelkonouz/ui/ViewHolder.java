@@ -559,6 +559,7 @@ public class ViewHolder {
         public final TextView COURSE_REMAINING_SESSIONS_TEXT_VIEW;
         public final TextView COURSE_SESSIONS_NUMBER_TEXT_VIEW;
         public final TextView COURSE_FINISHED_SESSIONS_TEXT_VIEW;
+        public final RecyclerView COURSE_SHIFTS_RECYCLE_VIEW;
         public final FloatingActionButton COURSE_EDIT_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
@@ -579,6 +580,21 @@ public class ViewHolder {
             COURSE_SESSIONS_NUMBER_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_sessions_number_text_view);
             COURSE_FINISHED_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_finished_sessions_text_view);
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
+            COURSE_SHIFTS_RECYCLE_VIEW = (RecyclerView) courseProfileView.findViewById(R.id.course_pf_course_shifts_recycle_view);
+        }
+
+        public static class ShiftRecycleViewHolder{
+
+            public final TextView SHIFT_START_DATE_TEXT_VIEW;
+            public final TextView SHIFT_END_DATE_TEXT_VIEW;
+            public final ImageView SHIFT_DELETE_IMAGE_VIEW;
+
+            public ShiftRecycleViewHolder(View shiftRecycleView){
+
+                SHIFT_START_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_shift_start_date_text_view);
+                SHIFT_END_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_shift_end_date_text_view);
+                SHIFT_DELETE_IMAGE_VIEW = (ImageView) shiftRecycleView.findViewById(R.id.course_pf_shift_delete_image_View);
+            }
         }
     }
 
