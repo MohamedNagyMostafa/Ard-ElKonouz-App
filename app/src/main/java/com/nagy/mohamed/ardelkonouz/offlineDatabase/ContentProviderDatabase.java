@@ -26,32 +26,36 @@ public class ContentProviderDatabase extends ContentProvider {
 
     private static final int CHILD_TABLE = 0;
     private static final int COURSE_TABLE = 1;
-    private static final int INSTRUCTOR_TABLE = 10;
-    private static final int EMPLOYEE_TABLE = 111;
-    private static final int CHILD_COURSE_TABLE = 11;
-    private static final int INSTRUCTOR_COURSE_TABLE = 110;
-    private static final int CHILD_WITH_ID_TABLE = 1010;
-    private static final int COURSE_WITH_ID_TABLE = 1110;
-    private static final int INSTRUCTOR_WITH_ID_TABLE = 1111;
-    private static final int CHILD_COURSE_WITH_CHILD_ID_TABLE = 11110;
-    private static final int CHILD_COURSE_WITH_COURSE_ID_TABLE = 11111;
-    private static final int CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE = 3;
-    private static final int INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE = 10101;
-    private static final int INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE = 10011;
-    private static final int EMPLOYEE_WITH_ID_TABLE = 10111;
-    private static final int COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 2;
-    private static final int COURSE_WITH_ID_WITH_END_DATE_TABLE = 4;
-    private static final int CHILD_WITH_SEARCH_TABLE = 5;
-    private static final int COURSE_WITH_SEARCH_TABLE = 6;
-    private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 7;
-    private static final int EMPLOYEE_WITH_SEARCH_TABLE = 8;
-    private static final int SHIFT_WITH_COURSE_ID_TABLE = 9;
-    private static final int SHIFT_TABLE = 14;
-    private static final int SHIFT_WITH_COURSE_ID_JOIN_TABLE = 12;
-    private static final int COURSE_WITH_DAY_SEARCH_TABLE = 13;
-    private static final int COURSE_WITH_DAY_TABLE = 14;
-    private static final int COURSES_CHOICES_TABLE = 15;
-    private static final int COURSES_SELECTION_TABLE = 16;
+    private static final int INSTRUCTOR_TABLE = 2;
+    private static final int EMPLOYEE_TABLE = 3;
+    private static final int CHILD_COURSE_TABLE = 4;
+    private static final int INSTRUCTOR_COURSE_TABLE = 5;
+    private static final int CHILD_WITH_ID_TABLE = 6;
+    private static final int COURSE_WITH_ID_TABLE = 7;
+    private static final int INSTRUCTOR_WITH_ID_TABLE = 8;
+    private static final int CHILD_COURSE_WITH_CHILD_ID_TABLE = 9;
+    private static final int CHILD_COURSE_WITH_COURSE_ID_TABLE = 10;
+    private static final int CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE = 11;
+    private static final int INSTRUCTOR_COURSE_WITH_INSTRUCTOR_ID_TABLE = 12;
+    private static final int INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE = 13;
+    private static final int EMPLOYEE_WITH_ID_TABLE = 14;
+    private static final int COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 15;
+    private static final int COURSE_WITH_ID_WITH_END_DATE_TABLE = 16;
+    private static final int CHILD_WITH_SEARCH_TABLE = 17;
+    private static final int COURSE_WITH_SEARCH_TABLE = 18;
+    private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 19;
+    private static final int EMPLOYEE_WITH_SEARCH_TABLE = 20;
+    private static final int SHIFT_WITH_COURSE_ID_TABLE = 21;
+    private static final int SHIFT_TABLE = 22;
+    private static final int SHIFT_WITH_COURSE_ID_JOIN_TABLE = 23;
+    private static final int COURSE_WITH_DAY_SEARCH_TABLE = 24;
+    private static final int COURSE_WITH_DAY_TABLE = 25;
+    private static final int COURSES_CHOICES_TABLE = 26;
+    private static final int COURSES_SELECTION_TABLE = 27;
+    private static final int SHIFT_WITH_START_END_DATE_TABLE = 28;
+    private static final int SHIFT_WITH_START_DATE_TABLE = 29;
+    private static final int SHIFT_WITH_END_DATE_TABLE = 30;
+    private static final int SHIFT_WITH_ID_TABLE = 31;
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
@@ -212,6 +216,9 @@ public class ContentProviderDatabase extends ContentProvider {
             case EMPLOYEE_WITH_ID_TABLE:
                 return getEmployeeWithId(uri, projection, sortOrder);
 
+            case SHIFT_WITH_ID_TABLE:
+                return getShiftWithId(uri, projection, sortOrder);
+
             case INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE:
                 return getCourseInstructorWithCourseId(uri, projection, sortOrder);
 
@@ -265,6 +272,15 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case COURSES_SELECTION_TABLE:
                 return getCoursesSelection(uri, projection, sortOrder);
+
+            case SHIFT_WITH_START_END_DATE_TABLE:
+                return getShiftWithStartEndDate(uri, projection, sortOrder);
+
+            case SHIFT_WITH_START_DATE_TABLE:
+                return getShiftWithStartDate(uri, projection, sortOrder);
+
+            case SHIFT_WITH_END_DATE_TABLE:
+                return getShiftWithEndDate(uri, projection, sortOrder);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -422,6 +438,9 @@ public class ContentProviderDatabase extends ContentProvider {
                         selection,
                         selectionArgs
                 );
+
+            case SHIFT_WITH_ID_TABLE:
+                return deleteRowWithId(DbContent.ShiftDaysTable.TABLE_NAME, uri, DbContent.ShiftDaysTable._ID);
 
             case SHIFT_WITH_COURSE_ID_TABLE:
                 return deleteRowWithId(DbContent.ShiftDaysTable.TABLE_NAME,
@@ -747,6 +766,8 @@ public class ContentProviderDatabase extends ContentProvider {
         final String COURSE_WITH_DAY_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#";
 
         final String SHIFT_PATH = DbContent.ShiftDaysTable.TABLE_NAME;
+        final String SHIFT_WITH_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
+                DbContent.ShiftDaysTable._ID + "/#";
         final String SHIFT_WITH_COURSE_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/#";
         final String SHIFT_WITH_COURSE_ID_JOIN_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "/#";
@@ -756,6 +777,18 @@ public class ContentProviderDatabase extends ContentProvider {
         final String COURSES_SELECTION_PATH = DbContent.CourseTable.TABLE_NAME + "/"
                 + DbContent.CourseTable._ID + "/*";
 
+        final String SHIFT_WITH_START_END_DATE_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
+                DbContent.ShiftDaysTable.START_DATE_COLUMN + "/" + DbContent.ShiftDaysTable.END_DATE_COLUMN +
+                "/#/#/#" ;
+        final String SHIFT_WITH_START_DATE_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
+                DbContent.ShiftDaysTable.START_DATE_COLUMN + "/#/#/#" ;
+        final String SHIFT_WITH_END_DATE_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
+                DbContent.ShiftDaysTable.END_DATE_COLUMN + "/#/#/#" ;
+
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_ID_PATH, SHIFT_WITH_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_START_END_DATE_PATH, SHIFT_WITH_START_END_DATE_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_START_DATE_PATH, SHIFT_WITH_START_DATE_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_END_DATE_PATH, SHIFT_WITH_END_DATE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_SELECTION_PATH, COURSES_SELECTION_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_CHOICES_PATH, COURSES_CHOICES_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_SEARCH_PATH, COURSE_WITH_DAY_SEARCH_TABLE);
@@ -1285,6 +1318,106 @@ public class ContentProviderDatabase extends ContentProvider {
                 projection,
                 selection.toString(),
                 selectionArgsArray,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getShiftWithStartEndDate(Uri uri, String[] projection, String sortOrder){
+        Long courseId = ContentUris.parseId(uri);
+        String endDateURi = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        Long endDate = ContentUris.parseId( Uri.parse(endDateURi));
+        String startDateUri = endDateURi.substring(0, endDateURi.lastIndexOf('/'));
+        Long startDate = ContentUris.parseId(Uri.parse(startDateUri));
+
+        String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " <=?" + " AND " +
+                DbContent.ShiftDaysTable.END_DATE_COLUMN + " >=?" + " AND " +
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+
+        String[] selectionArgs = {
+                String.valueOf(startDate),
+                String.valueOf(endDate),
+                String.valueOf(courseId)
+        };
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ShiftDaysTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getShiftWithEndDate(Uri uri, String[] projection, String sortOrder){
+        Long courseId = ContentUris.parseId(uri);
+        String endDateURi = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        Long endDate = ContentUris.parseId( Uri.parse(endDateURi));
+        String startDateUri = endDateURi.substring(0, endDateURi.lastIndexOf('/'));
+        Long startDate = ContentUris.parseId(Uri.parse(startDateUri));
+
+        String selection = DbContent.ShiftDaysTable.END_DATE_COLUMN + " <?" + " AND " +
+                DbContent.ShiftDaysTable.END_DATE_COLUMN + " >=?" + " AND " +
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+
+        String[] selectionArgs = {
+                String.valueOf(endDate),
+                String.valueOf(startDate),
+                String.valueOf(courseId)
+        };
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ShiftDaysTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getShiftWithStartDate(Uri uri, String[] projection, String sortOrder){
+        Long courseId = ContentUris.parseId(uri);
+        String endDateURi = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        Long endDate = ContentUris.parseId( Uri.parse(endDateURi));
+        String startDateUri = endDateURi.substring(0, endDateURi.lastIndexOf('/'));
+        Long startDate = ContentUris.parseId(Uri.parse(startDateUri));
+
+        String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " >?" + " AND " +
+                DbContent.ShiftDaysTable.START_DATE_COLUMN + " <=?" + " AND " +
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+
+        String[] selectionArgs = {
+                String.valueOf(startDate),
+                String.valueOf(endDate),
+                String.valueOf(courseId)
+        };
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ShiftDaysTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getShiftWithId(Uri uri, String[] projection, String sortOrder){
+        Long id = ContentUris.parseId(uri);
+        String selection = DbContent.ShiftDaysTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ShiftDaysTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
                 null,
                 null,
                 sortOrder

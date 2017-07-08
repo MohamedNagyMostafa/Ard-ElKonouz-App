@@ -227,6 +227,7 @@ public class DatabaseController {
                 DbContent.ShiftDaysTable.END_DATE_COLUMN
         };
 
+        public static final int SHIFT_ID = 0;
         public static final int SHIFT_COURSE_ID_COLUMN = 1;
         public static final int SHIFT_START_DATE_COLUMN = 2;
         public static final int SHIFT_END_DATE_COLUMN = 3;
@@ -308,6 +309,10 @@ public class DatabaseController {
 
         public static Uri getCourseTableWithIdUri(long id){
             return COURSE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getShiftTableWithIdUri(long id){
+            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable._ID).appendPath(String.valueOf(id)).build();
         }
 
         public static Uri getCourseTableWithEndDateIdWithCompleteIdWithAgeRangeUri(long age, long date){
@@ -417,6 +422,33 @@ public class DatabaseController {
                     .appendPath(encodeIds.toString())
                     .build();
         }
+
+        public static Uri getShiftWithStartEndDate(Long startDate, Long endDate, Long courseID){
+            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.START_DATE_COLUMN)
+                    .appendPath(DbContent.ShiftDaysTable.END_DATE_COLUMN)
+                    .appendPath(String.valueOf(startDate))
+                    .appendPath(String.valueOf(endDate))
+                    .appendPath(String.valueOf(courseID))
+                    .build();
+        }
+
+        public static Uri getShiftWithStartDate(Long startDate, Long endDate, Long courseId){
+            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.START_DATE_COLUMN)
+                    .appendPath(String.valueOf(startDate))
+                    .appendPath(String.valueOf(endDate))
+                    .appendPath(String.valueOf(courseId))
+                    .build();
+        }
+
+        public static Uri getShiftWithEndDate(Long startDate, Long endDate, Long courseId){
+            return SHIFT_URI.buildUpon()
+                    .appendPath(DbContent.ShiftDaysTable.END_DATE_COLUMN)
+                    .appendPath(String.valueOf(startDate))
+                    .appendPath(String.valueOf(endDate))
+                    .appendPath(String.valueOf(courseId))
+                    .build();
+        }
+
 
     }
 

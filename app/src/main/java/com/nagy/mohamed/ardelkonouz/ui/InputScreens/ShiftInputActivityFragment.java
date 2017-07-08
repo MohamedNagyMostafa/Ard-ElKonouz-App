@@ -244,34 +244,49 @@ public class ShiftInputActivityFragment extends Fragment
                         ContentValues[] coursesSelectedContentValuesAsArray = new ContentValues[selectedID.size()];
                         ArrayList<ContentValues> coursesSelectedContentValues= new ArrayList<>();
 
+                        final Long SHIFT_START_DATE = Long.valueOf(
+                                shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
+                                        .getText().toString()
+                        );
+
+
+                        final Long SHIFT_END_DATE = Long.valueOf(
+                                shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
+                                        .getText().toString()
+                        );
+
+
                         for(final Long COURSE_ID : selectedID){
 
+                            /**
+                             * Validation Block @Start ...
+                             */
+                            if(innerShiftDateValidation(COURSE_ID, SHIFT_START_DATE, SHIFT_END_DATE)) {
+                                continue;
+                            }
+                            // get Most accurate start shift date.
+                            Long newShiftStartDate = getAccurateShiftStartDate(COURSE_ID, SHIFT_START_DATE, SHIFT_END_DATE);
+                            // get Most accurate end shift date.
+                            Long newShiftEndDate = getAccurateShiftEndDate(COURSE_ID, SHIFT_START_DATE, SHIFT_END_DATE);
+                            // delete inner shifts.
+                            deleteInnerShiftsWithRespectToNewShiftsDates(
+                                    COURSE_ID,
+                                    newShiftStartDate,
+                                    newShiftEndDate
+                            );
+                            /**
+                             * Validation Block @End ...
+                             */
                             ContentValues shiftContentValues = new ContentValues();
                             ContentValues courseContentValues = new ContentValues();
 
                             shiftContentValues.put(DbContent.ShiftDaysTable.COURSE_ID_COLUMN, COURSE_ID);
-                            shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN,
-                                    Long.valueOf(
-                                    shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
-                                            .getText().toString()
-                                    )
-                            );
-                            shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN,
-                                    Long.valueOf(
-                                            shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
-                                                    .getText().toString()
-                                    )
-                            );
+                            shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN, SHIFT_START_DATE);
+                            shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN, SHIFT_END_DATE);
 
                             Shift shift = new Shift(
-                                    Long.valueOf(
-                                            shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
-                                                    .getText().toString()
-                                    ),
-                                    Long.valueOf(
-                                            shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
-                                                    .getText().toString()
-                                    ),
+                                    SHIFT_START_DATE,
+                                    SHIFT_END_DATE,
                                     COURSE_ID
                             );
 
@@ -329,6 +344,7 @@ public class ShiftInputActivityFragment extends Fragment
 
                         openShiftListScreen();
                     }
+
                 }
         );
 
@@ -474,5 +490,127 @@ public class ShiftInputActivityFragment extends Fragment
         Intent shiftListScreen = new Intent(getContext(), ShiftListActivity.class);
         startActivity(shiftListScreen);
         getActivity().finish();
+    }
+
+    // Check the current shift with previous shifts.
+    // if the current shift is founded within one of previous shifts
+    // the result return true ,Otherwise return false.
+    private boolean innerShiftDateValidation(final Long COURSE_ID,
+                                             final Long SHIFT_START_DATE,
+                                             final Long SHIFT_END_DATE){
+        boolean innerShift = false;
+
+        Cursor cursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getShiftWithStartEndDate(SHIFT_START_DATE, SHIFT_END_DATE, COURSE_ID),
+                null,
+                null,
+                null,
+                null
+        );
+
+        if(cursor != null){
+            if(cursor.getCount() > 0){
+                innerShift = true;
+            }
+            cursor.close();
+        }
+
+        return innerShift;
+    }
+
+    private Long getAccurateShiftStartDate(final Long COURSE_ID, final Long SHIFT_START_DATE,
+                                           final Long SHIFT_END_DATE){
+
+        Long newShiftStartDate = SHIFT_START_DATE;
+
+        Cursor cursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getShiftWithStartDate(
+                        SHIFT_START_DATE,
+                        SHIFT_END_DATE,
+                        COURSE_ID
+                ),
+                DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                null,
+                null,
+                null
+        );
+
+        if(cursor != null){
+            while (cursor.moveToNext()){
+                Long previousShift = cursor.getLong(
+                        DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                );
+
+                newShiftStartDate = (newShiftStartDate > previousShift)?
+                        previousShift :
+                        newShiftStartDate;
+            }
+            cursor.close();
+        }
+
+        return newShiftStartDate;
+    }
+
+    private Long getAccurateShiftEndDate(final Long COURSE_ID, final Long SHIFT_START_DATE,
+                                           final Long SHIFT_END_DATE){
+
+        Long newShiftEndDate = SHIFT_END_DATE;
+
+        Cursor cursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getShiftWithEndDate(
+                        SHIFT_START_DATE,
+                        SHIFT_END_DATE,
+                        COURSE_ID
+                ),
+                DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                null,
+                null,
+                null
+        );
+
+        if(cursor != null){
+            while (cursor.moveToNext()){
+                Long previousShift = cursor.getLong(
+                        DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                );
+
+                newShiftEndDate = (newShiftEndDate < previousShift)?
+                        previousShift :
+                        newShiftEndDate;
+            }
+            cursor.close();
+        }
+
+        return newShiftEndDate;
+    }
+
+    private void deleteInnerShiftsWithRespectToNewShiftsDates(final Long COURSE_ID,
+                                                              final Long NEW_SHIFT_START_DATE,
+                                                              final Long NEW_SHIFT_END_DATE){
+
+        Cursor cursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getShiftWithStartEndDate(
+                        NEW_SHIFT_START_DATE,
+                        NEW_SHIFT_END_DATE,
+                        COURSE_ID
+                ),
+                DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                null,
+                null,
+                null
+        );
+
+        if(cursor != null){
+            while(cursor.moveToNext()){
+                final Long _ID = cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_ID);
+
+                getActivity().getContentResolver().delete(
+                        DatabaseController.UriDatabase.getShiftTableWithIdUri(_ID),
+                        null,
+                        null
+                );
+            }
+            cursor.close();
+        }
     }
 }
