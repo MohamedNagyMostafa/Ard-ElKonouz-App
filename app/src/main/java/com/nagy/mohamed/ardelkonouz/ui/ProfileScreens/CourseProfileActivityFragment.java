@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,24 +22,38 @@ import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewCourseProfileAdapter;
 
 import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class CourseProfileActivityFragment extends Fragment {
+public class CourseProfileActivityFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<Cursor>{
+    
+    private RecycleViewCourseProfileAdapter recycleViewCourseProfileAdapter;
+    private Long courseId;
+    private ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_course_profile, container, false);
-        final ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder =
-                new ViewHolder.CourseProfileScreenViewHolder(rootView);
-        final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
-
+        courseProfileScreenViewHolder = new ViewHolder.CourseProfileScreenViewHolder(rootView);
+        courseId = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
+        recycleViewCourseProfileAdapter = new RecycleViewCourseProfileAdapter(getContext(), this);
+        
+        courseProfileScreenViewHolder.COURSE_SHIFTS_RECYCLE_VIEW.setAdapter(recycleViewCourseProfileAdapter);
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        LinearSnapHelper snapHelper = new LinearSnapHelper();
+        
+        courseProfileScreenViewHolder.COURSE_SHIFTS_RECYCLE_VIEW.setLayoutManager(linearLayoutManager);
+        snapHelper.attachToRecyclerView(courseProfileScreenViewHolder.COURSE_SHIFTS_RECYCLE_VIEW);
+        
         Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getShiftWithCourseJoinId(COURSE_ID),
+                DatabaseController.UriDatabase.getShiftWithCourseJoinId(courseId),
                 DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_PROJECTION,
                 null,
                 null,
@@ -56,7 +75,7 @@ public class CourseProfileActivityFragment extends Fragment {
                                     cursor.getLong(
                                             DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_END_DATE_COLUMN
                                     ),
-                                    COURSE_ID
+                                    courseId
                             );
 
                     shifts.add(shift);
@@ -65,10 +84,10 @@ public class CourseProfileActivityFragment extends Fragment {
 
                 cursor.moveToFirst();
 
-                setDataToView(cursor, courseProfileScreenViewHolder, COURSE_ID, shifts);
+                setDataToView(cursor, courseProfileScreenViewHolder, courseId, shifts);
             }else{
                 Cursor cursorCourses = getActivity().getContentResolver().query(
-                        DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                        DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
                         DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
                         null,
                         null,
@@ -78,7 +97,7 @@ public class CourseProfileActivityFragment extends Fragment {
                 if(cursorCourses != null){
                     if(cursorCourses.getCount() > 0){
                         cursorCourses.moveToFirst();
-                        setDataToView(cursorCourses, courseProfileScreenViewHolder, COURSE_ID);
+                        setDataToView(cursorCourses, courseProfileScreenViewHolder, courseId);
                     }
                     cursorCourses.close();
                 }
@@ -91,21 +110,22 @@ public class CourseProfileActivityFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Intent courseInputScreen = new Intent(getContext(), CourseInputActivity.class);
-                        courseInputScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
+                        courseInputScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
                         courseInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(courseInputScreen);
                     }
                 }
         );
 
-
+        
+        getLoaderManager().initLoader(Constants.LOADER_SHIFT_COURSE_PROFILE, null, this);
 
         return rootView;
     }
 
     private void setDataToView(Cursor cursor,
                                ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder,
-                               final long COURSE_ID, ArrayList<Shift> shifts){
+                               final long courseId, ArrayList<Shift> shifts){
 
         final String COURSE_NAME =
                 cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_COURSE_NAME_COLUMN);
@@ -168,7 +188,7 @@ public class CourseProfileActivityFragment extends Fragment {
         courseProfileScreenViewHolder.COURSE_NEXT_SESSION_DAY_TEXT_VIEW.setText(NEXT_SESSION_DAY_STRING);
         courseProfileScreenViewHolder.COURSE_SESSIONS_DAYS_TEXT_VIEW.setText(Utility.getDaysAsString(COURSE_SESSIONS_DAYS));
         courseProfileScreenViewHolder.COURSE_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(COURSE_STATE, getContext()));
-        courseProfileScreenViewHolder.COURSE_INSTRUCTOR_NAME_TEXT_VIEW.setText(getCourseInstructorName(COURSE_ID));
+        courseProfileScreenViewHolder.COURSE_INSTRUCTOR_NAME_TEXT_VIEW.setText(getCourseInstructorName(courseId));
         courseProfileScreenViewHolder.COURSE_AGE_RANGE_TEXT_VIEW.setText(
                 Utility.decodeAgeRangeByInt(COURSE_START_AGE,COURSE_END_AGE));
 
@@ -176,7 +196,7 @@ public class CourseProfileActivityFragment extends Fragment {
 
     private void setDataToView(Cursor cursor,
                                ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder,
-                               final long COURSE_ID){
+                               final long courseId){
 
         final String COURSE_NAME =
                 cursor.getString(DatabaseController.ProjectionDatabase.COURSE_NAME);
@@ -230,7 +250,7 @@ public class CourseProfileActivityFragment extends Fragment {
         courseProfileScreenViewHolder.COURSE_NEXT_SESSION_DAY_TEXT_VIEW.setText(Utility.getTimeFormat(NEXT_SESSION_DAY));
         courseProfileScreenViewHolder.COURSE_SESSIONS_DAYS_TEXT_VIEW.setText(Utility.getDaysAsString(COURSE_SESSIONS_DAYS));
         courseProfileScreenViewHolder.COURSE_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(COURSE_STATE, getContext()));
-        courseProfileScreenViewHolder.COURSE_INSTRUCTOR_NAME_TEXT_VIEW.setText(getCourseInstructorName(COURSE_ID));
+        courseProfileScreenViewHolder.COURSE_INSTRUCTOR_NAME_TEXT_VIEW.setText(getCourseInstructorName(courseId));
         courseProfileScreenViewHolder.COURSE_AGE_RANGE_TEXT_VIEW.setText(
                 Utility.decodeAgeRangeByInt(
                         cursor.getInt(
@@ -270,5 +290,33 @@ public class CourseProfileActivityFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(
+                getContext(),
+                DatabaseController.UriDatabase.getShiftWithCourseId(courseId),
+                DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                null,
+                null,
+                null
+        );
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // set empty view
+        if(data.getCount() > 0){
+             courseProfileScreenViewHolder.COURSE_SHIFT_EMPTY_LAYOUT.setVisibility(View.GONE);
+        }else{
+            courseProfileScreenViewHolder.COURSE_SHIFT_EMPTY_LAYOUT.setVisibility(View.VISIBLE);
+        }
+        recycleViewCourseProfileAdapter.setCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        recycleViewCourseProfileAdapter.setCursor(null);
     }
 }
