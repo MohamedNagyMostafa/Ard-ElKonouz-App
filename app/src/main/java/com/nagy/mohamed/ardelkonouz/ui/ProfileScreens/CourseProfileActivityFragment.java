@@ -158,6 +158,7 @@ public class CourseProfileActivityFragment extends Fragment
                                     )
                             );
 
+
                         }
                         courseCursor.close();
                     }

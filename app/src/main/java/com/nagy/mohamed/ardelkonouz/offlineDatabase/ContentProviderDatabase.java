@@ -487,6 +487,8 @@ public class ContentProviderDatabase extends ContentProvider {
                         uri,
                         DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN);
 
+            case SHIFT_WITH_START_END_DATE_TABLE:
+                return deleteShiftWithStartEndDate(uri);
         }
 
         return 0;
@@ -1359,7 +1361,7 @@ public class ContentProviderDatabase extends ContentProvider {
         String startDateUri = endDateURi.substring(0, endDateURi.lastIndexOf('/'));
         Long startDate = ContentUris.parseId(Uri.parse(startDateUri));
 
-        String selection = DbContent.ShiftDaysTable.END_DATE_COLUMN + " <?" + " AND " +
+        String selection = DbContent.ShiftDaysTable.END_DATE_COLUMN + " >?" + " AND " +
                 DbContent.ShiftDaysTable.END_DATE_COLUMN + " >=?" + " AND " +
                 DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
 
@@ -1387,7 +1389,7 @@ public class ContentProviderDatabase extends ContentProvider {
         String startDateUri = endDateURi.substring(0, endDateURi.lastIndexOf('/'));
         Long startDate = ContentUris.parseId(Uri.parse(startDateUri));
 
-        String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " >?" + " AND " +
+        String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " <?" + " AND " +
                 DbContent.ShiftDaysTable.START_DATE_COLUMN + " <=?" + " AND " +
                 DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
 
@@ -1423,5 +1425,30 @@ public class ContentProviderDatabase extends ContentProvider {
                 sortOrder
         );
     }
+
+    private int deleteShiftWithStartEndDate(Uri uri){
+        Long courseId = ContentUris.parseId(uri);
+        String endDateURi = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
+        Long endDate = ContentUris.parseId( Uri.parse(endDateURi));
+        String startDateUri = endDateURi.substring(0, endDateURi.lastIndexOf('/'));
+        Long startDate = ContentUris.parseId(Uri.parse(startDateUri));
+
+        String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " >=?" + " AND " +
+                DbContent.ShiftDaysTable.END_DATE_COLUMN + " <=?" + " AND " +
+                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+
+        String[] selectionArgs = {
+                String.valueOf(startDate),
+                String.valueOf(endDate),
+                String.valueOf(courseId)
+        };
+
+        return m_dbHelper.getReadableDatabase().delete(
+                DbContent.ShiftDaysTable.TABLE_NAME,
+                selection,
+                selectionArgs
+        );
+    }
+
 
 }

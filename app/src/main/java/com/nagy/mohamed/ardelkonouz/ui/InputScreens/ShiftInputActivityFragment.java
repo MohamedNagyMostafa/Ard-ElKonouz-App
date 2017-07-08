@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
@@ -262,6 +263,7 @@ public class ShiftInputActivityFragment extends Fragment
                              * Validation Block @Start ...
                              */
                             if(innerShiftDateValidation(COURSE_ID, SHIFT_START_DATE, SHIFT_END_DATE)) {
+                                Log.e("ignore for shift", "igonre");
                                 continue;
                             }
                             // get Most accurate start shift date.
@@ -281,12 +283,12 @@ public class ShiftInputActivityFragment extends Fragment
                             ContentValues courseContentValues = new ContentValues();
 
                             shiftContentValues.put(DbContent.ShiftDaysTable.COURSE_ID_COLUMN, COURSE_ID);
-                            shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN, SHIFT_START_DATE);
-                            shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN, SHIFT_END_DATE);
+                            shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN, newShiftStartDate);
+                            shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN, newShiftEndDate);
 
                             Shift shift = new Shift(
-                                    SHIFT_START_DATE,
-                                    SHIFT_END_DATE,
+                                    newShiftStartDate,
+                                    newShiftEndDate,
                                     COURSE_ID
                             );
 
@@ -303,23 +305,28 @@ public class ShiftInputActivityFragment extends Fragment
                                 if(cursor.getCount() > 0){
                                     cursor.moveToFirst();
                                     ArrayList<Shift> shiftArrayList = new ArrayList<Shift>();
+                                    final String COURSE_SESSION_DAYS = cursor.getString(
+                                            DatabaseController.ProjectionDatabase.COURSE_DATE_DAYS
+                                    );
+                                    final Long COURSE_START_DATE = cursor.getLong(
+                                                    DatabaseController.ProjectionDatabase.COURSE_DATE_START_DATE
+                                            );
+                                    final Integer COURSE_SESSIONS_NUMBER = cursor.getInt(
+                                            DatabaseController.ProjectionDatabase.COURSE_DATE_SESSIONS_NUMBER
+                                    );
+
                                     shiftArrayList.add(shift);
 
                                     courseContentValues.put(
                                             DbContent.CourseTable.COURSE_END_DATE_COLUMN,
                                             Utility.getEndDate(
                                                     shiftArrayList,
-                                                    cursor.getString(
-                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_DAYS
-                                                    ),
-                                                    cursor.getInt(
-                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_SESSIONS_NUMBER
-                                                    ),
-                                                    cursor.getLong(
-                                                            DatabaseController.ProjectionDatabase.COURSE_DATE_START_DATE
-                                                    )
+                                                    COURSE_SESSION_DAYS,
+                                                    COURSE_SESSIONS_NUMBER,
+                                                    COURSE_START_DATE
                                             )
                                     );
+
                                 }
                                 cursor.close();
                             }
@@ -336,13 +343,21 @@ public class ShiftInputActivityFragment extends Fragment
                         }
 
                         coursesSelectedContentValues.toArray(coursesSelectedContentValuesAsArray);
+                        Log.e("check bulk insert", String.valueOf(coursesSelectedContentValues.size()));
+                        if(coursesSelectedContentValuesAsArray.length > 0) {
+                            getActivity().getContentResolver().bulkInsert(
+                                    DatabaseController.UriDatabase.SHIFT_URI,
+                                    coursesSelectedContentValuesAsArray
+                            );
 
-                        getActivity().getContentResolver().bulkInsert(
-                                DatabaseController.UriDatabase.SHIFT_URI,
-                                coursesSelectedContentValuesAsArray
-                        );
-
-                        openShiftListScreen();
+                            openShiftListScreen();
+                        }else{
+                            Toast.makeText(
+                                    getContext(),
+                                    "This Shift is Founded before",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
                     }
 
                 }
@@ -537,13 +552,10 @@ public class ShiftInputActivityFragment extends Fragment
 
         if(cursor != null){
             while (cursor.moveToNext()){
-                Long previousShift = cursor.getLong(
+                Log.e("new start shift","founded");
+                newShiftStartDate = cursor.getLong(
                         DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
                 );
-
-                newShiftStartDate = (newShiftStartDate > previousShift)?
-                        previousShift :
-                        newShiftStartDate;
             }
             cursor.close();
         }
@@ -570,13 +582,11 @@ public class ShiftInputActivityFragment extends Fragment
 
         if(cursor != null){
             while (cursor.moveToNext()){
-                Long previousShift = cursor.getLong(
-                        DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
-                );
+                Log.e("new end shift","founded");
 
-                newShiftEndDate = (newShiftEndDate < previousShift)?
-                        previousShift :
-                        newShiftEndDate;
+                newShiftEndDate = cursor.getLong(
+                        DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
+                );
             }
             cursor.close();
         }
@@ -587,30 +597,14 @@ public class ShiftInputActivityFragment extends Fragment
     private void deleteInnerShiftsWithRespectToNewShiftsDates(final Long COURSE_ID,
                                                               final Long NEW_SHIFT_START_DATE,
                                                               final Long NEW_SHIFT_END_DATE){
-
-        Cursor cursor = getActivity().getContentResolver().query(
+        getContext().getContentResolver().delete(
                 DatabaseController.UriDatabase.getShiftWithStartEndDate(
                         NEW_SHIFT_START_DATE,
                         NEW_SHIFT_END_DATE,
                         COURSE_ID
                 ),
-                DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
-                null,
                 null,
                 null
         );
-
-        if(cursor != null){
-            while(cursor.moveToNext()){
-                final Long _ID = cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_ID);
-
-                getActivity().getContentResolver().delete(
-                        DatabaseController.UriDatabase.getShiftTableWithIdUri(_ID),
-                        null,
-                        null
-                );
-            }
-            cursor.close();
-        }
     }
 }

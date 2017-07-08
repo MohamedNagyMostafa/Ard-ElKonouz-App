@@ -174,7 +174,7 @@ public class Utility {
             if(shifts != null && shifts.size() > 0) {
                 for (Shift shift : shifts) {
                     if (nextSessionDay >= shift.getStartShiftDay() && nextSessionDay <= shift.getEndShiftDay()) {
-                        nextSessionDay = shift.getEndShiftDay();
+                        nextSessionDay = shift.getEndShiftDay() + Constants.DAY_IN_MILS;
 
                         calendar.setTimeInMillis(nextSessionDay);
 
