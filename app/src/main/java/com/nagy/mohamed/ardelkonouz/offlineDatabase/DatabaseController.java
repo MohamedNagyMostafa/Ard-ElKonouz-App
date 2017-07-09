@@ -2,6 +2,8 @@ package com.nagy.mohamed.ardelkonouz.offlineDatabase;
 
 import android.net.Uri;
 
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
+
 import java.util.ArrayList;
 
 /**
@@ -359,30 +361,37 @@ public class DatabaseController {
         }
 
         public static Uri getChildTableWithSearchUri(String searchChars){
-            return CHILD_TABLE_URI.buildUpon().appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN)
-                    .appendPath(searchChars).build();
+            Uri uri = CHILD_TABLE_URI.buildUpon().appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN).build();
+
+            return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
         public static Uri getCourseTableWithSearchUri(String searchChars){
-            return COURSE_TABLE_URI.buildUpon().appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
-                    .appendPath(searchChars).build();
+
+            Uri uri = COURSE_TABLE_URI.buildUpon().appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN).build();
+
+            return Utility.encodeUriToArabicSearch(uri, searchChars);
+
         }
 
         public static Uri getEmployeeTableWithSearchUri(String searchChars){
-            return EMPLOYEE_TABLE_URI.buildUpon().appendPath(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN)
-                    .appendPath(searchChars).build();
+            Uri uri =  EMPLOYEE_TABLE_URI.buildUpon().appendPath(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN).build();
+
+            return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
         public static Uri getInstructorTableWithSearchUri(String searchChars){
-            return INSTRUCTOR_TABLE_URI.buildUpon().appendPath(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN)
-                    .appendPath(searchChars).build();
+            Uri uri = INSTRUCTOR_TABLE_URI.buildUpon().appendPath(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN).build();
+
+            return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
         public static Uri getCoursesByDaySearchUri(String searchChars, long indexDay){
-            return COURSE_TABLE_URI.buildUpon().appendPath("day")
+            Uri uri = COURSE_TABLE_URI.buildUpon().appendPath("day")
                     .appendPath(String.valueOf(indexDay))
-                    .appendPath(searchChars)
                     .build();
+
+            return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
         public static Uri getShiftWithCourseId(long id){
@@ -403,10 +412,11 @@ public class DatabaseController {
                 encodeIds.append("k").append(ids.get(i));
             }
 
-            return COURSE_TABLE_URI.buildUpon()
+            Uri uri =  COURSE_TABLE_URI.buildUpon()
                     .appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
-                    .appendPath(encodeIds.toString())
-                    .appendPath(searchChars).build();
+                    .appendPath(encodeIds.toString()).build();
+
+            return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
         public static Uri getCourseSelection(ArrayList<Long> ids){

@@ -11,6 +11,7 @@ import android.util.Log;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ardElKonouz.db";
+    private static final String ENCODING_SETTING = "PRAGMA encoding = 'window-1256'";
 
     private static final int DATABASE_VERSION = 1;
 
@@ -18,6 +19,13 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         Log.e("DbHelper","cccccccccccccccccccccc");
 
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        if(!db.isReadOnly()){
+            db.execSQL(ENCODING_SETTING);
+        }
     }
 
     @Override

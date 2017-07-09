@@ -1,6 +1,7 @@
 package com.nagy.mohamed.ardelkonouz.helper;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -524,5 +525,9 @@ public class Utility {
         date1.setDate(Calendar.DATE);
 
         return simpleDateFormat.format(date);
+    }
+
+    public static Uri encodeUriToArabicSearch(Uri uri, String arabicChars){
+        return Uri.parse(uri.toString() + "/" + arabicChars);
     }
 }

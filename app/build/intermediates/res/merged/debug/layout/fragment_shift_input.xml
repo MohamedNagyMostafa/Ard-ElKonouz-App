@@ -26,17 +26,16 @@
 
         <GridView
             android:id="@+id/shift_input_selection_grid_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="120dp"
-            android:numColumns="3"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:scrollbarStyle="insideInset"/>
 
         <ListView
             android:id="@+id/shift_input_choices_list_view"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:layout_height="120dp"
             android:numColumns="3"
             android:divider="@color/colorAccent"
             android:dividerHeight="1dp"
@@ -49,7 +48,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="8dp"
