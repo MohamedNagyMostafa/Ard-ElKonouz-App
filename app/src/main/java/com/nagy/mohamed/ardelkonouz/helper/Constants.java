@@ -110,6 +110,9 @@ public class Constants {
     public static class SaveState{
 
         public static final String GENDER_STATE = "GENDER SAVE";
+        public static final String COURSE_STATE = "STATE SAVE";
+        public static final String COURSE_DAYS = "COURSE DAYS";
+
     }
 
 }

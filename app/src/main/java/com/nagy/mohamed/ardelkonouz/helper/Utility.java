@@ -538,4 +538,18 @@ public class Utility {
         }
         return -1;
     }
+
+     public static String getMultiDoubleSelectionAsString(ArrayList<DoubleChoice> doubleChoiceArrayList){
+         StringBuilder stringBuilder = new StringBuilder("");
+
+         for(DoubleChoice doubleChoice : doubleChoiceArrayList){
+             if(doubleChoice.isSelected()){
+                 stringBuilder.append(Constants.SELECTED);
+             }else{
+                 stringBuilder.append(Constants.NOT_SELECTED);
+             }
+         }
+
+         return stringBuilder.toString();
+     }
 }
