@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.ParseException;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -622,5 +623,24 @@ public class ShiftInputActivityFragment extends Fragment
                 null,
                 null
         );
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putStringArrayList(Constants.SaveState.SHIFT_COURSE_SELECTION_ID,
+                Utility.convertCoursesIdToString(selectedID));
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(savedInstanceState != null){
+            selectedID = Utility.convertCoursesIdToLong(
+                    savedInstanceState.getStringArrayList(Constants.SaveState.SHIFT_COURSE_SELECTION_ID)
+            );
+            restartSelectionLoader();
+        }
     }
 }

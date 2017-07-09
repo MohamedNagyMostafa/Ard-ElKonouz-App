@@ -552,4 +552,22 @@ public class Utility {
 
          return stringBuilder.toString();
      }
+
+    public static ArrayList<String> convertCoursesIdToString(ArrayList<Long> longArrayList){
+        ArrayList<String> courseIdAsString = new ArrayList<>();
+        for(Long id : longArrayList){
+            courseIdAsString.add(String.valueOf(id));
+        }
+
+        return courseIdAsString;
+    }
+
+    public static ArrayList<Long> convertCoursesIdToLong(ArrayList<String> stringArrayList){
+        ArrayList<Long> courseIdAsLong = new ArrayList<>();
+        for(String stringId : stringArrayList){
+            courseIdAsLong.add(Long.valueOf(stringId));
+        }
+
+        return courseIdAsLong;
+    }
 }

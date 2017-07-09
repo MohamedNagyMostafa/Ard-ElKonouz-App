@@ -119,6 +119,7 @@ public class Constants {
         public static final String CHARACTERISTIC = "CHARACTERISTIC";
         public static final String DEAL_PROBLEM = "DEAL PROBLEM";
         public static final String FREE_TIME = "FREE TIME";
+        public static final String SHIFT_COURSE_SELECTION_ID = "SELECTION COURSES ID";
 
     }
 
