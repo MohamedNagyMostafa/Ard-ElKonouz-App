@@ -120,6 +120,8 @@ public class Constants {
         public static final String DEAL_PROBLEM = "DEAL PROBLEM";
         public static final String FREE_TIME = "FREE TIME";
         public static final String SHIFT_COURSE_SELECTION_ID = "SELECTION COURSES ID";
+        public static final String CONNECTOR_CHILD_COURSE_SELECTION = "CONNECTOR CHILD SELECTION";
+        public static final String CONNECTOR_INSTRUCTOR_COURSE_SELECTION = "CONNECTOR INSTRUCTOR SELECTION";
 
     }
 
