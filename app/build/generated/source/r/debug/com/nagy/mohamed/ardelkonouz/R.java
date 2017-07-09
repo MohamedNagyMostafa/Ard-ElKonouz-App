@@ -3095,9 +3095,9 @@ containing a value of this type.
         public static final int shift_input_end_date_edit_view=0x7f0d0188;
         public static final int shift_input_list_course_name_text_view=0x7f0d01c2;
         public static final int shift_input_search_edit_text=0x7f0d0184;
-        public static final int shift_input_selection_course_name_chips=0x7f0d01c7;
-        public static final int shift_input_selection_delete_course_chips=0x7f0d01c6;
-        public static final int shift_input_selection_grid_view=0x7f0d0185;
+        public static final int shift_input_selection_course_name_chips=0x7f0d01c6;
+        public static final int shift_input_selection_delete_course_chips=0x7f0d01c7;
+        public static final int shift_input_selection_recycle_view=0x7f0d0185;
         public static final int shift_input_start_date_edit_view=0x7f0d0187;
         public static final int shift_list_course_name_text_view=0x7f0d01c3;
         public static final int shift_list_empty_view=0x7f0d018e;

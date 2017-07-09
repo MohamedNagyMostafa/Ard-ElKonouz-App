@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -31,6 +32,7 @@ import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterChoices;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterSelection;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewShiftInputAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class ShiftInputActivityFragment extends Fragment
     private ArrayList<Long> selectedID;
 
     private DatabaseCursorAdapter databaseAdapterChoices;
-    private DatabaseCursorAdapter databaseAdapterSelection;
+    private RecycleViewShiftInputAdapter recycleViewShiftInputAdapter;
 
     private  ViewHolder.ShiftInputScreenViewHolder shiftInputScreenViewHolder;
 
@@ -88,15 +90,15 @@ public class ShiftInputActivityFragment extends Fragment
 
     private CursorAdapterSelection cursorAdapterSelection = new CursorAdapterSelection() {
         @Override
-        public View newListView(ViewGroup viewGroup, Cursor cursor) {
-            return LayoutInflater.from(getContext())
-                    .inflate(R.layout.shift_selection_chips_recycle_view, viewGroup, false);
+        public ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder onCreateViewHolder(ViewGroup parent) {
+            return new ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder (
+                    LayoutInflater.from(getContext())
+                            .inflate(R.layout.shift_selection_chips_recycle_view, parent, false)
+            );
         }
 
         @Override
-        public void bindListView(View view, Cursor cursor) {
-            ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder selectionCoursesViewHolder =
-                    new ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder(view);
+        public void onBindViewHolder(ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder selectionCoursesViewHolder, Cursor cursor) {
 
             final Long COURSE_ID = cursor.getLong(
                     DatabaseController.ProjectionDatabase.CHOICES_SELECTION_ID
@@ -119,6 +121,7 @@ public class ShiftInputActivityFragment extends Fragment
             );
 
         }
+
     };
 
     private final View.OnClickListener TODAY_BUTTON_LISTENER =
@@ -210,6 +213,7 @@ public class ShiftInputActivityFragment extends Fragment
                         restartChoicesLoader();
                     }else{
                         databaseAdapterChoices.swapCursor(null);
+                        shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                     }
                 }
 
@@ -227,7 +231,7 @@ public class ShiftInputActivityFragment extends Fragment
         // Initialize ..
         shiftInputScreenViewHolder = new ViewHolder.ShiftInputScreenViewHolder(rootView);
         databaseAdapterChoices = new DatabaseCursorAdapter(getContext(), null, cursorAdapterChoices);
-        databaseAdapterSelection = new DatabaseCursorAdapter(getContext(), null, cursorAdapterSelection);
+        recycleViewShiftInputAdapter = new RecycleViewShiftInputAdapter(cursorAdapterSelection);
         selectedID = new ArrayList<>();
 
         // Set Listeners
@@ -365,7 +369,12 @@ public class ShiftInputActivityFragment extends Fragment
 
         // Set Adapters
         shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setAdapter(databaseAdapterChoices);
-        shiftInputScreenViewHolder.COURSE_SELECTION_GRID_VIEW.setAdapter(databaseAdapterSelection);
+        shiftInputScreenViewHolder.COURSE_SELECTION_RECYCLE_VIEW.setAdapter(recycleViewShiftInputAdapter);
+
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+
+        shiftInputScreenViewHolder.COURSE_SELECTION_RECYCLE_VIEW.setLayoutManager(linearLayoutManager);
 
         return rootView;
     }
@@ -443,7 +452,8 @@ public class ShiftInputActivityFragment extends Fragment
 
                 }else{
                     Log.e("selection list","called2");
-                    databaseAdapterSelection.swapCursor(null);
+                    recycleViewShiftInputAdapter.swapCursor(null);
+                    recycleViewShiftInputAdapter.notifyDataSetChanged();
                 }
                 Log.e("selection list","null");
                 break;
@@ -457,16 +467,20 @@ public class ShiftInputActivityFragment extends Fragment
         switch (loader.getId()){
             case Constants.LOADER_SELECTED_LIST:
                 if(selectedID.size() > 0) {
-                    databaseAdapterSelection.swapCursor(data);
+                    recycleViewShiftInputAdapter.swapCursor(data);
+                    recycleViewShiftInputAdapter.notifyDataSetChanged();
                 }else{
-                    databaseAdapterSelection.swapCursor(null);
+                    recycleViewShiftInputAdapter.swapCursor(null);
+                    recycleViewShiftInputAdapter.notifyDataSetChanged();
                 }
                 break;
             case Constants.LOADER_CHOICES_LIST:
                 if(data.getCount() > 0 && searchChars.length() > 0) {
                     databaseAdapterChoices.swapCursor(data);
+                    shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.VISIBLE);
                 }else{
                     databaseAdapterChoices.swapCursor(null);
+                    shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                 }
                 break;
         }
@@ -477,10 +491,12 @@ public class ShiftInputActivityFragment extends Fragment
 
         switch (loader.getId()){
             case Constants.LOADER_SELECTED_LIST:
-                databaseAdapterSelection.swapCursor(null);
+                recycleViewShiftInputAdapter.swapCursor(null);
+                recycleViewShiftInputAdapter.notifyDataSetChanged();
                 break;
             case Constants.LOADER_CHOICES_LIST:
                 databaseAdapterChoices.swapCursor(null);
+                shiftInputScreenViewHolder.COURSE_CHOICES_LIST_VIEW.setVisibility(View.GONE);
                 break;
         }
     }

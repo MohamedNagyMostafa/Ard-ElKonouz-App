@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/chips_background">
+
+    <TextView
+        android:id="@+id/shift_input_selection_course_name_chips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Course"
+        android:layout_gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:fontFamily="serif"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:gravity="center_vertical"/>
 
     <ImageView
         android:id="@+id/shift_input_selection_delete_course_chips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical|end"
         android:paddingTop="8dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"
-        android:layout_centerVertical="true"
         android:src="@drawable/ic_close_black_18dp"
         android:tint="@android:color/white" />
 
-    <TextView
-         android:id="@+id/shift_input_selection_course_name_chips"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Course"
-        android:layout_centerVertical="true"
-         android:layout_gravity="center_vertical"
-         android:textColor="@android:color/black"
-         android:layout_marginEnd="32dp"
-         android:fontFamily="serif"
-         android:paddingStart="12dp"
-         android:paddingEnd="8dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-         android:gravity="center_vertical"/>
 
 
-</RelativeLayout>
+</LinearLayout>

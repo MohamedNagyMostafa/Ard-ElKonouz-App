@@ -7,27 +7,27 @@
     tools:context=".ui.InputScreens.ShiftInputActivityFragment"
     tools:showIn="@layout/activity_shift_input">
 
-   <EditText
-       android:id="@+id/shift_input_search_edit_text"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       style="@style/RtlOverlay.Widget.AppCompat.Search.DropDown.Icon1"
-       android:layout_marginTop="8dp"
-       android:layout_marginBottom="8dp"
-       android:layout_marginEnd="16dp"
-       android:hint="Search"
-       android:layout_marginStart="16dp"
-       android:drawableStart="@drawable/ic_search_black_24dp"
-       android:backgroundTint="@color/colorPrimaryDark" />
+    <EditText
+        android:id="@+id/shift_input_search_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/RtlOverlay.Widget.AppCompat.Search.DropDown.Icon1"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Search"
+        android:layout_marginStart="16dp"
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        android:backgroundTint="@color/colorPrimaryDark" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content">
 
-        <GridView
-            android:id="@+id/shift_input_selection_grid_view"
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shift_input_selection_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:scrollbarStyle="insideInset"/>
@@ -35,7 +35,7 @@
         <ListView
             android:id="@+id/shift_input_choices_list_view"
             android:layout_width="180dp"
-            android:layout_height="120dp"
+            android:layout_height="160dp"
             android:numColumns="3"
             android:divider="@color/colorAccent"
             android:dividerHeight="1dp"
@@ -43,206 +43,200 @@
             android:layout_marginEnd="16dp"
             android:scrollbarStyle="insideInset"/>
 
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorPrimary"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-
-        <LinearLayout
+        <ScrollView
+            android:layout_below="@id/shift_input_selection_recycle_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/start_date"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginStart="4dp"
-                        android:orientation="horizontal">
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
 
-                        <EditText
-                            android:id="@+id/shift_input_start_date_edit_view"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:gravity="center_vertical"
-                            android:clickable="false"
-                            android:cursorVisible="false"
-                            android:focusable="false"
-                            android:focusableInTouchMode="false"
-                            android:backgroundTint="@color/colorAccent"
-                            android:inputType="datetime"/>
-
-                        <ImageView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="@color/colorPrimaryDark"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_av_timer_black_18dp"/>
+                            android:fontFamily="serif"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/start_date"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginStart="4dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/shift_input_start_date_edit_view"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:gravity="center_vertical"
+                                android:clickable="false"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:backgroundTint="@color/colorAccent"
+                                android:inputType="datetime"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:tint="@color/colorPrimaryDark"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_av_timer_black_18dp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/end_date"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginStart="4dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/shift_input_end_date_edit_view"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:gravity="center_vertical"
+                                android:clickable="false"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:backgroundTint="@color/colorAccent"
+                                android:inputType="datetime"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:tint="@color/colorPrimaryDark"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_av_timer_black_18dp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/shift_input_add_yesterday_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="YESTERDAY" />
+
+                    <Button
+                        android:id="@+id/shift_input_add_today_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="TODAY" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <Button
+                        android:id="@+id/shift_input_add_tomorrow_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/end_date"/>
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="TOMORROW" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/shift_input_add_next_week_button"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginStart="4dp"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/shift_input_end_date_edit_view"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:gravity="center_vertical"
-                            android:clickable="false"
-                            android:cursorVisible="false"
-                            android:focusable="false"
-                            android:focusableInTouchMode="false"
-                            android:backgroundTint="@color/colorAccent"
-                            android:inputType="datetime"/>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:tint="@color/colorPrimaryDark"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_av_timer_black_18dp"/>
-
-                    </LinearLayout>
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="NEXT WEEK" />
 
                 </LinearLayout>
 
-
             </LinearLayout>
 
+        </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/shift_input_add_yesterday_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="16dp"
-                    android:textColor="@android:color/white"
-                    android:text="YESTERDAY" />
+    </RelativeLayout>
 
-                <Button
-                    android:id="@+id/shift_input_add_today_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="16dp"
-                    android:textColor="@android:color/white"
-                    android:text="TODAY" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/shift_input_add_tomorrow_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="16dp"
-                    android:textColor="@android:color/white"
-                    android:text="TOMORROW" />
-
-                <Button
-                    android:id="@+id/shift_input_add_next_week_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="16dp"
-                    android:textColor="@android:color/white"
-                    android:text="NEXT WEEK" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
 
     <Button
         android:id="@+id/shift_apply_button"
         android:layout_width="110dp"
         android:layout_height="42dp"
         android:textSize="16sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_gravity="bottom|center_horizontal"
         android:backgroundTint="@android:color/transparent"
         android:fontFamily="sans-serif-condensed"

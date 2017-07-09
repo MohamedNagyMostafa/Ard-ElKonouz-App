@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -810,11 +809,11 @@ public class ViewHolder {
         }
     }
 
-    public static class ShiftInputScreenViewHolder{
+    public static class ShiftInputScreenViewHolder extends RecyclerView.ViewHolder{
 
         public final EditText COURSE_SEARCH_EDIT_TEXT;
         public final ListView COURSE_CHOICES_LIST_VIEW;
-        public final GridView COURSE_SELECTION_GRID_VIEW;
+        public final RecyclerView COURSE_SELECTION_RECYCLE_VIEW;
         public final EditText COURSE_START_SHIFT_DATE_EDIT_TEXT;
         public final EditText COURSE_END_SHIFT_DATE_EDIT_TEXT;
         public final Button TODAY_SHIFT_BUTTON;
@@ -824,10 +823,10 @@ public class ViewHolder {
         public final Button APPLY_BUTTON;
 
         public ShiftInputScreenViewHolder(View shiftView){
-
+            super(shiftView);
             COURSE_SEARCH_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_search_edit_text);
             COURSE_CHOICES_LIST_VIEW = (ListView) shiftView.findViewById(R.id.shift_input_choices_list_view);
-            COURSE_SELECTION_GRID_VIEW = (GridView) shiftView.findViewById(R.id.shift_input_selection_grid_view);
+            COURSE_SELECTION_RECYCLE_VIEW = (RecyclerView) shiftView.findViewById(R.id.shift_input_selection_recycle_view);
             COURSE_START_SHIFT_DATE_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_start_date_edit_view);
             COURSE_END_SHIFT_DATE_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_end_date_edit_view);
             TODAY_SHIFT_BUTTON = (Button) shiftView.findViewById(R.id.shift_input_add_today_button);
@@ -838,13 +837,13 @@ public class ViewHolder {
 
         }
 
-        public static class SelectionCoursesViewHolder{
+        public static class SelectionCoursesViewHolder extends RecyclerView.ViewHolder {
 
             public final TextView COURSE_NAME_TEXT_VIEW;
             public final ImageView COURSE_DELETE_IMAGE_VIEW;
 
             public SelectionCoursesViewHolder(View selectionCourseView){
-
+                super(selectionCourseView);
                 COURSE_NAME_TEXT_VIEW = (TextView) selectionCourseView.findViewById(R.id.shift_input_selection_course_name_chips);
                 COURSE_DELETE_IMAGE_VIEW = (ImageView) selectionCourseView.findViewById(R.id.shift_input_selection_delete_course_chips);
             }
