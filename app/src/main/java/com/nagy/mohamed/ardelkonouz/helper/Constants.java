@@ -18,6 +18,7 @@ public class Constants {
     //Paid
     public static final int PAID_COURSE = 1;
     public static final int NOT_PAID_COURSE = 2;
+
     // GENDER
     public static final int MALE = 0;
     public static final int FEMALE = 1;
@@ -105,5 +106,10 @@ public class Constants {
     public static final char FRI_DAY = 6;
 
     public static final Long DAY_IN_MILS = Long.valueOf(24* 60 * 60 * 1000);
+
+    public static class SaveState{
+
+        public static final String GENDER_STATE = "GENDER SAVE";
+    }
 
 }

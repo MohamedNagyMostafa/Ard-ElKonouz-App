@@ -11,7 +11,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 /**
  * Created by mohamednagy on 6/21/2017.
  */
-public class DoubleChoice {
+public class DoubleChoice{
     TextView textView;
     ImageView imageView;
     Context context;

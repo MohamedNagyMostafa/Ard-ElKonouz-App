@@ -530,4 +530,12 @@ public class Utility {
     public static Uri encodeUriToArabicSearch(Uri uri, String arabicChars){
         return Uri.parse(uri.toString() + "/" + arabicChars);
     }
+
+    public static int getSelectedDoubleChoices(ArrayList<DoubleChoice> doubleChoiceArrayList){
+        for(int i = 0 ; i < doubleChoiceArrayList.size() ; i++){
+            if(doubleChoiceArrayList.get(i).isSelected())
+                return i;
+        }
+        return -1;
+    }
 }
