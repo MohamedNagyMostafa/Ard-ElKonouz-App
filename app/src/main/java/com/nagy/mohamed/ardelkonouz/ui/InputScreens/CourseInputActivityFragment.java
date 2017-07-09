@@ -536,8 +536,10 @@ public class CourseInputActivityFragment extends Fragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
 
-        outState.putInt(Constants.SaveState.COURSE_STATE, Utility.getSelectedDoubleChoices(COURSE_STATE_LIST));
-        outState.putString(Constants.SaveState.COURSE_DAYS, Utility.getMultiDoubleSelectionAsString(COURSE_DAYS_LIST));
+        outState.putInt(Constants.SaveState.COURSE_STATE,
+                Utility.getSelectedDoubleChoices(COURSE_STATE_LIST));
+        outState.putString(Constants.SaveState.COURSE_DAYS,
+                Utility.getMultiDoubleSelectionAsString(COURSE_DAYS_LIST));
 
         super.onSaveInstanceState(outState);
     }

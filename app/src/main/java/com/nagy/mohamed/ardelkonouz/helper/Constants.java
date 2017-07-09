@@ -112,6 +112,13 @@ public class Constants {
         public static final String GENDER_STATE = "GENDER SAVE";
         public static final String COURSE_STATE = "STATE SAVE";
         public static final String COURSE_DAYS = "COURSE DAYS";
+        public static final String BIRTH_ORDER = "COURSE BIRTH";
+        public static final String EDUCATION_TYPE = "EDUCATION TYPE";
+        public static final String EDUCATION_STAGE = "EDUCATION STAGE";
+        public static final String YEAR = "YEAR";
+        public static final String CHARACTERISTIC = "CHARACTERISTIC";
+        public static final String DEAL_PROBLEM = "DEAL PROBLEM";
+        public static final String FREE_TIME = "FREE TIME";
 
     }
 
