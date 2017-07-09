@@ -108,18 +108,16 @@ public class CourseActivityFragment extends Fragment
                 )
         );
 
-        String stringBuilderDuration = getActivity().getString(R.string.from) +
-                " " +
+        courseListRecycleViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_START_DATE)
-                )+
-                "\n" +
-                getActivity().getString(R.string.to) +
+                )
+        );
+        courseListRecycleViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_END_DATE)
-                );
-
-        courseListRecycleViewHolder.COURSE_DURATION_TEXT_VIEW.setText(stringBuilderDuration);
+                )
+        );
 
         final Cursor instructorCourse =
                 getActivity().getContentResolver().query(
