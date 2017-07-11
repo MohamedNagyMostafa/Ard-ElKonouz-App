@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -265,4 +266,21 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         getActivity().finish();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putStringArrayList(Constants.SaveState.CONNECTOR_CHILD_COURSE_SELECTION,
+                Utility.convertCoursesIdToString(selectedCourses));
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if(savedInstanceState != null) {
+            selectedCourses = Utility.convertCoursesIdToLong(
+                    savedInstanceState.getStringArrayList(
+                            Constants.SaveState.CONNECTOR_CHILD_COURSE_SELECTION
+                    ));
+        }
+    }
 }

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -241,5 +242,25 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
     private void restartLoader(){
         getLoaderManager().restartLoader(Constants.LOADER_INSTRUCTOR_COURSE_CONNECTOR, null, this);
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putStringArrayList(Constants.SaveState.CONNECTOR_INSTRUCTOR_COURSE_SELECTION,
+                Utility.convertCoursesIdToString(selectedCourses));
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(savedInstanceState != null){
+            selectedCourses = Utility.convertCoursesIdToLong(
+                    savedInstanceState.getStringArrayList(
+                            Constants.SaveState.CONNECTOR_INSTRUCTOR_COURSE_SELECTION
+                    )
+            );
+        }
     }
 }

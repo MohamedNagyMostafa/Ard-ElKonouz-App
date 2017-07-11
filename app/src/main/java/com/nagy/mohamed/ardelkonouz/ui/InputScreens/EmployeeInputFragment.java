@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,18 +29,18 @@ import java.util.ArrayList;
  */
 public class EmployeeInputFragment extends Fragment {
 
+    ArrayList<DoubleChoice> GENDER_LIST;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_employee_input, container, false);
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
-        ViewHolder.EmployeeInputScreenViewHolder employeeInputScreenViewHolder =
-                new ViewHolder.EmployeeInputScreenViewHolder(rootView);
+        ViewHolder.EmployeeInputScreenViewHolder
+                employeeInputScreenViewHolder = new ViewHolder.EmployeeInputScreenViewHolder(rootView);
 
         // set choice sys.
-        ArrayList<DoubleChoice> GENDER_LIST =
-                setChoiceSystemItems(employeeInputScreenViewHolder);
+        GENDER_LIST = setChoiceSystemItems(employeeInputScreenViewHolder);
 
         // set choice listener.
         setChoiceGenderListener(GENDER_LIST);
@@ -307,5 +308,30 @@ public class EmployeeInputFragment extends Fragment {
         );
 
         return doubleChoiceArrayList;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        int genderChoice = Utility.getSelectedDoubleChoices(GENDER_LIST);
+
+        if(genderChoice != -1){
+            outState.putInt(Constants.SaveState.GENDER_STATE, genderChoice);
+        }
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        Integer genderChoice = null;
+        if(savedInstanceState != null) {
+            genderChoice = savedInstanceState.getInt(Constants.SaveState.GENDER_STATE);
+        }
+
+        if(genderChoice != null){
+            Utility.selectionProcess(genderChoice, GENDER_LIST);
+        }
     }
 }

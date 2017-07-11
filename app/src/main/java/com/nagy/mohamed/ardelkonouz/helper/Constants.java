@@ -18,6 +18,7 @@ public class Constants {
     //Paid
     public static final int PAID_COURSE = 1;
     public static final int NOT_PAID_COURSE = 2;
+
     // GENDER
     public static final int MALE = 0;
     public static final int FEMALE = 1;
@@ -105,5 +106,23 @@ public class Constants {
     public static final char FRI_DAY = 6;
 
     public static final Long DAY_IN_MILS = Long.valueOf(24* 60 * 60 * 1000);
+
+    public static class SaveState{
+
+        public static final String GENDER_STATE = "GENDER SAVE";
+        public static final String COURSE_STATE = "STATE SAVE";
+        public static final String COURSE_DAYS = "COURSE DAYS";
+        public static final String BIRTH_ORDER = "COURSE BIRTH";
+        public static final String EDUCATION_TYPE = "EDUCATION TYPE";
+        public static final String EDUCATION_STAGE = "EDUCATION STAGE";
+        public static final String YEAR = "YEAR";
+        public static final String CHARACTERISTIC = "CHARACTERISTIC";
+        public static final String DEAL_PROBLEM = "DEAL PROBLEM";
+        public static final String FREE_TIME = "FREE TIME";
+        public static final String SHIFT_COURSE_SELECTION_ID = "SELECTION COURSES ID";
+        public static final String CONNECTOR_CHILD_COURSE_SELECTION = "CONNECTOR CHILD SELECTION";
+        public static final String CONNECTOR_INSTRUCTOR_COURSE_SELECTION = "CONNECTOR INSTRUCTOR SELECTION";
+
+    }
 
 }

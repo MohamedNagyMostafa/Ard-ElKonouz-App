@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
  * A placeholder fragment containing a simple view.
  */
 public class InstructorInputActivityFragment extends Fragment {
+
+    private ArrayList<DoubleChoice> GENDER_LIST;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +40,7 @@ public class InstructorInputActivityFragment extends Fragment {
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
         // set choice sys.
-        ArrayList<DoubleChoice> GENDER_LIST =
-                setChoiceSystemItems(instructorInputScreenViewHolder);
+        GENDER_LIST = setChoiceSystemItems(instructorInputScreenViewHolder);
 
         // set choice listener.
         setChoiceGenderListener(GENDER_LIST);
@@ -290,5 +292,22 @@ public class InstructorInputActivityFragment extends Fragment {
         );
 
         return doubleChoiceArrayList;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(Constants.SaveState.GENDER_STATE,
+                Utility.getSelectedDoubleChoices(GENDER_LIST));
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(savedInstanceState != null){
+            Utility.selectionProcess(savedInstanceState.getInt(Constants.SaveState.GENDER_STATE),
+                    GENDER_LIST);
+        }
     }
 }

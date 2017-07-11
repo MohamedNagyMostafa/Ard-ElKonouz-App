@@ -530,4 +530,44 @@ public class Utility {
     public static Uri encodeUriToArabicSearch(Uri uri, String arabicChars){
         return Uri.parse(uri.toString() + "/" + arabicChars);
     }
+
+    public static int getSelectedDoubleChoices(ArrayList<DoubleChoice> doubleChoiceArrayList){
+        for(int i = 0 ; i < doubleChoiceArrayList.size() ; i++){
+            if(doubleChoiceArrayList.get(i).isSelected())
+                return i;
+        }
+        return -1;
+    }
+
+     public static String getMultiDoubleSelectionAsString(ArrayList<DoubleChoice> doubleChoiceArrayList){
+         StringBuilder stringBuilder = new StringBuilder("");
+
+         for(DoubleChoice doubleChoice : doubleChoiceArrayList){
+             if(doubleChoice.isSelected()){
+                 stringBuilder.append(Constants.SELECTED);
+             }else{
+                 stringBuilder.append(Constants.NOT_SELECTED);
+             }
+         }
+
+         return stringBuilder.toString();
+     }
+
+    public static ArrayList<String> convertCoursesIdToString(ArrayList<Long> longArrayList){
+        ArrayList<String> courseIdAsString = new ArrayList<>();
+        for(Long id : longArrayList){
+            courseIdAsString.add(String.valueOf(id));
+        }
+
+        return courseIdAsString;
+    }
+
+    public static ArrayList<Long> convertCoursesIdToLong(ArrayList<String> stringArrayList){
+        ArrayList<Long> courseIdAsLong = new ArrayList<>();
+        for(String stringId : stringArrayList){
+            courseIdAsLong.add(Long.valueOf(stringId));
+        }
+
+        return courseIdAsLong;
+    }
 }

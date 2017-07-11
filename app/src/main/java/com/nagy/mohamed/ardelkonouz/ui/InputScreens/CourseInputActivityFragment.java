@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.net.ParseException;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +39,9 @@ import java.util.Date;
 public class CourseInputActivityFragment extends Fragment
         implements CurrentDateWithTime{
 
+    private ArrayList<DoubleChoice> COURSE_STATE_LIST;
+    private ArrayList<DoubleChoice> COURSE_DAYS_LIST;
+
     private final View.OnClickListener DATE_EDIT_TEXT_LISTENER =
             new View.OnClickListener() {
                 @Override
@@ -57,10 +61,8 @@ public class CourseInputActivityFragment extends Fragment
 
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
-        final ArrayList<DoubleChoice> COURSE_STATE_LIST =
-                setCourseStateListItem(courseInputScreenViewHolder);
-        final ArrayList<DoubleChoice> COURSE_DAYS_LIST =
-                setCourseDaysListItem(courseInputScreenViewHolder);
+        COURSE_STATE_LIST = setCourseStateListItem(courseInputScreenViewHolder);
+        COURSE_DAYS_LIST = setCourseDaysListItem(courseInputScreenViewHolder);
 
         courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
 
@@ -531,4 +533,27 @@ public class CourseInputActivityFragment extends Fragment
         return contentValues;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putInt(Constants.SaveState.COURSE_STATE,
+                Utility.getSelectedDoubleChoices(COURSE_STATE_LIST));
+        outState.putString(Constants.SaveState.COURSE_DAYS,
+                Utility.getMultiDoubleSelectionAsString(COURSE_DAYS_LIST));
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(savedInstanceState != null){
+            Utility.selectionProcess(
+                    savedInstanceState.getInt(Constants.SaveState.COURSE_STATE),
+            COURSE_STATE_LIST);
+            Utility.doubleSelectionProcess(COURSE_DAYS_LIST,
+                    savedInstanceState.getString(Constants.SaveState.COURSE_DAYS));
+        }
+    }
 }

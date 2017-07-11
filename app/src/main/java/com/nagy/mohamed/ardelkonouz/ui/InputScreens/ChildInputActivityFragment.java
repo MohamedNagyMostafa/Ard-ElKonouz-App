@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,14 @@ import java.util.ArrayList;
  */
 public class ChildInputActivityFragment extends Fragment {
 
+    ArrayList<DoubleChoice> BIRTH_ORDER_LIST;
+    ArrayList<DoubleChoice> GENDER_LIST;
+    ArrayList<DoubleChoice> EDUCATION_TYPE_LIST;
+    ArrayList<DoubleChoice> EDUCATION_STAGE_LIST;
+    ArrayList<DoubleChoice> YEAR_LIST;
+    ArrayList<DoubleChoice> CHARACTERISTIC_LIST;
+    ArrayList<DoubleChoice> DEAL_PROBLEM_LIST;
+    ArrayList<DoubleChoice> FREE_TIME_LIST;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -40,22 +49,14 @@ public class ChildInputActivityFragment extends Fragment {
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
         // Set Choices process.
-        final ArrayList<DoubleChoice> BIRTH_ORDER_LIST =
-                setChoiceBirthOrderItems(childInputScreenViewHolder);
-        final ArrayList<DoubleChoice> GENDER_LIST =
-                setChoiceGenderItems(childInputScreenViewHolder);
-        final ArrayList<DoubleChoice> EDUCATION_TYPE_LIST =
-                setChoiceEducationTypeItems(childInputScreenViewHolder);
-        final ArrayList<DoubleChoice> EDUCATION_STAGE_LIST =
-                setChoiceEducationStageItems(childInputScreenViewHolder);
-        final ArrayList<DoubleChoice> YEAR_LIST =
-                setChoiceYearItems(childInputScreenViewHolder);
-        final ArrayList<DoubleChoice> CHARACTERISTIC_LIST =
-                setChoiceCharacteristicItems(childInputScreenViewHolder);
-        final ArrayList<DoubleChoice> DEAL_PROBLEM_LIST =
-                setChoiceDealProblemItems(childInputScreenViewHolder);
-        final ArrayList<DoubleChoice> FREE_TIME_LIST =
-                setChoiceFreeTimeItems(childInputScreenViewHolder);
+        BIRTH_ORDER_LIST = setChoiceBirthOrderItems(childInputScreenViewHolder);
+        GENDER_LIST = setChoiceGenderItems(childInputScreenViewHolder);
+        EDUCATION_TYPE_LIST = setChoiceEducationTypeItems(childInputScreenViewHolder);
+        EDUCATION_STAGE_LIST = setChoiceEducationStageItems(childInputScreenViewHolder);
+        YEAR_LIST = setChoiceYearItems(childInputScreenViewHolder);
+        CHARACTERISTIC_LIST = setChoiceCharacteristicItems(childInputScreenViewHolder);
+        DEAL_PROBLEM_LIST = setChoiceDealProblemItems(childInputScreenViewHolder);
+        FREE_TIME_LIST = setChoiceFreeTimeItems(childInputScreenViewHolder);
 
         // Set Choices Listeners
         setChoiceListListeners(
@@ -685,5 +686,68 @@ public class ChildInputActivityFragment extends Fragment {
         );
 
         return contentValues;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putInt(Constants.SaveState.GENDER_STATE,
+                Utility.getSelectedDoubleChoices(GENDER_LIST));
+        outState.putInt(Constants.SaveState.BIRTH_ORDER,
+                Utility.getSelectedDoubleChoices(BIRTH_ORDER_LIST));
+        outState.putInt(Constants.SaveState.EDUCATION_TYPE,
+                Utility.getSelectedDoubleChoices(EDUCATION_TYPE_LIST));
+        outState.putInt(Constants.SaveState.EDUCATION_STAGE,
+                Utility.getSelectedDoubleChoices(EDUCATION_STAGE_LIST));
+        outState.putInt(Constants.SaveState.YEAR,
+                Utility.getSelectedDoubleChoices(YEAR_LIST));
+        outState.putString(Constants.SaveState.CHARACTERISTIC,
+                Utility.getMultiDoubleSelectionAsString(CHARACTERISTIC_LIST));
+        outState.putString(Constants.SaveState.DEAL_PROBLEM,
+                Utility.getMultiDoubleSelectionAsString(DEAL_PROBLEM_LIST));
+        outState.putString(Constants.SaveState.FREE_TIME,
+                Utility.getMultiDoubleSelectionAsString(FREE_TIME_LIST));
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(savedInstanceState != null){
+            Utility.selectionProcess(
+                    savedInstanceState.getInt(Constants.SaveState.GENDER_STATE),
+                    GENDER_LIST
+            );
+            Utility.selectionProcess(
+                    savedInstanceState.getInt(Constants.SaveState.BIRTH_ORDER),
+                    BIRTH_ORDER_LIST
+            );
+            Utility.selectionProcess(
+                    savedInstanceState.getInt(Constants.SaveState.EDUCATION_TYPE),
+                    EDUCATION_TYPE_LIST
+            );
+            Utility.selectionProcess(
+                    savedInstanceState.getInt(Constants.SaveState.EDUCATION_STAGE),
+                    EDUCATION_STAGE_LIST
+            );
+            Utility.selectionProcess(
+                    savedInstanceState.getInt(Constants.SaveState.YEAR),
+                    YEAR_LIST
+            );
+            Utility.doubleSelectionProcess(
+                    CHARACTERISTIC_LIST,
+                    savedInstanceState.getString(Constants.SaveState.CHARACTERISTIC)
+            );
+            Utility.doubleSelectionProcess(
+                    DEAL_PROBLEM_LIST,
+                    savedInstanceState.getString(Constants.SaveState.DEAL_PROBLEM)
+            );
+            Utility.doubleSelectionProcess(
+                    FREE_TIME_LIST,
+                    savedInstanceState.getString(Constants.SaveState.FREE_TIME)
+            );
+        }
     }
 }
