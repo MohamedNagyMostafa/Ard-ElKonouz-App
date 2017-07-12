@@ -19,7 +19,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
-import com.nagy.mohamed.ardelkonouz.ui.adapter.OnDeleteListener;
+import com.nagy.mohamed.ardelkonouz.ui.Listner.OnDeleteListener;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewCourseProfileAdapter;
 
 /**

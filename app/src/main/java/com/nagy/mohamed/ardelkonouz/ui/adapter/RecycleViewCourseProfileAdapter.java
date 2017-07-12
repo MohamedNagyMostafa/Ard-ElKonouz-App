@@ -11,6 +11,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.Listner.OnDeleteListener;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 
 /**
