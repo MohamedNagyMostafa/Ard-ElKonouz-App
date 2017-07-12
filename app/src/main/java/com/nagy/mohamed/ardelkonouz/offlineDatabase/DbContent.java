@@ -173,25 +173,25 @@ public class DbContent {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
-    public static class CourseInstructorTable implements BaseColumns{
+    public static class SectionInstructorTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "course_instructor";
+        public static final String TABLE_NAME = "section_instructor";
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
                 .appendPath(TABLE_NAME).build();
 
-        public static final String COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_ID_COLUMN = "section_id";
         public static final String INSTRUCTOR_ID_COLUMN = "instructor_id";
         public static final String PAID_COLUMN = "paid";
 
-        public static final String CREATE_COURSE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
+        public static final String CREATE_SECTION_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
-                + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + SECTION_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + PAID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + INSTRUCTOR_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + INSTRUCTOR_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + InstructorTable.TABLE_NAME + SPACE + "(" + InstructorTable._ID + ")"+
-                FOREIGN_KEY + SPACE + "(" +COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
-                + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +");";
+                FOREIGN_KEY + SPACE + "(" + SECTION_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                + SectionTable.TABLE_NAME + SPACE + "(" + SectionTable._ID + ")" +");";
 
         public static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
@@ -229,19 +229,43 @@ public class DbContent {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(TABLE_NAME).build();
 
-        public static final String COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_ID_COLUMN = "section_id";
         public static final String START_DATE_COLUMN = "start_date";
         public static final String END_DATE_COLUMN = "end_date";
 
         public static final String CREATE_SHIFT_DAY_TABLE =
                 CREATE_TABLE + SPACE + TABLE_NAME + "(" +
                         _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
-                        COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                        SECTION_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                         START_DATE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                         END_DATE_COLUMN + SPACE  + INTEGER + SPACE + NOT_NULL + "," +
-                        FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
-                        + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +")";
+                        FOREIGN_KEY + SPACE + "(" + SECTION_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                        + SectionTable.TABLE_NAME + SPACE + "(" + SectionTable._ID + ")" +")";
 
     }
+
+    public static class SectionTable implements BaseColumns{
+
+        public static final String TABLE_NAME = "section";
+        public static final Uri CONTENT_URI = BASE_CONTENT_URI
+                .buildUpon().appendPath(TABLE_NAME).build();
+
+        public static final String SECTION_AVAILABLE_POSITIONS_COLUMN = "available_positions";
+        public static final String SECTION_START_DATE_COLUMN = "section_start_date";
+        public static final String SECTION_END_DATE_COLUMN = "section_end_date";
+        public static final String SECTION_DAYS_COLUMN = "section_days";
+        public static final String SECTION_SESSIONS_NUMBER_COLUMN = "section_sessions_number";
+
+        public static final String CREATE_SECTION_TABLE = CREATE_TABLE
+                + SPACE + TABLE_NAME + "(" +
+                _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
+                SECTION_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + ");";
+
+    }
+
 
 }

@@ -50,7 +50,7 @@ public class SectionProfileActivityFragment extends Fragment
 
                     // get current shifts.
                     Cursor shiftCursor = getActivity().getContentResolver().query(
-                            DatabaseController.UriDatabase.getShiftWithCourseId(sectionId),
+                            DatabaseController.UriDatabase.getShiftWithSectionId(sectionId),
                             DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
                             null,
                             null,
@@ -75,10 +75,9 @@ public class SectionProfileActivityFragment extends Fragment
                         shiftCursor.close();
                     }
 
-                    // get Course date data.
                     // TODO ... update database.
                     Cursor courseCursor = getActivity().getContentResolver().query(
-                            DatabaseController.UriDatabase.getSectionTableWithIdUri(sectionId),
+                            DatabaseController.UriDatabase.getSectionWithId(sectionId),
                             DatabaseController.ProjectionDatabase.COURSE_DATE_PROJECTION,
                             null,
                             null,
@@ -90,39 +89,39 @@ public class SectionProfileActivityFragment extends Fragment
                         if(courseCursor.getCount() > 0){
                             courseCursor.moveToNext();
 
-                            final String COURSE_SESSION_DAYS = courseCursor.getString(
-                                    DatabaseController.ProjectionDatabase.SECTION_DATE_DAYS
+                            final String SECTION_SESSION_DAYS = courseCursor.getString(
+                                    DatabaseController.ProjectionDatabase.SECTION_DAYS
                             );
-                            final int COURSE_SESSION_NUMBER = courseCursor.getInt(
-                                    DatabaseController.ProjectionDatabase.SECTION_DATE_SESSIONS_NUMBER
+                            final int SECTION_SESSION_NUMBER = courseCursor.getInt(
+                                    DatabaseController.ProjectionDatabase.SECTION_SESSIONS_NUMBER_COLUMN
                             );
-                            final Long COURSE_START_DATE = courseCursor.getLong(
-                                    DatabaseController.ProjectionDatabase.SECTION_DATE_START_DATE
+                            final Long SECTION_START_DATE = courseCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.SECTION_START_DATE
                             );
 
-                            final Long COURSE_END_DATE = Utility.getEndDate(
+                            final Long SECTION_END_DATE = Utility.getEndDate(
                                     shifts,
-                                    COURSE_SESSION_DAYS,
-                                    COURSE_SESSION_NUMBER,
-                                    COURSE_START_DATE
+                                    SECTION_SESSION_DAYS,
+                                    SECTION_SESSION_NUMBER,
+                                    SECTION_START_DATE
                             );
 
                             final int REMAINS_SESSIONS = Utility.getRemainDays(
                                     shifts,
-                                    COURSE_SESSION_DAYS,
-                                    COURSE_START_DATE,
-                                    COURSE_END_DATE,
-                                    COURSE_SESSION_NUMBER
+                                    SECTION_SESSION_DAYS,
+                                    SECTION_START_DATE,
+                                    SECTION_END_DATE,
+                                    SECTION_SESSION_NUMBER
                             );
 
-                            final int FINISHED_SESSIONS = COURSE_SESSION_NUMBER - REMAINS_SESSIONS;
+                            final int FINISHED_SESSIONS = SECTION_SESSION_NUMBER - REMAINS_SESSIONS;
 
                             ContentValues contentValues = new ContentValues();
-                            contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, COURSE_END_DATE);
+                            contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, SECTION_END_DATE);
 
                             // TODO ... update database to be for sections
                             getActivity().getContentResolver().update(
-                                    DatabaseController.UriDatabase.getSectionTableWithIdUri(sectionId),
+                                    DatabaseController.UriDatabase.getSectionWithId(sectionId),
                                     contentValues,
                                     null,
                                     null
@@ -131,7 +130,7 @@ public class SectionProfileActivityFragment extends Fragment
                             sectionProfileViewHolder.SECTION_ENDING_DATE_TEXT_VIEW.setText(
                                     String.valueOf(
                                             Utility.getTimeFormat(
-                                                    COURSE_END_DATE
+                                                    SECTION_END_DATE
                                             )
                                     )
                             );
@@ -141,9 +140,9 @@ public class SectionProfileActivityFragment extends Fragment
                                             Utility.getTimeFormat(
                                                     Utility.getNextSessionDay(
                                                             shifts,
-                                                            COURSE_SESSION_DAYS,
-                                                            COURSE_END_DATE,
-                                                            COURSE_START_DATE
+                                                            SECTION_SESSION_DAYS,
+                                                            SECTION_END_DATE,
+                                                            SECTION_START_DATE
                                                     )
                                             )
                                     )
@@ -191,7 +190,7 @@ public class SectionProfileActivityFragment extends Fragment
         // TODO ... update Database.
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getShiftWithSectionJoinId(sectionId),
-                DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_PROJECTION,
+                DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_PROJECTION,
                 null,
                 null,
                 null
@@ -207,10 +206,10 @@ public class SectionProfileActivityFragment extends Fragment
                     Shift shift =
                             new Shift(
                                     cursor.getLong(
-                                            DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_START_DATE_COLUMN
+                                            DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_START_DATE_COLUMN
                                     ),
                                     cursor.getLong(
-                                            DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_END_DATE_COLUMN
+                                            DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_END_DATE_COLUMN
                                     ),
                                     sectionId
                             );
@@ -268,17 +267,18 @@ public class SectionProfileActivityFragment extends Fragment
 
         /// TODO ... update projection
         final String SECTION_NAME =
-                cursor.getString();
+                "Section " +
+                cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_ID);
         final long SECTION_START_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
         final long SECTION_END_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN);
         final int SECTION_STATE =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN);
         final int SECTION_SESSIONS_NUMBER =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN);
         final String SECTION_SESSIONS_DAYS =
-                cursor.getString();
+                cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN);
 
         final int REMAINING_SESSIONS = Utility.getRemainDays(
                 shifts,
@@ -318,17 +318,18 @@ public class SectionProfileActivityFragment extends Fragment
                                final long sectionId){
 
         final String SECTION_NAME =
-                cursor.getString();
+                "Section " +
+                        cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_ID);
         final long SECTION_START_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
         final long SECTION_END_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN);
         final int SECTION_STATE =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN);
         final int SECTION_SESSIONS_NUMBER =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN);
         final String SECTION_SESSIONS_DAYS =
-                cursor.getString();
+                cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN);
 
         final int REMAINING_SESSIONS = Utility.getRemainDays(
                 null,
@@ -375,7 +376,7 @@ public class SectionProfileActivityFragment extends Fragment
                 null,
                 null,
                 null
-        );;
+        );
     }
 
     @Override
