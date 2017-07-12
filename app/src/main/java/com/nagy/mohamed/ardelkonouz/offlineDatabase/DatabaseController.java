@@ -250,38 +250,25 @@ public class DatabaseController {
         public static final int SHIFT_START_DATE_COLUMN = 2;
         public static final int SHIFT_END_DATE_COLUMN = 3;
 
-        public static final String[] SHIFT_COURSE_JOIN_PROJECTION = {
+        public static final String[] SHIFT_SECTION_JOIN_PROJECTION = {
                 DbContent.ShiftDaysTable.TABLE_NAME + "." + DbContent.ShiftDaysTable._ID,
                 DbContent.ShiftDaysTable.START_DATE_COLUMN,
                 DbContent.ShiftDaysTable.END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_HOURS_COLUMN,
-                DbContent.CourseTable.COURSE_COST_COLUMN,
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_START_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_END_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_LEVEL_COLUMN,
-                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.CourseTable.COURSE_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
+                DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN
         };
 
-        public static final int SHIFT_COURSE_JOIN_START_DATE_COLUMN = 1;
-        public static final int SHIFT_COURSE_JOIN_END_DATE_COLUMN =2;
-        public static final int SHIFT_COURSE_JOIN_COURSE_NAME_COLUMN = 3;
-        public static final int SHIFT_COURSE_JOIN_COURSE_HOURS_COLUMN = 4;
-        public static final int SHIFT_COURSE_JOIN_COURSE_COST_COLUMN = 5;
-        public static final int SHIFT_COURSE_JOIN_COURSE_AVAILABLE_POSITIONS_COLUMN = 6;
-        public static final int SHIFT_COURSE_JOIN_COURSE_START_DATE_COLUMN = 7;
-        public static final int SHIFT_COURSE_JOIN_COURSE_END_DATE_COLUMN = 8;
-        public static final int SHIFT_COURSE_JOIN_COURSE_START_AGE_COLUMN = 9;
-        public static final int SHIFT_COURSE_JOIN_COURSE_END_AGE_COLUMN = 10;
-        public static final int SHIFT_COURSE_JOIN_COURSE_LEVEL_COLUMN = 11;
-        public static final int SHIFT_COURSE_JOIN_COURSE_SALARY_PER_CHILD = 12;
-        public static final int SHIFT_COURSE_JOIN_COURSE_DAYS_COLUMN = 13;
-        public static final int SHIFT_COURSE_JOIN_COURSE_SESSIONS_NUMBER_COLUMN = 14;
+        public static final int SHIFT_SECTION_JOIN_ID = 0;
+        public static final int SHIFT_SECTION_JOIN_START_DATE_COLUMN = 1;
+        public static final int SHIFT_SECTION_JOIN_END_DATE_COLUMN =2;
+        public static final int SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN = 3;
+        public static final int SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN = 4;
+        public static final int SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN = 5;
+        public static final int SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN = 6;
+        public static final int SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN = 7;
 
         public static final String[] CHOICES_SELECTION_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -415,8 +402,8 @@ public class DatabaseController {
             return SHIFT_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getShiftWithCourseJoinId(long id){
-            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.COURSE_ID_COLUMN)
+        public static Uri getShiftWithSectionJoinId(long id){
+            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.SECTION_ID_COLUMN)
                     .appendPath(String.valueOf(id)).build();
         }
 

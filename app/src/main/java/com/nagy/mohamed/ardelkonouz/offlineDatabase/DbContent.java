@@ -240,7 +240,7 @@ public class DbContent {
                         START_DATE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                         END_DATE_COLUMN + SPACE  + INTEGER + SPACE + NOT_NULL + "," +
                         FOREIGN_KEY + SPACE + "(" + SECTION_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
-                        + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +")";
+                        + SectionTable.TABLE_NAME + SPACE + "(" + SectionTable._ID + ")" +")";
 
     }
 

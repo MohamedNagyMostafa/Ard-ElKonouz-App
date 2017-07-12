@@ -190,7 +190,7 @@ public class SectionProfileActivityFragment extends Fragment
         // TODO ... update Database.
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getShiftWithSectionJoinId(sectionId),
-                DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_PROJECTION,
+                DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_PROJECTION,
                 null,
                 null,
                 null
@@ -206,10 +206,10 @@ public class SectionProfileActivityFragment extends Fragment
                     Shift shift =
                             new Shift(
                                     cursor.getLong(
-                                            DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_START_DATE_COLUMN
+                                            DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_START_DATE_COLUMN
                                     ),
                                     cursor.getLong(
-                                            DatabaseController.ProjectionDatabase.SHIFT_COURSE_JOIN_END_DATE_COLUMN
+                                            DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_END_DATE_COLUMN
                                     ),
                                     sectionId
                             );
