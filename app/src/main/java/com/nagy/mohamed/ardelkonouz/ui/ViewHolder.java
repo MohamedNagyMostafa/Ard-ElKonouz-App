@@ -549,19 +549,10 @@ public class ViewHolder {
         public final TextView COURSE_HOURS_TEXT_VIEW;
         public final TextView COURSE_LEVEL_TEXT_VIEW;
         public final TextView COURSE_COST_TEXT_VIEW;
-        public final TextView COURSE_START_DATE_TEXT_VIEW;
-        public final TextView COURSE_END_DATE_TEXT_VIEW;
         public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
-        public final TextView COURSE_STATE_TEXT_VIEW;
-        public final TextView COURSE_INSTRUCTOR_NAME_TEXT_VIEW;
         public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
-        public final TextView COURSE_SESSIONS_DAYS_TEXT_VIEW;
-        public final TextView COURSE_NEXT_SESSION_DAY_TEXT_VIEW;
-        public final TextView COURSE_REMAINING_SESSIONS_TEXT_VIEW;
-        public final TextView COURSE_SESSIONS_NUMBER_TEXT_VIEW;
-        public final TextView COURSE_FINISHED_SESSIONS_TEXT_VIEW;
-        public final LinearLayout COURSE_SHIFT_EMPTY_LAYOUT;
-        public final RecyclerView COURSE_SHIFTS_RECYCLE_VIEW;
+        public final LinearLayout COURSE_SECTION_EMPTY_LAYOUT;
+        public final RecyclerView COURSE_SECTION_RECYCLE_VIEW;
         public final FloatingActionButton COURSE_EDIT_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
@@ -570,33 +561,26 @@ public class ViewHolder {
             COURSE_HOURS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_hours_text_view);
             COURSE_LEVEL_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_level_text_view);
             COURSE_COST_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_cost_text_view);
-            COURSE_START_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_start_date_text_view);
-            COURSE_END_DATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_end_date_text_view);
             COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_salary_per_child_text_view);
-            COURSE_STATE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_state_text_view);
-            COURSE_INSTRUCTOR_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_instructor_name_text_view);
             COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_age_range_text_view);
-            COURSE_SESSIONS_DAYS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_session_days_text_view);
-            COURSE_NEXT_SESSION_DAY_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_next_session_day_text_view);
-            COURSE_REMAINING_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_remaining_sessions_text_view);
-            COURSE_SESSIONS_NUMBER_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_sessions_number_text_view);
-            COURSE_FINISHED_SESSIONS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_finished_sessions_text_view);
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
-            COURSE_SHIFTS_RECYCLE_VIEW = (RecyclerView) courseProfileView.findViewById(R.id.course_pf_course_shifts_recycle_view);
-            COURSE_SHIFT_EMPTY_LAYOUT = (LinearLayout) courseProfileView.findViewById(R.id.course_pf_empty_view_layout);
+            COURSE_SECTION_RECYCLE_VIEW = (RecyclerView) courseProfileView.findViewById(R.id.course_pf_course_sections_recycle_view);
+            COURSE_SECTION_EMPTY_LAYOUT = (LinearLayout) courseProfileView.findViewById(R.id.course_pf_empty_view_layout);
         }
 
-        public static class ShiftRecycleViewHolder extends RecyclerView.ViewHolder{
+        public static class SectionRecycleViewHolder extends RecyclerView.ViewHolder{
 
-            public final TextView SHIFT_START_DATE_TEXT_VIEW;
-            public final TextView SHIFT_END_DATE_TEXT_VIEW;
-            public final ImageView SHIFT_DELETE_IMAGE_VIEW;
+            public final TextView SECTION_START_DATE_TEXT_VIEW;
+            public final TextView SECTION_INSTRUCTOR_TEXT_VIEW;
+            public final TextView SECTION_END_DATE_TEXT_VIEW;
+            public final ImageView SECTION_DELETE_IMAGE_VIEW;
 
-            public ShiftRecycleViewHolder(View shiftRecycleView){
+            public SectionRecycleViewHolder(View shiftRecycleView){
                 super(shiftRecycleView);
-                SHIFT_START_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_shift_start_date_text_view);
-                SHIFT_END_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_shift_end_date_text_view);
-                SHIFT_DELETE_IMAGE_VIEW = (ImageView) shiftRecycleView.findViewById(R.id.course_pf_shift_delete_image_View);
+                SECTION_START_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_beginning_date_text_view);
+                SECTION_END_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_end_date_text_view);
+                SECTION_INSTRUCTOR_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_instructor_text_view);
+                SECTION_DELETE_IMAGE_VIEW = (ImageView) shiftRecycleView.findViewById(R.id.course_pf_section_delete_image_View);
             }
         }
     }
@@ -860,6 +844,52 @@ public class ViewHolder {
             }
         }
 
+    }
+
+    public static class SectionProfileViewHolder{
+
+        public final TextView SECTION_NAME_TEXT_VIEW;
+        public final TextView SECTION_COST_TEXT_VIEW;
+        public final TextView SECTION_BEGINNING_DATE_TEXT_VIEW;
+        public final TextView SECTION_ENDING_DATE_TEXT_VIEW;
+        public final TextView SECTION_SESSION_DAYS_TEXT_VIEW;
+        public final TextView SECTION_NEXT_SESSION_DAY_TEXT_VIEW;
+        public final TextView SECTION_INSTRUCTOR_NAME_TEXT_VIEW;
+        public final TextView SECTION_STATE_TEXT_VIEW;
+        public final TextView SECTION_SESSIONS_NUMBER_TEXT_VIEW;
+        public final TextView SECTION_FINISHED_SESSIONS_TEXT_VIEW;
+        public final TextView SECTION_REMAINING_SESSIONS_TEXT_VIEW;
+        public final RecyclerView SECTION_SHIFTS_RECYCLE_VIEW;
+        public final FloatingActionButton SECTION_EDIT_FLOATING_BUTTON;
+
+        public SectionProfileViewHolder(View sectionProfileView){
+            SECTION_NAME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_name_text_view);
+            SECTION_COST_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_cost_text_view);
+            SECTION_BEGINNING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_start_date_text_view);
+            SECTION_ENDING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_end_date_text_view);
+            SECTION_SESSION_DAYS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_days_text_view);
+            SECTION_NEXT_SESSION_DAY_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_next_session_day_text_view);
+            SECTION_INSTRUCTOR_NAME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_instructor_name_text_view);
+            SECTION_STATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_state_text_view);
+            SECTION_SESSIONS_NUMBER_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_sessions_number_text_view);
+            SECTION_FINISHED_SESSIONS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_finished_sessions_text_view);
+            SECTION_REMAINING_SESSIONS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_remaining_sessions_text_view);
+            SECTION_SHIFTS_RECYCLE_VIEW = (RecyclerView) sectionProfileView.findViewById(R.id.section_pf_section_shifts_recycle_view);
+            SECTION_EDIT_FLOATING_BUTTON = (FloatingActionButton) sectionProfileView.findViewById(R.id.section_pf_edit_floating_button);
+        }
+
+        public static class SectionShiftRecycleView{
+
+            public final TextView SHIFT_BEGINNING_DATE_TEXT_VIEW;
+            public final TextView SHIFT_ENDING_DATE_TEXT_VIEW;
+            public final ImageView SHIFT_DELETE_IMAGE_VIEW;
+
+            public SectionShiftRecycleView(View sectionShiftView){
+                SHIFT_BEGINNING_DATE_TEXT_VIEW = (TextView) sectionShiftView.findViewById(R.id.section_pf_shift_start_date_text_view);
+                SHIFT_ENDING_DATE_TEXT_VIEW = (TextView) sectionShiftView.findViewById(R.id.section_pf_shift_end_date_text_view);
+                SHIFT_DELETE_IMAGE_VIEW = (ImageView) sectionShiftView.findViewById(R.id.section_pf_shift_delete_image_View);
+            }
+        }
     }
 
 }
