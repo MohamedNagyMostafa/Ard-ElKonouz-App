@@ -841,9 +841,9 @@ public class ContentProviderDatabase extends ContentProvider {
         final String EMPLOYEE_WITH_ID_PATH = EMPLOYEE_PATH + "/#";
         final String COURSE_WITH_ID_PATH = COURSE_PATH + "/#";
 
-        final String COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/" +
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN+ "/#" + "/#";
+        final String COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_PATH = DbContent.SectionTable.TABLE_NAME + "/" +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN + "/" +
+                DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN+ "/#" + "/#";
         final String INSTRUCTOR_WITH_ID_PATH = DbContent.InstructorTable.TABLE_NAME + "/#";
         final String CHILD_SECTION_WITH_CHILD_ID_PATH = CHILD_SECTION_PATH + "/" +
                 DbContent.ChildTable.TABLE_NAME + "/#";
@@ -1180,14 +1180,14 @@ public class ContentProviderDatabase extends ContentProvider {
         Uri newUri = Uri.parse(newUriString);
         long instructorId = ContentUris.parseId(newUri);
 
-        String selection = DbContent.CourseTable.COURSE_END_DATE_COLUMN + ">?" + " AND (" +
+        String selection = DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">?" + " AND (" +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + " =?" + " OR " +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + "=? )" ;
         String[] selectionArgs = {String.valueOf(date),
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
-        return SECTION_INSTRUCTOR_JOIN_SECTION_QUERY.query(
+        return COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
