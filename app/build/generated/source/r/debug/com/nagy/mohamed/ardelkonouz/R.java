@@ -3233,7 +3233,7 @@ containing a value of this type.
         public static final int content_shift_input=0x7f040042;
         public static final int content_shift_list=0x7f040043;
         public static final int course_list_recycle_view=0x7f040044;
-        public static final int course_pf_shifts_recycle_view=0x7f040045;
+        public static final int section_pf_shifts_recycle_view =0x7f040045;
         public static final int design_bottom_navigation_item=0x7f040046;
         public static final int design_bottom_sheet_dialog=0x7f040047;
         public static final int design_layout_snackbar=0x7f040048;
