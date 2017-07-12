@@ -35,7 +35,7 @@ public class RecycleViewCourseProfileAdapter extends
     @Override
     public ViewHolder.CourseProfileScreenViewHolder.ShiftRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder.CourseProfileScreenViewHolder.ShiftRecycleViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.course_pf_shifts_recycle_view, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.section_pf_shifts_recycle_view, parent, false)
         );
     }
 
