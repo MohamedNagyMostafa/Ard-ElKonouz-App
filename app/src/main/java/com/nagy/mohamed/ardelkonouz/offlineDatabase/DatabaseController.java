@@ -295,7 +295,7 @@ public class DatabaseController {
         public static final Uri EMPLOYEE_TABLE_URI = DbContent.EmployeeTable.CONTENT_URI;
         public static final Uri INSTRUCTOR_TABLE_URI = DbContent.InstructorTable.CONTENT_URI;
         public static final Uri COURSE_TABLE_URI = DbContent.CourseTable.CONTENT_URI;
-        public static final Uri COURSE_CHILD_URI = DbContent.ChildCourseTable.CONTENT_URI;
+        public static final Uri SECTION_CHILD_URI = DbContent.ChildSectionTable.CONTENT_URI;
         public static final Uri SECTION_INSTRUCTOR_URI = DbContent.SectionInstructorTable.CONTENT_URI;
         public static final Uri SHIFT_URI = DbContent.ShiftDaysTable.CONTENT_URI;
         public static final Uri SECTION_URI = DbContent.SectionTable.CONTENT_URI;
@@ -337,21 +337,21 @@ public class DatabaseController {
                     .appendPath(String.valueOf(date)).build();
         }
 
-        public static Uri getCourseChildTableWithChildIdUri(long id){
-            return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
+        public static Uri getSectionChildTableWithChildIdUri(long id){
+            return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseChildTableWithCourseIdUri(long id){
-            return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME)
+        public static Uri getSectionChildTableWithSectionIdUri(long id){
+            return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseChildTableWithChildIDAndCourseIdUri(long childId, long courseId){
-            return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
-                    .appendPath(DbContent.CourseTable.TABLE_NAME)
+        public static Uri getSectionChildTableWithChildIDAndSectionIdUri(long childId, long sectionId){
+            return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
+                    .appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(childId))
-                    .appendPath(String.valueOf(courseId)).build();
+                    .appendPath(String.valueOf(sectionId)).build();
         }
 
         public static Uri getSectionInstructorTableWithSectionIdUri(long id){

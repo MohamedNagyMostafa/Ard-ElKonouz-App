@@ -199,21 +199,21 @@ public class DbContent {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
-    public static class ChildCourseTable implements BaseColumns{
+    public static class ChildSectionTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "child_course_table";
+        public static final String TABLE_NAME = "child_section_table";
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
                 .appendPath(TABLE_NAME).build();
 
-        public static final String COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_ID_COLUMN = "section_id";
         public static final String CHILD_ID_COLUMN = "child_id";
 
-        public static final String CREATE_CHILD_COURSE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
+        public static final String CREATE_CHILD_SECTION_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
-                + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + SECTION_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
-                + FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
-                + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" + ","
+                + FOREIGN_KEY + SPACE + "(" + SECTION_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                + SectionTable.TABLE_NAME + SPACE + "(" + SectionTable._ID + ")" + ","
                 + FOREIGN_KEY + SPACE + "(" + CHILD_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + ChildTable.TABLE_NAME + SPACE + "(" + ChildTable._ID + ")" +")";
 

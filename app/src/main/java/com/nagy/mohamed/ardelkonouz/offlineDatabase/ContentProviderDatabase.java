@@ -28,14 +28,14 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int COURSE_TABLE = 1;
     private static final int INSTRUCTOR_TABLE = 2;
     private static final int EMPLOYEE_TABLE = 3;
-    private static final int CHILD_COURSE_TABLE = 4;
+    private static final int CHILD_SECTION_TABLE = 4;
     private static final int INSTRUCTOR_SECTION_TABLE = 5;
     private static final int CHILD_WITH_ID_TABLE = 6;
     private static final int COURSE_WITH_ID_TABLE = 7;
     private static final int INSTRUCTOR_WITH_ID_TABLE = 8;
-    private static final int CHILD_COURSE_WITH_CHILD_ID_TABLE = 9;
-    private static final int CHILD_COURSE_WITH_COURSE_ID_TABLE = 10;
-    private static final int CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE = 11;
+    private static final int CHILD_SECTION_WITH_CHILD_ID_TABLE = 9;
+    private static final int CHILD_SECTION_WITH_SECTION_ID_TABLE = 10;
+    private static final int CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE = 11;
     private static final int INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_TABLE = 12;
     private static final int INSTRUCTOR_SECTION_WITH_SECTION_ID_TABLE = 13;
     private static final int EMPLOYEE_WITH_ID_TABLE = 14;
@@ -109,22 +109,22 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private static final SQLiteQueryBuilder COURSE_CHILD_QUERY =
+    private static final SQLiteQueryBuilder SECTION_CHILD_QUERY =
             new SQLiteQueryBuilder();
 
     static {
-        COURSE_CHILD_QUERY.setTables(
-                DbContent.ChildCourseTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
+        SECTION_CHILD_QUERY.setTables(
+                DbContent.ChildSectionTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
                         DbContent.SPACE + DbContent.ChildTable.TABLE_NAME +
                         DbContent.SPACE + ON + DbContent.SPACE + DbContent.ChildTable.TABLE_NAME +
                         "." + DbContent.ChildTable._ID +
-                        "=" + DbContent.ChildCourseTable.TABLE_NAME + "." +
-                        DbContent.ChildCourseTable.CHILD_ID_COLUMN + DbContent.SPACE + INNER_JOIN +
-                        DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
-                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.CourseTable.TABLE_NAME +
-                        "." + DbContent.CourseTable._ID +
-                        "=" + DbContent.ChildCourseTable.TABLE_NAME + "." +
-                        DbContent.ChildCourseTable.COURSE_ID_COLUMN
+                        "=" + DbContent.ChildSectionTable.TABLE_NAME + "." +
+                        DbContent.ChildSectionTable.CHILD_ID_COLUMN + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.SectionTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.SectionTable.TABLE_NAME +
+                        "." + DbContent.SectionTable._ID +
+                        "=" + DbContent.ChildSectionTable.TABLE_NAME + "." +
+                        DbContent.ChildSectionTable.SECTION_ID_COLUMN
         );
     }
 
@@ -184,8 +184,8 @@ public class ContentProviderDatabase extends ContentProvider {
                         sortOrder
                 );
 
-            case CHILD_COURSE_TABLE:
-                return COURSE_CHILD_QUERY.query(
+            case CHILD_SECTION_TABLE:
+                return SECTION_CHILD_QUERY.query(
                         m_dbHelper.getReadableDatabase(),
                         projection,
                         selection,
@@ -241,18 +241,18 @@ public class ContentProviderDatabase extends ContentProvider {
             case INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_TABLE:
                 return getSectionInstructorWithInstructorId(uri, projection, sortOrder);
 
-            case CHILD_COURSE_WITH_CHILD_ID_TABLE:
-                return getCourseChildWithChildId(uri, projection, sortOrder);
+            case CHILD_SECTION_WITH_CHILD_ID_TABLE:
+                return getSectionChildWithChildId(uri, projection, sortOrder);
 
-            case CHILD_COURSE_WITH_COURSE_ID_TABLE:
-                return getCourseChildWithCourseId(uri, projection, sortOrder);
+            case CHILD_SECTION_WITH_SECTION_ID_TABLE:
+                return getSectionChildWithSectionId(uri, projection, sortOrder);
 
             case COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE:
                 return getCourseWithEndDateWithCompleteAndAgeRangeTable(uri, projection, sortOrder);
 
-            case CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE:
+            case CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE:
                 try {
-                    return getCourseChildWithChildIdCourseId(uri, projection, sortOrder);
+                    return getSectionChildWithSectionIdCourseId(uri, projection, sortOrder);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
@@ -313,7 +313,7 @@ public class ContentProviderDatabase extends ContentProvider {
             case INSTRUCTOR_TABLE:
                 return DbContent.InstructorTable.CONTENT_TYPE;
 
-            case CHILD_COURSE_TABLE:
+            case CHILD_SECTION_TABLE:
                 return DbContent.ChildTable.CONTENT_TYPE;
 
             case COURSE_TABLE:
@@ -376,9 +376,9 @@ public class ContentProviderDatabase extends ContentProvider {
                 );
                 break;
 
-            case CHILD_COURSE_TABLE:
+            case CHILD_SECTION_TABLE:
                 insertResult = m_dbHelper.getWritableDatabase().insert(
-                        DbContent.ChildCourseTable.TABLE_NAME,
+                        DbContent.ChildSectionTable.TABLE_NAME,
                         null,
                         contentValues
                 );
@@ -456,9 +456,9 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
-            case CHILD_COURSE_TABLE:
+            case CHILD_SECTION_TABLE:
                 return m_dbHelper.getWritableDatabase().delete(
-                        DbContent.ChildCourseTable.TABLE_NAME,
+                        DbContent.ChildSectionTable.TABLE_NAME,
                         selection,
                         selectionArgs
                 );
@@ -503,15 +503,15 @@ public class ContentProviderDatabase extends ContentProvider {
                         uri,
                         DbContent.ChildTable._ID);
 
-            case CHILD_COURSE_WITH_CHILD_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME,
+            case CHILD_SECTION_WITH_CHILD_ID_TABLE:
+                return deleteRowWithId(DbContent.ChildSectionTable.TABLE_NAME,
                         uri,
-                        DbContent.ChildCourseTable.CHILD_ID_COLUMN);
+                        DbContent.ChildSectionTable.CHILD_ID_COLUMN);
 
-            case CHILD_COURSE_WITH_COURSE_ID_TABLE:
-                return deleteRowWithId(DbContent.ChildCourseTable.TABLE_NAME,
+            case CHILD_SECTION_WITH_SECTION_ID_TABLE:
+                return deleteRowWithId(DbContent.ChildSectionTable.TABLE_NAME,
                         uri,
-                        DbContent.ChildCourseTable.COURSE_ID_COLUMN);
+                        DbContent.ChildSectionTable.SECTION_ID_COLUMN);
 
             case INSTRUCTOR_SECTION_WITH_SECTION_ID_TABLE:
                 return deleteRowWithId(DbContent.SectionInstructorTable.TABLE_NAME,
@@ -567,9 +567,9 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
-            case CHILD_COURSE_TABLE:
+            case CHILD_SECTION_TABLE:
                 return m_dbHelper.getWritableDatabase().update(
-                        DbContent.ChildCourseTable.TABLE_NAME,
+                        DbContent.ChildSectionTable.TABLE_NAME,
                         contentValues,
                         selection,
                         selectionArgs
@@ -648,20 +648,20 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN
                 );
 
-            case CHILD_COURSE_WITH_CHILD_ID_TABLE:
+            case CHILD_SECTION_WITH_CHILD_ID_TABLE:
                 return updateRowWithId(
                         uri,
                         contentValues,
-                        DbContent.ChildCourseTable.TABLE_NAME,
-                        DbContent.ChildCourseTable.CHILD_ID_COLUMN
+                        DbContent.ChildSectionTable.TABLE_NAME,
+                        DbContent.ChildSectionTable.CHILD_ID_COLUMN
                 );
 
-            case CHILD_COURSE_WITH_COURSE_ID_TABLE:
+            case CHILD_SECTION_WITH_SECTION_ID_TABLE:
                 return updateRowWithId(
                         uri,
                         contentValues,
-                        DbContent.ChildCourseTable.TABLE_NAME,
-                        DbContent.ChildCourseTable.COURSE_ID_COLUMN
+                        DbContent.ChildSectionTable.TABLE_NAME,
+                        DbContent.ChildSectionTable.SECTION_ID_COLUMN
                 );
 
             case SHIFT_WITH_SECTION_ID_TABLE:
@@ -726,11 +726,11 @@ public class ContentProviderDatabase extends ContentProvider {
                 }
                 break;
 
-            case CHILD_COURSE_TABLE:
+            case CHILD_SECTION_TABLE:
                 for(ContentValues contentValues : values) {
                     counter++;
                     m_dbHelper.getWritableDatabase().insert(
-                            DbContent.ChildCourseTable.TABLE_NAME,
+                            DbContent.ChildSectionTable.TABLE_NAME,
                             null,
                             contentValues
                     );
@@ -785,7 +785,7 @@ public class ContentProviderDatabase extends ContentProvider {
         final String COURSE_PATH = DbContent.CourseTable.TABLE_NAME;
         final String INSTRUCTOR_PATH = DbContent.InstructorTable.TABLE_NAME;
         final String EMPLOYEE_PATH = DbContent.EmployeeTable.TABLE_NAME;
-        final String CHILD_COURSE_PATH = DbContent.ChildCourseTable.TABLE_NAME;
+        final String CHILD_SECTION_PATH = DbContent.ChildSectionTable.TABLE_NAME;
         final String INSTRUCTOR_SECTION_PATH = DbContent.SectionInstructorTable.TABLE_NAME;
 
         final String CHILD_WITH_ID_PATH = CHILD_PATH + "/#";
@@ -796,12 +796,14 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/" +
                 DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN+ "/#" + "/#";
         final String INSTRUCTOR_WITH_ID_PATH = DbContent.InstructorTable.TABLE_NAME + "/#";
-        final String CHILD_COURSE_WITH_CHILD_ID_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
+        final String CHILD_SECTION_WITH_CHILD_ID_PATH = CHILD_SECTION_PATH + "/" +
                 DbContent.ChildTable.TABLE_NAME + "/#";
-        final String CHILD_COURSE_WITH_COURSE_ID_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
-                DbContent.CourseTable.TABLE_NAME + "/#";
-        final String CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE_PATH = DbContent.ChildCourseTable.TABLE_NAME + "/" +
-                DbContent.ChildTable.TABLE_NAME + "/" + DbContent.CourseTable.TABLE_NAME + "/#" + "/#";
+        final String CHILD_SECTION_WITH_SECTION_ID_PATH = CHILD_SECTION_PATH + "/" +
+                DbContent.SectionTable.TABLE_NAME + "/#";
+
+        final String CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE_PATH = CHILD_SECTION_PATH + "/" +
+                DbContent.ChildTable.TABLE_NAME + "/" + DbContent.SectionTable.TABLE_NAME + "/#" + "/#";
+
         final String INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_PATH = DbContent.SectionInstructorTable.TABLE_NAME + "/" +
                 DbContent.InstructorTable.TABLE_NAME +"/#";
         final String INSTRUCTOR_SECTION_WITH_SECTION_ID_PATH = DbContent.SectionInstructorTable.TABLE_NAME + "/" +
@@ -879,7 +881,7 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_PATH, CHILD_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_PATH, COURSE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_PATH, INSTRUCTOR_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_PATH, CHILD_COURSE_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_SECTION_PATH, CHILD_SECTION_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_SECTION_PATH, INSTRUCTOR_SECTION_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_ID_PATH, CHILD_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_ID_PATH, COURSE_WITH_ID_TABLE);
@@ -888,9 +890,9 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_PATH, EMPLOYEE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_ID_PATH, EMPLOYEE_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_WITH_ID_PATH, INSTRUCTOR_WITH_ID_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_CHILD_ID_PATH, CHILD_COURSE_WITH_CHILD_ID_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE_PATH, CHILD_COURSE_WITH_CHILD_ID_COURSE_ID_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_COURSE_WITH_COURSE_ID_PATH, CHILD_COURSE_WITH_COURSE_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_SECTION_WITH_CHILD_ID_PATH, CHILD_SECTION_WITH_CHILD_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE_PATH, CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_SECTION_WITH_SECTION_ID_PATH, CHILD_SECTION_WITH_SECTION_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_PATH, INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_SECTION_WITH_SECTION_ID_PATH, INSTRUCTOR_SECTION_WITH_SECTION_ID_TABLE);
 
@@ -999,13 +1001,13 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseChildWithCourseId(Uri uri, String[] projection, String sortOrder){
+    private Cursor getSectionChildWithSectionId(Uri uri, String[] projection, String sortOrder){
         long columnId = ContentUris.parseId(uri);
 
-        String selection = DbContent.ChildCourseTable.COURSE_ID_COLUMN +"=?";
+        String selection = DbContent.ChildSectionTable.SECTION_ID_COLUMN +"=?";
         String[] selectionArgs = {String.valueOf(columnId)};
 
-        return COURSE_CHILD_QUERY.query(
+        return SECTION_CHILD_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
@@ -1016,13 +1018,13 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseChildWithChildId(Uri uri, String[] projection, String sortOrder){
+    private Cursor getSectionChildWithChildId(Uri uri, String[] projection, String sortOrder){
         long columnId = ContentUris.parseId(uri);
 
-        String selection = DbContent.ChildCourseTable.CHILD_ID_COLUMN +"=?";
+        String selection = DbContent.ChildSectionTable.CHILD_ID_COLUMN +"=?";
         String[] selectionArgs = {String.valueOf(columnId)};
 
-        return COURSE_CHILD_QUERY.query(
+        return SECTION_CHILD_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
@@ -1090,21 +1092,21 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseChildWithChildIdCourseId(Uri uri, String[] projection, String sortOrder) throws URISyntaxException {
+    private Cursor getSectionChildWithSectionIdCourseId(Uri uri, String[] projection, String sortOrder) throws URISyntaxException {
         long courseId = ContentUris.parseId(uri);
         String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         Uri childUri = Uri.parse(newUriString);
         long childId = ContentUris.parseId(childUri);
 
-        String selection = DbContent.ChildCourseTable.CHILD_ID_COLUMN + "=?" + " AND " +
-                DbContent.ChildCourseTable.COURSE_ID_COLUMN + "=?";
+        String selection = DbContent.ChildSectionTable.CHILD_ID_COLUMN + "=?" + " AND " +
+                DbContent.ChildSectionTable.SECTION_ID_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(childId), String.valueOf(courseId)};
 
         Log.e("child id", String.valueOf(childId));
         Log.e("course id", String.valueOf(courseId));
 
         return m_dbHelper.getReadableDatabase().query(
-                DbContent.ChildCourseTable.TABLE_NAME,
+                DbContent.ChildSectionTable.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,
