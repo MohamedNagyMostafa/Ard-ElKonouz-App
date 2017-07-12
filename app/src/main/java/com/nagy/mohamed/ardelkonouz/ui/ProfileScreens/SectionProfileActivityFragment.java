@@ -267,17 +267,18 @@ public class SectionProfileActivityFragment extends Fragment
 
         /// TODO ... update projection
         final String SECTION_NAME =
-                cursor.getString();
+                "Section " +
+                cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_ID);
         final long SECTION_START_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
         final long SECTION_END_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN);
         final int SECTION_STATE =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN);
         final int SECTION_SESSIONS_NUMBER =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN);
         final String SECTION_SESSIONS_DAYS =
-                cursor.getString();
+                cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN);
 
         final int REMAINING_SESSIONS = Utility.getRemainDays(
                 shifts,
@@ -317,17 +318,18 @@ public class SectionProfileActivityFragment extends Fragment
                                final long sectionId){
 
         final String SECTION_NAME =
-                cursor.getString();
+                "Section " +
+                        cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_ID);
         final long SECTION_START_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
         final long SECTION_END_DATE =
-                cursor.getLong();
+                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN);
         final int SECTION_STATE =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN);
         final int SECTION_SESSIONS_NUMBER =
-                cursor.getInt();
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN);
         final String SECTION_SESSIONS_DAYS =
-                cursor.getString();
+                cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN);
 
         final int REMAINING_SESSIONS = Utility.getRemainDays(
                 null,
@@ -374,7 +376,7 @@ public class SectionProfileActivityFragment extends Fragment
                 null,
                 null,
                 null
-        );;
+        );
     }
 
     @Override

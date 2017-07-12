@@ -296,7 +296,7 @@ public class DatabaseController {
         public static final Uri INSTRUCTOR_TABLE_URI = DbContent.InstructorTable.CONTENT_URI;
         public static final Uri COURSE_TABLE_URI = DbContent.CourseTable.CONTENT_URI;
         public static final Uri COURSE_CHILD_URI = DbContent.ChildCourseTable.CONTENT_URI;
-        public static final Uri COURSE_INSTRUCTOR_URI = DbContent.CourseInstructorTable.CONTENT_URI;
+        public static final Uri SECTION_INSTRUCTOR_URI = DbContent.SectionInstructorTable.CONTENT_URI;
         public static final Uri SHIFT_URI = DbContent.ShiftDaysTable.CONTENT_URI;
         public static final Uri SECTION_URI = DbContent.SectionTable.CONTENT_URI;
 
@@ -354,13 +354,13 @@ public class DatabaseController {
                     .appendPath(String.valueOf(courseId)).build();
         }
 
-        public static Uri getCourseInstructorTableWithCourseIdUri(long id){
-            return COURSE_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME)
+        public static Uri getSectionInstructorTableWithSectionIdUri(long id){
+            return SECTION_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseInstructorTableWithInstructorIdUri(long id){
-            return COURSE_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.InstructorTable.TABLE_NAME)
+        public static Uri getSectionInstructorTableWithInstructorIdUri(long id){
+            return SECTION_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.InstructorTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
