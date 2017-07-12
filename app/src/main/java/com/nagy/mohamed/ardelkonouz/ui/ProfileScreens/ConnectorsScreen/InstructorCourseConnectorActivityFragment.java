@@ -161,38 +161,46 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                4
+                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SECTION_START_DATE
                         )
                 )
         );
         coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                5
+                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SECTION_END_DATE
+
                         )
                 )
         );
 
-        coursesViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
+        coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                3
+                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SECTION_DAYS_DATE
                         )
                 )
         );
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
-                        1
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_COURSE_NAME_DATE
                 )
         );
         coursesViewHolder.COURSE_SALARY_PER_CHILD_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                2
+                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SALARY_PER_CHILD
                         )
                 )
         );
-
+        coursesViewHolder.SECTION_NAME_TEXT_VIEW.setText(
+                String.valueOf(
+                        "Sec. " +
+                                String.valueOf(
+                                        DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_ID
+                                )
+                )
+        );
         view.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -221,8 +229,8 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         long dateAsMills = Utility.getCurrentDateAsMills();
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithIdWithEndDate(dateAsMills, instructorId),
-                DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
+                DatabaseController.UriDatabase.getSectionTableWithIdWithEndDate(dateAsMills, instructorId),
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_PROJECTION,
                 null,
                 null,
                 null

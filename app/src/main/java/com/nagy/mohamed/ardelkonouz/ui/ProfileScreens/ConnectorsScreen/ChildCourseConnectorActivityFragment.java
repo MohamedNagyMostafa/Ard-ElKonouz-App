@@ -125,34 +125,45 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         Log.e("bind called","done");
         final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
-        final Long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
+        final Long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_ID);
 
         coursesViewHolder.COURSE_COST_TEXT_VIEW.setText(
                 String.valueOf(
-                        cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_COST)
+                        cursor.getDouble(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_COURSE_COST_DATE)
                 )
         );
         coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.SECTION_START_DATE
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_START_DATE
                         )
                 )
         );
         coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.SECTION_END_DATE
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_END_DATE
                         )
                 )
         );
-        coursesViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_HOURS)
+        coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
+                Utility.getDaysAsString(
+                        cursor.getString(
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_DAYS_DATE
+                        )
                 )
         );
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(DatabaseController.ProjectionDatabase.COURSE_NAME)
+        );
+
+        coursesViewHolder.SECTION_NAME_TEXT_VIEW.setText(
+                String.valueOf(
+                        "Sec. " +
+                        String.valueOf(
+                                cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_ID)
+                        )
+                )
         );
 
         //check if course is selected before or not.
@@ -217,8 +228,8 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithEndDateIdWithCompleteIdWithAgeRangeUri(childAge, dateAsMills),
-                DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
+                DatabaseController.UriDatabase.getSectionTableWithEndDateIdWithCompleteIdWithAgeRangeUri(childAge, dateAsMills),
+                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_PROJECTION,
                 null,
                 null,
                 null
