@@ -30,7 +30,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.e("create helper called", "cccccccccccccccccccccc");
 
         sqLiteDatabase.execSQL(DbContent.CourseTable.CREATE_COURSE_TABLE);
         sqLiteDatabase.execSQL(DbContent.ChildTable.CREATE_CHILD_TABLE);
@@ -39,17 +38,18 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DbContent.ChildCourseTable.CREATE_CHILD_COURSE_TABLE);
         sqLiteDatabase.execSQL(DbContent.CourseInstructorTable.CREATE_COURSE_INSTRUCTOR_TABLE);
         sqLiteDatabase.execSQL(DbContent.ShiftDaysTable.CREATE_SHIFT_DAY_TABLE);
+        sqLiteDatabase.execSQL(DbContent.SectionTable.CREATE_SECTION_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        Log.e("upgrade called", "cccccccccccccccccccccc");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.ChildTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.InstructorTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.CourseTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.CourseInstructorTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.ChildCourseTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.ShiftDaysTable.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DbContent.SectionTable.TABLE_NAME);
 
         onCreate(sqLiteDatabase);
     }

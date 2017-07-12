@@ -45,7 +45,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int COURSE_WITH_SEARCH_TABLE = 18;
     private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 19;
     private static final int EMPLOYEE_WITH_SEARCH_TABLE = 20;
-    private static final int SHIFT_WITH_COURSE_ID_TABLE = 21;
+    private static final int SHIFT_WITH_SECTION_ID_TABLE = 21;
     private static final int SHIFT_TABLE = 22;
     private static final int SHIFT_WITH_COURSE_ID_JOIN_TABLE = 23;
     private static final int COURSE_WITH_DAY_SEARCH_TABLE = 24;
@@ -56,6 +56,8 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int SHIFT_WITH_START_DATE_TABLE = 29;
     private static final int SHIFT_WITH_END_DATE_TABLE = 30;
     private static final int SHIFT_WITH_ID_TABLE = 31;
+    public static final int SECTION_TABLE = 32;
+    public static final int SECTION_WITH_ID_TABLE = 33;
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
@@ -204,6 +206,17 @@ public class ContentProviderDatabase extends ContentProvider {
                         sortOrder
                 );
 
+            case SECTION_TABLE:
+                return m_dbHelper.getReadableDatabase().query(
+                        DbContent.SectionTable.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+
             case CHILD_WITH_ID_TABLE:
                 return getChildWithId(uri, projection, sortOrder);
 
@@ -218,6 +231,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case SHIFT_WITH_ID_TABLE:
                 return getShiftWithId(uri, projection, sortOrder);
+
+            case SECTION_WITH_ID_TABLE:
+                return getSectionWithId(uri, projection, sortOrder);
 
             case INSTRUCTOR_COURSE_WITH_COURSE_ID_TABLE:
                 return getCourseInstructorWithCourseId(uri, projection, sortOrder);
@@ -255,8 +271,8 @@ public class ContentProviderDatabase extends ContentProvider {
             case EMPLOYEE_WITH_SEARCH_TABLE:
                 return getEmployeeWithSearch(uri, projection, sortOrder);
 
-            case SHIFT_WITH_COURSE_ID_TABLE:
-                return getShiftWithCourseId(uri, projection);
+            case SHIFT_WITH_SECTION_ID_TABLE:
+                return getShiftWithSectionId(uri, projection);
 
             case SHIFT_WITH_COURSE_ID_JOIN_TABLE:
                 return getShiftWithCourseIdJoin(uri, projection);
@@ -376,6 +392,14 @@ public class ContentProviderDatabase extends ContentProvider {
                 );
                 break;
 
+            case SECTION_TABLE:
+                insertResult = m_dbHelper.getWritableDatabase().insert(
+                        DbContent.SectionTable.TABLE_NAME,
+                        null,
+                        contentValues
+                );
+                break;
+
             case SHIFT_TABLE:
                 insertResult = m_dbHelper.getWritableDatabase().insert(
                         DbContent.ShiftDaysTable.TABLE_NAME,
@@ -439,13 +463,20 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
+            case SECTION_TABLE:
+                return m_dbHelper.getWritableDatabase().delete(
+                        DbContent.SectionTable.TABLE_NAME,
+                        selection,
+                        selectionArgs
+                );
+
             case SHIFT_WITH_ID_TABLE:
                 return deleteRowWithId(DbContent.ShiftDaysTable.TABLE_NAME, uri, DbContent.ShiftDaysTable._ID);
 
-            case SHIFT_WITH_COURSE_ID_TABLE:
+            case SHIFT_WITH_SECTION_ID_TABLE:
                 return deleteRowWithId(DbContent.ShiftDaysTable.TABLE_NAME,
                         uri,
-                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN);
+                        DbContent.ShiftDaysTable.SECTION_ID_COLUMN);
 
             case EMPLOYEE_WITH_ID_TABLE:
                 return deleteRowWithId(DbContent.EmployeeTable.TABLE_NAME,
@@ -461,6 +492,11 @@ public class ContentProviderDatabase extends ContentProvider {
                 return deleteRowWithId(DbContent.InstructorTable.TABLE_NAME,
                         uri,
                         DbContent.InstructorTable._ID);
+
+            case SECTION_WITH_ID_TABLE:
+                return deleteRowWithId(DbContent.SectionTable.TABLE_NAME,
+                        uri,
+                        DbContent.SectionTable._ID);
 
             case CHILD_WITH_ID_TABLE:
                 return deleteRowWithId(DbContent.ChildTable.TABLE_NAME,
@@ -547,6 +583,22 @@ public class ContentProviderDatabase extends ContentProvider {
                         selectionArgs
                 );
 
+            case SECTION_TABLE:
+                return m_dbHelper.getWritableDatabase().update(
+                        DbContent.SectionTable.TABLE_NAME,
+                        contentValues,
+                        selection,
+                        selectionArgs
+                );
+
+            case SECTION_WITH_ID_TABLE:
+                return updateRowWithId(
+                        uri,
+                        contentValues,
+                        DbContent.SectionTable.TABLE_NAME,
+                        DbContent.SectionTable._ID
+                );
+
             case CHILD_WITH_ID_TABLE:
                 return updateRowWithId(
                         uri,
@@ -612,12 +664,12 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.ChildCourseTable.COURSE_ID_COLUMN
                 );
 
-            case SHIFT_WITH_COURSE_ID_TABLE:
+            case SHIFT_WITH_SECTION_ID_TABLE:
                 return updateRowWithId(
                         uri,
                         contentValues,
                         DbContent.ShiftDaysTable.TABLE_NAME,
-                        DbContent.ShiftDaysTable.COURSE_ID_COLUMN
+                        DbContent.ShiftDaysTable.SECTION_ID_COLUMN
                 );
 
         }
@@ -707,6 +759,17 @@ public class ContentProviderDatabase extends ContentProvider {
                 }
                 break;
 
+            case SECTION_TABLE:
+                for(ContentValues contentValues : values) {
+                    counter++;
+                    m_dbHelper.getWritableDatabase().insert(
+                            DbContent.SectionTable.TABLE_NAME,
+                            null,
+                            contentValues
+                    );
+                }
+                break;
+
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
         }
@@ -724,9 +787,9 @@ public class ContentProviderDatabase extends ContentProvider {
         final String EMPLOYEE_PATH = DbContent.EmployeeTable.TABLE_NAME;
         final String CHILD_COURSE_PATH = DbContent.ChildCourseTable.TABLE_NAME;
         final String INSTRUCTOR_COURSE_PATH = DbContent.CourseInstructorTable.TABLE_NAME;
-        final String CHILD_WITH_ID_PATH = DbContent.ChildTable.TABLE_NAME + "/#";
-        final String EMPLOYEE_WITH_ID_PATH = DbContent.EmployeeTable.TABLE_NAME + "/#";
-        final String COURSE_WITH_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/#";
+        final String CHILD_WITH_ID_PATH = CHILD_PATH + "/#";
+        final String EMPLOYEE_WITH_ID_PATH = EMPLOYEE_PATH + "/#";
+        final String COURSE_WITH_ID_PATH = COURSE_PATH + "/#";
         final String COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
                 DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/" +
                 DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN+ "/#" + "/#";
@@ -770,7 +833,7 @@ public class ContentProviderDatabase extends ContentProvider {
         final String SHIFT_PATH = DbContent.ShiftDaysTable.TABLE_NAME;
         final String SHIFT_WITH_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable._ID + "/#";
-        final String SHIFT_WITH_COURSE_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/#";
+        final String SHIFT_WITH_SECTION_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/#";
         final String SHIFT_WITH_COURSE_ID_JOIN_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "/#";
 
@@ -787,6 +850,11 @@ public class ContentProviderDatabase extends ContentProvider {
         final String SHIFT_WITH_END_DATE_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable.END_DATE_COLUMN + "/#/#/#" ;
 
+        final String SECTION_PATH = DbContent.SectionTable.TABLE_NAME;
+        final String SECTION_WITH_ID_PATH = SECTION_PATH + "/#";
+
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_PATH, SECTION_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_ID_PATH, SECTION_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_ID_PATH, SHIFT_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_START_END_DATE_PATH, SHIFT_WITH_START_END_DATE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_START_DATE_PATH, SHIFT_WITH_START_DATE_TABLE);
@@ -796,7 +864,7 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_SEARCH_PATH, COURSE_WITH_DAY_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_PATH, COURSE_WITH_DAY_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_PATH, SHIFT_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_PATH, SHIFT_WITH_COURSE_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_SECTION_ID_PATH, SHIFT_WITH_SECTION_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_COURSE_ID_JOIN_PATH, SHIFT_WITH_COURSE_ID_JOIN_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_PATH, CHILD_WITH_SEARCH_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_SEARCH_NULL_PATH, CHILD_WITH_SEARCH_TABLE);
@@ -1144,9 +1212,9 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getShiftWithCourseId(Uri uri, String[] projection){
+    private Cursor getShiftWithSectionId(Uri uri, String[] projection){
         long id = ContentUris.parseId(uri);
-        String selection = DbContent.ShiftDaysTable.COURSE_ID_COLUMN + "=?";
+        String selection = DbContent.ShiftDaysTable.SECTION_ID_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(id)};
 
         String sortOrder = DbContent.ShiftDaysTable.START_DATE_COLUMN + " ASC";
@@ -1447,6 +1515,22 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.ShiftDaysTable.TABLE_NAME,
                 selection,
                 selectionArgs
+        );
+    }
+
+    private Cursor getSectionWithId(Uri uri, String[] projection, String sortOrder){
+        final Long SECTION_ID = ContentUris.parseId(uri);
+        String selection = DbContent.SectionTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(SECTION_ID)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.SectionTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
         );
     }
 

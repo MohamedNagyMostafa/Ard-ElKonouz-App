@@ -13,6 +13,22 @@ public class DatabaseController {
 
     public static class ProjectionDatabase {
 
+        public static final String[] SECTION_PROJECTION = {
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN
+        };
+
+        public static final int SECTION_ID = 0;
+        public static final int SECTION_AVAILABLE_POSITIONS = 1;
+        public static final int SECTION_DAYS = 2;
+        public static final int SECTION_END_DATE = 3;
+        public static final int SECTION_SESSIONS_NUMBER_COLUMN = 4;
+        public static final int SECTION_START_DATE = 5;
+
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
@@ -295,6 +311,7 @@ public class DatabaseController {
         public static final Uri COURSE_CHILD_URI = DbContent.ChildCourseTable.CONTENT_URI;
         public static final Uri COURSE_INSTRUCTOR_URI = DbContent.CourseInstructorTable.CONTENT_URI;
         public static final Uri SHIFT_URI = DbContent.ShiftDaysTable.CONTENT_URI;
+        public static final Uri SECTION_URI = DbContent.SectionTable.CONTENT_URI;
 
 
         public static Uri getChildTableWithIdUri(long id){
@@ -394,7 +411,7 @@ public class DatabaseController {
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
-        public static Uri getShiftWithCourseId(long id){
+        public static Uri getShiftWithSectionId(long id){
             return SHIFT_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
@@ -457,6 +474,10 @@ public class DatabaseController {
                     .appendPath(String.valueOf(endDate))
                     .appendPath(String.valueOf(courseId))
                     .build();
+        }
+
+        public static Uri getSectionWithId(Long id){
+            return SECTION_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
 
