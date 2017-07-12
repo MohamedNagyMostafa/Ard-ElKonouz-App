@@ -275,20 +275,36 @@ public class DatabaseController {
         public static final int CHOICES_SELECTION_COURSE_NAME = 1;
 
         public static final String[] CHILD_COURSE_CONNECTOR_PROJECTION = {
-            DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
-            DbContent.SectionTable.SECTION_START_DATE_COLUMN,
-            DbContent.SectionTable.SECTION_END_DATE_COLUMN,
-            DbContent.CourseTable.COURSE_COST_COLUMN,
-            DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
-            DbContent.SectionTable.SECTION_DAYS_COLUMN
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_COST_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN
         };
 
         public static final int CHILD_COURSE_CONNECTOR_ID = 0;
         public static final int CHILD_COURSE_CONNECTOR_SECTION_START_DATE = 1;
         public static final int CHILD_COURSE_CONNECTOR_SECTION_END_DATE = 2;
         public static final int CHILD_COURSE_CONNECTOR_COURSE_COST_DATE = 3;
-        public static final int CHILD_COURSE_CONNECTOR_SECTION_NUMBER_DATE = 4;
-        public static final int CHILD_COURSE_CONNECTOR_SECTION_DAYS_DATE = 5;
+        public static final int CHILD_COURSE_CONNECTOR_SECTION_DAYS_DATE = 4;
+        public static final int CHILD_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
+
+        public static final String[] INSTRUCTOR_COURSE_CONNECTOR_PROJECTION = {
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN
+        };
+
+        public static final int INSTRUCTOR_COURSE_CONNECTOR_ID = 0;
+        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_START_DATE = 1;
+        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_END_DATE = 2;
+        public static final int INSTRUCTOR_COURSE_CONNECTOR_SALARY_PER_CHILD = 3;
+        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_DAYS_DATE = 4;
+        public static final int INSTRUCTOR_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
 
 
 
