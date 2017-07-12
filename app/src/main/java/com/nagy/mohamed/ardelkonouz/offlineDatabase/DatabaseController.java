@@ -317,9 +317,9 @@ public class DatabaseController {
                     .build();
         }
 
-        public static Uri getCourseTableWithIdWithEndDate(long date, long id){
-            return COURSE_TABLE_URI.buildUpon()
-                    .appendPath(DbContent.CourseTable.COURSE_END_DATE_COLUMN)
+        public static Uri getSectionTableWithIdWithEndDate(long date, long id){
+            return SECTION_URI.buildUpon()
+                    .appendPath(DbContent.SectionTable.SECTION_END_DATE_COLUMN)
                     .appendPath(String.valueOf(id))
                     .appendPath(String.valueOf(date)).build();
         }

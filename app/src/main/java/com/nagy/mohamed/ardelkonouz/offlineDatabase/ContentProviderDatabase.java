@@ -40,7 +40,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int INSTRUCTOR_SECTION_WITH_SECTION_ID_TABLE = 13;
     private static final int EMPLOYEE_WITH_ID_TABLE = 14;
     private static final int COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 15;
-    private static final int COURSE_WITH_ID_WITH_END_DATE_TABLE = 16;
+    private static final int SECTION_WITH_ID_WITH_END_DATE_TABLE = 16;
     private static final int CHILD_WITH_SEARCH_TABLE = 17;
     private static final int COURSE_WITH_SEARCH_TABLE = 18;
     private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 19;
@@ -275,8 +275,8 @@ public class ContentProviderDatabase extends ContentProvider {
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
-            case COURSE_WITH_ID_WITH_END_DATE_TABLE:
-                return getCourseWithIdWithEndDateId(uri, projection, sortOrder);
+            case SECTION_WITH_ID_WITH_END_DATE_TABLE:
+                return getSectionWithIdWithEndDateId(uri, projection, sortOrder);
 
             case CHILD_WITH_SEARCH_TABLE:
                 return getChildWithSearch(uri, projection, sortOrder);
@@ -857,8 +857,8 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.InstructorTable.TABLE_NAME +"/#";
         final String INSTRUCTOR_SECTION_WITH_SECTION_ID_PATH = DbContent.SectionInstructorTable.TABLE_NAME + "/" +
                 DbContent.SectionTable.TABLE_NAME +"/#";
-        final String COURSE_WITH_ID_WITH_END_DATE_ID_PATH = DbContent.CourseTable.TABLE_NAME + "/" +
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN + "/#/#";
+        final String SECTION_WITH_ID_WITH_END_DATE_ID_PATH = DbContent.SectionTable.TABLE_NAME + "/" +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN + "/#/#";
 
         final String CHILD_WITH_SEARCH_PATH = DbContent.ChildTable.TABLE_NAME + "/" +
                 DbContent.ChildTable.CHILD_NAME_COLUMN + "/*";
@@ -943,7 +943,7 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, INSTRUCTOR_SECTION_PATH, INSTRUCTOR_SECTION_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_WITH_ID_PATH, CHILD_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_ID_PATH, COURSE_WITH_ID_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_ID_WITH_END_DATE_ID_PATH, COURSE_WITH_ID_WITH_END_DATE_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_ID_WITH_END_DATE_ID_PATH, SECTION_WITH_ID_WITH_END_DATE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_PATH, COURSE_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_PATH, EMPLOYEE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, EMPLOYEE_WITH_ID_PATH, EMPLOYEE_WITH_ID_TABLE);
@@ -1174,20 +1174,20 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseWithIdWithEndDateId(Uri uri, String[] projection, String sortType){
+    private Cursor getSectionWithIdWithEndDateId(Uri uri, String[] projection, String sortType){
         long date = ContentUris.parseId(uri);
         String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         Uri newUri = Uri.parse(newUriString);
         long instructorId = ContentUris.parseId(newUri);
 
         String selection = DbContent.CourseTable.COURSE_END_DATE_COLUMN + ">?" + " AND (" +
-                DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN + " =?" + " OR " +
-                DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN + "=? )" ;
+                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + " =?" + " OR " +
+                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + "=? )" ;
         String[] selectionArgs = {String.valueOf(date),
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
-        return COURSE_INSTRUCTOR_JOIN_COURSE_QUERY.query(
+        return SECTION_INSTRUCTOR_JOIN_SECTION_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
