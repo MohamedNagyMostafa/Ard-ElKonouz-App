@@ -34,30 +34,20 @@ public class DatabaseController {
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseTable.COURSE_HOURS_COLUMN,
                 DbContent.CourseTable.COURSE_COST_COLUMN,
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
                 DbContent.CourseTable.COURSE_START_AGE_COLUMN,
                 DbContent.CourseTable.COURSE_END_AGE_COLUMN,
                 DbContent.CourseTable.COURSE_LEVEL_COLUMN,
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.CourseTable.COURSE_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
         };
 
         public static final int COURSE_ID = 0;
         public static final int COURSE_NAME = 1;
         public static final int COURSE_HOURS = 2;
         public static final int COURSE_COST = 3;
-        public static final int COURSE_AVAILABLE_POSITIONS = 4;
-        public static final int COURSE_START_DATE = 5;
-        public static final int COURSE_END_DATE = 6;
-        public static final int COURSE_START_AGE = 7;
-        public static final int COURSE_END_AGE = 8;
-        public static final int COURSE_LEVEL = 9;
-        public static final int COURSE_SALARY_PER_CHILD = 10;
-        public static final int COURSE_DAYS_COLUMN = 11;
-        public static final int COURSE_SESSIONS_NUMBER_COLUMN = 12;
+        public static final int COURSE_START_AGE = 4;
+        public static final int COURSE_END_AGE = 5;
+        public static final int COURSE_LEVEL = 6;
+        public static final int COURSE_SALARY_PER_CHILD = 7;
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
