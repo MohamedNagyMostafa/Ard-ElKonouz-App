@@ -39,8 +39,33 @@ public class CourseProfileActivityFragment extends Fragment
     private OnDeleteListener onDeleteListener =
             new OnDeleteListener() {
                 @Override
-                public void OnClickListener(Long SHIFT_ID) {
-                    
+                public void OnClickListener(Long SECTION_ID) {
+                    // Delete section from child.
+                    getActivity().getContentResolver().delete(
+                            DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                            null,
+                            null
+                    );
+                    // Delete section from instructor.
+                    getActivity().getContentResolver().delete(
+                            DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(SECTION_ID),
+                            null,
+                            null
+                    );
+                    // Delete shifts from section.
+                    getActivity().getContentResolver().delete(
+                            DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
+                            null,
+                            null
+                    );
+                    // Delete section from course.
+                    getActivity().getContentResolver().delete(
+                            DatabaseController.UriDatabase.getSectionWithCourseId(courseId),
+                            null,
+                            null
+                    );
+
+                    restartLoader();
                 }
             };
 
@@ -301,7 +326,7 @@ public class CourseProfileActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getShiftWithCourseId(courseId),
+                DatabaseController.UriDatabase.(courseId),
                 DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
                 null,
                 null,
@@ -313,9 +338,9 @@ public class CourseProfileActivityFragment extends Fragment
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         // set empty view
         if(data.getCount() > 0){
-             courseProfileScreenViewHolder.COURSE_SHIFT_EMPTY_LAYOUT.setVisibility(View.GONE);
+             courseProfileScreenViewHolder.COURSE_SECTION_EMPTY_LAYOUT.setVisibility(View.GONE);
         }else{
-            courseProfileScreenViewHolder.COURSE_SHIFT_EMPTY_LAYOUT.setVisibility(View.VISIBLE);
+            courseProfileScreenViewHolder.COURSE_SECTION_EMPTY_LAYOUT.setVisibility(View.VISIBLE);
         }
         recycleViewCourseProfileAdapter.setCursor(data);
         recycleViewCourseProfileAdapter.notifyDataSetChanged();
@@ -328,6 +353,6 @@ public class CourseProfileActivityFragment extends Fragment
     }
 
     public void restartLoader(){
-        getLoaderManager().restartLoader(Constants.LOADER_SHIFT_COURSE_PROFILE, null, this);
+        getLoaderManager().restartLoader(Constants.LOADER_COURSE_SECTION_LOADER, null, this);
     }
 }

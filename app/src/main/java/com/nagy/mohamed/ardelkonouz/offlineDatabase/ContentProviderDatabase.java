@@ -58,6 +58,11 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int SHIFT_WITH_ID_TABLE = 31;
     public static final int SECTION_TABLE = 32;
     public static final int SECTION_WITH_ID_TABLE = 33;
+    public static final int COURSE_SECTION_JOIN_TABLE = 34;
+    public static final int COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE = 35;
+    public static final int COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE = 36;
+    public static final int SECTION_WITH_COURSE_ID_TABLE = 36;
+
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
@@ -73,6 +78,20 @@ public class ContentProviderDatabase extends ContentProvider {
                         "." + DbContent.SectionTable._ID +
                         "=" + DbContent.SectionInstructorTable.TABLE_NAME + "." +
                         DbContent.SectionInstructorTable.SECTION_ID_COLUMN
+        );
+    }
+
+    private static final SQLiteQueryBuilder COURSE_SECTION_JOIN_QUERY =
+            new SQLiteQueryBuilder();
+
+    static {
+        COURSE_SECTION_JOIN_QUERY.setTables(
+                DbContent.SectionTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.SectionTable.TABLE_NAME +
+                        "." + DbContent.SectionTable.SECTION_COURSE_ID_COLUMN +
+                        "=" + DbContent.CourseTable.TABLE_NAME + "." +
+                        DbContent.CourseTable._ID
         );
     }
 
@@ -297,6 +316,23 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case SHIFT_WITH_END_DATE_TABLE:
                 return getShiftWithEndDate(uri, projection, sortOrder);
+
+            case COURSE_SECTION_JOIN_TABLE:
+                return COURSE_SECTION_JOIN_QUERY.query(
+                        m_dbHelper.getReadableDatabase(),
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+
+            case COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE:
+                return  getCourseSectionJoinWithCourseId(uri, projection, selection);
+
+            case COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE:
+                return  getCourseSectionJoinWithSectionId(uri, projection, selection);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -525,6 +561,11 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case SHIFT_WITH_START_END_DATE_TABLE:
                 return deleteShiftWithStartEndDate(uri);
+
+            case SECTION_WITH_COURSE_ID_TABLE:
+                return deleteRowWithId(DbContent.SectionTable.TABLE_NAME,
+                        uri,
+                        DbContent.SectionTable.SECTION_COURSE_ID_COLUMN);
         }
 
         return 0;
@@ -597,6 +638,14 @@ public class ContentProviderDatabase extends ContentProvider {
                         contentValues,
                         DbContent.SectionTable.TABLE_NAME,
                         DbContent.SectionTable._ID
+                );
+
+            case SECTION_WITH_COURSE_ID_TABLE:
+                return updateRowWithId(
+                        uri,
+                        contentValues,
+                        DbContent.SectionTable.TABLE_NAME,
+                        DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
                 );
 
             case CHILD_WITH_ID_TABLE:
@@ -856,8 +905,17 @@ public class ContentProviderDatabase extends ContentProvider {
 
         final String SECTION_PATH = DbContent.SectionTable.TABLE_NAME;
         final String SECTION_WITH_ID_PATH = SECTION_PATH + "/#";
+        final String SECTION_WITH_COURSE_ID_PATH = SECTION_PATH +
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "/#";
 
+        final String COURSE_SECTION_JOIN_PATH = SECTION_PATH + "/" + COURSE_PATH;
+        final String COURSE_SECTION_JOIN_WITH_ID_PATH = SECTION_PATH + "/" + COURSE_PATH + "/" +
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "/#";
+
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_PATH, COURSE_SECTION_JOIN_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_WITH_ID_PATH, COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_PATH, SECTION_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_COURSE_ID_PATH, SECTION_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_ID_PATH, SECTION_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_ID_PATH, SHIFT_WITH_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_START_END_DATE_PATH, SHIFT_WITH_START_END_DATE_TABLE);
@@ -1538,5 +1596,38 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
+    private Cursor getCourseSectionJoinWithCourseId(Uri uri, String[] projection, String sortOrder) {
+
+        final Long COURSE_ID = ContentUris.parseId(uri);
+        String selection = DbContent.CourseTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(COURSE_ID)};
+
+        return COURSE_SECTION_JOIN_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getCourseSectionJoinWithSectionId(Uri uri, String[] projection, String sortOrder) {
+
+        final Long SECTION_ID = ContentUris.parseId(uri);
+        String selection = DbContent.SectionTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(SECTION_ID)};
+
+        return COURSE_SECTION_JOIN_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
 
 }

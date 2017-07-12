@@ -299,6 +299,8 @@ public class DatabaseController {
         public static final Uri SECTION_INSTRUCTOR_URI = DbContent.SectionInstructorTable.CONTENT_URI;
         public static final Uri SHIFT_URI = DbContent.ShiftDaysTable.CONTENT_URI;
         public static final Uri SECTION_URI = DbContent.SectionTable.CONTENT_URI;
+        public static final Uri COURSE_SECTION_JOIN_URI =
+                SECTION_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME).build();
 
 
         public static Uri getChildTableWithIdUri(long id){
@@ -467,7 +469,16 @@ public class DatabaseController {
             return SECTION_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
+        public static Uri getSectionWithCourseId(Long id){
+            return SECTION_URI.buildUpon().appendPath(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN)
+                    .appendPath(String.valueOf(id)).build();
+        }
 
+        public static Uri getCourseSectionJoinWithCourseId(Long id){
+            return COURSE_SECTION_JOIN_URI.buildUpon()
+                    .appendPath(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN)
+                    .appendPath(String.valueOf(id)).build();
+        }
     }
 
 }
