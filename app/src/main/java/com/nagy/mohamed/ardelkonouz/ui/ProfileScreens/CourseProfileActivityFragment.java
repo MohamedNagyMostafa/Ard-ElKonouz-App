@@ -22,6 +22,8 @@ import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.OnDeleteListener;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewCourseProfileAdapter;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewSectionProfileAdapter;
 
 import java.util.ArrayList;
@@ -32,8 +34,15 @@ import java.util.ArrayList;
 public class CourseProfileActivityFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor>{
     
-    private RecycleViewSectionProfileAdapter recycleViewCourseProfileAdapter;
+    private RecycleViewCourseProfileAdapter recycleViewCourseProfileAdapter;
     private Long courseId;
+    private OnDeleteListener onDeleteListener =
+            new OnDeleteListener() {
+                @Override
+                public void OnClickListener(Long SHIFT_ID) {
+                    
+                }
+            };
 
     private ViewHolder.CourseProfileScreenViewHolder courseProfileScreenViewHolder;
 

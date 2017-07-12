@@ -570,6 +570,7 @@ public class ViewHolder {
 
         public static class SectionRecycleViewHolder extends RecyclerView.ViewHolder{
 
+            public final TextView SECTION_NAME_TEXT_VIEW;
             public final TextView SECTION_START_DATE_TEXT_VIEW;
             public final TextView SECTION_INSTRUCTOR_TEXT_VIEW;
             public final TextView SECTION_END_DATE_TEXT_VIEW;
@@ -577,6 +578,7 @@ public class ViewHolder {
 
             public SectionRecycleViewHolder(View shiftRecycleView){
                 super(shiftRecycleView);
+                SECTION_NAME_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_name_text_view);
                 SECTION_START_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_beginning_date_text_view);
                 SECTION_END_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_end_date_text_view);
                 SECTION_INSTRUCTOR_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_instructor_text_view);

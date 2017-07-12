@@ -60,7 +60,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/end_date"/>
+        android:text="@string/start_date"/>
 
     <TextView
         android:id="@+id/course_pf_section_beginning_date_text_view"

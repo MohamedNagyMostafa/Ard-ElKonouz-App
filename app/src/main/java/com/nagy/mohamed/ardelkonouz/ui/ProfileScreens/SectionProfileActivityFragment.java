@@ -23,7 +23,7 @@ import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
-import com.nagy.mohamed.ardelkonouz.ui.adapter.OnShiftDeleteListener;
+import com.nagy.mohamed.ardelkonouz.ui.adapter.OnDeleteListener;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewSectionProfileAdapter;
 
 import java.util.ArrayList;
@@ -38,8 +38,8 @@ public class SectionProfileActivityFragment extends Fragment
     private Long sectionId;
     private RecycleViewSectionProfileAdapter recycleViewSectionProfileAdapter;
 
-    private OnShiftDeleteListener onShiftDeleteListener =
-            new OnShiftDeleteListener() {
+    private OnDeleteListener onDeleteListener =
+            new OnDeleteListener() {
                 @Override
                 public void OnClickListener(Long SHIFT_ID) {
                     getActivity().getContentResolver().delete(
@@ -177,7 +177,7 @@ public class SectionProfileActivityFragment extends Fragment
         sectionId = getActivity().getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
         sectionProfileViewHolder = new ViewHolder.SectionProfileViewHolder(rootView);
 
-        recycleViewSectionProfileAdapter = new RecycleViewSectionProfileAdapter(getContext(), onShiftDeleteListener);
+        recycleViewSectionProfileAdapter = new RecycleViewSectionProfileAdapter(getContext(), onDeleteListener);
 
         sectionProfileViewHolder.SECTION_SHIFTS_RECYCLE_VIEW.setAdapter(recycleViewSectionProfileAdapter);
         LinearLayoutManager linearLayoutManager =
