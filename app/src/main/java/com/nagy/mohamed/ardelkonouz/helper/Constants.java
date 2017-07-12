@@ -48,6 +48,7 @@ public class Constants {
     public static final int LOADER_CHOICES_LIST = 66;
     public static final int LOADER_SELECTED_LIST = 77;
     public static final int LOADER_SHIFT_SECTION_PROFILE = 88;
+    public static final int LOADER_COURSE_SECTION_LOADER = 99;
 
     //Birth Order
     public static final int FIRST_BIRTH = 0;

@@ -20,12 +20,12 @@ public class RecycleViewSectionProfileAdapter extends
 
     private Cursor cursor;
     private Context context;
-    private OnShiftDeleteListener onShiftDeleteListener;
+    private OnDeleteListener onDeleteListener;
 
     public RecycleViewSectionProfileAdapter(Context context,
-                                            OnShiftDeleteListener onShiftDeleteListener){
+                                            OnDeleteListener onDeleteListener){
         this.context = context;
-        this.onShiftDeleteListener = onShiftDeleteListener;
+        this.onDeleteListener = onDeleteListener;
     }
 
     public void setCursor(Cursor cursor){
@@ -70,7 +70,7 @@ public class RecycleViewSectionProfileAdapter extends
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            onShiftDeleteListener.OnClickListener(_ID);
+                            onDeleteListener.OnClickListener(_ID);
                         }
                     }
             );
