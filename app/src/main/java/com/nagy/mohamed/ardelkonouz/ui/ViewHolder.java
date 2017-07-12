@@ -861,6 +861,7 @@ public class ViewHolder {
         public final TextView SECTION_REMAINING_SESSIONS_TEXT_VIEW;
         public final RecyclerView SECTION_SHIFTS_RECYCLE_VIEW;
         public final FloatingActionButton SECTION_EDIT_FLOATING_BUTTON;
+        public final LinearLayout SECTION_SHIFT_EMPTY_VIEW;
 
         public SectionProfileViewHolder(View sectionProfileView){
             SECTION_NAME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_name_text_view);
@@ -876,15 +877,17 @@ public class ViewHolder {
             SECTION_REMAINING_SESSIONS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_remaining_sessions_text_view);
             SECTION_SHIFTS_RECYCLE_VIEW = (RecyclerView) sectionProfileView.findViewById(R.id.section_pf_section_shifts_recycle_view);
             SECTION_EDIT_FLOATING_BUTTON = (FloatingActionButton) sectionProfileView.findViewById(R.id.section_pf_edit_floating_button);
+            SECTION_SHIFT_EMPTY_VIEW = (LinearLayout) sectionProfileView.findViewById(R.id.section_pf_empty_view_layout);
         }
 
-        public static class SectionShiftRecycleView{
+        public static class SectionShiftRecycleView extends RecyclerView.ViewHolder{
 
             public final TextView SHIFT_BEGINNING_DATE_TEXT_VIEW;
             public final TextView SHIFT_ENDING_DATE_TEXT_VIEW;
             public final ImageView SHIFT_DELETE_IMAGE_VIEW;
 
             public SectionShiftRecycleView(View sectionShiftView){
+                super(sectionShiftView);
                 SHIFT_BEGINNING_DATE_TEXT_VIEW = (TextView) sectionShiftView.findViewById(R.id.section_pf_shift_start_date_text_view);
                 SHIFT_ENDING_DATE_TEXT_VIEW = (TextView) sectionShiftView.findViewById(R.id.section_pf_shift_end_date_text_view);
                 SHIFT_DELETE_IMAGE_VIEW = (ImageView) sectionShiftView.findViewById(R.id.section_pf_shift_delete_image_View);

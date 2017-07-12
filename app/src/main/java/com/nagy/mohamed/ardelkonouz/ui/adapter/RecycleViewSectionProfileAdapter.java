@@ -15,15 +15,15 @@ import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 /**
  * Created by mohamednagy on 7/8/2017.
  */
-public class RecycleViewCourseProfileAdapter extends
-        RecyclerView.Adapter<ViewHolder.CourseProfileScreenViewHolder.ShiftRecycleViewHolder> {
+public class RecycleViewSectionProfileAdapter extends
+        RecyclerView.Adapter<ViewHolder.SectionProfileViewHolder.SectionShiftRecycleView> {
 
     private Cursor cursor;
     private Context context;
     private OnShiftDeleteListener onShiftDeleteListener;
 
-    public RecycleViewCourseProfileAdapter(Context context,
-                                           OnShiftDeleteListener onShiftDeleteListener){
+    public RecycleViewSectionProfileAdapter(Context context,
+                                            OnShiftDeleteListener onShiftDeleteListener){
         this.context = context;
         this.onShiftDeleteListener = onShiftDeleteListener;
     }
@@ -33,15 +33,15 @@ public class RecycleViewCourseProfileAdapter extends
     }
 
     @Override
-    public ViewHolder.CourseProfileScreenViewHolder.ShiftRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder.CourseProfileScreenViewHolder.ShiftRecycleViewHolder(
+    public ViewHolder.SectionProfileViewHolder.SectionShiftRecycleView onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ViewHolder.SectionProfileViewHolder.SectionShiftRecycleView(
                 LayoutInflater.from(context).inflate(R.layout.section_pf_shifts_recycle_view, parent, false)
         );
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder.CourseProfileScreenViewHolder
-                                             .ShiftRecycleViewHolder shiftRecycleViewHolder,
+    public void onBindViewHolder(ViewHolder.SectionProfileViewHolder
+                                             .SectionShiftRecycleView sectionShiftRecycleView,
                                  int position) {
         if(cursor != null && cursor.getCount() > 0) {
             cursor.moveToPosition(position);
@@ -50,7 +50,7 @@ public class RecycleViewCourseProfileAdapter extends
                     DatabaseController.ProjectionDatabase.SHIFT_ID
             );
 
-            shiftRecycleViewHolder.SHIFT_START_DATE_TEXT_VIEW.setText(
+            sectionShiftRecycleView.SHIFT_BEGINNING_DATE_TEXT_VIEW.setText(
                     Utility.getTimeFormat(
                             cursor.getLong(
                                     DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
@@ -58,7 +58,7 @@ public class RecycleViewCourseProfileAdapter extends
                     )
             );
 
-            shiftRecycleViewHolder.SHIFT_END_DATE_TEXT_VIEW.setText(
+            sectionShiftRecycleView.SHIFT_ENDING_DATE_TEXT_VIEW.setText(
                     Utility.getTimeFormat(
                             cursor.getLong(
                                     DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
@@ -66,7 +66,7 @@ public class RecycleViewCourseProfileAdapter extends
                     )
             );
 
-            shiftRecycleViewHolder.SHIFT_DELETE_IMAGE_VIEW.setOnClickListener(
+            sectionShiftRecycleView.SHIFT_DELETE_IMAGE_VIEW.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
