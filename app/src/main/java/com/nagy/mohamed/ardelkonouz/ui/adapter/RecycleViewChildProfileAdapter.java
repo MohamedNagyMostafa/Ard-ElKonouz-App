@@ -38,24 +38,28 @@ public class RecycleViewChildProfileAdapter extends
     public void onBindViewHolder(ViewHolder.ChildProfileScreenViewHolder.ChildProfileListViewHolder childProfileListViewHolder, int position) {
         if(cursor != null && cursor.getCount() > 0){
             cursor.moveToPosition(position);
+
             childProfileListViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-                    cursor.getString(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_NAME_COLUMN)
+                    getCourseName(
+                        cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_ID_COLUMN)
+                    )
             );
+
             childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
                     Utility.getTimeFormat(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN)
+                            cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_START_DATE_COLUMN)
                     )
             );
             childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
                     Utility.getTimeFormat(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN)
+                            cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_END_DATE_COLUMN)
                     )
             );
 
-            final long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_COURSE_ID_COLUMN);
+            final long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_ID_COLUMN);
             Cursor instructorCursor =
                     context.getContentResolver().query(
-                            DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
+                            DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(SECTION_ID),
                             new String[]{DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN},
                             null,
                             null,
@@ -71,6 +75,27 @@ public class RecycleViewChildProfileAdapter extends
                 instructorCursor.close();
             }
         }
+    }
+
+    private String getCourseName(final Long SECTION_ID){
+        String courseName = "";
+
+        Cursor courseCursor = context.getContentResolver().query(
+                DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
+                new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                null,
+                null,
+                null
+        );
+
+        if(courseCursor != null){
+            if(courseCursor.moveToFirst()){
+                courseName = courseCursor.getString(0) + " Sec. " + String.valueOf(SECTION_ID);
+            }
+            courseCursor.close();
+        }
+
+        return courseName;
     }
 
     @Override

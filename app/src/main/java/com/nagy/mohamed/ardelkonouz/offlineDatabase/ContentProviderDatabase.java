@@ -24,27 +24,40 @@ public class ContentProviderDatabase extends ContentProvider {
     private UriMatcher m_uriMatcher = buildUriMatcher();
     private DbHelper m_dbHelper;
 
+    /** Table Uri **/
     private static final int CHILD_TABLE = 0;
     private static final int COURSE_TABLE = 1;
     private static final int INSTRUCTOR_TABLE = 2;
     private static final int EMPLOYEE_TABLE = 3;
-    private static final int CHILD_SECTION_TABLE = 4;
-    private static final int INSTRUCTOR_SECTION_TABLE = 5;
-    private static final int CHILD_WITH_ID_TABLE = 6;
-    private static final int COURSE_WITH_ID_TABLE = 7;
-    private static final int INSTRUCTOR_WITH_ID_TABLE = 8;
-    private static final int CHILD_SECTION_WITH_CHILD_ID_TABLE = 9;
-    private static final int CHILD_SECTION_WITH_SECTION_ID_TABLE = 10;
-    private static final int CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE = 11;
-    private static final int INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_TABLE = 12;
-    private static final int INSTRUCTOR_SECTION_WITH_SECTION_ID_TABLE = 13;
-    private static final int EMPLOYEE_WITH_ID_TABLE = 14;
-    private static final int SECTION_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 15;
-    private static final int SECTION_WITH_ID_WITH_END_DATE_TABLE = 16;
+    public static final int SECTION_TABLE = 32;
+
+    /** Search Uri **/
     private static final int CHILD_WITH_SEARCH_TABLE = 17;
     private static final int COURSE_WITH_SEARCH_TABLE = 18;
     private static final int INSTRUCTOR_WITH_SEARCH_TABLE = 19;
     private static final int EMPLOYEE_WITH_SEARCH_TABLE = 20;
+
+    private static final int CHILD_SECTION_TABLE = 4;
+    private static final int INSTRUCTOR_SECTION_TABLE = 5;
+
+    private static final int CHILD_WITH_ID_TABLE = 6;
+    private static final int COURSE_WITH_ID_TABLE = 7;
+    private static final int INSTRUCTOR_WITH_ID_TABLE = 8;
+    public static final int SECTION_WITH_ID_TABLE = 33;
+    private static final int EMPLOYEE_WITH_ID_TABLE = 14;
+
+    private static final int CHILD_SECTION_WITH_CHILD_ID_TABLE = 9;
+    private static final int CHILD_SECTION_WITH_SECTION_ID_TABLE = 10;
+    private static final int INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_TABLE = 12;
+    private static final int INSTRUCTOR_SECTION_WITH_SECTION_ID_TABLE = 13;
+
+    private static final int CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE = 11;
+
+    private static final int SECTION_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE = 15;
+    private static final int SECTION_WITH_ID_WITH_END_DATE_TABLE = 16;
+
+
+
     private static final int SHIFT_WITH_SECTION_ID_TABLE = 21;
     private static final int SHIFT_TABLE = 22;
     private static final int SHIFT_WITH_SECTION_ID_JOIN_TABLE = 23;
@@ -56,8 +69,6 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int SHIFT_WITH_START_DATE_TABLE = 29;
     private static final int SHIFT_WITH_END_DATE_TABLE = 30;
     private static final int SHIFT_WITH_ID_TABLE = 31;
-    public static final int SECTION_TABLE = 32;
-    public static final int SECTION_WITH_ID_TABLE = 33;
     public static final int COURSE_SECTION_JOIN_TABLE = 34;
     public static final int COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE = 35;
     public static final int COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE = 36;
@@ -909,11 +920,14 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "/#";
 
         final String COURSE_SECTION_JOIN_PATH = SECTION_PATH + "/" + COURSE_PATH;
-        final String COURSE_SECTION_JOIN_WITH_ID_PATH = SECTION_PATH + "/" + COURSE_PATH + "/" +
+        final String COURSE_SECTION_JOIN_WITH_COURSE_ID_PATH = SECTION_PATH + "/" + COURSE_PATH + "/" +
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "/#";
+        final String COURSE_SECTION_JOIN_WITH_SECTION_ID_PATH = SECTION_PATH + "/" + COURSE_PATH + "/" +
+                DbContent.SectionTable._ID + "/#";
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_PATH, COURSE_SECTION_JOIN_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_WITH_ID_PATH, COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_WITH_COURSE_ID_PATH, COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_WITH_SECTION_ID_PATH, COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_PATH, SECTION_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_COURSE_ID_PATH, SECTION_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_ID_PATH, SECTION_WITH_ID_TABLE);

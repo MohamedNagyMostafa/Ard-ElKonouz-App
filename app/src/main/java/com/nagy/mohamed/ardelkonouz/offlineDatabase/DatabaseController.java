@@ -505,8 +505,16 @@ public class DatabaseController {
         }
 
         public static Uri getCourseSectionJoinWithCourseId(Long id){
-            return COURSE_SECTION_JOIN_URI.buildUpon()
+            return SECTION_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.TABLE_NAME)
                     .appendPath(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN)
+                    .appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getCourseSectionJoinWithSectionId(Long id){
+            return SECTION_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.TABLE_NAME)
+                    .appendPath(DbContent.SectionTable._ID)
                     .appendPath(String.valueOf(id)).build();
         }
     }

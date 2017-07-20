@@ -131,7 +131,7 @@ public class ChildActivityFragment extends Fragment
                         );
                         // Delete child from child course table.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(CHILD_ID),
+                                DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(CHILD_ID),
                                 null,
                                 null
                         );
@@ -151,23 +151,23 @@ public class ChildActivityFragment extends Fragment
             }
         });
 
-        Cursor cursorCourses = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(CHILD_ID),
+        Cursor cursorSection = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(CHILD_ID),
                 new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
                 null,
                 null,
                 null
         );
 
-        if(cursorCourses != null) {
-            if(cursorCourses.getCount() != 0) {
-                cursorCourses.moveToFirst();
+        if(cursorSection != null) {
+            if(cursorSection.getCount() != 0) {
+                cursorSection.moveToFirst();
                 StringBuilder stringBuilderCourses = new StringBuilder(
-                        cursorCourses.getString(0)
+                        cursorSection.getString(0)
                 );
 
-                while (cursorCourses.moveToNext()) {
-                    stringBuilderCourses.append(" - ").append(cursorCourses.getString(0));
+                while (cursorSection.moveToNext()) {
+                    stringBuilderCourses.append(" - ").append(cursorSection.getString(0));
                 }
 
                 childListRecycleViewHolder.CHILD_COURSES_TEXT_VIEW.setText(
@@ -175,7 +175,7 @@ public class ChildActivityFragment extends Fragment
                 );
             }
 
-            cursorCourses.close();
+            cursorSection.close();
 
         }
 

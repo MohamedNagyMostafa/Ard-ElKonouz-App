@@ -209,29 +209,9 @@ public class ViewHolder {
         public final EditText COURSE_HOURS_EDIT_TEXT;
         public final EditText COURSE_COST_EDIT_TEXT;
         public final EditText COURSE_LEVEL_EDIT_TEXT;
-        public final EditText COURSE_BEGINNING_DATE_EDIT_TEXT;
         public final EditText COURSE_SALARY_PER_CHILD_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_FROM_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_TO_EDIT_TEXT;
-        public final EditText COURSE_SESSIONS_NUMBER_EDIT_TEXT;
-        public final TextView COURSE_COMPLETE_TEXT_VIEW;
-        public final TextView COURSE_INCOMPLETE_TEXT_VIEW;
-        public final ImageView COURSE_COMPLETE_IMAGE_VIEW;
-        public final ImageView COURSE_INCOMPLETE_IMAGE_VIEW;
-        public final TextView COURSE_SAT_TEXT_VIEW;
-        public final TextView COURSE_SUN_TEXT_VIEW;
-        public final TextView COURSE_MON_TEXT_VIEW;
-        public final TextView COURSE_TUE_TEXT_VIEW;
-        public final TextView COURSE_WED_TEXT_VIEW;
-        public final TextView COURSE_FRI_TEXT_VIEW;
-        public final TextView COURSE_THU_TEXT_VIEW;
-        public final ImageView COURSE_SAT_IMAGE_VIEW;
-        public final ImageView COURSE_SUN_IMAGE_VIEW;
-        public final ImageView COURSE_MON_IMAGE_VIEW;
-        public final ImageView COURSE_TUE_IMAGE_VIEW;
-        public final ImageView COURSE_WED_IMAGE_VIEW;
-        public final ImageView COURSE_FRI_IMAGE_VIEW;
-        public final ImageView COURSE_THU_IMAGE_VIEW;
         public final Button SUBMIT_COURSE_BUTTON;
 
         public CourseInputScreenViewHolder(View courseInputScreen){
@@ -240,30 +220,60 @@ public class ViewHolder {
             COURSE_HOURS_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_hours_edit_view);
             COURSE_COST_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_cost_edit_view);
             COURSE_LEVEL_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_level_edit_view);
-            COURSE_BEGINNING_DATE_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_start_date_edit_view);
             COURSE_SALARY_PER_CHILD_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_salary_per_child_edit_view);
             COURSE_AGE_RANGE_FROM_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_from_edit_view);
             COURSE_AGE_RANGE_TO_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_to_edit_view);
-            COURSE_SESSIONS_NUMBER_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_sessions_number_edit_view);
-            COURSE_COMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_complete_text_view);
-            COURSE_INCOMPLETE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_incomplete_text_view);
-            COURSE_COMPLETE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_complete_image_view);
-            COURSE_INCOMPLETE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_incomplete_image_view);
             SUBMIT_COURSE_BUTTON = (Button) courseInputScreen.findViewById(R.id.course_input_submit_application_button);
-            COURSE_SAT_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_sat_day_text_view);
-            COURSE_SUN_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_sun_day_text_view);
-            COURSE_MON_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_mon_day_text_view);
-            COURSE_TUE_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_tue_day_text_view);
-            COURSE_WED_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_wed_day_text_view);
-            COURSE_THU_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_thu_text_view);
-            COURSE_FRI_TEXT_VIEW = (TextView) courseInputScreen.findViewById(R.id.course_input_fri_text_view);
-            COURSE_SAT_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_sat_day_image_view);
-            COURSE_SUN_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_sun_day_image_view);
-            COURSE_MON_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_mon_day_image_view);
-            COURSE_TUE_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_tue_day_image_view);
-            COURSE_WED_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_wed_day_image_view);
-            COURSE_THU_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_thu_image_view);
-            COURSE_FRI_IMAGE_VIEW = (ImageView) courseInputScreen.findViewById(R.id.course_input_fri_image_view);
+        }
+    }
+
+    public static class SectionInputScreenViewHolder{
+
+        public final EditText SECTION_BEGINNING_DATE_EDIT_TEXT;
+        public final EditText SECTION_SESSIONS_NUMBER_EDIT_TEXT;
+        public final TextView SECTION_COMPLETE_TEXT_VIEW;
+        public final TextView SECTION_INCOMPLETE_TEXT_VIEW;
+        public final ImageView SECTION_COMPLETE_IMAGE_VIEW;
+        public final ImageView SECTION_INCOMPLETE_IMAGE_VIEW;
+        public final TextView SECTION_SAT_TEXT_VIEW;
+        public final TextView SECTION_SUN_TEXT_VIEW;
+        public final TextView SECTION_MON_TEXT_VIEW;
+        public final TextView SECTION_TUE_TEXT_VIEW;
+        public final TextView SECTION_WED_TEXT_VIEW;
+        public final TextView SECTION_FRI_TEXT_VIEW;
+        public final TextView SECTION_THU_TEXT_VIEW;
+        public final ImageView SECTION_SAT_IMAGE_VIEW;
+        public final ImageView SECTION_SUN_IMAGE_VIEW;
+        public final ImageView SECTION_MON_IMAGE_VIEW;
+        public final ImageView SECTION_TUE_IMAGE_VIEW;
+        public final ImageView SECTION_WED_IMAGE_VIEW;
+        public final ImageView SECTION_FRI_IMAGE_VIEW;
+        public final ImageView SECTION_THU_IMAGE_VIEW;
+        public final Button SUBMIT_SECTION_BUTTON;
+
+        public SectionInputScreenViewHolder(View sectionInputScreen){
+
+            SECTION_BEGINNING_DATE_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_date_edit_view);
+            SECTION_SESSIONS_NUMBER_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_sessions_number_edit_view);
+            SECTION_COMPLETE_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_complete_text_view);
+            SECTION_INCOMPLETE_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_incomplete_text_view);
+            SECTION_COMPLETE_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_complete_image_view);
+            SECTION_INCOMPLETE_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_incomplete_image_view);
+            SUBMIT_SECTION_BUTTON = (Button) sectionInputScreen.findViewById(R.id.section_input_submit_application_button);
+            SECTION_SAT_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_sat_day_text_view);
+            SECTION_SUN_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_sun_day_text_view);
+            SECTION_MON_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_mon_day_text_view);
+            SECTION_TUE_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_tue_day_text_view);
+            SECTION_WED_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_wed_day_text_view);
+            SECTION_THU_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_thu_text_view);
+            SECTION_FRI_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_fri_text_view);
+            SECTION_SAT_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_sat_day_image_view);
+            SECTION_SUN_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_sun_day_image_view);
+            SECTION_MON_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_mon_day_image_view);
+            SECTION_TUE_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_tue_day_image_view);
+            SECTION_WED_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_wed_day_image_view);
+            SECTION_THU_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_thu_image_view);
+            SECTION_FRI_IMAGE_VIEW = (ImageView) sectionInputScreen.findViewById(R.id.section_input_fri_image_view);
         }
     }
 

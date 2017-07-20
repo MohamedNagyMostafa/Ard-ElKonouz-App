@@ -168,8 +168,8 @@ public class ChildProfileActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(childId),
-                DatabaseController.ProjectionDatabase.COURSE_CHILD_JOIN_LIST_TABLE,
+                DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(childId),
+                DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_TABLE,
                 null,
                 null,
                 null
