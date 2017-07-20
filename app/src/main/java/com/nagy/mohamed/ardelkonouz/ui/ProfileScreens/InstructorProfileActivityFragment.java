@@ -123,8 +123,8 @@ public class InstructorProfileActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
-                DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_TABLE,
+                DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(instructorId),
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_TABLE,
                 null,
                 null,
                 null
