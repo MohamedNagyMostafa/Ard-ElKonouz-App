@@ -52,14 +52,14 @@ public class DatabaseController {
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
         };
 
         public static final int COURSE_LIST_ID = 0;
         public static final int COURSE_LIST_NAME = 1;
-        public static final int COURSE_LIST_START_DATE = 2;
-        public static final int COURSE_LIST_END_DATE = 3;
+        public static final int SECTION_LIST_START_DATE = 2;
+        public static final int SECTION_LIST_END_DATE = 3;
 
 
         public static final String[] CHILD_PROJECTION = {
@@ -308,15 +308,15 @@ public class DatabaseController {
 
 
 
-        public static final String[] COURSE_DATE_PROJECTION = {
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
+        public static final String[] SECTION_DATE_PROJECTION = {
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN
         };
 
-        public static final int COURSE_DATE_START_DATE = 0;
-        public static final int COURSE_DATE_DAYS= 1;
-        public static final int COURSE_DATE_SESSIONS_NUMBER = 2;
+        public static final int SECTION_DATE_START_DATE = 0;
+        public static final int SECTION_DATE_DAYS= 1;
+        public static final int SECTION_DATE_SESSIONS_NUMBER = 2;
     }
 
     public static class UriDatabase{

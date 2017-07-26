@@ -123,6 +123,14 @@
             android:label="@string/title_activity_shift_list"
             android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity"
+            android:label="@string/title_activity_section_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity"
+            android:label="@string/title_activity_section_input"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -173,11 +173,11 @@ public class ShiftListActivityFragment extends Fragment
                 )
         );
 
-        final Long COURSE_ID =
+        final Long SECTION_ID =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_ID);
 
         Cursor shiftCursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getShiftWithCourseId(COURSE_ID),
+                DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
                 DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
                 null,
                 null,

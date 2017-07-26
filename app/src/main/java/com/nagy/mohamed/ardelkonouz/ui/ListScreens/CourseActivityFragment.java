@@ -16,9 +16,7 @@ import android.widget.EditText;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
-import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
-import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -108,38 +106,6 @@ public class CourseActivityFragment extends Fragment
                 )
         );
 
-        courseListRecycleViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_START_DATE)
-                )
-        );
-        courseListRecycleViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_LIST_END_DATE)
-                )
-        );
-
-        final Cursor instructorCourse =
-                getActivity().getContentResolver().query(
-                        DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
-                        new String[]{DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN},
-                        null,
-                        null,
-                        null
-                );
-
-        if(instructorCourse != null){
-            if(instructorCourse.getCount() > 0){
-                instructorCourse.moveToFirst();
-                StringBuilder stringBuilder = new StringBuilder(instructorCourse.getString(0));
-                while (instructorCourse.moveToNext()){
-                    stringBuilder.append(" - ").append(instructorCourse.getString(0));
-                }
-                courseListRecycleViewHolder.COURSE_INSTRUCTOR_TEXT_VIEW.setText(stringBuilder.toString());
-            }
-            instructorCourse.close();
-        }
-
         courseListRecycleViewHolder.COURSE_DELETE_IMAGE_VIEW
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -152,13 +118,19 @@ public class CourseActivityFragment extends Fragment
                         );
                         // Delete Course From CourseChild Table.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseChildTableWithCourseIdUri(COURSE_ID),
+                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(COURSE_ID),
                                 null,
                                 null
                         );
                         // Delete Course From InstructorCourse Table.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
+                                DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(COURSE_ID),
+                                null,
+                                null
+                        );
+                        // Delete Course Sections.
+                        getActivity().getContentResolver().delete(
+                                DatabaseController.UriDatabase.getCourseSectionJoinWithCourseId(COURSE_ID),
                                 null,
                                 null
                         );

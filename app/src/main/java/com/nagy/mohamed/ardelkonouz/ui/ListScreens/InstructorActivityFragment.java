@@ -109,7 +109,7 @@ public class InstructorActivityFragment extends Fragment
 
         Cursor coursesCursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase
-                        .getCourseInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
+                        .getSectionInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
                 new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
                 null,
                 null,
@@ -145,7 +145,7 @@ public class InstructorActivityFragment extends Fragment
                         // Delete Instructor from InstructorCoursesTable
                         getContext().getContentResolver().delete(
                                 DatabaseController.UriDatabase
-                                        .getCourseInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
+                                        .getSectionInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
                                 null,
                                 null
                         );
