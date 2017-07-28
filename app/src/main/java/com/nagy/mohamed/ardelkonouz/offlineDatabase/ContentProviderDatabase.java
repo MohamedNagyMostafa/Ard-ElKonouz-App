@@ -61,8 +61,8 @@ public class ContentProviderDatabase extends ContentProvider {
     private static final int SHIFT_WITH_SECTION_ID_TABLE = 21;
     private static final int SHIFT_TABLE = 22;
     private static final int SHIFT_WITH_SECTION_ID_JOIN_TABLE = 23;
-    private static final int COURSE_WITH_DAY_SEARCH_TABLE = 24;
-    private static final int COURSE_WITH_DAY_TABLE = 25;
+    private static final int SECTION_WITH_DAY_SEARCH_TABLE = 24;
+    private static final int SECTION_WITH_DAY_TABLE = 25;
     private static final int COURSES_CHOICES_TABLE = 26;
     private static final int COURSES_SELECTION_TABLE = 27;
     private static final int SHIFT_WITH_START_END_DATE_TABLE = 28;
@@ -307,11 +307,11 @@ public class ContentProviderDatabase extends ContentProvider {
             case SHIFT_WITH_SECTION_ID_JOIN_TABLE:
                 return getShiftWithSectionIdJoin(uri, projection);
 
-            case COURSE_WITH_DAY_SEARCH_TABLE:
-                return getCourseWithDaySearch(uri, projection, sortOrder);
+            case SECTION_WITH_DAY_SEARCH_TABLE:
+                return getSectionWithDaySearch(uri, projection, sortOrder);
 
-            case COURSE_WITH_DAY_TABLE:
-                return getCourseWithDay(uri, projection, sortOrder);
+            case SECTION_WITH_DAY_TABLE:
+                return getSectionWithDay(uri, projection, sortOrder);
 
             case COURSES_CHOICES_TABLE:
                 return getCoursesChoices(uri, projection, sortOrder);
@@ -895,9 +895,9 @@ public class ContentProviderDatabase extends ContentProvider {
                 + DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + "/";
         final String EMPLOYEE_WITH_SEARCH_PATH = DbContent.EmployeeTable.TABLE_NAME + "/"
                 + DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + "/*";
-
-        final String COURSE_WITH_DAY_SEARCH_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#/*";
-        final String COURSE_WITH_DAY_PATH  = DbContent.CourseTable.TABLE_NAME + "/day/#";
+        // Shift List
+        final String SECTION_WITH_DAY_SEARCH_PATH  = DbContent.SectionTable.TABLE_NAME + "/day/#/*";
+        final String SECTION_WITH_DAY_PATH  = DbContent.SectionTable.TABLE_NAME + "/day/#";
 
         final String SHIFT_PATH = DbContent.ShiftDaysTable.TABLE_NAME;
         final String SHIFT_WITH_ID_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
@@ -943,8 +943,8 @@ public class ContentProviderDatabase extends ContentProvider {
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_END_DATE_PATH, SHIFT_WITH_END_DATE_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_SELECTION_PATH, COURSES_SELECTION_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSES_CHOICES_PATH, COURSES_CHOICES_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_SEARCH_PATH, COURSE_WITH_DAY_SEARCH_TABLE);
-        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_WITH_DAY_PATH, COURSE_WITH_DAY_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_DAY_SEARCH_PATH, SECTION_WITH_DAY_SEARCH_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_DAY_PATH, SECTION_WITH_DAY_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_PATH, SHIFT_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_SECTION_ID_PATH, SHIFT_WITH_SECTION_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SHIFT_WITH_SECTION_ID_JOIN_PATH, SHIFT_WITH_SECTION_ID_JOIN_TABLE);
@@ -1329,11 +1329,11 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseWithDay(Uri uri, String[] projection, String sortOrder){
+    private Cursor getSectionWithDay(Uri uri, String[] projection, String sortOrder){
         long dayIndex = ContentUris.parseId(uri);
-        String selection = "(SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+        String selection = "(SUBSTR(" + DbContent.SectionTable.SECTION_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
-                "(" + DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?" + ")";
+                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")";
 
         Log.e("index",String.valueOf(dayIndex));
         String[] selectionArgs = {
@@ -1341,7 +1341,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(Utility.getCurrentDateAsMills())
         };
 
-        return COURSE_INSTRUCTOR_QUERY.query(
+        return COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
@@ -1352,7 +1352,7 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseWithDaySearch(Uri uri, String[] projection, String sortOrder){
+    private Cursor getSectionWithDaySearch(Uri uri, String[] projection, String sortOrder){
         String searchWord = uri.toString().substring(uri.toString().lastIndexOf('/') + 1, uri.toString().length());
         String encodeWord = searchWord + "%";
         String newUri = uri.toString().substring(0, uri.toString().lastIndexOf('/'));
@@ -1360,9 +1360,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
         /// TODO ... Check start Date...
 
-        String selection = "(SUBSTR(" + DbContent.CourseTable.COURSE_DAYS_COLUMN + "," +
+        String selection = "(SUBSTR(" + DbContent.SectionTable.SECTION_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
-                "(" + DbContent.CourseTable.COURSE_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
+                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
                 "(" + DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?" + ")";
 
         Log.e("index",String.valueOf(dayIndex));
@@ -1372,7 +1372,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 encodeWord
         };
 
-        return COURSE_INSTRUCTOR_QUERY.query(
+        return COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,

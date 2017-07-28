@@ -239,20 +239,20 @@ public class DatabaseController {
         public static final int SECTION_INSTRUCTOR_LIST_JOIN_SECTION_END_DATE = 3;
 
         public static final String[] SHIFT_LIST_PROJECTION = {
-                DbContent.SectionInstructorTable.TABLE_NAME + "." + DbContent.SectionInstructorTable._ID,
-                DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
-                DbContent.SectionTable.SECTION_DAYS_COLUMN
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN
         };
 
-        public static final int SHIFT_LIST_COURSE_NAME = 1;
-        public static final int SHIFT_LIST_COURSE_ID = 2;
-        public static final int SHIFT_LIST_INSTRUCTOR_NAME = 3;
-        public static final int SHIFT_LIST_COURSE_START_dATE = 4;
-        public static final int SHIFT_LIST_COURSE_END_dATE = 5;
-        public static final int SHIFT_LIST_COURSE_DAYS = 6;
+        public static final int SHIFT_LIST_SECTION_ID = 0;
+        public static final int SHIFT_LIST_SECTION_NAME = 1;
+        public static final int SHIFT_LIST_SECTION_START_dATE = 2;
+        public static final int SHIFT_LIST_SECTION_END_dATE = 3;
+        public static final int SHIFT_LIST_SECTION_DAYS = 4;
+        public static final int SHIFT_LIST_COURSE_NAME = 5;
 
         public static final String[] SHIFT_TABLE_PROJECTION = {
                 DbContent.ShiftDaysTable.TABLE_NAME + "."  + DbContent.ShiftDaysTable._ID,
@@ -446,8 +446,8 @@ public class DatabaseController {
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
-        public static Uri getCoursesByDaySearchUri(String searchChars, long indexDay){
-            Uri uri = COURSE_TABLE_URI.buildUpon().appendPath("day")
+        public static Uri getSectionsByDaySearchUri(String searchChars, long indexDay){
+            Uri uri = SECTION_URI.buildUpon().appendPath("day")
                     .appendPath(String.valueOf(indexDay))
                     .build();
 

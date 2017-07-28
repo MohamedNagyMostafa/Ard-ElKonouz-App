@@ -21,6 +21,7 @@ import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ShiftInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
@@ -162,20 +163,38 @@ public class ShiftListActivityFragment extends Fragment
         ViewHolder.ShiftListScreenViewHolder.ShiftListRecycleViewHolder shiftListRecycleViewHolder =
                 new ViewHolder.ShiftListScreenViewHolder.ShiftListRecycleViewHolder(view);
 
+        final Long SECTION_ID = cursor.getLong(
+                DatabaseController.ProjectionDatabase.SHIFT_LIST_SECTION_ID
+        );
+
         shiftListRecycleViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
                         DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_NAME
-                )
-        );
-        shiftListRecycleViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
-                cursor.getString(
-                        DatabaseController.ProjectionDatabase.SHIFT_LIST_INSTRUCTOR_NAME
+                ) + "Sec. " + String.valueOf(
+                        cursor.getString(
+                                DatabaseController.ProjectionDatabase.SHIFT_LIST_SECTION_NAME
+                        )
                 )
         );
 
-        final Long SECTION_ID =
-                cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_ID);
+        Cursor instructorNameCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(SECTION_ID),
+                new String[]{DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN},
+                null,
+                null,
+                null
+        );
 
+        if(instructorNameCursor != null){
+            if(instructorNameCursor.getCount() > 0){
+                instructorNameCursor.moveToNext();
+
+                shiftListRecycleViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
+                        instructorNameCursor.getString(0)
+                );
+            }
+                instructorNameCursor.close();
+        }
         Cursor shiftCursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
                 DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
@@ -214,13 +233,13 @@ public class ShiftListActivityFragment extends Fragment
                         Utility.getNextSessionDay(
                                 shifts,
                                 cursor.getString(
-                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_DAYS
+                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_SECTION_DAYS
                                 ),
                                 cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_END_dATE
+                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_SECTION_END_dATE
                                 ),
                                 cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_START_dATE
+                                        DatabaseController.ProjectionDatabase.SHIFT_LIST_SECTION_START_dATE
                                 )
 
                         )
@@ -234,7 +253,7 @@ public class ShiftListActivityFragment extends Fragment
         if(dayIndex != null)
             return new CursorLoader(
                     getContext(),
-                    DatabaseController.UriDatabase.getCoursesByDaySearchUri(searchChars, dayIndex),
+                    DatabaseController.UriDatabase.getSectionsByDaySearchUri(searchChars, dayIndex),
                     DatabaseController.ProjectionDatabase.SHIFT_LIST_PROJECTION,
                     null,
                     null,
