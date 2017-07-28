@@ -99,6 +99,7 @@ public class InstructorActivityFragment extends Fragment
         ViewHolder.InstructorListScreenViewHolder.InstructorListRecycleViewHolder
                 instructorListRecycleViewHolder = new ViewHolder.InstructorListScreenViewHolder
                 .InstructorListRecycleViewHolder(view);
+
         final long INSTRUCTOR_ID =
                 cursor.getLong(DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_ID);
         instructorListRecycleViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
@@ -107,29 +108,47 @@ public class InstructorActivityFragment extends Fragment
                 )
         );
 
-        Cursor coursesCursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase
-                        .getSectionInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
-                new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+        Cursor sectionCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_SECTION_PROJECTION,
                 null,
                 null,
                 null
         );
 
-        if(coursesCursor != null){
-            if(coursesCursor.getCount() > 0){
-                coursesCursor.moveToFirst();
-                StringBuilder stringBuilder = new StringBuilder(coursesCursor.getString(0));
+        String instructorCourses = "";
 
-                while (coursesCursor.moveToNext()){
-                    stringBuilder.append(" - ").append(coursesCursor.getString(0));
+        if(sectionCursor != null){
+            while (sectionCursor.moveToNext()){
+                Integer sectionNumber = sectionCursor.getInt(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_SECTION_NAME
+                );
+
+                final Long COURSE_ID = sectionCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_ID
+                );
+
+                Cursor courseCursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                        new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                        null,
+                        null,
+                        null
+                );
+
+                if(courseCursor != null){
+                    String courseName = courseCursor.getString(0);
+
+                    if(instructorCourses.isEmpty())
+                        instructorCourses = courseName + ".Sec " + sectionNumber;
+                    else
+                        instructorCourses += ", " + courseName + ".Sec " + sectionNumber;
+                    courseCursor.close();
                 }
-
-                instructorListRecycleViewHolder.INSTRUCTOR_COURSES_TEXT_VIEW
-                        .setText(stringBuilder.toString());
             }
-            coursesCursor.close();
+            sectionCursor.close();
         }
+
 
         instructorListRecycleViewHolder.INSTRUCTOR_DELETE_IMAGE_VIEW
                 .setOnClickListener(new View.OnClickListener() {
@@ -142,7 +161,7 @@ public class InstructorActivityFragment extends Fragment
                                 null,
                                 null
                         );
-                        // Delete Instructor from InstructorCoursesTable
+                        // Delete Instructor from InstructorSectionTable
                         getContext().getContentResolver().delete(
                                 DatabaseController.UriDatabase
                                         .getSectionInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),

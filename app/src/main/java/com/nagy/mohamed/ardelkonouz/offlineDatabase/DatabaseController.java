@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class DatabaseController {
 
     public static class ProjectionDatabase {
+
+
         // Child list
         public static final String[] CHILD_LIST_SECTION_PROJECTION = {
                 DbContent.SectionTable.SECTION_NAME_COLUMN,
@@ -20,6 +22,14 @@ public class DatabaseController {
 
         public static final int CHILD_LIST_SECTION_NAME = 0;
         public static final int CHILD_LIST_SECTION_COURSE_ID = 1;
+
+        // Instructor List
+        public static final String[] INSTRUCTOR_LIST_SECTION_PROJECTION = CHILD_LIST_SECTION_PROJECTION;
+
+        public static final int INSTRUCTOR_LIST_SECTION_NAME= CHILD_LIST_SECTION_NAME;
+        public static final int INSTRUCTOR_LIST_SECTION_ID = CHILD_LIST_SECTION_COURSE_ID;
+
+
 
         public static final String[] SECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
