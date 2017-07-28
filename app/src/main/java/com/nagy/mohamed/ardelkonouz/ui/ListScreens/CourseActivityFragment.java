@@ -17,6 +17,7 @@ import android.widget.EditText;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -106,6 +107,24 @@ public class CourseActivityFragment extends Fragment
                 )
         );
 
+        Cursor sectionCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getSectionWithCourseId(COURSE_ID),
+                new String[]{DbContent.SectionTable._ID},
+                null,
+                null,
+                null
+        );
+
+        if(sectionCursor != null){
+            courseListRecycleViewHolder.COURSE_SECTION_NUMBER_TEXT_VIEW.setText(
+                    String.valueOf(
+                            sectionCursor.getCount()
+                    )
+            );
+
+            sectionCursor.close();
+        }
+
         courseListRecycleViewHolder.COURSE_DELETE_IMAGE_VIEW
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -116,24 +135,40 @@ public class CourseActivityFragment extends Fragment
                                 null,
                                 null
                         );
-                        // Delete Course From CourseChild Table.
-                        getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(COURSE_ID),
+
+                        // Delete Course Sections With Child and Instructor
+                        Cursor sectionCourseCursor = getActivity().getContentResolver().query(
+                                DatabaseController.UriDatabase.getSectionWithCourseId(COURSE_ID),
+                                new String[]{DbContent.SectionTable.SECTION_COURSE_ID_COLUMN},
+                                null,
                                 null,
                                 null
                         );
-                        // Delete Course From InstructorCourse Table.
-                        getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(COURSE_ID),
-                                null,
-                                null
-                        );
-                        // Delete Course Sections.
-                        getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseSectionJoinWithCourseId(COURSE_ID),
-                                null,
-                                null
-                        );
+
+                        if(sectionCourseCursor != null){
+                            while(sectionCourseCursor.moveToNext()){
+                                Long SECTION_ID = sectionCourseCursor.getLong(0);
+
+                                getActivity().getContentResolver().delete(
+                                        DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                                        null,
+                                        null
+                                );
+
+                                getActivity().getContentResolver().delete(
+                                        DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(SECTION_ID),
+                                        null,
+                                        null
+                                );
+
+                                getActivity().getContentResolver().delete(
+                                        DatabaseController.UriDatabase.getSectionWithId(SECTION_ID),
+                                        null,
+                                        null
+                                );
+                            }
+                            sectionCourseCursor.close();
+                        }
 
                         restartLoader();
                     }

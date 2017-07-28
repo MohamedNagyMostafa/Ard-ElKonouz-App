@@ -72,7 +72,7 @@ public class ContentProviderDatabase extends ContentProvider {
     public static final int COURSE_SECTION_JOIN_TABLE = 34;
     public static final int COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE = 35;
     public static final int COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE = 36;
-    public static final int SECTION_WITH_COURSE_ID_TABLE = 36;
+    public static final int SECTION_WITH_COURSE_ID_TABLE = 37; // Course List
 
 
     private static final String INNER_JOIN = "INNER JOIN";
@@ -345,6 +345,9 @@ public class ContentProviderDatabase extends ContentProvider {
             case COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE:
                 return  getCourseSectionJoinWithSectionId(uri, projection, selection);
 
+            case SECTION_WITH_COURSE_ID_TABLE: // Course List
+                return getSectionWithCourseId(uri, projection, selection);
+
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
         }
@@ -573,7 +576,7 @@ public class ContentProviderDatabase extends ContentProvider {
             case SHIFT_WITH_START_END_DATE_TABLE:
                 return deleteShiftWithStartEndDate(uri);
 
-            case SECTION_WITH_COURSE_ID_TABLE:
+            case SECTION_WITH_COURSE_ID_TABLE: // Course List
                 return deleteRowWithId(DbContent.SectionTable.TABLE_NAME,
                         uri,
                         DbContent.SectionTable.SECTION_COURSE_ID_COLUMN);
@@ -918,6 +921,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
         final String SECTION_PATH = DbContent.SectionTable.TABLE_NAME;
         final String SECTION_WITH_ID_PATH = SECTION_PATH + "/#";
+        // Course List
         final String SECTION_WITH_COURSE_ID_PATH = SECTION_PATH +
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "/#";
 
@@ -1637,6 +1641,23 @@ public class ContentProviderDatabase extends ContentProvider {
 
         return COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getSectionWithCourseId(Uri uri, String[] projection, String sortOrder){
+
+        final Long COURSE_ID = ContentUris.parseId(uri);
+        String selection = DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "=?";
+        String[] selectionArgs = {String.valueOf(COURSE_ID)};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.SectionTable.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,
