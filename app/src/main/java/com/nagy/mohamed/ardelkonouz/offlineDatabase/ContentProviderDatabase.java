@@ -46,7 +46,7 @@ public class ContentProviderDatabase extends ContentProvider {
     public static final int SECTION_WITH_ID_TABLE = 33;
     private static final int EMPLOYEE_WITH_ID_TABLE = 14;
 
-    private static final int CHILD_SECTION_WITH_CHILD_ID_TABLE = 9;
+    private static final int CHILD_SECTION_WITH_CHILD_ID_TABLE = 9;// Child List
     private static final int CHILD_SECTION_WITH_SECTION_ID_TABLE = 10;
     private static final int INSTRUCTOR_SECTION_WITH_INSTRUCTOR_ID_TABLE = 12;
     private static final int INSTRUCTOR_SECTION_WITH_SECTION_ID_TABLE = 13;
@@ -856,8 +856,10 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN + "/" +
                 DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN+ "/#" + "/#";
         final String INSTRUCTOR_WITH_ID_PATH = DbContent.InstructorTable.TABLE_NAME + "/#";
+        /// Child List
         final String CHILD_SECTION_WITH_CHILD_ID_PATH = CHILD_SECTION_PATH + "/" +
                 DbContent.ChildTable.TABLE_NAME + "/#";
+
         final String CHILD_SECTION_WITH_SECTION_ID_PATH = CHILD_SECTION_PATH + "/" +
                 DbContent.SectionTable.TABLE_NAME + "/#";
 

@@ -12,6 +12,14 @@ import java.util.ArrayList;
 public class DatabaseController {
 
     public static class ProjectionDatabase {
+        // Child list
+        public static final String[] CHILD_LIST_SECTION_PROJECTION = {
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
+        };
+
+        public static final int CHILD_LIST_SECTION_NAME = 0;
+        public static final int CHILD_LIST_SECTION_COURSE_ID = 1;
 
         public static final String[] SECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
@@ -374,7 +382,7 @@ public class DatabaseController {
                     .appendPath(String.valueOf(id))
                     .appendPath(String.valueOf(date)).build();
         }
-
+        // Child List
         public static Uri getSectionChildTableWithChildIdUri(long id){
             return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
