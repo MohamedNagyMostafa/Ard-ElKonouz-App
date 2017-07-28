@@ -78,7 +78,7 @@ public class SectionProfileActivityFragment extends Fragment
                     // TODO ... update database.
                     Cursor courseCursor = getActivity().getContentResolver().query(
                             DatabaseController.UriDatabase.getSectionWithId(sectionId),
-                            DatabaseController.ProjectionDatabase.COURSE_DATE_PROJECTION,
+                            DatabaseController.ProjectionDatabase.SECTION_DATE_PROJECTION,
                             null,
                             null,
                             null
@@ -117,7 +117,7 @@ public class SectionProfileActivityFragment extends Fragment
                             final int FINISHED_SESSIONS = SECTION_SESSION_NUMBER - REMAINS_SESSIONS;
 
                             ContentValues contentValues = new ContentValues();
-                            contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, SECTION_END_DATE);
+                            contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
 
                             // TODO ... update database to be for sections
                             getActivity().getContentResolver().update(

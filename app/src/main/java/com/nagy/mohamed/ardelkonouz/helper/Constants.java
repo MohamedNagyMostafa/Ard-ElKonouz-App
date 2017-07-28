@@ -16,8 +16,8 @@ public class Constants {
     public static final int GOVERNMENTAL_ENGLISH = 1;
 
     //Paid
-    public static final int PAID_COURSE = 1;
-    public static final int NOT_PAID_COURSE = 2;
+    public static final int PAID_SECTION = 1;
+    public static final int NOT_PAID_SECTION = 2;
 
     // GENDER
     public static final int MALE = 0;
@@ -112,8 +112,8 @@ public class Constants {
     public static class SaveState{
 
         public static final String GENDER_STATE = "GENDER SAVE";
-        public static final String COURSE_STATE = "STATE SAVE";
-        public static final String COURSE_DAYS = "COURSE DAYS";
+        public static final String SECTION_STATE = "STATE SAVE";
+        public static final String SECTION_DAYS = "COURSE DAYS";
         public static final String BIRTH_ORDER = "COURSE BIRTH";
         public static final String EDUCATION_TYPE = "EDUCATION TYPE";
         public static final String EDUCATION_STAGE = "EDUCATION STAGE";

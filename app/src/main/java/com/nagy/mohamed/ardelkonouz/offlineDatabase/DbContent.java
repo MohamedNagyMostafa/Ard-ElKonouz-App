@@ -29,7 +29,6 @@ public class DbContent {
                 .buildUpon().appendPath(TABLE_NAME).build();
 
         public static final String COURSE_NAME_COLUMN = "course_name";
-        public static final String COURSE_HOURS_COLUMN = "course_hours";
         public static final String COURSE_COST_COLUMN = "course_cost";
         public static final String COURSE_START_AGE_COLUMN = "course_start_age";
         public static final String COURSE_END_AGE_COLUMN = "course_end_age";
@@ -40,7 +39,6 @@ public class DbContent {
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 COURSE_NAME_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
-                COURSE_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_COST_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_START_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_END_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
@@ -243,13 +241,17 @@ public class DbContent {
         public static final String SECTION_AVAILABLE_POSITIONS_COLUMN = "available_positions";
         public static final String SECTION_START_DATE_COLUMN = "section_start_date";
         public static final String SECTION_END_DATE_COLUMN = "section_end_date";
+        public static final String SECTION_HOURS_COLUMN = "section_hours";
         public static final String SECTION_DAYS_COLUMN = "section_days";
         public static final String SECTION_SESSIONS_NUMBER_COLUMN = "section_sessions_number";
         public static final String SECTION_COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_NAME_COLUMN = "section_name";
 
         public static final String CREATE_SECTION_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
+                SECTION_NAME_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_HOURS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +

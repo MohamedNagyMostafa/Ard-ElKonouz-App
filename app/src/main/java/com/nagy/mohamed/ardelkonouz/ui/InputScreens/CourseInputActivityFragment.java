@@ -72,13 +72,6 @@ public class CourseInputActivityFragment extends Fragment {
                                 )
                         )
                 );
-                courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getInt(
-                                        DatabaseController.ProjectionDatabase.COURSE_HOURS
-                                )
-                        )
-                );
                 courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
@@ -114,7 +107,6 @@ public class CourseInputActivityFragment extends Fragment {
                                 if(checkValidation(courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
                                         courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
@@ -149,7 +141,6 @@ public class CourseInputActivityFragment extends Fragment {
                                 courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
                                 courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
@@ -176,10 +167,6 @@ public class CourseInputActivityFragment extends Fragment {
                 Double.valueOf(
                         courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT.getText().toString()
                 );
-        final Double COURSE_HOURS =
-                Double.valueOf(
-                        courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT.getText().toString()
-                );
         final Integer COURSE_LEVEL =
                 Integer.valueOf(
                         courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT.getText().toString()
@@ -204,7 +191,6 @@ public class CourseInputActivityFragment extends Fragment {
         contentValues.put(DbContent.CourseTable.COURSE_NAME_COLUMN, COURSE_NAME);
         contentValues.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, COURSE_START_AGE);
         contentValues.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, COURSE_END_AGE);
-        contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, COURSE_HOURS);
 
         return contentValues;
     }

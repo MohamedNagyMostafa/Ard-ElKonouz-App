@@ -206,7 +206,6 @@ public class ViewHolder {
     public static class CourseInputScreenViewHolder{
 
         public final EditText COURSE_NAME_EDIT_TEXT;
-        public final EditText COURSE_HOURS_EDIT_TEXT;
         public final EditText COURSE_COST_EDIT_TEXT;
         public final EditText COURSE_LEVEL_EDIT_TEXT;
         public final EditText COURSE_SALARY_PER_CHILD_EDIT_TEXT;
@@ -217,7 +216,6 @@ public class ViewHolder {
         public CourseInputScreenViewHolder(View courseInputScreen){
 
             COURSE_NAME_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_name_edit_view);
-            COURSE_HOURS_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_hours_edit_view);
             COURSE_COST_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_cost_edit_view);
             COURSE_LEVEL_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_level_edit_view);
             COURSE_SALARY_PER_CHILD_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_salary_per_child_edit_view);
@@ -231,6 +229,8 @@ public class ViewHolder {
 
         public final EditText SECTION_BEGINNING_DATE_EDIT_TEXT;
         public final EditText SECTION_SESSIONS_NUMBER_EDIT_TEXT;
+        public final EditText SECTION_NAME_EDIT_TEXT;
+        public final EditText SECTION_SESSION_HOUR_EDIT_TEXT;
         public final TextView SECTION_COMPLETE_TEXT_VIEW;
         public final TextView SECTION_INCOMPLETE_TEXT_VIEW;
         public final ImageView SECTION_COMPLETE_IMAGE_VIEW;
@@ -253,6 +253,8 @@ public class ViewHolder {
 
         public SectionInputScreenViewHolder(View sectionInputScreen){
 
+            SECTION_NAME_EDIT_TEXT = (EditText)  sectionInputScreen.findViewById(R.id.section_input_name_edit_view);
+            SECTION_SESSION_HOUR_EDIT_TEXT = (EditText)  sectionInputScreen.findViewById(R.id.section_input_sessions_hours_edit_view);
             SECTION_BEGINNING_DATE_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_date_edit_view);
             SECTION_SESSIONS_NUMBER_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_sessions_number_edit_view);
             SECTION_COMPLETE_TEXT_VIEW = (TextView) sectionInputScreen.findViewById(R.id.section_input_complete_text_view);
@@ -581,17 +583,15 @@ public class ViewHolder {
         public static class SectionRecycleViewHolder extends RecyclerView.ViewHolder{
 
             public final TextView SECTION_NAME_TEXT_VIEW;
-            public final TextView SECTION_START_DATE_TEXT_VIEW;
+            public final TextView NEXT_SECTION_TEXT_VIEW;
             public final TextView SECTION_INSTRUCTOR_TEXT_VIEW;
-            public final TextView SECTION_END_DATE_TEXT_VIEW;
             public final ImageView SECTION_DELETE_IMAGE_VIEW;
 
             public SectionRecycleViewHolder(View shiftRecycleView){
                 super(shiftRecycleView);
                 SECTION_NAME_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_name_text_view);
-                SECTION_START_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_beginning_date_text_view);
-                SECTION_END_DATE_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_end_date_text_view);
-                SECTION_INSTRUCTOR_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_instructor_text_view);
+                NEXT_SECTION_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_next_section_text_view);
+                SECTION_INSTRUCTOR_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_instructor_name_text_view);
                 SECTION_DELETE_IMAGE_VIEW = (ImageView) shiftRecycleView.findViewById(R.id.course_pf_section_delete_image_View);
             }
         }

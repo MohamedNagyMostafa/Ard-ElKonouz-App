@@ -6,13 +6,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.ParseException;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.DatePickerFragment;
 import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -28,9 +25,8 @@ import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
-import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
-import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewInstructorProfileAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,10 +36,11 @@ import java.util.Date;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class SectionInputActivityFragment extends Fragment {
+public class SectionInputActivityFragment extends Fragment
+        implements CurrentDateWithTime {
 
-    private ArrayList<DoubleChoice> COURSE_STATE_LIST;
-    private ArrayList<DoubleChoice> COURSE_DAYS_LIST;
+    private ArrayList<DoubleChoice> SECTION_STATE_LIST;
+    private ArrayList<DoubleChoice> SECTION_DAYS_LIST;
 
     private final View.OnClickListener DATE_EDIT_TEXT_LISTENER =
             new View.OnClickListener() {
@@ -59,69 +56,69 @@ public class SectionInputActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_section_input, container, false);
-        ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder =
-                new ViewHolder.CourseInputScreenViewHolder(rootView);
+        View rootView = inflater.inflate(R.layout.fragment_section_input, container, false);
+        ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder =
+                new ViewHolder.SectionInputScreenViewHolder(rootView);
 
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
 
-        COURSE_STATE_LIST = setCourseStateListItem(courseInputScreenViewHolder);
-        COURSE_DAYS_LIST = setCourseDaysListItem(courseInputScreenViewHolder);
+        SECTION_STATE_LIST = setSectionStateListItem(sectionInputScreenViewHolder);
+        SECTION_DAYS_LIST = setSectionDaysListItem(sectionInputScreenViewHolder);
 
-        courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
+        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
 
         // setChoice listener.
-        setCourseStateListener(COURSE_STATE_LIST);
-        setDoubleChoicesListListeners(COURSE_DAYS_LIST);
+        setSectionStateListener(SECTION_STATE_LIST);
+        setDoubleChoicesListListeners(SECTION_DAYS_LIST);
 
         if(INPUT_TYPE.equals(Constants.INPUT_ADD_EXTRA)) {
-            setOptionsAsAddNewCourse(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder);
+            setOptionsAsAddNewSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder);
         }else {
-            setOptionsAsEditCourse(COURSE_STATE_LIST, COURSE_DAYS_LIST, courseInputScreenViewHolder);
+            setOptionsAsEditSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder);
         }
 
         return rootView;
 
     }
 
-    private ArrayList<DoubleChoice> setCourseDaysListItem(
-            ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
-        ArrayList<DoubleChoice> courseDaysList = new ArrayList<>();
+    private ArrayList<DoubleChoice> setSectionDaysListItem(
+            ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
+        ArrayList<DoubleChoice> sectionDaysList = new ArrayList<>();
 
         Utility.setChoiceTextViewSystem(
-                courseDaysList, getContext(),
-                courseInputScreenViewHolder.COURSE_SAT_TEXT_VIEW,
-                courseInputScreenViewHolder.COURSE_SUN_TEXT_VIEW,
-                courseInputScreenViewHolder.COURSE_MON_TEXT_VIEW,
-                courseInputScreenViewHolder.COURSE_TUE_TEXT_VIEW,
-                courseInputScreenViewHolder.COURSE_WED_TEXT_VIEW,
-                courseInputScreenViewHolder.COURSE_THU_TEXT_VIEW,
-                courseInputScreenViewHolder.COURSE_FRI_TEXT_VIEW
+                sectionDaysList, getContext(),
+                sectionInputScreenViewHolder.SECTION_SAT_TEXT_VIEW,
+                sectionInputScreenViewHolder.SECTION_SUN_TEXT_VIEW,
+                sectionInputScreenViewHolder.SECTION_MON_TEXT_VIEW,
+                sectionInputScreenViewHolder.SECTION_TUE_TEXT_VIEW,
+                sectionInputScreenViewHolder.SECTION_WED_TEXT_VIEW,
+                sectionInputScreenViewHolder.SECTION_THU_TEXT_VIEW,
+                sectionInputScreenViewHolder.SECTION_FRI_TEXT_VIEW
         );
 
         Utility.setChoiceImageViewSystem(
-                courseDaysList,
-                courseInputScreenViewHolder.COURSE_SAT_IMAGE_VIEW,
-                courseInputScreenViewHolder.COURSE_SUN_IMAGE_VIEW,
-                courseInputScreenViewHolder.COURSE_MON_IMAGE_VIEW,
-                courseInputScreenViewHolder.COURSE_TUE_IMAGE_VIEW,
-                courseInputScreenViewHolder.COURSE_WED_IMAGE_VIEW,
-                courseInputScreenViewHolder.COURSE_THU_IMAGE_VIEW,
-                courseInputScreenViewHolder.COURSE_FRI_IMAGE_VIEW
+                sectionDaysList,
+                sectionInputScreenViewHolder.SECTION_SAT_IMAGE_VIEW,
+                sectionInputScreenViewHolder.SECTION_SUN_IMAGE_VIEW,
+                sectionInputScreenViewHolder.SECTION_MON_IMAGE_VIEW,
+                sectionInputScreenViewHolder.SECTION_TUE_IMAGE_VIEW,
+                sectionInputScreenViewHolder.SECTION_WED_IMAGE_VIEW,
+                sectionInputScreenViewHolder.SECTION_THU_IMAGE_VIEW,
+                sectionInputScreenViewHolder.SECTION_FRI_IMAGE_VIEW
         );
 
-        return courseDaysList;
+        return sectionDaysList;
     }
 
 
-    private void setOptionsAsEditCourse(final ArrayList<DoubleChoice> COURSE_STATE_LIST,
-                                        final ArrayList<DoubleChoice> COURSE_DAYS_LIST,
-                                        final ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
-        final long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
+    private void setOptionsAsEditSection(final ArrayList<DoubleChoice> SECTION_STATE_LIST,
+                                        final ArrayList<DoubleChoice> SECTION_DAYS_LIST,
+                                        final ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
+        final long SECTION_ID = getActivity().getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
 
         final Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
+                DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
+                DatabaseController.ProjectionDatabase.SECTION_PROJECTION,
                 null,
                 null,
                 null
@@ -131,112 +128,72 @@ public class SectionInputActivityFragment extends Fragment {
             if(cursor.getCount() > 0){
                 cursor.moveToFirst();
 
-                courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT.setText(
-                        cursor.getString(
-                                DatabaseController.ProjectionDatabase.COURSE_NAME
+                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT.setText(
+                        cursor.getInt(
+                                DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
                         )
                 );
-                courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getDouble(
-                                        DatabaseController.ProjectionDatabase.COURSE_COST
-                                )
-                        )
-                );
-                courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT.setText(
+                sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
-                                        DatabaseController.ProjectionDatabase.COURSE_HOURS
+                                        DatabaseController.ProjectionDatabase.SECTION_HOURS_COLUMN
                                 )
                         )
                 );
-                courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getInt(
-                                        DatabaseController.ProjectionDatabase.COURSE_LEVEL
-                                )
-                        )
-                );
-                courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.setText(
+                sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.COURSE_START_DATE
-                                )
-                        )
-                );
-                courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getDouble(
-                                        DatabaseController.ProjectionDatabase.COURSE_SALARY_PER_CHILD
+                                        DatabaseController.ProjectionDatabase.SECTION_START_DATE
                                 )
                         )
                 );
                 Utility.selectionProcess(
                         cursor.getInt(
-                                DatabaseController.ProjectionDatabase.COURSE_AVAILABLE_POSITIONS
+                                DatabaseController.ProjectionDatabase.SECTION_AVAILABLE_POSITIONS
                         ),
-                        COURSE_STATE_LIST
+                        SECTION_STATE_LIST
                 );
                 Utility.doubleSelectionProcess(
-                        COURSE_DAYS_LIST,
+                        SECTION_DAYS_LIST,
                         cursor.getString(
-                                DatabaseController.ProjectionDatabase.COURSE_DAYS_COLUMN
+                                DatabaseController.ProjectionDatabase.SECTION_DAYS
                         )
 
                 );
-                courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT.setText(
+                sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
-                                        DatabaseController.ProjectionDatabase.COURSE_START_AGE
-                                )
-                        )
-                );
-                courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getInt(
-                                        DatabaseController.ProjectionDatabase.COURSE_END_AGE
-                                )
-                        )
-                );
-                courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getInt(
-                                        DatabaseController.ProjectionDatabase.COURSE_SESSIONS_NUMBER_COLUMN
+                                        DatabaseController.ProjectionDatabase.SECTION_SESSIONS_NUMBER_COLUMN
                                 )
                         )
                 );
 
-                courseInputScreenViewHolder.SUBMIT_COURSE_BUTTON.setOnClickListener(
+                sectionInputScreenViewHolder.SUBMIT_SECTION_BUTTON.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(checkValidation(COURSE_STATE_LIST, COURSE_DAYS_LIST,
-
-                                        courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
-                                        courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
+                                if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
+                                        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
+                                        sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT,
+                                        sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
+                                        sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
+                                        sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT)) {
 
 
                                     getActivity().getContentResolver().update(
-                                            DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                            DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
                                             getDataFromInputs(
-                                                    COURSE_STATE_LIST,
-                                                    COURSE_DAYS_LIST,
-                                                    COURSE_ID,
-                                                    courseInputScreenViewHolder),
+                                                    SECTION_STATE_LIST,
+                                                    SECTION_DAYS_LIST,
+                                                    SECTION_ID,
+                                                    sectionInputScreenViewHolder),
                                             null,
                                             null
                                     );
-                                    Log.e("Course id", String.valueOf(COURSE_ID));
+                                    Log.e("Section id", String.valueOf(SECTION_ID));
 
 
-                                    openProfileCourseScreen(COURSE_ID);
+                                    openProfileSectionScreen(SECTION_ID);
                                 }
                             }
                         }
@@ -246,49 +203,45 @@ public class SectionInputActivityFragment extends Fragment {
         }
     }
 
-    private void setOptionsAsAddNewCourse(final ArrayList<DoubleChoice> COURSE_STATE_LIST,
-                                          final ArrayList<DoubleChoice> COURSE_DAYS_LIST,
-                                          final ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
-        courseInputScreenViewHolder.SUBMIT_COURSE_BUTTON.setOnClickListener(
+    private void setOptionsAsAddNewSection(final ArrayList<DoubleChoice> SECTION_STATE_LIST,
+                                          final ArrayList<DoubleChoice> SECTION_DAYS_LIST,
+                                          final ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
+        sectionInputScreenViewHolder.SUBMIT_SECTION_BUTTON.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(checkValidation(COURSE_STATE_LIST, COURSE_DAYS_LIST,
-                                courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT,
-                                courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT)) {
+                        if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
+                                sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
+                                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT,
+                                sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
+                                sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
+                                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT)) {
 
 
                             Uri uri = getActivity().getContentResolver().insert(
-                                    DatabaseController.UriDatabase.COURSE_TABLE_URI,
+                                    DatabaseController.UriDatabase.SECTION_URI,
                                     getDataFromInputs(
-                                            COURSE_STATE_LIST,
-                                            COURSE_DAYS_LIST,
+                                            SECTION_STATE_LIST,
+                                            SECTION_DAYS_LIST,
                                             null,
-                                            courseInputScreenViewHolder)
+                                            sectionInputScreenViewHolder)
                             );
 
-                            final long COURSE_ID = ContentUris.parseId(uri);
+                            final long SECTION_ID = ContentUris.parseId(uri);
 
                             Uri uri2 = getActivity().getContentResolver().insert(
-                                    DatabaseController.UriDatabase.COURSE_INSTRUCTOR_URI,
-                                    getData(COURSE_ID)
+                                    DatabaseController.UriDatabase.SECTION_INSTRUCTOR_URI,
+                                    getData(SECTION_ID)
                             );
 
-                            openProfileCourseScreen(COURSE_ID);
+                            openProfileSectionScreen(SECTION_ID);
                         }
                     }
                 }
         );
     }
 
-    private void setCourseStateListener(final ArrayList<DoubleChoice> doubleChoiceArrayList){
+    private void setSectionStateListener(final ArrayList<DoubleChoice> doubleChoiceArrayList){
         for(final DoubleChoice doubleChoice : doubleChoiceArrayList){
             doubleChoice.getTextView().setOnClickListener(
                     new View.OnClickListener() {
@@ -324,21 +277,21 @@ public class SectionInputActivityFragment extends Fragment {
         }
     }
 
-    private ArrayList<DoubleChoice> setCourseStateListItem(
-            ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
+    private ArrayList<DoubleChoice> setSectionStateListItem(
+            ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
         ArrayList<DoubleChoice> doubleChoiceArrayList = new ArrayList<>();
 
         Utility.setChoiceTextViewSystem(
                 doubleChoiceArrayList,
                 getContext(),
-                courseInputScreenViewHolder.COURSE_COMPLETE_TEXT_VIEW,
-                courseInputScreenViewHolder.COURSE_INCOMPLETE_TEXT_VIEW
+                sectionInputScreenViewHolder.SECTION_COMPLETE_TEXT_VIEW,
+                sectionInputScreenViewHolder.SECTION_INCOMPLETE_TEXT_VIEW
         );
 
         Utility.setChoiceImageViewSystem(
                 doubleChoiceArrayList,
-                courseInputScreenViewHolder.COURSE_COMPLETE_IMAGE_VIEW,
-                courseInputScreenViewHolder.COURSE_INCOMPLETE_IMAGE_VIEW
+                sectionInputScreenViewHolder.SECTION_COMPLETE_IMAGE_VIEW,
+                sectionInputScreenViewHolder.SECTION_INCOMPLETE_IMAGE_VIEW
         );
 
         return doubleChoiceArrayList;
@@ -352,55 +305,35 @@ public class SectionInputActivityFragment extends Fragment {
         return -1;
     }
 
-    private ContentValues getDataFromInputs(ArrayList<DoubleChoice> COURSE_STATE_LIST,
-                                            ArrayList<DoubleChoice> COURSE_DAYS_LIST,
-                                            final Long COURSE_ID,
-                                            ViewHolder.CourseInputScreenViewHolder courseInputScreenViewHolder){
-        final String COURSE_NAME =
-                courseInputScreenViewHolder.COURSE_NAME_EDIT_TEXT.getText().toString();
-        final Double COURSE_COST =
+    private ContentValues getDataFromInputs(ArrayList<DoubleChoice> SECTION_STATE_LIST,
+                                            ArrayList<DoubleChoice> SECTION_DAYS_LIST,
+                                            final Long SECTION_ID,
+                                            ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
+        final String SECTION_NAME =
+                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT.getText().toString();
+        final Double SECTION_HOURS =
                 Double.valueOf(
-                        courseInputScreenViewHolder.COURSE_COST_EDIT_TEXT.getText().toString()
+                        sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.getText().toString()
                 );
-        final Double COURSE_HOURS =
-                Double.valueOf(
-                        courseInputScreenViewHolder.COURSE_HOURS_EDIT_TEXT.getText().toString()
-                );
-        final Integer COURSE_LEVEL =
-                Integer.valueOf(
-                        courseInputScreenViewHolder.COURSE_LEVEL_EDIT_TEXT.getText().toString()
-                );
-        final Long COURSE_START_DATE =
+        final Long SECTION_START_DATE =
                 Long.valueOf(
-                        courseInputScreenViewHolder.COURSE_BEGINNING_DATE_EDIT_TEXT.getText().toString()
+                        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.getText().toString()
                 );
-        final Double COURSE_SALARY_PER_CHILD =
-                Double.valueOf(
-                        courseInputScreenViewHolder.COURSE_SALARY_PER_CHILD_EDIT_TEXT.getText().toString()
-                );
-        final Integer COURSE_START_AGE =
+        final Integer SECTION_SESSIONS_NUMBER =
                 Integer.valueOf(
-                        courseInputScreenViewHolder.COURSE_AGE_RANGE_FROM_EDIT_TEXT.getText().toString()
-                );
-        final Integer COURSE_END_AGE =
-                Integer.valueOf(
-                        courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT.getText().toString()
-                );
-        final Integer COURSE_SESSIONS_NUMBER =
-                Integer.valueOf(
-                        courseInputScreenViewHolder.COURSE_SESSIONS_NUMBER_EDIT_TEXT.getText().toString()
+                        sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT.getText().toString()
                 );
 
-        final Integer COURSE_STATE = getSelectionFromList(COURSE_STATE_LIST);
+        final Integer SECTION_STATE = getSelectionFromList(SECTION_STATE_LIST);
 
-        final String COURSE_SESSION_DAYS = getDoubleChoicesResult(COURSE_DAYS_LIST);
+        final String SECTION_SESSION_DAYS = getDoubleChoicesResult(SECTION_DAYS_LIST);
 
         final ArrayList<Shift> SHIFT_ARRAY_LIST = new ArrayList<>();
 
-        if(COURSE_ID != null){
+        if(SECTION_ID != null){
 
             Cursor cursor = getActivity().getContentResolver().query(
-                    DatabaseController.UriDatabase.getShiftWithCourseId(COURSE_ID),
+                    DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
                     DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
                     null,
                     null,
@@ -416,7 +349,7 @@ public class SectionInputActivityFragment extends Fragment {
                                 ),cursor.getLong(
                                 DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
                         ),
-                                COURSE_ID
+                                SECTION_ID
 
                         );
 
@@ -427,32 +360,27 @@ public class SectionInputActivityFragment extends Fragment {
             }
         }
 
-        final Long COURSE_END_DATE = Utility.getEndDate(
+        final Long SECTION_END_DATE = Utility.getEndDate(
                 SHIFT_ARRAY_LIST,
-                COURSE_SESSION_DAYS,
-                COURSE_SESSIONS_NUMBER,
-                COURSE_START_DATE
+                SECTION_SESSION_DAYS,
+                SECTION_SESSIONS_NUMBER,
+                SECTION_START_DATE
         );
 
-        Log.e("course_days", COURSE_SESSION_DAYS);
-        Log.e("course_days", COURSE_SESSION_DAYS);
-        Log.e("course_sessions_number", String.valueOf(COURSE_SESSIONS_NUMBER));
+        Log.e("section_days", SECTION_SESSION_DAYS);
+        Log.e("section_days", SECTION_SESSION_DAYS);
+        Log.e("section_sessions_number", String.valueOf(SECTION_SESSIONS_NUMBER));
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, COURSE_LEVEL);
-        contentValues.put(DbContent.CourseTable.COURSE_SALARY_PER_CHILD, COURSE_SALARY_PER_CHILD);
-        contentValues.put(DbContent.CourseTable.COURSE_START_DATE_COLUMN, COURSE_START_DATE);
-        contentValues.put(DbContent.CourseTable.COURSE_END_DATE_COLUMN, COURSE_END_DATE);
-        contentValues.put(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN, COURSE_STATE);
-        contentValues.put(DbContent.CourseTable.COURSE_COST_COLUMN, COURSE_COST);
-        contentValues.put(DbContent.CourseTable.COURSE_NAME_COLUMN, COURSE_NAME);
-        contentValues.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, COURSE_START_AGE);
-        contentValues.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, COURSE_END_AGE);
-        contentValues.put(DbContent.CourseTable.COURSE_HOURS_COLUMN, COURSE_HOURS);
-        contentValues.put(DbContent.CourseTable.COURSE_DAYS_COLUMN, COURSE_SESSION_DAYS);
-        contentValues.put(DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN, COURSE_SESSIONS_NUMBER);
+        contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
+        contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
+        contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
+        contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, SECTION_NAME);
+        contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
+        contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
+        contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
 
-        Log.e("set data to database",String.valueOf(COURSE_START_DATE));
+        Log.e("set data to database",String.valueOf(SECTION_START_DATE));
         return contentValues;
     }
 
@@ -470,10 +398,10 @@ public class SectionInputActivityFragment extends Fragment {
         return stringBuilder.toString();
     }
 
-    private void openProfileCourseScreen(final long COURSE_ID){
-        Intent profileCourseScreen = new Intent(getContext(), CourseProfileActivity.class);
-        profileCourseScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
-        startActivity(profileCourseScreen);
+    private void openProfileSectionScreen(final long SECTION_ID){
+        Intent profileSectionScreen = new Intent(getContext(), SectionProfileActivity.class);
+        profileSectionScreen.putExtra(Constants.SECTION_ID_EXTRA, SECTION_ID);
+        startActivity(profileSectionScreen);
         getActivity().finish();
     }
 
@@ -489,7 +417,7 @@ public class SectionInputActivityFragment extends Fragment {
         }
         if(getSelectionFromList(doubleChoiceStateArrayList) == -1) {
             isValid = false;
-            Toast.makeText(getContext(), "Please choose the state of course",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please choose the state of section",Toast.LENGTH_SHORT).show();
         }
         if(getSelectionFromList(doubleChoiceDaysArrayList) == -1) {
             isValid = false;
@@ -528,11 +456,11 @@ public class SectionInputActivityFragment extends Fragment {
         datePickerFragment.setView(view);
     }
 
-    private ContentValues getData(final long COURSE_ID){
+    private ContentValues getData(final long SECTION_ID){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbContent.CourseInstructorTable.COURSE_ID_COLUMN, COURSE_ID);
-        contentValues.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, Constants.NO_INSTRUCTOR);
-        contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
+        contentValues.put(DbContent.SectionInstructorTable.SECTION_ID_COLUMN, SECTION_ID);
+        contentValues.put(DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN, Constants.NO_INSTRUCTOR);
+        contentValues.put(DbContent.SectionInstructorTable.PAID_COLUMN, Constants.NOT_PAID_SECTION);
 
         return contentValues;
     }
@@ -540,10 +468,10 @@ public class SectionInputActivityFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
 
-        outState.putInt(Constants.SaveState.COURSE_STATE,
-                Utility.getSelectedDoubleChoices(COURSE_STATE_LIST));
-        outState.putString(Constants.SaveState.COURSE_DAYS,
-                Utility.getMultiDoubleSelectionAsString(COURSE_DAYS_LIST));
+        outState.putInt(Constants.SaveState.SECTION_STATE,
+                Utility.getSelectedDoubleChoices(SECTION_STATE_LIST));
+        outState.putString(Constants.SaveState.SECTION_DAYS,
+                Utility.getMultiDoubleSelectionAsString(SECTION_DAYS_LIST));
 
         super.onSaveInstanceState(outState);
     }
@@ -554,10 +482,10 @@ public class SectionInputActivityFragment extends Fragment {
 
         if(savedInstanceState != null){
             Utility.selectionProcess(
-                    savedInstanceState.getInt(Constants.SaveState.COURSE_STATE),
-                    COURSE_STATE_LIST);
-            Utility.doubleSelectionProcess(COURSE_DAYS_LIST,
-                    savedInstanceState.getString(Constants.SaveState.COURSE_DAYS));
+                    savedInstanceState.getInt(Constants.SaveState.SECTION_STATE),
+                    SECTION_STATE_LIST);
+            Utility.doubleSelectionProcess(SECTION_DAYS_LIST,
+                    savedInstanceState.getString(Constants.SaveState.SECTION_DAYS));
         }
     }
 }

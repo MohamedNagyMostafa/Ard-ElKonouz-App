@@ -19,7 +19,9 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
-                DbContent.SectionTable.SECTION_START_DATE_COLUMN
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_HOURS_COLUMN
         };
 
         public static final int SECTION_ID = 0;
@@ -28,11 +30,12 @@ public class DatabaseController {
         public static final int SECTION_END_DATE = 3;
         public static final int SECTION_SESSIONS_NUMBER_COLUMN = 4;
         public static final int SECTION_START_DATE = 5;
+        public static final int SECTION_NAME_COLUMN = 6;
+        public static final int SECTION_HOURS_COLUMN = 7;
 
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_HOURS_COLUMN,
                 DbContent.CourseTable.COURSE_COST_COLUMN,
                 DbContent.CourseTable.COURSE_START_AGE_COLUMN,
                 DbContent.CourseTable.COURSE_END_AGE_COLUMN,
@@ -42,12 +45,11 @@ public class DatabaseController {
 
         public static final int COURSE_ID = 0;
         public static final int COURSE_NAME = 1;
-        public static final int COURSE_HOURS = 2;
-        public static final int COURSE_COST = 3;
-        public static final int COURSE_START_AGE = 4;
-        public static final int COURSE_END_AGE = 5;
-        public static final int COURSE_LEVEL = 6;
-        public static final int COURSE_SALARY_PER_CHILD = 7;
+        public static final int COURSE_COST = 2;
+        public static final int COURSE_START_AGE = 3;
+        public static final int COURSE_END_AGE = 4;
+        public static final int COURSE_LEVEL = 5;
+        public static final int COURSE_SALARY_PER_CHILD = 6;
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -347,6 +349,10 @@ public class DatabaseController {
 
         public static Uri getCourseTableWithIdUri(long id){
             return COURSE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getSectionTableWithIdUri(long id){
+            return SECTION_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
         public static Uri getShiftTableWithIdUri(long id){

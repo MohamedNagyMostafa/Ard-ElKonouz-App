@@ -52,21 +52,8 @@ public class RecycleViewCourseProfileAdapter extends
                 DatabaseController.ProjectionDatabase.SECTION_ID
             );
 
-            sectionRecycleViewHolder.SECTION_START_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(
-                                DatabaseController.ProjectionDatabase.SECTION_START_DATE
-                        )
-                )
-            );
 
-            sectionRecycleViewHolder.SECTION_END_DATE_TEXT_VIEW.setText(
-                    Utility.getTimeFormat(
-                            cursor.getLong(
-                                    DatabaseController.ProjectionDatabase.SECTION_END_DATE
-                            )
-                    )
-            );
+
 
             sectionRecycleViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                     String.valueOf(

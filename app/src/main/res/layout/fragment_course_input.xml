@@ -222,7 +222,33 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="8dp"
+                    android:text="Percent Per Child"/>
+
+                <EditText
+                    android:id="@+id/course_input_salary_per_child_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@android:color/black"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_marginStart="4dp"
+                    android:inputType="numberDecimal|numberSigned"/>
+
+            </LinearLayout>
         </LinearLayout>
 
         <Button
