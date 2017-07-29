@@ -18,8 +18,9 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
-import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
+import com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.Listner.OnDeleteListener;
+import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewCourseProfileAdapter;
 
 /**
@@ -106,6 +107,17 @@ public class CourseProfileActivityFragment extends Fragment
                         courseInputScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
                         courseInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(courseInputScreen);
+                    }
+                }
+        );
+
+        courseProfileScreenViewHolder.ADD_SECTION_BUTTON.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent sectionInputScreen = new Intent(getContext(), SectionInputActivity.class);
+                        sectionInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
+                        startActivity(sectionInputScreen);
                     }
                 }
         );

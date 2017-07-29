@@ -554,7 +554,6 @@ public class ViewHolder {
     public static class CourseProfileScreenViewHolder{
 
         public final TextView COURSE_NAME_TEXT_VIEW;
-        public final TextView COURSE_HOURS_TEXT_VIEW;
         public final TextView COURSE_LEVEL_TEXT_VIEW;
         public final TextView COURSE_COST_TEXT_VIEW;
         public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
@@ -562,11 +561,11 @@ public class ViewHolder {
         public final LinearLayout COURSE_SECTION_EMPTY_LAYOUT;
         public final RecyclerView COURSE_SECTION_RECYCLE_VIEW;
         public final FloatingActionButton COURSE_EDIT_BUTTON;
+        public final Button ADD_SECTION_BUTTON;
 
         public CourseProfileScreenViewHolder(View courseProfileView){
 
             COURSE_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_name_text_view);
-            COURSE_HOURS_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_hours_text_view);
             COURSE_LEVEL_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_level_text_view);
             COURSE_COST_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_cost_text_view);
             COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_salary_per_child_text_view);
@@ -574,6 +573,7 @@ public class ViewHolder {
             COURSE_EDIT_BUTTON = (FloatingActionButton) courseProfileView.findViewById(R.id.course_pf_edit_floating_button);
             COURSE_SECTION_RECYCLE_VIEW = (RecyclerView) courseProfileView.findViewById(R.id.course_pf_course_sections_recycle_view);
             COURSE_SECTION_EMPTY_LAYOUT = (LinearLayout) courseProfileView.findViewById(R.id.course_pf_empty_view_layout);
+            ADD_SECTION_BUTTON = (Button) courseProfileView.findViewById(R.id.course_pf_add_section_button);
         }
 
         public static class SectionRecycleViewHolder extends RecyclerView.ViewHolder{

@@ -133,6 +133,7 @@ public class RecycleViewCourseProfileAdapter extends
                         public void onClick(View view) {
                             Intent sectionInputScreen = new Intent(context, SectionInputActivity.class);
                             sectionInputScreen.putExtra(Constants.SECTION_ID_EXTRA, _ID);
+                            sectionInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                             context.startActivity(sectionInputScreen);
                         }
                     }
