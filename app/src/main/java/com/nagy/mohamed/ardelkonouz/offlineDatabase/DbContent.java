@@ -234,8 +234,8 @@ public class DbContent {
 
     public static class SectionTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "section";
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI
+        static final String TABLE_NAME = "section";
+        static final Uri CONTENT_URI = BASE_CONTENT_URI
                 .buildUpon().appendPath(TABLE_NAME).build();
 
         public static final String SECTION_AVAILABLE_POSITIONS_COLUMN = "available_positions";
@@ -247,7 +247,7 @@ public class DbContent {
         public static final String SECTION_COURSE_ID_COLUMN = "course_id";
         public static final String SECTION_NAME_COLUMN = "section_name";
 
-        public static final String CREATE_SECTION_TABLE = CREATE_TABLE
+        static final String CREATE_SECTION_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 SECTION_NAME_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +

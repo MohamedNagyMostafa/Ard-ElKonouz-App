@@ -922,7 +922,7 @@ public class ContentProviderDatabase extends ContentProvider {
         final String SECTION_PATH = DbContent.SectionTable.TABLE_NAME;
         final String SECTION_WITH_ID_PATH = SECTION_PATH + "/#";
         // Course List
-        final String SECTION_WITH_COURSE_ID_PATH = SECTION_PATH +
+        final String SECTION_WITH_COURSE_ID_PATH = SECTION_PATH + "/" +
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "/#";
 
         final String COURSE_SECTION_JOIN_PATH = SECTION_PATH + "/" + COURSE_PATH;
