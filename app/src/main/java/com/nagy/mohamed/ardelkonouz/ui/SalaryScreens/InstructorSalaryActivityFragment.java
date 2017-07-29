@@ -60,12 +60,12 @@ public class InstructorSalaryActivityFragment extends Fragment
 
 
         Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
+                DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(instructorId),
                 new String[]{
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                DbContent.CourseInstructorTable.PAID_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionInstructorTable.PAID_COLUMN,
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.CourseInstructorTable.COURSE_ID_COLUMN},
+                DbContent.SectionInstructorTable.SECTION_ID_COLUMN},
                 null,
                 null,
                 null
@@ -81,7 +81,7 @@ public class InstructorSalaryActivityFragment extends Fragment
                         completeCourses++;
 
                         Cursor coursesCursor = getActivity().getContentResolver().query(
-                                DatabaseController.UriDatabase.getCourseChildTableWithCourseIdUri(
+                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(
                                         cursor.getLong(3)),
                                 null,
                                 null,
@@ -91,7 +91,7 @@ public class InstructorSalaryActivityFragment extends Fragment
                         );
 
                         // paid
-                        if(cursor.getInt(1) == Constants.PAID_COURSE) {
+                        if(cursor.getInt(1) == Constants.PAID_SECTION) {
                             paidCoursesNumber++;
 
                             if (coursesCursor != null) {
@@ -166,7 +166,7 @@ public class InstructorSalaryActivityFragment extends Fragment
             instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
             instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText("Under Progress");
         }else {
-            if (cursor.getInt(5) == Constants.PAID_COURSE) {
+            if (cursor.getInt(5) == Constants.PAID_SECTION) {
                 instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                 instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
             } else {
@@ -184,9 +184,9 @@ public class InstructorSalaryActivityFragment extends Fragment
                                 instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
 
                                 ContentValues contentValues = new ContentValues();
-                                contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.NOT_PAID_COURSE);
+                                contentValues.put(DbContent.SectionInstructorTable.PAID_COLUMN, Constants.NOT_PAID_SECTION);
                                 int l = getActivity().getContentResolver().update(
-                                        DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
+                                        DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(
                                                 COURSE_ID
                                         ),
                                         contentValues,
@@ -200,9 +200,9 @@ public class InstructorSalaryActivityFragment extends Fragment
                                 instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
 
                                 ContentValues contentValues = new ContentValues();
-                                contentValues.put(DbContent.CourseInstructorTable.PAID_COLUMN, Constants.PAID_COURSE);
+                                contentValues.put(DbContent.SectionInstructorTable.PAID_COLUMN, Constants.PAID_SECTION);
                                 int l = getActivity().getContentResolver().update(
-                                        DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(
+                                        DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(
                                                 COURSE_ID
                                         ),
                                         contentValues,
@@ -221,7 +221,7 @@ public class InstructorSalaryActivityFragment extends Fragment
         }
 
         Cursor coursesCursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseChildTableWithCourseIdUri(cursor.getLong(6)),
+                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(cursor.getLong(6)),
                 null,
                 null,
                 null,
@@ -245,15 +245,15 @@ public class InstructorSalaryActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
-                new String[]{DbContent.CourseInstructorTable.TABLE_NAME + "." +
-                        DbContent.CourseInstructorTable._ID,
+                DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(instructorId),
+                new String[]{DbContent.SectionInstructorTable.TABLE_NAME + "." +
+                        DbContent.SectionInstructorTable._ID,
                         DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                        DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                        DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                        DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                         DbContent.CourseTable.COURSE_NAME_COLUMN,
-                        DbContent.CourseInstructorTable.PAID_COLUMN,
-                DbContent.CourseInstructorTable.COURSE_ID_COLUMN},
+                        DbContent.SectionInstructorTable.PAID_COLUMN,
+                DbContent.SectionInstructorTable.SECTION_ID_COLUMN},
                 null,
                 null,
                 null

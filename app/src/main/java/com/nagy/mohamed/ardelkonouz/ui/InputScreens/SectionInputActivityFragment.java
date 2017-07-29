@@ -61,6 +61,7 @@ public class SectionInputActivityFragment extends Fragment
                 new ViewHolder.SectionInputScreenViewHolder(rootView);
 
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
+        final Long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
 
         SECTION_STATE_LIST = setSectionStateListItem(sectionInputScreenViewHolder);
         SECTION_DAYS_LIST = setSectionDaysListItem(sectionInputScreenViewHolder);
@@ -72,9 +73,9 @@ public class SectionInputActivityFragment extends Fragment
         setDoubleChoicesListListeners(SECTION_DAYS_LIST);
 
         if(INPUT_TYPE.equals(Constants.INPUT_ADD_EXTRA)) {
-            setOptionsAsAddNewSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder);
+            setOptionsAsAddNewSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder, COURSE_ID);
         }else {
-            setOptionsAsEditSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder);
+            setOptionsAsEditSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder, COURSE_ID);
         }
 
         return rootView;
@@ -113,7 +114,8 @@ public class SectionInputActivityFragment extends Fragment
 
     private void setOptionsAsEditSection(final ArrayList<DoubleChoice> SECTION_STATE_LIST,
                                         final ArrayList<DoubleChoice> SECTION_DAYS_LIST,
-                                        final ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
+                                        final ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder,
+                                         final Long COURSE_ID){
         final long SECTION_ID = getActivity().getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
 
         final Cursor cursor = getActivity().getContentResolver().query(
@@ -186,7 +188,8 @@ public class SectionInputActivityFragment extends Fragment
                                                     SECTION_STATE_LIST,
                                                     SECTION_DAYS_LIST,
                                                     SECTION_ID,
-                                                    sectionInputScreenViewHolder),
+                                                    sectionInputScreenViewHolder,
+                                                    COURSE_ID),
                                             null,
                                             null
                                     );
@@ -205,7 +208,8 @@ public class SectionInputActivityFragment extends Fragment
 
     private void setOptionsAsAddNewSection(final ArrayList<DoubleChoice> SECTION_STATE_LIST,
                                           final ArrayList<DoubleChoice> SECTION_DAYS_LIST,
-                                          final ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
+                                          final ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder,
+                                           final Long COURSE_ID){
         sectionInputScreenViewHolder.SUBMIT_SECTION_BUTTON.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -224,7 +228,8 @@ public class SectionInputActivityFragment extends Fragment
                                             SECTION_STATE_LIST,
                                             SECTION_DAYS_LIST,
                                             null,
-                                            sectionInputScreenViewHolder)
+                                            sectionInputScreenViewHolder,
+                                            COURSE_ID)
                             );
 
                             final long SECTION_ID = ContentUris.parseId(uri);
@@ -308,7 +313,8 @@ public class SectionInputActivityFragment extends Fragment
     private ContentValues getDataFromInputs(ArrayList<DoubleChoice> SECTION_STATE_LIST,
                                             ArrayList<DoubleChoice> SECTION_DAYS_LIST,
                                             final Long SECTION_ID,
-                                            ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder){
+                                            ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder,
+                                            final Long COURSE_ID){
         final String SECTION_NAME =
                 sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT.getText().toString();
         final Double SECTION_HOURS =
@@ -379,6 +385,7 @@ public class SectionInputActivityFragment extends Fragment
         contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
         contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
         contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
+        contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
 
         Log.e("set data to database",String.valueOf(SECTION_START_DATE));
         return contentValues;

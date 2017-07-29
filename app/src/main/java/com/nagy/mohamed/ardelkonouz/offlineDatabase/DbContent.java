@@ -257,7 +257,7 @@ public class DbContent {
                 SECTION_COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                SECTION_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL +
+                SECTION_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 FOREIGN_KEY + SPACE + "(" + SECTION_COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +")";
 

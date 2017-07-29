@@ -71,15 +71,11 @@ public class DatabaseController {
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
-                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN
         };
 
         public static final int COURSE_LIST_ID = 0;
         public static final int COURSE_LIST_NAME = 1;
-        public static final int SECTION_LIST_START_DATE = 2;
-        public static final int SECTION_LIST_END_DATE = 3;
 
 
         public static final String[] CHILD_PROJECTION = {
