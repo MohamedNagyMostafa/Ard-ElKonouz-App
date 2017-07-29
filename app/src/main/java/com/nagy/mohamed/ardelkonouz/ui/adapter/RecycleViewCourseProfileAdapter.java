@@ -1,6 +1,7 @@
 package com.nagy.mohamed.ardelkonouz.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,11 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.component.Shift;
+import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
+import com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.Listner.OnDeleteListener;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
+
+import java.util.ArrayList;
 
 /**
  * Created by mohamednagy on 7/12/2017.
@@ -37,7 +44,7 @@ public class RecycleViewCourseProfileAdapter extends
     @Override
     public ViewHolder.CourseProfileScreenViewHolder.SectionRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder.CourseProfileScreenViewHolder.SectionRecycleViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.course_pf_sections_recycle_view, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.course_pf_recycle_view, parent, false)
         );
     }
 
@@ -52,9 +59,6 @@ public class RecycleViewCourseProfileAdapter extends
                 DatabaseController.ProjectionDatabase.SECTION_ID
             );
 
-
-
-
             sectionRecycleViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                     String.valueOf(
                             "Section" +
@@ -63,6 +67,50 @@ public class RecycleViewCourseProfileAdapter extends
                                                     DatabaseController.ProjectionDatabase.SECTION_ID
                                             )
                                     )
+                    )
+            );
+
+            Cursor shiftsCursor = context.getContentResolver().query(
+                    DatabaseController.UriDatabase.getShiftWithSectionId(_ID),
+                    DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                    null,
+                    null,
+                    null
+            );
+
+            ArrayList<Shift> shifts = new ArrayList<>();
+
+            if(shiftsCursor != null){
+                while (shiftsCursor.moveToNext()){
+                    Shift shift = new Shift(
+                            shiftsCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                            ),
+                            shiftsCursor.getLong(
+                                    DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
+                            ),
+                            _ID
+                    );
+
+                    shifts.add(shift);
+                }
+                shiftsCursor.close();
+            }
+
+            sectionRecycleViewHolder.NEXT_SECTION_TEXT_VIEW.setText(
+                    Utility.getTimeFormat(
+                            Utility.getNextSessionDay(
+                                    shifts,
+                                    cursor.getString(
+                                            DatabaseController.ProjectionDatabase.SECTION_DATE_DAYS
+                                    ),
+                                    cursor.getLong(
+                                            DatabaseController.ProjectionDatabase.SECTION_END_DATE
+                                    ),
+                                    cursor.getLong(
+                                            DatabaseController.ProjectionDatabase.SECTION_START_DATE
+                                    )
+                            )
                     )
             );
 
@@ -75,6 +123,28 @@ public class RecycleViewCourseProfileAdapter extends
                         @Override
                         public void onClick(View view) {
                             onDeleteListener.OnClickListener(_ID);
+                        }
+                    }
+            );
+
+            sectionRecycleViewHolder.SECTION_EDIT_IMAGE_VIEW.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent sectionInputScreen = new Intent(context, SectionInputActivity.class);
+                            sectionInputScreen.putExtra(Constants.SECTION_ID_EXTRA, _ID);
+                            context.startActivity(sectionInputScreen);
+                        }
+                    }
+            );
+
+            sectionRecycleViewHolder.SECTION_BODY_LAYOUT.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent sectionProfileScreen = new Intent(context, SectionProfileActivity.class);
+                            sectionProfileScreen.putExtra(Constants.SECTION_ID_EXTRA, _ID);
+                            context.startActivity(sectionProfileScreen);
                         }
                     }
             );
