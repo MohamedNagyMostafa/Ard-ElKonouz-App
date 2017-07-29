@@ -90,7 +90,7 @@ public class RecycleViewChildProfileAdapter extends
 
         if(courseCursor != null){
             if(courseCursor.moveToFirst()){
-                courseName = courseCursor.getString(0) + " Sec. " + String.valueOf(SECTION_ID);
+                courseName = courseCursor.getString(0) + ".Sec " + String.valueOf(SECTION_ID);
             }
             courseCursor.close();
         }

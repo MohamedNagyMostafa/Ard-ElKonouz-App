@@ -287,12 +287,15 @@ public class DatabaseController {
         public static final int SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN = 7;
 
         public static final String[] CHOICES_SELECTION_PROJECTION = {
-                DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+
         };
 
         public static final int CHOICES_SELECTION_ID = 0;
         public static final int CHOICES_SELECTION_COURSE_NAME = 1;
+        public static final int CHOICES_SELECTION_SECTION_NAME = 2;
 
         public static final String[] CHILD_COURSE_CONNECTOR_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
@@ -397,7 +400,7 @@ public class DatabaseController {
             return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
-
+        // Child profile
         public static Uri getSectionChildTableWithSectionIdUri(long id){
             return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
@@ -445,7 +448,7 @@ public class DatabaseController {
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
-
+        // Shift List
         public static Uri getSectionsByDaySearchUri(String searchChars, long indexDay){
             Uri uri = SECTION_URI.buildUpon().appendPath("day")
                     .appendPath(String.valueOf(indexDay))

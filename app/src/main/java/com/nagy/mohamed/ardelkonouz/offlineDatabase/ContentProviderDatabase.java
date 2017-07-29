@@ -854,7 +854,7 @@ public class ContentProviderDatabase extends ContentProvider {
         final String CHILD_WITH_ID_PATH = CHILD_PATH + "/#";
         final String EMPLOYEE_WITH_ID_PATH = EMPLOYEE_PATH + "/#";
         final String COURSE_WITH_ID_PATH = COURSE_PATH + "/#";
-
+        // Child course connector ..
         final String SECTION_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_PATH = DbContent.SectionTable.TABLE_NAME + "/" +
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN + "/" +
                 DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN+ "/#" + "/#";
@@ -865,7 +865,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
         final String CHILD_SECTION_WITH_SECTION_ID_PATH = CHILD_SECTION_PATH + "/" +
                 DbContent.SectionTable.TABLE_NAME + "/#";
-
+        // Child course connector ..
         final String CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE_PATH = CHILD_SECTION_PATH + "/" +
                 DbContent.ChildTable.TABLE_NAME + "/" + DbContent.SectionTable.TABLE_NAME + "/#" + "/#";
 
@@ -1171,17 +1171,17 @@ public class ContentProviderDatabase extends ContentProvider {
     }
 
     private Cursor getSectionChildWithSectionIdCourseId(Uri uri, String[] projection, String sortOrder) throws URISyntaxException {
-        long courseId = ContentUris.parseId(uri);
+        long sectionId = ContentUris.parseId(uri);
         String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         Uri childUri = Uri.parse(newUriString);
         long childId = ContentUris.parseId(childUri);
 
         String selection = DbContent.ChildSectionTable.CHILD_ID_COLUMN + "=?" + " AND " +
                 DbContent.ChildSectionTable.SECTION_ID_COLUMN + "=?";
-        String[] selectionArgs = {String.valueOf(childId), String.valueOf(courseId)};
+        String[] selectionArgs = {String.valueOf(childId), String.valueOf(sectionId)};
 
         Log.e("child id", String.valueOf(childId));
-        Log.e("course id", String.valueOf(courseId));
+        Log.e("course id", String.valueOf(sectionId));
 
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.ChildSectionTable.TABLE_NAME,
@@ -1416,8 +1416,8 @@ public class ContentProviderDatabase extends ContentProvider {
             Log.e("selectionArgs", selectionAr);
         }
 
-        return m_dbHelper.getReadableDatabase().query(
-                DbContent.CourseTable.TABLE_NAME,
+        return  COURSE_SECTION_JOIN_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
                 projection,
                 selection.toString(),
                 selectionArgsArray,
@@ -1465,8 +1465,8 @@ public class ContentProviderDatabase extends ContentProvider {
         for(String id : selectionArgsArray){
             Log.e("selectionArg", id);
         }
-        return m_dbHelper.getReadableDatabase().query(
-                DbContent.CourseTable.TABLE_NAME,
+        return  COURSE_SECTION_JOIN_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
                 projection,
                 selection.toString(),
                 selectionArgsArray,
@@ -1485,7 +1485,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " <=?" + " AND " +
                 DbContent.ShiftDaysTable.END_DATE_COLUMN + " >=?" + " AND " +
-                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+                DbContent.ShiftDaysTable.SECTION_ID_COLUMN + " =?";
 
         String[] selectionArgs = {
                 String.valueOf(startDate),
@@ -1513,7 +1513,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection = DbContent.ShiftDaysTable.END_DATE_COLUMN + " >?" + " AND " +
                 DbContent.ShiftDaysTable.END_DATE_COLUMN + " >=?" + " AND " +
-                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+                DbContent.ShiftDaysTable.SECTION_ID_COLUMN + " =?";
 
         String[] selectionArgs = {
                 String.valueOf(endDate),
@@ -1541,7 +1541,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " <?" + " AND " +
                 DbContent.ShiftDaysTable.START_DATE_COLUMN + " <=?" + " AND " +
-                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+                DbContent.ShiftDaysTable.SECTION_ID_COLUMN + " =?";
 
         String[] selectionArgs = {
                 String.valueOf(startDate),
@@ -1585,7 +1585,7 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection = DbContent.ShiftDaysTable.START_DATE_COLUMN + " >=?" + " AND " +
                 DbContent.ShiftDaysTable.END_DATE_COLUMN + " <=?" + " AND " +
-                DbContent.ShiftDaysTable.COURSE_ID_COLUMN + " =?";
+                DbContent.ShiftDaysTable.SECTION_ID_COLUMN + " =?";
 
         String[] selectionArgs = {
                 String.valueOf(startDate),

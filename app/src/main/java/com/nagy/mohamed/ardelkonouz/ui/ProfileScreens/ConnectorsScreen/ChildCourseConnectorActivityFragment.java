@@ -81,7 +81,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         // Insert all selection
                         ArrayList<ContentValues> contentValuesArrayList = new ArrayList<ContentValues>();
 
-                        for(final Long COURSE_ID : selectedCourses){
+                        for(final Long SECTION_ID : selectedCourses){
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(
                                     DbContent.ChildSectionTable.CHILD_ID_COLUMN,
@@ -89,7 +89,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                             );
                             contentValues.put(
                                     DbContent.ChildSectionTable.SECTION_ID_COLUMN,
-                                    COURSE_ID
+                                    SECTION_ID
                             );
 
                             contentValuesArrayList.add(contentValues);
