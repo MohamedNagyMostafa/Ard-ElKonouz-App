@@ -9,57 +9,45 @@ import android.provider.BaseColumns;
  */
 public class DbContent {
 
-    public static final String PRIMARY_KEY = "PRIMARY KEY";
-    public static final String REFERENCES = "REFERENCES";
-    public static final String FOREIGN_KEY = "FOREIGN KEY";
-    public static final String SPACE = " ";
-    public static final String TEXT = "TEXT";
-    public static final String INTEGER = "INTEGER";
-    public static final String BLOB = "BLOB";
-    public static final String REAL = "REAL";
-    public static final String NOT_NULL = "NOT NULL";
-    public static final String CREATE_TABLE = "CREATE TABLE";
-    public static final String CONTENT_AUTHORITY = "com.nagy.mohamed.ardelkonouz";
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" +  CONTENT_AUTHORITY);
+    private static final String PRIMARY_KEY = "PRIMARY KEY";
+    private static final String REFERENCES = "REFERENCES";
+    private static final String FOREIGN_KEY = "FOREIGN KEY";
+    static final String SPACE = " ";
+    private static final String TEXT = "TEXT";
+    private static final String INTEGER = "INTEGER";
+    private static final String BLOB = "BLOB";
+    private static final String REAL = "REAL";
+    private static final String NOT_NULL = "NOT NULL";
+    private static final String CREATE_TABLE = "CREATE TABLE";
+    static final String CONTENT_AUTHORITY = "com.nagy.mohamed.ardelkonouz";
+    private static final Uri BASE_CONTENT_URI = Uri.parse("content://" +  CONTENT_AUTHORITY);
 
     public static class CourseTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "course";
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI
+        static final String TABLE_NAME = "course";
+        static final Uri CONTENT_URI = BASE_CONTENT_URI
                 .buildUpon().appendPath(TABLE_NAME).build();
 
         public static final String COURSE_NAME_COLUMN = "course_name";
-        public static final String COURSE_HOURS_COLUMN = "course_hours";
         public static final String COURSE_COST_COLUMN = "course_cost";
-        public static final String COURSE_AVAILABLE_POSITIONS_COLUMN = "available_positions";
-        public static final String COURSE_START_DATE_COLUMN = "course_start_date";
-        public static final String COURSE_END_DATE_COLUMN = "course_end_date";
         public static final String COURSE_START_AGE_COLUMN = "course_start_age";
         public static final String COURSE_END_AGE_COLUMN = "course_end_age";
         public static final String COURSE_LEVEL_COLUMN = "course_level";
         public static final String COURSE_SALARY_PER_CHILD = "salary_per_child";
-        public static final String COURSE_DAYS_COLUMN = "course_days";
-        public static final String COURSE_SESSIONS_NUMBER_COLUMN = "course_sessions_number";
 
-        public static final String CREATE_COURSE_TABLE = CREATE_TABLE
+        static final String CREATE_COURSE_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 COURSE_NAME_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
-                COURSE_HOURS_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_COST_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
-                COURSE_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                COURSE_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                COURSE_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_START_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_END_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                COURSE_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                COURSE_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 COURSE_SALARY_PER_CHILD + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_LEVEL_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
-        public static final String CONTENT_TYPE =
+        static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
-        public static final String CONTENT_ITEM_TYPE =
+        static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
@@ -173,25 +161,25 @@ public class DbContent {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
-    public static class CourseInstructorTable implements BaseColumns{
+    public static class SectionInstructorTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "course_instructor";
+        public static final String TABLE_NAME = "section_instructor";
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
                 .appendPath(TABLE_NAME).build();
 
-        public static final String COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_ID_COLUMN = "section_id";
         public static final String INSTRUCTOR_ID_COLUMN = "instructor_id";
         public static final String PAID_COLUMN = "paid";
 
-        public static final String CREATE_COURSE_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
+        public static final String CREATE_SECTION_INSTRUCTOR_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
-                + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + SECTION_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + PAID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + INSTRUCTOR_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + FOREIGN_KEY + SPACE + "(" + INSTRUCTOR_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + InstructorTable.TABLE_NAME + SPACE + "(" + InstructorTable._ID + ")"+
-                FOREIGN_KEY + SPACE + "(" +COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
-                + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +");";
+                FOREIGN_KEY + SPACE + "(" + SECTION_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                + SectionTable.TABLE_NAME + SPACE + "(" + SectionTable._ID + ")" +");";
 
         public static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
@@ -199,21 +187,21 @@ public class DbContent {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
-    public static class ChildCourseTable implements BaseColumns{
+    public static class ChildSectionTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "child_course_table";
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
+        static final String TABLE_NAME = "child_section_table";
+        static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
                 .appendPath(TABLE_NAME).build();
 
-        public static final String COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_ID_COLUMN = "section_id";
         public static final String CHILD_ID_COLUMN = "child_id";
 
-        public static final String CREATE_CHILD_COURSE_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
+        static final String CREATE_CHILD_SECTION_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
-                + COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
+                + SECTION_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
-                + FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
-                + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" + ","
+                + FOREIGN_KEY + SPACE + "(" + SECTION_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                + SectionTable.TABLE_NAME + SPACE + "(" + SectionTable._ID + ")" + ","
                 + FOREIGN_KEY + SPACE + "(" + CHILD_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + ChildTable.TABLE_NAME + SPACE + "(" + ChildTable._ID + ")" +")";
 
@@ -225,22 +213,53 @@ public class DbContent {
 
     public static class ShiftDaysTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "shift_day";
-        public static final Uri CONTENT_URI =
+        static final String TABLE_NAME = "shift_day";
+        static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(TABLE_NAME).build();
 
-        public static final String COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_ID_COLUMN = "section_id";
         public static final String START_DATE_COLUMN = "start_date";
         public static final String END_DATE_COLUMN = "end_date";
 
         public static final String CREATE_SHIFT_DAY_TABLE =
                 CREATE_TABLE + SPACE + TABLE_NAME + "(" +
                         _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
-                        COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                        SECTION_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                         START_DATE_COLUMN  + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                         END_DATE_COLUMN + SPACE  + INTEGER + SPACE + NOT_NULL + "," +
-                        FOREIGN_KEY + SPACE + "(" + COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
-                        + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +")";
+                        FOREIGN_KEY + SPACE + "(" + SECTION_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                        + SectionTable.TABLE_NAME + SPACE + "(" + SectionTable._ID + ")" +")";
+
+    }
+
+    public static class SectionTable implements BaseColumns{
+
+        static final String TABLE_NAME = "section";
+        static final Uri CONTENT_URI = BASE_CONTENT_URI
+                .buildUpon().appendPath(TABLE_NAME).build();
+
+        public static final String SECTION_AVAILABLE_POSITIONS_COLUMN = "available_positions";
+        public static final String SECTION_START_DATE_COLUMN = "section_start_date";
+        public static final String SECTION_END_DATE_COLUMN = "section_end_date";
+        public static final String SECTION_HOURS_COLUMN = "section_hours";
+        public static final String SECTION_DAYS_COLUMN = "section_days";
+        public static final String SECTION_SESSIONS_NUMBER_COLUMN = "section_sessions_number";
+        public static final String SECTION_COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_NAME_COLUMN = "section_name";
+
+        static final String CREATE_SECTION_TABLE = CREATE_TABLE
+                + SPACE + TABLE_NAME + "(" +
+                _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
+                SECTION_NAME_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_HOURS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
+                FOREIGN_KEY + SPACE + "(" + SECTION_COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
+                + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +")";
 
     }
 

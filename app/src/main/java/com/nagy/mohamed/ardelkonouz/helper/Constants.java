@@ -16,8 +16,8 @@ public class Constants {
     public static final int GOVERNMENTAL_ENGLISH = 1;
 
     //Paid
-    public static final int PAID_COURSE = 1;
-    public static final int NOT_PAID_COURSE = 2;
+    public static final int PAID_SECTION = 1;
+    public static final int NOT_PAID_SECTION = 2;
 
     // GENDER
     public static final int MALE = 0;
@@ -31,6 +31,7 @@ public class Constants {
     public static final String INPUT_ADD_EXTRA = "add extra";
     public static final String INPUT_EDIT_EXTRA = "edit extra";
     public static final String INPUT_TYPE_EXTRA = "input extra";
+    public static final String SECTION_ID_EXTRA = "section extra";
 
     // Loaders Id
     public static final int LOADER_CHILD_LIST = 11;
@@ -46,7 +47,8 @@ public class Constants {
     public static final int LOADER_SHIFT_LIST = 55;
     public static final int LOADER_CHOICES_LIST = 66;
     public static final int LOADER_SELECTED_LIST = 77;
-    public static final int LOADER_SHIFT_COURSE_PROFILE = 88;
+    public static final int LOADER_SHIFT_SECTION_PROFILE = 88;
+    public static final int LOADER_COURSE_SECTION_LOADER = 99;
 
     //Birth Order
     public static final int FIRST_BIRTH = 0;
@@ -110,8 +112,8 @@ public class Constants {
     public static class SaveState{
 
         public static final String GENDER_STATE = "GENDER SAVE";
-        public static final String COURSE_STATE = "STATE SAVE";
-        public static final String COURSE_DAYS = "COURSE DAYS";
+        public static final String SECTION_STATE = "STATE SAVE";
+        public static final String SECTION_DAYS = "COURSE DAYS";
         public static final String BIRTH_ORDER = "COURSE BIRTH";
         public static final String EDUCATION_TYPE = "EDUCATION TYPE";
         public static final String EDUCATION_STAGE = "EDUCATION STAGE";

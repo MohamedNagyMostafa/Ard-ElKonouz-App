@@ -35,57 +35,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/instructor"
+                    android:text= "Sections Number"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:fontFamily="serif"
                     android:layout_marginEnd="4dp"/>
 
                 <TextView
-                    android:id="@+id/course_list_instructor_text_view"
+                    android:id="@+id/course_list_section_number_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="4dp"
                     android:text="@string/empty_info"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/start_date"
-                android:textColor="@color/colorPrimaryDark"
-                android:fontFamily="serif"
-                android:layout_marginEnd="4dp"/>
-
-            <TextView
-                android:id="@+id/course_list_start_date_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="4dp"
-                android:text="@string/empty_info"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/end_date"
-                android:textColor="@color/colorPrimaryDark"
-                android:fontFamily="serif"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"/>
-
-            <TextView
-                android:id="@+id/course_list_end_date_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/empty_info"/>
 
 
         </LinearLayout>

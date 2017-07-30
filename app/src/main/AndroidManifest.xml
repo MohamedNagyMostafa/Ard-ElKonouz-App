@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nagy.mohamed.ardelkonouz" >
+    package="com.nagy.mohamed.ardelkonouz">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,8 +71,8 @@
         <activity
             android:name=".ui.InputScreens.ShiftInputActivity"
             android:label="@string/title_activity_finance"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ui.ListScreens.ShiftListActivity"/>
+            android:parentActivityName=".ui.ListScreens.ShiftListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.InstructorInputActivity"
             android:label="@string/title_activity_instructor_input"
@@ -113,6 +113,14 @@
             android:label="@string/title_activity_shift_list"
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ProfileScreens.SectionProfileActivity"
+            android:label="@string/title_activity_section_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.InputScreens.SectionInputActivity"
+            android:label="@string/title_activity_section_input"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

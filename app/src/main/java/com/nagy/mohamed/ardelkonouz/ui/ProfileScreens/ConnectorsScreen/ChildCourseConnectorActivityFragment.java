@@ -72,7 +72,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
                         // delete all previous selections.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(childId),
+                                DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(childId),
                                 null,
                                 null
                         );
@@ -81,15 +81,15 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         // Insert all selection
                         ArrayList<ContentValues> contentValuesArrayList = new ArrayList<ContentValues>();
 
-                        for(final Long COURSE_ID : selectedCourses){
+                        for(final Long SECTION_ID : selectedCourses){
                             ContentValues contentValues = new ContentValues();
                             contentValues.put(
-                                    DbContent.ChildCourseTable.CHILD_ID_COLUMN,
+                                    DbContent.ChildSectionTable.CHILD_ID_COLUMN,
                                     childId
                             );
                             contentValues.put(
-                                    DbContent.ChildCourseTable.COURSE_ID_COLUMN,
-                                    COURSE_ID
+                                    DbContent.ChildSectionTable.SECTION_ID_COLUMN,
+                                    SECTION_ID
                             );
 
                             contentValuesArrayList.add(contentValues);
@@ -99,7 +99,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         contentValuesArrayList.toArray(contentValues);
 
                         getActivity().getContentResolver().bulkInsert(
-                                DatabaseController.UriDatabase.COURSE_CHILD_URI,
+                                DatabaseController.UriDatabase.SECTION_CHILD_URI,
                                 contentValues
                         );
 
@@ -125,43 +125,54 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         Log.e("bind called","done");
         final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
-        final Long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
+        final Long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_ID);
 
         coursesViewHolder.COURSE_COST_TEXT_VIEW.setText(
                 String.valueOf(
-                        cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_COST)
+                        cursor.getDouble(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_COURSE_COST_DATE)
                 )
         );
         coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_START_DATE
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_START_DATE
                         )
                 )
         );
         coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.COURSE_END_DATE
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_END_DATE
                         )
                 )
         );
-        coursesViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_HOURS)
+        coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
+                Utility.getDaysAsString(
+                        cursor.getString(
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_DAYS_DATE
+                        )
                 )
         );
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(DatabaseController.ProjectionDatabase.COURSE_NAME)
         );
 
+        coursesViewHolder.SECTION_NAME_TEXT_VIEW.setText(
+                String.valueOf(
+                        "Sec. " +
+                        String.valueOf(
+                                cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_ID)
+                        )
+                )
+        );
+
         //check if course is selected before or not.
         Cursor cursor1 = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseChildTableWithChildIDAndCourseIdUri(
+                DatabaseController.UriDatabase.getSectionChildTableWithChildIDAndSectionIdUri(
                         childId,
-                        COURSE_ID
+                        SECTION_ID
                 ),
-                new String[]{DbContent.ChildCourseTable.COURSE_ID_COLUMN},
+                new String[]{DbContent.ChildSectionTable.SECTION_ID_COLUMN},
                 null,
                 null,
                 null
@@ -170,8 +181,8 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         if(cursor1 != null){
             if(cursor1.getCount() > 0){
                 Log.e("courses selected before",String.valueOf(cursor1.getCount()));
-                if(!selectedCourses.contains(COURSE_ID))
-                    selectedCourses.add(COURSE_ID);
+                if(!selectedCourses.contains(SECTION_ID))
+                    selectedCourses.add(SECTION_ID);
             }
             cursor1.close();
         }
@@ -179,26 +190,26 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(selectedCourses.contains(COURSE_ID)){
+                if(selectedCourses.contains(SECTION_ID)){
                     Log.e("b remove one item size",String.valueOf(selectedCourses.size()));
                     for(Long c : selectedCourses){
                         Log.e("id is ", String.valueOf(c));
                     }
-                    selectedCourses.remove(COURSE_ID);
+                    selectedCourses.remove(SECTION_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
                     Log.e("a remove one item size",String.valueOf(selectedCourses.size()));
 
                 }else{
                     Log.e("b add one item size",String.valueOf(selectedCourses.size()));
 
-                    selectedCourses.add(COURSE_ID);
+                    selectedCourses.add(SECTION_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
                     Log.e("a add one item size",String.valueOf(selectedCourses.size()));
                 }
             }
         });
 
-        if(selectedCourses.contains(COURSE_ID)){
+        if(selectedCourses.contains(SECTION_ID)){
             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
         }else{
             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
@@ -217,8 +228,8 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithEndDateIdWithCompleteIdWithAgeRangeUri(childAge, dateAsMills),
-                DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
+                DatabaseController.UriDatabase.getSectionTableWithEndDateIdWithCompleteIdWithAgeRangeUri(childAge, dateAsMills),
+                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_PROJECTION,
                 null,
                 null,
                 null
