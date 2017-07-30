@@ -199,16 +199,26 @@ public class DatabaseController {
         public static final int SECTION_INSTRUCTOR_INSTRUCTOR_ID = 1;
         public static final int SECTION_INSTRUCTOR_PAID =2;
 
-        public static final String[] SECTION_INSTRUCTOR_JOIN_TABLE = {
-                DbContent.SectionInstructorTable.TABLE_NAME + "." + DbContent.SectionInstructorTable._ID,
-                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
+        public static final String[] SECTION_INSTRUCTOR_CONNECTOR_JOIN_TABLE = {
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
-                DbContent.SectionTable.SECTION_END_DATE_COLUMN
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.CourseTable.COURSE_SALARY_PER_CHILD
         };
 
-        public static final int SECTION_INSTRUCTOR_JOIN_COURSE_ID = 0;
-        public static final int SECTION_INSTRUCTOR_JOIN_INSTRUCTOR_ID = 1;
-        public static final int SECTION_INSTRUCTOR_JOIN_PAID =2;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE =1;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE =2;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_ID =3;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS =4;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME =5;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_INSTRUCTOR_ID =6;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME =7;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_SALARY_PER_CHILD =8;
 
         public static final String[] SECTION_CHILD_JOIN_LIST_TABLE = {
                 DbContent.ChildSectionTable.TABLE_NAME+"."+ DbContent.ChildSectionTable._ID,
@@ -309,21 +319,21 @@ public class DatabaseController {
         public static final int CHILD_COURSE_CONNECTOR_SECTION_DAYS_DATE = 4;
         public static final int CHILD_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
 
-        public static final String[] INSTRUCTOR_COURSE_CONNECTOR_PROJECTION = {
-                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
-                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
-                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.SectionTable.SECTION_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_NAME_COLUMN
-        };
-
-        public static final int INSTRUCTOR_COURSE_CONNECTOR_ID = 0;
-        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_START_DATE = 1;
-        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_END_DATE = 2;
-        public static final int INSTRUCTOR_COURSE_CONNECTOR_SALARY_PER_CHILD = 3;
-        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_DAYS_DATE = 4;
-        public static final int INSTRUCTOR_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
+//        public static final String[] INSTRUCTOR_COURSE_CONNECTOR_PROJECTION = {
+//                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+//                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+//                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+//                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
+//                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+//                DbContent.CourseTable.COURSE_NAME_COLUMN
+//        };
+//
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_ID = 0;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_START_DATE = 1;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_END_DATE = 2;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SALARY_PER_CHILD = 3;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_DAYS_DATE = 4;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
 
 
 

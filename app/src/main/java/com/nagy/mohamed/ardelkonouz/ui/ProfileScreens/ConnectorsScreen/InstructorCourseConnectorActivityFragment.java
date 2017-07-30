@@ -63,8 +63,8 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        selectedSections = new ArrayList<Long>();
-                        previousSelectedSections = new ArrayList<Long>();
+                        selectedSections = new ArrayList<>();
+                        previousSelectedSections = new ArrayList<>();
 
                         setPreviousCourses(previousSelectedSections);
                         restartLoader();
@@ -161,14 +161,14 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SECTION_START_DATE
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE
                         )
                 )
         );
         coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SECTION_END_DATE
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE
 
                         )
                 )
@@ -177,27 +177,31 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SECTION_DAYS_DATE
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS
                         )
                 )
         );
+
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
-                        DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_COURSE_NAME_DATE
+                        DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME
                 )
         );
+
         coursesViewHolder.COURSE_SALARY_PER_CHILD_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_SALARY_PER_CHILD
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_SALARY_PER_CHILD
                         )
                 )
         );
+
+
         coursesViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                 String.valueOf(
                         "Sec. " +
                                 String.valueOf(
-                                        DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_ID
+                                        DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME
                                 )
                 )
         );
@@ -230,7 +234,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         return new CursorLoader(
                 getContext(),
                 DatabaseController.UriDatabase.getSectionTableWithIdWithEndDate(dateAsMills, instructorId),
-                DatabaseController.ProjectionDatabase.INSTRUCTOR_COURSE_CONNECTOR_PROJECTION,
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_TABLE,
                 null,
                 null,
                 null

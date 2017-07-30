@@ -72,6 +72,7 @@ public class SectionInputActivityFragment extends Fragment
         setSectionStateListener(SECTION_STATE_LIST);
         setDoubleChoicesListListeners(SECTION_DAYS_LIST);
 
+        assert INPUT_TYPE != null;
         if(INPUT_TYPE.equals(Constants.INPUT_ADD_EXTRA)) {
             setOptionsAsAddNewSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder, COURSE_ID);
         }else {
@@ -240,6 +241,8 @@ public class SectionInputActivityFragment extends Fragment
                                     DatabaseController.UriDatabase.SECTION_INSTRUCTOR_URI,
                                     getData(SECTION_ID)
                             );
+
+                            Log.e("section instruct insert", String.valueOf(ContentUris.parseId(uri2)));
 
                             openProfileSectionScreen(SECTION_ID);
                         }

@@ -92,6 +92,25 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
+    private static final SQLiteQueryBuilder SECTION_INSTRUCTOR_JOIN_COURSE_QUERY =
+            new SQLiteQueryBuilder();
+
+    static {
+        SECTION_INSTRUCTOR_JOIN_SECTION_QUERY.setTables(
+                DbContent.SectionTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
+                        DbContent.SPACE + DbContent.SectionInstructorTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.SectionTable.TABLE_NAME +
+                        "." + DbContent.SectionTable._ID +
+                        "=" + DbContent.SectionInstructorTable.TABLE_NAME + "." +
+                        DbContent.SectionInstructorTable.SECTION_ID_COLUMN + DbContent.SPACE +
+                        INNER_JOIN + DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
+                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.SectionTable.TABLE_NAME +
+                        "." + DbContent.SectionTable.SECTION_COURSE_ID_COLUMN +
+                        "=" + DbContent.CourseTable.TABLE_NAME + "." +
+                        DbContent.CourseTable._ID
+        );
+    }
+
     private static final SQLiteQueryBuilder COURSE_SECTION_JOIN_QUERY =
             new SQLiteQueryBuilder();
 
@@ -1207,7 +1226,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
-        return COURSE_SECTION_JOIN_QUERY.query(
+        return SECTION_INSTRUCTOR_JOIN_SECTION_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
