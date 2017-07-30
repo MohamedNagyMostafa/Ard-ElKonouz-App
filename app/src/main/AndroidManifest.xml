@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,7 +26,7 @@
         <activity
             android:name=".ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.ChildProfileActivity"
@@ -36,7 +36,7 @@
         <activity
             android:name=".ui.ListScreens.InstructorActivity"
             android:label="@string/title_activity_instructor"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.InstructorProfileActivity"
@@ -46,7 +46,7 @@
         <activity
             android:name=".ui.ListScreens.EmployeeActivity"
             android:label="@string/title_activity_employee"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.EmployeeProfileActivity"
@@ -56,7 +56,7 @@
         <activity
             android:name=".ui.ListScreens.CourseActivity"
             android:label="@string/title_activity_course_activty"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.CourseProfileActivity"
@@ -101,7 +101,7 @@
         <activity
             android:name=".ui.SalaryScreens.SalaryActivity"
             android:label="@string/title_activity_salary"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.SalaryScreens.InstructorSalaryActivity"
@@ -111,7 +111,7 @@
         <activity
             android:name=".ui.ListScreens.ShiftListActivity"
             android:label="@string/title_activity_shift_list"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.SectionProfileActivity"
