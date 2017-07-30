@@ -9,23 +9,23 @@ import android.provider.BaseColumns;
  */
 public class DbContent {
 
-    public static final String PRIMARY_KEY = "PRIMARY KEY";
-    public static final String REFERENCES = "REFERENCES";
-    public static final String FOREIGN_KEY = "FOREIGN KEY";
-    public static final String SPACE = " ";
-    public static final String TEXT = "TEXT";
-    public static final String INTEGER = "INTEGER";
-    public static final String BLOB = "BLOB";
-    public static final String REAL = "REAL";
-    public static final String NOT_NULL = "NOT NULL";
-    public static final String CREATE_TABLE = "CREATE TABLE";
-    public static final String CONTENT_AUTHORITY = "com.nagy.mohamed.ardelkonouz";
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" +  CONTENT_AUTHORITY);
+    private static final String PRIMARY_KEY = "PRIMARY KEY";
+    private static final String REFERENCES = "REFERENCES";
+    private static final String FOREIGN_KEY = "FOREIGN KEY";
+    static final String SPACE = " ";
+    private static final String TEXT = "TEXT";
+    private static final String INTEGER = "INTEGER";
+    private static final String BLOB = "BLOB";
+    private static final String REAL = "REAL";
+    private static final String NOT_NULL = "NOT NULL";
+    private static final String CREATE_TABLE = "CREATE TABLE";
+    static final String CONTENT_AUTHORITY = "com.nagy.mohamed.ardelkonouz";
+    private static final Uri BASE_CONTENT_URI = Uri.parse("content://" +  CONTENT_AUTHORITY);
 
     public static class CourseTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "course";
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI
+        static final String TABLE_NAME = "course";
+        static final Uri CONTENT_URI = BASE_CONTENT_URI
                 .buildUpon().appendPath(TABLE_NAME).build();
 
         public static final String COURSE_NAME_COLUMN = "course_name";
@@ -35,7 +35,7 @@ public class DbContent {
         public static final String COURSE_LEVEL_COLUMN = "course_level";
         public static final String COURSE_SALARY_PER_CHILD = "salary_per_child";
 
-        public static final String CREATE_COURSE_TABLE = CREATE_TABLE
+        static final String CREATE_COURSE_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
                 COURSE_NAME_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
@@ -45,9 +45,9 @@ public class DbContent {
                 COURSE_SALARY_PER_CHILD + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_LEVEL_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ");";
 
-        public static final String CONTENT_TYPE =
+        static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
-        public static final String CONTENT_ITEM_TYPE =
+        static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME;
     }
 
@@ -189,14 +189,14 @@ public class DbContent {
 
     public static class ChildSectionTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "child_section_table";
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
+        static final String TABLE_NAME = "child_section_table";
+        static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
                 .appendPath(TABLE_NAME).build();
 
         public static final String SECTION_ID_COLUMN = "section_id";
         public static final String CHILD_ID_COLUMN = "child_id";
 
-        public static final String CREATE_CHILD_SECTION_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
+        static final String CREATE_CHILD_SECTION_TABLE = CREATE_TABLE + SPACE + TABLE_NAME
                 + "(" + _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + ","
                 + SECTION_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
                 + CHILD_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ","
@@ -213,8 +213,8 @@ public class DbContent {
 
     public static class ShiftDaysTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "shift_day";
-        public static final Uri CONTENT_URI =
+        static final String TABLE_NAME = "shift_day";
+        static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(TABLE_NAME).build();
 
         public static final String SECTION_ID_COLUMN = "section_id";

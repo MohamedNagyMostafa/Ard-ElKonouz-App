@@ -131,8 +131,10 @@ public class SectionInputActivityFragment extends Fragment
                 cursor.moveToFirst();
 
                 sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT.setText(
-                        cursor.getInt(
-                                DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
+                        String.valueOf(
+                            cursor.getInt(
+                                    DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
+                            )
                         )
                 );
                 sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.setText(
