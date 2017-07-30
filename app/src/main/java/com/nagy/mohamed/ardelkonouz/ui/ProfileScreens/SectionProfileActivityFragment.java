@@ -3,8 +3,8 @@ package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -21,9 +21,9 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
-import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
-import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
+import com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.Listner.OnDeleteListener;
+import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewSectionProfileAdapter;
 
 import java.util.ArrayList;
@@ -246,10 +246,10 @@ public class SectionProfileActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent courseInputScreen = new Intent(getContext(), CourseInputActivity.class);
-                        courseInputScreen.putExtra(Constants.COURSE_ID_EXTRA, sectionId);
-                        courseInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
-                        startActivity(courseInputScreen);
+                        Intent sectionInputScreen = new Intent(getContext(), SectionInputActivity.class);
+                        sectionInputScreen.putExtra(Constants.SECTION_ID_EXTRA, sectionId);
+                        sectionInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
+                        startActivity(sectionInputScreen);
                     }
                 }
         );

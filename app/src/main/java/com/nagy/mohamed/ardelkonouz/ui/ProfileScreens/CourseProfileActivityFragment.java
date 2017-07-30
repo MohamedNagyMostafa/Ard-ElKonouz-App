@@ -163,8 +163,8 @@ public class CourseProfileActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getShiftWithSectionJoinId(courseId),
-                DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                DatabaseController.UriDatabase.getSectionWithCourseId(courseId),
+                DatabaseController.ProjectionDatabase.SECTION_PROJECTION,
                 null,
                 null,
                 null
