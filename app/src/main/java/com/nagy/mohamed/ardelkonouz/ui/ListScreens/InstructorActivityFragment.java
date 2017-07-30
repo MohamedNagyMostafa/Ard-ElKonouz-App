@@ -17,6 +17,7 @@ import android.widget.EditText;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.InstructorInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.InstructorProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -120,20 +121,38 @@ public class InstructorActivityFragment extends Fragment
         if(sectionCursor != null){
             while (sectionCursor.moveToNext()){
                 Integer sectionNumber = sectionCursor.getInt(
-                        DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_SECTION_NAME
                 );
 
-                    String courseName = sectionCursor.getString(
-                            DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME
-                    );
+                final Long COURSE_ID = sectionCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_ID
+                );
+
+                Cursor courseCursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                        new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                        null,
+                        null,
+                        null
+                );
+
+                if(courseCursor != null){
+                    courseCursor.moveToFirst();
+                    String courseName = courseCursor.getString(0);
 
                     if(instructorCourses.isEmpty())
                         instructorCourses = courseName + ".Sec " + sectionNumber;
                     else
                         instructorCourses += ", " + courseName + ".Sec " + sectionNumber;
+                    courseCursor.close();
+                }
             }
             sectionCursor.close();
         }
+
+        instructorListRecycleViewHolder.INSTRUCTOR_COURSES_TEXT_VIEW.setText(
+                instructorCourses
+        );
 
 
         instructorListRecycleViewHolder.INSTRUCTOR_DELETE_IMAGE_VIEW

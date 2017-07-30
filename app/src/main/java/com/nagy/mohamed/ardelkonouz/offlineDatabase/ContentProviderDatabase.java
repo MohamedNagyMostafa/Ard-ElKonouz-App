@@ -1070,7 +1070,7 @@ public class ContentProviderDatabase extends ContentProvider {
         String selection = DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN +"=?";
         String[] selectionArgs = {String.valueOf(columnId)};
 
-        return SECTION_INSTRUCTOR_JOIN_COURSE_QUERY.query(
+        return SECTION_INSTRUCTOR_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
@@ -1655,7 +1655,7 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getCourseSectionJoinWithSectionId(Uri uri, String[] projection, String sortOrder) {
 
         final Long SECTION_ID = ContentUris.parseId(uri);
-        String selection = DbContent.SectionTable._ID + " =?";
+        String selection = DbContent.SectionTable.TABLE_NAME+"."+DbContent.SectionTable._ID + " =?";
         String[] selectionArgs = {String.valueOf(SECTION_ID)};
 
         return COURSE_SECTION_JOIN_QUERY.query(
