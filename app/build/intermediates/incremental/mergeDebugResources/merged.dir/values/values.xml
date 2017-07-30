@@ -705,6 +705,8 @@
     <string name="title_activity_kid">KidActivity</string>
     <string name="title_activity_kid_profile">KidProfileActivity</string>
     <string name="title_activity_salary">SalaryActivity</string>
+    <string name="title_activity_section_input">SectionInputActivity</string>
+    <string name="title_activity_section_profile">SectionProfileActivity</string>
     <string name="title_activity_shift_input">ShiftInputActivity</string>
     <string name="title_activity_shift_list">ShiftListActivity</string>
     <string name="to">To</string>

@@ -129,9 +129,9 @@ public class ChildActivityFragment extends Fragment
                                 null,
                                 null
                         );
-                        // Delete child from child course table.
+                        // Delete child from child section table.
                         getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(CHILD_ID),
+                                DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(CHILD_ID),
                                 null,
                                 null
                         );
@@ -151,33 +151,51 @@ public class ChildActivityFragment extends Fragment
             }
         });
 
-        Cursor cursorCourses = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseChildTableWithChildIdUri(CHILD_ID),
-                new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+        Cursor cursorSection = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(CHILD_ID),
+                DatabaseController.ProjectionDatabase.CHILD_LIST_PROJECTION,
                 null,
                 null,
                 null
         );
+        String courseSectionName = "";
 
-        if(cursorCourses != null) {
-            if(cursorCourses.getCount() != 0) {
-                cursorCourses.moveToFirst();
-                StringBuilder stringBuilderCourses = new StringBuilder(
-                        cursorCourses.getString(0)
-                );
+        if(cursorSection != null) {
+            if(cursorSection.getCount() != 0) {
+                while(cursorSection.moveToNext()) {
+                    Integer sectionName =
+                            cursorSection.getInt(DatabaseController.ProjectionDatabase.CHILD_LIST_SECTION_NAME);
+                    final Long COURSE_ID =
+                            cursorSection.getLong(DatabaseController.ProjectionDatabase.CHILD_LIST_SECTION_COURSE_ID);
+                    Cursor cursorCourse = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                            new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                            null,
+                            null,
+                            null
+                    );
 
-                while (cursorCourses.moveToNext()) {
-                    stringBuilderCourses.append(" - ").append(cursorCourses.getString(0));
+                    if (cursorCourse != null) {
+                        if (cursorCourse.getCount() > 0) {
+                            cursorCourse.moveToFirst();
+                            String courseName =
+                                    cursorCourse.getString(0);
+                            if(courseSectionName.isEmpty())
+                                courseSectionName = courseName + ".Sec " + sectionName.toString();
+                            else
+                                courseSectionName += ", " + courseName + ".Sec " + sectionName.toString();
+                        }
+                        cursorCourse.close();
+                    }
                 }
-
-                childListRecycleViewHolder.CHILD_COURSES_TEXT_VIEW.setText(
-                        stringBuilderCourses.toString()
-                );
             }
-
-            cursorCourses.close();
-
+            cursorSection.close();
         }
+
+        if(!courseSectionName.isEmpty())
+            childListRecycleViewHolder.CHILD_COURSES_TEXT_VIEW.setText(courseSectionName);
+        else
+            childListRecycleViewHolder.CHILD_COURSES_TEXT_VIEW.setText(getActivity().getString(R.string.empty_info));
 
     }
 

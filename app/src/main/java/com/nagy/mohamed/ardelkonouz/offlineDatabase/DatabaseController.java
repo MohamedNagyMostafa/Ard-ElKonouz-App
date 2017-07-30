@@ -13,47 +13,69 @@ public class DatabaseController {
 
     public static class ProjectionDatabase {
 
+
+        // Child list
+        public static final String[] CHILD_LIST_SECTION_PROJECTION = {
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
+        };
+
+        public static final int CHILD_LIST_SECTION_NAME = 0;
+        public static final int CHILD_LIST_SECTION_COURSE_ID = 1;
+
+        // Instructor List
+        public static final String[] INSTRUCTOR_LIST_SECTION_PROJECTION = CHILD_LIST_SECTION_PROJECTION;
+
+        public static final int INSTRUCTOR_LIST_SECTION_NAME= CHILD_LIST_SECTION_NAME;
+        public static final int INSTRUCTOR_LIST_SECTION_ID = CHILD_LIST_SECTION_COURSE_ID;
+
+
+
+        public static final String[] SECTION_PROJECTION = {
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_HOURS_COLUMN
+        };
+
+        public static final int SECTION_ID = 0;
+        public static final int SECTION_AVAILABLE_POSITIONS = 1;
+        public static final int SECTION_DAYS = 2;
+        public static final int SECTION_END_DATE = 3;
+        public static final int SECTION_SESSIONS_NUMBER_COLUMN = 4;
+        public static final int SECTION_START_DATE = 5;
+        public static final int SECTION_NAME_COLUMN = 6;
+        public static final int SECTION_HOURS_COLUMN = 7;
+
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_HOURS_COLUMN,
                 DbContent.CourseTable.COURSE_COST_COLUMN,
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
                 DbContent.CourseTable.COURSE_START_AGE_COLUMN,
                 DbContent.CourseTable.COURSE_END_AGE_COLUMN,
                 DbContent.CourseTable.COURSE_LEVEL_COLUMN,
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.CourseTable.COURSE_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
         };
 
         public static final int COURSE_ID = 0;
         public static final int COURSE_NAME = 1;
-        public static final int COURSE_HOURS = 2;
-        public static final int COURSE_COST = 3;
-        public static final int COURSE_AVAILABLE_POSITIONS = 4;
-        public static final int COURSE_START_DATE = 5;
-        public static final int COURSE_END_DATE = 6;
-        public static final int COURSE_START_AGE = 7;
-        public static final int COURSE_END_AGE = 8;
-        public static final int COURSE_LEVEL = 9;
-        public static final int COURSE_SALARY_PER_CHILD = 10;
-        public static final int COURSE_DAYS_COLUMN = 11;
-        public static final int COURSE_SESSIONS_NUMBER_COLUMN = 12;
+        public static final int COURSE_COST = 2;
+        public static final int COURSE_START_AGE = 3;
+        public static final int COURSE_END_AGE = 4;
+        public static final int COURSE_LEVEL = 5;
+        public static final int COURSE_SALARY_PER_CHILD = 6;
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN
         };
 
         public static final int COURSE_LIST_ID = 0;
         public static final int COURSE_LIST_NAME = 1;
-        public static final int COURSE_LIST_START_DATE = 2;
-        public static final int COURSE_LIST_END_DATE = 3;
 
 
         public static final String[] CHILD_PROJECTION = {
@@ -167,123 +189,163 @@ public class DatabaseController {
         public static final int INSTRUCTOR_LIST_ID = 0;
         public static final int INSTRUCTOR_LIST_NAME = 1;
 
-        public static final String[] COURSE_INSTRUCTOR_TABLE = {
-                DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
-                DbContent.CourseInstructorTable.PAID_COLUMN
+        public static final String[] SECTION_INSTRUCTOR_TABLE = {
+                DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
+                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
+                DbContent.SectionInstructorTable.PAID_COLUMN
         };
 
-        public static final int COURSE_INSTRUCTOR_COURSE_ID = 0;
-        public static final int COURSE_INSTRUCTOR_INSTRUCTOR_ID = 1;
-        public static final int COURSE_INSTRUCTOR_PAID =2;
+        public static final int SECTION_INSTRUCTOR_COURSE_ID = 0;
+        public static final int SECTION_INSTRUCTOR_INSTRUCTOR_ID = 1;
+        public static final int SECTION_INSTRUCTOR_PAID =2;
 
-        public static final String[] COURSE_CHILD_JOIN_LIST_TABLE = {
-                DbContent.ChildCourseTable.TABLE_NAME+"."+ DbContent.ChildCourseTable._ID,
+        public static final String[] SECTION_INSTRUCTOR_CONNECTOR_JOIN_TABLE = {
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                DbContent.ChildCourseTable.COURSE_ID_COLUMN
-
-        };
-        public static final int COURSE_CHILD_JOIN_LIST_ID = 0;
-        public static final int COURSE_CHILD_JOIN_LIST_COURSE_NAME_COLUMN = 1;
-        public static final int COURSE_CHILD_JOIN_LIST_COURSE_START_DATE_COLUMN = 2;
-        public static final int COURSE_CHILD_JOIN_LIST_COURSE_END_DATE_COLUMN = 3;
-        public static final int COURSE_CHILD_JOIN_LIST_COURSE_ID_COLUMN = 4;
-
-        public static final String[] COURSE_INSTRUCTOR_LIST_JOIN_TABLE = {
-                DbContent.CourseInstructorTable.TABLE_NAME +"."+ DbContent.CourseInstructorTable._ID,
-                DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_SALARY_PER_CHILD
         };
 
-        public static final int COURSE_INSTRUCTOR_LIST_JOIN_ID = 0;
-        public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_ID = 1;
-        public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_NAME = 2;
-        public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_START_DATE = 3;
-        public static final int COURSE_INSTRUCTOR_LIST_JOIN_COURSE_END_DATE = 4;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE =1;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE =2;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_ID =3;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS =4;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME =5;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_INSTRUCTOR_ID =6;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME =7;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_SALARY_PER_CHILD =8;
+
+        public static final String[] SECTION_CHILD_JOIN_LIST_TABLE = {
+                DbContent.ChildSectionTable.TABLE_NAME+"."+ DbContent.ChildSectionTable._ID,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.ChildSectionTable.SECTION_ID_COLUMN
+
+        };
+        public static final int SECTION_CHILD_JOIN_LIST_ID = 0;
+        public static final int SECTION_CHILD_JOIN_LIST_SECTION_START_DATE_COLUMN = 1;
+        public static final int SECTION_CHILD_JOIN_LIST_SECTION_END_DATE_COLUMN = 2;
+        public static final int SECTION_CHILD_JOIN_LIST_SECTION_ID_COLUMN = 3;
+
+        public static final String[] SECTION_INSTRUCTOR_LIST_JOIN_TABLE = {
+                DbContent.SectionInstructorTable.TABLE_NAME +"."+ DbContent.SectionInstructorTable._ID,
+                DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+        };
+
+        public static final int SECTION_INSTRUCTOR_LIST_JOIN_ID = 0;
+        public static final int SECTION_INSTRUCTOR_LIST_JOIN_SECTION_ID = 1;
+        public static final int SECTION_INSTRUCTOR_LIST_JOIN_SECTION_START_DATE = 2;
+        public static final int SECTION_INSTRUCTOR_LIST_JOIN_SECTION_END_DATE = 3;
 
         public static final String[] SHIFT_LIST_PROJECTION = {
-                DbContent.CourseInstructorTable.TABLE_NAME + "." + DbContent.CourseInstructorTable._ID,
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseInstructorTable.COURSE_ID_COLUMN,
-                DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_DAYS_COLUMN
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN
         };
 
-        public static final int SHIFT_LIST_COURSE_NAME = 1;
-        public static final int SHIFT_LIST_COURSE_ID = 2;
-        public static final int SHIFT_LIST_INSTRUCTOR_NAME = 3;
-        public static final int SHIFT_LIST_COURSE_START_dATE = 4;
-        public static final int SHIFT_LIST_COURSE_END_dATE = 5;
-        public static final int SHIFT_LIST_COURSE_DAYS = 6;
+        public static final int SHIFT_LIST_SECTION_ID = 0;
+        public static final int SHIFT_LIST_SECTION_NAME = 1;
+        public static final int SHIFT_LIST_SECTION_START_dATE = 2;
+        public static final int SHIFT_LIST_SECTION_END_dATE = 3;
+        public static final int SHIFT_LIST_SECTION_DAYS = 4;
+        public static final int SHIFT_LIST_COURSE_NAME = 5;
 
         public static final String[] SHIFT_TABLE_PROJECTION = {
                 DbContent.ShiftDaysTable.TABLE_NAME + "."  + DbContent.ShiftDaysTable._ID,
-                DbContent.ShiftDaysTable.COURSE_ID_COLUMN,
+                DbContent.ShiftDaysTable.SECTION_ID_COLUMN,
                 DbContent.ShiftDaysTable.START_DATE_COLUMN,
                 DbContent.ShiftDaysTable.END_DATE_COLUMN
         };
 
         public static final int SHIFT_ID = 0;
-        public static final int SHIFT_COURSE_ID_COLUMN = 1;
+        public static final int SHIFT_SECTION_ID_COLUMN = 1;
         public static final int SHIFT_START_DATE_COLUMN = 2;
         public static final int SHIFT_END_DATE_COLUMN = 3;
 
-        public static final String[] SHIFT_COURSE_JOIN_PROJECTION = {
+        public static final String[] SHIFT_SECTION_JOIN_PROJECTION = {
                 DbContent.ShiftDaysTable.TABLE_NAME + "." + DbContent.ShiftDaysTable._ID,
                 DbContent.ShiftDaysTable.START_DATE_COLUMN,
                 DbContent.ShiftDaysTable.END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_HOURS_COLUMN,
-                DbContent.CourseTable.COURSE_COST_COLUMN,
-                DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN,
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_END_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_START_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_END_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_LEVEL_COLUMN,
-                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.CourseTable.COURSE_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
+                DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN
         };
 
-        public static final int SHIFT_COURSE_JOIN_START_DATE_COLUMN = 1;
-        public static final int SHIFT_COURSE_JOIN_END_DATE_COLUMN =2;
-        public static final int SHIFT_COURSE_JOIN_COURSE_NAME_COLUMN = 3;
-        public static final int SHIFT_COURSE_JOIN_COURSE_HOURS_COLUMN = 4;
-        public static final int SHIFT_COURSE_JOIN_COURSE_COST_COLUMN = 5;
-        public static final int SHIFT_COURSE_JOIN_COURSE_AVAILABLE_POSITIONS_COLUMN = 6;
-        public static final int SHIFT_COURSE_JOIN_COURSE_START_DATE_COLUMN = 7;
-        public static final int SHIFT_COURSE_JOIN_COURSE_END_DATE_COLUMN = 8;
-        public static final int SHIFT_COURSE_JOIN_COURSE_START_AGE_COLUMN = 9;
-        public static final int SHIFT_COURSE_JOIN_COURSE_END_AGE_COLUMN = 10;
-        public static final int SHIFT_COURSE_JOIN_COURSE_LEVEL_COLUMN = 11;
-        public static final int SHIFT_COURSE_JOIN_COURSE_SALARY_PER_CHILD = 12;
-        public static final int SHIFT_COURSE_JOIN_COURSE_DAYS_COLUMN = 13;
-        public static final int SHIFT_COURSE_JOIN_COURSE_SESSIONS_NUMBER_COLUMN = 14;
+        public static final int SHIFT_SECTION_JOIN_ID = 0;
+        public static final int SHIFT_SECTION_JOIN_START_DATE_COLUMN = 1;
+        public static final int SHIFT_SECTION_JOIN_END_DATE_COLUMN =2;
+        public static final int SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN = 3;
+        public static final int SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN = 4;
+        public static final int SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN = 5;
+        public static final int SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN = 6;
+        public static final int SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN = 7;
 
         public static final String[] CHOICES_SELECTION_PROJECTION = {
-                DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+
         };
 
         public static final int CHOICES_SELECTION_ID = 0;
         public static final int CHOICES_SELECTION_COURSE_NAME = 1;
+        public static final int CHOICES_SELECTION_SECTION_NAME = 2;
 
-        public static final String[] COURSE_DATE_PROJECTION = {
-                DbContent.CourseTable.COURSE_START_DATE_COLUMN,
-                DbContent.CourseTable.COURSE_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_SESSIONS_NUMBER_COLUMN
+        public static final String[] CHILD_COURSE_CONNECTOR_PROJECTION = {
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.CourseTable.COURSE_COST_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.CourseTable.COURSE_NAME_COLUMN
         };
 
-        public static final int COURSE_DATE_START_DATE = 0;
-        public static final int COURSE_DATE_DAYS= 1;
-        public static final int COURSE_DATE_SESSIONS_NUMBER = 2;
+        public static final int CHILD_COURSE_CONNECTOR_ID = 0;
+        public static final int CHILD_COURSE_CONNECTOR_SECTION_START_DATE = 1;
+        public static final int CHILD_COURSE_CONNECTOR_SECTION_END_DATE = 2;
+        public static final int CHILD_COURSE_CONNECTOR_COURSE_COST_DATE = 3;
+        public static final int CHILD_COURSE_CONNECTOR_SECTION_DAYS_DATE = 4;
+        public static final int CHILD_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
+
+//        public static final String[] INSTRUCTOR_COURSE_CONNECTOR_PROJECTION = {
+//                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+//                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+//                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+//                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
+//                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+//                DbContent.CourseTable.COURSE_NAME_COLUMN
+//        };
+//
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_ID = 0;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_START_DATE = 1;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_END_DATE = 2;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SALARY_PER_CHILD = 3;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_SECTION_DAYS_DATE = 4;
+//        public static final int INSTRUCTOR_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
+
+
+
+        public static final String[] SECTION_DATE_PROJECTION = {
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN
+        };
+
+        public static final int SECTION_DATE_START_DATE = 0;
+        public static final int SECTION_DATE_DAYS= 1;
+        public static final int SECTION_DATE_SESSIONS_NUMBER = 2;
     }
 
     public static class UriDatabase{
@@ -292,9 +354,12 @@ public class DatabaseController {
         public static final Uri EMPLOYEE_TABLE_URI = DbContent.EmployeeTable.CONTENT_URI;
         public static final Uri INSTRUCTOR_TABLE_URI = DbContent.InstructorTable.CONTENT_URI;
         public static final Uri COURSE_TABLE_URI = DbContent.CourseTable.CONTENT_URI;
-        public static final Uri COURSE_CHILD_URI = DbContent.ChildCourseTable.CONTENT_URI;
-        public static final Uri COURSE_INSTRUCTOR_URI = DbContent.CourseInstructorTable.CONTENT_URI;
+        public static final Uri SECTION_CHILD_URI = DbContent.ChildSectionTable.CONTENT_URI;
+        public static final Uri SECTION_INSTRUCTOR_URI = DbContent.SectionInstructorTable.CONTENT_URI;
         public static final Uri SHIFT_URI = DbContent.ShiftDaysTable.CONTENT_URI;
+        public static final Uri SECTION_URI = DbContent.SectionTable.CONTENT_URI;
+        public static final Uri COURSE_SECTION_JOIN_URI =
+                SECTION_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME).build();
 
 
         public static Uri getChildTableWithIdUri(long id){
@@ -313,50 +378,54 @@ public class DatabaseController {
             return COURSE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
+        public static Uri getSectionTableWithIdUri(long id){
+            return SECTION_URI.buildUpon().appendPath(String.valueOf(id)).build();
+        }
+
         public static Uri getShiftTableWithIdUri(long id){
             return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable._ID).appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseTableWithEndDateIdWithCompleteIdWithAgeRangeUri(long age, long date){
-            return COURSE_TABLE_URI.buildUpon()
-                    .appendPath(DbContent.CourseTable.COURSE_END_DATE_COLUMN)
-                    .appendPath(DbContent.CourseTable.COURSE_AVAILABLE_POSITIONS_COLUMN)
+        public static Uri getSectionTableWithEndDateIdWithCompleteIdWithAgeRangeUri(long age, long date){
+            return SECTION_URI.buildUpon()
+                    .appendPath(DbContent.SectionTable.SECTION_END_DATE_COLUMN)
+                    .appendPath(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN)
                     .appendPath(String.valueOf(date))
                     .appendPath(String.valueOf(age))
                     .build();
         }
 
-        public static Uri getCourseTableWithIdWithEndDate(long date, long id){
-            return COURSE_TABLE_URI.buildUpon()
-                    .appendPath(DbContent.CourseTable.COURSE_END_DATE_COLUMN)
+        public static Uri getSectionTableWithIdWithEndDate(long date, long id){
+            return SECTION_URI.buildUpon()
+                    .appendPath(DbContent.SectionTable.SECTION_END_DATE_COLUMN)
                     .appendPath(String.valueOf(id))
                     .appendPath(String.valueOf(date)).build();
         }
-
-        public static Uri getCourseChildTableWithChildIdUri(long id){
-            return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
+        // Child List
+        public static Uri getSectionChildTableWithChildIdUri(long id){
+            return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
+                    .appendPath(String.valueOf(id)).build();
+        }
+        // Child profile
+        public static Uri getSectionChildTableWithSectionIdUri(long id){
+            return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseChildTableWithCourseIdUri(long id){
-            return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME)
-                    .appendPath(String.valueOf(id)).build();
-        }
-
-        public static Uri getCourseChildTableWithChildIDAndCourseIdUri(long childId, long courseId){
-            return COURSE_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
-                    .appendPath(DbContent.CourseTable.TABLE_NAME)
+        public static Uri getSectionChildTableWithChildIDAndSectionIdUri(long childId, long sectionId){
+            return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
+                    .appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(childId))
-                    .appendPath(String.valueOf(courseId)).build();
+                    .appendPath(String.valueOf(sectionId)).build();
         }
 
-        public static Uri getCourseInstructorTableWithCourseIdUri(long id){
-            return COURSE_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME)
+        public static Uri getSectionInstructorTableWithSectionIdUri(long id){
+            return SECTION_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseInstructorTableWithInstructorIdUri(long id){
-            return COURSE_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.InstructorTable.TABLE_NAME)
+        public static Uri getSectionInstructorTableWithInstructorIdUri(long id){
+            return SECTION_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.InstructorTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
@@ -385,21 +454,21 @@ public class DatabaseController {
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
-
-        public static Uri getCoursesByDaySearchUri(String searchChars, long indexDay){
-            Uri uri = COURSE_TABLE_URI.buildUpon().appendPath("day")
+        // Shift List
+        public static Uri getSectionsByDaySearchUri(String searchChars, long indexDay){
+            Uri uri = SECTION_URI.buildUpon().appendPath("day")
                     .appendPath(String.valueOf(indexDay))
                     .build();
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
-        public static Uri getShiftWithCourseId(long id){
+        public static Uri getShiftWithSectionId(long id){
             return SHIFT_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getShiftWithCourseJoinId(long id){
-            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.COURSE_ID_COLUMN)
+        public static Uri getShiftWithSectionJoinId(long id){
+            return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.SECTION_ID_COLUMN)
                     .appendPath(String.valueOf(id)).build();
         }
 
@@ -459,7 +528,28 @@ public class DatabaseController {
                     .build();
         }
 
+        public static Uri getSectionWithId(Long id){
+            return SECTION_URI.buildUpon().appendPath(String.valueOf(id)).build();
+        }
 
+        public static Uri getSectionWithCourseId(Long id){
+            return SECTION_URI.buildUpon().appendPath(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN)
+                    .appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getCourseSectionJoinWithCourseId(Long id){
+            return SECTION_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.TABLE_NAME)
+                    .appendPath(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN)
+                    .appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getCourseSectionJoinWithSectionId(Long id){
+            return SECTION_URI.buildUpon()
+                    .appendPath(DbContent.CourseTable.TABLE_NAME)
+                    .appendPath(DbContent.SectionTable._ID)
+                    .appendPath(String.valueOf(id)).build();
+        }
     }
 
 }

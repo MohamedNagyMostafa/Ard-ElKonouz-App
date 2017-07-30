@@ -9,6 +9,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,23 @@ public class InstructorProfileActivityFragment extends Fragment
 
         getLoaderManager().initLoader(Constants.LOADER_INSTRUCTOR_COURSE_JOIN_LIST, null, this);
 
+        // ** Start Test Section **//
+        Cursor cursor1 = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.SECTION_INSTRUCTOR_URI,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if(cursor1 != null){
+
+            Log.e("instructor section tb" , String.valueOf(cursor1.getCount()));
+
+            cursor1.close();
+        }
+        // ** End Test Section **//
+
         return rootView;
     }
 
@@ -123,8 +141,8 @@ public class InstructorProfileActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
-                DatabaseController.ProjectionDatabase.COURSE_INSTRUCTOR_LIST_JOIN_TABLE,
+                DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(instructorId),
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_TABLE,
                 null,
                 null,
                 null

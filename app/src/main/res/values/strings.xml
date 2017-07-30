@@ -128,4 +128,6 @@
     <string name="mobile">Mobile</string>
     <string name="title_activity_shift_list">ShiftListActivity</string>
     <string name="title_activity_shift_input">ShiftInputActivity</string>
+    <string name="title_activity_section_profile">SectionProfileActivity</string>
+    <string name="title_activity_section_input">SectionInputActivity</string>
 </resources>

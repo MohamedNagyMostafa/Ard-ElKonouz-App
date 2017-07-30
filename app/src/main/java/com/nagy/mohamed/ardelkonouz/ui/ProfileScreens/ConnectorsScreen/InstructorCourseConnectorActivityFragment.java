@@ -32,8 +32,8 @@ import java.util.ArrayList;
 public class InstructorCourseConnectorActivityFragment extends Fragment
         implements CursorAdapterList, LoaderManager.LoaderCallbacks<Cursor>{
 
-    private ArrayList<Long> selectedCourses;
-    private ArrayList<Long> previousSelectedCourses;
+    private ArrayList<Long> selectedSections;
+    private ArrayList<Long> previousSelectedSections;
     private DatabaseCursorAdapter databaseCursorAdapter;
     private Long instructorId;
 
@@ -45,14 +45,14 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         ViewHolder.InstructorCourseConnectorScreenViewHolder instructorCourseConnectorScreenViewHolder =
                 new ViewHolder.InstructorCourseConnectorScreenViewHolder(rootView);
         instructorId = getActivity().getIntent().getExtras().getLong(Constants.INSTRUCTOR_ID_EXTRA);
-        selectedCourses = new ArrayList<>();
-        previousSelectedCourses = new ArrayList<>();
+        selectedSections = new ArrayList<>();
+        previousSelectedSections = new ArrayList<>();
 
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
 
         // set previous courses.
-        setPreviousCourses(previousSelectedCourses);
+        setPreviousCourses(previousSelectedSections);
 
         // set listener.
         instructorCourseConnectorScreenViewHolder.COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
@@ -63,10 +63,10 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        selectedCourses = new ArrayList<Long>();
-                        previousSelectedCourses = new ArrayList<Long>();
+                        selectedSections = new ArrayList<>();
+                        previousSelectedSections = new ArrayList<>();
 
-                        setPreviousCourses(previousSelectedCourses);
+                        setPreviousCourses(previousSelectedSections);
                         restartLoader();
                     }
                 }
@@ -77,32 +77,32 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                     public void onClick(View view) {
 
                         ContentValues selectedContentValues = new ContentValues();
-                        selectedContentValues.put(DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN, instructorId);
-                        Log.e("selected course count", String.valueOf(selectedCourses.size()));
-                        Log.e("preselected corse count", String.valueOf(previousSelectedCourses.size()));
+                        selectedContentValues.put(DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN, instructorId);
+                        Log.e("selected course count", String.valueOf(selectedSections.size()));
+                        Log.e("preselected corse count", String.valueOf(previousSelectedSections.size()));
 
-                        for(final Long COURSE_ID : selectedCourses){
+                        for(final Long SECTION_ID : selectedSections){
 
                             getActivity().getContentResolver().update(
-                                    DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
+                                    DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(SECTION_ID),
                                     selectedContentValues,
                                     null,
                                     null
                             );
 
-                            if(previousSelectedCourses.contains(COURSE_ID)){
-                                previousSelectedCourses.remove(COURSE_ID);
+                            if(previousSelectedSections.contains(SECTION_ID)){
+                                previousSelectedSections.remove(SECTION_ID);
                             }
                         }
 
                         ContentValues unselectedContentValues = new ContentValues();
                         unselectedContentValues.put(
-                                DbContent.CourseInstructorTable.INSTRUCTOR_ID_COLUMN,
+                                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
                                 Constants.NO_INSTRUCTOR);
 
-                        for(final Long COURSE_ID : previousSelectedCourses) {
+                        for(final Long COURSE_ID : previousSelectedSections) {
                             getActivity().getContentResolver().update(
-                                    DatabaseController.UriDatabase.getCourseInstructorTableWithCourseIdUri(COURSE_ID),
+                                    DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(COURSE_ID),
                                     unselectedContentValues,
                                     null,
                                     null
@@ -128,8 +128,8 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
     private void setPreviousCourses(ArrayList<Long> previousCourses){
         Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseInstructorTableWithInstructorIdUri(instructorId),
-                new String[]{DbContent.CourseInstructorTable.COURSE_ID_COLUMN},
+                DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(instructorId),
+                new String[]{DbContent.SectionInstructorTable.SECTION_ID_COLUMN},
                 null,
                 null,
                 null
@@ -139,7 +139,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
             if(cursor.getCount() > 0){
                 while (cursor.moveToNext()){
                     previousCourses.add(cursor.getLong(0));
-                    selectedCourses.add(cursor.getLong(0));
+                    selectedSections.add(cursor.getLong(0));
                 }
             }
             cursor.close();
@@ -161,54 +161,66 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                4
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE
                         )
                 )
         );
         coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
                 Utility.getTimeFormat(
                         cursor.getLong(
-                                5
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE
+
                         )
                 )
         );
 
-        coursesViewHolder.COURSE_HOURS_TEXT_VIEW.setText(
+        coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                3
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS
                         )
                 )
         );
+
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
-                        1
+                        DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME
                 )
         );
+
         coursesViewHolder.COURSE_SALARY_PER_CHILD_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(
-                                2
+                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_SALARY_PER_CHILD
                         )
                 )
         );
 
+
+        coursesViewHolder.SECTION_NAME_TEXT_VIEW.setText(
+                String.valueOf(
+                        "Sec. " +
+                                String.valueOf(
+                                        DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME
+                                )
+                )
+        );
         view.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(selectedCourses.contains(COURSE_ID)){
-                            selectedCourses.remove(COURSE_ID);
+                        if(selectedSections.contains(COURSE_ID)){
+                            selectedSections.remove(COURSE_ID);
                             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
                         }else{
-                            selectedCourses.add(COURSE_ID);
+                            selectedSections.add(COURSE_ID);
                             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
                         }
                     }
                 }
         );
 
-        if(selectedCourses.contains(COURSE_ID) || previousSelectedCourses.contains(COURSE_ID)){
+        if(selectedSections.contains(COURSE_ID) || previousSelectedSections.contains(COURSE_ID)){
             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
         }else{
             coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
@@ -221,8 +233,8 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         long dateAsMills = Utility.getCurrentDateAsMills();
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.getCourseTableWithIdWithEndDate(dateAsMills, instructorId),
-                DatabaseController.ProjectionDatabase.COURSE_PROJECTION,
+                DatabaseController.UriDatabase.getSectionTableWithIdWithEndDate(dateAsMills, instructorId),
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_TABLE,
                 null,
                 null,
                 null
@@ -247,7 +259,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putStringArrayList(Constants.SaveState.CONNECTOR_INSTRUCTOR_COURSE_SELECTION,
-                Utility.convertCoursesIdToString(selectedCourses));
+                Utility.convertCoursesIdToString(selectedSections));
         super.onSaveInstanceState(outState);
     }
 
@@ -256,7 +268,7 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         super.onViewStateRestored(savedInstanceState);
 
         if(savedInstanceState != null){
-            selectedCourses = Utility.convertCoursesIdToLong(
+            selectedSections = Utility.convertCoursesIdToLong(
                     savedInstanceState.getStringArrayList(
                             Constants.SaveState.CONNECTOR_INSTRUCTOR_COURSE_SELECTION
                     )

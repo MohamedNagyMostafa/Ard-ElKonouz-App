@@ -66,12 +66,14 @@ public class ShiftInputActivityFragment extends Fragment
         public void bindListView(View view, final Cursor cursor) {
             ViewHolder.ShiftInputScreenViewHolder.ListCourseChoiceViewHolder listCourseChoiceViewHolder =
                     new ViewHolder.ShiftInputScreenViewHolder.ListCourseChoiceViewHolder(view);
-            final Long COURSE_ID = cursor.getLong(
+            final Long SECTION_ID = cursor.getLong(
                     DatabaseController.ProjectionDatabase.CHOICES_SELECTION_ID
             );
             listCourseChoiceViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     cursor.getString(
                             DatabaseController.ProjectionDatabase.CHOICES_SELECTION_COURSE_NAME
+                    )+ " Sec. " + cursor.getString(
+                            DatabaseController.ProjectionDatabase.CHOICES_SELECTION_SECTION_NAME
                     )
             );
 
@@ -79,7 +81,7 @@ public class ShiftInputActivityFragment extends Fragment
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            selectedID.add(COURSE_ID);
+                            selectedID.add(SECTION_ID);
                             Log.e("course is added size is", String.valueOf(selectedID.size()));
                             restartSelectionLoader();
                             shiftInputScreenViewHolder.COURSE_SEARCH_EDIT_TEXT.setText("");
@@ -101,13 +103,15 @@ public class ShiftInputActivityFragment extends Fragment
         @Override
         public void onBindViewHolder(ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder selectionCoursesViewHolder, Cursor cursor) {
 
-            final Long COURSE_ID = cursor.getLong(
+            final Long SECTION_ID = cursor.getLong(
                     DatabaseController.ProjectionDatabase.CHOICES_SELECTION_ID
             );
 
             selectionCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     cursor.getString(
                             DatabaseController.ProjectionDatabase.CHOICES_SELECTION_COURSE_NAME
+                    ) + " Sec. " + cursor.getString(
+                            DatabaseController.ProjectionDatabase.CHOICES_SELECTION_SECTION_NAME
                     )
             );
 
@@ -115,7 +119,7 @@ public class ShiftInputActivityFragment extends Fragment
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            selectedID.remove(COURSE_ID);
+                            selectedID.remove(SECTION_ID);
                             restartSelectionLoader();
                         }
                     }
@@ -262,22 +266,22 @@ public class ShiftInputActivityFragment extends Fragment
                         );
 
 
-                        for(final Long COURSE_ID : selectedID){
+                        for(final Long SECTION_ID : selectedID){
 
                             /**
                              * Validation Block @Start ...
                              */
-                            if(innerShiftDateValidation(COURSE_ID, SHIFT_START_DATE, SHIFT_END_DATE)) {
+                            if(innerShiftDateValidation(SECTION_ID, SHIFT_START_DATE, SHIFT_END_DATE)) {
                                 Log.e("ignore for shift", "igonre");
                                 continue;
                             }
                             // get Most accurate start shift date.
-                            Long newShiftStartDate = getAccurateShiftStartDate(COURSE_ID, SHIFT_START_DATE, SHIFT_END_DATE);
+                            Long newShiftStartDate = getAccurateShiftStartDate(SECTION_ID, SHIFT_START_DATE, SHIFT_END_DATE);
                             // get Most accurate end shift date.
-                            Long newShiftEndDate = getAccurateShiftEndDate(COURSE_ID, SHIFT_START_DATE, SHIFT_END_DATE);
+                            Long newShiftEndDate = getAccurateShiftEndDate(SECTION_ID, SHIFT_START_DATE, SHIFT_END_DATE);
                             // delete inner shifts.
                             deleteInnerShiftsWithRespectToNewShiftsDates(
-                                    COURSE_ID,
+                                    SECTION_ID,
                                     newShiftStartDate,
                                     newShiftEndDate
                             );
@@ -287,20 +291,20 @@ public class ShiftInputActivityFragment extends Fragment
                             ContentValues shiftContentValues = new ContentValues();
                             ContentValues courseContentValues = new ContentValues();
 
-                            shiftContentValues.put(DbContent.ShiftDaysTable.COURSE_ID_COLUMN, COURSE_ID);
+                            shiftContentValues.put(DbContent.ShiftDaysTable.SECTION_ID_COLUMN, SECTION_ID);
                             shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN, newShiftStartDate);
                             shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN, newShiftEndDate);
 
                             Shift shift = new Shift(
                                     newShiftStartDate,
                                     newShiftEndDate,
-                                    COURSE_ID
+                                    SECTION_ID
                             );
 
                             // update end date for courses.
                             Cursor cursor = getActivity().getContentResolver().query(
-                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                                    DatabaseController.ProjectionDatabase.COURSE_DATE_PROJECTION,
+                                    DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
+                                    DatabaseController.ProjectionDatabase.SECTION_DATE_PROJECTION,
                                     null,
                                     null,
                                     null
@@ -311,19 +315,19 @@ public class ShiftInputActivityFragment extends Fragment
                                     cursor.moveToFirst();
                                     ArrayList<Shift> shiftArrayList = new ArrayList<Shift>();
                                     final String COURSE_SESSION_DAYS = cursor.getString(
-                                            DatabaseController.ProjectionDatabase.COURSE_DATE_DAYS
+                                            DatabaseController.ProjectionDatabase.SECTION_DATE_DAYS
                                     );
                                     final Long COURSE_START_DATE = cursor.getLong(
-                                                    DatabaseController.ProjectionDatabase.COURSE_DATE_START_DATE
+                                                    DatabaseController.ProjectionDatabase.SECTION_DATE_START_DATE
                                             );
                                     final Integer COURSE_SESSIONS_NUMBER = cursor.getInt(
-                                            DatabaseController.ProjectionDatabase.COURSE_DATE_SESSIONS_NUMBER
+                                            DatabaseController.ProjectionDatabase.SECTION_DATE_SESSIONS_NUMBER
                                     );
 
                                     shiftArrayList.add(shift);
 
                                     courseContentValues.put(
-                                            DbContent.CourseTable.COURSE_END_DATE_COLUMN,
+                                            DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                                             Utility.getEndDate(
                                                     shiftArrayList,
                                                     COURSE_SESSION_DAYS,
@@ -337,7 +341,7 @@ public class ShiftInputActivityFragment extends Fragment
                             }
 
                             getActivity().getContentResolver().update(
-                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                    DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
                                     courseContentValues,
                                     null,
                                     null
@@ -527,13 +531,13 @@ public class ShiftInputActivityFragment extends Fragment
     // Check the current shift with previous shifts.
     // if the current shift is founded within one of previous shifts
     // the result return true ,Otherwise return false.
-    private boolean innerShiftDateValidation(final Long COURSE_ID,
+    private boolean innerShiftDateValidation(final Long SECTION_ID,
                                              final Long SHIFT_START_DATE,
                                              final Long SHIFT_END_DATE){
         boolean innerShift = false;
 
         Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getShiftWithStartEndDate(SHIFT_START_DATE, SHIFT_END_DATE, COURSE_ID),
+                DatabaseController.UriDatabase.getShiftWithStartEndDate(SHIFT_START_DATE, SHIFT_END_DATE, SECTION_ID),
                 null,
                 null,
                 null,
@@ -550,7 +554,7 @@ public class ShiftInputActivityFragment extends Fragment
         return innerShift;
     }
 
-    private Long getAccurateShiftStartDate(final Long COURSE_ID, final Long SHIFT_START_DATE,
+    private Long getAccurateShiftStartDate(final Long SECTION_ID, final Long SHIFT_START_DATE,
                                            final Long SHIFT_END_DATE){
 
         Long newShiftStartDate = SHIFT_START_DATE;
@@ -559,7 +563,7 @@ public class ShiftInputActivityFragment extends Fragment
                 DatabaseController.UriDatabase.getShiftWithStartDate(
                         SHIFT_START_DATE,
                         SHIFT_END_DATE,
-                        COURSE_ID
+                        SECTION_ID
                 ),
                 DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
                 null,
@@ -580,7 +584,7 @@ public class ShiftInputActivityFragment extends Fragment
         return newShiftStartDate;
     }
 
-    private Long getAccurateShiftEndDate(final Long COURSE_ID, final Long SHIFT_START_DATE,
+    private Long getAccurateShiftEndDate(final Long SECTION_ID, final Long SHIFT_START_DATE,
                                            final Long SHIFT_END_DATE){
 
         Long newShiftEndDate = SHIFT_END_DATE;
@@ -589,7 +593,7 @@ public class ShiftInputActivityFragment extends Fragment
                 DatabaseController.UriDatabase.getShiftWithEndDate(
                         SHIFT_START_DATE,
                         SHIFT_END_DATE,
-                        COURSE_ID
+                        SECTION_ID
                 ),
                 DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
                 null,
@@ -611,14 +615,14 @@ public class ShiftInputActivityFragment extends Fragment
         return newShiftEndDate;
     }
 
-    private void deleteInnerShiftsWithRespectToNewShiftsDates(final Long COURSE_ID,
+    private void deleteInnerShiftsWithRespectToNewShiftsDates(final Long SECTION_ID,
                                                               final Long NEW_SHIFT_START_DATE,
                                                               final Long NEW_SHIFT_END_DATE){
         getContext().getContentResolver().delete(
                 DatabaseController.UriDatabase.getShiftWithStartEndDate(
                         NEW_SHIFT_START_DATE,
                         NEW_SHIFT_END_DATE,
-                        COURSE_ID
+                        SECTION_ID
                 ),
                 null,
                 null
