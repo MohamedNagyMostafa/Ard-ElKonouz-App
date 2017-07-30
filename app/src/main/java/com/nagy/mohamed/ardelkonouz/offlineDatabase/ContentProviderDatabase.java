@@ -1070,7 +1070,7 @@ public class ContentProviderDatabase extends ContentProvider {
         String selection = DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN +"=?";
         String[] selectionArgs = {String.valueOf(columnId)};
 
-        return SECTION_INSTRUCTOR_QUERY.query(
+        return SECTION_INSTRUCTOR_JOIN_COURSE_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
