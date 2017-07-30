@@ -117,7 +117,7 @@ public class CourseProfileActivityFragment extends Fragment
                     public void onClick(View view) {
                         Intent sectionInputScreen = new Intent(getContext(), SectionInputActivity.class);
                         sectionInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
-                        sectionInputScreen.putExtra(Constants.COURSE_ID_EXTRA, Constants.COURSE_ID_EXTRA);
+                        sectionInputScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
                         startActivity(sectionInputScreen);
                     }
                 }
