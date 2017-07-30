@@ -15,7 +15,7 @@ public class DatabaseController {
 
 
         // Child list
-        public static final String[] CHILD_LIST_SECTION_PROJECTION = {
+        static final String[] CHILD_LIST_SECTION_PROJECTION = {
                 DbContent.SectionTable.SECTION_NAME_COLUMN,
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
         };
@@ -26,9 +26,8 @@ public class DatabaseController {
         // Instructor List
         public static final String[] INSTRUCTOR_LIST_SECTION_PROJECTION = CHILD_LIST_SECTION_PROJECTION;
 
-        public static final int INSTRUCTOR_LIST_SECTION_NAME= CHILD_LIST_SECTION_NAME;
+        public static final int INSTRUCTOR_LIST_SECTION_NAME = CHILD_LIST_SECTION_NAME;
         public static final int INSTRUCTOR_LIST_SECTION_ID = CHILD_LIST_SECTION_COURSE_ID;
-
 
 
         public static final String[] SECTION_PROJECTION = {
@@ -39,7 +38,8 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_NAME_COLUMN,
-                DbContent.SectionTable.SECTION_HOURS_COLUMN
+                DbContent.SectionTable.SECTION_HOURS_COLUMN,
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
         };
 
         public static final int SECTION_ID = 0;
@@ -50,6 +50,7 @@ public class DatabaseController {
         public static final int SECTION_START_DATE = 5;
         public static final int SECTION_NAME_COLUMN = 6;
         public static final int SECTION_HOURS_COLUMN = 7;
+        public static final int SECTION_COURSE_ID_COLUMN = 8;
 
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -189,15 +190,15 @@ public class DatabaseController {
         public static final int INSTRUCTOR_LIST_ID = 0;
         public static final int INSTRUCTOR_LIST_NAME = 1;
 
-        public static final String[] SECTION_INSTRUCTOR_TABLE = {
-                DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
-                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
-                DbContent.SectionInstructorTable.PAID_COLUMN
-        };
-
-        public static final int SECTION_INSTRUCTOR_COURSE_ID = 0;
-        public static final int SECTION_INSTRUCTOR_INSTRUCTOR_ID = 1;
-        public static final int SECTION_INSTRUCTOR_PAID =2;
+//        public static final String[] SECTION_INSTRUCTOR_TABLE = {
+//                DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
+//                DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
+//                DbContent.SectionInstructorTable.PAID_COLUMN
+//        };
+//
+//        public static final int SECTION_INSTRUCTOR_COURSE_ID = 0;
+//        public static final int SECTION_INSTRUCTOR_INSTRUCTOR_ID = 1;
+//        public static final int SECTION_INSTRUCTOR_PAID =2;
 
         public static final String[] SECTION_INSTRUCTOR_CONNECTOR_JOIN_TABLE = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
@@ -211,17 +212,17 @@ public class DatabaseController {
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD
         };
 
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE =1;
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE =2;
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_ID =3;
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS =4;
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME =5;
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_INSTRUCTOR_ID =6;
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME =7;
-        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_SALARY_PER_CHILD =8;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE = 1;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE = 2;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_ID = 3;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS = 4;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME = 5;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_INSTRUCTOR_ID = 6;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME = 7;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_SALARY_PER_CHILD = 8;
 
         public static final String[] SECTION_CHILD_JOIN_LIST_TABLE = {
-                DbContent.ChildSectionTable.TABLE_NAME+"."+ DbContent.ChildSectionTable._ID,
+                DbContent.ChildSectionTable.TABLE_NAME + "." + DbContent.ChildSectionTable._ID,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.ChildSectionTable.SECTION_ID_COLUMN
@@ -233,7 +234,7 @@ public class DatabaseController {
         public static final int SECTION_CHILD_JOIN_LIST_SECTION_ID_COLUMN = 3;
 
         public static final String[] SECTION_INSTRUCTOR_LIST_JOIN_TABLE = {
-                DbContent.SectionInstructorTable.TABLE_NAME +"."+ DbContent.SectionInstructorTable._ID,
+                DbContent.SectionInstructorTable.TABLE_NAME + "." + DbContent.SectionInstructorTable._ID,
                 DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
@@ -261,7 +262,7 @@ public class DatabaseController {
         public static final int SHIFT_LIST_COURSE_NAME = 5;
 
         public static final String[] SHIFT_TABLE_PROJECTION = {
-                DbContent.ShiftDaysTable.TABLE_NAME + "."  + DbContent.ShiftDaysTable._ID,
+                DbContent.ShiftDaysTable.TABLE_NAME + "." + DbContent.ShiftDaysTable._ID,
                 DbContent.ShiftDaysTable.SECTION_ID_COLUMN,
                 DbContent.ShiftDaysTable.START_DATE_COLUMN,
                 DbContent.ShiftDaysTable.END_DATE_COLUMN
@@ -285,7 +286,7 @@ public class DatabaseController {
 
         public static final int SHIFT_SECTION_JOIN_ID = 0;
         public static final int SHIFT_SECTION_JOIN_START_DATE_COLUMN = 1;
-        public static final int SHIFT_SECTION_JOIN_END_DATE_COLUMN =2;
+        public static final int SHIFT_SECTION_JOIN_END_DATE_COLUMN = 2;
         public static final int SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN = 3;
         public static final int SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN = 4;
         public static final int SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN = 5;
@@ -336,7 +337,6 @@ public class DatabaseController {
 //        public static final int INSTRUCTOR_COURSE_CONNECTOR_COURSE_NAME_DATE = 5;
 
 
-
         public static final String[] SECTION_DATE_PROJECTION = {
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
@@ -344,11 +344,11 @@ public class DatabaseController {
         };
 
         public static final int SECTION_DATE_START_DATE = 0;
-        public static final int SECTION_DATE_DAYS= 1;
+        public static final int SECTION_DATE_DAYS = 1;
         public static final int SECTION_DATE_SESSIONS_NUMBER = 2;
     }
 
-    public static class UriDatabase{
+    public static class UriDatabase {
 
         public static final Uri CHILD_TABLE_URI = DbContent.ChildTable.CONTENT_URI;
         public static final Uri EMPLOYEE_TABLE_URI = DbContent.EmployeeTable.CONTENT_URI;
@@ -362,31 +362,31 @@ public class DatabaseController {
                 SECTION_URI.buildUpon().appendPath(DbContent.CourseTable.TABLE_NAME).build();
 
 
-        public static Uri getChildTableWithIdUri(long id){
+        public static Uri getChildTableWithIdUri(long id) {
             return CHILD_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getEmployeeTableWithIdUri(long id){
+        public static Uri getEmployeeTableWithIdUri(long id) {
             return EMPLOYEE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getInstructorTableWithIdUri(long id){
+        public static Uri getInstructorTableWithIdUri(long id) {
             return INSTRUCTOR_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseTableWithIdUri(long id){
+        public static Uri getCourseTableWithIdUri(long id) {
             return COURSE_TABLE_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getSectionTableWithIdUri(long id){
+        public static Uri getSectionTableWithIdUri(long id) {
             return SECTION_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getShiftTableWithIdUri(long id){
+        public static Uri getShiftTableWithIdUri(long id) {
             return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable._ID).appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getSectionTableWithEndDateIdWithCompleteIdWithAgeRangeUri(long age, long date){
+        public static Uri getSectionTableWithEndDateIdWithCompleteIdWithAgeRangeUri(long age, long date) {
             return SECTION_URI.buildUpon()
                     .appendPath(DbContent.SectionTable.SECTION_END_DATE_COLUMN)
                     .appendPath(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN)
@@ -395,47 +395,49 @@ public class DatabaseController {
                     .build();
         }
 
-        public static Uri getSectionTableWithIdWithEndDate(long date, long id){
+        public static Uri getSectionTableWithIdWithEndDate(long date, long id) {
             return SECTION_URI.buildUpon()
                     .appendPath(DbContent.SectionTable.SECTION_END_DATE_COLUMN)
                     .appendPath(String.valueOf(id))
                     .appendPath(String.valueOf(date)).build();
         }
+
         // Child List
-        public static Uri getSectionChildTableWithChildIdUri(long id){
+        public static Uri getSectionChildTableWithChildIdUri(long id) {
             return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
+
         // Child profile
-        public static Uri getSectionChildTableWithSectionIdUri(long id){
+        public static Uri getSectionChildTableWithSectionIdUri(long id) {
             return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getSectionChildTableWithChildIDAndSectionIdUri(long childId, long sectionId){
+        public static Uri getSectionChildTableWithChildIDAndSectionIdUri(long childId, long sectionId) {
             return SECTION_CHILD_URI.buildUpon().appendPath(DbContent.ChildTable.TABLE_NAME)
                     .appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(childId))
                     .appendPath(String.valueOf(sectionId)).build();
         }
 
-        public static Uri getSectionInstructorTableWithSectionIdUri(long id){
+        public static Uri getSectionInstructorTableWithSectionIdUri(long id) {
             return SECTION_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.SectionTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getSectionInstructorTableWithInstructorIdUri(long id){
+        public static Uri getSectionInstructorTableWithInstructorIdUri(long id) {
             return SECTION_INSTRUCTOR_URI.buildUpon().appendPath(DbContent.InstructorTable.TABLE_NAME)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getChildTableWithSearchUri(String searchChars){
+        public static Uri getChildTableWithSearchUri(String searchChars) {
             Uri uri = CHILD_TABLE_URI.buildUpon().appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN).build();
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
-        public static Uri getCourseTableWithSearchUri(String searchChars){
+        public static Uri getCourseTableWithSearchUri(String searchChars) {
 
             Uri uri = COURSE_TABLE_URI.buildUpon().appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN).build();
 
@@ -443,19 +445,20 @@ public class DatabaseController {
 
         }
 
-        public static Uri getEmployeeTableWithSearchUri(String searchChars){
-            Uri uri =  EMPLOYEE_TABLE_URI.buildUpon().appendPath(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN).build();
+        public static Uri getEmployeeTableWithSearchUri(String searchChars) {
+            Uri uri = EMPLOYEE_TABLE_URI.buildUpon().appendPath(DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN).build();
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
-        public static Uri getInstructorTableWithSearchUri(String searchChars){
+        public static Uri getInstructorTableWithSearchUri(String searchChars) {
             Uri uri = INSTRUCTOR_TABLE_URI.buildUpon().appendPath(DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN).build();
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
+
         // Shift List
-        public static Uri getSectionsByDaySearchUri(String searchChars, long indexDay){
+        public static Uri getSectionsByDaySearchUri(String searchChars, long indexDay) {
             Uri uri = SECTION_URI.buildUpon().appendPath("day")
                     .appendPath(String.valueOf(indexDay))
                     .build();
@@ -463,36 +466,36 @@ public class DatabaseController {
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
-        public static Uri getShiftWithSectionId(long id){
+        public static Uri getShiftWithSectionId(long id) {
             return SHIFT_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getShiftWithSectionJoinId(long id){
+        public static Uri getShiftWithSectionJoinId(long id) {
             return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.SECTION_ID_COLUMN)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseChoices(ArrayList<Long> ids, String searchChars){
-            StringBuilder encodeIds  = new StringBuilder("");
-            if(ids.size() > 0)
+        public static Uri getCourseChoices(ArrayList<Long> ids, String searchChars) {
+            StringBuilder encodeIds = new StringBuilder("");
+            if (ids.size() > 0)
                 encodeIds.append(ids.get(0));
 
-            for(int i = 1 ; i < ids.size(); i++){
+            for (int i = 1; i < ids.size(); i++) {
                 encodeIds.append("k").append(ids.get(i));
             }
 
-            Uri uri =  COURSE_TABLE_URI.buildUpon()
+            Uri uri = COURSE_TABLE_URI.buildUpon()
                     .appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
                     .appendPath(encodeIds.toString()).build();
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
 
-        public static Uri getCourseSelection(ArrayList<Long> ids){
-            StringBuilder encodeIds  = new StringBuilder("");
+        public static Uri getCourseSelection(ArrayList<Long> ids) {
+            StringBuilder encodeIds = new StringBuilder("");
             encodeIds.append(ids.get(0));
 
-            for(int i = 1 ; i < ids.size(); i++){
+            for (int i = 1; i < ids.size(); i++) {
                 encodeIds.append("k").append(ids.get(i));
             }
 
@@ -502,7 +505,7 @@ public class DatabaseController {
                     .build();
         }
 
-        public static Uri getShiftWithStartEndDate(Long startDate, Long endDate, Long courseID){
+        public static Uri getShiftWithStartEndDate(Long startDate, Long endDate, Long courseID) {
             return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.START_DATE_COLUMN)
                     .appendPath(DbContent.ShiftDaysTable.END_DATE_COLUMN)
                     .appendPath(String.valueOf(startDate))
@@ -511,7 +514,7 @@ public class DatabaseController {
                     .build();
         }
 
-        public static Uri getShiftWithStartDate(Long startDate, Long endDate, Long courseId){
+        public static Uri getShiftWithStartDate(Long startDate, Long endDate, Long courseId) {
             return SHIFT_URI.buildUpon().appendPath(DbContent.ShiftDaysTable.START_DATE_COLUMN)
                     .appendPath(String.valueOf(startDate))
                     .appendPath(String.valueOf(endDate))
@@ -519,7 +522,7 @@ public class DatabaseController {
                     .build();
         }
 
-        public static Uri getShiftWithEndDate(Long startDate, Long endDate, Long courseId){
+        public static Uri getShiftWithEndDate(Long startDate, Long endDate, Long courseId) {
             return SHIFT_URI.buildUpon()
                     .appendPath(DbContent.ShiftDaysTable.END_DATE_COLUMN)
                     .appendPath(String.valueOf(startDate))
@@ -528,28 +531,27 @@ public class DatabaseController {
                     .build();
         }
 
-        public static Uri getSectionWithId(Long id){
+        public static Uri getSectionWithId(Long id) {
             return SECTION_URI.buildUpon().appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getSectionWithCourseId(Long id){
+        public static Uri getSectionWithCourseId(Long id) {
             return SECTION_URI.buildUpon().appendPath(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseSectionJoinWithCourseId(Long id){
+        public static Uri getCourseSectionJoinWithCourseId(Long id) {
             return SECTION_URI.buildUpon()
                     .appendPath(DbContent.CourseTable.TABLE_NAME)
                     .appendPath(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN)
                     .appendPath(String.valueOf(id)).build();
         }
 
-        public static Uri getCourseSectionJoinWithSectionId(Long id){
+        public static Uri getCourseSectionJoinWithSectionId(Long id) {
             return SECTION_URI.buildUpon()
                     .appendPath(DbContent.CourseTable.TABLE_NAME)
                     .appendPath(DbContent.SectionTable._ID)
                     .appendPath(String.valueOf(id)).build();
         }
     }
-
 }

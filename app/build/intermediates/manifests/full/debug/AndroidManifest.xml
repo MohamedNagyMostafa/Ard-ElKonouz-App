@@ -126,6 +126,7 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity"
             android:label="@string/title_activity_section_profile"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity"

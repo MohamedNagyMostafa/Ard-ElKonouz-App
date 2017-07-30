@@ -50,13 +50,13 @@ public class RecycleViewCourseProfileAdapter extends
 
     @Override
     public void onBindViewHolder(ViewHolder.CourseProfileScreenViewHolder
-                                             .SectionRecycleViewHolder sectionRecycleViewHolder,
+                                         .SectionRecycleViewHolder sectionRecycleViewHolder,
                                  int position) {
         if(cursor != null && cursor.getCount() > 0) {
             cursor.moveToPosition(position);
 
             final Long _ID = cursor.getLong(
-                DatabaseController.ProjectionDatabase.SECTION_ID
+                    DatabaseController.ProjectionDatabase.SECTION_ID
             );
 
             sectionRecycleViewHolder.SECTION_NAME_TEXT_VIEW.setText(
@@ -102,7 +102,7 @@ public class RecycleViewCourseProfileAdapter extends
                             Utility.getNextSessionDay(
                                     shifts,
                                     cursor.getString(
-                                            DatabaseController.ProjectionDatabase.SECTION_DATE_DAYS
+                                            DatabaseController.ProjectionDatabase.SECTION_DAYS
                                     ),
                                     cursor.getLong(
                                             DatabaseController.ProjectionDatabase.SECTION_END_DATE
@@ -145,6 +145,11 @@ public class RecycleViewCourseProfileAdapter extends
                         public void onClick(View view) {
                             Intent sectionProfileScreen = new Intent(context, SectionProfileActivity.class);
                             sectionProfileScreen.putExtra(Constants.SECTION_ID_EXTRA, _ID);
+                            sectionProfileScreen.putExtra(Constants.COURSE_ID_EXTRA,
+                                    cursor.getLong(
+                                            DatabaseController.ProjectionDatabase.SECTION_COURSE_ID_COLUMN
+                                    )
+                            );
                             context.startActivity(sectionProfileScreen);
                         }
                     }

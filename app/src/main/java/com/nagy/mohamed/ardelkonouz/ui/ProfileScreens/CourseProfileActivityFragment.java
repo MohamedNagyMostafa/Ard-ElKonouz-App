@@ -28,7 +28,7 @@ import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewCourseProfileAdapter;
  */
 public class CourseProfileActivityFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor>{
-    
+
     private RecycleViewCourseProfileAdapter recycleViewCourseProfileAdapter;
     private Long courseId;
     private OnDeleteListener onDeleteListener =
@@ -72,13 +72,14 @@ public class CourseProfileActivityFragment extends Fragment
         View rootView =  inflater.inflate(R.layout.fragment_course_profile, container, false);
         courseProfileScreenViewHolder = new ViewHolder.CourseProfileScreenViewHolder(rootView);
         courseId = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
+
         recycleViewCourseProfileAdapter = new RecycleViewCourseProfileAdapter(getContext(), onDeleteListener);
-        
+
         courseProfileScreenViewHolder.COURSE_SECTION_RECYCLE_VIEW.setAdapter(recycleViewCourseProfileAdapter);
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         LinearSnapHelper snapHelper = new LinearSnapHelper();
-        
+
         courseProfileScreenViewHolder.COURSE_SECTION_RECYCLE_VIEW.setLayoutManager(linearLayoutManager);
         snapHelper.attachToRecyclerView(courseProfileScreenViewHolder.COURSE_SECTION_RECYCLE_VIEW);
 
@@ -98,7 +99,7 @@ public class CourseProfileActivityFragment extends Fragment
             }
             cursorCourses.close();
         }
-        
+
         courseProfileScreenViewHolder.COURSE_EDIT_BUTTON.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -123,7 +124,7 @@ public class CourseProfileActivityFragment extends Fragment
                 }
         );
 
-        
+
         getLoaderManager().initLoader(Constants.LOADER_COURSE_SECTION_LOADER, null, this);
 
         return rootView;
@@ -175,7 +176,7 @@ public class CourseProfileActivityFragment extends Fragment
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         // set empty view
         if(data.getCount() > 0){
-             courseProfileScreenViewHolder.COURSE_SECTION_EMPTY_LAYOUT.setVisibility(View.GONE);
+            courseProfileScreenViewHolder.COURSE_SECTION_EMPTY_LAYOUT.setVisibility(View.GONE);
         }else{
             courseProfileScreenViewHolder.COURSE_SECTION_EMPTY_LAYOUT.setVisibility(View.VISIBLE);
         }

@@ -116,6 +116,7 @@
         <activity
             android:name=".ui.ProfileScreens.SectionProfileActivity"
             android:label="@string/title_activity_section_profile"
+            android:parentActivityName=".ui.ProfileScreens.CourseProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.SectionInputActivity"

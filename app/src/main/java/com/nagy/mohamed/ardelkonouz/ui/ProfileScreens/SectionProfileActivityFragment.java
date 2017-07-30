@@ -175,6 +175,7 @@ public class SectionProfileActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_section_profile, container, false);
         sectionId = getActivity().getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
+        Long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
         sectionProfileViewHolder = new ViewHolder.SectionProfileViewHolder(rootView);
 
         recycleViewSectionProfileAdapter = new RecycleViewSectionProfileAdapter(getContext(), onDeleteListener);
@@ -257,8 +258,15 @@ public class SectionProfileActivityFragment extends Fragment
 
         getLoaderManager().initLoader(Constants.LOADER_SHIFT_SECTION_PROFILE, null, this);
 
+        setOnBackPressed(COURSE_ID);
+
         return rootView;
 
+    }
+
+    private void setOnBackPressed(final Long COURSE_ID){
+        SectionProfileActivity sectionProfileActivity =  (SectionProfileActivity) getActivity();
+        sectionProfileActivity.setCourseId(COURSE_ID);
     }
 
     private void setDataToView(Cursor cursor,
@@ -268,7 +276,7 @@ public class SectionProfileActivityFragment extends Fragment
         /// TODO ... update projection
         final String SECTION_NAME =
                 "Section " +
-                cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_ID);
+                        cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_ID);
         final long SECTION_START_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
         final long SECTION_END_DATE =
