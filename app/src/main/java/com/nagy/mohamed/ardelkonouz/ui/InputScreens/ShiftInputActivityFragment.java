@@ -102,7 +102,7 @@ public class ShiftInputActivityFragment extends Fragment
 
         @Override
         public void onBindViewHolder(ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder selectionCoursesViewHolder, Cursor cursor) {
-
+            Log.e("selection bind called", "done");
             final Long SECTION_ID = cursor.getLong(
                     DatabaseController.ProjectionDatabase.CHOICES_SELECTION_ID
             );

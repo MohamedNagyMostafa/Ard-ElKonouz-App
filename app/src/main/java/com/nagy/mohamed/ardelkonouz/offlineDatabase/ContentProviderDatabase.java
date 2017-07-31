@@ -1264,8 +1264,8 @@ public class ContentProviderDatabase extends ContentProvider {
         String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {searchChars};
 
-        return m_dbHelper.getReadableDatabase().query(
-                DbContent.CourseTable.TABLE_NAME,
+        return  COURSE_SECTION_JOIN_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
                 selectionArgs,
@@ -1418,12 +1418,14 @@ public class ContentProviderDatabase extends ContentProvider {
                 String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
                 idUri = idUri.substring(0, idUri.lastIndexOf('k'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" != ?");
+                selection.append(" AND ").append(DbContent.CourseTable.TABLE_NAME).append(".")
+                        .append(DbContent.CourseTable._ID).append(" != ?");
             }else{
                 String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
                 idUri = idUri.substring(0, idUri.lastIndexOf('/'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable._ID).append(" != ?");
+                selection.append(" AND ").append(DbContent.CourseTable.TABLE_NAME).append(".")
+                        .append(DbContent.CourseTable._ID).append(" != ?");
             }
         }while (idUri.length() > 1);
 
@@ -1459,9 +1461,11 @@ public class ContentProviderDatabase extends ContentProvider {
                 selectionArgs.add(courseId);
 
                 if(selection.length() > 1) {
-                    selection.append(" OR ").append(DbContent.CourseTable._ID).append(" =?");
+                    selection.append(" OR ").append(DbContent.SectionTable.TABLE_NAME).append(".")
+                            .append(DbContent.SectionTable._ID).append(" =?");
                 }else{
-                    selection.append(DbContent.CourseTable._ID).append(" =?");
+                    selection.append(DbContent.SectionTable.TABLE_NAME).append(".")
+                            .append(DbContent.SectionTable._ID).append(" =?");
                 }
 
             }else{
@@ -1470,9 +1474,11 @@ public class ContentProviderDatabase extends ContentProvider {
                 selectionArgs.add(courseId);
 
                 if(selection.length() > 1) {
-                    selection.append(" OR ").append(DbContent.CourseTable._ID).append(" =?");
+                    selection.append(" OR ").append(DbContent.SectionTable.TABLE_NAME).append(".")
+                            .append(DbContent.SectionTable._ID).append(" =?");
                 }else{
-                    selection.append(DbContent.CourseTable._ID).append(" =?");
+                    selection.append(DbContent.SectionTable.TABLE_NAME).append(".")
+                            .append(DbContent.SectionTable._ID).append(" =?");
                 }
             }
         }while (idUri.length() > 1);

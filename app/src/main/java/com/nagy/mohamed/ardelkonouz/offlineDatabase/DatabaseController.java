@@ -296,7 +296,7 @@ public class DatabaseController {
         public static final String[] CHOICES_SELECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN
 
         };
 
