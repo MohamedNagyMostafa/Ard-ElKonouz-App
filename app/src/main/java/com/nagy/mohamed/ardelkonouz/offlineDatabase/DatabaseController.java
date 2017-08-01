@@ -16,7 +16,7 @@ public class DatabaseController {
 
         // Child list
         static final String[] CHILD_LIST_SECTION_PROJECTION = {
-                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
         };
 
@@ -27,7 +27,7 @@ public class DatabaseController {
         public static final String[] INSTRUCTOR_LIST_SECTION_PROJECTION = CHILD_LIST_SECTION_PROJECTION;
 
         public static final int INSTRUCTOR_LIST_SECTION_NAME = CHILD_LIST_SECTION_NAME;
-        public static final int INSTRUCTOR_LIST_SECTION_ID = CHILD_LIST_SECTION_COURSE_ID;
+        public static final int INSTRUCTOR_LIST_SECTION_COURSE_ID = CHILD_LIST_SECTION_COURSE_ID;
 
 
         public static final String[] SECTION_PROJECTION = {
@@ -37,7 +37,6 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
-                DbContent.SectionTable.SECTION_NAME_COLUMN,
                 DbContent.SectionTable.SECTION_HOURS_COLUMN,
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
         };
@@ -48,9 +47,9 @@ public class DatabaseController {
         public static final int SECTION_END_DATE = 3;
         public static final int SECTION_SESSIONS_NUMBER_COLUMN = 4;
         public static final int SECTION_START_DATE = 5;
-        public static final int SECTION_NAME_COLUMN = 6;
-        public static final int SECTION_HOURS_COLUMN = 7;
-        public static final int SECTION_COURSE_ID_COLUMN = 8;
+        public static final int SECTION_NAME_COLUMN = 0;
+        public static final int SECTION_HOURS_COLUMN = 6;
+        public static final int SECTION_COURSE_ID_COLUMN = 7;
 
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -72,11 +71,15 @@ public class DatabaseController {
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
-                DbContent.CourseTable.COURSE_NAME_COLUMN
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.CourseTable.COURSE_START_AGE_COLUMN,
+                DbContent.CourseTable.COURSE_END_AGE_COLUMN
         };
 
         public static final int COURSE_LIST_ID = 0;
         public static final int COURSE_LIST_NAME = 1;
+        public static final int COURSE_LIST_START_AGE = 2;
+        public static final int COURSE_LIST_END_AGE = 3;
 
 
         public static final String[] CHILD_PROJECTION = {
@@ -206,7 +209,7 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
-                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD
@@ -247,7 +250,6 @@ public class DatabaseController {
 
         public static final String[] SHIFT_LIST_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
-                DbContent.SectionTable.SECTION_NAME_COLUMN,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
@@ -255,11 +257,11 @@ public class DatabaseController {
         };
 
         public static final int SHIFT_LIST_SECTION_ID = 0;
-        public static final int SHIFT_LIST_SECTION_NAME = 1;
-        public static final int SHIFT_LIST_SECTION_START_dATE = 2;
-        public static final int SHIFT_LIST_SECTION_END_dATE = 3;
-        public static final int SHIFT_LIST_SECTION_DAYS = 4;
-        public static final int SHIFT_LIST_COURSE_NAME = 5;
+        public static final int SHIFT_LIST_SECTION_NAME = 0;
+        public static final int SHIFT_LIST_SECTION_START_dATE = 1;
+        public static final int SHIFT_LIST_SECTION_END_dATE = 2;
+        public static final int SHIFT_LIST_SECTION_DAYS = 3;
+        public static final int SHIFT_LIST_COURSE_NAME = 4;
 
         public static final String[] SHIFT_TABLE_PROJECTION = {
                 DbContent.ShiftDaysTable.TABLE_NAME + "." + DbContent.ShiftDaysTable._ID,
@@ -281,7 +283,8 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
-                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN
+                DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
+                DbContent.SectionTable.TABLE_NAME + "." +  DbContent.SectionTable._ID
         };
 
         public static final int SHIFT_SECTION_JOIN_ID = 0;
@@ -292,17 +295,17 @@ public class DatabaseController {
         public static final int SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN = 5;
         public static final int SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN = 6;
         public static final int SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN = 7;
+        public static final int SHIFT_SECTION_JOIN_SECTION_ID = 8;
 
         public static final String[] CHOICES_SELECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.SectionTable.SECTION_NAME_COLUMN
 
         };
 
         public static final int CHOICES_SELECTION_ID = 0;
         public static final int CHOICES_SELECTION_COURSE_NAME = 1;
-        public static final int CHOICES_SELECTION_SECTION_NAME = 2;
+        public static final int CHOICES_SELECTION_SECTION_NAME = 0;
 
         public static final String[] CHILD_COURSE_CONNECTOR_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
@@ -484,9 +487,15 @@ public class DatabaseController {
                 encodeIds.append("k").append(ids.get(i));
             }
 
-            Uri uri = COURSE_TABLE_URI.buildUpon()
-                    .appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
-                    .appendPath(encodeIds.toString()).build();
+            Uri uri;
+            if(!encodeIds.toString().isEmpty()) {
+                uri = SECTION_URI.buildUpon()
+                        .appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN)
+                        .appendPath(encodeIds.toString()).build();
+            }else{
+                uri = SECTION_URI.buildUpon()
+                        .appendPath(DbContent.CourseTable.COURSE_NAME_COLUMN).build();
+            }
 
             return Utility.encodeUriToArabicSearch(uri, searchChars);
         }
@@ -499,7 +508,7 @@ public class DatabaseController {
                 encodeIds.append("k").append(ids.get(i));
             }
 
-            return COURSE_TABLE_URI.buildUpon()
+            return SECTION_URI.buildUpon()
                     .appendPath(DbContent.CourseTable._ID)
                     .appendPath(encodeIds.toString())
                     .build();

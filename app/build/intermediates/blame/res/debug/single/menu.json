@@ -4,106 +4,6 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_child_course_connector.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_finance.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_finance.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_course_connector.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_instructor_course_connector.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_shift_list.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_shift_list.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_profile.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_instructor_profile.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_child_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_child_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_instructor_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_employee_profile.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_employee_profile.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_salary.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_instructor_salary.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_shift_list.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_shift_list.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_section_profile.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_section_profile.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_kid_profile.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_kid_profile.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_kid.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_kid.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_salary.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_salary.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_course_activty.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_course_activty.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_course_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_course_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_course_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_course_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_employee_profile.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_employee_profile.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_shift_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_shift_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_course_profile.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_course_profile.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_section_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_section_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_child_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_child_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_shift_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_shift_input.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_instructor.xml"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_employee.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_employee.xml"
     },
@@ -112,8 +12,12 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_section_profile.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_section_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_section_input.xml"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_finance.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_finance.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_shift_list.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_shift_list.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_profile.xml",
@@ -124,32 +28,20 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_kid_profile.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_child_course_connector.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_child_course_connector.xml"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_child_input.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_child_input.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_salary.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_instructor_salary.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_finance.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_finance.xml"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_salary.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_instructor_salary.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_course_profile.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_course_profile.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_salary.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_salary.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_instructor.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_employee_input.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_employee_input.xml"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_salary.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_salary.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_employee_input.xml",
@@ -164,15 +56,35 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_course_activty.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_employee.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\menu\\menu_employee.xml"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_course_input.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_course_input.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_input.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_instructor_input.xml"
     },
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_employee_profile.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_employee_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_shift_input.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_shift_input.xml"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor_course_connector.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_instructor_course_connector.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_section_input.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_section_input.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_instructor.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\menu\\menu_instructor.xml"
     }
 ]

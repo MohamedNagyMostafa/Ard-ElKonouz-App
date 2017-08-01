@@ -131,13 +131,7 @@ public class SectionInputActivityFragment extends Fragment
             if(cursor.getCount() > 0){
                 cursor.moveToFirst();
 
-                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT.setText(
-                        String.valueOf(
-                            cursor.getInt(
-                                    DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
-                            )
-                        )
-                );
+
                 sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
@@ -179,10 +173,8 @@ public class SectionInputActivityFragment extends Fragment
                             public void onClick(View view) {
                                 if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
                                         sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
-                                        sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT,
                                         sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
-                                        sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
-                                        sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT)) {
+                                        sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT)) {
 
 
                                     getActivity().getContentResolver().update(
@@ -219,10 +211,8 @@ public class SectionInputActivityFragment extends Fragment
                     public void onClick(View view) {
                         if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
                                 sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
-                                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT,
                                 sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
-                                sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
-                                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT)) {
+                                sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT)) {
 
 
                             Uri uri = getActivity().getContentResolver().insert(
@@ -320,8 +310,6 @@ public class SectionInputActivityFragment extends Fragment
                                             final Long SECTION_ID,
                                             ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder,
                                             final Long COURSE_ID){
-        final String SECTION_NAME =
-                sectionInputScreenViewHolder.SECTION_NAME_EDIT_TEXT.getText().toString();
         final Double SECTION_HOURS =
                 Double.valueOf(
                         sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.getText().toString()
@@ -386,7 +374,6 @@ public class SectionInputActivityFragment extends Fragment
         contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
         contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
         contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
-        contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, SECTION_NAME);
         contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
         contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
         contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
@@ -441,22 +428,26 @@ public class SectionInputActivityFragment extends Fragment
 
     @Override
     public void onDateSet(int year, int month, int day, View view) {
-        String strThatDay =
+        Log.e("day is ", String.valueOf(day));
+        String setYearMonth =
                 String.valueOf(year) + "/" +
-                        String.valueOf(month) + "/" +
-                        String.valueOf(day);
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        Date d = null;
+                        String.valueOf(month) + "/";
+        SimpleDateFormat simpleDateFormatYearMonth = new SimpleDateFormat("yyyy/MM");
+        SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat("dd");
+        Date dateYearMonth = null;
 
         try {
-            d = formatter.parse(strThatDay);//catch exception
+            dateYearMonth = simpleDateFormatYearMonth.parse(setYearMonth);//catch exception
+            dateYearMonth.setTime(dateYearMonth.getTime());
+
         } catch (ParseException | java.text.ParseException e) {
             e.printStackTrace();
         }
-        d.setMonth(d.getMonth()  + 1);
+        dateYearMonth.setMonth(dateYearMonth.getMonth()  + 1);
+        dateYearMonth.setDate(day);
+
         Calendar thatDay = Calendar.getInstance();
-        thatDay.setTime(d);
+        thatDay.setTime(dateYearMonth);
 
         EditText editText = (EditText) view;
 

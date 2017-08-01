@@ -124,8 +124,8 @@ public class InstructorActivityFragment extends Fragment
                         DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_SECTION_NAME
                 );
 
-                final Long COURSE_ID = sectionCursor.getLong(
-                        DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_ID
+                    final Long COURSE_ID = sectionCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_LIST_SECTION_COURSE_ID
                 );
 
                 Cursor courseCursor = getActivity().getContentResolver().query(
@@ -137,13 +137,14 @@ public class InstructorActivityFragment extends Fragment
                 );
 
                 if(courseCursor != null){
-                    courseCursor.moveToFirst();
-                    String courseName = courseCursor.getString(0);
+                    if(courseCursor.moveToFirst()) {
+                        String courseName = courseCursor.getString(0);
 
-                    if(instructorCourses.isEmpty())
-                        instructorCourses = courseName + ".Sec " + sectionNumber;
-                    else
-                        instructorCourses += ", " + courseName + ".Sec " + sectionNumber;
+                        if (instructorCourses.isEmpty())
+                            instructorCourses = courseName + ".Sec " + sectionNumber;
+                        else
+                            instructorCourses += ", " + courseName + ".Sec " + sectionNumber;
+                    }
                     courseCursor.close();
                 }
             }

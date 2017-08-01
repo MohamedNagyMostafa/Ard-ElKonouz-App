@@ -35,14 +35,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text= "Sections Number"
+                    android:text= "Age Range"
                     android:layout_marginTop="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:fontFamily="serif"
                     android:layout_marginEnd="4dp"/>
 
                 <TextView
-                    android:id="@+id/course_list_section_number_text_view"
+                    android:id="@+id/course_list_age_range_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"

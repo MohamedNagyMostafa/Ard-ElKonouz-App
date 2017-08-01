@@ -1,107 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_record_voice_over_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_record_voice_over_black_48dp.png"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_call_merge_black_36dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_call_merge_black_36dp.png"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_face_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_face_black_48dp.png"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_48dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_swap_horiz_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_swap_horiz_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_search_black_24dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_search_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_mode_edit_black_36dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_mode_edit_black_36dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_18dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_18dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_record_voice_over_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_record_voice_over_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_36dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_36dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_event_note_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_event_note_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_search_black_24dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_search_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_perm_identity_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_perm_identity_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_36dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_36dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_24dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_face_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_face_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_swap_horiz_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_swap_horiz_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_event_note_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_event_note_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_update_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_update_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_18dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_18dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_av_timer_black_18dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_av_timer_black_18dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_done_black_18dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_done_black_18dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_36dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_36dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_attach_money_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_attach_money_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_equalizer_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_equalizer_black_48dp.png"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\user_profile_icon.png",
@@ -112,16 +16,16 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_attach_money_black_48dp.png"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\user_profile_icon.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\user_profile_icon.png"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_record_voice_over_black_48dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_record_voice_over_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_36dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_36dp.png"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_36dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_36dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_call_merge_black_36dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_call_merge_black_36dp.png"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_update_black_48dp.png",
@@ -132,23 +36,43 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_equalizer_black_48dp.png"
     },
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_search_black_24dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_search_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_mode_edit_black_36dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_mode_edit_black_36dp.png"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_perm_identity_black_48dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_perm_identity_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_face_black_48dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_face_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_swap_horiz_black_48dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_swap_horiz_black_48dp.png"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_24dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_keyboard_arrow_left_black_24dp.png"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_av_timer_black_18dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_av_timer_black_18dp.png"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_perm_identity_black_48dp.png",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\Ard-ElKonouz-App-master\\app\\src\\main\\res\\drawable-xxhdpi\\ic_perm_identity_black_48dp.png"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_event_note_black_48dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_event_note_black_48dp.png"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_done_black_18dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_done_black_18dp.png"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_close_black_18dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_close_black_18dp.png"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_av_timer_black_18dp.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-xxhdpi\\ic_av_timer_black_18dp.png"
     }
 ]

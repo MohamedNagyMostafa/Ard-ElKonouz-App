@@ -90,13 +90,13 @@ public class SectionProfileActivityFragment extends Fragment
                             courseCursor.moveToNext();
 
                             final String SECTION_SESSION_DAYS = courseCursor.getString(
-                                    DatabaseController.ProjectionDatabase.SECTION_DAYS
+                                    DatabaseController.ProjectionDatabase.SECTION_DATE_DAYS
                             );
                             final int SECTION_SESSION_NUMBER = courseCursor.getInt(
-                                    DatabaseController.ProjectionDatabase.SECTION_SESSIONS_NUMBER_COLUMN
+                                    DatabaseController.ProjectionDatabase.SECTION_DATE_SESSIONS_NUMBER
                             );
                             final Long SECTION_START_DATE = courseCursor.getLong(
-                                    DatabaseController.ProjectionDatabase.SECTION_START_DATE
+                                    DatabaseController.ProjectionDatabase.SECTION_DATE_START_DATE
                             );
 
                             final Long SECTION_END_DATE = Utility.getEndDate(
@@ -276,7 +276,7 @@ public class SectionProfileActivityFragment extends Fragment
         /// TODO ... update projection
         final String SECTION_NAME =
                 "Section " +
-                        cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_ID);
+                        cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_ID);
         final long SECTION_START_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
         final long SECTION_END_DATE =

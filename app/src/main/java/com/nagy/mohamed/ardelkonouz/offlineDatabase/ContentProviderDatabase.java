@@ -73,10 +73,27 @@ public class ContentProviderDatabase extends ContentProvider {
     public static final int COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE = 35;
     public static final int COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE = 36;
     public static final int SECTION_WITH_COURSE_ID_TABLE = 37; // Course List
+    public static final int SECTION_WITH_COURSE_NAME_TABLE = 38;
 
 
     private static final String INNER_JOIN = "INNER JOIN";
     private static final String ON = "ON";
+
+    private static final SQLiteQueryBuilder SECTION_INSTRUCTOR_JOIN_WITH_COURSE_QUERY =
+            new SQLiteQueryBuilder();
+    static{
+        SECTION_INSTRUCTOR_JOIN_WITH_COURSE_QUERY.setTables(
+            DbContent.SectionTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
+                    DbContent.SPACE + DbContent.SectionInstructorTable.TABLE_NAME +
+                    DbContent.SPACE + ON + DbContent.SPACE + DbContent.SectionTable.TABLE_NAME +
+                    "." + DbContent.SectionTable._ID + "=" + DbContent.SectionInstructorTable.TABLE_NAME +
+                    "." + DbContent.SectionInstructorTable.SECTION_ID_COLUMN + DbContent.SPACE +
+                    INNER_JOIN + DbContent.SPACE + DbContent.CourseTable.TABLE_NAME + DbContent.SPACE +
+                    ON + DbContent.SPACE + DbContent.SectionTable.TABLE_NAME + "." +
+                    DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "=" + DbContent.CourseTable.TABLE_NAME +
+                    "." + DbContent.CourseTable._ID
+        );
+    }
 
     private static final SQLiteQueryBuilder SECTION_INSTRUCTOR_JOIN_SECTION_QUERY =
             new SQLiteQueryBuilder();
@@ -92,24 +109,6 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private static final SQLiteQueryBuilder SECTION_INSTRUCTOR_JOIN_COURSE_QUERY =
-            new SQLiteQueryBuilder();
-
-    static {
-        SECTION_INSTRUCTOR_JOIN_SECTION_QUERY.setTables(
-                DbContent.SectionTable.TABLE_NAME + DbContent.SPACE + INNER_JOIN +
-                        DbContent.SPACE + DbContent.SectionInstructorTable.TABLE_NAME +
-                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.SectionTable.TABLE_NAME +
-                        "." + DbContent.SectionTable._ID +
-                        "=" + DbContent.SectionInstructorTable.TABLE_NAME + "." +
-                        DbContent.SectionInstructorTable.SECTION_ID_COLUMN + DbContent.SPACE +
-                        INNER_JOIN + DbContent.SPACE + DbContent.CourseTable.TABLE_NAME +
-                        DbContent.SPACE + ON + DbContent.SPACE +  DbContent.SectionTable.TABLE_NAME +
-                        "." + DbContent.SectionTable.SECTION_COURSE_ID_COLUMN +
-                        "=" + DbContent.CourseTable.TABLE_NAME + "." +
-                        DbContent.CourseTable._ID
-        );
-    }
 
     private static final SQLiteQueryBuilder COURSE_SECTION_JOIN_QUERY =
             new SQLiteQueryBuilder();
@@ -346,6 +345,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case SHIFT_WITH_END_DATE_TABLE:
                 return getShiftWithEndDate(uri, projection, sortOrder);
+
+            case SECTION_WITH_COURSE_NAME_TABLE:
+                return getSectionWithCourseName(uri, projection, sortOrder);
 
             case COURSE_SECTION_JOIN_TABLE:
                 return COURSE_SECTION_JOIN_QUERY.query(
@@ -925,10 +927,13 @@ public class ContentProviderDatabase extends ContentProvider {
         final String SHIFT_WITH_SECTION_ID_JOIN_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable.SECTION_ID_COLUMN + "/#";
 
-        final String COURSES_CHOICES_PATH = DbContent.CourseTable.TABLE_NAME + "/"
+        final String COURSES_CHOICES_PATH = DbContent.SectionTable.TABLE_NAME + "/"
                 + DbContent.CourseTable.COURSE_NAME_COLUMN + "/*/*";
-        final String COURSES_SELECTION_PATH = DbContent.CourseTable.TABLE_NAME + "/"
+        final String COURSES_SELECTION_PATH = DbContent.SectionTable.TABLE_NAME + "/"
                 + DbContent.CourseTable._ID + "/*";
+
+        final String SECTION_WITH_COURSE_NAME_PATH = DbContent.SectionTable.TABLE_NAME + "/"
+                + DbContent.CourseTable.COURSE_NAME_COLUMN + "/*";
 
         final String SHIFT_WITH_START_END_DATE_PATH = DbContent.ShiftDaysTable.TABLE_NAME + "/" +
                 DbContent.ShiftDaysTable.START_DATE_COLUMN + "/" + DbContent.ShiftDaysTable.END_DATE_COLUMN +
@@ -951,6 +956,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.SectionTable._ID + "/#";
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_PATH, COURSE_SECTION_JOIN_TABLE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_COURSE_NAME_PATH, SECTION_WITH_COURSE_NAME_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_WITH_COURSE_ID_PATH, COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_WITH_SECTION_ID_PATH, COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_PATH, SECTION_TABLE);
@@ -1226,7 +1232,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
-        return SECTION_INSTRUCTOR_JOIN_SECTION_QUERY.query(
+        return SECTION_INSTRUCTOR_JOIN_WITH_COURSE_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
                 selection,
@@ -1264,8 +1270,8 @@ public class ContentProviderDatabase extends ContentProvider {
         String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {searchChars};
 
-        return  COURSE_SECTION_JOIN_QUERY.query(
-                m_dbHelper.getReadableDatabase(),
+        return  m_dbHelper.getReadableDatabase().query(
+                DbContent.CourseTable.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,
@@ -1689,6 +1695,25 @@ public class ContentProviderDatabase extends ContentProvider {
                 null,
                 null,
                 sortOrder
+        );
+    }
+
+    private Cursor getSectionWithCourseName(Uri uri, String[] projection, String sortType){
+        String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
+                + "%";
+        Log.e("search is", searchChars);
+
+        String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
+        String[] selectionArgs = {searchChars};
+
+        return  COURSE_SECTION_JOIN_QUERY.query(
+                m_dbHelper.getReadableDatabase(),
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortType
         );
     }
 

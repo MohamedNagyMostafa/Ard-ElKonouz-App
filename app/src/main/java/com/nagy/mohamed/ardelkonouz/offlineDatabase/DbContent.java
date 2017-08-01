@@ -245,12 +245,10 @@ public class DbContent {
         public static final String SECTION_DAYS_COLUMN = "section_days";
         public static final String SECTION_SESSIONS_NUMBER_COLUMN = "section_sessions_number";
         public static final String SECTION_COURSE_ID_COLUMN = "course_id";
-        public static final String SECTION_NAME_COLUMN = "section_name";
 
         static final String CREATE_SECTION_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
-                SECTION_NAME_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_HOURS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +

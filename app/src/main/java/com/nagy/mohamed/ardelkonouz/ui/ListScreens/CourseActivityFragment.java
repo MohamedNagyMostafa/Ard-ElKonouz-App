@@ -9,7 +9,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,24 +107,18 @@ public class CourseActivityFragment extends Fragment
                 )
         );
 
-        Cursor sectionCursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getSectionWithCourseId(COURSE_ID),
-                new String[]{DbContent.SectionTable._ID},
-                null,
-                null,
-                null
-        );
-
-        if(sectionCursor != null){
-            Log.e("section count : ",String.valueOf(sectionCursor.getCount()));
-            courseListRecycleViewHolder.COURSE_SECTION_NUMBER_TEXT_VIEW.setText(
-                    String.valueOf(
-                            sectionCursor.getCount()
+        courseListRecycleViewHolder.COURSE_AGE_RANGE_TEXT_VIEW.setText(
+                String.valueOf(
+                    cursor.getInt(
+                            DatabaseController.ProjectionDatabase.COURSE_LIST_START_AGE
                     )
-            );
-
-            sectionCursor.close();
-        }
+                )+ " ~ " +
+                        String.valueOf(
+                            cursor.getInt(
+                                    DatabaseController.ProjectionDatabase.COURSE_LIST_END_AGE
+                            )
+                        )
+        );
 
         courseListRecycleViewHolder.COURSE_DELETE_IMAGE_VIEW
                 .setOnClickListener(new View.OnClickListener() {

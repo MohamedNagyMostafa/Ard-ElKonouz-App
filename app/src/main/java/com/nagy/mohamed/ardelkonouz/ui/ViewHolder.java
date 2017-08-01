@@ -229,7 +229,6 @@ public class ViewHolder {
 
         public final EditText SECTION_BEGINNING_DATE_EDIT_TEXT;
         public final EditText SECTION_SESSIONS_NUMBER_EDIT_TEXT;
-        public final EditText SECTION_NAME_EDIT_TEXT;
         public final EditText SECTION_SESSION_HOUR_EDIT_TEXT;
         public final TextView SECTION_COMPLETE_TEXT_VIEW;
         public final TextView SECTION_INCOMPLETE_TEXT_VIEW;
@@ -253,7 +252,6 @@ public class ViewHolder {
 
         public SectionInputScreenViewHolder(View sectionInputScreen){
 
-            SECTION_NAME_EDIT_TEXT = (EditText)  sectionInputScreen.findViewById(R.id.section_input_name_edit_view);
             SECTION_SESSION_HOUR_EDIT_TEXT = (EditText)  sectionInputScreen.findViewById(R.id.section_input_sessions_hours_edit_view);
             SECTION_BEGINNING_DATE_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_date_edit_view);
             SECTION_SESSIONS_NUMBER_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_sessions_number_edit_view);
@@ -385,13 +383,13 @@ public class ViewHolder {
         public static class CourseListRecycleViewHolder{
 
             public final TextView COURSE_NAME_TEXT_VIEW;
-            public final TextView COURSE_SECTION_NUMBER_TEXT_VIEW;
+            public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
             public final ImageView COURSE_DELETE_IMAGE_VIEW;
 
             public CourseListRecycleViewHolder(View courseListRecycleView){
 
                 COURSE_NAME_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_name_text_view);
-                COURSE_SECTION_NUMBER_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_section_number_text_view);
+                COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseListRecycleView.findViewById(R.id.course_list_age_range_text_view);
                 COURSE_DELETE_IMAGE_VIEW = (ImageView) courseListRecycleView.findViewById(R.id.course_list_delete_course_image_view);
             }
         }
