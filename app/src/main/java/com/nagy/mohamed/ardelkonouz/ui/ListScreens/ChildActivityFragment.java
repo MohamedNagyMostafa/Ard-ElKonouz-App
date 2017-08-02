@@ -151,45 +151,61 @@ public class ChildActivityFragment extends Fragment
             }
         });
 
-        Cursor cursorSection = getActivity().getContentResolver().query(
+        Cursor cursorChildSection = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(CHILD_ID),
-                DatabaseController.ProjectionDatabase.CHILD_LIST_PROJECTION,
+                new String[]{DbContent.ChildSectionTable.SECTION_ID_COLUMN},
                 null,
                 null,
                 null
         );
         String courseSectionName = "";
 
-        if(cursorSection != null) {
-            if(cursorSection.getCount() != 0) {
-                while(cursorSection.moveToNext()) {
-                    Integer sectionName =
-                            cursorSection.getInt(DatabaseController.ProjectionDatabase.CHILD_LIST_SECTION_NAME);
-                    final Long COURSE_ID =
-                            cursorSection.getLong(DatabaseController.ProjectionDatabase.CHILD_LIST_SECTION_COURSE_ID);
-                    Cursor cursorCourse = getActivity().getContentResolver().query(
-                            DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                            new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+        if(cursorChildSection != null) {
+            if(cursorChildSection.getCount() != 0) {
+                while(cursorChildSection.moveToNext()) {
+                    Cursor sectionCursor = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getSectionWithId(
+                                    cursorChildSection.getLong(0)
+                            ),
+                            DatabaseController.ProjectionDatabase.CHILD_LIST_SECTION_PROJECTION,
                             null,
                             null,
                             null
                     );
 
-                    if (cursorCourse != null) {
-                        if (cursorCourse.getCount() > 0) {
-                            cursorCourse.moveToFirst();
-                            String courseName =
-                                    cursorCourse.getString(0);
-                            if(courseSectionName.isEmpty())
-                                courseSectionName = courseName + ".Sec " + sectionName.toString();
-                            else
-                                courseSectionName += ", " + courseName + ".Sec " + sectionName.toString();
+                    if(sectionCursor != null) {
+                        sectionCursor.moveToFirst();
+                        Integer sectionName = sectionCursor.getInt(
+                                        DatabaseController.ProjectionDatabase.CHILD_LIST_SECTION_NAME
+                                );
+                        final Long COURSE_ID = sectionCursor.getLong(
+                                DatabaseController.ProjectionDatabase.CHILD_LIST_SECTION_COURSE_ID
+                        );
+                        Cursor cursorCourse = getActivity().getContentResolver().query(
+                                DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                new String[]{DbContent.CourseTable.COURSE_NAME_COLUMN},
+                                null,
+                                null,
+                                null
+                        );
+
+                        if (cursorCourse != null) {
+                            if (cursorCourse.getCount() > 0) {
+                                cursorCourse.moveToFirst();
+                                String courseName =
+                                        cursorCourse.getString(0);
+                                if (courseSectionName.isEmpty())
+                                    courseSectionName = courseName + ".Sec " + sectionName.toString();
+                                else
+                                    courseSectionName += ", " + courseName + ".Sec " + sectionName.toString();
+                            }
+                            cursorCourse.close();
                         }
-                        cursorCourse.close();
+                        sectionCursor.close();
                     }
                 }
             }
-            cursorSection.close();
+            cursorChildSection.close();
         }
 
         if(!courseSectionName.isEmpty())
