@@ -183,6 +183,7 @@ public class CourseInputActivityFragment extends Fragment {
                 Integer.valueOf(
                         courseInputScreenViewHolder.COURSE_AGE_RANGE_TO_EDIT_TEXT.getText().toString()
                 );
+        final Integer COURSE_SECTION_NUMBER = 0;
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbContent.CourseTable.COURSE_LEVEL_COLUMN, COURSE_LEVEL);
@@ -191,6 +192,7 @@ public class CourseInputActivityFragment extends Fragment {
         contentValues.put(DbContent.CourseTable.COURSE_NAME_COLUMN, COURSE_NAME);
         contentValues.put(DbContent.CourseTable.COURSE_START_AGE_COLUMN, COURSE_START_AGE);
         contentValues.put(DbContent.CourseTable.COURSE_END_AGE_COLUMN, COURSE_END_AGE);
+        contentValues.put(DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN, COURSE_SECTION_NUMBER);
 
         return contentValues;
     }

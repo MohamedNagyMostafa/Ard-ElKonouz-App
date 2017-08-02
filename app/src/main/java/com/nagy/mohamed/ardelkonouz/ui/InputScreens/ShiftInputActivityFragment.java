@@ -72,7 +72,7 @@ public class ShiftInputActivityFragment extends Fragment
             listCourseChoiceViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     cursor.getString(
                             DatabaseController.ProjectionDatabase.CHOICES_SELECTION_COURSE_NAME
-                    )+ " Sec. " + cursor.getString(
+                    )+ " Sec. " + cursor.getInt(
                             DatabaseController.ProjectionDatabase.CHOICES_SELECTION_SECTION_NAME
                     )
             );
@@ -110,7 +110,7 @@ public class ShiftInputActivityFragment extends Fragment
             selectionCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     cursor.getString(
                             DatabaseController.ProjectionDatabase.CHOICES_SELECTION_COURSE_NAME
-                    ) + " Sec. " + cursor.getString(
+                    ) + " Sec. " + cursor.getInt(
                             DatabaseController.ProjectionDatabase.CHOICES_SELECTION_SECTION_NAME
                     )
             );

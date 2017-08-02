@@ -41,10 +41,14 @@ public class RecycleViewChildProfileAdapter extends
 
             childProfileListViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     getCourseName(
-                        cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_ID_COLUMN)
+                            cursor.getInt(
+                                    DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_NAME_COLUMN
+                            ),
+                            cursor.getLong(
+                                    DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_ID_COLUMN
+                            )
                     )
             );
-
             childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
                     Utility.getTimeFormat(
                             cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_START_DATE_COLUMN)
@@ -77,7 +81,7 @@ public class RecycleViewChildProfileAdapter extends
         }
     }
 
-    private String getCourseName(final Long SECTION_ID){
+    private String getCourseName(final Integer SECTION_NAME, final Long SECTION_ID){
         String courseName = "";
 
         Cursor courseCursor = context.getContentResolver().query(
@@ -90,7 +94,7 @@ public class RecycleViewChildProfileAdapter extends
 
         if(courseCursor != null){
             if(courseCursor.moveToFirst()){
-                courseName = courseCursor.getString(0) + ".Sec " + String.valueOf(SECTION_ID);
+                courseName = courseCursor.getString(0) + " Sec. " + String.valueOf(SECTION_NAME);
             }
             courseCursor.close();
         }

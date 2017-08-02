@@ -199,9 +199,11 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
         coursesViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                 String.valueOf(
-                        "Sec. " +
+                        "Section " +
                                 String.valueOf(
+                                        cursor.getInt(
                                         DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_NAME
+                                        )
                                 )
                 )
         );

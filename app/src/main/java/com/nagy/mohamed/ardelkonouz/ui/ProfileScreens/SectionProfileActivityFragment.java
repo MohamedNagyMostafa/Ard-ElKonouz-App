@@ -325,8 +325,9 @@ public class SectionProfileActivityFragment extends Fragment
                                final long sectionId){
 
         final String SECTION_NAME =
-                "Section " +
-                        cursor.getString(DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN);
+                "Section " + String.valueOf(
+                        cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN)
+                );
         final long SECTION_START_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_START_DATE);
         final long SECTION_END_DATE =
