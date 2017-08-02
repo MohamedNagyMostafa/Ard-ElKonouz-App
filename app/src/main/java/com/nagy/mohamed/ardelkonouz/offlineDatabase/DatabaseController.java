@@ -38,7 +38,8 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_HOURS_COLUMN,
-                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN
         };
 
         public static final int SECTION_ID = 0;
@@ -47,9 +48,9 @@ public class DatabaseController {
         public static final int SECTION_END_DATE = 3;
         public static final int SECTION_SESSIONS_NUMBER_COLUMN = 4;
         public static final int SECTION_START_DATE = 5;
-        public static final int SECTION_NAME_COLUMN = 0;
         public static final int SECTION_HOURS_COLUMN = 6;
         public static final int SECTION_COURSE_ID_COLUMN = 7;
+        public static final int SECTION_NAME_COLUMN = 8;
 
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -253,15 +254,16 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
-                DbContent.CourseTable.COURSE_NAME_COLUMN
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN
         };
 
         public static final int SHIFT_LIST_SECTION_ID = 0;
-        public static final int SHIFT_LIST_SECTION_NAME = 0;
         public static final int SHIFT_LIST_SECTION_START_dATE = 1;
         public static final int SHIFT_LIST_SECTION_END_dATE = 2;
         public static final int SHIFT_LIST_SECTION_DAYS = 3;
         public static final int SHIFT_LIST_COURSE_NAME = 4;
+        public static final int SHIFT_LIST_SECTION_NAME = 5;
 
         public static final String[] SHIFT_TABLE_PROJECTION = {
                 DbContent.ShiftDaysTable.TABLE_NAME + "." + DbContent.ShiftDaysTable._ID,
