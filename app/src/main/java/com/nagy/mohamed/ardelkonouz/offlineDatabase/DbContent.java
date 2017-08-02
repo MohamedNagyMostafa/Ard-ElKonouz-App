@@ -33,11 +33,13 @@ public class DbContent {
         public static final String COURSE_START_AGE_COLUMN = "course_start_age";
         public static final String COURSE_END_AGE_COLUMN = "course_end_age";
         public static final String COURSE_LEVEL_COLUMN = "course_level";
+        public static final String COURSE_SECTIONS_NUMBER_COLUMN = "course_sections_number";
         public static final String COURSE_SALARY_PER_CHILD = "salary_per_child";
 
         static final String CREATE_COURSE_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
+                COURSE_SECTIONS_NUMBER_COLUMN + SPACE + INTEGER + NOT_NULL + "," +
                 COURSE_NAME_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 COURSE_COST_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_START_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
@@ -239,6 +241,7 @@ public class DbContent {
                 .buildUpon().appendPath(TABLE_NAME).build();
 
         public static final String SECTION_AVAILABLE_POSITIONS_COLUMN = "available_positions";
+        public static final String SECTION_NAME_COLUMN = "section_name";
         public static final String SECTION_START_DATE_COLUMN = "section_start_date";
         public static final String SECTION_END_DATE_COLUMN = "section_end_date";
         public static final String SECTION_HOURS_COLUMN = "section_hours";
@@ -249,6 +252,7 @@ public class DbContent {
         static final String CREATE_SECTION_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
                 _ID + SPACE + INTEGER + SPACE + PRIMARY_KEY + "," +
+                SECTION_NAME_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_HOURS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +

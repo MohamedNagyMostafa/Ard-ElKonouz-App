@@ -366,20 +366,37 @@ public class SectionInputActivityFragment extends Fragment
                 SECTION_START_DATE
         );
 
-        Log.e("section_days", SECTION_SESSION_DAYS);
-        Log.e("section_days", SECTION_SESSION_DAYS);
-        Log.e("section_sessions_number", String.valueOf(SECTION_SESSIONS_NUMBER));
-
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
-        contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
-        contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
-        contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
-        contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
-        contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
-        contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
 
-        Log.e("set data to database",String.valueOf(SECTION_START_DATE));
+        Cursor courseCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
+                new String[]{DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN},
+                null,
+                null,
+                null
+        );
+
+
+        if(courseCursor != null){
+            courseCursor.moveToFirst();
+            final Integer SECTION_NAME = courseCursor.getInt(0) + 1;
+
+            Log.e("section_days", SECTION_SESSION_DAYS);
+            Log.e("section_days", SECTION_SESSION_DAYS);
+            Log.e("section_sessions_number", String.valueOf(SECTION_SESSIONS_NUMBER));
+
+            contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
+            contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
+            contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
+            contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
+            contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
+            contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
+            contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
+            contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, SECTION_NAME);
+
+            Log.e("set data to database",String.valueOf(SECTION_START_DATE));
+        }
+
         return contentValues;
     }
 

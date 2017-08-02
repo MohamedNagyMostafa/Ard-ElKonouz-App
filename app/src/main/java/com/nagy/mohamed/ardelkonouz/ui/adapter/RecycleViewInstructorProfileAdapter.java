@@ -44,6 +44,9 @@ public class RecycleViewInstructorProfileAdapter extends
             cursor.moveToPosition(position);
             instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     getCourseName(
+                            cursor.getInt(
+                                    DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_SECTION_NAME
+                            ),
                         cursor.getLong(
                                 DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_SECTION_ID
                         )
@@ -98,7 +101,7 @@ public class RecycleViewInstructorProfileAdapter extends
         }
     }
 
-    private String getCourseName(final Long SECTION_ID){
+    private String getCourseName(final Integer SECTION_NAME, final Long SECTION_ID){
         String courseName = "";
 
         Cursor courseCursor = context.getContentResolver().query(
@@ -111,7 +114,7 @@ public class RecycleViewInstructorProfileAdapter extends
 
         if(courseCursor != null){
             if(courseCursor.moveToFirst()){
-                courseName = courseCursor.getString(0) + " Sec. " + String.valueOf(SECTION_ID);
+                courseName = courseCursor.getString(0) + " Sec. " + String.valueOf(SECTION_NAME);
             }
             courseCursor.close();
         }

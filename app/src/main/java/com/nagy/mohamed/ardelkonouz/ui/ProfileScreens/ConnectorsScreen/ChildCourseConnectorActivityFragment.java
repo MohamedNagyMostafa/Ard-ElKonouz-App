@@ -129,7 +129,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         coursesViewHolder.COURSE_COST_TEXT_VIEW.setText(
                 String.valueOf(
-                        cursor.getDouble(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_COURSE_COST_DATE)
+                        cursor.getDouble(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_COURSE_COST)
                 )
         );
         coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
@@ -149,19 +149,19 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
                 Utility.getDaysAsString(
                         cursor.getString(
-                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_DAYS_DATE
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_DAYS
                         )
                 )
         );
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-                cursor.getString(DatabaseController.ProjectionDatabase.COURSE_NAME)
+                cursor.getString(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_COURSE_NAME)
         );
 
         coursesViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                 String.valueOf(
                         "Sec. " +
                         String.valueOf(
-                                cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_ID)
+                                cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_NAME)
                         )
                 )
         );

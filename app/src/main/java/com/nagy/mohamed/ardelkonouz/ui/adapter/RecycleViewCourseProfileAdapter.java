@@ -61,10 +61,10 @@ public class RecycleViewCourseProfileAdapter extends
 
             sectionRecycleViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                     String.valueOf(
-                            "Section" +
+                            "Section " +
                                     String.valueOf(
-                                            cursor.getLong(
-                                                    DatabaseController.ProjectionDatabase.SECTION_ID
+                                            cursor.getInt(
+                                                    DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
                                             )
                                     )
                     )
