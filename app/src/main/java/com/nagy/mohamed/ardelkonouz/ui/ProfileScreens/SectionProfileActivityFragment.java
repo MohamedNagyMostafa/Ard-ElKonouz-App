@@ -255,10 +255,9 @@ public class SectionProfileActivityFragment extends Fragment
                 }
         );
 
+        setOnBackPressed(COURSE_ID);
 
         getLoaderManager().initLoader(Constants.LOADER_SHIFT_SECTION_PROFILE, null, this);
-
-        setOnBackPressed(COURSE_ID);
 
         return rootView;
 

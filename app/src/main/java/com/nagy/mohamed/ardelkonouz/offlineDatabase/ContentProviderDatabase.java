@@ -489,7 +489,8 @@ public class ContentProviderDatabase extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         int match = m_uriMatcher.match(uri);
-
+        Log.e("match", String.valueOf(match));
+        Log.e("uri",uri.toString());
         switch (match){
 
             case CHILD_TABLE:

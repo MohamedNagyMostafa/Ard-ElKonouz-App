@@ -41,7 +41,7 @@ public class SectionInputActivityFragment extends Fragment
 
     private ArrayList<DoubleChoice> SECTION_STATE_LIST;
     private ArrayList<DoubleChoice> SECTION_DAYS_LIST;
-
+    private Long courseId;
     private final View.OnClickListener DATE_EDIT_TEXT_LISTENER =
             new View.OnClickListener() {
                 @Override
@@ -61,7 +61,7 @@ public class SectionInputActivityFragment extends Fragment
                 new ViewHolder.SectionInputScreenViewHolder(rootView);
 
         final String INPUT_TYPE = getActivity().getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
-        final Long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
+        courseId = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
 
         SECTION_STATE_LIST = setSectionStateListItem(sectionInputScreenViewHolder);
         SECTION_DAYS_LIST = setSectionDaysListItem(sectionInputScreenViewHolder);
@@ -74,9 +74,9 @@ public class SectionInputActivityFragment extends Fragment
 
         assert INPUT_TYPE != null;
         if(INPUT_TYPE.equals(Constants.INPUT_ADD_EXTRA)) {
-            setOptionsAsAddNewSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder, COURSE_ID);
+            setOptionsAsAddNewSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder, courseId);
         }else {
-            setOptionsAsEditSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder, COURSE_ID);
+            setOptionsAsEditSection(SECTION_STATE_LIST, SECTION_DAYS_LIST, sectionInputScreenViewHolder, courseId);
         }
 
         return rootView;
@@ -400,6 +400,7 @@ public class SectionInputActivityFragment extends Fragment
     private void openProfileSectionScreen(final long SECTION_ID){
         Intent profileSectionScreen = new Intent(getContext(), SectionProfileActivity.class);
         profileSectionScreen.putExtra(Constants.SECTION_ID_EXTRA, SECTION_ID);
+        profileSectionScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
         startActivity(profileSectionScreen);
         getActivity().finish();
     }
@@ -433,7 +434,6 @@ public class SectionInputActivityFragment extends Fragment
                 String.valueOf(year) + "/" +
                         String.valueOf(month) + "/";
         SimpleDateFormat simpleDateFormatYearMonth = new SimpleDateFormat("yyyy/MM");
-        SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat("dd");
         Date dateYearMonth = null;
 
         try {

@@ -55,7 +55,7 @@ public class CourseProfileActivityFragment extends Fragment
                     );
                     // Delete section from course.
                     getActivity().getContentResolver().delete(
-                            DatabaseController.UriDatabase.getSectionWithCourseId(courseId),
+                            DatabaseController.UriDatabase.getSectionWithId(SECTION_ID),
                             null,
                             null
                     );
