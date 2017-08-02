@@ -36,6 +36,7 @@ public class SectionProfileActivityFragment extends Fragment
 
     private ViewHolder.SectionProfileViewHolder sectionProfileViewHolder;
     private Long sectionId;
+    private Long courseId;
     private RecycleViewSectionProfileAdapter recycleViewSectionProfileAdapter;
 
     private OnDeleteListener onDeleteListener =
@@ -175,7 +176,7 @@ public class SectionProfileActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_section_profile, container, false);
         sectionId = getActivity().getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
-        Long COURSE_ID = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
+        courseId = getActivity().getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
         sectionProfileViewHolder = new ViewHolder.SectionProfileViewHolder(rootView);
 
         recycleViewSectionProfileAdapter = new RecycleViewSectionProfileAdapter(getContext(), onDeleteListener);
@@ -249,13 +250,14 @@ public class SectionProfileActivityFragment extends Fragment
                     public void onClick(View view) {
                         Intent sectionInputScreen = new Intent(getContext(), SectionInputActivity.class);
                         sectionInputScreen.putExtra(Constants.SECTION_ID_EXTRA, sectionId);
+                        sectionInputScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
                         sectionInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(sectionInputScreen);
                     }
                 }
         );
 
-        setOnBackPressed(COURSE_ID);
+        setOnBackPressed(courseId);
 
         getLoaderManager().initLoader(Constants.LOADER_SHIFT_SECTION_PROFILE, null, this);
 
