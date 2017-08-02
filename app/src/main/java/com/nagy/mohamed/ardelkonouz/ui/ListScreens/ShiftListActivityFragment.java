@@ -229,7 +229,7 @@ public class ShiftListActivityFragment extends Fragment
 //        shifts.add(shift);
 
         shiftListRecycleViewHolder.NEXT_SECTION_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
+                Utility.getNextDayAsString(
                         Utility.getNextSessionDay(
                                 shifts,
                                 cursor.getString(

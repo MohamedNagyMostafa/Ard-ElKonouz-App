@@ -84,6 +84,10 @@ public class Constants {
     public static final int WATCHING_TV = 2;
     public static final int HANDWORK = 3;
 
+    // Date Type
+    public static final String TODAY = "Today";
+    public static final String TOMORROW = "Tomorrow";
+
     // Course State
     public static final int COURSE_COMPLETE = 0;
     public static final int COURSE_INCOMPLETE = 1;

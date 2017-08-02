@@ -98,7 +98,7 @@ public class RecycleViewCourseProfileAdapter extends
             }
 
             sectionRecycleViewHolder.NEXT_SECTION_TEXT_VIEW.setText(
-                    Utility.getTimeFormat(
+                    Utility.getNextDayAsString(
                             Utility.getNextSessionDay(
                                     shifts,
                                     cursor.getString(

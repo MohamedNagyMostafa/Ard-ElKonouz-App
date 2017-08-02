@@ -305,9 +305,7 @@ public class SectionProfileActivityFragment extends Fragment
                 SECTION_END_DATE,
                 SECTION_START_DATE
         );
-        final String NEXT_SESSION_DAY_STRING =
-                (NEXT_SESSION_DAY == Utility.getCurrentDateAsMills())? "Today" :
-                        Utility.getTimeFormat(NEXT_SESSION_DAY);
+        final String NEXT_SESSION_DAY_STRING = Utility.getNextDayAsString(NEXT_SESSION_DAY);
 
         sectionProfileViewHolder.SECTION_NAME_TEXT_VIEW.setText(SECTION_NAME);
         sectionProfileViewHolder.SECTION_BEGINNING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_START_DATE));

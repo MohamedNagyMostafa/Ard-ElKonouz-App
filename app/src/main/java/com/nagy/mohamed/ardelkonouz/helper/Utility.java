@@ -570,4 +570,16 @@ public class Utility {
 
         return courseIdAsLong;
     }
+
+    public static String getNextDayAsString(final Long NEXT_SESSION_DAY){
+        final Long TODAY_DATE = getCurrentDateAsMills();
+        final Long TOMORROW_DATE = getCurrentDateAsMills() + Constants.DAY_IN_MILS;
+        if(NEXT_SESSION_DAY.equals(TODAY_DATE)){
+            return Constants.TODAY;
+        }else if(NEXT_SESSION_DAY.equals(TOMORROW_DATE)){
+            return Constants.TOMORROW;
+        }else{
+            return getTimeFormat(NEXT_SESSION_DAY);
+        }
+    }
 }
