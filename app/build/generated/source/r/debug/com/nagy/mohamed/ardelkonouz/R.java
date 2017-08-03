@@ -2708,7 +2708,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0d0061;
         public static final int action_mode_bar_stub=0x7f0d0060;
         public static final int action_mode_close_button=0x7f0d0043;
-        public static final int action_settings=0x7f0d01d8;
+        public static final int action_settings=0x7f0d01da;
         public static final int action_text=0x7f0d01b4;
         public static final int actions=0x7f0d01c1;
         public static final int activity_chooser_view_content=0x7f0d0044;
@@ -2936,7 +2936,7 @@ containing a value of this type.
         public static final int fill=0x7f0d0034;
         public static final int fill_horizontal=0x7f0d0035;
         public static final int fill_vertical=0x7f0d002b;
-        public static final int finance_image=0x7f0d01cf;
+        public static final int finance_image=0x7f0d01d1;
         public static final int first_layout=0x7f0d015e;
         public static final int fixed=0x7f0d003f;
         public static final int fragment=0x7f0d008b;
@@ -3013,7 +3013,7 @@ containing a value of this type.
         public static final int listMode=0x7f0d000f;
         public static final int list_item=0x7f0d0048;
         public static final int main_frame=0x7f0d0154;
-        public static final int masked=0x7f0d01d7;
+        public static final int masked=0x7f0d01d9;
         public static final int media_actions=0x7f0d01b8;
         public static final int middle=0x7f0d0039;
         public static final int mini=0x7f0d0037;
@@ -3036,9 +3036,9 @@ containing a value of this type.
         public static final int right_side=0x7f0d01bc;
         public static final int salary_instructors_list_view=0x7f0d0169;
         public static final int salary_layout_view=0x7f0d0161;
-        public static final int salary_list_instructor_course_text_view=0x7f0d01ca;
         public static final int salary_list_instructor_name_text_view=0x7f0d01c9;
-        public static final int salary_list_salary_process_text_view=0x7f0d01cb;
+        public static final int salary_list_paid_courses_number_text_view=0x7f0d01cb;
+        public static final int salary_list_unpaid_courses_number_text_view=0x7f0d01cd;
         public static final int salary_number_of_unpaid_text_view=0x7f0d0168;
         public static final int salary_total_paid_text_view=0x7f0d0167;
         public static final int salary_total_unpaid_text_view=0x7f0d0166;
@@ -3093,9 +3093,9 @@ containing a value of this type.
         public static final int section_pf_section_shifts_recycle_view=0x7f0d018b;
         public static final int section_pf_session_days_text_view=0x7f0d0183;
         public static final int section_pf_sessions_number_text_view=0x7f0d0187;
-        public static final int section_pf_shift_delete_image_View=0x7f0d01cc;
-        public static final int section_pf_shift_end_date_text_view=0x7f0d01ce;
-        public static final int section_pf_shift_start_date_text_view=0x7f0d01cd;
+        public static final int section_pf_shift_delete_image_View=0x7f0d01ce;
+        public static final int section_pf_shift_end_date_text_view=0x7f0d01d0;
+        public static final int section_pf_shift_start_date_text_view=0x7f0d01cf;
         public static final int section_pf_start_date_text_view=0x7f0d0182;
         public static final int section_pf_state_text_view=0x7f0d0189;
         public static final int select_dialog_listview=0x7f0d0072;
@@ -3107,17 +3107,17 @@ containing a value of this type.
         public static final int shift_input_add_yesterday_button=0x7f0d0193;
         public static final int shift_input_choices_list_view=0x7f0d0190;
         public static final int shift_input_end_date_edit_view=0x7f0d0192;
-        public static final int shift_input_list_course_name_text_view=0x7f0d01d0;
+        public static final int shift_input_list_course_name_text_view=0x7f0d01d2;
         public static final int shift_input_search_edit_text=0x7f0d018e;
-        public static final int shift_input_selection_course_name_chips=0x7f0d01d4;
-        public static final int shift_input_selection_delete_course_chips=0x7f0d01d5;
+        public static final int shift_input_selection_course_name_chips=0x7f0d01d6;
+        public static final int shift_input_selection_delete_course_chips=0x7f0d01d7;
         public static final int shift_input_selection_recycle_view=0x7f0d018f;
         public static final int shift_input_start_date_edit_view=0x7f0d0191;
-        public static final int shift_list_course_name_text_view=0x7f0d01d1;
+        public static final int shift_list_course_name_text_view=0x7f0d01d3;
         public static final int shift_list_empty_view=0x7f0d0198;
-        public static final int shift_list_instructor_name_text_view=0x7f0d01d2;
+        public static final int shift_list_instructor_name_text_view=0x7f0d01d4;
         public static final int shift_list_layout_view=0x7f0d015d;
-        public static final int shift_list_next_session=0x7f0d01d3;
+        public static final int shift_list_next_session=0x7f0d01d5;
         public static final int shift_list_search_edit_view=0x7f0d0079;
         public static final int shift_list_today_courses=0x7f0d019a;
         public static final int shift_list_tomorrow_courses=0x7f0d019b;
@@ -3145,6 +3145,8 @@ containing a value of this type.
         public static final int text2=0x7f0d01c5;
         public static final int textSpacerNoButtons=0x7f0d0052;
         public static final int textSpacerNoTitle=0x7f0d0051;
+        public static final int textView=0x7f0d01ca;
+        public static final int textView2=0x7f0d01cc;
         public static final int text_input_password_toggle=0x7f0d00a0;
         public static final int textinput_counter=0x7f0d0009;
         public static final int textinput_error=0x7f0d000a;
@@ -3161,7 +3163,7 @@ containing a value of this type.
         public static final int up=0x7f0d000d;
         public static final int useLogo=0x7f0d0018;
         public static final int view_offset_helper=0x7f0d000e;
-        public static final int visible=0x7f0d01d6;
+        public static final int visible=0x7f0d01d8;
         public static final int withText=0x7f0d003e;
         public static final int wrap_content=0x7f0d0024;
     }
