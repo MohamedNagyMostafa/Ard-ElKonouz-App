@@ -2,13 +2,11 @@ package com.nagy.mohamed.ardelkonouz.ui.SalaryScreens;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,31 +144,46 @@ public class SalaryActivityFragment extends Fragment
     public void bindListView(View view, final Cursor cursor) {
         ViewHolder.SalaryScreenViewHolder.InstructorsViewHolder instructorsViewHolder =
                 new ViewHolder.SalaryScreenViewHolder.InstructorsViewHolder(view);
-        Log.e("cursor",String.valueOf(cursor.getCount()));
+        int paidCoursesNumber = 0;
+        int unpaidCoursesNumber = 0;
+        final Long INSTRUCTOR_ID =
+                cursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SALARY_ID
+                );
+
         instructorsViewHolder.INSTRUCTOR_NAME_TEXT_VIEW.setText(
-                cursor.getString(3)
-        );
-        instructorsViewHolder.INSTRUCTOR_COURSE_TEXT_VIEW.setText(
-                cursor.getString(2)
+                cursor.getString(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SALARY_INSTRUCTOR_NAME
+                )
         );
 
-        if(cursor.getInt(1) == Constants.PAID_SECTION){
-            instructorsViewHolder.INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW.setText(
-                    getString(R.string.paid)
-            );
-            instructorsViewHolder.INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW.setTextColor(Color.GREEN);
-        }else{
-            instructorsViewHolder.INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW.setText(
-                    getString(R.string.unpaid)
-            );
-            instructorsViewHolder.INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW.setTextColor(Color.RED);
+        Cursor sectionInstructorCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
+                new String[]{DbContent.SectionInstructorTable.PAID_COLUMN},
+                null,
+                null,
+                null
+        );
+
+        if (sectionInstructorCursor != null) {
+            while (sectionInstructorCursor.moveToNext()){
+                switch (cursor.getInt(0)){
+                    case Constants.PAID_SECTION:
+                        paidCoursesNumber++;
+                        break;
+                    case Constants.NOT_PAID_SECTION:
+                        unpaidCoursesNumber++;
+                        break;
+                }
+            }
+            sectionInstructorCursor.close();
         }
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent openInstructorScreen = new Intent(getContext(), InstructorSalaryActivity.class);
-                openInstructorScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, cursor.getLong(4));
+                openInstructorScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, INSTRUCTOR_ID);
                 startActivity(openInstructorScreen);
             }
         });
@@ -180,8 +193,8 @@ public class SalaryActivityFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getContext(),
-                DatabaseController.UriDatabase.SECTION_INSTRUCTOR_URI,
-                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_SALARY_PROJECTION,
+                DatabaseController.UriDatabase.INSTRUCTOR_TABLE_URI,
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SALARY_PROJECTION,
                 null,
                 null,
                 null
@@ -196,6 +209,5 @@ public class SalaryActivityFragment extends Fragment
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         databaseCursorAdapter.swapCursor(null);
-        return null;
     }
 }

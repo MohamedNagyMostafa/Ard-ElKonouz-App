@@ -797,14 +797,14 @@ public class ViewHolder {
         public static class InstructorsViewHolder{
 
             public final TextView INSTRUCTOR_NAME_TEXT_VIEW;
-            public final TextView INSTRUCTOR_COURSE_TEXT_VIEW;
-            public final TextView INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW;
+            public final TextView PAID_COURSES_NUMBER_TEXT_VIEW;
+            public final TextView UNPAID_COURSES_NUMBER_TEXT_VIEW;
 
             public InstructorsViewHolder(View instructorsView){
 
                 INSTRUCTOR_NAME_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_instructor_name_text_view);
-                INSTRUCTOR_COURSE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_instructor_course_text_view);
-                INSTRUCTOR_SALARY_PROGRESS_STATE_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_salary_process_text_view);
+                PAID_COURSES_NUMBER_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_paid_courses_number_text_view);
+                UNPAID_COURSES_NUMBER_TEXT_VIEW = (TextView) instructorsView.findViewById(R.id.salary_list_unpaid_courses_number_text_view);
             }
         }
     }
