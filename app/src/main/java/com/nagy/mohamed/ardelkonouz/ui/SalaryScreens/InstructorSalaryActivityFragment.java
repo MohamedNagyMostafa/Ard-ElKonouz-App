@@ -1,15 +1,11 @@
 package com.nagy.mohamed.ardelkonouz.ui.SalaryScreens;
 
-import android.content.ContentValues;
-import android.content.res.ColorStateList;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +14,11 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
-import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
+
+import java.text.DecimalFormat;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -53,72 +50,104 @@ public class InstructorSalaryActivityFragment extends Fragment
     private void setSettingsData(){
         long completeCourses = 0;
         long underProgressCourses = 0;
-        double totalPaidSalary = 0;
-        double totalUnpaidSalary = 0;
+        Double totalPaidSalary = 0d;
+        Double totalUnpaidSalary = 0d;
         long paidCoursesNumber = 0;
         long unpaidCoursesNumber = 0;
 
-
-        Cursor cursor = getActivity().getContentResolver().query(
+        Cursor sectionInstructorCursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(instructorId),
-                new String[]{
-                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
-                DbContent.SectionInstructorTable.PAID_COLUMN,
-                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.SectionInstructorTable.SECTION_ID_COLUMN},
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_PROJECTION,
                 null,
                 null,
                 null
         );
 
-        if(cursor != null){
-            if(cursor.getCount() > 0){
-                while(cursor.moveToNext()){
-                    // course state
-                    if(cursor.getLong(0) - Utility.getCurrentDateAsMills() > 0){
-                        underProgressCourses++;
-                    }else{
-                        completeCourses++;
+        if(sectionInstructorCursor != null){
+            while (sectionInstructorCursor.moveToNext()){
+                // section state.
+                final Long SECTION_START_DATE = sectionInstructorCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_START_DATE
+                );
+                final Long SECTION_END_DATE = sectionInstructorCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_END_DATE
+                );
+                final Long SECTION_ID = sectionInstructorCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_ID
+                );
+                final Integer SECTION_PAID = sectionInstructorCursor.getInt(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_PAID
+                );
+                final Long TODAY_DATE = Utility.getCurrentDateAsMills();
 
-                        Cursor coursesCursor = getActivity().getContentResolver().query(
-                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(
-                                        cursor.getLong(3)),
+                if(SECTION_START_DATE < TODAY_DATE){
+                    if(SECTION_END_DATE < TODAY_DATE){
+                        completeCourses++;
+                    }else{
+                        underProgressCourses++;
+                    }
+                }
+
+                Cursor courseSectionCursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
+                        DatabaseController.ProjectionDatabase.SALARY_PROJECTION,
+                        null,
+                        null,
+                        null
+                );
+
+                if(courseSectionCursor != null){
+                    if(courseSectionCursor.moveToNext()){
+                        final Double SALARY_PER_CHILD = courseSectionCursor.getDouble(
+                                        DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
+                        );
+                        final Double COURSE_COST = courseSectionCursor.getDouble(
+                                        DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
+                        );
+
+                        Cursor childSectionCursor = getActivity().getContentResolver().query(
+                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
                                 null,
                                 null,
                                 null,
                                 null
-
                         );
 
-                        // paid
-                        if(cursor.getInt(1) == Constants.PAID_SECTION) {
-                            paidCoursesNumber++;
+                        if(childSectionCursor != null){
+                            final Integer CHILD_NUMBER = childSectionCursor.getCount();
 
-                            if (coursesCursor != null) {
-                                totalPaidSalary += coursesCursor.getCount() * cursor.getDouble(2);
-                                coursesCursor.close();
-                            }
-                        }else{
-                            unpaidCoursesNumber++;
+                            SalaryPair salaryPair = new SalaryPair(
+                                    SALARY_PER_CHILD,
+                                    COURSE_COST,
+                                    CHILD_NUMBER
+                            );
 
-                            if (coursesCursor != null) {
-                                totalUnpaidSalary += coursesCursor.getCount() * cursor.getDouble(2);
-                                coursesCursor.close();
+                            switch (SECTION_PAID){
+                                case Constants.PAID_SECTION:
+                                    paidCoursesNumber++;
+                                    totalPaidSalary += salaryPair.getTotalSalary();
+                                    break;
+                                case Constants.NOT_PAID_SECTION:
+                                    unpaidCoursesNumber++;
+                                    totalUnpaidSalary += salaryPair.getTotalSalary();
+                                    break;
                             }
+                            childSectionCursor.close();
                         }
                     }
-
-
+                    courseSectionCursor.close();
                 }
             }
-            cursor.close();
+            sectionInstructorCursor.close();
         }
 
         instructorSalaryScreenViewHolder.COMPLETED_COURSES_TEXT_VIEW.setText(
                 String.valueOf(completeCourses)
         );
         instructorSalaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.setText(
-                String.valueOf(totalPaidSalary)
+                String.valueOf(
+                        new DecimalFormat(".###").format(totalPaidSalary)
+                )
         );
         instructorSalaryScreenViewHolder.UNDER_PROGRESS_COURSES_TEXT_VIEW.setText(
                 String.valueOf(underProgressCourses)
@@ -130,7 +159,9 @@ public class InstructorSalaryActivityFragment extends Fragment
                 String.valueOf(unpaidCoursesNumber)
         );
         instructorSalaryScreenViewHolder.TOTAL_UNPAID_SALARY_TEXT_VIEW.setText(
-                String.valueOf(totalUnpaidSalary)
+                String.valueOf(
+                        new DecimalFormat(".###").format(totalUnpaidSalary)
+                )
         );
     }
 
@@ -145,97 +176,27 @@ public class InstructorSalaryActivityFragment extends Fragment
         double totalSalary = 0;
         final ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder instructorCoursesViewHolder =
                 new ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder(view);
-        final long COURSE_ID = cursor.getLong(6);
+        final long COURSE_ID = cursor.getLong(
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_COURSE_ID
+        );
+        final Integer SECTION_NAME = cursor.getInt(
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_SECTION_NAME
+        );
+        final Long START_DATE = cursor.getLong(
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_START_DATE
+        );
+        final Long END_DATE = cursor.getLong(
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_END_DATE
+        );
+
         instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                Utility.getTimeFormat(
-                        cursor.getLong(2)
+                        START_DATE
                 )
         );
         instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                        Utility.getTimeFormat(
-                                cursor.getLong(3)
-
-                        )
-        );
-
-        instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
-                cursor.getString(4)
-        );
-
-        if(cursor.getLong(3) - Utility.getCurrentDateAsMills() > 0){
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText("Under Progress");
-        }else {
-            if (cursor.getInt(5) == Constants.PAID_SECTION) {
-                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
-            } else {
-                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
-            }
-
-            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if((instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.getText().toString()).equals(
-                                    getString(R.string.paid))){
-                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.unpaid));
-
-                                ContentValues contentValues = new ContentValues();
-                                contentValues.put(DbContent.SectionInstructorTable.PAID_COLUMN, Constants.NOT_PAID_SECTION);
-                                int l = getActivity().getContentResolver().update(
-                                        DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(
-                                                COURSE_ID
-                                        ),
-                                        contentValues,
-                                        null,
-                                        null
-                                );
-                                Log.e("update result1 ", String.valueOf(l));
-
-                            }else{
-                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                                instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(getString(R.string.paid));
-
-                                ContentValues contentValues = new ContentValues();
-                                contentValues.put(DbContent.SectionInstructorTable.PAID_COLUMN, Constants.PAID_SECTION);
-                                int l = getActivity().getContentResolver().update(
-                                        DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(
-                                                COURSE_ID
-                                        ),
-                                        contentValues,
-                                        null,
-                                        null
-                                );
-                                Log.e("update result 2", String.valueOf(l));
-
-                            }
-
-                            setSettingsData();
-                            restartLoader();
-                        }
-                    }
-            );
-        }
-
-        Cursor coursesCursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(cursor.getLong(6)),
-                null,
-                null,
-                null,
-                null
-        );
-
-        if(coursesCursor != null){
-            totalSalary += coursesCursor.getCount() * cursor.getDouble(1);
-            coursesCursor.close();
-        }
-
-        instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.setText(
-                String.valueOf(
-                        totalSalary
+                Utility.getTimeFormat(
+                        END_DATE
                 )
         );
 
@@ -246,14 +207,7 @@ public class InstructorSalaryActivityFragment extends Fragment
         return new CursorLoader(
                 getContext(),
                 DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(instructorId),
-                new String[]{DbContent.SectionInstructorTable.TABLE_NAME + "." +
-                        DbContent.SectionInstructorTable._ID,
-                        DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                        DbContent.SectionTable.SECTION_START_DATE_COLUMN,
-                        DbContent.SectionTable.SECTION_END_DATE_COLUMN,
-                        DbContent.CourseTable.COURSE_NAME_COLUMN,
-                        DbContent.SectionInstructorTable.PAID_COLUMN,
-                DbContent.SectionInstructorTable.SECTION_ID_COLUMN},
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_LIST_PROJECTION,
                 null,
                 null,
                 null

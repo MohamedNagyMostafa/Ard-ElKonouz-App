@@ -32,6 +32,32 @@ public class DatabaseController {
         public static final int INSTRUCTOR_SALARY_ID = 0;
         public static final int INSTRUCTOR_SALARY_INSTRUCTOR_NAME= 1;
 
+        public static final String[] INSTRUCTOR_SECTION_SALARY_PROJECTION ={
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
+                DbContent.SectionInstructorTable.PAID_COLUMN
+        };
+
+        public static final int INSTRUCTOR_SECTION_SALARY_START_DATE = 0;
+        public static final int INSTRUCTOR_SECTION_SALARY_END_DATE = 1;
+        public static final int INSTRUCTOR_SECTION_SALARY_SECTION_ID= 2;
+        public static final int INSTRUCTOR_SECTION_SALARY_SECTION_PAID = 3;
+
+        public static final String[] INSTRUCTOR_SECTION_SALARY_LIST_PROJECTION= {
+                DbContent.SectionInstructorTable.TABLE_NAME +"." + DbContent.SectionInstructorTable._ID,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
+                DbContent.SectionInstructorTable.PAID_COLUMN
+        };
+        public static final int INSTRUCTOR_SECTION_SALARY_SECTION_LIST_START_DATE = 1;
+        public static final int INSTRUCTOR_SECTION_SALARY_SECTION_LIST_END_DATE = 2;
+        public static final int INSTRUCTOR_SECTION_SALARY_SECTION_LIST_SECTION_NAME = 3;
+        public static final int INSTRUCTOR_SECTION_SALARY_SECTION_LIST_COURSE_ID = 4;
+        public static final int INSTRUCTOR_SECTION_SALARY_SECTION_LIST_PAID = 5;
+
         // Child list
         public static final String[] CHILD_LIST_SECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
