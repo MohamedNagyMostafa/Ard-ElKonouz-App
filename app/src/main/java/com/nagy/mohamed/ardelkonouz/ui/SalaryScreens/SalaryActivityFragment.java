@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -45,8 +47,8 @@ public class SalaryActivityFragment extends Fragment
     }
 
     private void setPaidValues(ViewHolder.SalaryScreenViewHolder salaryScreenViewHolder){
-        double totalPaidValue = 0;
-        double totalUnpaidValue = 0;
+        Double totalPaidValue = 0d;
+        Double totalUnpaidValue = 0d;
         long unpaidInstructorNumber = 0;
         ArrayList<SalaryPair> paidSectionId = new ArrayList<>();
         ArrayList<SalaryPair> unpaidSectionId = new ArrayList<>();
@@ -77,43 +79,43 @@ public class SalaryActivityFragment extends Fragment
                 );
 
                 if(sectionCourseCursor != null) {
+                    while(sectionCourseCursor.moveToNext()) {
+                        final Double COURSE_COST = sectionCourseCursor.getDouble(
+                                DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
+                        );
+                        final Double COURSE_PERCENT_PER_CHILD = sectionCourseCursor.getDouble(
+                                DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
+                        );
 
-                    final Double COURSE_COST = sectionCourseCursor.getDouble(
-                            DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
-                    );
-                    final Double COURSE_PERCENT_PER_CHILD = sectionCourseCursor.getDouble(
-                            DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
-                    );
+                        Cursor sectionChildCursor = getActivity().getContentResolver().query(
+                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                                null,
+                                null,
+                                null,
+                                null
+                        );
 
-                    Cursor sectionChildCursor = getActivity().getContentResolver().query(
-                            DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
-                            null,
-                            null,
-                            null,
-                            null
-                    );
+                        if (sectionChildCursor != null) {
 
-                    if(sectionChildCursor != null) {
+                            final int CHILD_NUMBER = sectionChildCursor.getCount();
+                            SalaryPair salaryPair = new SalaryPair(
+                                    COURSE_PERCENT_PER_CHILD,
+                                    COURSE_COST,
+                                    CHILD_NUMBER);
 
-                        final int CHILD_NUMBER = sectionChildCursor.getCount();
-                        SalaryPair salaryPair = new SalaryPair(
-                                COURSE_PERCENT_PER_CHILD,
-                                COURSE_COST,
-                                CHILD_NUMBER);
+                            switch (sectionState) {
+                                case Constants.PAID_SECTION:
+                                    paidSectionId.add(salaryPair);
+                                    break;
+                                case Constants.NOT_PAID_SECTION:
+                                    unpaidSectionId.add(salaryPair);
+                                    unpaidInstructorNumber++;
+                                    break;
+                            }
 
-                        switch (sectionState) {
-                            case Constants.PAID_SECTION:
-                                paidSectionId.add(salaryPair);
-                                break;
-                            case Constants.NOT_PAID_SECTION:
-                                unpaidSectionId.add(salaryPair);
-                                unpaidInstructorNumber++;
-                                break;
+                            sectionChildCursor.close();
                         }
-
-                        sectionChildCursor.close();
                     }
-
                     sectionCourseCursor.close();
                 }
             }
@@ -128,8 +130,16 @@ public class SalaryActivityFragment extends Fragment
             totalUnpaidValue += salaryPair.getTotalSalary();
         }
 
-        salaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.setText(String.valueOf(totalPaidValue));
-        salaryScreenViewHolder.TOTAL_UNPAID_SALARY_TEXT_VIEW.setText(String.valueOf(totalUnpaidValue));
+        salaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.setText(
+                String.valueOf(
+                        new DecimalFormat(".###").format(totalPaidValue)
+                )
+        );
+        salaryScreenViewHolder.TOTAL_UNPAID_SALARY_TEXT_VIEW.setText(
+                String.valueOf(
+                        new DecimalFormat(".###").format(totalUnpaidValue)
+                )
+        );
         salaryScreenViewHolder.UNPAID_SALARY_NUMBER_TEXT_VIEW.setText(String.valueOf(unpaidInstructorNumber));
 
     }
@@ -167,7 +177,7 @@ public class SalaryActivityFragment extends Fragment
 
         if (sectionInstructorCursor != null) {
             while (sectionInstructorCursor.moveToNext()){
-                switch (cursor.getInt(0)){
+                switch (sectionInstructorCursor.getInt(0)){
                     case Constants.PAID_SECTION:
                         paidCoursesNumber++;
                         break;
@@ -179,6 +189,18 @@ public class SalaryActivityFragment extends Fragment
             sectionInstructorCursor.close();
         }
 
+        Log.e("paid courses", String.valueOf(paidCoursesNumber));
+
+        instructorsViewHolder.PAID_COURSES_NUMBER_TEXT_VIEW.setText(
+                String.valueOf(
+                        paidCoursesNumber
+                )
+        );
+        instructorsViewHolder.UNPAID_COURSES_NUMBER_TEXT_VIEW.setText(
+                String.valueOf(
+                        unpaidCoursesNumber
+                )
+        );
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

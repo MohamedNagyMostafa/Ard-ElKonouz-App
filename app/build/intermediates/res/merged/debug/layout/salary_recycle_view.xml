@@ -12,11 +12,6 @@
         android:layout_height="82dp"
         android:src="@drawable/user_profile_icon"/>
 
-    <RelativeLayout
-        android:layout_gravity="center_vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,40 +29,61 @@
                 android:textStyle="bold"
                 android:layout_margin="4dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/courses"
-                android:fontFamily="serif"
+                android:orientation="horizontal">
 
-                android:layout_margin="4dp"
-                android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:fontFamily="serif"
+                    android:textStyle="bold"
+                    android:text="Paid Courses Number"
+                    android:textColor="@color/colorPrimaryDark" />
 
-            <TextView
-                android:id="@+id/salary_list_instructor_course_text_view"
-                android:layout_width="wrap_content"
+
+                <TextView
+                    android:id="@+id/salary_list_paid_courses_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/empty_info"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:layout_margin="8dp"
-                android:text="@string/empty_info"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:fontFamily="serif"
+                    android:text="Unpaid Courses Number"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <TextView
+                    android:id="@+id/salary_list_unpaid_courses_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/empty_info"/>
+
+            </LinearLayout>
 
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/salary_list_salary_process_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="8dp"
-            android:text="Paied"
-            android:textColor="#4caf50"
-            android:fontFamily="serif"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
 
 </LinearLayout>
