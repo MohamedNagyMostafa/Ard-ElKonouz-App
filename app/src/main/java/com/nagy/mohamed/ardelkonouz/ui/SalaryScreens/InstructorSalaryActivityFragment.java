@@ -1,6 +1,8 @@
 package com.nagy.mohamed.ardelkonouz.ui.SalaryScreens;
 
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -9,11 +11,13 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
@@ -188,6 +192,13 @@ public class InstructorSalaryActivityFragment extends Fragment
         final Long END_DATE = cursor.getLong(
                 DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_END_DATE
         );
+        final Integer SECTION_STATE = cursor.getInt(
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_PAID
+        );
+        final Long TODAY = Utility.getCurrentDateAsMills();
+        final Long SECTION_ID = cursor.getLong(
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_SECTION_ID
+        );
 
         instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
                Utility.getTimeFormat(
@@ -200,6 +211,235 @@ public class InstructorSalaryActivityFragment extends Fragment
                 )
         );
 
+        Cursor courseCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                DatabaseController.ProjectionDatabase.SALARY_PROJECTION,
+                null,
+                null,
+                null
+        );
+
+        if(courseCursor != null){
+            courseCursor.moveToNext();
+            final Double COURSE_COST = courseCursor.getDouble(
+                    DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
+            );
+            final Double SALARY_PER_CHILD = courseCursor.getDouble(
+                    DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
+            );
+            final String COURSE_NAME = courseCursor.getString(
+                    DatabaseController.ProjectionDatabase.SALARY_COURSE_NAME
+            );
+
+            Cursor childCourse = getActivity().getContentResolver().query(
+                    DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            if(childCourse != null){
+                if(childCourse.getCount() > 0){
+                    instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.setText(
+                            String.valueOf(
+                                    new DecimalFormat(".###").format(
+                                            new SalaryPair(
+                                                    SALARY_PER_CHILD,
+                                                    COURSE_COST,
+                                                    childCourse.getCount()
+                                    ).getTotalSalary()
+                            )
+                        )
+                    );
+                }else{
+                    instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(
+                                            getContext(),
+                                            "There are no child in this course",
+                                            Toast.LENGTH_SHORT
+                                    ).show();
+                                }
+                            }
+                    );
+                }
+                childCourse.close();
+
+                instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
+                        COURSE_NAME + " Section " + String.valueOf(
+                                SECTION_NAME
+                        )
+                );
+            }
+            courseCursor.close();
+        }
+
+        if(START_DATE < TODAY){
+            if(END_DATE < TODAY){
+                switch (SECTION_STATE){
+                    case Constants.PAID_SECTION:
+                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON
+                                .setBackgroundColor(Color.GREEN);
+                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(
+                                "Unpaid"
+                        );
+                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        // set Button.
+                                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(
+                                                "Pay"
+                                        );
+                                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundColor(
+                                                Color.RED
+                                        );
+
+                                        // update database.
+                                        ContentValues contentValues = new ContentValues();
+                                        contentValues.put(DbContent.SectionInstructorTable.PAID_COLUMN,
+                                                Constants.NOT_PAID_SECTION);
+                                        getActivity().getContentResolver().update(
+                                                DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(SECTION_ID),
+                                                contentValues,
+                                                null,
+                                                null
+                                        );
+
+                                        // update static data.
+                                        Double totalPaidSalary = Double.valueOf(
+                                                instructorSalaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.getText().toString()
+                                        );
+                                        Double totalUnpaidSalary = Double.valueOf(
+                                                instructorSalaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.getText().toString()
+                                        );
+                                        Long paidCoursesNumber = Long.valueOf(
+                                                instructorSalaryScreenViewHolder.NUMBER_OF_PAID_COURSES.getText().toString()
+                                        );
+                                        Long unpaidCoursesNumber = Long.valueOf(
+                                                instructorSalaryScreenViewHolder.NUMBER_OF_UNPAID_COURSES.getText().toString()
+                                        );
+                                        Double INSTRUCTOR_SALARY = Double.valueOf(
+                                                instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.getText().toString()
+                                        );
+
+                                        paidCoursesNumber++;
+                                        unpaidCoursesNumber--;
+                                        totalPaidSalary -= INSTRUCTOR_SALARY;
+                                        totalUnpaidSalary += INSTRUCTOR_SALARY;
+
+                                        instructorSalaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.setText(
+                                                String.valueOf(
+                                                        totalPaidSalary
+                                                )
+                                        );
+                                        instructorSalaryScreenViewHolder.TOTAL_UNPAID_SALARY_TEXT_VIEW.setText(
+                                                String.valueOf(
+                                                        totalUnpaidSalary
+                                                )
+                                        );
+                                        instructorSalaryScreenViewHolder.NUMBER_OF_PAID_COURSES.setText(
+                                                String.valueOf(
+                                                        paidCoursesNumber
+                                                )
+                                        );
+                                        instructorSalaryScreenViewHolder.NUMBER_OF_UNPAID_COURSES.setText(
+                                                String.valueOf(
+                                                        unpaidCoursesNumber
+                                                )
+                                        );
+                                    }
+                                }
+                        );
+                        break;
+                    case Constants.NOT_PAID_SECTION:
+
+                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON
+                                .setBackgroundColor(Color.RED);
+                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(
+                                "pay"
+                        );
+                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        // set Button.
+                                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(
+                                                "Unpaid"
+                                        );
+                                        instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundColor(
+                                                Color.GREEN
+                                        );
+
+                                        // update database.
+                                        ContentValues contentValues = new ContentValues();
+                                        contentValues.put(DbContent.SectionInstructorTable.PAID_COLUMN,
+                                                Constants.PAID_SECTION);
+                                        getActivity().getContentResolver().update(
+                                                DatabaseController.UriDatabase.getSectionInstructorTableWithSectionIdUri(SECTION_ID),
+                                                contentValues,
+                                                null,
+                                                null
+                                        );
+
+                                        // update static data.
+                                        Double totalPaidSalary = Double.valueOf(
+                                                instructorSalaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.getText().toString()
+                                        );
+                                        Double totalUnpaidSalary = Double.valueOf(
+                                                instructorSalaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.getText().toString()
+                                        );
+                                        Long paidCoursesNumber = Long.valueOf(
+                                                instructorSalaryScreenViewHolder.NUMBER_OF_PAID_COURSES.getText().toString()
+                                        );
+                                        Long unpaidCoursesNumber = Long.valueOf(
+                                                instructorSalaryScreenViewHolder.NUMBER_OF_UNPAID_COURSES.getText().toString()
+                                        );
+                                        Double INSTRUCTOR_SALARY = Double.valueOf(
+                                                instructorCoursesViewHolder.COURSE_SALARY_TEXT_VIEW.getText().toString()
+                                        );
+
+                                        paidCoursesNumber--;
+                                        unpaidCoursesNumber++;
+                                        totalPaidSalary += INSTRUCTOR_SALARY;
+                                        totalUnpaidSalary -= INSTRUCTOR_SALARY;
+
+                                        instructorSalaryScreenViewHolder.TOTAL_PAID_SALARY_TEXT_VIEW.setText(
+                                                String.valueOf(
+                                                        totalPaidSalary
+                                                )
+                                        );
+                                        instructorSalaryScreenViewHolder.TOTAL_UNPAID_SALARY_TEXT_VIEW.setText(
+                                                String.valueOf(
+                                                        totalUnpaidSalary
+                                                )
+                                        );
+                                        instructorSalaryScreenViewHolder.NUMBER_OF_PAID_COURSES.setText(
+                                                String.valueOf(
+                                                        paidCoursesNumber
+                                                )
+                                        );
+                                        instructorSalaryScreenViewHolder.NUMBER_OF_UNPAID_COURSES.setText(
+                                                String.valueOf(
+                                                        unpaidCoursesNumber
+                                                )
+                                        );
+                                    }
+                                }
+                        );
+                        break;
+                }
+            }
+        }else{
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setText(
+                    "The course did not start"
+            );
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setBackgroundColor(Color.GRAY);
+            instructorCoursesViewHolder.COURSE_SALARY_STATE_BUTTON.setEnabled(false);
+        }
     }
 
     @Override

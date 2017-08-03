@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
-import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
@@ -98,21 +97,22 @@ public class SalaryActivityFragment extends Fragment
                         if (sectionChildCursor != null) {
 
                             final int CHILD_NUMBER = sectionChildCursor.getCount();
-                            SalaryPair salaryPair = new SalaryPair(
-                                    COURSE_PERCENT_PER_CHILD,
-                                    COURSE_COST,
-                                    CHILD_NUMBER);
+                            if(CHILD_NUMBER != 0) {
+                                SalaryPair salaryPair = new SalaryPair(
+                                        COURSE_PERCENT_PER_CHILD,
+                                        COURSE_COST,
+                                        CHILD_NUMBER);
 
-                            switch (sectionState) {
-                                case Constants.PAID_SECTION:
-                                    paidSectionId.add(salaryPair);
-                                    break;
-                                case Constants.NOT_PAID_SECTION:
-                                    unpaidSectionId.add(salaryPair);
-                                    unpaidInstructorNumber++;
-                                    break;
+                                switch (sectionState) {
+                                    case Constants.PAID_SECTION:
+                                        paidSectionId.add(salaryPair);
+                                        break;
+                                    case Constants.NOT_PAID_SECTION:
+                                        unpaidSectionId.add(salaryPair);
+                                        unpaidInstructorNumber++;
+                                        break;
+                                }
                             }
-
                             sectionChildCursor.close();
                         }
                     }
@@ -169,7 +169,7 @@ public class SalaryActivityFragment extends Fragment
 
         Cursor sectionInstructorCursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getSectionInstructorTableWithInstructorIdUri(INSTRUCTOR_ID),
-                new String[]{DbContent.SectionInstructorTable.PAID_COLUMN},
+                DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_PROJECTION,
                 null,
                 null,
                 null
@@ -177,13 +177,33 @@ public class SalaryActivityFragment extends Fragment
 
         if (sectionInstructorCursor != null) {
             while (sectionInstructorCursor.moveToNext()){
-                switch (sectionInstructorCursor.getInt(0)){
-                    case Constants.PAID_SECTION:
-                        paidCoursesNumber++;
-                        break;
-                    case Constants.NOT_PAID_SECTION:
-                        unpaidCoursesNumber++;
-                        break;
+                final Long SECTION_ID = sectionInstructorCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_ID
+                );
+                final Integer SECTION_STATE = sectionInstructorCursor.getInt(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_PAID
+                );
+
+                Cursor childSection = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                        null,
+                        null,
+                        null,
+                        null
+                );
+
+                if(childSection != null){
+                    if(childSection.getCount() > 0){
+                        switch (SECTION_STATE){
+                            case Constants.PAID_SECTION:
+                                paidCoursesNumber++;
+                                break;
+                            case Constants.NOT_PAID_SECTION:
+                                unpaidCoursesNumber++;
+                                break;
+                        }
+                    }
+                    childSection.close();
                 }
             }
             sectionInstructorCursor.close();
