@@ -394,6 +394,7 @@ public class SectionInputActivityFragment extends Fragment
             contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
             contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, SECTION_NAME);
 
+            courseCursor.close();
             Log.e("set data to database",String.valueOf(SECTION_START_DATE));
         }
 
