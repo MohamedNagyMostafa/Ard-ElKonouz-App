@@ -286,10 +286,10 @@ public class ShiftInputActivityFragment extends Fragment
                     public void onClick(View view) {
 
                         if(validationInputs()) {
-                            ContentValues[] coursesSelectedContentValuesAsArray = new ContentValues[selectedID.size()];
                             ArrayList<ContentValues> coursesSelectedContentValues = new ArrayList<>();
 
                             if(selectedID.size() == 0){
+                                Log.e("fet sections", "start");
                                 Cursor sectionCursor = getActivity().getContentResolver().query(
                                         DatabaseController.UriDatabase.SECTION_URI,
                                         new String[]{DbContent.SectionTable._ID},
@@ -297,7 +297,6 @@ public class ShiftInputActivityFragment extends Fragment
                                         null,
                                         null
                                 );
-
                                 if(sectionCursor != null){
                                     while (sectionCursor.moveToNext()){
                                         selectedID.add(sectionCursor.getLong(0));
@@ -390,8 +389,12 @@ public class ShiftInputActivityFragment extends Fragment
 
                             }
 
-                            coursesSelectedContentValues.toArray(coursesSelectedContentValuesAsArray);
-                            Log.e("check bulk insert", String.valueOf(coursesSelectedContentValues.size()));
+                            ContentValues[] coursesSelectedContentValuesAsArray =
+                                    new ContentValues[selectedID.size()];
+                            coursesSelectedContentValuesAsArray =
+                                    coursesSelectedContentValues.toArray(coursesSelectedContentValuesAsArray);
+
+                            Log.e("check bulk insert", String.valueOf(coursesSelectedContentValuesAsArray.length));
                             if (coursesSelectedContentValuesAsArray.length > 0) {
                                 getActivity().getContentResolver().bulkInsert(
                                         DatabaseController.UriDatabase.SHIFT_URI,
