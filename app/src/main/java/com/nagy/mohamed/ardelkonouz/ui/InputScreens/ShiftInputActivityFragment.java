@@ -47,7 +47,8 @@ public class ShiftInputActivityFragment extends Fragment
         implements CurrentDateWithTime,  LoaderManager.LoaderCallbacks<Cursor> {
 
     private String searchChars ="";
-
+    private Long startDay = null;
+    private Long endDay = null;
     private ArrayList<Long> selectedID;
 
     private DatabaseCursorAdapter databaseAdapterChoices;
@@ -134,13 +135,18 @@ public class ShiftInputActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     Long shiftDate = Utility.getCurrentDateAsMills();
-
+                    startDay = shiftDate;
+                    endDay = shiftDate;
                     shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(shiftDate)
+                            Utility.getTimeFormat(
+                                    startDay
+                            )
                     );
 
                     shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(shiftDate)
+                            Utility.getTimeFormat(
+                                    endDay
+                            )
                     );
                 }
             };
@@ -150,13 +156,18 @@ public class ShiftInputActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     Long shiftDate = Utility.getCurrentDateAsMills() - Constants.DAY_IN_MILS;
-
+                    startDay = shiftDate;
+                    endDay = shiftDate;
                     shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(shiftDate)
+                            Utility.getTimeFormat(
+                                    startDay
+                            )
                     );
 
                     shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(shiftDate)
+                            Utility.getTimeFormat(
+                                    endDay
+                            )
                     );
                 }
             };
@@ -167,12 +178,18 @@ public class ShiftInputActivityFragment extends Fragment
                 public void onClick(View view) {
                     Long shiftDate = Utility.getCurrentDateAsMills() + Constants.DAY_IN_MILS;
 
+                    startDay = shiftDate;
+                    endDay = shiftDate;
                     shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(shiftDate)
+                            Utility.getTimeFormat(
+                                    startDay
+                            )
                     );
 
                     shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(shiftDate)
+                            Utility.getTimeFormat(
+                                    endDay
+                            )
                     );
                 }
             };
@@ -181,25 +198,39 @@ public class ShiftInputActivityFragment extends Fragment
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Long startDate = Utility.getNextFridayDate();
-                    Long endDate = startDate + (Constants.DAY_IN_MILS * 7);
+                    startDay = Utility.getNextFridayDate();
+                    endDay = startDay + (Constants.DAY_IN_MILS * 7);
 
                     shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(startDate)
+                            Utility.getTimeFormat(
+                                    startDay
+                            )
                     );
 
                     shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT.setText(
-                            String.valueOf(endDate)
+                            Utility.getTimeFormat(
+                                    endDay
+                            )
                     );
                 }
             };
 
-    private final View.OnClickListener DATE_EDIT_TEXT_LISTENER =
+    private final View.OnClickListener START_DATE_EDIT_TEXT_LISTENER =
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DatePickerFragment datePickerFragment = new DatePickerFragment();
-                    setSettings(datePickerFragment, view);
+                    setSettings(datePickerFragment, view, Constants.DateType.START_DATE);
+                    datePickerFragment.show(getFragmentManager(), Constants.TAG);
+                }
+            };
+
+    private final View.OnClickListener END_DATE_EDIT_TEXT_LISTENER =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DatePickerFragment datePickerFragment = new DatePickerFragment();
+                    setSettings(datePickerFragment, view, Constants.DateType.END_DATE);
                     datePickerFragment.show(getFragmentManager(), Constants.TAG);
                 }
             };
@@ -240,8 +271,8 @@ public class ShiftInputActivityFragment extends Fragment
         selectedID = new ArrayList<>();
 
         // Set Listeners
-        shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
-        shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
+        shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT.setOnClickListener(START_DATE_EDIT_TEXT_LISTENER);
+        shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT.setOnClickListener(END_DATE_EDIT_TEXT_LISTENER);
         shiftInputScreenViewHolder.COURSE_SEARCH_EDIT_TEXT.addTextChangedListener(searchTextWatcher);
         shiftInputScreenViewHolder.TODAY_SHIFT_BUTTON.setOnClickListener(TODAY_BUTTON_LISTENER);
         shiftInputScreenViewHolder.YESTERDAY_SHIFT_BUTTON.setOnClickListener(YESTERDAY_BUTTON_LISTENER);
@@ -254,31 +285,20 @@ public class ShiftInputActivityFragment extends Fragment
                         ContentValues[] coursesSelectedContentValuesAsArray = new ContentValues[selectedID.size()];
                         ArrayList<ContentValues> coursesSelectedContentValues= new ArrayList<>();
 
-                        final Long SHIFT_START_DATE = Long.valueOf(
-                                shiftInputScreenViewHolder.COURSE_START_SHIFT_DATE_EDIT_TEXT
-                                        .getText().toString()
-                        );
-
-
-                        final Long SHIFT_END_DATE = Long.valueOf(
-                                shiftInputScreenViewHolder.COURSE_END_SHIFT_DATE_EDIT_TEXT
-                                        .getText().toString()
-                        );
-
 
                         for(final Long SECTION_ID : selectedID){
 
                             /**
                              * Validation Block @Start ...
                              */
-                            if(innerShiftDateValidation(SECTION_ID, SHIFT_START_DATE, SHIFT_END_DATE)) {
+                            if(innerShiftDateValidation(SECTION_ID)) {
                                 Log.e("ignore for shift", "igonre");
                                 continue;
                             }
                             // get Most accurate start shift date.
-                            Long newShiftStartDate = getAccurateShiftStartDate(SECTION_ID, SHIFT_START_DATE, SHIFT_END_DATE);
+                            Long newShiftStartDate = getAccurateShiftStartDate(SECTION_ID);
                             // get Most accurate end shift date.
-                            Long newShiftEndDate = getAccurateShiftEndDate(SECTION_ID, SHIFT_START_DATE, SHIFT_END_DATE);
+                            Long newShiftEndDate = getAccurateShiftEndDate(SECTION_ID);
                             // delete inner shifts.
                             deleteInnerShiftsWithRespectToNewShiftsDates(
                                     SECTION_ID,
@@ -385,7 +405,7 @@ public class ShiftInputActivityFragment extends Fragment
     }
 
     @Override
-    public void onDateSet(int year, int month, int day, View view) {
+    public void onDateSet(int year, int month, int day, View view, int dateType) {
         String strThatDay =
                 String.valueOf(year) + "/" +
                         String.valueOf(month) + "/" +
@@ -402,15 +422,25 @@ public class ShiftInputActivityFragment extends Fragment
         d.setMonth(d.getMonth()  + 1);
         Calendar thatDay = Calendar.getInstance();
         thatDay.setTime(d);
+        Long dayDateInMills = thatDay.getTimeInMillis();
 
+        switch (dateType){
+            case Constants.DateType.START_DATE:
+                startDay = dayDateInMills;
+                break;
+            case Constants.DateType.END_DATE:
+                endDay = dayDateInMills;
+                break;
+        }
         EditText editText = (EditText) view;
 
-        editText.setText(String.valueOf(thatDay.getTimeInMillis()));
+        editText.setText(Utility.getTimeFormat(dayDateInMills));
     }
 
-    private void setSettings(DatePickerFragment datePickerFragment, View view){
+    private void setSettings(DatePickerFragment datePickerFragment, View view, int dateType){
         datePickerFragment.setCurrentDateWithTime(this);
         datePickerFragment.setView(view);
+        datePickerFragment.setDateType(dateType);
     }
 
     @Override
@@ -531,13 +561,11 @@ public class ShiftInputActivityFragment extends Fragment
     // Check the current shift with previous shifts.
     // if the current shift is founded within one of previous shifts
     // the result return true ,Otherwise return false.
-    private boolean innerShiftDateValidation(final Long SECTION_ID,
-                                             final Long SHIFT_START_DATE,
-                                             final Long SHIFT_END_DATE){
+    private boolean innerShiftDateValidation(final Long SECTION_ID){
         boolean innerShift = false;
 
         Cursor cursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getShiftWithStartEndDate(SHIFT_START_DATE, SHIFT_END_DATE, SECTION_ID),
+                DatabaseController.UriDatabase.getShiftWithStartEndDate(startDay, endDay, SECTION_ID),
                 null,
                 null,
                 null,
@@ -554,15 +582,14 @@ public class ShiftInputActivityFragment extends Fragment
         return innerShift;
     }
 
-    private Long getAccurateShiftStartDate(final Long SECTION_ID, final Long SHIFT_START_DATE,
-                                           final Long SHIFT_END_DATE){
+    private Long getAccurateShiftStartDate(final Long SECTION_ID){
 
-        Long newShiftStartDate = SHIFT_START_DATE;
+        Long newShiftStartDate = startDay;
 
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getShiftWithStartDate(
-                        SHIFT_START_DATE,
-                        SHIFT_END_DATE,
+                        startDay,
+                        endDay,
                         SECTION_ID
                 ),
                 DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
@@ -584,15 +611,14 @@ public class ShiftInputActivityFragment extends Fragment
         return newShiftStartDate;
     }
 
-    private Long getAccurateShiftEndDate(final Long SECTION_ID, final Long SHIFT_START_DATE,
-                                           final Long SHIFT_END_DATE){
+    private Long getAccurateShiftEndDate(final Long SECTION_ID){
 
-        Long newShiftEndDate = SHIFT_END_DATE;
+        Long newShiftEndDate = endDay;
 
         Cursor cursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getShiftWithEndDate(
-                        SHIFT_START_DATE,
-                        SHIFT_END_DATE,
+                        startDay,
+                        endDay,
                         SECTION_ID
                 ),
                 DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,

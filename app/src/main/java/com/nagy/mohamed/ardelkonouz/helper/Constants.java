@@ -131,4 +131,9 @@ public class Constants {
 
     }
 
+    public static class DateType{
+        public static final int START_DATE = 0;
+        public static final int END_DATE = 1;
+    }
+
 }

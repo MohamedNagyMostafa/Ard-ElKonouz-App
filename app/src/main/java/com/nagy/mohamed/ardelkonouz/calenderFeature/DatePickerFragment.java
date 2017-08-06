@@ -18,6 +18,7 @@ public class DatePickerFragment extends DialogFragment
 
     private CurrentDateWithTime currentDateWithTime;
     private View view;
+    private int dateType;
 
     public void setCurrentDateWithTime(CurrentDateWithTime currentDateWithTime){
         this.currentDateWithTime = currentDateWithTime;
@@ -25,6 +26,10 @@ public class DatePickerFragment extends DialogFragment
 
     public void setView(View view){
         this.view = view;
+    }
+
+    public void setDateType(int dateType){
+        this.dateType = dateType;
     }
 
     @NonNull
@@ -43,6 +48,6 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        currentDateWithTime.onDateSet(year, month, day, view);
+        currentDateWithTime.onDateSet(year, month, day, view, dateType);
     }
 }
