@@ -195,9 +195,9 @@ public class ChildActivityFragment extends Fragment
                                 String courseName =
                                         cursorCourse.getString(0);
                                 if (courseSectionName.isEmpty())
-                                    courseSectionName = courseName + ".Sec " + sectionName.toString();
+                                    courseSectionName = courseName + " Section " + sectionName.toString();
                                 else
-                                    courseSectionName += ", " + courseName + ".Sec " + sectionName.toString();
+                                    courseSectionName += " - " + courseName + " Section " + sectionName.toString();
                             }
                             cursorCourse.close();
                         }

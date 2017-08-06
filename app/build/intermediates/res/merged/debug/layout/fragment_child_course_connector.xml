@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:background="@android:color/white"
             android:layout_height="match_parent"
-            android:divider="@android:color/transparent"/>
+            android:dividerHeight="1dp"
+            android:divider="@color/colorPrimary"/>
 
         <LinearLayout
             android:id="@+id/child_pf_connector_empty_view_layout"

@@ -296,7 +296,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 return getSectionChildWithSectionId(uri, projection, sortOrder);
 
             case SECTION_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE:
-                return getCourseWithEndDateWithCompleteAndAgeRangeTable(uri, projection, sortOrder);
+                return getCourseWithEndDateWithCompleteAndAgeRangeTable(uri, projection);
 
             case CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE:
                 try {
@@ -305,7 +305,7 @@ public class ContentProviderDatabase extends ContentProvider {
                     e.printStackTrace();
                 }
             case SECTION_WITH_ID_WITH_END_DATE_TABLE:
-                return getSectionWithIdWithEndDateId(uri, projection, sortOrder);
+                return getSectionWithIdWithEndDateId(uri, projection);
 
             case CHILD_WITH_SEARCH_TABLE:
                 return getChildWithSearch(uri, projection, sortOrder);
@@ -1166,7 +1166,7 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseWithEndDateWithCompleteAndAgeRangeTable(Uri uri, String[] projection, String sortOrder){
+    private Cursor getCourseWithEndDateWithCompleteAndAgeRangeTable(Uri uri, String[] projection){
         long age = ContentUris.parseId(uri);
         String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         long date = ContentUris.parseId(Uri.parse(newUriString));
@@ -1183,6 +1183,9 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(age),
                 String.valueOf(date)
         };
+
+        String sortOrder = DbContent.CourseTable.COURSE_NAME_COLUMN + " ASC, "
+                 + DbContent.SectionTable.SECTION_NAME_COLUMN  + " ASC";
 
         Log.e("query done", "done");
         return COURSE_SECTION_JOIN_QUERY.query(
@@ -1220,7 +1223,7 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getSectionWithIdWithEndDateId(Uri uri, String[] projection, String sortType){
+    private Cursor getSectionWithIdWithEndDateId(Uri uri, String[] projection){
         long date = ContentUris.parseId(uri);
         String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         Uri newUri = Uri.parse(newUriString);
@@ -1233,6 +1236,9 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
+        String sortOrder = DbContent.CourseTable.COURSE_NAME_COLUMN + " ASC, "
+                + DbContent.SectionTable.SECTION_NAME_COLUMN  + " ASC";
+
         return SECTION_INSTRUCTOR_JOIN_WITH_COURSE_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
@@ -1240,7 +1246,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 selectionArgs,
                 null,
                 null,
-                sortType
+                sortOrder
         );
     }
 

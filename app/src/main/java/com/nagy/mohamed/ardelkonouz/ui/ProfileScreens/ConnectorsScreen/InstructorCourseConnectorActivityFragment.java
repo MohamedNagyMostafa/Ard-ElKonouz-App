@@ -175,8 +175,8 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         );
 
         coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
-                String.valueOf(
-                        cursor.getDouble(
+                Utility.getDaysAsString(
+                        cursor.getString(
                                 DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS
                         )
                 )
