@@ -361,13 +361,13 @@ public class ContentProviderDatabase extends ContentProvider {
                 );
 
             case COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE:
-                return  getCourseSectionJoinWithCourseId(uri, projection, selection);
+                return  getCourseSectionJoinWithCourseId(uri, projection);
 
             case COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE:
-                return  getCourseSectionJoinWithSectionId(uri, projection, selection);
+                return  getCourseSectionJoinWithSectionId(uri, projection, sortOrder);
 
             case SECTION_WITH_COURSE_ID_TABLE: // Course List
-                return getSectionWithCourseId(uri, projection, selection);
+                return getSectionWithCourseId(uri, projection);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -1648,11 +1648,12 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseSectionJoinWithCourseId(Uri uri, String[] projection, String sortOrder) {
+    private Cursor getCourseSectionJoinWithCourseId(Uri uri, String[] projection) {
 
         final Long COURSE_ID = ContentUris.parseId(uri);
-        String selection = DbContent.CourseTable._ID + " =?";
+        String selection = DbContent.CourseTable.TABLE_NAME +"."+ DbContent.CourseTable._ID + " =?";
         String[] selectionArgs = {String.valueOf(COURSE_ID)};
+        String sortOrder = DbContent.SectionTable.SECTION_NAME_COLUMN +" ASC";
 
         return COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
@@ -1682,12 +1683,12 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getSectionWithCourseId(Uri uri, String[] projection, String sortOrder){
+    private Cursor getSectionWithCourseId(Uri uri, String[] projection){
 
         final Long COURSE_ID = ContentUris.parseId(uri);
         String selection = DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(COURSE_ID)};
-
+        String sortOrder = DbContent.SectionTable.SECTION_NAME_COLUMN + " ASC";
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.SectionTable.TABLE_NAME,
                 projection,

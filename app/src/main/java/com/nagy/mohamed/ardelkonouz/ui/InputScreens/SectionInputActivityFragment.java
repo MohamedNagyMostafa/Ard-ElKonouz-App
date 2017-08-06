@@ -315,10 +315,8 @@ public class SectionInputActivityFragment extends Fragment
                 Double.valueOf(
                         sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.getText().toString()
                 );
-        final Long SECTION_START_DATE =
-                Long.valueOf(
-                        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.getText().toString()
-                );
+        final Long SECTION_START_DATE = sectionStartDate;
+
         final Integer SECTION_SESSIONS_NUMBER =
                 Integer.valueOf(
                         sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT.getText().toString()
@@ -370,8 +368,11 @@ public class SectionInputActivityFragment extends Fragment
         ContentValues contentValues = new ContentValues();
 
         Cursor courseCursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
-                new String[]{DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN},
+                DatabaseController.UriDatabase.getCourseSectionJoinWithCourseId(courseId),
+                new String[]{
+                        DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN,
+                        DbContent.SectionTable.SECTION_NAME_COLUMN
+                },
                 null,
                 null,
                 null
@@ -379,13 +380,23 @@ public class SectionInputActivityFragment extends Fragment
 
 
         if(courseCursor != null){
-            courseCursor.moveToFirst();
-            final Integer SECTION_NAME = courseCursor.getInt(0) + 1;
+            int sectionName;
+            if(courseCursor.getCount() > 0) {
+                courseCursor.moveToFirst();
 
-            Log.e("section_days", SECTION_SESSION_DAYS);
-            Log.e("section_days", SECTION_SESSION_DAYS);
-            Log.e("section_sessions_number", String.valueOf(SECTION_SESSIONS_NUMBER));
-            Log.e("section counter", String.valueOf(SECTION_NAME));
+                final int SECTIONS_NUMBER = courseCursor.getInt(0); //2
+                final int SECTION_NAME_COL = 1;
+                Log.e("before loop", "sections number " + String.valueOf(SECTIONS_NUMBER));
+                for (sectionName = 1; sectionName <= SECTIONS_NUMBER; sectionName++) {
+                    if (sectionName != courseCursor.getInt(SECTION_NAME_COL)) {
+                        Log.e("section na != sec na tb", "break");
+                        break;
+                    }
+                    courseCursor.moveToNext();
+                }
+            }else{
+                sectionName = 1;
+            }
 
             contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
             contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
@@ -394,11 +405,11 @@ public class SectionInputActivityFragment extends Fragment
             contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
             contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
             contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
-            contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, SECTION_NAME);
+            contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, sectionName);
 
             // ** set New Course Sections Number **//
             ContentValues courseContentValue = new ContentValues();
-            courseContentValue.put(DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN, SECTION_NAME);
+            courseContentValue.put(DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN, courseCursor.getCount() + 1);
             getActivity().getContentResolver().update(
                     DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
                     courseContentValue,
