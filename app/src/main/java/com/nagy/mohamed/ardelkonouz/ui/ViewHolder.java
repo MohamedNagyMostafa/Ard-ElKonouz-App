@@ -863,7 +863,7 @@ public class ViewHolder {
     public static class SectionProfileViewHolder{
 
         public final TextView SECTION_NAME_TEXT_VIEW;
-        public final TextView SECTION_COST_TEXT_VIEW;
+        public final TextView SECTION_SESSION_HOURS_TEXT_VIEW;
         public final TextView SECTION_BEGINNING_DATE_TEXT_VIEW;
         public final TextView SECTION_ENDING_DATE_TEXT_VIEW;
         public final TextView SECTION_SESSION_DAYS_TEXT_VIEW;
@@ -879,7 +879,7 @@ public class ViewHolder {
 
         public SectionProfileViewHolder(View sectionProfileView){
             SECTION_NAME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_name_text_view);
-            SECTION_COST_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_cost_text_view);
+            SECTION_SESSION_HOURS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_hours_text_view);
             SECTION_BEGINNING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_start_date_text_view);
             SECTION_ENDING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_end_date_text_view);
             SECTION_SESSION_DAYS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_days_text_view);

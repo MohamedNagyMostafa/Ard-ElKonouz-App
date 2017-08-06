@@ -58,15 +58,14 @@ public class RecycleViewCourseProfileAdapter extends
             final Long _ID = cursor.getLong(
                     DatabaseController.ProjectionDatabase.SECTION_ID
             );
+            final Integer SECTION_NAME = cursor.getInt(
+                    DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
+            );
 
             sectionRecycleViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                     String.valueOf(
                             "Section " +
-                                    String.valueOf(
-                                            cursor.getInt(
-                                                    DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
-                                            )
-                                    )
+                                    String.valueOf(SECTION_NAME)
                     )
             );
 

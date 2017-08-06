@@ -41,6 +41,7 @@ public class SectionProfileActivityFragment extends Fragment
 
     private OnDeleteListener onDeleteListener =
             new OnDeleteListener() {
+
                 @Override
                 public void OnClickListener(Long SHIFT_ID) {
                     getActivity().getContentResolver().delete(
@@ -278,6 +279,8 @@ public class SectionProfileActivityFragment extends Fragment
         final String SECTION_NAME =
                 "Section " +
                         cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_ID);
+        final Integer SESSION_HOURS =
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_HOURS);
         final long SECTION_START_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
         final long SECTION_END_DATE =
@@ -317,6 +320,7 @@ public class SectionProfileActivityFragment extends Fragment
         sectionProfileViewHolder.SECTION_SESSION_DAYS_TEXT_VIEW.setText(Utility.getDaysAsString(SECTION_SESSIONS_DAYS));
         sectionProfileViewHolder.SECTION_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(SECTION_STATE, getContext()));
         sectionProfileViewHolder.SECTION_INSTRUCTOR_NAME_TEXT_VIEW.setText(getSectionInstructorName(sectionId));
+        sectionProfileViewHolder.SECTION_SESSION_HOURS_TEXT_VIEW.setText(String.valueOf(SESSION_HOURS));
 
     }
 
@@ -328,6 +332,8 @@ public class SectionProfileActivityFragment extends Fragment
                 "Section " + String.valueOf(
                         cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN)
                 );
+        final Integer SESSION_HOURS =
+                cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_HOURS_COLUMN);
         final long SECTION_START_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_START_DATE);
         final long SECTION_END_DATE =
@@ -370,8 +376,7 @@ public class SectionProfileActivityFragment extends Fragment
         sectionProfileViewHolder.SECTION_SESSION_DAYS_TEXT_VIEW.setText(Utility.getDaysAsString(SECTION_SESSIONS_DAYS));
         sectionProfileViewHolder.SECTION_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(SECTION_STATE, getContext()));
         sectionProfileViewHolder.SECTION_INSTRUCTOR_NAME_TEXT_VIEW.setText(getSectionInstructorName(sectionId));
-
-
+        sectionProfileViewHolder.SECTION_SESSION_HOURS_TEXT_VIEW.setText(String.valueOf(SESSION_HOURS));
     }
 
     @Override

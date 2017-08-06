@@ -87,10 +87,10 @@
                                 android:fontFamily="serif"
                                 android:layout_marginTop="8dp"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:text="Cost"/>
+                                android:text="Session Hours"/>
 
                             <TextView
-                                android:id="@+id/section_pf_cost_text_view"
+                                android:id="@+id/section_pf_session_hours_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"

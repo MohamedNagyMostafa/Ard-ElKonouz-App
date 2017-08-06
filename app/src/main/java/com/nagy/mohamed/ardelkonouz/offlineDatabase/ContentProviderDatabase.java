@@ -1425,14 +1425,14 @@ public class ContentProviderDatabase extends ContentProvider {
                 String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
                 idUri = idUri.substring(0, idUri.lastIndexOf('k'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable.TABLE_NAME).append(".")
-                        .append(DbContent.CourseTable._ID).append(" != ?");
+                selection.append(" AND ").append(DbContent.SectionTable.TABLE_NAME).append(".")
+                        .append(DbContent.SectionTable._ID).append(" != ?");
             }else{
                 String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
                 idUri = idUri.substring(0, idUri.lastIndexOf('/'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable.TABLE_NAME).append(".")
-                        .append(DbContent.CourseTable._ID).append(" != ?");
+                selection.append(" AND ").append(DbContent.SectionTable.TABLE_NAME).append(".")
+                        .append(DbContent.SectionTable._ID).append(" != ?");
             }
         }while (idUri.length() > 1);
 
