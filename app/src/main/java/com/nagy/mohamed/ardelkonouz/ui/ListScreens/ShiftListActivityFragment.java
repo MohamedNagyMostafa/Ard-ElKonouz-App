@@ -170,7 +170,7 @@ public class ShiftListActivityFragment extends Fragment
         shiftListRecycleViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
                         DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_NAME
-                ) + "Section " + String.valueOf(
+                ) + " Section " + String.valueOf(
                         cursor.getInt(
                                 DatabaseController.ProjectionDatabase.SHIFT_LIST_SECTION_NAME
                         )

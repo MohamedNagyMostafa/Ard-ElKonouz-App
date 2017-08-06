@@ -121,6 +121,8 @@ public class ShiftInputActivityFragment extends Fragment
                         @Override
                         public void onClick(View view) {
                             selectedID.remove(SECTION_ID);
+                            if(selectedID.size() == 0)
+                                shiftInputScreenViewHolder.EMPTY_SELECTION_LIST_TEXT_VIEW.setVisibility(View.VISIBLE);
                             restartSelectionLoader();
                         }
                     }
@@ -282,110 +284,128 @@ public class ShiftInputActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ContentValues[] coursesSelectedContentValuesAsArray = new ContentValues[selectedID.size()];
-                        ArrayList<ContentValues> coursesSelectedContentValues= new ArrayList<>();
 
+                        if(validationInputs()) {
+                            ContentValues[] coursesSelectedContentValuesAsArray = new ContentValues[selectedID.size()];
+                            ArrayList<ContentValues> coursesSelectedContentValues = new ArrayList<>();
 
-                        for(final Long SECTION_ID : selectedID){
+                            if(selectedID.size() == 0){
+                                Cursor sectionCursor = getActivity().getContentResolver().query(
+                                        DatabaseController.UriDatabase.SECTION_URI,
+                                        new String[]{DbContent.SectionTable._ID},
+                                        null,
+                                        null,
+                                        null
+                                );
 
-                            /**
-                             * Validation Block @Start ...
-                             */
-                            if(innerShiftDateValidation(SECTION_ID)) {
-                                Log.e("ignore for shift", "igonre");
-                                continue;
-                            }
-                            // get Most accurate start shift date.
-                            Long newShiftStartDate = getAccurateShiftStartDate(SECTION_ID);
-                            // get Most accurate end shift date.
-                            Long newShiftEndDate = getAccurateShiftEndDate(SECTION_ID);
-                            // delete inner shifts.
-                            deleteInnerShiftsWithRespectToNewShiftsDates(
-                                    SECTION_ID,
-                                    newShiftStartDate,
-                                    newShiftEndDate
-                            );
-                            /**
-                             * Validation Block @End ...
-                             */
-                            ContentValues shiftContentValues = new ContentValues();
-                            ContentValues courseContentValues = new ContentValues();
-
-                            shiftContentValues.put(DbContent.ShiftDaysTable.SECTION_ID_COLUMN, SECTION_ID);
-                            shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN, newShiftStartDate);
-                            shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN, newShiftEndDate);
-
-                            Shift shift = new Shift(
-                                    newShiftStartDate,
-                                    newShiftEndDate,
-                                    SECTION_ID
-                            );
-
-                            // update end date for courses.
-                            Cursor cursor = getActivity().getContentResolver().query(
-                                    DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
-                                    DatabaseController.ProjectionDatabase.SECTION_DATE_PROJECTION,
-                                    null,
-                                    null,
-                                    null
-                            );
-
-                            if(cursor != null){
-                                if(cursor.getCount() > 0){
-                                    cursor.moveToFirst();
-                                    ArrayList<Shift> shiftArrayList = new ArrayList<Shift>();
-                                    final String COURSE_SESSION_DAYS = cursor.getString(
-                                            DatabaseController.ProjectionDatabase.SECTION_DATE_DAYS
-                                    );
-                                    final Long COURSE_START_DATE = cursor.getLong(
-                                                    DatabaseController.ProjectionDatabase.SECTION_DATE_START_DATE
-                                            );
-                                    final Integer COURSE_SESSIONS_NUMBER = cursor.getInt(
-                                            DatabaseController.ProjectionDatabase.SECTION_DATE_SESSIONS_NUMBER
-                                    );
-
-                                    shiftArrayList.add(shift);
-
-                                    courseContentValues.put(
-                                            DbContent.SectionTable.SECTION_END_DATE_COLUMN,
-                                            Utility.getEndDate(
-                                                    shiftArrayList,
-                                                    COURSE_SESSION_DAYS,
-                                                    COURSE_SESSIONS_NUMBER,
-                                                    COURSE_START_DATE
-                                            )
-                                    );
-
+                                if(sectionCursor != null){
+                                    while (sectionCursor.moveToNext()){
+                                        selectedID.add(sectionCursor.getLong(0));
+                                    }
+                                    sectionCursor.close();
                                 }
-                                cursor.close();
+                            }
+                            for (final Long SECTION_ID : selectedID) {
+
+                                /*
+                                 * Validation Block @Start ...
+                                 */
+                                if (innerShiftDateValidation(SECTION_ID)) {
+                                    Log.e("ignore for shift", "igonre");
+                                    continue;
+                                }
+                                // get Most accurate start shift date.
+                                Long newShiftStartDate = getAccurateShiftStartDate(SECTION_ID);
+                                // get Most accurate end shift date.
+                                Long newShiftEndDate = getAccurateShiftEndDate(SECTION_ID);
+                                // delete inner shifts.
+                                deleteInnerShiftsWithRespectToNewShiftsDates(
+                                        SECTION_ID,
+                                        newShiftStartDate,
+                                        newShiftEndDate
+                                );
+                                /**
+                                 * Validation Block @End ...
+                                 */
+                                ContentValues shiftContentValues = new ContentValues();
+                                ContentValues courseContentValues = new ContentValues();
+
+                                shiftContentValues.put(DbContent.ShiftDaysTable.SECTION_ID_COLUMN, SECTION_ID);
+                                shiftContentValues.put(DbContent.ShiftDaysTable.START_DATE_COLUMN, newShiftStartDate);
+                                shiftContentValues.put(DbContent.ShiftDaysTable.END_DATE_COLUMN, newShiftEndDate);
+
+                                Shift shift = new Shift(
+                                        newShiftStartDate,
+                                        newShiftEndDate,
+                                        SECTION_ID
+                                );
+
+                                // update end date for courses.
+                                Cursor cursor = getActivity().getContentResolver().query(
+                                        DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
+                                        DatabaseController.ProjectionDatabase.SECTION_DATE_PROJECTION,
+                                        null,
+                                        null,
+                                        null
+                                );
+
+                                if (cursor != null) {
+                                    if (cursor.getCount() > 0) {
+                                        cursor.moveToFirst();
+                                        ArrayList<Shift> shiftArrayList = new ArrayList<Shift>();
+                                        final String COURSE_SESSION_DAYS = cursor.getString(
+                                                DatabaseController.ProjectionDatabase.SECTION_DATE_DAYS
+                                        );
+                                        final Long COURSE_START_DATE = cursor.getLong(
+                                                DatabaseController.ProjectionDatabase.SECTION_DATE_START_DATE
+                                        );
+                                        final Integer COURSE_SESSIONS_NUMBER = cursor.getInt(
+                                                DatabaseController.ProjectionDatabase.SECTION_DATE_SESSIONS_NUMBER
+                                        );
+
+                                        shiftArrayList.add(shift);
+
+                                        courseContentValues.put(
+                                                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                                                Utility.getEndDate(
+                                                        shiftArrayList,
+                                                        COURSE_SESSION_DAYS,
+                                                        COURSE_SESSIONS_NUMBER,
+                                                        COURSE_START_DATE
+                                                )
+                                        );
+
+                                    }
+                                    cursor.close();
+                                }
+
+                                getActivity().getContentResolver().update(
+                                        DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
+                                        courseContentValues,
+                                        null,
+                                        null
+                                );
+
+                                coursesSelectedContentValues.add(shiftContentValues);
+
                             }
 
-                            getActivity().getContentResolver().update(
-                                    DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
-                                    courseContentValues,
-                                    null,
-                                    null
-                            );
+                            coursesSelectedContentValues.toArray(coursesSelectedContentValuesAsArray);
+                            Log.e("check bulk insert", String.valueOf(coursesSelectedContentValues.size()));
+                            if (coursesSelectedContentValuesAsArray.length > 0) {
+                                getActivity().getContentResolver().bulkInsert(
+                                        DatabaseController.UriDatabase.SHIFT_URI,
+                                        coursesSelectedContentValuesAsArray
+                                );
 
-                            coursesSelectedContentValues.add(shiftContentValues);
-
-                        }
-
-                        coursesSelectedContentValues.toArray(coursesSelectedContentValuesAsArray);
-                        Log.e("check bulk insert", String.valueOf(coursesSelectedContentValues.size()));
-                        if(coursesSelectedContentValuesAsArray.length > 0) {
-                            getActivity().getContentResolver().bulkInsert(
-                                    DatabaseController.UriDatabase.SHIFT_URI,
-                                    coursesSelectedContentValuesAsArray
-                            );
-
-                            openShiftListScreen();
-                        }else{
-                            Toast.makeText(
-                                    getContext(),
-                                    "This Shift is Founded before",
-                                    Toast.LENGTH_SHORT
-                            ).show();
+                                openShiftListScreen();
+                            } else {
+                                Toast.makeText(
+                                        getContext(),
+                                        "This Shift is Founded before",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
                         }
                     }
 
@@ -501,12 +521,15 @@ public class ShiftInputActivityFragment extends Fragment
         Log.e("output", String.valueOf(data.getCount()));
         switch (loader.getId()){
             case Constants.LOADER_SELECTED_LIST:
+                Log.e("selected finish", "Done");
                 if(selectedID.size() > 0) {
                     recycleViewShiftInputAdapter.swapCursor(data);
                     recycleViewShiftInputAdapter.notifyDataSetChanged();
+                    shiftInputScreenViewHolder.EMPTY_SELECTION_LIST_TEXT_VIEW.setVisibility(View.GONE);
                 }else{
                     recycleViewShiftInputAdapter.swapCursor(null);
                     recycleViewShiftInputAdapter.notifyDataSetChanged();
+                    shiftInputScreenViewHolder.EMPTY_SELECTION_LIST_TEXT_VIEW.setVisibility(View.VISIBLE);
                 }
                 break;
             case Constants.LOADER_CHOICES_LIST:
@@ -671,6 +694,26 @@ public class ShiftInputActivityFragment extends Fragment
                     savedInstanceState.getStringArrayList(Constants.SaveState.SHIFT_COURSE_SELECTION_ID)
             );
             restartSelectionLoader();
+        }
+    }
+
+    private boolean validationInputs(){
+        if(startDay == null){
+            Toast.makeText(
+                    getContext(),
+                    "Please choose start day for shift",
+                    Toast.LENGTH_SHORT
+            ).show();
+            return false;
+        }else if(endDay == null){
+            Toast.makeText(
+                    getContext(),
+                    "Please choose end day for shift",
+                    Toast.LENGTH_SHORT
+            ).show();
+            return false;
+        }else{
+            return true;
         }
     }
 }

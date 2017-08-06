@@ -821,9 +821,11 @@ public class ViewHolder {
         public final Button TOMORROW_SHIFT_BUTTON;
         public final Button NEXT_WEEK_SHIFT_BUTTON;
         public final Button APPLY_BUTTON;
+        public final TextView EMPTY_SELECTION_LIST_TEXT_VIEW;
 
         public ShiftInputScreenViewHolder(View shiftView){
             super(shiftView);
+            EMPTY_SELECTION_LIST_TEXT_VIEW = (TextView) shiftView.findViewById(R.id.shift_input_first_empty_text_view);
             COURSE_SEARCH_EDIT_TEXT = (EditText) shiftView.findViewById(R.id.shift_input_search_edit_text);
             COURSE_CHOICES_LIST_VIEW = (ListView) shiftView.findViewById(R.id.shift_input_choices_list_view);
             COURSE_SELECTION_RECYCLE_VIEW = (RecyclerView) shiftView.findViewById(R.id.shift_input_selection_recycle_view);

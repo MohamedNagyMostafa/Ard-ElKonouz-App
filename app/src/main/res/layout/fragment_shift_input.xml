@@ -23,20 +23,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/shift_input_selection_recycle_view"
+        <RelativeLayout
+            android:id="@+id/shift_input_selection_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:scrollbarStyle="insideInset"/>
+            android:layout_alignStart="@+id/scrollView2"
+            android:layout_alignEnd="@+id/scrollView2">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/shift_input_selection_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:scrollbarStyle="insideInset"/>
+
+            <TextView
+                android:id="@+id/shift_input_first_empty_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="serif"
+                android:layout_centerInParent="true"
+                android:text="All Sections Are Selected"/>
+
+        </RelativeLayout>
+
 
         <ScrollView
-            android:layout_below="@id/shift_input_selection_recycle_view"
+            android:layout_below="@id/shift_input_selection_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginEnd="16dp"
+            android:id="@+id/scrollView2">
 
             <LinearLayout
                 android:layout_width="match_parent"
