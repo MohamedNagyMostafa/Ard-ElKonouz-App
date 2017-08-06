@@ -384,6 +384,7 @@ public class SectionInputActivityFragment extends Fragment
             Log.e("section_days", SECTION_SESSION_DAYS);
             Log.e("section_days", SECTION_SESSION_DAYS);
             Log.e("section_sessions_number", String.valueOf(SECTION_SESSIONS_NUMBER));
+            Log.e("section counter", String.valueOf(SECTION_NAME));
 
             contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
             contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
@@ -393,6 +394,16 @@ public class SectionInputActivityFragment extends Fragment
             contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
             contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
             contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, SECTION_NAME);
+
+            // ** set New Course Sections Number **//
+            ContentValues courseContentValue = new ContentValues();
+            courseContentValue.put(DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN, SECTION_NAME);
+            getActivity().getContentResolver().update(
+                    DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
+                    courseContentValue,
+                    null,
+                    null
+            );
 
             courseCursor.close();
             Log.e("set data to database",String.valueOf(SECTION_START_DATE));
