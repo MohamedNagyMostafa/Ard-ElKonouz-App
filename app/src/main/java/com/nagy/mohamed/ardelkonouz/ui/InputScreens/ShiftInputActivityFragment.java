@@ -222,6 +222,9 @@ public class ShiftInputActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     DatePickerFragment datePickerFragment = new DatePickerFragment();
+                    if(startDay != null){
+                        datePickerFragment.setCalendar(startDay);
+                    }
                     setSettings(datePickerFragment, view, Constants.DateType.START_DATE);
                     datePickerFragment.show(getFragmentManager(), Constants.TAG);
                 }
@@ -232,6 +235,9 @@ public class ShiftInputActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     DatePickerFragment datePickerFragment = new DatePickerFragment();
+                    if(endDay != null){
+                        datePickerFragment.setCalendar(endDay);
+                    }
                     setSettings(datePickerFragment, view, Constants.DateType.END_DATE);
                     datePickerFragment.show(getFragmentManager(), Constants.TAG);
                 }

@@ -49,6 +49,9 @@ public class SectionInputActivityFragment extends Fragment
                 @Override
                 public void onClick(View view) {
                     DatePickerFragment datePickerFragment = new DatePickerFragment();
+                    if(sectionStartDate != null){
+                        datePickerFragment.setCalendar(sectionStartDate);
+                    }
                     setSettings(datePickerFragment, view, Constants.DateType.START_DATE);
                     datePickerFragment.show(getFragmentManager(), Constants.TAG);
                 }
