@@ -157,6 +157,12 @@ public class CourseActivityFragment extends Fragment
                                 );
 
                                 getActivity().getContentResolver().delete(
+                                        DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
+                                        null,
+                                        null
+                                );
+
+                                getActivity().getContentResolver().delete(
                                         DatabaseController.UriDatabase.getSectionWithId(SECTION_ID),
                                         null,
                                         null
