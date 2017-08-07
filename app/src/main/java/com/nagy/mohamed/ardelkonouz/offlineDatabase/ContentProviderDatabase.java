@@ -74,6 +74,10 @@ public class ContentProviderDatabase extends ContentProvider {
     public static final int COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE = 36;
     public static final int SECTION_WITH_COURSE_ID_TABLE = 37; // Course List
     public static final int SECTION_WITH_COURSE_NAME_TABLE = 38;
+    // ** Unique data checker.
+    public static final int CHILD_NAME_UNIQUE = 101;
+    public static final int CHILD_FATHER_MOTHER_UNIQUE = 102;
+    public static final int UNIQUE_FATHER_MOTHER_PHONE = 103;
 
 
     private static final String INNER_JOIN = "INNER JOIN";
@@ -368,6 +372,15 @@ public class ContentProviderDatabase extends ContentProvider {
 
             case SECTION_WITH_COURSE_ID_TABLE: // Course List
                 return getSectionWithCourseId(uri, projection);
+
+            case CHILD_NAME_UNIQUE:
+                return getChildNameUnique(uri,projection,sortOrder);
+
+            case CHILD_FATHER_MOTHER_UNIQUE:
+                return getChildFatherMotherUnique(uri,projection,sortOrder);
+
+            case UNIQUE_FATHER_MOTHER_PHONE:
+                return getFatherMotherPhoneUnique(uri, projection, sortOrder);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -955,6 +968,20 @@ public class ContentProviderDatabase extends ContentProvider {
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "/#";
         final String COURSE_SECTION_JOIN_WITH_SECTION_ID_PATH = SECTION_PATH + "/" + COURSE_PATH + "/" +
                 DbContent.SectionTable._ID + "/#";
+
+        // Unique..
+        final String CHILD_NAME_UNIQUE_PATH = DbContent.ChildTable.TABLE_NAME + "/unique/" +
+                DbContent.ChildTable.CHILD_NAME_COLUMN +"/*";
+        final String CHILD_FATHER_MOTHER_UNIQUE_PATH = DbContent.ChildTable.TABLE_NAME + "/unique/" +
+                DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN + "/" + DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN +
+                "/*/*";
+        final String CHILD_FATHER_MOTHER_PHONE_UNIQUE_PATH = DbContent.ChildTable.TABLE_NAME + "/unique/" +
+                DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + "/" +DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN +
+                "/*/*";
+
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_NAME_UNIQUE_PATH, CHILD_NAME_UNIQUE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_FATHER_MOTHER_UNIQUE_PATH, CHILD_FATHER_MOTHER_UNIQUE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_FATHER_MOTHER_PHONE_UNIQUE_PATH, UNIQUE_FATHER_MOTHER_PHONE);
 
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_PATH, COURSE_SECTION_JOIN_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_COURSE_NAME_PATH, SECTION_WITH_COURSE_NAME_TABLE);
@@ -1722,6 +1749,67 @@ public class ContentProviderDatabase extends ContentProvider {
                 null,
                 null,
                 sortType
+        );
+    }
+
+    private Cursor getChildNameUnique(Uri uri, String[] projection, String sortOrder){
+        String childName = uri.toString().substring(uri.toString().lastIndexOf("/") + 1, uri.toString().length());
+
+        String selection = DbContent.ChildTable.CHILD_NAME_COLUMN +"=?";
+        String[] selectionArgs = {childName};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ChildTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getChildFatherMotherUnique(Uri uri, String[] projection, String sortOrder){
+        String motherName = uri.toString().substring(uri.toString().lastIndexOf("/") + 1,
+                uri.toString().length());
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
+        String fatherName = newUri.substring(newUri.lastIndexOf("/") + 1, newUri.length());
+
+        String selection = DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN + "=? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN + "=?";
+        String[] selectionArgs = {fatherName, motherName};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ChildTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getFatherMotherPhoneUnique(Uri uri, String[] projection, String sortOrder){
+        String motherPhone = uri.toString().substring(uri.toString().lastIndexOf("/") + 1,
+                uri.toString().length());
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
+        String fatherPhone = newUri.substring(newUri.lastIndexOf("/") + 1, newUri.length());
+
+        String selection = DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + "=? OR " +
+                DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + "=? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + "=? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + "=?";
+        String[] selectionArgs = {fatherPhone, motherPhone, fatherPhone, motherPhone};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ChildTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
         );
     }
 

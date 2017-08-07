@@ -625,5 +625,30 @@ public class DatabaseController {
                     .appendPath(DbContent.SectionTable._ID)
                     .appendPath(String.valueOf(id)).build();
         }
+
+        public static Uri getChildNameUnique(String childName){
+            return CHILD_TABLE_URI.buildUpon()
+                    .appendPath("/unique/")
+                    .appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN)
+                    .appendPath(childName).build();
+        }
+
+        public static Uri getChildFatherMotherUnique(String fatherName, String motherName){
+            return CHILD_TABLE_URI.buildUpon()
+                    .appendPath("/unique/")
+                    .appendPath(DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN)
+                    .appendPath(DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN)
+                    .appendPath(fatherName)
+                    .appendPath(motherName).build();
+        }
+
+        public static Uri getChildFatherMotherPhoneUnique(String fatherPhone, String motherPhone){
+            return CHILD_TABLE_URI.buildUpon()
+                    .appendPath("/unique/")
+                    .appendPath(DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN)
+                    .appendPath(DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN)
+                    .appendPath(fatherPhone)
+                    .appendPath(motherPhone).build();
+        }
     }
 }
