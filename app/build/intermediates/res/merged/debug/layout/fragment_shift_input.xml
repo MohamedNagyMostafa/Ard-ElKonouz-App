@@ -242,8 +242,9 @@
             android:layout_height="160dp"
             android:divider="@color/colorAccent"
             android:dividerHeight="1dp"
-            android:layout_marginStart="16dp"
+            android:background="@android:color/white"
             android:visibility="gone"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:scrollbarStyle="insideInset"/>
 
