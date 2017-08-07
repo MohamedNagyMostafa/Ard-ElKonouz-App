@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Aug 07 10:43:34 EET 2017
+#Mon Aug 07 11:07:20 EET 2017
 20.base=C\:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\resources-debug.ap_
 143.base=C\:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\resources-debug.ap_
 340.file=C\:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\color\\abc_hint_foreground_material_dark.xml

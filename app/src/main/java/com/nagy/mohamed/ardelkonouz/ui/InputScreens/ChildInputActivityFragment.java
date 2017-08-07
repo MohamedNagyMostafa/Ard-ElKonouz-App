@@ -236,7 +236,7 @@ public class ChildInputActivityFragment extends Fragment {
                                     getSelectionFromList(FREE_TIME_LIST) == -1){
                                 Toast.makeText(getContext(), "Please complete your iq questions", Toast.LENGTH_SHORT).show();
                                 return;
-                            }else if(!childAndPhoneIsFound(childInputScreenViewHolder)){
+                            }else if(!childUnique(childInputScreenViewHolder, 1)){
                                 return;
                             }
                         }else {
@@ -311,7 +311,7 @@ public class ChildInputActivityFragment extends Fragment {
                                     getSelectionFromList(FREE_TIME_LIST) == -1){
                                 Toast.makeText(getContext(), "Please complete your iq questions", Toast.LENGTH_SHORT).show();
                                 return;
-                            }else if(!childAndPhoneIsFound(childInputScreenViewHolder)){
+                            }else if(!childUnique(childInputScreenViewHolder, 0)){
                             return;
                             }
                         }else {
@@ -756,7 +756,9 @@ public class ChildInputActivityFragment extends Fragment {
         }
     }
 
-    private boolean childAndPhoneIsFound(ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder){
+    private boolean childUnique(
+            ViewHolder.ChildInputScreenViewHolder childInputScreenViewHolder,
+            int type){
         final String FATHER_PHONE_NUMBER = childInputScreenViewHolder.FATHER_MOBILE_EDIT_TEXT.getText().toString().trim();
         final String MOTHER_PHONE_NUMBER = childInputScreenViewHolder.MOTHER_MOBILE_EDIT_TEXT.getText().toString().trim();
         final String CHILD_NAME = childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT.getText().toString().trim();
@@ -775,7 +777,7 @@ public class ChildInputActivityFragment extends Fragment {
 
         if(childNameUniqueCursor != null){
             Log.e("child unique count", String.valueOf(childNameUniqueCursor.getCount()));
-            if(childNameUniqueCursor.getCount() == 0){
+            if(childNameUniqueCursor.getCount() == type){
                 Cursor fatherMotherUniqueCursor = getActivity().getContentResolver().query(
                         DatabaseController.UriDatabase.getChildFatherMotherUnique(FATHER_NAME, MOTHER_NAME),
                         null,
@@ -786,7 +788,7 @@ public class ChildInputActivityFragment extends Fragment {
                 );
 
                 if(fatherMotherUniqueCursor != null){
-                    if(fatherMotherUniqueCursor.getCount() == 0){
+                    if(fatherMotherUniqueCursor.getCount() == type){
 
                         Cursor fatherMotherPhoneUniqueCursor = getActivity().getContentResolver().query(
                                 DatabaseController.UriDatabase.getChildFatherMotherPhoneUnique(
@@ -799,7 +801,7 @@ public class ChildInputActivityFragment extends Fragment {
                         );
 
                         if(fatherMotherPhoneUniqueCursor != null){
-                            if(fatherMotherPhoneUniqueCursor.getCount() == 0){
+                            if(fatherMotherPhoneUniqueCursor.getCount() == type){
                                 result = true;
                             }else{
                                 Toast.makeText(
@@ -834,4 +836,6 @@ public class ChildInputActivityFragment extends Fragment {
 
         return result;
     }
+
+
 }
