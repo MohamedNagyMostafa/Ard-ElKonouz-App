@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     tools:context=".ui.InputScreens.ShiftInputActivityFragment"
-    tools:showIn="@layout/activity_shift_input"
-    android:weightSum="1">
+    tools:showIn="@layout/activity_shift_input">
 
     <EditText
         android:id="@+id/shift_input_search_edit_text"
@@ -16,11 +15,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:hint="Search"
-        android:textSize="28sp"
         android:layout_marginStart="16dp"
-        android:drawableStart="@drawable/ic_search_black_48dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:layout_weight="0.05" />
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        android:backgroundTint="@color/colorPrimaryDark" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,8 +26,8 @@
         <RelativeLayout
             android:id="@+id/shift_input_selection_layout"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="18dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="8dp"
             android:layout_alignStart="@+id/scrollView2"
             android:layout_alignEnd="@+id/scrollView2">
 
@@ -47,7 +44,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:textSize="24sp"
                 android:textColor="@color/colorPrimaryDark"
                 android:fontFamily="serif"
                 android:layout_centerInParent="true"
@@ -86,7 +82,6 @@
                             android:fontFamily="serif"
                             android:textColor="@color/colorPrimaryDark"
                             android:layout_marginTop="8dp"
-                            android:textSize="28sp"
                             android:text="@string/start_date"/>
 
                         <LinearLayout
@@ -101,8 +96,7 @@
                                 android:id="@+id/shift_input_start_date_edit_view"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:layout_height="70dp"
-                                android:textSize="28sp"
+                                android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:clickable="false"
@@ -130,14 +124,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             android:fontFamily="serif"
-                            android:textSize="28sp"
-                            android:text="@string/end_date"
-                            android:textColor="@color/colorPrimaryDark" />
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/end_date"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -151,8 +143,7 @@
                                 android:id="@+id/shift_input_end_date_edit_view"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:layout_height="70dp"
-                                android:textSize="28sp"
+                                android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
                                 android:gravity="center_vertical"
                                 android:clickable="false"
@@ -186,9 +177,9 @@
 
                     <Button
                         android:id="@+id/shift_input_add_yesterday_button"
-                        android:layout_width="210dp"
-                        android:layout_height="60dp"
-                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:backgroundTint="@color/colorAccent"
                         android:fontFamily="sans-serif-condensed"
                         android:textStyle="bold"
@@ -198,9 +189,9 @@
 
                     <Button
                         android:id="@+id/shift_input_add_today_button"
-                        android:layout_width="210dp"
-                        android:layout_height="60dp"
-                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:backgroundTint="@color/colorAccent"
                         android:fontFamily="sans-serif-condensed"
                         android:textStyle="bold"
@@ -218,9 +209,9 @@
 
                     <Button
                         android:id="@+id/shift_input_add_tomorrow_button"
-                        android:layout_width="210dp"
-                        android:layout_height="60dp"
-                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:backgroundTint="@color/colorAccent"
                         android:fontFamily="sans-serif-condensed"
                         android:textStyle="bold"
@@ -230,9 +221,9 @@
 
                     <Button
                         android:id="@+id/shift_input_add_next_week_button"
-                        android:layout_width="210dp"
-                        android:layout_height="60dp"
-                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:backgroundTint="@color/colorAccent"
                         android:fontFamily="sans-serif-condensed"
                         android:textStyle="bold"
@@ -249,7 +240,7 @@
         <ListView
             android:id="@+id/shift_input_choices_list_view"
             android:layout_width="180dp"
-            android:layout_height="210dp"
+            android:layout_height="130dp"
             android:divider="@color/colorAccent"
             android:dividerHeight="1dp"
             android:visibility="gone"
@@ -262,16 +253,16 @@
 
     <Button
         android:id="@+id/shift_apply_button"
-        android:layout_width="210dp"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="110dp"
+        android:layout_height="42dp"
+        android:textSize="16sp"
         android:layout_marginTop="16dp"
+        android:layout_gravity="bottom|center_horizontal"
         android:backgroundTint="@android:color/transparent"
         android:fontFamily="sans-serif-condensed"
-        android:text="Apply"
+        android:textStyle="bold"
         android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:text="Apply" />
 
 
 </LinearLayout>
