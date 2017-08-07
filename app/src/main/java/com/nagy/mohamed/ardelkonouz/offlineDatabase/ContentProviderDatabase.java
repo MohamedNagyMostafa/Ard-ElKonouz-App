@@ -1754,8 +1754,8 @@ public class ContentProviderDatabase extends ContentProvider {
 
     private Cursor getChildNameUnique(Uri uri, String[] projection, String sortOrder){
         String childName = uri.toString().substring(uri.toString().lastIndexOf("/") + 1, uri.toString().length());
-
-        String selection = DbContent.ChildTable.CHILD_NAME_COLUMN +"=?";
+        Log.e("child name", childName);
+        String selection = DbContent.ChildTable.CHILD_NAME_COLUMN +" LIKE ?";
         String[] selectionArgs = {childName};
 
         return m_dbHelper.getReadableDatabase().query(
@@ -1775,8 +1775,8 @@ public class ContentProviderDatabase extends ContentProvider {
         String newUri = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         String fatherName = newUri.substring(newUri.lastIndexOf("/") + 1, newUri.length());
 
-        String selection = DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN + "=? OR " +
-                DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN + "=?";
+        String selection = DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {fatherName, motherName};
 
         return m_dbHelper.getReadableDatabase().query(
@@ -1796,10 +1796,10 @@ public class ContentProviderDatabase extends ContentProvider {
         String newUri = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         String fatherPhone = newUri.substring(newUri.lastIndexOf("/") + 1, newUri.length());
 
-        String selection = DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + "=? OR " +
-                DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + "=? OR " +
-                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + "=? OR " +
-                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + "=?";
+        String selection = DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + " LIKE ?";
         String[] selectionArgs = {fatherPhone, motherPhone, fatherPhone, motherPhone};
 
         return m_dbHelper.getReadableDatabase().query(

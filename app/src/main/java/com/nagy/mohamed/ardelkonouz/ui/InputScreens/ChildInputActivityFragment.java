@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -310,6 +311,8 @@ public class ChildInputActivityFragment extends Fragment {
                                     getSelectionFromList(FREE_TIME_LIST) == -1){
                                 Toast.makeText(getContext(), "Please complete your iq questions", Toast.LENGTH_SHORT).show();
                                 return;
+                            }else if(!childAndPhoneIsFound(childInputScreenViewHolder)){
+                            return;
                             }
                         }else {
                             return;
@@ -771,6 +774,7 @@ public class ChildInputActivityFragment extends Fragment {
         );
 
         if(childNameUniqueCursor != null){
+            Log.e("child unique count", String.valueOf(childNameUniqueCursor.getCount()));
             if(childNameUniqueCursor.getCount() == 0){
                 Cursor fatherMotherUniqueCursor = getActivity().getContentResolver().query(
                         DatabaseController.UriDatabase.getChildFatherMotherUnique(FATHER_NAME, MOTHER_NAME),

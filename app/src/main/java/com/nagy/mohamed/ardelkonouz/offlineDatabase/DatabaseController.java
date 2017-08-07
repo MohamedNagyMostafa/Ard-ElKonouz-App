@@ -627,24 +627,27 @@ public class DatabaseController {
         }
 
         public static Uri getChildNameUnique(String childName){
-            return CHILD_TABLE_URI.buildUpon()
-                    .appendPath("/unique/")
-                    .appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN)
-                    .appendPath(childName).build();
+            Uri uri = CHILD_TABLE_URI.buildUpon()
+                    .appendPath("unique")
+                    .appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN).build();
+
+            return Utility.encodeUriToArabicSearch(uri, childName);
         }
 
         public static Uri getChildFatherMotherUnique(String fatherName, String motherName){
-            return CHILD_TABLE_URI.buildUpon()
-                    .appendPath("/unique/")
+            Uri uri = CHILD_TABLE_URI.buildUpon()
+                    .appendPath("unique")
                     .appendPath(DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN)
-                    .appendPath(DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN)
-                    .appendPath(fatherName)
-                    .appendPath(motherName).build();
+                    .appendPath(DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN).build();
+
+            Uri fatherNameUri = Utility.encodeUriToArabicSearch(uri, fatherName);
+
+            return Utility.encodeUriToArabicSearch(fatherNameUri, motherName);
         }
 
         public static Uri getChildFatherMotherPhoneUnique(String fatherPhone, String motherPhone){
             return CHILD_TABLE_URI.buildUpon()
-                    .appendPath("/unique/")
+                    .appendPath("unique")
                     .appendPath(DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN)
                     .appendPath(DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN)
                     .appendPath(fatherPhone)

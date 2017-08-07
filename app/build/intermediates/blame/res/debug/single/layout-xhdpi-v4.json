@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_shift_list.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_shift_list.xml"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\child_list_recycle_view.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\child_list_recycle_view.xml"
     },
@@ -18,5 +22,17 @@
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_child_profile.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_child_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_child_course_connector.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_child_course_connector.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\course_pf_recycle_view.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\course_pf_recycle_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_child_input.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_child_input.xml"
     }
 ]

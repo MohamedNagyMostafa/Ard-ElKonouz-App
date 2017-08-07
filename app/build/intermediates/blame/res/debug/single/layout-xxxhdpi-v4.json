@@ -1,5 +1,13 @@
 [
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xxxhdpi-v4\\fragment_shift_list.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xxxhdpi\\fragment_shift_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xxxhdpi-v4\\fragment_child_course_connector.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xxxhdpi\\fragment_child_course_connector.xml"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xxxhdpi-v4\\fragment_child.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xxxhdpi\\fragment_child.xml"
     },
@@ -18,5 +26,13 @@
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xxxhdpi-v4\\child_pf_courses_instructors_recycle.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xxxhdpi\\child_pf_courses_instructors_recycle.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xxxhdpi-v4\\course_pf_recycle_view.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xxxhdpi\\course_pf_recycle_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xxxhdpi-v4\\fragment_child_input.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xxxhdpi\\fragment_child_input.xml"
     }
 ]
