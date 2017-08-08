@@ -377,7 +377,8 @@ public class DatabaseController {
                 DbContent.CourseTable.COURSE_COST_COLUMN,
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.SectionTable.SECTION_NAME_COLUMN
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_LEVEL_COLUMN
         };
 
         public static final int CHILD_COURSE_CONNECTOR_ID = 0;
@@ -387,6 +388,7 @@ public class DatabaseController {
         public static final int CHILD_COURSE_CONNECTOR_SECTION_DAYS = 4;
         public static final int CHILD_COURSE_CONNECTOR_COURSE_NAME = 5;
         public static final int CHILD_COURSE_CONNECTOR_SECTION_NAME = 6;
+        public static final int CHILD_COURSE_CONNECTOR_SECTION_LEVEL = 7;
 
 //        public static final String[] INSTRUCTOR_COURSE_CONNECTOR_PROJECTION = {
 //                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,

@@ -156,6 +156,13 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         )
                 )
         );
+        coursesViewHolder.SECTION_LEVEL_TEXT_VIEW.setText(
+                String.valueOf(
+                        cursor.getInt(
+                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_LEVEL
+                        )
+                )
+        );
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_COURSE_NAME)
         );

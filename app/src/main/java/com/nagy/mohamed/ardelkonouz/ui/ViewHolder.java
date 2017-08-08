@@ -685,12 +685,14 @@ public class ViewHolder {
             public final TextView COURSE_START_DATE_TEXT_VIEW;
             public final TextView COURSE_END_DATE_TEXT_VIEW;
             public final ImageView COURSE_SELECT_IMAGE_VIEW;
+            public final TextView SECTION_LEVEL_TEXT_VIEW;
 
             public CoursesViewHolder(View coursesView){
 
                 COURSE_NAME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_name_text_view);
                 COURSE_COST_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_cost_text_view);
                 COURSE_DAYS_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_days_text_view);
+                SECTION_LEVEL_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_level_text_view);
                 COURSE_START_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_start_date_text_view);
                 COURSE_END_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.child_course_list_end_date_text_view);
                 COURSE_SELECT_IMAGE_VIEW = (ImageView) coursesView.findViewById(R.id.child_course_list_select__image_view);
