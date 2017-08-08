@@ -164,6 +164,13 @@ public class SectionInputActivityFragment extends Fragment
                         )
 
                 );
+                sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT.setText(
+                        String.valueOf(
+                                cursor.getInt(
+                                        DatabaseController.ProjectionDatabase.SECTION_LEVEL_COLUMN
+                                )
+                        )
+                );
                 sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
@@ -177,8 +184,10 @@ public class SectionInputActivityFragment extends Fragment
                             @Override
                             public void onClick(View view) {
                                 if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
+                                        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
                                         sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
-                                        sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT)) {
+                                        sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
+                                        sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT)) {
 
 
                                     getActivity().getContentResolver().update(
@@ -216,7 +225,8 @@ public class SectionInputActivityFragment extends Fragment
                         if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
                                 sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
                                 sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
-                                sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT)) {
+                                sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
+                                sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT)) {
 
 
                             Uri uri = getActivity().getContentResolver().insert(
@@ -324,6 +334,10 @@ public class SectionInputActivityFragment extends Fragment
                 Integer.valueOf(
                         sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT.getText().toString()
                 );
+        final Integer SECTION_LEVEL =
+                Integer.valueOf(
+                        sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT.getText().toString()
+                );
 
         final Integer SECTION_STATE = getSelectionFromList(SECTION_STATE_LIST);
 
@@ -409,6 +423,7 @@ public class SectionInputActivityFragment extends Fragment
             contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
             contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
             contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, sectionName);
+            contentValues.put(DbContent.SectionTable.SECTION_LEVEL_COLUMN, SECTION_LEVEL);
 
             // ** set New Course Sections Number **//
             ContentValues courseContentValue = new ContentValues();

@@ -291,7 +291,8 @@ public class SectionProfileActivityFragment extends Fragment
                 cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN);
         final String SECTION_SESSIONS_DAYS =
                 cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN);
-
+        final int SECTION_LEVEL =
+                cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_LEVEL);
         final int REMAINING_SESSIONS = Utility.getRemainDays(
                 shifts,
                 SECTION_SESSIONS_DAYS,
@@ -321,6 +322,7 @@ public class SectionProfileActivityFragment extends Fragment
         sectionProfileViewHolder.SECTION_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(SECTION_STATE, getContext()));
         sectionProfileViewHolder.SECTION_INSTRUCTOR_NAME_TEXT_VIEW.setText(getSectionInstructorName(sectionId));
         sectionProfileViewHolder.SECTION_SESSION_HOURS_TEXT_VIEW.setText(String.valueOf(SESSION_HOURS));
+        sectionProfileViewHolder.SECTION_LEVEL_TEXT_VIEW.setText(String.valueOf(SECTION_LEVEL));
 
     }
 
@@ -344,6 +346,8 @@ public class SectionProfileActivityFragment extends Fragment
                 cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_SESSIONS_NUMBER_COLUMN);
         final String SECTION_SESSIONS_DAYS =
                 cursor.getString(DatabaseController.ProjectionDatabase.SECTION_DAYS);
+        final int SECTION_LEVEL =
+                cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_LEVEL_COLUMN);
 
         final int REMAINING_SESSIONS = Utility.getRemainDays(
                 null,
@@ -377,6 +381,7 @@ public class SectionProfileActivityFragment extends Fragment
         sectionProfileViewHolder.SECTION_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(SECTION_STATE, getContext()));
         sectionProfileViewHolder.SECTION_INSTRUCTOR_NAME_TEXT_VIEW.setText(getSectionInstructorName(sectionId));
         sectionProfileViewHolder.SECTION_SESSION_HOURS_TEXT_VIEW.setText(String.valueOf(SESSION_HOURS));
+        sectionProfileViewHolder.SECTION_LEVEL_TEXT_VIEW.setText(String.valueOf(SECTION_LEVEL));
     }
 
     @Override

@@ -162,14 +162,11 @@ public class CourseProfileActivityFragment extends Fragment
                 cursor.getString(DatabaseController.ProjectionDatabase.COURSE_NAME);
         final double COURSE_COST =
                 cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_COST);
-        final int COURSE_LEVEL =
-                cursor.getInt(DatabaseController.ProjectionDatabase.COURSE_LEVEL);
         final double COURSE_PERCENT_PER_CHILD =
                 cursor.getDouble(DatabaseController.ProjectionDatabase.COURSE_SALARY_PER_CHILD);
 
         courseProfileScreenViewHolder.COURSE_NAME_TEXT_VIEW.setText(COURSE_NAME);
         courseProfileScreenViewHolder.COURSE_COST_TEXT_VIEW.setText(String.valueOf(COURSE_COST));
-        courseProfileScreenViewHolder.COURSE_LEVEL_TEXT_VIEW.setText(String.valueOf(COURSE_LEVEL));
         courseProfileScreenViewHolder.COURSE_SALARY_PER_CHILD_TEXT_VIEW.setText(new StringBuilder("").append(
                 String.valueOf(COURSE_PERCENT_PER_CHILD)).append("%"));
         courseProfileScreenViewHolder.COURSE_AGE_RANGE_TEXT_VIEW.setText(

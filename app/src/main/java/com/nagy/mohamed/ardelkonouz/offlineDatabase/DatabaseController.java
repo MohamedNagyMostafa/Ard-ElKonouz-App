@@ -91,7 +91,8 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_START_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_HOURS_COLUMN,
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
-                DbContent.SectionTable.SECTION_NAME_COLUMN
+                DbContent.SectionTable.SECTION_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_LEVEL_COLUMN
         };
 
         public static final int SECTION_ID = 0;
@@ -103,6 +104,7 @@ public class DatabaseController {
         public static final int SECTION_HOURS_COLUMN = 6;
         public static final int SECTION_COURSE_ID_COLUMN = 7;
         public static final int SECTION_NAME_COLUMN = 8;
+        public static final int SECTION_LEVEL_COLUMN = 9;
 
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -110,7 +112,6 @@ public class DatabaseController {
                 DbContent.CourseTable.COURSE_COST_COLUMN,
                 DbContent.CourseTable.COURSE_START_AGE_COLUMN,
                 DbContent.CourseTable.COURSE_END_AGE_COLUMN,
-                DbContent.CourseTable.COURSE_LEVEL_COLUMN,
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
         };
 
@@ -119,8 +120,7 @@ public class DatabaseController {
         public static final int COURSE_COST = 2;
         public static final int COURSE_START_AGE = 3;
         public static final int COURSE_END_AGE = 4;
-        public static final int COURSE_LEVEL = 5;
-        public static final int COURSE_SALARY_PER_CHILD = 6;
+        public static final int COURSE_SALARY_PER_CHILD = 5;
 
         public static final String[] COURSE_LIST_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,
@@ -343,7 +343,8 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
                 DbContent.SectionTable.TABLE_NAME + "." +  DbContent.SectionTable._ID,
-                DbContent.SectionTable.SECTION_HOURS_COLUMN
+                DbContent.SectionTable.SECTION_HOURS_COLUMN,
+                DbContent.SectionTable.SECTION_LEVEL_COLUMN
         };
 
         public static final int SHIFT_SECTION_JOIN_ID = 0;
@@ -356,6 +357,7 @@ public class DatabaseController {
         public static final int SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN = 7;
         public static final int SHIFT_SECTION_JOIN_SECTION_ID = 8;
         public static final int SHIFT_SECTION_JOIN_SECTION_HOURS = 9;
+        public static final int SHIFT_SECTION_JOIN_LEVEL = 10;
 
         public static final String[] CHOICES_SELECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,

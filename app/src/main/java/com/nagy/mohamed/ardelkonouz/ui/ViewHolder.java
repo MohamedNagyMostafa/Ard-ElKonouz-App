@@ -207,7 +207,6 @@ public class ViewHolder {
 
         public final EditText COURSE_NAME_EDIT_TEXT;
         public final EditText COURSE_COST_EDIT_TEXT;
-        public final EditText COURSE_LEVEL_EDIT_TEXT;
         public final EditText COURSE_SALARY_PER_CHILD_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_FROM_EDIT_TEXT;
         public final EditText COURSE_AGE_RANGE_TO_EDIT_TEXT;
@@ -217,7 +216,6 @@ public class ViewHolder {
 
             COURSE_NAME_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_name_edit_view);
             COURSE_COST_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_cost_edit_view);
-            COURSE_LEVEL_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_level_edit_view);
             COURSE_SALARY_PER_CHILD_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_salary_per_child_edit_view);
             COURSE_AGE_RANGE_FROM_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_from_edit_view);
             COURSE_AGE_RANGE_TO_EDIT_TEXT = (EditText) courseInputScreen.findViewById(R.id.course_input_age_range_to_edit_view);
@@ -230,6 +228,7 @@ public class ViewHolder {
         public final EditText SECTION_BEGINNING_DATE_EDIT_TEXT;
         public final EditText SECTION_SESSIONS_NUMBER_EDIT_TEXT;
         public final EditText SECTION_SESSION_HOUR_EDIT_TEXT;
+        public final EditText SECTION_LEVEL_EDIT_TEXT;
         public final TextView SECTION_COMPLETE_TEXT_VIEW;
         public final TextView SECTION_INCOMPLETE_TEXT_VIEW;
         public final ImageView SECTION_COMPLETE_IMAGE_VIEW;
@@ -252,6 +251,7 @@ public class ViewHolder {
 
         public SectionInputScreenViewHolder(View sectionInputScreen){
 
+            SECTION_LEVEL_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_level_edit_view);
             SECTION_SESSION_HOUR_EDIT_TEXT = (EditText)  sectionInputScreen.findViewById(R.id.section_input_sessions_hours_edit_view);
             SECTION_BEGINNING_DATE_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_date_edit_view);
             SECTION_SESSIONS_NUMBER_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_sessions_number_edit_view);
@@ -552,7 +552,6 @@ public class ViewHolder {
     public static class CourseProfileScreenViewHolder{
 
         public final TextView COURSE_NAME_TEXT_VIEW;
-        public final TextView COURSE_LEVEL_TEXT_VIEW;
         public final TextView COURSE_COST_TEXT_VIEW;
         public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
         public final TextView COURSE_AGE_RANGE_TEXT_VIEW;
@@ -564,7 +563,6 @@ public class ViewHolder {
         public CourseProfileScreenViewHolder(View courseProfileView){
 
             COURSE_NAME_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_name_text_view);
-            COURSE_LEVEL_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_level_text_view);
             COURSE_COST_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_cost_text_view);
             COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_salary_per_child_text_view);
             COURSE_AGE_RANGE_TEXT_VIEW = (TextView) courseProfileView.findViewById(R.id.course_pf_age_range_text_view);
@@ -874,6 +872,7 @@ public class ViewHolder {
         public final TextView SECTION_ENDING_DATE_TEXT_VIEW;
         public final TextView SECTION_SESSION_DAYS_TEXT_VIEW;
         public final TextView SECTION_NEXT_SESSION_DAY_TEXT_VIEW;
+        public final TextView SECTION_LEVEL_TEXT_VIEW;
         public final TextView SECTION_INSTRUCTOR_NAME_TEXT_VIEW;
         public final TextView SECTION_STATE_TEXT_VIEW;
         public final TextView SECTION_SESSIONS_NUMBER_TEXT_VIEW;
@@ -884,6 +883,7 @@ public class ViewHolder {
         public final LinearLayout SECTION_SHIFT_EMPTY_VIEW;
 
         public SectionProfileViewHolder(View sectionProfileView){
+            SECTION_LEVEL_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_level_text_view);
             SECTION_NAME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_name_text_view);
             SECTION_SESSION_HOURS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_hours_text_view);
             SECTION_BEGINNING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_start_date_text_view);

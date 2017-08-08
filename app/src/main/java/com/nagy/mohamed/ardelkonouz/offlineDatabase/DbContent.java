@@ -32,7 +32,6 @@ public class DbContent {
         public static final String COURSE_COST_COLUMN = "course_cost";
         public static final String COURSE_START_AGE_COLUMN = "course_start_age";
         public static final String COURSE_END_AGE_COLUMN = "course_end_age";
-        public static final String COURSE_LEVEL_COLUMN = "course_level";
         public static final String COURSE_SECTIONS_NUMBER_COLUMN = "course_sections_number";
         public static final String COURSE_SALARY_PER_CHILD = "salary_per_child";
 
@@ -44,8 +43,7 @@ public class DbContent {
                 COURSE_COST_COLUMN + SPACE + REAL + SPACE + NOT_NULL + "," +
                 COURSE_START_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 COURSE_END_AGE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                COURSE_SALARY_PER_CHILD + SPACE + REAL + SPACE + NOT_NULL + "," +
-                COURSE_LEVEL_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + ");";
+                COURSE_SALARY_PER_CHILD + SPACE + REAL + SPACE + NOT_NULL + ");";
 
         static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + TABLE_NAME ;
@@ -246,6 +244,7 @@ public class DbContent {
         public static final String SECTION_END_DATE_COLUMN = "section_end_date";
         public static final String SECTION_HOURS_COLUMN = "section_hours";
         public static final String SECTION_DAYS_COLUMN = "section_days";
+        public static final String SECTION_LEVEL_COLUMN = "section_level";
         public static final String SECTION_SESSIONS_NUMBER_COLUMN = "section_sessions_number";
         public static final String SECTION_COURSE_ID_COLUMN = "course_id";
 
@@ -260,6 +259,7 @@ public class DbContent {
                 SECTION_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
+                SECTION_LEVEL_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 FOREIGN_KEY + SPACE + "(" + SECTION_COURSE_ID_COLUMN + ")" + SPACE + REFERENCES + SPACE
                 + CourseTable.TABLE_NAME + SPACE + "(" + CourseTable._ID + ")" +")";
 

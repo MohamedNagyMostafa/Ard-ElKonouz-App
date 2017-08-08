@@ -2,7 +2,6 @@ package com.nagy.mohamed.ardelkonouz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,15 +72,6 @@ public class MainActivityFragment extends Fragment{
         }
     };
 
-    public MainActivityFragment() {
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        databaseTesting();
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,40 +88,8 @@ public class MainActivityFragment extends Fragment{
         mainScreenViewHolder.SALARY_LIST_LAYOUT.setOnClickListener(salaryListClickListener);
         mainScreenViewHolder.SHIFT_LIST_LAYOUT.setOnClickListener(shiftListClickListener);
 
-//
-//        DatePickerFragment datePickerFragment = new DatePickerFragment();
-//        TimePickerFragment timePickerFragment = new TimePickerFragment();
-//        datePickerFragment.setCurrentDateWithTime(this);
-//        timePickerFragment.setCurrentDateWithTime(this);
-//        datePickerFragment.show(getFragmentManager(),"d");
-//        timePickerFragment.show(getFragmentManager(),"d");
-
-
         return rootView;
     }
-//
-//    @Override
-//    public void onTimeSet(int hour, int mint) {
-//        calendar.set(Calendar.HOUR_OF_DAY, hour);
-//        calendar.set(Calendar.MINUTE, mint);
-//    }
-//
-//    @Override
-//    public void onDateSet(int year, int month, int day) {
-//        calendar.set(Calendar.YEAR, year);
-//        calendar.set(Calendar.DAY_OF_WEEK, day);
-//        calendar.set(Calendar.MONTH, month);
-//        DateFormat dateFormat = DateFormat.getDateInstance();
-//        Date date = new Date();
-//        Date date1 = new Date();
-//        date.setTime(calendar.getTimeInMillis());
-//        Log.e(DateFormat.getDateTimeInstance().format(date), String.valueOf(calendar.getTimeInMillis()));
-//        Calendar calendar1 = Calendar.getInstance();
-//        date1.setTime(calendar1.getTimeInMillis());
-//        Log.e(DateFormat.getDateTimeInstance().format(date1), String.valueOf(calendar1.getTimeInMillis()));
-//
-//        Log.e("time now diff",String .valueOf(calendar.getTimeInMillis() - calendar1.getTimeInMillis()));
-//
-//    }
+
 
 }
