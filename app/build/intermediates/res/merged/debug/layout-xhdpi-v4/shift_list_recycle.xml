@@ -27,18 +27,18 @@
             android:id="@+id/shift_list_course_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/empty_info"
+            android:layout_margin="4dp"
             android:fontFamily="serif"
+            android:text="@string/empty_info"
             android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="26sp"
-            android:layout_margin="4dp"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/instructor"
-            android:textSize="26sp"
+            android:textSize="18sp"
             android:textColor="@color/colorPrimaryDark"
             android:fontFamily="serif"
             android:layout_marginEnd="4dp"/>
@@ -46,7 +46,7 @@
         <TextView
             android:id="@+id/shift_list_instructor_name_text_view"
             android:layout_width="wrap_content"
-            android:textSize="26sp"
+            android:textSize="18sp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:text="@string/empty_info"
@@ -58,13 +58,13 @@
             android:text="Next Session Day"
             android:textColor="@color/colorPrimaryDark"
             android:fontFamily="serif"
-            android:textSize="26sp"
+            android:textSize="18sp"
             android:layout_marginEnd="4dp"/>
 
         <TextView
             android:id="@+id/shift_list_next_session"
             android:layout_width="wrap_content"
-            android:textSize="26sp"
+            android:textSize="18sp"
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:layout_margin="4dp"

@@ -41,6 +41,9 @@ public class SalaryActivityFragment extends Fragment
         //set paid, unpaid, values views.
         setPaidValues(salaryScreenViewHolder);
         salaryScreenViewHolder.INSTRUCTORS_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        salaryScreenViewHolder.INSTRUCTORS_LIST_VIEW.setEmptyView(
+                salaryScreenViewHolder.EMPTY_SALARY_LAYOUT
+        );
         getLoaderManager().initLoader(Constants.LOADER_SALARY_LIST, null, this);
         return rootView;
     }

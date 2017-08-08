@@ -182,13 +182,43 @@
         android:layout_marginEnd="16dp"
         android:background="@color/colorAccent"/>
 
-    <ListView
-        android:id="@+id/instructor_salary_instructors_list_view"
-        android:layout_below="@id/line"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line">
+
+        <LinearLayout
+            android:id="@+id/instructor_salary_empty_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_event_note_black_48dp"
+                android:tint="@color/colorAccent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="serif"
+                android:text="There Are No Courses Available"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/instructor_salary_instructors_list_view"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

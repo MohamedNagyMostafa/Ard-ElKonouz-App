@@ -46,6 +46,9 @@ public class InstructorSalaryActivityFragment extends Fragment
         setSettingsData();
         // set list adapter.
         instructorSalaryScreenViewHolder.INSTRUCTOR_COURSES_LIST_VIEW.setAdapter(databaseCursorAdapter);
+        instructorSalaryScreenViewHolder.INSTRUCTOR_COURSES_LIST_VIEW.setEmptyView(
+                instructorSalaryScreenViewHolder.INSTRUCTOR_SALARY_EMPTY_LIST
+        );
         // initialize loader.
         getLoaderManager().initLoader(Constants.LOADER_INSTRUCTOR_SALARY, null, this);
         // return view.

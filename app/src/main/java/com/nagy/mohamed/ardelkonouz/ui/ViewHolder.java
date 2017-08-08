@@ -748,6 +748,7 @@ public class ViewHolder {
         public final TextView NUMBER_OF_PAID_COURSES;
         public final TextView NUMBER_OF_UNPAID_COURSES;
         public final ListView INSTRUCTOR_COURSES_LIST_VIEW;
+        public final LinearLayout INSTRUCTOR_SALARY_EMPTY_LIST;
 
         public InstructorSalaryScreenViewHolder(View instructorSalaryView){
 
@@ -758,6 +759,7 @@ public class ViewHolder {
             NUMBER_OF_PAID_COURSES = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_number_of_paid_courses_text_view);
             NUMBER_OF_UNPAID_COURSES = (TextView) instructorSalaryView.findViewById(R.id.instructor_salary_number_of_unpaid_courses_text_view);
             INSTRUCTOR_COURSES_LIST_VIEW = (ListView) instructorSalaryView.findViewById(R.id.instructor_salary_instructors_list_view);
+            INSTRUCTOR_SALARY_EMPTY_LIST = (LinearLayout) instructorSalaryView.findViewById(R.id.instructor_salary_empty_list);
         }
 
         public static class InstructorCoursesViewHolder{
@@ -785,6 +787,7 @@ public class ViewHolder {
         public final TextView TOTAL_PAID_SALARY_TEXT_VIEW;
         public final TextView UNPAID_SALARY_NUMBER_TEXT_VIEW;
         public final ListView INSTRUCTORS_LIST_VIEW;
+        public final LinearLayout EMPTY_SALARY_LAYOUT;
 
         public SalaryScreenViewHolder(View salaryView){
 
@@ -792,6 +795,7 @@ public class ViewHolder {
             TOTAL_PAID_SALARY_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_total_paid_text_view);
             UNPAID_SALARY_NUMBER_TEXT_VIEW = (TextView) salaryView.findViewById(R.id.salary_number_of_unpaid_text_view);
             INSTRUCTORS_LIST_VIEW = (ListView) salaryView.findViewById(R.id.salary_instructors_list_view);
+            EMPTY_SALARY_LAYOUT = (LinearLayout) salaryView.findViewById(R.id.salary_list_empty_view);
         }
 
         public static class InstructorsViewHolder{

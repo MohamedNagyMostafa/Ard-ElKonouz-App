@@ -108,16 +108,28 @@
         android:layout_height="wrap_content"/>
 
     <LinearLayout
-        android:id="@+id/salary_empty_list"
+        android:id="@+id/salary_list_empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_centerInParent="true"
         android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_record_voice_over_black_48dp"
+            android:tint="@color/colorAccent"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Instructor To Show"/>
+            android:layout_marginStart="4dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="serif"
+            android:text="There Are No Instructors Available"/>
 
     </LinearLayout>
+
 
 </RelativeLayout>
