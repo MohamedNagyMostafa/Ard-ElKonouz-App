@@ -141,9 +141,9 @@ public class InstructorActivityFragment extends Fragment
                         String courseName = courseCursor.getString(0);
 
                         if (instructorCourses.isEmpty())
-                            instructorCourses = courseName + ".Sec " + sectionNumber;
+                            instructorCourses = courseName + " Section " + sectionNumber;
                         else
-                            instructorCourses += ", " + courseName + ".Sec " + sectionNumber;
+                            instructorCourses += " - " + courseName + " Section " + sectionNumber;
                     }
                     courseCursor.close();
                 }

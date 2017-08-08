@@ -342,7 +342,8 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN,
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
-                DbContent.SectionTable.TABLE_NAME + "." +  DbContent.SectionTable._ID
+                DbContent.SectionTable.TABLE_NAME + "." +  DbContent.SectionTable._ID,
+                DbContent.SectionTable.SECTION_HOURS_COLUMN
         };
 
         public static final int SHIFT_SECTION_JOIN_ID = 0;
@@ -354,6 +355,7 @@ public class DatabaseController {
         public static final int SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN = 6;
         public static final int SHIFT_SECTION_JOIN_SECTION_SESSIONS_NUMBER_COLUMN = 7;
         public static final int SHIFT_SECTION_JOIN_SECTION_ID = 8;
+        public static final int SHIFT_SECTION_JOIN_SECTION_HOURS = 9;
 
         public static final String[] CHOICES_SELECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
@@ -622,6 +624,34 @@ public class DatabaseController {
                     .appendPath(DbContent.CourseTable.TABLE_NAME)
                     .appendPath(DbContent.SectionTable._ID)
                     .appendPath(String.valueOf(id)).build();
+        }
+
+        public static Uri getChildNameUnique(String childName){
+            Uri uri = CHILD_TABLE_URI.buildUpon()
+                    .appendPath("unique")
+                    .appendPath(DbContent.ChildTable.CHILD_NAME_COLUMN).build();
+
+            return Utility.encodeUriToArabicSearch(uri, childName);
+        }
+
+        public static Uri getChildFatherMotherUnique(String fatherName, String motherName){
+            Uri uri = CHILD_TABLE_URI.buildUpon()
+                    .appendPath("unique")
+                    .appendPath(DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN)
+                    .appendPath(DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN).build();
+
+            Uri fatherNameUri = Utility.encodeUriToArabicSearch(uri, fatherName);
+
+            return Utility.encodeUriToArabicSearch(fatherNameUri, motherName);
+        }
+
+        public static Uri getChildFatherMotherPhoneUnique(String fatherPhone, String motherPhone){
+            return CHILD_TABLE_URI.buildUpon()
+                    .appendPath("unique")
+                    .appendPath(DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN)
+                    .appendPath(DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN)
+                    .appendPath(fatherPhone)
+                    .appendPath(motherPhone).build();
         }
     }
 }

@@ -6,4 +6,5 @@ package com.nagy.mohamed.ardelkonouz.ui.Listner;
 public interface OnDeleteListener {
 
     void OnClickListener(final Long SHIFT_ID);
+
 }

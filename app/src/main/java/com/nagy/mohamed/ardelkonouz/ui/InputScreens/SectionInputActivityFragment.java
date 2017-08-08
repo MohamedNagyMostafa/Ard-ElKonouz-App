@@ -41,13 +41,18 @@ public class SectionInputActivityFragment extends Fragment
 
     private ArrayList<DoubleChoice> SECTION_STATE_LIST;
     private ArrayList<DoubleChoice> SECTION_DAYS_LIST;
+    private Long sectionStartDate = null;
     private Long courseId;
-    private final View.OnClickListener DATE_EDIT_TEXT_LISTENER =
+
+    private final View.OnClickListener START_DATE_EDIT_TEXT_LISTENER =
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DatePickerFragment datePickerFragment = new DatePickerFragment();
-                    setSettings(datePickerFragment, view);
+                    if(sectionStartDate != null){
+                        datePickerFragment.setCalendar(sectionStartDate);
+                    }
+                    setSettings(datePickerFragment, view, Constants.DateType.START_DATE);
                     datePickerFragment.show(getFragmentManager(), Constants.TAG);
                 }
             };
@@ -66,7 +71,7 @@ public class SectionInputActivityFragment extends Fragment
         SECTION_STATE_LIST = setSectionStateListItem(sectionInputScreenViewHolder);
         SECTION_DAYS_LIST = setSectionDaysListItem(sectionInputScreenViewHolder);
 
-        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(DATE_EDIT_TEXT_LISTENER);
+        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(START_DATE_EDIT_TEXT_LISTENER);
 
         // setChoice listener.
         setSectionStateListener(SECTION_STATE_LIST);
@@ -139,12 +144,12 @@ public class SectionInputActivityFragment extends Fragment
                                 )
                         )
                 );
+                sectionStartDate = cursor.getLong(
+                        DatabaseController.ProjectionDatabase.SECTION_START_DATE
+                );
+
                 sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setText(
-                        String.valueOf(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.SECTION_START_DATE
-                                )
-                        )
+                        Utility.getTimeFormat(sectionStartDate)
                 );
                 Utility.selectionProcess(
                         cursor.getInt(
@@ -172,7 +177,6 @@ public class SectionInputActivityFragment extends Fragment
                             @Override
                             public void onClick(View view) {
                                 if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
-                                        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
                                         sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
                                         sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT)) {
 
@@ -314,10 +318,8 @@ public class SectionInputActivityFragment extends Fragment
                 Double.valueOf(
                         sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.getText().toString()
                 );
-        final Long SECTION_START_DATE =
-                Long.valueOf(
-                        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.getText().toString()
-                );
+        final Long SECTION_START_DATE = sectionStartDate;
+
         final Integer SECTION_SESSIONS_NUMBER =
                 Integer.valueOf(
                         sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT.getText().toString()
@@ -369,8 +371,11 @@ public class SectionInputActivityFragment extends Fragment
         ContentValues contentValues = new ContentValues();
 
         Cursor courseCursor = getActivity().getContentResolver().query(
-                DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
-                new String[]{DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN},
+                DatabaseController.UriDatabase.getCourseSectionJoinWithCourseId(courseId),
+                new String[]{
+                        DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN,
+                        DbContent.SectionTable.SECTION_NAME_COLUMN
+                },
                 null,
                 null,
                 null
@@ -378,12 +383,23 @@ public class SectionInputActivityFragment extends Fragment
 
 
         if(courseCursor != null){
-            courseCursor.moveToFirst();
-            final Integer SECTION_NAME = courseCursor.getInt(0) + 1;
+            int sectionName;
+            if(courseCursor.getCount() > 0) {
+                courseCursor.moveToFirst();
 
-            Log.e("section_days", SECTION_SESSION_DAYS);
-            Log.e("section_days", SECTION_SESSION_DAYS);
-            Log.e("section_sessions_number", String.valueOf(SECTION_SESSIONS_NUMBER));
+                final int SECTIONS_NUMBER = courseCursor.getInt(0); //2
+                final int SECTION_NAME_COL = 1;
+                Log.e("before loop", "sections number " + String.valueOf(SECTIONS_NUMBER));
+                for (sectionName = 1; sectionName <= SECTIONS_NUMBER; sectionName++) {
+                    if (sectionName != courseCursor.getInt(SECTION_NAME_COL)) {
+                        Log.e("section na != sec na tb", "break");
+                        break;
+                    }
+                    courseCursor.moveToNext();
+                }
+            }else{
+                sectionName = 1;
+            }
 
             contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
             contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
@@ -392,8 +408,19 @@ public class SectionInputActivityFragment extends Fragment
             contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
             contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
             contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
-            contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, SECTION_NAME);
+            contentValues.put(DbContent.SectionTable.SECTION_NAME_COLUMN, sectionName);
 
+            // ** set New Course Sections Number **//
+            ContentValues courseContentValue = new ContentValues();
+            courseContentValue.put(DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN, courseCursor.getCount() + 1);
+            getActivity().getContentResolver().update(
+                    DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
+                    courseContentValue,
+                    null,
+                    null
+            );
+
+            courseCursor.close();
             Log.e("set data to database",String.valueOf(SECTION_START_DATE));
         }
 
@@ -440,12 +467,16 @@ public class SectionInputActivityFragment extends Fragment
             isValid = false;
             Toast.makeText(getContext(), "Please choose the days of sessions",Toast.LENGTH_SHORT).show();
         }
+        if(sectionStartDate == null) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please choose start date of section",Toast.LENGTH_SHORT).show();
+        }
 
         return isValid;
     }
 
     @Override
-    public void onDateSet(int year, int month, int day, View view) {
+    public void onDateSet(int year, int month, int day, View view, int dateType) {
         Log.e("day is ", String.valueOf(day));
         String setYearMonth =
                 String.valueOf(year) + "/" +
@@ -465,15 +496,23 @@ public class SectionInputActivityFragment extends Fragment
 
         Calendar thatDay = Calendar.getInstance();
         thatDay.setTime(dateYearMonth);
+        Long dayDateAsMills = thatDay.getTimeInMillis();
+
+        switch (dateType) {
+            case Constants.DateType.START_DATE:
+                sectionStartDate = dayDateAsMills;
+                break;
+        }
 
         EditText editText = (EditText) view;
 
-        editText.setText(String.valueOf(thatDay.getTimeInMillis()));
+        editText.setText(Utility.getTimeFormat(dayDateAsMills));
     }
 
-    private void setSettings(DatePickerFragment datePickerFragment, View view){
+    private void setSettings(DatePickerFragment datePickerFragment, View view, int dateType){
         datePickerFragment.setCurrentDateWithTime(this);
         datePickerFragment.setView(view);
+        datePickerFragment.setDateType(dateType);
     }
 
     private ContentValues getData(final long SECTION_ID){

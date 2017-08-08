@@ -1,5 +1,6 @@
 package com.nagy.mohamed.ardelkonouz.ui.ProfileScreens;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.CourseInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.Listner.OnDeleteListener;
@@ -60,6 +61,33 @@ public class CourseProfileActivityFragment extends Fragment
                             null
                     );
 
+                    /// update sections number..
+                    Cursor courseCursor = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
+                            new String[]{DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN},
+                            null,
+                            null,
+                            null);
+
+                    if(courseCursor != null){
+                        if(courseCursor.getCount() > 0){
+                            courseCursor.moveToFirst();
+                            final Integer COURSE_SECTIONS_NUMBER = courseCursor.getInt(0);
+                            final Integer NEW_COURSE_SECTIONS_NUMBER = COURSE_SECTIONS_NUMBER - 1;
+
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put(DbContent.CourseTable.COURSE_SECTIONS_NUMBER_COLUMN, NEW_COURSE_SECTIONS_NUMBER);
+
+                            getActivity().getContentResolver().update(
+                                    DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),
+                                    contentValues,
+                                    null,
+                                    null
+                            );
+
+                        }
+                        courseCursor.close();
+                    }
                     restartLoader();
                 }
             };
@@ -78,11 +106,8 @@ public class CourseProfileActivityFragment extends Fragment
         courseProfileScreenViewHolder.COURSE_SECTION_RECYCLE_VIEW.setAdapter(recycleViewCourseProfileAdapter);
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        LinearSnapHelper snapHelper = new LinearSnapHelper();
 
         courseProfileScreenViewHolder.COURSE_SECTION_RECYCLE_VIEW.setLayoutManager(linearLayoutManager);
-        snapHelper.attachToRecyclerView(courseProfileScreenViewHolder.COURSE_SECTION_RECYCLE_VIEW);
-
 
         Cursor cursorCourses = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(courseId),

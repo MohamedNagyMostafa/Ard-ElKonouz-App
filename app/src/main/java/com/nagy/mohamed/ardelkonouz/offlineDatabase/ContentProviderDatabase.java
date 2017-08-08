@@ -74,6 +74,10 @@ public class ContentProviderDatabase extends ContentProvider {
     public static final int COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE = 36;
     public static final int SECTION_WITH_COURSE_ID_TABLE = 37; // Course List
     public static final int SECTION_WITH_COURSE_NAME_TABLE = 38;
+    // ** Unique data checker.
+    public static final int CHILD_NAME_UNIQUE = 101;
+    public static final int CHILD_FATHER_MOTHER_UNIQUE = 102;
+    public static final int UNIQUE_FATHER_MOTHER_PHONE = 103;
 
 
     private static final String INNER_JOIN = "INNER JOIN";
@@ -296,7 +300,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 return getSectionChildWithSectionId(uri, projection, sortOrder);
 
             case SECTION_WITH_DATE_WITH_COMPLETE_ID_AGE_RANGE_TABLE:
-                return getCourseWithEndDateWithCompleteAndAgeRangeTable(uri, projection, sortOrder);
+                return getCourseWithEndDateWithCompleteAndAgeRangeTable(uri, projection);
 
             case CHILD_SECTION_WITH_CHILD_ID_SECTION_ID_TABLE:
                 try {
@@ -305,7 +309,7 @@ public class ContentProviderDatabase extends ContentProvider {
                     e.printStackTrace();
                 }
             case SECTION_WITH_ID_WITH_END_DATE_TABLE:
-                return getSectionWithIdWithEndDateId(uri, projection, sortOrder);
+                return getSectionWithIdWithEndDateId(uri, projection);
 
             case CHILD_WITH_SEARCH_TABLE:
                 return getChildWithSearch(uri, projection, sortOrder);
@@ -361,13 +365,22 @@ public class ContentProviderDatabase extends ContentProvider {
                 );
 
             case COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE:
-                return  getCourseSectionJoinWithCourseId(uri, projection, selection);
+                return  getCourseSectionJoinWithCourseId(uri, projection);
 
             case COURSE_SECTION_JOIN_WITH_SECTION_ID_TABLE:
-                return  getCourseSectionJoinWithSectionId(uri, projection, selection);
+                return  getCourseSectionJoinWithSectionId(uri, projection, sortOrder);
 
             case SECTION_WITH_COURSE_ID_TABLE: // Course List
-                return getSectionWithCourseId(uri, projection, selection);
+                return getSectionWithCourseId(uri, projection);
+
+            case CHILD_NAME_UNIQUE:
+                return getChildNameUnique(uri,projection,sortOrder);
+
+            case CHILD_FATHER_MOTHER_UNIQUE:
+                return getChildFatherMotherUnique(uri,projection,sortOrder);
+
+            case UNIQUE_FATHER_MOTHER_PHONE:
+                return getFatherMotherPhoneUnique(uri, projection, sortOrder);
 
             default:
                 throw new UnsupportedOperationException("Unknown Uri : " + uri);
@@ -956,6 +969,20 @@ public class ContentProviderDatabase extends ContentProvider {
         final String COURSE_SECTION_JOIN_WITH_SECTION_ID_PATH = SECTION_PATH + "/" + COURSE_PATH + "/" +
                 DbContent.SectionTable._ID + "/#";
 
+        // Unique..
+        final String CHILD_NAME_UNIQUE_PATH = DbContent.ChildTable.TABLE_NAME + "/unique/" +
+                DbContent.ChildTable.CHILD_NAME_COLUMN +"/*";
+        final String CHILD_FATHER_MOTHER_UNIQUE_PATH = DbContent.ChildTable.TABLE_NAME + "/unique/" +
+                DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN + "/" + DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN +
+                "/*/*";
+        final String CHILD_FATHER_MOTHER_PHONE_UNIQUE_PATH = DbContent.ChildTable.TABLE_NAME + "/unique/" +
+                DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + "/" +DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN +
+                "/*/*";
+
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_NAME_UNIQUE_PATH, CHILD_NAME_UNIQUE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_FATHER_MOTHER_UNIQUE_PATH, CHILD_FATHER_MOTHER_UNIQUE);
+        uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, CHILD_FATHER_MOTHER_PHONE_UNIQUE_PATH, UNIQUE_FATHER_MOTHER_PHONE);
+
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_PATH, COURSE_SECTION_JOIN_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, SECTION_WITH_COURSE_NAME_PATH, SECTION_WITH_COURSE_NAME_TABLE);
         uriMatcher.addURI(DbContent.CONTENT_AUTHORITY, COURSE_SECTION_JOIN_WITH_COURSE_ID_PATH, COURSE_SECTION_JOIN_WITH_COURSE_ID_TABLE);
@@ -1166,7 +1193,7 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseWithEndDateWithCompleteAndAgeRangeTable(Uri uri, String[] projection, String sortOrder){
+    private Cursor getCourseWithEndDateWithCompleteAndAgeRangeTable(Uri uri, String[] projection){
         long age = ContentUris.parseId(uri);
         String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         long date = ContentUris.parseId(Uri.parse(newUriString));
@@ -1183,6 +1210,9 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(age),
                 String.valueOf(date)
         };
+
+        String sortOrder = DbContent.CourseTable.COURSE_NAME_COLUMN + " ASC, "
+                 + DbContent.SectionTable.SECTION_NAME_COLUMN  + " ASC";
 
         Log.e("query done", "done");
         return COURSE_SECTION_JOIN_QUERY.query(
@@ -1220,7 +1250,7 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getSectionWithIdWithEndDateId(Uri uri, String[] projection, String sortType){
+    private Cursor getSectionWithIdWithEndDateId(Uri uri, String[] projection){
         long date = ContentUris.parseId(uri);
         String newUriString = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
         Uri newUri = Uri.parse(newUriString);
@@ -1233,6 +1263,9 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
+        String sortOrder = DbContent.CourseTable.COURSE_NAME_COLUMN + " ASC, "
+                + DbContent.SectionTable.SECTION_NAME_COLUMN  + " ASC";
+
         return SECTION_INSTRUCTOR_JOIN_WITH_COURSE_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
@@ -1240,7 +1273,7 @@ public class ContentProviderDatabase extends ContentProvider {
                 selectionArgs,
                 null,
                 null,
-                sortType
+                sortOrder
         );
     }
 
@@ -1425,14 +1458,14 @@ public class ContentProviderDatabase extends ContentProvider {
                 String courseId = idUri.substring(idUri.lastIndexOf('k') + 1, idUri.length());
                 idUri = idUri.substring(0, idUri.lastIndexOf('k'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable.TABLE_NAME).append(".")
-                        .append(DbContent.CourseTable._ID).append(" != ?");
+                selection.append(" AND ").append(DbContent.SectionTable.TABLE_NAME).append(".")
+                        .append(DbContent.SectionTable._ID).append(" != ?");
             }else{
                 String courseId = idUri.substring(idUri.lastIndexOf('/') + 1, idUri.length());
                 idUri = idUri.substring(0, idUri.lastIndexOf('/'));
                 selectionArgs.add(courseId);
-                selection.append(" AND ").append(DbContent.CourseTable.TABLE_NAME).append(".")
-                        .append(DbContent.CourseTable._ID).append(" != ?");
+                selection.append(" AND ").append(DbContent.SectionTable.TABLE_NAME).append(".")
+                        .append(DbContent.SectionTable._ID).append(" != ?");
             }
         }while (idUri.length() > 1);
 
@@ -1648,11 +1681,12 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getCourseSectionJoinWithCourseId(Uri uri, String[] projection, String sortOrder) {
+    private Cursor getCourseSectionJoinWithCourseId(Uri uri, String[] projection) {
 
         final Long COURSE_ID = ContentUris.parseId(uri);
-        String selection = DbContent.CourseTable._ID + " =?";
+        String selection = DbContent.CourseTable.TABLE_NAME +"."+ DbContent.CourseTable._ID + " =?";
         String[] selectionArgs = {String.valueOf(COURSE_ID)};
+        String sortOrder = DbContent.SectionTable.SECTION_NAME_COLUMN +" ASC";
 
         return COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
@@ -1682,12 +1716,12 @@ public class ContentProviderDatabase extends ContentProvider {
         );
     }
 
-    private Cursor getSectionWithCourseId(Uri uri, String[] projection, String sortOrder){
+    private Cursor getSectionWithCourseId(Uri uri, String[] projection){
 
         final Long COURSE_ID = ContentUris.parseId(uri);
         String selection = DbContent.SectionTable.SECTION_COURSE_ID_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(COURSE_ID)};
-
+        String sortOrder = DbContent.SectionTable.SECTION_NAME_COLUMN + " ASC";
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.SectionTable.TABLE_NAME,
                 projection,
@@ -1715,6 +1749,67 @@ public class ContentProviderDatabase extends ContentProvider {
                 null,
                 null,
                 sortType
+        );
+    }
+
+    private Cursor getChildNameUnique(Uri uri, String[] projection, String sortOrder){
+        String childName = uri.toString().substring(uri.toString().lastIndexOf("/") + 1, uri.toString().length());
+        Log.e("child name", childName);
+        String selection = DbContent.ChildTable.CHILD_NAME_COLUMN +" LIKE ?";
+        String[] selectionArgs = {childName};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ChildTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getChildFatherMotherUnique(Uri uri, String[] projection, String sortOrder){
+        String motherName = uri.toString().substring(uri.toString().lastIndexOf("/") + 1,
+                uri.toString().length());
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
+        String fatherName = newUri.substring(newUri.lastIndexOf("/") + 1, newUri.length());
+
+        String selection = DbContent.ChildTable.CHILD_FATHER_NAME_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_NAME_COLUMN + " LIKE ?";
+        String[] selectionArgs = {fatherName, motherName};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ChildTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getFatherMotherPhoneUnique(Uri uri, String[] projection, String sortOrder){
+        String motherPhone = uri.toString().substring(uri.toString().lastIndexOf("/") + 1,
+                uri.toString().length());
+        String newUri = uri.toString().substring(0, uri.toString().lastIndexOf("/"));
+        String fatherPhone = newUri.substring(newUri.lastIndexOf("/") + 1, newUri.length());
+
+        String selection = DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_FATHER_MOBILE_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + " LIKE ? OR " +
+                DbContent.ChildTable.CHILD_MOTHER_MOBILE_COLUMN + " LIKE ?";
+        String[] selectionArgs = {fatherPhone, motherPhone, fatherPhone, motherPhone};
+
+        return m_dbHelper.getReadableDatabase().query(
+                DbContent.ChildTable.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
         );
     }
 

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -34,6 +35,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
     private DatabaseCursorAdapter databaseCursorAdapter;
     private ArrayList<Long> selectedCourses;
+    private ArrayList<Long> previousCourseSelected;
     private long childId;
     private int childAge;
 
@@ -43,6 +45,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_child_course_connector, container, false);
         selectedCourses = new ArrayList<>();
+        previousCourseSelected = new ArrayList<>();
         ViewHolder.ChildCourseConnectorScreenViewHolder childCourseConnectorScreenViewHolder =
                 new ViewHolder.ChildCourseConnectorScreenViewHolder(rootView);
 
@@ -181,8 +184,10 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         if(cursor1 != null){
             if(cursor1.getCount() > 0){
                 Log.e("courses selected before",String.valueOf(cursor1.getCount()));
-                if(!selectedCourses.contains(SECTION_ID))
+                if(!selectedCourses.contains(SECTION_ID)) {
                     selectedCourses.add(SECTION_ID);
+                    previousCourseSelected.add(SECTION_ID);
+                }
             }
             cursor1.close();
         }
@@ -273,10 +278,39 @@ public class ChildCourseConnectorActivityFragment extends Fragment
     private void openChildProfile(){
         Intent childProfile = new Intent(getContext(), ChildProfileActivity.class);
         childProfile.putExtra(Constants.CHILD_ID_EXTRA, childId);
+        if(selectedCourses.size() - previousCourseSelected.size() > 0)
+            displayTotalCost();
         startActivity(childProfile);
         getActivity().finish();
     }
 
+    private void displayTotalCost(){
+        double totalCost = 0;
+        ArrayList<Long> newSelectionCourses =
+                new ArrayList<>(selectedCourses.size() - previousCourseSelected.size());
+
+        for(Long id: selectedCourses){
+            if(!previousCourseSelected.contains(id))
+                newSelectionCourses.add(id);
+        }
+
+        Cursor coursesCost = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getCourseSelection(newSelectionCourses),
+                new String[]{DbContent.CourseTable.COURSE_COST_COLUMN},
+                null,
+                null,
+                null
+        );
+
+        if(coursesCost != null){
+            while (coursesCost.moveToNext()){
+                totalCost += coursesCost.getDouble(0);
+            }
+            coursesCost.close();
+        }
+
+        Toast.makeText(getContext(), "Total Cost Is : " + String.valueOf(totalCost),Toast.LENGTH_LONG).show();
+    }
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putStringArrayList(Constants.SaveState.CONNECTOR_CHILD_COURSE_SELECTION,

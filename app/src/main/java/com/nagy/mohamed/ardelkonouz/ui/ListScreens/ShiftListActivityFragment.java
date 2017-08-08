@@ -10,6 +10,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,6 +127,8 @@ public class ShiftListActivityFragment extends Fragment
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         if(dayIndex == null){
+            if(shiftListScreenViewHolder.TODAY_TEXT_VIEW == null)
+                Log.e("null", "found");
             setInitialDayBar(shiftListScreenViewHolder.TODAY_TEXT_VIEW);
         }
 
@@ -170,7 +173,7 @@ public class ShiftListActivityFragment extends Fragment
         shiftListRecycleViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
                         DatabaseController.ProjectionDatabase.SHIFT_LIST_COURSE_NAME
-                ) + "Section " + String.valueOf(
+                ) + " Section " + String.valueOf(
                         cursor.getInt(
                                 DatabaseController.ProjectionDatabase.SHIFT_LIST_SECTION_NAME
                         )

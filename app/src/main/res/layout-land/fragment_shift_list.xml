@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    tools:context=".ui.ListScreens.ShiftListActivityFragment"
+    tools:showIn="@layout/activity_shift_list">
+
+    <LinearLayout
+        android:id="@+id/shift_list_empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event_note_black_48dp"
+            android:tint="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="serif"
+            android:text="There Are No Courses Available In That Day"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/shift_list_yesterday_courses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Yesterday"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"/>
+
+
+
+            <TextView
+                android:id="@+id/shift_list_today_courses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:textSize="24sp"
+                android:paddingBottom="16dp"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/shift_list_tomorrow_courses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Tomorrow"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+
+        <ListView
+            android:id="@+id/shift_list_view"
+            android:layout_width="match_parent"
+            android:background="@android:color/white"
+            android:divider="@color/colorPrimary"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/shift_add_shift_floating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@android:color/white"
+        app:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_call_merge_black_36dp" />
+
+</RelativeLayout>
