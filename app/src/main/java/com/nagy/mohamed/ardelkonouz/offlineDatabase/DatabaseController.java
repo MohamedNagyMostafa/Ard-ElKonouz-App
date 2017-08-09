@@ -13,7 +13,24 @@ public class DatabaseController {
 
     public static class ProjectionDatabase {
 
+        //receiver ..
+        public static final String[] RECEIVER_PROJECTION = {
+                DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
+                DbContent.CourseTable.COURSE_NAME_COLUMN,
+                DbContent.SectionTable.SECTION_DAYS_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
+                DbContent.SectionTable.SECTION_NAME_COLUMN
+        };
 
+        public static final int RECEIVER_SECTION_ID = 0;
+        public static final int RECEIVER_COURSE_NAME = 1;
+        public static final int RECEIVER_SECTION_DAYS = 2;
+        public static final int RECEIVER_SECTION_START_DATE = 3;
+        public static final int RECEIVER_SECTION_END_DATE = 4;
+        public static final int RECEIVER_COURSE_ID = 5;
+        public static final  int RECEIVER_SECTION_NAME = 6;
 
         // Salary
         public static final String[] SALARY_PROJECTION = {

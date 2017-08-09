@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nagy.mohamed.ardelkonouz.notification.SenderBroadCast;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
@@ -87,6 +88,9 @@ public class MainActivityFragment extends Fragment{
         mainScreenViewHolder.INSTRUCTOR_LIST_LAYOUT.setOnClickListener(instructorListClickListener);
         mainScreenViewHolder.SALARY_LIST_LAYOUT.setOnClickListener(salaryListClickListener);
         mainScreenViewHolder.SHIFT_LIST_LAYOUT.setOnClickListener(shiftListClickListener);
+
+        SenderBroadCast senderBroadCast = new SenderBroadCast();
+        senderBroadCast.active(this.getContext());
 
         return rootView;
     }

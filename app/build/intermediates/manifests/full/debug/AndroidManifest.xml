@@ -132,6 +132,16 @@
             android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity"
             android:label="@string/title_activity_section_input"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver android:name="com.nagy.mohamed.ardelkonouz.notification.ReceiverBroadCast" >
+
+            <!-- set filter to receive specific event not all -->
+            <intent-filter>
+                <action android:name="com.ArdElKonouz.receiver" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
