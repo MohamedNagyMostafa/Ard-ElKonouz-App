@@ -1,4 +1,4 @@
-package com.nagy.mohamed.ardelkonouz;
+package com.nagy.mohamed.ardelkonouz.ui.mainScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.notification.SenderBroadCast;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity;

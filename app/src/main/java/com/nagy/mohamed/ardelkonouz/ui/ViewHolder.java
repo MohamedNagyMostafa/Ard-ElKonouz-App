@@ -11,11 +11,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.ui.ActiveScreen.ActiveScreen;
 
 /**
  * Created by mohamednagy on 6/18/2017.
  */
 public class ViewHolder {
+
+    public static class ActiveScreenViewHolder{
+
+        public final EditText ACTIVE_EDIT_TEXT;
+        public final Button ACTIVE_BUTTON;
+
+        public ActiveScreenViewHolder(ActiveScreen activeScreen){
+
+            ACTIVE_BUTTON = (Button) activeScreen.findViewById(R.id.active_screen_button);
+            ACTIVE_EDIT_TEXT = (EditText) activeScreen.findViewById(R.id.active_screen_edit_text);
+        }
+    }
 
     public static class MainScreenViewHolder {
 

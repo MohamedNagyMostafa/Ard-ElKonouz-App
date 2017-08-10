@@ -5,6 +5,8 @@ package com.nagy.mohamed.ardelkonouz.helper;
  */
 public class Constants {
     public static final String TAG = "ArdElKonouz";
+    public static final String ACTIVE_CODE = "16579";
+
     // Education
     public static final int NONE_EDUCATION_TYPE = 0;
     public static final int PRIMARY_EDUCATION_TYPE = 1;

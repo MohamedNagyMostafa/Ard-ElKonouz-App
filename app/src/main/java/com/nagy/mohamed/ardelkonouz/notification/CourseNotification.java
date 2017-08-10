@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
-import com.nagy.mohamed.ardelkonouz.MainActivity;
+import com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity;
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity;

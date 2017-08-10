@@ -131,4 +131,5 @@
     <string name="title_activity_section_profile">SectionProfileActivity</string>
     <string name="title_activity_section_input">SectionInputActivity</string>
     <string name="receiver">com.ArdElKonouz.receiver</string>
+    <string name="title_activity_active_screen">ActiveScreen</string>
 </resources>

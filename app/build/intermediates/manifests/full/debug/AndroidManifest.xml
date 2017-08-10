@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:name="com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -36,7 +36,7 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ChildProfileActivity"
@@ -46,7 +46,7 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity"
             android:label="@string/title_activity_instructor"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.InstructorProfileActivity"
@@ -56,7 +56,7 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity"
             android:label="@string/title_activity_employee"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.EmployeeProfileActivity"
@@ -66,7 +66,7 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity"
             android:label="@string/title_activity_course_activty"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity"
@@ -111,7 +111,7 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.SalaryActivity"
             android:label="@string/title_activity_salary"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.InstructorSalaryActivity"
@@ -121,7 +121,7 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ShiftListActivity"
             android:label="@string/title_activity_shift_list"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.MainActivity"
+            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity"
@@ -142,6 +142,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="com.nagy.mohamed.ardelkonouz.ui.ActiveScreen.ActiveScreen"
+            android:label="@string/title_activity_active_screen"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

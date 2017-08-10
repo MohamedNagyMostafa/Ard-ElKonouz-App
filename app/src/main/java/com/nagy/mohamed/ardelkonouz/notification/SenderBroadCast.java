@@ -14,7 +14,7 @@ import java.util.Calendar;
  */
 
 public class SenderBroadCast {
-    private static final int HOURS = 0;
+    private static final int HOURS = 7;
     private static final int MINUTES = 0;
     private static final int SECONDS = 0;
 

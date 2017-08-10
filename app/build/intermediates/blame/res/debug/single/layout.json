@@ -4,6 +4,10 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\1f27f08c8ea6591af77e287b5955e63c473870de\\output\\res\\layout\\design_layout_tab_icon.xml"
     },
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_active_screen.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\activity_active_screen.xml"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\salary_recycle_view.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\salary_recycle_view.xml"
     },
@@ -28,12 +32,12 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\layout\\notification_template_part_time.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_instructor.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_instructor.xml"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_course.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\activity_course.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_instructor.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_instructor.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_shift_list.xml",
@@ -92,12 +96,12 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\activity_instructor.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\course_pf_recycle_view.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\course_pf_recycle_view.xml"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_salary.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_salary.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\course_pf_recycle_view.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\course_pf_recycle_view.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_course_input.xml",
@@ -318,6 +322,10 @@
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_active_screen.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_active_screen.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",

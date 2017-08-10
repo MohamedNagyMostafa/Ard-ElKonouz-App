@@ -1,4 +1,4 @@
-package com.nagy.mohamed.ardelkonouz;
+package com.nagy.mohamed.ardelkonouz.ui.mainScreen;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

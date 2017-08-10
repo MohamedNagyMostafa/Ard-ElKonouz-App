@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.mainScreen.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,7 +26,7 @@
         <activity
             android:name=".ui.ListScreens.ChildActivity"
             android:label="@string/title_activity_kid"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.ChildProfileActivity"
@@ -36,7 +36,7 @@
         <activity
             android:name=".ui.ListScreens.InstructorActivity"
             android:label="@string/title_activity_instructor"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.InstructorProfileActivity"
@@ -46,7 +46,7 @@
         <activity
             android:name=".ui.ListScreens.EmployeeActivity"
             android:label="@string/title_activity_employee"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.EmployeeProfileActivity"
@@ -56,7 +56,7 @@
         <activity
             android:name=".ui.ListScreens.CourseActivity"
             android:label="@string/title_activity_course_activty"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.CourseProfileActivity"
@@ -101,7 +101,7 @@
         <activity
             android:name=".ui.SalaryScreens.SalaryActivity"
             android:label="@string/title_activity_salary"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.SalaryScreens.InstructorSalaryActivity"
@@ -111,7 +111,7 @@
         <activity
             android:name=".ui.ListScreens.ShiftListActivity"
             android:label="@string/title_activity_shift_list"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.mainScreen.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.SectionProfileActivity"
@@ -121,15 +121,28 @@
         <activity
             android:name=".ui.InputScreens.SectionInputActivity"
             android:label="@string/title_activity_section_input"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver android:name=".notification.ReceiverBroadCast">
+
             <!-- set filter to receive specific event not all -->
             <intent-filter>
-                <action android:name="com.ArdElKonouz.receiver"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.ArdElKonouz.receiver" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".ui.ActiveScreen.ActiveScreen"
+            android:label="@string/title_activity_active_screen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

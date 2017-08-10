@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/active_background"
+    android:layout_height="match_parent"
+    tools:context="com.nagy.mohamed.ardelkonouz.ui.ActiveScreen.ActiveScreen">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <ImageView
+        android:id="@+id/main_image"
+        android:layout_width="228dp"
+        android:layout_height="168dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/main_image"
+        android:scaleType="centerCrop"/>
+
+    <EditText
+        android:id="@+id/active_screen_edit_text"
+        android:layout_below="@id/main_image"
+        android:layout_width="180dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/active_edit_background"
+        android:hint="Enter Active Code"
+        android:textAlignment="center"
+        android:inputType="numberPassword"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/active_screen_button"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="active"
+        android:background="@drawable/active_button_background"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/active_screen_edit_text"
+        android:layout_marginTop="24dp"/>
+
+</RelativeLayout>
