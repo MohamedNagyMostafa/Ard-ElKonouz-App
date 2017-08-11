@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.component.Shift;
@@ -23,9 +22,7 @@ public class ReceiverBroadCast extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e("reciver","enter");
         if(intent.getAction().equals(context.getString(R.string.receiver))){
-            Log.e("reciver","checked");
 
             Cursor sectionCoursesCursor = context.getContentResolver().query(
                     DatabaseController.UriDatabase.COURSE_SECTION_JOIN_URI,

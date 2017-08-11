@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
@@ -191,8 +190,6 @@ public class ContentProviderDatabase extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         int match = m_uriMatcher.match(uri);
-        Log.e("query",uri.toString());
-        Log.e("match",String.valueOf(match));
         switch(match){
             case CHILD_TABLE:
                 return m_dbHelper.getReadableDatabase().query(
@@ -502,8 +499,6 @@ public class ContentProviderDatabase extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         int match = m_uriMatcher.match(uri);
-        Log.e("match", String.valueOf(match));
-        Log.e("uri",uri.toString());
         switch (match){
 
             case CHILD_TABLE:
@@ -1181,7 +1176,6 @@ public class ContentProviderDatabase extends ContentProvider {
 
     private int updateRowWithId(Uri uri, ContentValues contentValues, String tableName, String column){
         long columnId = ContentUris.parseId(uri);
-        Log.e("id ", String.valueOf(columnId));
         String selection = column + "=?";
         String[] selectionArgs = {String.valueOf(columnId)};
 
@@ -1214,7 +1208,6 @@ public class ContentProviderDatabase extends ContentProvider {
         String sortOrder = DbContent.CourseTable.COURSE_NAME_COLUMN + " ASC, "
                  + DbContent.SectionTable.SECTION_NAME_COLUMN  + " ASC";
 
-        Log.e("query done", "done");
         return COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
@@ -1235,9 +1228,6 @@ public class ContentProviderDatabase extends ContentProvider {
         String selection = DbContent.ChildSectionTable.CHILD_ID_COLUMN + "=?" + " AND " +
                 DbContent.ChildSectionTable.SECTION_ID_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(childId), String.valueOf(sectionId)};
-
-        Log.e("child id", String.valueOf(childId));
-        Log.e("course id", String.valueOf(sectionId));
 
         return m_dbHelper.getReadableDatabase().query(
                 DbContent.ChildSectionTable.TABLE_NAME,
@@ -1280,8 +1270,6 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getChildWithSearch(Uri uri, String[] projection, String sortType){
         String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
                 + "%";
-        Log.e("search is", searchChars);
-
         String selection = DbContent.ChildTable.CHILD_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {searchChars};
 
@@ -1299,8 +1287,6 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getCourseWithSearch(Uri uri, String[] projection, String sortType){
         String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
                 + "%";
-        Log.e("search is", searchChars);
-
         String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {searchChars};
 
@@ -1318,8 +1304,6 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getInstructorWithSearch(Uri uri, String[] projection, String sortType){
         String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
                 + "%";
-        Log.e("search is", searchChars);
-
         String selection = DbContent.InstructorTable.INSTRUCTOR_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {searchChars};
 
@@ -1337,8 +1321,6 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getEmployeeWithSearch(Uri uri, String[] projection, String sortType){
         String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
                 + "%";
-        Log.e("search is", searchChars);
-
         String selection = DbContent.EmployeeTable.EMPLOYEE_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {searchChars};
 
@@ -1393,8 +1375,6 @@ public class ContentProviderDatabase extends ContentProvider {
         String selection = "(SUBSTR(" + DbContent.SectionTable.SECTION_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
                 "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")";
-
-        Log.e("index",String.valueOf(dayIndex));
         String[] selectionArgs = {
                 String.valueOf(Constants.SELECTED),
                 String.valueOf(Utility.getCurrentDateAsMills())
@@ -1423,8 +1403,6 @@ public class ContentProviderDatabase extends ContentProvider {
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
                 "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
                 "(" + DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?" + ")";
-
-        Log.e("index",String.valueOf(dayIndex));
         String[] selectionArgs = {
                 String.valueOf(Constants.SELECTED),
                 String.valueOf(Utility.getCurrentDateAsMills()),
@@ -1471,11 +1449,6 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String[] selectionArgsArray = new String[selectionArgs.size()];
         selectionArgs.toArray(selectionArgsArray);
-
-        Log.e("selection",selection.toString());
-        for(String selectionAr : selectionArgs){
-            Log.e("selectionArgs", selectionAr);
-        }
 
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
@@ -1526,10 +1499,6 @@ public class ContentProviderDatabase extends ContentProvider {
         String[] selectionArgsArray = new String[selectionArgs.size()];
         selectionArgs.toArray(selectionArgsArray);
 
-        Log.e("selection", selection.toString());
-        for(String id : selectionArgsArray){
-            Log.e("selectionArg", id);
-        }
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
@@ -1736,8 +1705,6 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getSectionWithCourseName(Uri uri, String[] projection, String sortType){
         String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
                 + "%";
-        Log.e("search is", searchChars);
-
         String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
         String[] selectionArgs = {searchChars};
 
@@ -1754,7 +1721,6 @@ public class ContentProviderDatabase extends ContentProvider {
 
     private Cursor getChildNameUnique(Uri uri, String[] projection, String sortOrder){
         String childName = uri.toString().substring(uri.toString().lastIndexOf("/") + 1, uri.toString().length());
-        Log.e("child name", childName);
         String selection = DbContent.ChildTable.CHILD_NAME_COLUMN +" LIKE ?";
         String[] selectionArgs = {childName};
 

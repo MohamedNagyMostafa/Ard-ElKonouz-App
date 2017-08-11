@@ -776,7 +776,6 @@ public class ChildInputActivityFragment extends Fragment {
         );
 
         if(childNameUniqueCursor != null){
-            Log.e("child unique count", String.valueOf(childNameUniqueCursor.getCount()));
             if(childNameUniqueCursor.getCount() == type){
                 Cursor fatherMotherUniqueCursor = getActivity().getContentResolver().query(
                         DatabaseController.UriDatabase.getChildFatherMotherUnique(FATHER_NAME, MOTHER_NAME),
@@ -857,7 +856,6 @@ public class ChildInputActivityFragment extends Fragment {
         );
 
         if(childNameUniqueCursor != null){
-            Log.e("child unique count", String.valueOf(childNameUniqueCursor.getCount()));
             if(childNameUniqueCursor.getCount() == type || childNameUniqueCursor.getCount() == 0){
                 Cursor fatherMotherUniqueCursor = getActivity().getContentResolver().query(
                         DatabaseController.UriDatabase.getChildFatherMotherUnique(FATHER_NAME, MOTHER_NAME),

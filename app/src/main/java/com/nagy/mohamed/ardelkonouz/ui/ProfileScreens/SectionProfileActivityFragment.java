@@ -201,7 +201,6 @@ public class SectionProfileActivityFragment extends Fragment
 
         if(cursor != null){
             if(cursor.getCount() > 0){
-                Log.e("course id is ","founded");
                 cursor.moveToFirst();
                 ArrayList<Shift> shifts = new ArrayList<>();
 

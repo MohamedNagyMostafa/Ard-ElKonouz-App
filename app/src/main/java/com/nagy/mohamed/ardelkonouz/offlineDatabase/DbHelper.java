@@ -3,7 +3,6 @@ package com.nagy.mohamed.ardelkonouz.offlineDatabase;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by mohamednagy on 6/10/2017.
@@ -17,8 +16,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public DbHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        Log.e("DbHelper","cccccccccccccccccccccc");
-
     }
 
     @Override

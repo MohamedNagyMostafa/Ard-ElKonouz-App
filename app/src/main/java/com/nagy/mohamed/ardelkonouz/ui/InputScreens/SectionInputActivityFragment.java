@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -201,8 +200,6 @@ public class SectionInputActivityFragment extends Fragment
                                             null,
                                             null
                                     );
-                                    Log.e("Section id", String.valueOf(SECTION_ID));
-
 
                                     openProfileSectionScreen(SECTION_ID);
                                 }
@@ -245,9 +242,6 @@ public class SectionInputActivityFragment extends Fragment
                                     DatabaseController.UriDatabase.SECTION_INSTRUCTOR_URI,
                                     getData(SECTION_ID)
                             );
-
-                            Log.e("section instruct insert", String.valueOf(ContentUris.parseId(uri2)));
-
                             openProfileSectionScreen(SECTION_ID);
                         }
                     }
@@ -403,10 +397,8 @@ public class SectionInputActivityFragment extends Fragment
 
                 final int SECTIONS_NUMBER = courseCursor.getInt(0); //2
                 final int SECTION_NAME_COL = 1;
-                Log.e("before loop", "sections number " + String.valueOf(SECTIONS_NUMBER));
                 for (sectionName = 1; sectionName <= SECTIONS_NUMBER; sectionName++) {
                     if (sectionName != courseCursor.getInt(SECTION_NAME_COL)) {
-                        Log.e("section na != sec na tb", "break");
                         break;
                     }
                     courseCursor.moveToNext();
@@ -436,7 +428,6 @@ public class SectionInputActivityFragment extends Fragment
             );
 
             courseCursor.close();
-            Log.e("set data to database",String.valueOf(SECTION_START_DATE));
         }
 
         return contentValues;
@@ -447,12 +438,10 @@ public class SectionInputActivityFragment extends Fragment
         for(DoubleChoice doubleChoice : doubleChoiceArrayList){
             if(doubleChoice.isSelected()) {
                 stringBuilder.append(Constants.SELECTED);
-                Log.e("day select", doubleChoice.getTextView().getText().toString());
             }else{
                 stringBuilder.append(Constants.NOT_SELECTED);
             }
         }
-        Log.e("result ", stringBuilder.toString());
         return stringBuilder.toString();
     }
 
@@ -492,7 +481,6 @@ public class SectionInputActivityFragment extends Fragment
 
     @Override
     public void onDateSet(int year, int month, int day, View view, int dateType) {
-        Log.e("day is ", String.valueOf(day));
         String setYearMonth =
                 String.valueOf(year) + "/" +
                         String.valueOf(month) + "/";

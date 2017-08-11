@@ -2,7 +2,6 @@ package com.nagy.mohamed.ardelkonouz.helper;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -353,7 +352,6 @@ public class Utility {
 
     public static int getYearCodeFromEducationStageString(String educationStage){
         StringBuilder stringBuilder = new StringBuilder(educationStage);
-        Log.e("output", String.valueOf(stringBuilder.charAt(0)));
         return Integer.valueOf(String.valueOf(stringBuilder.charAt(0)));
 
     }

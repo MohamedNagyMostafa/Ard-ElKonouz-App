@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,8 +77,6 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
 
                         ContentValues selectedContentValues = new ContentValues();
                         selectedContentValues.put(DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN, instructorId);
-                        Log.e("selected course count", String.valueOf(selectedSections.size()));
-                        Log.e("preselected corse count", String.valueOf(previousSelectedSections.size()));
 
                         for(final Long SECTION_ID : selectedSections){
 

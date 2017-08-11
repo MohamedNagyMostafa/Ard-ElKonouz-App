@@ -89,7 +89,6 @@ public class InstructorProfileActivityFragment extends Fragment
 
         if(cursor1 != null){
 
-            Log.e("instructor section tb" , String.valueOf(cursor1.getCount()));
 
             cursor1.close();
         }

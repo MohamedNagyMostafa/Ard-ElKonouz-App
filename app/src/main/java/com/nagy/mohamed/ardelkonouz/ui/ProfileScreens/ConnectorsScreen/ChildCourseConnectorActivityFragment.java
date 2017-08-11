@@ -79,7 +79,6 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                                 null,
                                 null
                         );
-                        Log.e("submit for items size",String.valueOf(selectedCourses.size()));
 
                         // Insert all selection
                         ArrayList<ContentValues> contentValuesArrayList = new ArrayList<ContentValues>();
@@ -125,7 +124,6 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
     @Override
     public void bindListView(View view, final Cursor cursor) {
-        Log.e("bind called","done");
         final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
         final Long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_ID);
@@ -190,7 +188,6 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         if(cursor1 != null){
             if(cursor1.getCount() > 0){
-                Log.e("courses selected before",String.valueOf(cursor1.getCount()));
                 if(!selectedCourses.contains(SECTION_ID)) {
                     selectedCourses.add(SECTION_ID);
                     previousCourseSelected.add(SECTION_ID);
@@ -203,20 +200,13 @@ public class ChildCourseConnectorActivityFragment extends Fragment
             @Override
             public void onClick(View view) {
                 if(selectedCourses.contains(SECTION_ID)){
-                    Log.e("b remove one item size",String.valueOf(selectedCourses.size()));
-                    for(Long c : selectedCourses){
-                        Log.e("id is ", String.valueOf(c));
-                    }
                     selectedCourses.remove(SECTION_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.INVISIBLE);
-                    Log.e("a remove one item size",String.valueOf(selectedCourses.size()));
 
                 }else{
-                    Log.e("b add one item size",String.valueOf(selectedCourses.size()));
 
                     selectedCourses.add(SECTION_ID);
                     coursesViewHolder.COURSE_SELECT_IMAGE_VIEW.setVisibility(View.VISIBLE);
-                    Log.e("a add one item size",String.valueOf(selectedCourses.size()));
                 }
             }
         });
@@ -250,7 +240,6 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.e("no of coming courses",String.valueOf(data.getCount()));
         databaseCursorAdapter.swapCursor(data);
     }
 

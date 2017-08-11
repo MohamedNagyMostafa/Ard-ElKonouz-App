@@ -13,7 +13,6 @@ import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +82,6 @@ public class ShiftInputActivityFragment extends Fragment
                         @Override
                         public void onClick(View view) {
                             selectedID.add(SECTION_ID);
-                            Log.e("course is added size is", String.valueOf(selectedID.size()));
                             restartSelectionLoader();
                             shiftInputScreenViewHolder.COURSE_SEARCH_EDIT_TEXT.setText("");
                         }
@@ -103,7 +101,6 @@ public class ShiftInputActivityFragment extends Fragment
 
         @Override
         public void onBindViewHolder(ViewHolder.ShiftInputScreenViewHolder.SelectionCoursesViewHolder selectionCoursesViewHolder, Cursor cursor) {
-            Log.e("selection bind called", "done");
             final Long SECTION_ID = cursor.getLong(
                     DatabaseController.ProjectionDatabase.CHOICES_SELECTION_ID
             );
@@ -295,7 +292,6 @@ public class ShiftInputActivityFragment extends Fragment
                             ArrayList<ContentValues> coursesSelectedContentValues = new ArrayList<>();
 
                             if(selectedID.size() == 0){
-                                Log.e("fet sections", "start");
                                 Cursor sectionCursor = getActivity().getContentResolver().query(
                                         DatabaseController.UriDatabase.SECTION_URI,
                                         new String[]{DbContent.SectionTable._ID},
@@ -316,7 +312,6 @@ public class ShiftInputActivityFragment extends Fragment
                                  * Validation Block @Start ...
                                  */
                                 if (innerShiftDateValidation(SECTION_ID)) {
-                                    Log.e("ignore for shift", "igonre");
                                     continue;
                                 }
                                 // get Most accurate start shift date.
@@ -400,7 +395,6 @@ public class ShiftInputActivityFragment extends Fragment
                             coursesSelectedContentValuesAsArray =
                                     coursesSelectedContentValues.toArray(coursesSelectedContentValuesAsArray);
 
-                            Log.e("check bulk insert", String.valueOf(coursesSelectedContentValuesAsArray.length));
                             if (coursesSelectedContentValuesAsArray.length > 0) {
                                 getActivity().getContentResolver().bulkInsert(
                                         DatabaseController.UriDatabase.SHIFT_URI,
@@ -474,7 +468,6 @@ public class ShiftInputActivityFragment extends Fragment
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Log.e("loader id", String.valueOf(id));
         switch (id) {
             case Constants.LOADER_CHOICES_LIST:
                 if (searchChars.length() > 0) {
@@ -504,7 +497,6 @@ public class ShiftInputActivityFragment extends Fragment
                 }
             case Constants.LOADER_SELECTED_LIST:
                 if(selectedID.size() > 0){
-                    Log.e("selection list","called1");
                     return new CursorLoader(
                             getContext(),
                             DatabaseController.UriDatabase.getCourseSelection(selectedID),
@@ -515,11 +507,9 @@ public class ShiftInputActivityFragment extends Fragment
                     );
 
                 }else{
-                    Log.e("selection list","called2");
                     recycleViewShiftInputAdapter.swapCursor(null);
                     recycleViewShiftInputAdapter.notifyDataSetChanged();
                 }
-                Log.e("selection list","null");
                 break;
         }
         return null;
@@ -527,10 +517,8 @@ public class ShiftInputActivityFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.e("output", String.valueOf(data.getCount()));
         switch (loader.getId()){
             case Constants.LOADER_SELECTED_LIST:
-                Log.e("selected finish", "Done");
                 if(selectedID.size() > 0) {
                     recycleViewShiftInputAdapter.swapCursor(data);
                     recycleViewShiftInputAdapter.notifyDataSetChanged();
@@ -570,16 +558,13 @@ public class ShiftInputActivityFragment extends Fragment
 
     private void restartChoicesLoader(){
         if(getLoaderManager().getLoader(Constants.LOADER_CHOICES_LIST) != null) {
-            Log.e("reseter done", "done");
             getLoaderManager().restartLoader(Constants.LOADER_CHOICES_LIST, null, this);
         }else{
-            Log.e("ini done", "done");
             getLoaderManager().initLoader(Constants.LOADER_CHOICES_LIST, null, this);
         }
     }
 
     private void restartSelectionLoader(){
-            Log.e("reseter done", "done");
             getLoaderManager().restartLoader(Constants.LOADER_SELECTED_LIST, null, this);
 
     }
@@ -632,7 +617,6 @@ public class ShiftInputActivityFragment extends Fragment
 
         if(cursor != null){
             while (cursor.moveToNext()){
-                Log.e("new start shift","founded");
                 newShiftStartDate = cursor.getLong(
                         DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
                 );
@@ -661,7 +645,6 @@ public class ShiftInputActivityFragment extends Fragment
 
         if(cursor != null){
             while (cursor.moveToNext()){
-                Log.e("new end shift","founded");
 
                 newShiftEndDate = cursor.getLong(
                         DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
