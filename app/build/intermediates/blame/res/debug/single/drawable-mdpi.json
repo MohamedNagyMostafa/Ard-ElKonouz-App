@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\main_image.png",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-mdpi\\main_image.png"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_record_voice_over_black_48dp.png",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable-mdpi\\ic_record_voice_over_black_48dp.png"
     },

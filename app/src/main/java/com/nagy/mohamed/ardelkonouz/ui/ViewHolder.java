@@ -591,7 +591,6 @@ public class ViewHolder {
             public final TextView NEXT_SECTION_TEXT_VIEW;
             public final TextView SECTION_INSTRUCTOR_TEXT_VIEW;
             public final ImageView SECTION_DELETE_IMAGE_VIEW;
-            public final ImageView SECTION_EDIT_IMAGE_VIEW;
             public final LinearLayout SECTION_BODY_LAYOUT;
 
             public SectionRecycleViewHolder(View shiftRecycleView){
@@ -600,7 +599,6 @@ public class ViewHolder {
                 NEXT_SECTION_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_next_section_text_view);
                 SECTION_INSTRUCTOR_TEXT_VIEW = (TextView) shiftRecycleView.findViewById(R.id.course_pf_section_instructor_name_text_view);
                 SECTION_DELETE_IMAGE_VIEW = (ImageView) shiftRecycleView.findViewById(R.id.course_pf_section_delete_image_View);
-                SECTION_EDIT_IMAGE_VIEW = (ImageView) shiftRecycleView.findViewById(R.id.course_pf_section_edit_image_View);
                 SECTION_BODY_LAYOUT = (LinearLayout) shiftRecycleView.findViewById(R.id.course_pf_section_body_layout);
             }
         }

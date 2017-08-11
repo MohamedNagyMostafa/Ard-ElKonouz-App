@@ -48,6 +48,10 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\active_edit_background.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable\\active_edit_background.xml"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\abc_ratingbar_material.xml"
     },
@@ -108,12 +112,12 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\notification_bg_low.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\abc_btn_borderless_material.xml"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\abc_btn_borderless_material.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
@@ -134,6 +138,10 @@
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_search_api_material.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\active_background.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable\\active_background.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
@@ -190,6 +198,10 @@
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\.android\\build-cache\\69229e999dd843ac621b2f2ba7463b79889f193d\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\active_button_background.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\drawable\\active_button_background.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\chips_background.xml",

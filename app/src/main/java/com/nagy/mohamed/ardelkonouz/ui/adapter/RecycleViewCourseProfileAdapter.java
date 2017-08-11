@@ -14,7 +14,6 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
-import com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.Listner.OnDeleteListener;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -122,18 +121,6 @@ public class RecycleViewCourseProfileAdapter extends
                         @Override
                         public void onClick(View view) {
                             onDeleteListener.OnClickListener(_ID);
-                        }
-                    }
-            );
-
-            sectionRecycleViewHolder.SECTION_EDIT_IMAGE_VIEW.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent sectionInputScreen = new Intent(context, SectionInputActivity.class);
-                            sectionInputScreen.putExtra(Constants.SECTION_ID_EXTRA, _ID);
-                            sectionInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
-                            context.startActivity(sectionInputScreen);
                         }
                     }
             );
