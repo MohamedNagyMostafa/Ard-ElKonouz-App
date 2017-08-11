@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:2:1-143:12
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:2:1-144:12
 	package
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:3:5-43
 		INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml
@@ -14,7 +14,7 @@ ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\
 		INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml
 application
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:5:5-141:19
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:5:5-142:19
 MERGED from [com.android.support:design:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\.android\build-cache\1f27f08c8ea6591af77e287b5955e63c473870de\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\.android\build-cache\69229e999dd843ac621b2f2ba7463b79889f193d\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\.android\build-cache\79662335aec405b9f6ff0033ca024a23a090e709\output\AndroidManifest.xml:26:5-20
@@ -260,7 +260,7 @@ ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\
 	android:name
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:122:13-69
 activity#com.nagy.mohamed.ardelkonouz.ui.InputScreens.SectionInputActivity
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:126:9-129:59
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:126:9-130:20
 	android:label
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:128:13-65
 	android:theme
@@ -268,19 +268,19 @@ ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\
 	android:name
 		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:127:13-65
 receiver#com.nagy.mohamed.ardelkonouz.notification.ReceiverBroadCast
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:131:9-139:20
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:132:9-140:20
 	android:name
-		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:131:19-65
+		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:132:19-65
 intent-filter#android.intent.category.DEFAULT+com.ArdElKonouz.receiver
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:134:13-138:29
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:135:13-139:29
 action#com.ArdElKonouz.receiver
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:135:17-67
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:136:17-67
 	android:name
-		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:135:25-64
+		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:136:25-64
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:137:17-76
+ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:138:17-76
 	android:name
-		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:137:27-73
+		ADDED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml:138:27-73
 uses-sdk
 INJECTED from C:\Users\mohamednagy.mohamednagy-PC\Desktop\ArdElKonouz\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:25.3.1] C:\Users\mohamednagy.mohamednagy-PC\.android\build-cache\1f27f08c8ea6591af77e287b5955e63c473870de\output\AndroidManifest.xml:21:5-23:62
