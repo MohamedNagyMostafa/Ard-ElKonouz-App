@@ -146,6 +146,7 @@ public class CourseProfileActivityFragment extends Fragment
                         sectionInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                         sectionInputScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
                         startActivity(sectionInputScreen);
+                        getActivity().finish();
                     }
                 }
         );

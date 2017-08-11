@@ -60,6 +60,7 @@ public class InstructorActivityFragment extends Fragment
                     Intent instructorInputScreen = new Intent(getContext(), InstructorInputActivity.class);
                     instructorInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(instructorInputScreen);
+                    getActivity().finish();
                 }
             };
 

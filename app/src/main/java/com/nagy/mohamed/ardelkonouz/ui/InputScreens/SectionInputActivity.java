@@ -17,10 +17,6 @@ import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.SectionProfileActivity;
 
 public class SectionInputActivity extends AppCompatActivity {
 
-    private Long courseId = null;
-    private Long sectionId = null;
-    private String inputType = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +34,6 @@ public class SectionInputActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        courseId = getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
-        sectionId = getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
-        inputType = getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
     }
 
     @Override
@@ -54,15 +47,21 @@ public class SectionInputActivity extends AppCompatActivity {
     }
 
     private void openProfileScreen(){
-        if(inputType.equals(Constants.INPUT_ADD_EXTRA)){
+        final String INPUT_TYPE = getIntent().getExtras().getString(Constants.INPUT_TYPE_EXTRA);
+        final Long COURSE_ID = getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
+
+        if(INPUT_TYPE.equals(Constants.INPUT_ADD_EXTRA)){
+
             Intent profileScreen = new Intent(this, CourseProfileActivity.class);
-            profileScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
+            profileScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
             startActivity(profileScreen);
             NavUtils.navigateUpTo(this, profileScreen);
         }else{
+            final Long SECTION_ID = getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
+
             Intent profileScreen = new Intent(this, SectionProfileActivity.class);
-            profileScreen.putExtra(Constants.COURSE_ID_EXTRA, courseId);
-            profileScreen.putExtra(Constants.SECTION_ID_EXTRA, sectionId);
+            profileScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
+            profileScreen.putExtra(Constants.SECTION_ID_EXTRA, SECTION_ID);
             startActivity(profileScreen);
             NavUtils.navigateUpTo(this, profileScreen);
         }

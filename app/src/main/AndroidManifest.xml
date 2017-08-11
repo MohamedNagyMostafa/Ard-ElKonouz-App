@@ -71,37 +71,30 @@
         <activity
             android:name=".ui.InputScreens.ChildInputActivity"
             android:label="@string/title_activity_child_input"
-            android:parentActivityName=".ui.ListScreens.ChildActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.ShiftInputActivity"
             android:label="@string/title_activity_finance"
-            android:parentActivityName=".ui.ListScreens.ShiftListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.InstructorInputActivity"
             android:label="@string/title_activity_instructor_input"
-            android:parentActivityName=".ui.ListScreens.InstructorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.EmployeeInput"
             android:label="@string/title_activity_employee_input"
-            android:parentActivityName=".ui.ListScreens.EmployeeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.CourseInputActivity"
             android:label="@string/title_activity_course_input"
-            android:parentActivityName=".ui.ListScreens.CourseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity"
             android:label="@string/title_activity_child_course_connector"
-            android:parentActivityName=".ui.ListScreens.ChildActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ProfileScreens.ConnectorsScreen.InstructorCourseConnectorActivity"
             android:label="@string/title_activity_instructor_course_connector"
-            android:parentActivityName=".ui.ListScreens.InstructorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.SalaryScreens.SalaryActivity"
@@ -121,7 +114,6 @@
         <activity
             android:name=".ui.ProfileScreens.SectionProfileActivity"
             android:label="@string/title_activity_section_profile"
-            android:parentActivityName=".ui.ProfileScreens.CourseProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.SectionInputActivity"
