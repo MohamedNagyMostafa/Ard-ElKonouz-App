@@ -191,7 +191,7 @@ public class SectionInputActivityFragment extends Fragment
 
                                     getActivity().getContentResolver().update(
                                             DatabaseController.UriDatabase.getSectionTableWithIdUri(SECTION_ID),
-                                            getDataFromInputs(
+                                            getDataFromInputsAsEdit(
                                                     SECTION_STATE_LIST,
                                                     SECTION_DAYS_LIST,
                                                     SECTION_ID,
@@ -228,7 +228,7 @@ public class SectionInputActivityFragment extends Fragment
 
                             Uri uri = getActivity().getContentResolver().insert(
                                     DatabaseController.UriDatabase.SECTION_URI,
-                                    getDataFromInputs(
+                                    getDataFromInputsAsAdd(
                                             SECTION_STATE_LIST,
                                             SECTION_DAYS_LIST,
                                             null,
@@ -313,7 +313,7 @@ public class SectionInputActivityFragment extends Fragment
         return -1;
     }
 
-    private ContentValues getDataFromInputs(ArrayList<DoubleChoice> SECTION_STATE_LIST,
+    private ContentValues getDataFromInputsAsAdd(ArrayList<DoubleChoice> SECTION_STATE_LIST,
                                             ArrayList<DoubleChoice> SECTION_DAYS_LIST,
                                             final Long SECTION_ID,
                                             ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder,
@@ -429,6 +429,83 @@ public class SectionInputActivityFragment extends Fragment
 
             courseCursor.close();
         }
+
+        return contentValues;
+    }
+
+    private ContentValues getDataFromInputsAsEdit(ArrayList<DoubleChoice> SECTION_STATE_LIST,
+                                                 ArrayList<DoubleChoice> SECTION_DAYS_LIST,
+                                                 final Long SECTION_ID,
+                                                 ViewHolder.SectionInputScreenViewHolder sectionInputScreenViewHolder,
+                                                 final Long COURSE_ID){
+        final Double SECTION_HOURS =
+                Double.valueOf(
+                        sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.getText().toString()
+                );
+        final Long SECTION_START_DATE = sectionStartDate;
+
+        final Integer SECTION_SESSIONS_NUMBER =
+                Integer.valueOf(
+                        sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT.getText().toString()
+                );
+        final Integer SECTION_LEVEL =
+                Integer.valueOf(
+                        sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT.getText().toString()
+                );
+
+        final Integer SECTION_STATE = getSelectionFromList(SECTION_STATE_LIST);
+
+        final String SECTION_SESSION_DAYS = getDoubleChoicesResult(SECTION_DAYS_LIST);
+
+        final ArrayList<Shift> SHIFT_ARRAY_LIST = new ArrayList<>();
+
+        if(SECTION_ID != null){
+
+            Cursor cursor = getActivity().getContentResolver().query(
+                    DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
+                    DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                    null,
+                    null,
+                    null
+            );
+
+            if(cursor != null){
+                if(cursor.getCount() > 0){
+                    while(cursor.moveToNext()){
+                        Shift shift = new Shift(
+                                cursor.getLong(
+                                        DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                                ),cursor.getLong(
+                                DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
+                        ),
+                                SECTION_ID
+
+                        );
+
+                        SHIFT_ARRAY_LIST.add(shift);
+                    }
+                }
+                cursor.close();
+            }
+        }
+
+        final Long SECTION_END_DATE = Utility.getEndDate(
+                SHIFT_ARRAY_LIST,
+                SECTION_SESSION_DAYS,
+                SECTION_SESSIONS_NUMBER,
+                SECTION_START_DATE
+        );
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
+        contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
+        contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
+        contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
+        contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
+        contentValues.put(DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN, SECTION_SESSIONS_NUMBER);
+        contentValues.put(DbContent.SectionTable.SECTION_COURSE_ID_COLUMN, COURSE_ID);
+        contentValues.put(DbContent.SectionTable.SECTION_LEVEL_COLUMN, SECTION_LEVEL);
 
         return contentValues;
     }
