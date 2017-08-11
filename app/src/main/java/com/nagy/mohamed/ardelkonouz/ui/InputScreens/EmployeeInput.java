@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.nagy.mohamed.ardelkonouz.R;
@@ -30,4 +31,17 @@ public class EmployeeInput extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                openScreen();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void openScreen(){
+        final String INPUT_TYPE = getIntent().getExtras().
+    }
 }
