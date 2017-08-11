@@ -257,18 +257,10 @@ public class SectionProfileActivityFragment extends Fragment
                     }
                 }
         );
-
-        setOnBackPressed(courseId);
-
         getLoaderManager().initLoader(Constants.LOADER_SHIFT_SECTION_PROFILE, null, this);
 
         return rootView;
 
-    }
-
-    private void setOnBackPressed(final Long COURSE_ID){
-        SectionProfileActivity sectionProfileActivity =  (SectionProfileActivity) getActivity();
-        sectionProfileActivity.setCourseId(COURSE_ID);
     }
 
     private void setDataToView(Cursor cursor,

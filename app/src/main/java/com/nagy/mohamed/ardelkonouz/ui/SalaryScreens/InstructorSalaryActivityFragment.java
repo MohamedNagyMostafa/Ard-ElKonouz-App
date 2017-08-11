@@ -95,55 +95,56 @@ public class InstructorSalaryActivityFragment extends Fragment
                         underProgressCourses++;
                     }
                 }
+                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE) {
+                    Cursor courseSectionCursor = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
+                            DatabaseController.ProjectionDatabase.SALARY_PROJECTION,
+                            null,
+                            null,
+                            null
+                    );
 
-                Cursor courseSectionCursor = getActivity().getContentResolver().query(
-                        DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
-                        DatabaseController.ProjectionDatabase.SALARY_PROJECTION,
-                        null,
-                        null,
-                        null
-                );
-
-                if(courseSectionCursor != null){
-                    if(courseSectionCursor.moveToNext()){
-                        final Double SALARY_PER_CHILD = courseSectionCursor.getDouble(
-                                        DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
-                        );
-                        final Double COURSE_COST = courseSectionCursor.getDouble(
-                                        DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
-                        );
-
-                        Cursor childSectionCursor = getActivity().getContentResolver().query(
-                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
-                                null,
-                                null,
-                                null,
-                                null
-                        );
-
-                        if(childSectionCursor != null){
-                            final Integer CHILD_NUMBER = childSectionCursor.getCount();
-
-                            SalaryPair salaryPair = new SalaryPair(
-                                    SALARY_PER_CHILD,
-                                    COURSE_COST,
-                                    CHILD_NUMBER
+                    if (courseSectionCursor != null) {
+                        if (courseSectionCursor.moveToNext()) {
+                            final Double SALARY_PER_CHILD = courseSectionCursor.getDouble(
+                                    DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
+                            );
+                            final Double COURSE_COST = courseSectionCursor.getDouble(
+                                    DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
                             );
 
-                            switch (SECTION_PAID){
-                                case Constants.PAID_SECTION:
-                                    paidCoursesNumber++;
-                                    totalPaidSalary += salaryPair.getTotalSalary();
-                                    break;
-                                case Constants.NOT_PAID_SECTION:
-                                    unpaidCoursesNumber++;
-                                    totalUnpaidSalary += salaryPair.getTotalSalary();
-                                    break;
+                            Cursor childSectionCursor = getActivity().getContentResolver().query(
+                                    DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                            );
+
+                            if (childSectionCursor != null) {
+                                final Integer CHILD_NUMBER = childSectionCursor.getCount();
+
+                                SalaryPair salaryPair = new SalaryPair(
+                                        SALARY_PER_CHILD,
+                                        COURSE_COST,
+                                        CHILD_NUMBER
+                                );
+
+                                switch (SECTION_PAID) {
+                                    case Constants.PAID_SECTION:
+                                        paidCoursesNumber++;
+                                        totalPaidSalary += salaryPair.getTotalSalary();
+                                        break;
+                                    case Constants.NOT_PAID_SECTION:
+                                        unpaidCoursesNumber++;
+                                        totalUnpaidSalary += salaryPair.getTotalSalary();
+                                        break;
+                                }
+                                childSectionCursor.close();
                             }
-                            childSectionCursor.close();
                         }
+                        courseSectionCursor.close();
                     }
-                    courseSectionCursor.close();
                 }
             }
             sectionInstructorCursor.close();
@@ -181,7 +182,6 @@ public class InstructorSalaryActivityFragment extends Fragment
 
     @Override
     public void bindListView(View view, final Cursor cursor) {
-        double totalSalary = 0;
         final ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder instructorCoursesViewHolder =
                 new ViewHolder.InstructorSalaryScreenViewHolder.InstructorCoursesViewHolder(view);
         final long COURSE_ID = cursor.getLong(

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
+import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.CursorAdapterList;
@@ -71,55 +72,61 @@ public class SalaryActivityFragment extends Fragment
                 final Long SECTION_ID = instructorSectionCursor.getLong(
                         DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_SECTION_ID
                 );
-
-                Cursor sectionCourseCursor = getActivity().getContentResolver().query(
-                        DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
-                        DatabaseController.ProjectionDatabase.SALARY_PROJECTION,
-                        null,
-                        null,
-                        null
+                final Long SECTION_END_DATE = instructorSectionCursor.getLong(
+                        DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_SECTION_END_DATE
                 );
 
-                if(sectionCourseCursor != null) {
-                    while(sectionCourseCursor.moveToNext()) {
-                        final Double COURSE_COST = sectionCourseCursor.getDouble(
-                                DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
-                        );
-                        final Double COURSE_PERCENT_PER_CHILD = sectionCourseCursor.getDouble(
-                                DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
-                        );
+                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE) {
 
-                        Cursor sectionChildCursor = getActivity().getContentResolver().query(
-                                DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
-                                null,
-                                null,
-                                null,
-                                null
-                        );
+                    Cursor sectionCourseCursor = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
+                            DatabaseController.ProjectionDatabase.SALARY_PROJECTION,
+                            null,
+                            null,
+                            null
+                    );
 
-                        if (sectionChildCursor != null) {
+                    if (sectionCourseCursor != null) {
+                        while (sectionCourseCursor.moveToNext()) {
+                            final Double COURSE_COST = sectionCourseCursor.getDouble(
+                                    DatabaseController.ProjectionDatabase.SALARY_COURSE_COST
+                            );
+                            final Double COURSE_PERCENT_PER_CHILD = sectionCourseCursor.getDouble(
+                                    DatabaseController.ProjectionDatabase.SALARY_COURSE_PERCENT_PER_CHILD
+                            );
 
-                            final int CHILD_NUMBER = sectionChildCursor.getCount();
-                            if(CHILD_NUMBER != 0) {
-                                SalaryPair salaryPair = new SalaryPair(
-                                        COURSE_PERCENT_PER_CHILD,
-                                        COURSE_COST,
-                                        CHILD_NUMBER);
+                            Cursor sectionChildCursor = getActivity().getContentResolver().query(
+                                    DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                            );
 
-                                switch (sectionState) {
-                                    case Constants.PAID_SECTION:
-                                        paidSectionId.add(salaryPair);
-                                        break;
-                                    case Constants.NOT_PAID_SECTION:
-                                        unpaidSectionId.add(salaryPair);
-                                        unpaidInstructorNumber++;
-                                        break;
+                            if (sectionChildCursor != null) {
+
+                                final int CHILD_NUMBER = sectionChildCursor.getCount();
+                                if (CHILD_NUMBER != 0) {
+                                    SalaryPair salaryPair = new SalaryPair(
+                                            COURSE_PERCENT_PER_CHILD,
+                                            COURSE_COST,
+                                            CHILD_NUMBER);
+
+                                    switch (sectionState) {
+                                        case Constants.PAID_SECTION:
+                                            paidSectionId.add(salaryPair);
+                                            break;
+                                        case Constants.NOT_PAID_SECTION:
+                                            unpaidSectionId.add(salaryPair);
+                                            unpaidInstructorNumber++;
+                                            break;
+                                    }
                                 }
+                                sectionChildCursor.close();
                             }
-                            sectionChildCursor.close();
                         }
+                        sectionCourseCursor.close();
                     }
-                    sectionCourseCursor.close();
                 }
             }
             instructorSectionCursor.close();
@@ -186,27 +193,32 @@ public class SalaryActivityFragment extends Fragment
                 final Integer SECTION_STATE = sectionInstructorCursor.getInt(
                         DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_PAID
                 );
-
-                Cursor childSection = getActivity().getContentResolver().query(
-                        DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
-                        null,
-                        null,
-                        null,
-                        null
+                final Long SECTION_END_DATE = sectionInstructorCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_END_DATE
                 );
 
-                if(childSection != null){
-                    if(childSection.getCount() > 0){
-                        switch (SECTION_STATE){
-                            case Constants.PAID_SECTION:
-                                paidCoursesNumber++;
-                                break;
-                            case Constants.NOT_PAID_SECTION:
-                                unpaidCoursesNumber++;
-                                break;
+                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE) {
+                    Cursor childSection = getActivity().getContentResolver().query(
+                            DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
+                            null,
+                            null,
+                            null,
+                            null
+                    );
+
+                    if (childSection != null) {
+                        if (childSection.getCount() > 0) {
+                            switch (SECTION_STATE) {
+                                case Constants.PAID_SECTION:
+                                    paidCoursesNumber++;
+                                    break;
+                                case Constants.NOT_PAID_SECTION:
+                                    unpaidCoursesNumber++;
+                                    break;
+                            }
                         }
+                        childSection.close();
                     }
-                    childSection.close();
                 }
             }
             sectionInstructorCursor.close();
