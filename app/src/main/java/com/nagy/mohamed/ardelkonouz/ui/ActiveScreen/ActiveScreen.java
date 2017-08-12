@@ -25,7 +25,7 @@ public class ActiveScreen extends AppCompatActivity {
                 new SharedReferenceActiveCode(this);
         setSupportActionBar(toolbar);
         setToolbarSettings();
-        
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         final ViewHolder.ActiveScreenViewHolder activeScreenViewHolder =

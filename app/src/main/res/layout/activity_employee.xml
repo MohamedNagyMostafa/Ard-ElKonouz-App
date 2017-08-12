@@ -19,6 +19,7 @@
                 <EditText
                     android:id="@+id/employee_list_search_edit_view"
                     android:layout_width="match_parent"
+                    android:inputType="textPersonName"
                     android:layout_height="match_parent"
                     android:layout_marginStart="24dp"
                     android:backgroundTint="@color/colorAccent"
