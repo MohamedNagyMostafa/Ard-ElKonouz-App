@@ -43,16 +43,33 @@
             android:textSize="14sp"
             android:layout_centerHorizontal="true"/>
 
-        <Button
-            android:id="@+id/active_screen_button"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="active"
-            android:background="@drawable/active_button_background"
-            android:textColor="@color/colorPrimary"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/active_screen_edit_text"
-            android:layout_marginTop="24dp"/>
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/active_screen_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="active"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/active_button_background"
+                android:textColor="@color/colorPrimary"/>
+
+            <Button
+                android:id="@+id/new_active_screen_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="new"
+                android:background="@drawable/active_button_background"
+                android:textColor="@color/colorPrimary"/>
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 </ScrollView>
