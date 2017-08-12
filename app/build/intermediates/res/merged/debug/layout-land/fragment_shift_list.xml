@@ -48,10 +48,10 @@
                 android:layout_height="wrap_content"
                 android:text="Yesterday"
                 android:layout_weight="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"/>
 
@@ -63,9 +63,9 @@
                 android:layout_height="wrap_content"
                 android:text="Today"
                 android:layout_weight="1"
-                android:paddingTop="16dp"
-                android:textSize="24sp"
-                android:paddingBottom="16dp"
+                android:paddingTop="8dp"
+                android:textSize="16sp"
+                android:paddingBottom="8dp"
                 android:gravity="center"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"/>
@@ -77,10 +77,10 @@
                 android:layout_height="wrap_content"
                 android:text="Tomorrow"
                 android:layout_weight="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"/>
 

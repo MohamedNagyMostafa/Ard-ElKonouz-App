@@ -22,11 +22,13 @@ public class ViewHolder {
 
         public final EditText ACTIVE_EDIT_TEXT;
         public final Button ACTIVE_BUTTON;
+        public final Button NEW_ACTIVE_CODE_BUTTON;
 
         public ActiveScreenViewHolder(ActiveScreen activeScreen){
 
             ACTIVE_BUTTON = (Button) activeScreen.findViewById(R.id.active_screen_button);
             ACTIVE_EDIT_TEXT = (EditText) activeScreen.findViewById(R.id.active_screen_edit_text);
+            NEW_ACTIVE_CODE_BUTTON = (Button) activeScreen.findViewById(R.id.new_active_screen_button);
         }
     }
 
