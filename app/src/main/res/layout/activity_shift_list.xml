@@ -9,8 +9,6 @@
     android:background="@android:color/white"
     tools:context=".ui.ListScreens.ShiftListActivity">
 
-
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"

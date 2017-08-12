@@ -194,6 +194,13 @@ public class CourseInputActivityFragment extends Fragment {
                 editText.setError("This field can not be empty");
             }
         }
+
+        //check age order.
+        if( Integer.valueOf(editTexts[0].getText().toString()) >
+                Integer.valueOf(editTexts[1].getText().toString())){
+            isValid = false;
+            editTexts[0].setError("Start Age must be smaller than end age");
+        }
         return isValid;
     }
 
