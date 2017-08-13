@@ -147,9 +147,11 @@ public class SectionInputActivityFragment extends Fragment
                         DatabaseController.ProjectionDatabase.SECTION_START_DATE
                 );
 
-                sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setText(
-                        Utility.getTimeFormat(sectionStartDate)
-                );
+                if(sectionStartDate != null) {
+                    sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setText(
+                            Utility.getTimeFormat(sectionStartDate)
+                    );
+                }
                 Utility.selectionProcess(
                         cursor.getInt(
                                 DatabaseController.ProjectionDatabase.SECTION_AVAILABLE_POSITIONS
@@ -182,8 +184,7 @@ public class SectionInputActivityFragment extends Fragment
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
-                                        sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
+                                if(checkValidation(SECTION_STATE_LIST,
                                         sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
                                         sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
                                         sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT)) {
@@ -219,8 +220,7 @@ public class SectionInputActivityFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(checkValidation(SECTION_STATE_LIST, SECTION_DAYS_LIST,
-                                sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT,
+                        if(checkValidation(SECTION_STATE_LIST,
                                 sectionInputScreenViewHolder.SECTION_SESSIONS_NUMBER_EDIT_TEXT,
                                 sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT,
                                 sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT)) {
@@ -512,7 +512,6 @@ public class SectionInputActivityFragment extends Fragment
     }
 
     private boolean checkValidation(ArrayList<DoubleChoice> doubleChoiceStateArrayList,
-                                    ArrayList<DoubleChoice> doubleChoiceDaysArrayList,
                                     EditText... editTexts){
         boolean isValid = true;
         for(EditText editText : editTexts){
