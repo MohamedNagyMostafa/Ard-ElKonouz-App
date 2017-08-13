@@ -33,10 +33,6 @@ public class Utility {
         return startDayDate;
     }
 
-    public static Boolean isDaysSelected(String DAYS_CHOICE){
-        return (!DAYS_CHOICE.equals(Constants.DAYS_NOT_SELECTED));
-    }
-
     public static Integer getRemainDays(ArrayList<Shift> shifts,
                                         final String COURSE_SESSION_DAYS,
                                         final Long COURSE_START_DATE,
