@@ -144,7 +144,26 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Total Courses Cost"/>
+
+                    <TextView
+                        android:id="@+id/child_pf_total_cost_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/empty_info"/>
+
                 </LinearLayout>
+
 
             </LinearLayout>
 
@@ -527,11 +546,23 @@
                     android:textColor="@color/colorPrimary" />
 
                 <View
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="@color/colorAccent"/>
+
+                <Button
+                    android:id="@+id/child_pf_add_section_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Add"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp"/>
 
             </LinearLayout>
 

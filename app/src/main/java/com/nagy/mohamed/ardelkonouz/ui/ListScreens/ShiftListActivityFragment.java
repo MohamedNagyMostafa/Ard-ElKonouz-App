@@ -126,8 +126,8 @@ public class ShiftListActivityFragment extends Fragment
         databaseCursorAdapter = new DatabaseCursorAdapter(getContext(), null, this);
 
         if(dayIndex == null){
-            if(shiftListScreenViewHolder.TODAY_TEXT_VIEW == null)
-            setInitialDayBar(shiftListScreenViewHolder.TODAY_TEXT_VIEW);
+            if(shiftListScreenViewHolder.TODAY_TEXT_VIEW != null)
+                setInitialDayBar(shiftListScreenViewHolder.TODAY_TEXT_VIEW);
         }
 
         // searching..

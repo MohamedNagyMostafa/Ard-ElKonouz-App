@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
@@ -39,6 +40,10 @@ public class RecycleViewChildProfileAdapter extends
         if(cursor != null && cursor.getCount() > 0){
             cursor.moveToPosition(position);
 
+            final Long START_DATE = cursor.getLong(
+                    DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_START_DATE_COLUMN
+            );
+
             childProfileListViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     getCourseName(
                             cursor.getInt(
@@ -49,16 +54,23 @@ public class RecycleViewChildProfileAdapter extends
                             )
                     )
             );
-            childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
-                    Utility.getTimeFormat(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_START_DATE_COLUMN)
-                    )
-            );
-            childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
-                    Utility.getTimeFormat(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_END_DATE_COLUMN)
-                    )
-            );
+            if(!START_DATE.equals(Constants.NULL)) {
+                childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
+                        Utility.getTimeFormat(START_DATE)
+                );
+                childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
+                        Utility.getTimeFormat(
+                                cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_END_DATE_COLUMN)
+                        )
+                );
+            }else{
+                childProfileListViewHolder.START_DATE_TEXT_VIEW.setText(
+                        context.getString(R.string.empty_info)
+                );
+                childProfileListViewHolder.END_DATE_TEXT_VIEW.setText(
+                        context.getString(R.string.empty_info)
+                );
+            }
 
             final long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_CHILD_JOIN_LIST_SECTION_ID_COLUMN);
             Cursor instructorCursor =

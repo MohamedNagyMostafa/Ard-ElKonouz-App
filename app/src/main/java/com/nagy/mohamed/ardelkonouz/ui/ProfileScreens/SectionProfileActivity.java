@@ -8,10 +8,12 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
+import com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity;
 
 public class SectionProfileActivity extends AppCompatActivity {
 
@@ -32,6 +34,22 @@ public class SectionProfileActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        findViewById(R.id.section_pf_main_icon_image_view).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openMainScreen();
+                    }
+                }
+        );
+
+    }
+
+    private void openMainScreen(){
+        Intent mainScreen = new Intent(this, MainActivity.class);
+        startActivity(mainScreen);
+        finish();
     }
 
     @Override

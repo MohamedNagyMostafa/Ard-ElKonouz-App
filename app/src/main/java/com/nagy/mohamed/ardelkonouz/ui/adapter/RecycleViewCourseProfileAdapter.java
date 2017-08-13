@@ -60,6 +60,9 @@ public class RecycleViewCourseProfileAdapter extends
             final Integer SECTION_NAME = cursor.getInt(
                     DatabaseController.ProjectionDatabase.SECTION_NAME_COLUMN
             );
+            final Long SECTION_START_DATE = cursor.getLong(
+                    DatabaseController.ProjectionDatabase.SECTION_START_DATE
+            );
 
             sectionRecycleViewHolder.SECTION_NAME_TEXT_VIEW.setText(
                     String.valueOf(
@@ -68,49 +71,51 @@ public class RecycleViewCourseProfileAdapter extends
                     )
             );
 
-            Cursor shiftsCursor = context.getContentResolver().query(
-                    DatabaseController.UriDatabase.getShiftWithSectionId(_ID),
-                    DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
-                    null,
-                    null,
-                    null
-            );
+            if(!SECTION_START_DATE.equals(Constants.NULL)) {
+                Cursor shiftsCursor = context.getContentResolver().query(
+                        DatabaseController.UriDatabase.getShiftWithSectionId(_ID),
+                        DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                        null,
+                        null,
+                        null
+                );
 
-            ArrayList<Shift> shifts = new ArrayList<>();
+                ArrayList<Shift> shifts = new ArrayList<>();
 
-            if(shiftsCursor != null){
-                while (shiftsCursor.moveToNext()){
-                    Shift shift = new Shift(
-                            shiftsCursor.getLong(
-                                    DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
-                            ),
-                            shiftsCursor.getLong(
-                                    DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
-                            ),
-                            _ID
-                    );
+                if (shiftsCursor != null) {
+                    while (shiftsCursor.moveToNext()) {
+                        Shift shift = new Shift(
+                                shiftsCursor.getLong(
+                                        DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
+                                ),
+                                shiftsCursor.getLong(
+                                        DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
+                                ),
+                                _ID
+                        );
 
-                    shifts.add(shift);
+                        shifts.add(shift);
+                    }
+                    shiftsCursor.close();
                 }
-                shiftsCursor.close();
-            }
 
-            sectionRecycleViewHolder.NEXT_SECTION_TEXT_VIEW.setText(
-                    Utility.getNextDayAsString(
-                            Utility.getNextSessionDay(
-                                    shifts,
-                                    cursor.getString(
-                                            DatabaseController.ProjectionDatabase.SECTION_DAYS
-                                    ),
-                                    cursor.getLong(
-                                            DatabaseController.ProjectionDatabase.SECTION_END_DATE
-                                    ),
-                                    cursor.getLong(
-                                            DatabaseController.ProjectionDatabase.SECTION_START_DATE
-                                    )
-                            )
-                    )
-            );
+                sectionRecycleViewHolder.NEXT_SECTION_TEXT_VIEW.setText(
+                        Utility.getNextDayAsString(
+                                Utility.getNextSessionDay(
+                                        shifts,
+                                        cursor.getString(
+                                                DatabaseController.ProjectionDatabase.SECTION_DAYS
+                                        ),
+                                        cursor.getLong(
+                                                DatabaseController.ProjectionDatabase.SECTION_END_DATE
+                                        ),
+                                        SECTION_START_DATE
+                                        )
+                        )
+                );
+            }else{
+                sectionRecycleViewHolder.NEXT_SECTION_TEXT_VIEW.setText(context.getString(R.string.empty_info));
+            }
 
             sectionRecycleViewHolder.SECTION_INSTRUCTOR_TEXT_VIEW.setText(
                     getInstructorName(_ID)

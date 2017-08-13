@@ -16,13 +16,13 @@ import java.util.Calendar;
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener{
 
-    private CurrentDateWithTime currentDateWithTime;
+    private CurrentDate currentDate;
     private View view;
     private int dateType;
     private Calendar calendar;
 
-    public void setCurrentDateWithTime(CurrentDateWithTime currentDateWithTime){
-        this.currentDateWithTime = currentDateWithTime;
+    public void setCurrentDate(CurrentDate currentDate){
+        this.currentDate = currentDate;
     }
 
     public void setCalendar(Long dateAsMills){
@@ -55,6 +55,6 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        currentDateWithTime.onDateSet(year, month, day, view, dateType);
+        currentDate.onDateSet(year, month, day, view, dateType);
     }
 }

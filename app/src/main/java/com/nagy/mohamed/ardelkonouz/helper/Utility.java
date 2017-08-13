@@ -33,6 +33,14 @@ public class Utility {
         return startDayDate;
     }
 
+    public static Boolean isDaysSelected(String DAYS_CHOICE){
+        return (!DAYS_CHOICE.equals(Constants.DAYS_NOT_SELECTED));
+    }
+
+    public static Boolean isDaySelected(String DAYS_CHOICE, int dayIndex){
+        return (DAYS_CHOICE.charAt(dayIndex) == Constants.SELECTED);
+    }
+
     public static Integer getRemainDays(ArrayList<Shift> shifts,
                                         final String COURSE_SESSION_DAYS,
                                         final Long COURSE_START_DATE,
@@ -523,6 +531,19 @@ public class Utility {
         date1.setDate(Calendar.DATE);
 
         return simpleDateFormat.format(date);
+    }
+
+    public static String getDateTimeFormat(long time){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTimeInMillis(time);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
+        Date date1 = new Date();
+        date1.setHours(Calendar.HOUR_OF_DAY);
+        date1.setMinutes(Calendar.MINUTE);
+
+        return simpleDateFormat.format(time);
     }
 
     public static Uri encodeUriToArabicSearch(Uri uri, String arabicChars){

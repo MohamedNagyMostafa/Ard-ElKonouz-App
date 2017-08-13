@@ -101,6 +101,8 @@ public class Constants {
     // double choices
     public static final char SELECTED = '1';
     public static final char NOT_SELECTED = '2';
+    public static final String DAYS_NOT_SELECTED = "2222222";
+    public static final Long NULL = -1L;
 
     public static final short NO_INSTRUCTOR = -1;
 
@@ -136,6 +138,8 @@ public class Constants {
     public static class DateType{
         public static final int START_DATE = 0;
         public static final int END_DATE = 1;
+        public static final int START_TIME = 2;
+        public static final int END_TIME  = 3;
     }
 
 }

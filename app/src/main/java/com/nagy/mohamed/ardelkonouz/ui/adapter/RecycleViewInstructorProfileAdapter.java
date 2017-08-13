@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
@@ -42,6 +43,10 @@ public class RecycleViewInstructorProfileAdapter extends
                                  int position) {
         if(cursor != null && cursor.getCount() > 0){
             cursor.moveToPosition(position);
+            final Long START_DATE = cursor.getLong(
+                    DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_SECTION_START_DATE
+            );
+
             instructorCoursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                     getCourseName(
                             cursor.getInt(
@@ -52,16 +57,23 @@ public class RecycleViewInstructorProfileAdapter extends
                         )
                     )
             );
-            instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                    Utility.getTimeFormat(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_SECTION_END_DATE)
-                    )
-            );
-            instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-                    Utility.getTimeFormat(
-                            cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_SECTION_START_DATE)
-                    )
-            );
+            if(!START_DATE.equals(Constants.NULL)) {
+                instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                        Utility.getTimeFormat(
+                                cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_SECTION_END_DATE)
+                        )
+                );
+                instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                        Utility.getTimeFormat(START_DATE)
+                );
+            }else{
+                instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                        context.getString(R.string.empty_info)
+                );
+                instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                        context.getString(R.string.empty_info)
+                );
+            }
 
 
             final long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_LIST_JOIN_SECTION_ID);

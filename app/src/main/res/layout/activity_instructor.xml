@@ -24,6 +24,7 @@
                     android:layout_marginStart="24dp"
                     android:backgroundTint="@color/colorAccent"
                     android:hint="Search"
+                    android:inputType="textPersonName"
                     android:textColorHint="@color/colorPrimaryDark"
                     android:layout_marginEnd="16dp"/>
 

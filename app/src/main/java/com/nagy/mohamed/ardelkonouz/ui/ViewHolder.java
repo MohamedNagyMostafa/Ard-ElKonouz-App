@@ -22,11 +22,13 @@ public class ViewHolder {
 
         public final EditText ACTIVE_EDIT_TEXT;
         public final Button ACTIVE_BUTTON;
+        public final Button NEW_ACTIVE_CODE_BUTTON;
 
         public ActiveScreenViewHolder(ActiveScreen activeScreen){
 
             ACTIVE_BUTTON = (Button) activeScreen.findViewById(R.id.active_screen_button);
             ACTIVE_EDIT_TEXT = (EditText) activeScreen.findViewById(R.id.active_screen_edit_text);
+            NEW_ACTIVE_CODE_BUTTON = (Button) activeScreen.findViewById(R.id.new_active_screen_button);
         }
     }
 
@@ -242,6 +244,8 @@ public class ViewHolder {
         public final EditText SECTION_SESSIONS_NUMBER_EDIT_TEXT;
         public final EditText SECTION_SESSION_HOUR_EDIT_TEXT;
         public final EditText SECTION_LEVEL_EDIT_TEXT;
+        public final EditText SECTION_START_TIME_EDIT_TEXT;
+        public final EditText SECTION_END_TIME_EDIT_TEXT;
         public final TextView SECTION_COMPLETE_TEXT_VIEW;
         public final TextView SECTION_INCOMPLETE_TEXT_VIEW;
         public final ImageView SECTION_COMPLETE_IMAGE_VIEW;
@@ -265,6 +269,8 @@ public class ViewHolder {
         public SectionInputScreenViewHolder(View sectionInputScreen){
 
             SECTION_LEVEL_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_level_edit_view);
+            SECTION_START_TIME_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_time_edit_view);
+            SECTION_END_TIME_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_end_time_edit_view);
             SECTION_SESSION_HOUR_EDIT_TEXT = (EditText)  sectionInputScreen.findViewById(R.id.section_input_sessions_hours_edit_view);
             SECTION_BEGINNING_DATE_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_date_edit_view);
             SECTION_SESSIONS_NUMBER_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_sessions_number_edit_view);
@@ -516,9 +522,11 @@ public class ViewHolder {
         public final TextView CHILD_CHARACTERISTIC_TEXT_VIEW;
         public final TextView CHILD_HANDLING_PROBLEM_TEXT_VIEW;
         public final TextView CHILD_FREE_TIME_TEXT_VIEW;
+        public final TextView CHILD_TOTAL_COST_TEXT_VIEW;
         public final FloatingActionButton CHILD_EDIT_BUTTON;
         public final RecyclerView CHILD_COURSES_RECYCLE_VIEW;
         public final LinearLayout EMPTY_VIEW_LAYOUT;
+        public final Button ADD_SECTION_BUTTON;
 
         public ChildProfileScreenViewHolder(View childProfileView){
 
@@ -542,6 +550,8 @@ public class ViewHolder {
             CHILD_EDIT_BUTTON = (FloatingActionButton) childProfileView.findViewById(R.id.child_pf_edit_floating_button);
             CHILD_COURSES_RECYCLE_VIEW = (RecyclerView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
             EMPTY_VIEW_LAYOUT = (LinearLayout) childProfileView.findViewById(R.id.child_pf_empty_view_layout);
+            ADD_SECTION_BUTTON = (Button) childProfileView.findViewById(R.id.child_pf_add_section_button);
+            CHILD_TOTAL_COST_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_total_cost_text_view);
         }
 
         public static class ChildProfileListViewHolder extends RecyclerView.ViewHolder{
@@ -640,6 +650,7 @@ public class ViewHolder {
         public final RecyclerView INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW;
         public final FloatingActionButton INSTRUCTOR_EDIT_BUTTON;
         public final LinearLayout INSTRUCTOR_COURSES_LIST_EMPTY_VIEW;
+        public final Button ADD_SECTION_BUTTON;
 
         public InstructorProfileScreenViewHolder(View instructorProfileView){
 
@@ -653,6 +664,7 @@ public class ViewHolder {
             INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW = (RecyclerView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_recycle_view);
             INSTRUCTOR_EDIT_BUTTON = (FloatingActionButton) instructorProfileView.findViewById(R.id.instructor_pf_edit_floating_button);
             INSTRUCTOR_COURSES_LIST_EMPTY_VIEW = (LinearLayout) instructorProfileView.findViewById(R.id.instructor_pf_empty_view_layout);
+            ADD_SECTION_BUTTON = (Button) instructorProfileView.findViewById(R.id.instructor_pf_add_section_button);
         }
 
         public static class InstructorCoursesViewHolder extends RecyclerView.ViewHolder{
@@ -732,6 +744,8 @@ public class ViewHolder {
             public final TextView COURSE_NAME_TEXT_VIEW;
             public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
             public final TextView COURSE_DAYS_TEXT_VIEW;
+            public final TextView COURSE_START_TIME_TEXT_VIEW;
+            public final TextView COURSE_END_TIME_TEXT_VIEW;
             public final TextView COURSE_START_DATE_TEXT_VIEW;
             public final TextView COURSE_END_DATE_TEXT_VIEW;
             public final TextView SECTION_NAME_TEXT_VIEW;
@@ -742,9 +756,11 @@ public class ViewHolder {
                 COURSE_NAME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_name_text_view);
                 COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_salary_per_child_text_view);
                 COURSE_DAYS_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_days_text_view);
-                COURSE_START_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_start_date_text_view);
                 SECTION_NAME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_section_name_text_view);
                 COURSE_END_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_end_date_text_view);
+                COURSE_START_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_start_date_text_view);
+                COURSE_END_TIME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_end_time_text_view);
+                COURSE_START_TIME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_start_time_text_view);
                 COURSE_SELECT_IMAGE_VIEW = (ImageView) coursesView.findViewById(R.id.instructor_course_list_select__image_view);
             }
         }
@@ -891,6 +907,8 @@ public class ViewHolder {
         public final TextView SECTION_SESSIONS_NUMBER_TEXT_VIEW;
         public final TextView SECTION_FINISHED_SESSIONS_TEXT_VIEW;
         public final TextView SECTION_REMAINING_SESSIONS_TEXT_VIEW;
+        public final TextView SECTION_START_TIME_TEXT_VIEW;
+        public final TextView SECTION_END_TIME_TEXT_VIEW;
         public final RecyclerView SECTION_SHIFTS_RECYCLE_VIEW;
         public final FloatingActionButton SECTION_EDIT_FLOATING_BUTTON;
         public final LinearLayout SECTION_SHIFT_EMPTY_VIEW;
@@ -900,6 +918,8 @@ public class ViewHolder {
             SECTION_NAME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_name_text_view);
             SECTION_SESSION_HOURS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_hours_text_view);
             SECTION_BEGINNING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_start_date_text_view);
+            SECTION_START_TIME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_start_time_text_view);
+            SECTION_END_TIME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_end_time_text_view);
             SECTION_ENDING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_end_date_text_view);
             SECTION_SESSION_DAYS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_days_text_view);
             SECTION_NEXT_SESSION_DAY_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_next_session_day_text_view);

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
@@ -190,6 +191,8 @@ public class ContentProviderDatabase extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         int match = m_uriMatcher.match(uri);
+        Log.e("match", String.valueOf(match));
+        Log.e("Uri ", uri.toString());
         switch(match){
             case CHILD_TABLE:
                 return m_dbHelper.getReadableDatabase().query(
@@ -1194,9 +1197,10 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection =
                 DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN + "=?" + " AND " +
-                DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
-                DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?" + " AND " +
-                 DbContent.SectionTable.SECTION_END_DATE_COLUMN + " > ?";
+                        DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
+                        DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?" + " AND ((" +
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN + " > ?) OR (" +
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NULL))";
 
         String selectionArgs[] = {
                 String.valueOf(Constants.COURSE_INCOMPLETE),
@@ -1246,7 +1250,8 @@ public class ContentProviderDatabase extends ContentProvider {
         Uri newUri = Uri.parse(newUriString);
         long instructorId = ContentUris.parseId(newUri);
 
-        String selection = DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">?" + " AND (" +
+        String selection = "((" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">? ) OR ("
+                + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NULL))" + " AND (" +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + " =?" + " OR " +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + "=? )" ;
         String[] selectionArgs = {String.valueOf(date),
@@ -1374,7 +1379,8 @@ public class ContentProviderDatabase extends ContentProvider {
         long dayIndex = ContentUris.parseId(uri);
         String selection = "(SUBSTR(" + DbContent.SectionTable.SECTION_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
-                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")";
+                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NOT NULL AND " +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN +" >= ?" + ")";
         String[] selectionArgs = {
                 String.valueOf(Constants.SELECTED),
                 String.valueOf(Utility.getCurrentDateAsMills())
@@ -1401,7 +1407,8 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection = "(SUBSTR(" + DbContent.SectionTable.SECTION_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
-                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
+                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NOT NULL AND " +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">= ?" + ")" + " AND " +
                 "(" + DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?" + ")";
         String[] selectionArgs = {
                 String.valueOf(Constants.SELECTED),
@@ -1447,13 +1454,15 @@ public class ContentProviderDatabase extends ContentProvider {
             }
         }while (idUri.length() > 1);
 
+        String selectionAsString =
+                selection.toString() + " AND " +
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN  + " IS NOT NULL";
         String[] selectionArgsArray = new String[selectionArgs.size()];
         selectionArgs.toArray(selectionArgsArray);
-
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
-                selection.toString(),
+                selectionAsString,
                 selectionArgsArray,
                 null,
                 null,
@@ -1496,13 +1505,16 @@ public class ContentProviderDatabase extends ContentProvider {
             }
         }while (idUri.length() > 1);
 
-        String[] selectionArgsArray = new String[selectionArgs.size()];
+        String selectionAsString =
+                selection.toString() + " AND " +
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN  + " IS NOT NULL";
+        String[] selectionArgsArray = new String[selectionArgs.size() ];
         selectionArgs.toArray(selectionArgsArray);
 
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
-                selection.toString(),
+                selectionAsString,
                 selectionArgsArray,
                 null,
                 null,
@@ -1705,7 +1717,8 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getSectionWithCourseName(Uri uri, String[] projection, String sortType){
         String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
                 + "%";
-        String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
+        String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ? AND " +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NOT NULL";
         String[] selectionArgs = {searchChars};
 
         return  COURSE_SECTION_JOIN_QUERY.query(

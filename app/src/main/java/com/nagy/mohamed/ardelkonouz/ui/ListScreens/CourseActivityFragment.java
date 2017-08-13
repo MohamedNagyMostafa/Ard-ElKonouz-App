@@ -124,17 +124,11 @@ public class CourseActivityFragment extends Fragment
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // Delete Course From Course Table.
-                        getActivity().getContentResolver().delete(
-                                DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
-                                null,
-                                null
-                        );
 
                         // Delete Course Sections With Child and Instructor
                         Cursor sectionCourseCursor = getActivity().getContentResolver().query(
                                 DatabaseController.UriDatabase.getSectionWithCourseId(COURSE_ID),
-                                new String[]{DbContent.SectionTable.SECTION_COURSE_ID_COLUMN},
+                                new String[]{DbContent.SectionTable._ID},
                                 null,
                                 null,
                                 null
@@ -170,6 +164,13 @@ public class CourseActivityFragment extends Fragment
                             }
                             sectionCourseCursor.close();
                         }
+
+                        // Delete Course From Course Table.
+                        getActivity().getContentResolver().delete(
+                                DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
+                                null,
+                                null
+                        );
 
                         restartLoader();
                     }

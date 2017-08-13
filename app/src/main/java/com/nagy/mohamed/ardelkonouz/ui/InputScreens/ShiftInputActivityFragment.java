@@ -20,7 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
-import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDate;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.DatePickerFragment;
 import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
@@ -43,7 +43,7 @@ import java.util.Date;
  * A placeholder fragment containing a simple view.
  */
 public class ShiftInputActivityFragment extends Fragment
-        implements CurrentDateWithTime,  LoaderManager.LoaderCallbacks<Cursor> {
+        implements CurrentDate,  LoaderManager.LoaderCallbacks<Cursor> {
 
     private String searchChars ="";
     private Long startDay = null;
@@ -461,7 +461,7 @@ public class ShiftInputActivityFragment extends Fragment
     }
 
     private void setSettings(DatePickerFragment datePickerFragment, View view, int dateType){
-        datePickerFragment.setCurrentDateWithTime(this);
+        datePickerFragment.setCurrentDate(this);
         datePickerFragment.setView(view);
         datePickerFragment.setDateType(dateType);
     }
