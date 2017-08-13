@@ -101,6 +101,7 @@ public class Constants {
     // double choices
     public static final char SELECTED = '1';
     public static final char NOT_SELECTED = '2';
+    public static final String DAYS_NOT_SELECTED = "2222222";
 
     public static final short NO_INSTRUCTOR = -1;
 

@@ -339,44 +339,30 @@ public class SectionInputActivityFragment extends Fragment
 
         final ArrayList<Shift> SHIFT_ARRAY_LIST = new ArrayList<>();
 
-        if(SECTION_ID != null){
+        ContentValues contentValues = new ContentValues();
 
-            Cursor cursor = getActivity().getContentResolver().query(
-                    DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
-                    DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
-                    null,
-                    null,
-                    null
+        Long SECTION_END_DATE = null;
+
+        if(SECTION_START_DATE != null && Utility.isDaysSelected(SECTION_SESSION_DAYS)) {
+            SECTION_END_DATE = Utility.getEndDate(
+                    SHIFT_ARRAY_LIST,
+                    SECTION_SESSION_DAYS,
+                    SECTION_SESSIONS_NUMBER,
+                    SECTION_START_DATE
             );
 
-            if(cursor != null){
-                if(cursor.getCount() > 0){
-                    while(cursor.moveToNext()){
-                        Shift shift = new Shift(
-                                cursor.getLong(
-                                        DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN
-                                ),cursor.getLong(
-                                DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN
-                        ),
-                                SECTION_ID
+            contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
+            contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
+            contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
 
-                        );
+        }else{
+            if(SECTION_START_DATE != null)
+                contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
+            if(Utility.isDaysSelected(SECTION_SESSION_DAYS))
+                contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
 
-                        SHIFT_ARRAY_LIST.add(shift);
-                    }
-                }
-                cursor.close();
-            }
         }
 
-        final Long SECTION_END_DATE = Utility.getEndDate(
-                SHIFT_ARRAY_LIST,
-                SECTION_SESSION_DAYS,
-                SECTION_SESSIONS_NUMBER,
-                SECTION_START_DATE
-        );
-
-        ContentValues contentValues = new ContentValues();
 
         Cursor courseCursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseSectionJoinWithCourseId(courseId),
@@ -407,8 +393,6 @@ public class SectionInputActivityFragment extends Fragment
                 sectionName = 1;
             }
 
-            contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
-            contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
             contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
             contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
             contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
