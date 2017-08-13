@@ -144,6 +144,24 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Total Courses Cost"/>
+
+                    <TextView
+                        android:id="@+id/child_pf_total_cost_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/empty_info"/>
+
                 </LinearLayout>
 
             </LinearLayout>

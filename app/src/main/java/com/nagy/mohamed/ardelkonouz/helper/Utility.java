@@ -538,7 +538,7 @@ public class Utility {
 
         calendar.setTimeInMillis(time);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
         Date date1 = new Date();
         date1.setHours(Calendar.HOUR_OF_DAY);
         date1.setMinutes(Calendar.MINUTE);

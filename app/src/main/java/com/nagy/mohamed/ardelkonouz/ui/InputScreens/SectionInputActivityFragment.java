@@ -621,6 +621,16 @@ public class SectionInputActivityFragment extends Fragment
 
     private void setSettings(TimePickerFragment timePickerFragment, View view, int dateType){
         timePickerFragment.setCurrentDateWithTimeWithView(this, view, dateType);
+        switch (dateType){
+            case Constants.DateType.START_TIME:
+                if(sectionStartTime != null)
+                    timePickerFragment.setTime(sectionStartTime);
+                break;
+            case Constants.DateType.END_TIME:
+                if(sectionEndTime != null)
+                    timePickerFragment.setTime(sectionEndTime);
+                break;
+        }
     }
 
 
