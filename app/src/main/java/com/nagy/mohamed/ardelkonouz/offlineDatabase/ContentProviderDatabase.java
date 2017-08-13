@@ -1197,14 +1197,13 @@ public class ContentProviderDatabase extends ContentProvider {
                         DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
                         DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?" + " AND ((" +
                         DbContent.SectionTable.SECTION_END_DATE_COLUMN + " > ?) OR (" +
-                        DbContent.SectionTable.SECTION_END_DATE_COLUMN + " =?))";
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NULL))";
 
         String selectionArgs[] = {
                 String.valueOf(Constants.COURSE_INCOMPLETE),
                 String.valueOf(age),
                 String.valueOf(age),
-                String.valueOf(date),
-                String.valueOf(Constants.NULL)
+                String.valueOf(date)
         };
 
         String sortOrder = DbContent.CourseTable.COURSE_NAME_COLUMN + " ASC, "
@@ -1249,11 +1248,10 @@ public class ContentProviderDatabase extends ContentProvider {
         long instructorId = ContentUris.parseId(newUri);
 
         String selection = "((" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">? ) OR ("
-                + DbContent.SectionTable.SECTION_END_DATE_COLUMN + "=?))" + " AND (" +
+                + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NULL))" + " AND (" +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + " =?" + " OR " +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + "=? )" ;
         String[] selectionArgs = {String.valueOf(date),
-                String.valueOf(Constants.NULL),
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
