@@ -367,7 +367,9 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
                 DbContent.SectionTable.TABLE_NAME + "." +  DbContent.SectionTable._ID,
                 DbContent.SectionTable.SECTION_HOURS_COLUMN,
-                DbContent.SectionTable.SECTION_LEVEL_COLUMN
+                DbContent.SectionTable.SECTION_LEVEL_COLUMN,
+                DbContent.SectionTable.SECTION_START_TIME_COLUMN,
+                DbContent.SectionTable.SECTION_END_TIME_COLUMN
         };
 
         public static final int SHIFT_SECTION_JOIN_ID = 0;
@@ -381,6 +383,8 @@ public class DatabaseController {
         public static final int SHIFT_SECTION_JOIN_SECTION_ID = 8;
         public static final int SHIFT_SECTION_JOIN_SECTION_HOURS = 9;
         public static final int SHIFT_SECTION_JOIN_LEVEL = 10;
+        public static final int SHIFT_SECTION_JOIN_SECTION_START_TIME = 11;
+        public static final int SHIFT_SECTION_JOIN_SECTION_END_TIME = 12;
 
         public static final String[] CHOICES_SELECTION_PROJECTION = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,

@@ -903,6 +903,8 @@ public class ViewHolder {
         public final TextView SECTION_SESSIONS_NUMBER_TEXT_VIEW;
         public final TextView SECTION_FINISHED_SESSIONS_TEXT_VIEW;
         public final TextView SECTION_REMAINING_SESSIONS_TEXT_VIEW;
+        public final TextView SECTION_START_TIME_TEXT_VIEW;
+        public final TextView SECTION_END_TIME_TEXT_VIEW;
         public final RecyclerView SECTION_SHIFTS_RECYCLE_VIEW;
         public final FloatingActionButton SECTION_EDIT_FLOATING_BUTTON;
         public final LinearLayout SECTION_SHIFT_EMPTY_VIEW;
@@ -912,6 +914,8 @@ public class ViewHolder {
             SECTION_NAME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_name_text_view);
             SECTION_SESSION_HOURS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_hours_text_view);
             SECTION_BEGINNING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_start_date_text_view);
+            SECTION_START_TIME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_start_time_text_view);
+            SECTION_END_TIME_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_end_time_text_view);
             SECTION_ENDING_DATE_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_end_date_text_view);
             SECTION_SESSION_DAYS_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_session_days_text_view);
             SECTION_NEXT_SESSION_DAY_TEXT_VIEW = (TextView) sectionProfileView.findViewById(R.id.section_pf_next_session_day_text_view);
