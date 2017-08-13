@@ -524,14 +524,28 @@ public class SectionInputActivityFragment extends Fragment
         if(getSelectionFromList(doubleChoiceStateArrayList) == -1) {
             isValid = false;
             Toast.makeText(getContext(), "Please choose the state of section",Toast.LENGTH_SHORT).show();
-        }
-        if(getSelectionFromList(doubleChoiceDaysArrayList) == -1) {
-            isValid = false;
-            Toast.makeText(getContext(), "Please choose the days of sessions",Toast.LENGTH_SHORT).show();
-        }
-        if(sectionStartDate == null) {
-            isValid = false;
-            Toast.makeText(getContext(), "Please choose start date of section",Toast.LENGTH_SHORT).show();
+        }else if(getSelectionFromList(doubleChoiceStateArrayList) == Constants.COURSE_COMPLETE){
+            if(sectionStartDate == null){
+                Toast.makeText(
+                        getContext(),
+                        "Please set section start date",
+                        Toast.LENGTH_SHORT
+                ).show();
+                isValid = false;
+            }else{
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(sectionStartDate);
+                String SECTION_DAYS_AS_STRING = Utility.getMultiDoubleSelectionAsString(SECTION_DAYS_LIST);
+
+                if(!Utility.isDaySelected(SECTION_DAYS_AS_STRING, Utility.getStartDay(calendar))){
+                    Toast.makeText(
+                            getContext(),
+                            "The section start date must be selected in section days",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    isValid = false;
+                }
+            }
         }
 
         return isValid;

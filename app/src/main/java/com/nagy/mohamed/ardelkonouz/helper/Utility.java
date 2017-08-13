@@ -37,6 +37,10 @@ public class Utility {
         return (!DAYS_CHOICE.equals(Constants.DAYS_NOT_SELECTED));
     }
 
+    public static Boolean isDaySelected(String DAYS_CHOICE, int dayIndex){
+        return (DAYS_CHOICE.charAt(dayIndex) == Constants.SELECTED);
+    }
+
     public static Integer getRemainDays(ArrayList<Shift> shifts,
                                         final String COURSE_SESSION_DAYS,
                                         final Long COURSE_START_DATE,
