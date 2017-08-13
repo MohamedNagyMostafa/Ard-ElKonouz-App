@@ -1194,15 +1194,17 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection =
                 DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN + "=?" + " AND " +
-                DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
-                DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?" + " AND " +
-                 DbContent.SectionTable.SECTION_END_DATE_COLUMN + " > ?";
+                        DbContent.CourseTable.COURSE_START_AGE_COLUMN + " <=?" + " AND " +
+                        DbContent.CourseTable.COURSE_END_AGE_COLUMN + " >=?" + " AND ((" +
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN + " > ?) OR (" +
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN + " =?))";
 
         String selectionArgs[] = {
                 String.valueOf(Constants.COURSE_INCOMPLETE),
                 String.valueOf(age),
                 String.valueOf(age),
-                String.valueOf(date)
+                String.valueOf(date),
+                String.valueOf(Constants.NULL)
         };
 
         String sortOrder = DbContent.CourseTable.COURSE_NAME_COLUMN + " ASC, "
@@ -1246,10 +1248,12 @@ public class ContentProviderDatabase extends ContentProvider {
         Uri newUri = Uri.parse(newUriString);
         long instructorId = ContentUris.parseId(newUri);
 
-        String selection = DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">?" + " AND (" +
+        String selection = "((" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">? ) OR ("
+                + DbContent.SectionTable.SECTION_END_DATE_COLUMN + "=?))" + " AND (" +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + " =?" + " OR " +
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN + "=? )" ;
         String[] selectionArgs = {String.valueOf(date),
+                String.valueOf(Constants.NULL),
                 String.valueOf(Constants.NO_INSTRUCTOR),
                 String.valueOf(instructorId)};
 
