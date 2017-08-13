@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,33 +126,52 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         final ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder coursesViewHolder
                 = new ViewHolder.ChildCourseConnectorScreenViewHolder.CoursesViewHolder(view);
         final Long SECTION_ID = cursor.getLong(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_ID);
+        final Long SECTION_START_DATE = cursor.getLong(
+                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_START_DATE
+        );
+        final String SECTION_DAYS = cursor.getString(
+                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_DAYS
+        );
 
         coursesViewHolder.COURSE_COST_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getDouble(DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_COURSE_COST)
                 )
         );
-        coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(
-                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_START_DATE
-                        )
-                )
-        );
-        coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(
-                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_END_DATE
-                        )
-                )
-        );
-        coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
-                Utility.getDaysAsString(
-                        cursor.getString(
-                                DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_DAYS
-                        )
-                )
-        );
+
+        if(!SECTION_START_DATE.equals(Constants.NULL)) {
+            coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                    Utility.getTimeFormat(
+                            cursor.getLong(
+                                    DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_START_DATE
+                            )
+                    )
+            );
+            coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                    Utility.getTimeFormat(
+                            cursor.getLong(
+                                    DatabaseController.ProjectionDatabase.CHILD_COURSE_CONNECTOR_SECTION_END_DATE
+                            )
+                    )
+            );
+        }else{
+            coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+            coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+        }
+
+        if(Utility.isDaysSelected(SECTION_DAYS)) {
+            coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
+                    Utility.getDaysAsString(SECTION_DAYS)
+            );
+        }else{
+            coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+        }
         coursesViewHolder.SECTION_LEVEL_TEXT_VIEW.setText(
                 String.valueOf(
                         cursor.getInt(
