@@ -289,8 +289,8 @@ public class DatabaseController {
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
                 DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
-                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
-                DbContent.SectionTable.SECTION_END_DATE_COLUMN
+                DbContent.SectionTable.SECTION_START_TIME_COLUMN,
+                DbContent.SectionTable.SECTION_END_TIME_COLUMN
         };
 
         public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE = 1;

@@ -361,6 +361,11 @@ public class SectionProfileActivityFragment extends Fragment
                 cursor.getString(DatabaseController.ProjectionDatabase.SECTION_DAYS);
         final int SECTION_LEVEL =
                 cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_LEVEL_COLUMN);
+        final Long SECTION_START_TIME =
+                cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_START_TIME_COLUMN);
+        final Long SECTION_END_TIME =
+                cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_END_TIME_COLUMN);
+
 
         if(!SECTION_START_DATE.equals(Constants.NULL) && Utility.isDaysSelected(SECTION_SESSIONS_DAYS)) {
             final int REMAINING_SESSIONS = Utility.getRemainDays(
@@ -390,6 +395,22 @@ public class SectionProfileActivityFragment extends Fragment
             sectionProfileViewHolder.SECTION_NEXT_SESSION_DAY_TEXT_VIEW.setText(NEXT_SESSION_DAY_STRING);
             sectionProfileViewHolder.SECTION_BEGINNING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_START_DATE));
             sectionProfileViewHolder.SECTION_ENDING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_END_DATE));
+        }
+
+        if(SECTION_START_TIME.equals(Constants.NULL)){
+            sectionProfileViewHolder.SECTION_START_TIME_TEXT_VIEW.setText(R.string.empty_info);
+        }else{
+            sectionProfileViewHolder.SECTION_START_TIME_TEXT_VIEW.setText(
+                    Utility.getDateTimeFormat(SECTION_START_TIME)
+            );
+        }
+
+        if(SECTION_END_TIME.equals(Constants.NULL)){
+            sectionProfileViewHolder.SECTION_END_TIME_TEXT_VIEW.setText(R.string.empty_info);
+        }else{
+            sectionProfileViewHolder.SECTION_END_TIME_TEXT_VIEW.setText(
+                    Utility.getDateTimeFormat(SECTION_END_TIME)
+            );
         }
 
         sectionProfileViewHolder.SECTION_NAME_TEXT_VIEW.setText(SECTION_NAME);

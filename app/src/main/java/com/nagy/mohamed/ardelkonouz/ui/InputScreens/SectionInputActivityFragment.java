@@ -44,8 +44,8 @@ public class SectionInputActivityFragment extends Fragment
     private ArrayList<DoubleChoice> SECTION_DAYS_LIST;
     private Long sectionStartDate = null;
     private Long courseId;
-    private Long sectionStartTime;
-    private Long sectionEndTime;
+    private Long sectionStartTime = null;
+    private Long sectionEndTime = null;
 
     private final View.OnClickListener START_DATE_EDIT_TEXT_LISTENER =
             new View.OnClickListener() {
@@ -157,8 +157,6 @@ public class SectionInputActivityFragment extends Fragment
         if(cursor != null){
             if(cursor.getCount() > 0){
                 cursor.moveToFirst();
-
-
                 sectionInputScreenViewHolder.SECTION_SESSION_HOUR_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
@@ -209,9 +207,6 @@ public class SectionInputActivityFragment extends Fragment
                         DatabaseController.ProjectionDatabase.SECTION_START_TIME_COLUMN
                 );
                 if(sectionStartTime.equals(Constants.NULL)){
-                    sectionInputScreenViewHolder.SECTION_START_TIME_EDIT_TEXT.setText(
-                            getString(R.string.empty_info)
-                    );
                     sectionStartTime = null;
                 }else{
                     sectionInputScreenViewHolder.SECTION_START_TIME_EDIT_TEXT.setText(
@@ -223,9 +218,6 @@ public class SectionInputActivityFragment extends Fragment
                         DatabaseController.ProjectionDatabase.SECTION_END_TIME_COLUMN
                 );
                 if(sectionEndTime.equals(Constants.NULL)){
-                    sectionInputScreenViewHolder.SECTION_END_TIME_EDIT_TEXT.setText(
-                            getString(R.string.empty_info)
-                    );
                     sectionEndTime = null;
                 }else{
                     sectionInputScreenViewHolder.SECTION_END_TIME_EDIT_TEXT.setText(
