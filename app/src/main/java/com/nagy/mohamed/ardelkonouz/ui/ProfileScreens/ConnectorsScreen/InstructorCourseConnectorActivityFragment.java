@@ -155,29 +155,43 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
                 new ViewHolder.InstructorCourseConnectorScreenViewHolder.CoursesViewHolder(view);
         final Long COURSE_ID = cursor.getLong(DatabaseController.ProjectionDatabase.COURSE_ID);
 
-        coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(
-                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE
-                        )
-                )
+        final Long SECTION_START_DATE = cursor.getLong(
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE
         );
-        coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        cursor.getLong(
-                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE
-
-                        )
-                )
+        final String SECTION_DAYS = cursor.getString(
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS
         );
 
-        coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
-                Utility.getDaysAsString(
-                        cursor.getString(
-                                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS
-                        )
-                )
-        );
+        if(!SECTION_START_DATE.equals(Constants.NULL)) {
+            coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                    Utility.getTimeFormat(SECTION_START_DATE)
+            );
+            coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                    Utility.getTimeFormat(
+                            cursor.getLong(
+                                    DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_DATE
+
+                            )
+                    )
+            );
+        }else{
+            coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+            coursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+        }
+
+        if(Utility.isDaysSelected(SECTION_DAYS)) {
+            coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
+                    Utility.getDaysAsString(SECTION_DAYS)
+            );
+        }else{
+            coursesViewHolder.COURSE_DAYS_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+        }
 
         coursesViewHolder.COURSE_NAME_TEXT_VIEW.setText(
                 cursor.getString(
