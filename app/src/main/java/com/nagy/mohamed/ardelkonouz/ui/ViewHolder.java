@@ -518,6 +518,7 @@ public class ViewHolder {
         public final TextView CHILD_CHARACTERISTIC_TEXT_VIEW;
         public final TextView CHILD_HANDLING_PROBLEM_TEXT_VIEW;
         public final TextView CHILD_FREE_TIME_TEXT_VIEW;
+        public final TextView CHILD_TOTAL_COST_TEXT_VIEW;
         public final FloatingActionButton CHILD_EDIT_BUTTON;
         public final RecyclerView CHILD_COURSES_RECYCLE_VIEW;
         public final LinearLayout EMPTY_VIEW_LAYOUT;
@@ -546,6 +547,7 @@ public class ViewHolder {
             CHILD_COURSES_RECYCLE_VIEW = (RecyclerView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
             EMPTY_VIEW_LAYOUT = (LinearLayout) childProfileView.findViewById(R.id.child_pf_empty_view_layout);
             ADD_SECTION_BUTTON = (Button) childProfileView.findViewById(R.id.child_pf_add_section_button);
+            CHILD_TOTAL_COST_TEXT_VIEW = (TextView) childProfileView.findViewById(R.id.child_pf_total_cost_text_view);
         }
 
         public static class ChildProfileListViewHolder extends RecyclerView.ViewHolder{

@@ -17,6 +17,7 @@ import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
+import com.nagy.mohamed.ardelkonouz.offlineDatabase.DbContent;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
@@ -137,6 +138,9 @@ public class ChildProfileActivityFragment extends Fragment
         childProfileScreenViewHolder.WHATSAPP_TEXT_VIEW.setText(
                                 childProfileData.getString(DatabaseController.ProjectionDatabase.CHILD_MOBILE_WHATSUP)
         );
+        childProfileScreenViewHolder.CHILD_TOTAL_COST_TEXT_VIEW.setText(
+                String.valueOf(getTotalCostForChild()) + " L.E"
+        );
         childProfileScreenViewHolder.EDUCATION_TYPE_TEXT_VIEW.setText(
                 Utility.decodeEducationTypeByInt(
                         childProfileData.getInt(DatabaseController.ProjectionDatabase.CHILD_EDUCATION_TYPE),
@@ -202,5 +206,37 @@ public class ChildProfileActivityFragment extends Fragment
         coursesSelectionWindow.putExtra(Constants.CHILD_ID_EXTRA, childId);
         startActivity(coursesSelectionWindow);
         getActivity().finish();
+    }
+
+    private double getTotalCostForChild(){
+        double totalCost = 0;
+
+        Cursor childSectionCursor = getActivity().getContentResolver().query(
+                DatabaseController.UriDatabase.getSectionChildTableWithChildIdUri(childId),
+                new String[]{DbContent.SectionTable.SECTION_COURSE_ID_COLUMN},
+                null,
+                null,
+                null
+        );
+
+        if(childSectionCursor != null){
+            while (childSectionCursor.moveToNext()){
+                Cursor courseCursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getCourseTableWithIdUri(childSectionCursor.getLong(0)),
+                        new String[]{DbContent.CourseTable.COURSE_COST_COLUMN},
+                        null,
+                        null,
+                        null
+                );
+
+                if(courseCursor != null){
+                    courseCursor.moveToNext();
+                    totalCost += courseCursor.getDouble(0);
+                    courseCursor.close();
+                }
+            }
+            childSectionCursor.close();
+        }
+        return totalCost;
     }
 }
