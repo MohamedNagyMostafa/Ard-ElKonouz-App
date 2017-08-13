@@ -9,7 +9,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.InstructorInputActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen.InstructorCourseConnectorActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewInstructorProfileAdapter;
 
@@ -72,6 +72,14 @@ public class InstructorProfileActivityFragment extends Fragment
                         instructorInputScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, instructorId);
                         instructorInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(instructorInputScreen);
+                    }
+                }
+        );
+        instructorProfileScreenViewHolder.ADD_SECTION_BUTTON.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openInstructorProfile(instructorId);
                     }
                 }
         );
@@ -162,5 +170,12 @@ public class InstructorProfileActivityFragment extends Fragment
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         recycleViewInstructorProfileAdapter.setCursor(null);
+    }
+
+    private void openInstructorProfile(final long INSTRUCTOR_ID){
+        Intent instructorCourseConnectorScreen = new Intent(getContext(), InstructorCourseConnectorActivity.class);
+        instructorCourseConnectorScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, INSTRUCTOR_ID);
+        startActivity(instructorCourseConnectorScreen);
+        getActivity().finish();
     }
 }

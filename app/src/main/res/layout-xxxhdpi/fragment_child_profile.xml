@@ -527,11 +527,23 @@
                     android:textColor="@color/colorPrimary" />
 
                 <View
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="1dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="@color/colorAccent"/>
+
+                <Button
+                    android:id="@+id/child_pf_add_section_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Add"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp"/>
 
             </LinearLayout>
 

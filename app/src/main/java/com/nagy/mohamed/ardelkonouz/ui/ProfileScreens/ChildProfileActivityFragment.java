@@ -9,7 +9,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
 import com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ConnectorsScreen.ChildCourseConnectorActivity;
 import com.nagy.mohamed.ardelkonouz.ui.ViewHolder;
 import com.nagy.mohamed.ardelkonouz.ui.adapter.RecycleViewChildProfileAdapter;
 
@@ -68,7 +68,14 @@ public class ChildProfileActivityFragment extends Fragment
                 startActivity(inputChildScreen);
             }
         });
-
+        childProfileScreenViewHolder.ADD_SECTION_BUTTON.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openCoursesSelectionWindow(childId);
+                    }
+                }
+        );
         getLoaderManager().initLoader(Constants.LOADER_COURSE_CHILD_JOIN_LIST, null, this);
 
         return rootView;
@@ -190,4 +197,10 @@ public class ChildProfileActivityFragment extends Fragment
 
     }
 
+    private void openCoursesSelectionWindow(long childId){
+        Intent coursesSelectionWindow = new Intent(getContext(), ChildCourseConnectorActivity.class);
+        coursesSelectionWindow.putExtra(Constants.CHILD_ID_EXTRA, childId);
+        startActivity(coursesSelectionWindow);
+        getActivity().finish();
+    }
 }

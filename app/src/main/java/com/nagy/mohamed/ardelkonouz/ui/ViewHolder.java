@@ -521,6 +521,7 @@ public class ViewHolder {
         public final FloatingActionButton CHILD_EDIT_BUTTON;
         public final RecyclerView CHILD_COURSES_RECYCLE_VIEW;
         public final LinearLayout EMPTY_VIEW_LAYOUT;
+        public final Button ADD_SECTION_BUTTON;
 
         public ChildProfileScreenViewHolder(View childProfileView){
 
@@ -544,6 +545,7 @@ public class ViewHolder {
             CHILD_EDIT_BUTTON = (FloatingActionButton) childProfileView.findViewById(R.id.child_pf_edit_floating_button);
             CHILD_COURSES_RECYCLE_VIEW = (RecyclerView) childProfileView.findViewById(R.id.child_pf_courses_instructors_grid_view);
             EMPTY_VIEW_LAYOUT = (LinearLayout) childProfileView.findViewById(R.id.child_pf_empty_view_layout);
+            ADD_SECTION_BUTTON = (Button) childProfileView.findViewById(R.id.child_pf_add_section_button);
         }
 
         public static class ChildProfileListViewHolder extends RecyclerView.ViewHolder{
@@ -642,6 +644,7 @@ public class ViewHolder {
         public final RecyclerView INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW;
         public final FloatingActionButton INSTRUCTOR_EDIT_BUTTON;
         public final LinearLayout INSTRUCTOR_COURSES_LIST_EMPTY_VIEW;
+        public final Button ADD_SECTION_BUTTON;
 
         public InstructorProfileScreenViewHolder(View instructorProfileView){
 
@@ -655,6 +658,7 @@ public class ViewHolder {
             INSTRUCTOR_COURSES_CHILD_RECYCLE_VIEW = (RecyclerView) instructorProfileView.findViewById(R.id.instructor_pf_courses_children_recycle_view);
             INSTRUCTOR_EDIT_BUTTON = (FloatingActionButton) instructorProfileView.findViewById(R.id.instructor_pf_edit_floating_button);
             INSTRUCTOR_COURSES_LIST_EMPTY_VIEW = (LinearLayout) instructorProfileView.findViewById(R.id.instructor_pf_empty_view_layout);
+            ADD_SECTION_BUTTON = (Button) instructorProfileView.findViewById(R.id.instructor_pf_add_section_button);
         }
 
         public static class InstructorCoursesViewHolder extends RecyclerView.ViewHolder{
