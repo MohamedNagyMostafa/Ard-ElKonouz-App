@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -762,8 +761,6 @@ public class ChildInputActivityFragment extends Fragment {
         final String FATHER_PHONE_NUMBER = childInputScreenViewHolder.FATHER_MOBILE_EDIT_TEXT.getText().toString().trim();
         final String MOTHER_PHONE_NUMBER = childInputScreenViewHolder.MOTHER_MOBILE_EDIT_TEXT.getText().toString().trim();
         final String CHILD_NAME = childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT.getText().toString().trim();
-        final String FATHER_NAME = childInputScreenViewHolder.FATHER_NAME_EDIT_TEXT.getText().toString().trim();
-        final String MOTHER_NAME = childInputScreenViewHolder.MOTHER_NAME_EDIT_TEXT.getText().toString().trim();
         boolean result = true;
 
         Cursor childNameUniqueCursor = getActivity().getContentResolver().query(
@@ -775,10 +772,11 @@ public class ChildInputActivityFragment extends Fragment {
                 null
         );
 
-        if(childNameUniqueCursor != null){
-            if(childNameUniqueCursor.getCount() == type){
-                Cursor fatherMotherUniqueCursor = getActivity().getContentResolver().query(
-                        DatabaseController.UriDatabase.getChildFatherMotherUnique(FATHER_NAME, MOTHER_NAME),
+        if(childNameUniqueCursor != null) {
+            if (childNameUniqueCursor.getCount() != type) {
+                Cursor fatherMotherPhoneUniqueCursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getChildFatherMotherPhoneUnique(
+                                FATHER_PHONE_NUMBER, MOTHER_PHONE_NUMBER),
                         null,
                         null,
                         null,
@@ -786,53 +784,20 @@ public class ChildInputActivityFragment extends Fragment {
                         null
                 );
 
-                if(fatherMotherUniqueCursor != null){
-                    if(fatherMotherUniqueCursor.getCount() == type){
-
-                        Cursor fatherMotherPhoneUniqueCursor = getActivity().getContentResolver().query(
-                                DatabaseController.UriDatabase.getChildFatherMotherPhoneUnique(
-                                        FATHER_PHONE_NUMBER, MOTHER_PHONE_NUMBER),
-                                null,
-                                null,
-                                null,
-                                null,
-                                null
-                        );
-
-                        if(fatherMotherPhoneUniqueCursor != null){
-                            if(fatherMotherPhoneUniqueCursor.getCount() == type){
-                                result = true;
-                            }else{
-                                Toast.makeText(
-                                        getContext(),
-                                        "Father or mother phone is found before",
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                                result = false;
-                            }
-                            fatherMotherPhoneUniqueCursor.close();
-                        }
-                    }else{
+                if (fatherMotherPhoneUniqueCursor != null) {
+                    if (fatherMotherPhoneUniqueCursor.getCount() != type) {
                         Toast.makeText(
                                 getContext(),
-                                "Father or mother name is found before",
+                                "This child is found before",
                                 Toast.LENGTH_SHORT
                         ).show();
                         result = false;
                     }
-                    fatherMotherUniqueCursor.close();
+                    fatherMotherPhoneUniqueCursor.close();
                 }
-            }else{
-                Toast.makeText(
-                        getContext(),
-                        "Child name is found before",
-                        Toast.LENGTH_SHORT
-                ).show();
-                result = false;
+                childNameUniqueCursor.close();
             }
-            childNameUniqueCursor.close();
         }
-
         return result;
     }
 
@@ -842,8 +807,6 @@ public class ChildInputActivityFragment extends Fragment {
         final String FATHER_PHONE_NUMBER = childInputScreenViewHolder.FATHER_MOBILE_EDIT_TEXT.getText().toString().trim();
         final String MOTHER_PHONE_NUMBER = childInputScreenViewHolder.MOTHER_MOBILE_EDIT_TEXT.getText().toString().trim();
         final String CHILD_NAME = childInputScreenViewHolder.CHILD_NAME_EDIT_TEXT.getText().toString().trim();
-        final String FATHER_NAME = childInputScreenViewHolder.FATHER_NAME_EDIT_TEXT.getText().toString().trim();
-        final String MOTHER_NAME = childInputScreenViewHolder.MOTHER_NAME_EDIT_TEXT.getText().toString().trim();
         boolean result = true;
 
         Cursor childNameUniqueCursor = getActivity().getContentResolver().query(
@@ -856,9 +819,10 @@ public class ChildInputActivityFragment extends Fragment {
         );
 
         if(childNameUniqueCursor != null){
-            if(childNameUniqueCursor.getCount() == type || childNameUniqueCursor.getCount() == 0){
-                Cursor fatherMotherUniqueCursor = getActivity().getContentResolver().query(
-                        DatabaseController.UriDatabase.getChildFatherMotherUnique(FATHER_NAME, MOTHER_NAME),
+            if(childNameUniqueCursor.getCount() != type || childNameUniqueCursor.getCount() != 0){
+                Cursor fatherMotherPhoneUniqueCursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getChildFatherMotherPhoneUnique(
+                                FATHER_PHONE_NUMBER, MOTHER_PHONE_NUMBER),
                         null,
                         null,
                         null,
@@ -866,49 +830,17 @@ public class ChildInputActivityFragment extends Fragment {
                         null
                 );
 
-                if(fatherMotherUniqueCursor != null){
-                    if(fatherMotherUniqueCursor.getCount() == type || fatherMotherUniqueCursor.getCount() == 0){
-
-                        Cursor fatherMotherPhoneUniqueCursor = getActivity().getContentResolver().query(
-                                DatabaseController.UriDatabase.getChildFatherMotherPhoneUnique(
-                                        FATHER_PHONE_NUMBER, MOTHER_PHONE_NUMBER),
-                                null,
-                                null,
-                                null,
-                                null,
-                                null
-                        );
-
-                        if(fatherMotherPhoneUniqueCursor != null){
-                            if(fatherMotherPhoneUniqueCursor.getCount() == type || fatherMotherPhoneUniqueCursor.getCount() == 0){
-                                result = true;
-                            }else{
-                                Toast.makeText(
-                                        getContext(),
-                                        "Father or mother phone is found before",
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                                result = false;
-                            }
-                            fatherMotherPhoneUniqueCursor.close();
-                        }
-                    }else{
+                if(fatherMotherPhoneUniqueCursor != null){
+                    if(fatherMotherPhoneUniqueCursor.getCount() != type || fatherMotherPhoneUniqueCursor.getCount() != 0) {
                         Toast.makeText(
                                 getContext(),
-                                "Father or mother name is found before",
+                                "This child is found before",
                                 Toast.LENGTH_SHORT
                         ).show();
                         result = false;
                     }
-                    fatherMotherUniqueCursor.close();
+                    fatherMotherPhoneUniqueCursor.close();
                 }
-            }else{
-                Toast.makeText(
-                        getContext(),
-                        "Child name is found before",
-                        Toast.LENGTH_SHORT
-                ).show();
-                result = false;
             }
             childNameUniqueCursor.close();
         }
