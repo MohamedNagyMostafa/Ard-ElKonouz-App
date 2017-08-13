@@ -161,6 +161,28 @@ public class InstructorCourseConnectorActivityFragment extends Fragment
         final String SECTION_DAYS = cursor.getString(
                 DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_DAYS
         );
+        final Long SECTION_START_TIME = cursor.getLong(
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_TIME
+        );
+        final Long SECTION_END_TIME = cursor.getLong(
+                DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_TIME
+        );
+
+        if(SECTION_START_TIME.equals(Constants.NULL)){
+            coursesViewHolder.COURSE_START_TIME_TEXT_VIEW.setText(R.string.empty_info);
+        }else{
+            coursesViewHolder.COURSE_START_TIME_TEXT_VIEW.setText(
+                    Utility.getDateTimeFormat(SECTION_START_TIME)
+            );
+        }
+
+        if(SECTION_END_TIME.equals(Constants.NULL)){
+            coursesViewHolder.COURSE_END_TIME_TEXT_VIEW.setText(R.string.empty_info);
+        }else{
+            coursesViewHolder.COURSE_END_TIME_TEXT_VIEW.setText(
+                    Utility.getDateTimeFormat(SECTION_END_TIME)
+            );
+        }
 
         if(!SECTION_START_DATE.equals(Constants.NULL)) {
             coursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(

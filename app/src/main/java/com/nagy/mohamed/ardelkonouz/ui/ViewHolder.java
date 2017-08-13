@@ -744,6 +744,8 @@ public class ViewHolder {
             public final TextView COURSE_NAME_TEXT_VIEW;
             public final TextView COURSE_SALARY_PER_CHILD_TEXT_VIEW;
             public final TextView COURSE_DAYS_TEXT_VIEW;
+            public final TextView COURSE_START_TIME_TEXT_VIEW;
+            public final TextView COURSE_END_TIME_TEXT_VIEW;
             public final TextView COURSE_START_DATE_TEXT_VIEW;
             public final TextView COURSE_END_DATE_TEXT_VIEW;
             public final TextView SECTION_NAME_TEXT_VIEW;
@@ -754,9 +756,11 @@ public class ViewHolder {
                 COURSE_NAME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_name_text_view);
                 COURSE_SALARY_PER_CHILD_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_salary_per_child_text_view);
                 COURSE_DAYS_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_days_text_view);
-                COURSE_START_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_start_date_text_view);
                 SECTION_NAME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_section_name_text_view);
                 COURSE_END_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_end_date_text_view);
+                COURSE_START_DATE_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_start_date_text_view);
+                COURSE_END_TIME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_end_time_text_view);
+                COURSE_START_TIME_TEXT_VIEW = (TextView) coursesView.findViewById(R.id.instructor_course_list_start_time_text_view);
                 COURSE_SELECT_IMAGE_VIEW = (ImageView) coursesView.findViewById(R.id.instructor_course_list_select__image_view);
             }
         }

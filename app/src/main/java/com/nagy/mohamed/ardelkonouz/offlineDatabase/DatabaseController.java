@@ -288,7 +288,9 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_NAME_COLUMN,
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
                 DbContent.CourseTable.COURSE_NAME_COLUMN,
-                DbContent.CourseTable.COURSE_SALARY_PER_CHILD
+                DbContent.CourseTable.COURSE_SALARY_PER_CHILD,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN
         };
 
         public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_DATE = 1;
@@ -299,6 +301,8 @@ public class DatabaseController {
         public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_INSTRUCTOR_ID = 6;
         public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_NAME = 7;
         public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_COURSE_SALARY_PER_CHILD = 8;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_START_TIME = 9;
+        public static final int SECTION_INSTRUCTOR_CONNECTOR_JOIN_SECTION_END_TIME = 10;
 
         public static final String[] SECTION_CHILD_JOIN_LIST_TABLE = {
                 DbContent.ChildSectionTable.TABLE_NAME + "." + DbContent.ChildSectionTable._ID,
