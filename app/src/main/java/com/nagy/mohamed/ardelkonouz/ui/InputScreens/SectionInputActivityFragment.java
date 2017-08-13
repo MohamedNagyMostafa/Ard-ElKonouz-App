@@ -16,8 +16,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
-import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDateWithTime;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentDate;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.CurrentTime;
 import com.nagy.mohamed.ardelkonouz.calenderFeature.DatePickerFragment;
+import com.nagy.mohamed.ardelkonouz.calenderFeature.TimePickerFragment;
 import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.DoubleChoice;
@@ -36,12 +38,14 @@ import java.util.Date;
  * A placeholder fragment containing a simple view.
  */
 public class SectionInputActivityFragment extends Fragment
-        implements CurrentDateWithTime {
+        implements CurrentDate, CurrentTime {
 
     private ArrayList<DoubleChoice> SECTION_STATE_LIST;
     private ArrayList<DoubleChoice> SECTION_DAYS_LIST;
     private Long sectionStartDate = null;
     private Long courseId;
+    private Long sectionStartTime;
+    private Long sectionEndTime;
 
     private final View.OnClickListener START_DATE_EDIT_TEXT_LISTENER =
             new View.OnClickListener() {
@@ -55,9 +59,26 @@ public class SectionInputActivityFragment extends Fragment
                     datePickerFragment.show(getFragmentManager(), Constants.TAG);
                 }
             };
+    private final View.OnClickListener START_TIME_EDIT_TEXT_LISTENT =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TimePickerFragment timePickerFragment = new TimePickerFragment();
+                    setSettings(timePickerFragment, view, Constants.DateType.START_TIME);
+                    timePickerFragment.show(getFragmentManager(), Constants.TAG);
+                }
+            };
 
+    private final View.OnClickListener END_TIME_EDIT_TEXT_LISTENT =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TimePickerFragment timePickerFragment = new TimePickerFragment();
+                    setSettings(timePickerFragment, view, Constants.DateType.END_TIME);
+                    timePickerFragment.show(getFragmentManager(), Constants.TAG);
+                }
+            };
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_section_input, container, false);
@@ -71,6 +92,8 @@ public class SectionInputActivityFragment extends Fragment
         SECTION_DAYS_LIST = setSectionDaysListItem(sectionInputScreenViewHolder);
 
         sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setOnClickListener(START_DATE_EDIT_TEXT_LISTENER);
+        sectionInputScreenViewHolder.SECTION_START_TIME_EDIT_TEXT.setOnClickListener(START_TIME_EDIT_TEXT_LISTENT);
+        sectionInputScreenViewHolder.SECTION_END_TIME_EDIT_TEXT.setOnClickListener(END_TIME_EDIT_TEXT_LISTENT);
 
         // setChoice listener.
         setSectionStateListener(SECTION_STATE_LIST);
@@ -591,10 +614,15 @@ public class SectionInputActivityFragment extends Fragment
     }
 
     private void setSettings(DatePickerFragment datePickerFragment, View view, int dateType){
-        datePickerFragment.setCurrentDateWithTime(this);
+        datePickerFragment.setCurrentDate(this);
         datePickerFragment.setView(view);
         datePickerFragment.setDateType(dateType);
     }
+
+    private void setSettings(TimePickerFragment timePickerFragment, View view, int dateType){
+        timePickerFragment.setCurrentDateWithTimeWithView(this, view, dateType);
+    }
+
 
     private ContentValues getData(final long SECTION_ID){
         ContentValues contentValues = new ContentValues();
@@ -627,5 +655,39 @@ public class SectionInputActivityFragment extends Fragment
             Utility.doubleSelectionProcess(SECTION_DAYS_LIST,
                     savedInstanceState.getString(Constants.SaveState.SECTION_DAYS));
         }
+    }
+
+    @Override
+    public void onTimeSet(int hour, int mint, View view, int dateType) {
+        String setMintHour =
+                String.valueOf(hour) + ":" +
+                        String.valueOf(mint);
+        SimpleDateFormat simpleDateFormatYearMonth = new SimpleDateFormat("hh:mm");
+        Date dateTime = null;
+
+        try {
+            dateTime = simpleDateFormatYearMonth.parse(setMintHour);//catch exception
+            dateTime.setTime(dateTime.getTime());
+
+        } catch (ParseException | java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar thatTime = Calendar.getInstance();
+        thatTime.setTime(dateTime);
+        Long timeInMillis = thatTime.getTimeInMillis();
+
+        switch (dateType) {
+            case Constants.DateType.START_TIME:
+                sectionStartTime = timeInMillis;
+                break;
+            case Constants.DateType.END_TIME:
+                sectionEndTime = timeInMillis;
+                break;
+        }
+
+        EditText editText = (EditText) view;
+
+        editText.setText(Utility.getDateTimeFormat(timeInMillis));
     }
 }

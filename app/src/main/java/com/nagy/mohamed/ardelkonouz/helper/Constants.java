@@ -138,6 +138,8 @@ public class Constants {
     public static class DateType{
         public static final int START_DATE = 0;
         public static final int END_DATE = 1;
+        public static final int START_TIME = 2;
+        public static final int END_TIME  = 3;
     }
 
 }

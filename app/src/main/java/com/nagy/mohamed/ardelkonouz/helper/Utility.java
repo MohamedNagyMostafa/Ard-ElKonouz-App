@@ -533,6 +533,19 @@ public class Utility {
         return simpleDateFormat.format(date);
     }
 
+    public static String getDateTimeFormat(long time){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTimeInMillis(time);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
+        Date date1 = new Date();
+        date1.setHours(Calendar.HOUR_OF_DAY);
+        date1.setMinutes(Calendar.MINUTE);
+
+        return simpleDateFormat.format(time);
+    }
+
     public static Uri encodeUriToArabicSearch(Uri uri, String arabicChars){
         return Uri.parse(uri.toString() + "/" + arabicChars);
     }

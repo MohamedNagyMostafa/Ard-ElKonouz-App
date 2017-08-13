@@ -244,6 +244,8 @@ public class ViewHolder {
         public final EditText SECTION_SESSIONS_NUMBER_EDIT_TEXT;
         public final EditText SECTION_SESSION_HOUR_EDIT_TEXT;
         public final EditText SECTION_LEVEL_EDIT_TEXT;
+        public final EditText SECTION_START_TIME_EDIT_TEXT;
+        public final EditText SECTION_END_TIME_EDIT_TEXT;
         public final TextView SECTION_COMPLETE_TEXT_VIEW;
         public final TextView SECTION_INCOMPLETE_TEXT_VIEW;
         public final ImageView SECTION_COMPLETE_IMAGE_VIEW;
@@ -267,6 +269,8 @@ public class ViewHolder {
         public SectionInputScreenViewHolder(View sectionInputScreen){
 
             SECTION_LEVEL_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_level_edit_view);
+            SECTION_START_TIME_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_time_edit_view);
+            SECTION_END_TIME_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_end_time_edit_view);
             SECTION_SESSION_HOUR_EDIT_TEXT = (EditText)  sectionInputScreen.findViewById(R.id.section_input_sessions_hours_edit_view);
             SECTION_BEGINNING_DATE_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_start_date_edit_view);
             SECTION_SESSIONS_NUMBER_EDIT_TEXT = (EditText) sectionInputScreen.findViewById(R.id.section_input_sessions_number_edit_view);
