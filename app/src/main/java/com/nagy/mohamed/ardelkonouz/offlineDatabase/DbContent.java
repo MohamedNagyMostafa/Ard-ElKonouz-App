@@ -254,9 +254,9 @@ public class DbContent {
                 SECTION_NAME_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_HOURS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_AVAILABLE_POSITIONS_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                SECTION_START_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_START_DATE_COLUMN + SPACE + INTEGER  + "," +
                 SECTION_COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
-                SECTION_END_DATE_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
+                SECTION_END_DATE_COLUMN + SPACE + INTEGER + "," +
                 SECTION_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 SECTION_LEVEL_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +

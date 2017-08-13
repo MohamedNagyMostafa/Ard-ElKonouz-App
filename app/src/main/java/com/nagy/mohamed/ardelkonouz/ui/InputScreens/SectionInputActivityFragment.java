@@ -341,7 +341,7 @@ public class SectionInputActivityFragment extends Fragment
 
         Long SECTION_END_DATE = null;
 
-        if(SECTION_START_DATE != null) {
+        if(SECTION_START_DATE != null && Utility.isDaysSelected(SECTION_SESSION_DAYS)) {
             SECTION_END_DATE = Utility.getEndDate(
                     SHIFT_ARRAY_LIST,
                     SECTION_SESSION_DAYS,
@@ -352,6 +352,9 @@ public class SectionInputActivityFragment extends Fragment
             contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
             contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
 
+        }else{
+            if(SECTION_START_DATE != null)
+                contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
         }
 
         Cursor courseCursor = getActivity().getContentResolver().query(
@@ -435,7 +438,7 @@ public class SectionInputActivityFragment extends Fragment
         final ArrayList<Shift> SHIFT_ARRAY_LIST = new ArrayList<>();
         ContentValues contentValues = new ContentValues();
 
-        if(SECTION_START_DATE != null) {
+        if(SECTION_START_DATE != null && Utility.isDaysSelected(SECTION_SESSION_DAYS)) {
             Cursor cursor = getActivity().getContentResolver().query(
                     DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
                     DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
@@ -463,7 +466,6 @@ public class SectionInputActivityFragment extends Fragment
                 cursor.close();
             }
 
-
             final Long SECTION_END_DATE = Utility.getEndDate(
                     SHIFT_ARRAY_LIST,
                     SECTION_SESSION_DAYS,
@@ -474,6 +476,9 @@ public class SectionInputActivityFragment extends Fragment
             contentValues.put(DbContent.SectionTable.SECTION_END_DATE_COLUMN, SECTION_END_DATE);
             contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
 
+        }else{
+            if(SECTION_START_DATE != null)
+                contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
         }
 
         contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
