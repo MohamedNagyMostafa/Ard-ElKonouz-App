@@ -1376,7 +1376,8 @@ public class ContentProviderDatabase extends ContentProvider {
         long dayIndex = ContentUris.parseId(uri);
         String selection = "(SUBSTR(" + DbContent.SectionTable.SECTION_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
-                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")";
+                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NOT NULL AND " +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN +" >= ?" + ")";
         String[] selectionArgs = {
                 String.valueOf(Constants.SELECTED),
                 String.valueOf(Utility.getCurrentDateAsMills())
@@ -1403,7 +1404,8 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selection = "(SUBSTR(" + DbContent.SectionTable.SECTION_DAYS_COLUMN + "," +
                 String.valueOf(dayIndex+1) + "," + String.valueOf(1) + ") LIKE ? )" + " AND " +
-                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " >= ?" + ")" + " AND " +
+                "(" + DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NOT NULL AND " +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN + ">= ?" + ")" + " AND " +
                 "(" + DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?" + ")";
         String[] selectionArgs = {
                 String.valueOf(Constants.SELECTED),
@@ -1449,13 +1451,18 @@ public class ContentProviderDatabase extends ContentProvider {
             }
         }while (idUri.length() > 1);
 
-        String[] selectionArgsArray = new String[selectionArgs.size()];
+        String selectionAsString =
+                selection.toString() + " AND " +
+                        DbContent.SectionTable.SECTION_START_DATE_COLUMN  + " !=?";
+        String[] selectionArgsArray = new String[selectionArgs.size() + 1];
         selectionArgs.toArray(selectionArgsArray);
+        selectionArgsArray[selectionArgs.size()] =
+                String.valueOf(Constants.NULL);
 
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
-                selection.toString(),
+                selectionAsString,
                 selectionArgsArray,
                 null,
                 null,
@@ -1498,13 +1505,17 @@ public class ContentProviderDatabase extends ContentProvider {
             }
         }while (idUri.length() > 1);
 
-        String[] selectionArgsArray = new String[selectionArgs.size()];
+        String selectionAsString =
+                selection.toString() + " AND " +
+                        DbContent.SectionTable.SECTION_START_DATE_COLUMN  + " !=?";
+        String[] selectionArgsArray = new String[selectionArgs.size() + 1];
         selectionArgs.toArray(selectionArgsArray);
+        selectionArgsArray[selectionArgs.size()] = String.valueOf(Constants.NULL);
 
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
-                selection.toString(),
+                selectionAsString,
                 selectionArgsArray,
                 null,
                 null,
