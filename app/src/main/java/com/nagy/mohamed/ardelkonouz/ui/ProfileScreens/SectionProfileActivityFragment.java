@@ -10,7 +10,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -272,9 +271,9 @@ public class SectionProfileActivityFragment extends Fragment
                         cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_ID);
         final Integer SESSION_HOURS =
                 cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_HOURS);
-        final long SECTION_START_DATE =
+        final Long SECTION_START_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_START_DATE_COLUMN);
-        final long SECTION_END_DATE =
+        final Long SECTION_END_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_END_DATE_COLUMN);
         final int SECTION_STATE =
                 cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_AVAILABLE_POSITIONS_COLUMN);
@@ -284,31 +283,34 @@ public class SectionProfileActivityFragment extends Fragment
                 cursor.getString(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_SECTION_DAYS_COLUMN);
         final int SECTION_LEVEL =
                 cursor.getInt(DatabaseController.ProjectionDatabase.SHIFT_SECTION_JOIN_LEVEL);
-        final int REMAINING_SESSIONS = Utility.getRemainDays(
-                shifts,
-                SECTION_SESSIONS_DAYS,
-                SECTION_START_DATE,
-                SECTION_END_DATE,
-                SECTION_SESSIONS_NUMBER
-        );
+        if(!SECTION_START_DATE.equals(Constants.NULL) && Utility.isDaysSelected(SECTION_SESSIONS_DAYS)) {
+            final int REMAINING_SESSIONS = Utility.getRemainDays(
+                    shifts,
+                    SECTION_SESSIONS_DAYS,
+                    SECTION_START_DATE,
+                    SECTION_END_DATE,
+                    SECTION_SESSIONS_NUMBER
+            );
 
-        int FINISHED_SESSIONS = SECTION_SESSIONS_NUMBER - REMAINING_SESSIONS;
+            int FINISHED_SESSIONS = SECTION_SESSIONS_NUMBER - REMAINING_SESSIONS;
 
-        final Long NEXT_SESSION_DAY = Utility.getNextSessionDay(
-                shifts,
-                SECTION_SESSIONS_DAYS,
-                SECTION_END_DATE,
-                SECTION_START_DATE
-        );
-        final String NEXT_SESSION_DAY_STRING = Utility.getNextDayAsString(NEXT_SESSION_DAY);
+            final Long NEXT_SESSION_DAY = Utility.getNextSessionDay(
+                    shifts,
+                    SECTION_SESSIONS_DAYS,
+                    SECTION_END_DATE,
+                    SECTION_START_DATE
+            );
+            final String NEXT_SESSION_DAY_STRING = Utility.getNextDayAsString(NEXT_SESSION_DAY);
 
+            sectionProfileViewHolder.SECTION_REMAINING_SESSIONS_TEXT_VIEW.setText(String.valueOf(REMAINING_SESSIONS));
+            sectionProfileViewHolder.SECTION_FINISHED_SESSIONS_TEXT_VIEW.setText(String.valueOf(FINISHED_SESSIONS));
+            sectionProfileViewHolder.SECTION_NEXT_SESSION_DAY_TEXT_VIEW.setText(NEXT_SESSION_DAY_STRING);
+            sectionProfileViewHolder.SECTION_BEGINNING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_START_DATE));
+            sectionProfileViewHolder.SECTION_ENDING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_END_DATE));
+
+        }
         sectionProfileViewHolder.SECTION_NAME_TEXT_VIEW.setText(SECTION_NAME);
-        sectionProfileViewHolder.SECTION_BEGINNING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_START_DATE));
-        sectionProfileViewHolder.SECTION_ENDING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_END_DATE));
         sectionProfileViewHolder.SECTION_SESSIONS_NUMBER_TEXT_VIEW.setText(String.valueOf(SECTION_SESSIONS_NUMBER));
-        sectionProfileViewHolder.SECTION_REMAINING_SESSIONS_TEXT_VIEW.setText(String.valueOf(REMAINING_SESSIONS));
-        sectionProfileViewHolder.SECTION_FINISHED_SESSIONS_TEXT_VIEW.setText(String.valueOf(FINISHED_SESSIONS));
-        sectionProfileViewHolder.SECTION_NEXT_SESSION_DAY_TEXT_VIEW.setText(NEXT_SESSION_DAY_STRING);
         sectionProfileViewHolder.SECTION_SESSION_DAYS_TEXT_VIEW.setText(Utility.getDaysAsString(SECTION_SESSIONS_DAYS));
         sectionProfileViewHolder.SECTION_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(SECTION_STATE, getContext()));
         sectionProfileViewHolder.SECTION_INSTRUCTOR_NAME_TEXT_VIEW.setText(getSectionInstructorName(sectionId));
@@ -327,9 +329,9 @@ public class SectionProfileActivityFragment extends Fragment
                 );
         final Integer SESSION_HOURS =
                 cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_HOURS_COLUMN);
-        final long SECTION_START_DATE =
+        final Long SECTION_START_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_START_DATE);
-        final long SECTION_END_DATE =
+        final Long SECTION_END_DATE =
                 cursor.getLong(DatabaseController.ProjectionDatabase.SECTION_END_DATE);
         final int SECTION_STATE =
                 cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_AVAILABLE_POSITIONS);
@@ -340,34 +342,38 @@ public class SectionProfileActivityFragment extends Fragment
         final int SECTION_LEVEL =
                 cursor.getInt(DatabaseController.ProjectionDatabase.SECTION_LEVEL_COLUMN);
 
-        final int REMAINING_SESSIONS = Utility.getRemainDays(
-                null,
-                SECTION_SESSIONS_DAYS,
-                SECTION_START_DATE,
-                SECTION_END_DATE,
-                SECTION_SESSIONS_NUMBER
-        );
+        if(!SECTION_START_DATE.equals(Constants.NULL) && Utility.isDaysSelected(SECTION_SESSIONS_DAYS)) {
+            final int REMAINING_SESSIONS = Utility.getRemainDays(
+                    null,
+                    SECTION_SESSIONS_DAYS,
+                    SECTION_START_DATE,
+                    SECTION_END_DATE,
+                    SECTION_SESSIONS_NUMBER
+            );
 
-        int FINISHED_SESSIONS = SECTION_SESSIONS_NUMBER - REMAINING_SESSIONS;
-        final Long NEXT_SESSION_DAY = Utility.getNextSessionDay(
-                null,
-                SECTION_SESSIONS_DAYS,
-                SECTION_END_DATE,
-                SECTION_START_DATE
-        );
+            int FINISHED_SESSIONS = SECTION_SESSIONS_NUMBER - REMAINING_SESSIONS;
+            final Long NEXT_SESSION_DAY = Utility.getNextSessionDay(
+                    null,
+                    SECTION_SESSIONS_DAYS,
+                    SECTION_END_DATE,
+                    SECTION_START_DATE
+            );
 
 
-        final String NEXT_SESSION_DAY_STRING =
-                (NEXT_SESSION_DAY == Utility.getCurrentDateAsMills())? "Today" :
-                        Utility.getTimeFormat(NEXT_SESSION_DAY);
+            final String NEXT_SESSION_DAY_STRING =
+                    (NEXT_SESSION_DAY == Utility.getCurrentDateAsMills()) ? "Today" :
+                            Utility.getTimeFormat(NEXT_SESSION_DAY);
+
+
+            sectionProfileViewHolder.SECTION_REMAINING_SESSIONS_TEXT_VIEW.setText(String.valueOf(REMAINING_SESSIONS));
+            sectionProfileViewHolder.SECTION_FINISHED_SESSIONS_TEXT_VIEW.setText(String.valueOf(FINISHED_SESSIONS));
+            sectionProfileViewHolder.SECTION_NEXT_SESSION_DAY_TEXT_VIEW.setText(NEXT_SESSION_DAY_STRING);
+            sectionProfileViewHolder.SECTION_BEGINNING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_START_DATE));
+            sectionProfileViewHolder.SECTION_ENDING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_END_DATE));
+        }
 
         sectionProfileViewHolder.SECTION_NAME_TEXT_VIEW.setText(SECTION_NAME);
-        sectionProfileViewHolder.SECTION_BEGINNING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_START_DATE));
-        sectionProfileViewHolder.SECTION_ENDING_DATE_TEXT_VIEW.setText(Utility.getTimeFormat(SECTION_END_DATE));
         sectionProfileViewHolder.SECTION_SESSIONS_NUMBER_TEXT_VIEW.setText(String.valueOf(SECTION_SESSIONS_NUMBER));
-        sectionProfileViewHolder.SECTION_REMAINING_SESSIONS_TEXT_VIEW.setText(String.valueOf(REMAINING_SESSIONS));
-        sectionProfileViewHolder.SECTION_FINISHED_SESSIONS_TEXT_VIEW.setText(String.valueOf(FINISHED_SESSIONS));
-        sectionProfileViewHolder.SECTION_NEXT_SESSION_DAY_TEXT_VIEW.setText(NEXT_SESSION_DAY_STRING);
         sectionProfileViewHolder.SECTION_SESSION_DAYS_TEXT_VIEW.setText(Utility.getDaysAsString(SECTION_SESSIONS_DAYS));
         sectionProfileViewHolder.SECTION_STATE_TEXT_VIEW.setText(Utility.decodeCourseStateByInt(SECTION_STATE, getContext()));
         sectionProfileViewHolder.SECTION_INSTRUCTOR_NAME_TEXT_VIEW.setText(getSectionInstructorName(sectionId));

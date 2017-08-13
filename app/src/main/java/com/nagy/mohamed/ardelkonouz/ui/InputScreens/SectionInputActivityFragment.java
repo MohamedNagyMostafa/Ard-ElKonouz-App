@@ -147,10 +147,12 @@ public class SectionInputActivityFragment extends Fragment
                         DatabaseController.ProjectionDatabase.SECTION_START_DATE
                 );
 
-                if(sectionStartDate != null) {
+                if(!sectionStartDate.equals(Constants.NULL)) {
                     sectionInputScreenViewHolder.SECTION_BEGINNING_DATE_EDIT_TEXT.setText(
-                            Utility.getTimeFormat(sectionStartDate)
+                            String.valueOf(Utility.getTimeFormat(sectionStartDate))
                     );
+                }else{
+                    sectionStartDate = null;
                 }
                 Utility.selectionProcess(
                         cursor.getInt(
@@ -163,8 +165,8 @@ public class SectionInputActivityFragment extends Fragment
                         cursor.getString(
                                 DatabaseController.ProjectionDatabase.SECTION_DAYS
                         )
-
                 );
+
                 sectionInputScreenViewHolder.SECTION_LEVEL_EDIT_TEXT.setText(
                         String.valueOf(
                                 cursor.getInt(
@@ -355,6 +357,9 @@ public class SectionInputActivityFragment extends Fragment
         }else{
             if(SECTION_START_DATE != null)
                 contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
+            else
+                contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, Constants.NULL);
+
         }
 
         Cursor courseCursor = getActivity().getContentResolver().query(
@@ -479,6 +484,8 @@ public class SectionInputActivityFragment extends Fragment
         }else{
             if(SECTION_START_DATE != null)
                 contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
+            else
+                contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, Constants.NULL);
         }
 
         contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
