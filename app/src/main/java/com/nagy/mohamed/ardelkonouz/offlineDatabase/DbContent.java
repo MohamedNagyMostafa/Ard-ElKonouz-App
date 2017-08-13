@@ -247,6 +247,8 @@ public class DbContent {
         public static final String SECTION_LEVEL_COLUMN = "section_level";
         public static final String SECTION_SESSIONS_NUMBER_COLUMN = "section_sessions_number";
         public static final String SECTION_COURSE_ID_COLUMN = "course_id";
+        public static final String SECTION_START_TIME_COLUMN = "section_start_time";
+        public static final String SECTION_END_TIME_COLUMN = "section_end_time";
 
         static final String CREATE_SECTION_TABLE = CREATE_TABLE
                 + SPACE + TABLE_NAME + "(" +
@@ -257,6 +259,8 @@ public class DbContent {
                 SECTION_START_DATE_COLUMN + SPACE + INTEGER  + "," +
                 SECTION_COURSE_ID_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_END_DATE_COLUMN + SPACE + INTEGER + "," +
+                SECTION_END_TIME_COLUMN + SPACE + INTEGER + "," +
+                SECTION_START_TIME_COLUMN + SPACE + INTEGER + "," +
                 SECTION_SESSIONS_NUMBER_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +
                 SECTION_DAYS_COLUMN + SPACE + TEXT + SPACE + NOT_NULL + "," +
                 SECTION_LEVEL_COLUMN + SPACE + INTEGER + SPACE + NOT_NULL + "," +

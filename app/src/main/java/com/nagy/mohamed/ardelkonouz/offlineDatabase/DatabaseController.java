@@ -109,7 +109,9 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_HOURS_COLUMN,
                 DbContent.SectionTable.SECTION_COURSE_ID_COLUMN,
                 DbContent.SectionTable.SECTION_NAME_COLUMN,
-                DbContent.SectionTable.SECTION_LEVEL_COLUMN
+                DbContent.SectionTable.SECTION_LEVEL_COLUMN,
+                DbContent.SectionTable.SECTION_START_TIME_COLUMN,
+                DbContent.SectionTable.SECTION_END_TIME_COLUMN
         };
 
         public static final int SECTION_ID = 0;
@@ -122,6 +124,8 @@ public class DatabaseController {
         public static final int SECTION_COURSE_ID_COLUMN = 7;
         public static final int SECTION_NAME_COLUMN = 8;
         public static final int SECTION_LEVEL_COLUMN = 9;
+        public static final int SECTION_START_TIME_COLUMN = 10;
+        public static final int SECTION_END_TIME_COLUMN = 11;
 
         public static final String[] COURSE_PROJECTION = {
                 DbContent.CourseTable.TABLE_NAME + "." + DbContent.CourseTable._ID,

@@ -205,6 +205,34 @@ public class SectionInputActivityFragment extends Fragment
                         )
                 );
 
+                sectionStartTime = cursor.getLong(
+                        DatabaseController.ProjectionDatabase.SECTION_START_TIME_COLUMN
+                );
+                if(sectionStartTime.equals(Constants.NULL)){
+                    sectionInputScreenViewHolder.SECTION_START_TIME_EDIT_TEXT.setText(
+                            getString(R.string.empty_info)
+                    );
+                    sectionStartTime = null;
+                }else{
+                    sectionInputScreenViewHolder.SECTION_START_TIME_EDIT_TEXT.setText(
+                            Utility.getDateTimeFormat(sectionStartTime)
+                    );
+                }
+
+                sectionEndTime = cursor.getLong(
+                        DatabaseController.ProjectionDatabase.SECTION_END_TIME_COLUMN
+                );
+                if(sectionEndTime.equals(Constants.NULL)){
+                    sectionInputScreenViewHolder.SECTION_END_TIME_EDIT_TEXT.setText(
+                            getString(R.string.empty_info)
+                    );
+                    sectionEndTime = null;
+                }else{
+                    sectionInputScreenViewHolder.SECTION_END_TIME_EDIT_TEXT.setText(
+                            Utility.getDateTimeFormat(sectionEndTime)
+                    );
+                }
+
                 sectionInputScreenViewHolder.SUBMIT_SECTION_BUTTON.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
@@ -414,6 +442,16 @@ public class SectionInputActivityFragment extends Fragment
                 sectionName = 1;
             }
 
+            if(sectionStartTime != null){
+                contentValues.put(DbContent.SectionTable.SECTION_START_TIME_COLUMN, sectionStartTime);
+            }else {
+                contentValues.put(DbContent.SectionTable.SECTION_START_TIME_COLUMN, Constants.NULL);
+            }
+            if(sectionEndTime != null){
+                contentValues.put(DbContent.SectionTable.SECTION_END_TIME_COLUMN, sectionEndTime);
+            }else {
+                contentValues.put(DbContent.SectionTable.SECTION_END_TIME_COLUMN, Constants.NULL);
+            }
             contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
             contentValues.put(DbContent.SectionTable.SECTION_HOURS_COLUMN, SECTION_HOURS);
             contentValues.put(DbContent.SectionTable.SECTION_DAYS_COLUMN, SECTION_SESSION_DAYS);
@@ -509,6 +547,17 @@ public class SectionInputActivityFragment extends Fragment
                 contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, SECTION_START_DATE);
             else
                 contentValues.put(DbContent.SectionTable.SECTION_START_DATE_COLUMN, Constants.NULL);
+        }
+
+        if(sectionStartTime != null){
+            contentValues.put(DbContent.SectionTable.SECTION_START_TIME_COLUMN, sectionStartTime);
+        }else {
+            contentValues.put(DbContent.SectionTable.SECTION_START_TIME_COLUMN, Constants.NULL);
+        }
+        if(sectionEndTime != null){
+            contentValues.put(DbContent.SectionTable.SECTION_END_TIME_COLUMN, sectionEndTime);
+        }else {
+            contentValues.put(DbContent.SectionTable.SECTION_END_TIME_COLUMN, Constants.NULL);
         }
 
         contentValues.put(DbContent.SectionTable.SECTION_AVAILABLE_POSITIONS_COLUMN, SECTION_STATE);
