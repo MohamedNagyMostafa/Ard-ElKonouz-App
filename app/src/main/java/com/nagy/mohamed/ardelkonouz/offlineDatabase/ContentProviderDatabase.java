@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
@@ -190,6 +191,8 @@ public class ContentProviderDatabase extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         int match = m_uriMatcher.match(uri);
+        Log.e("match", String.valueOf(match));
+        Log.e("Uri ", uri.toString());
         switch(match){
             case CHILD_TABLE:
                 return m_dbHelper.getReadableDatabase().query(
@@ -1453,12 +1456,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selectionAsString =
                 selection.toString() + " AND " +
-                        DbContent.SectionTable.SECTION_START_DATE_COLUMN  + " !=?";
-        String[] selectionArgsArray = new String[selectionArgs.size() + 1];
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN  + " IS NOT NULL";
+        String[] selectionArgsArray = new String[selectionArgs.size()];
         selectionArgs.toArray(selectionArgsArray);
-        selectionArgsArray[selectionArgs.size()] =
-                String.valueOf(Constants.NULL);
-
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
                 projection,
@@ -1507,10 +1507,9 @@ public class ContentProviderDatabase extends ContentProvider {
 
         String selectionAsString =
                 selection.toString() + " AND " +
-                        DbContent.SectionTable.SECTION_START_DATE_COLUMN  + " !=?";
-        String[] selectionArgsArray = new String[selectionArgs.size() + 1];
+                        DbContent.SectionTable.SECTION_END_DATE_COLUMN  + " IS NOT NULL";
+        String[] selectionArgsArray = new String[selectionArgs.size() ];
         selectionArgs.toArray(selectionArgsArray);
-        selectionArgsArray[selectionArgs.size()] = String.valueOf(Constants.NULL);
 
         return  COURSE_SECTION_JOIN_QUERY.query(
                 m_dbHelper.getReadableDatabase(),
@@ -1718,7 +1717,8 @@ public class ContentProviderDatabase extends ContentProvider {
     private Cursor getSectionWithCourseName(Uri uri, String[] projection, String sortType){
         String searchChars = uri.toString().substring(uri.toString().lastIndexOf("/") + 1 , uri.toString().length())
                 + "%";
-        String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ?";
+        String selection = DbContent.CourseTable.COURSE_NAME_COLUMN + " LIKE ? AND " +
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN + " IS NOT NULL";
         String[] selectionArgs = {searchChars};
 
         return  COURSE_SECTION_JOIN_QUERY.query(
