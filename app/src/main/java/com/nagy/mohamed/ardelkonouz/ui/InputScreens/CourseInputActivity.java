@@ -64,4 +64,9 @@ public class CourseInputActivity extends AppCompatActivity {
             NavUtils.navigateUpTo(this, courseProfileScreen);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        openScreen();
+    }
 }

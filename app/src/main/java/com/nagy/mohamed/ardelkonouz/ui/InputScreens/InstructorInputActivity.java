@@ -64,4 +64,9 @@ public class InstructorInputActivity extends AppCompatActivity {
             NavUtils.navigateUpTo(this, openInstructorProfileScreen);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        openScreen();
+    }
 }

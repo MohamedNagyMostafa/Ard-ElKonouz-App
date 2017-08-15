@@ -63,4 +63,9 @@ public class ChildInputActivity extends AppCompatActivity {
             NavUtils.navigateUpTo(this, childProfileScreen);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        openScreen();
+    }
 }

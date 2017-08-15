@@ -36,8 +36,6 @@ public class SectionInputActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
     }
 
     @Override
@@ -70,6 +68,7 @@ public class SectionInputActivity extends AppCompatActivity {
             startActivity(profileScreen);
         }
     }
+
     @Override
     public void onBackPressed() {
         openProfileScreen();

@@ -52,4 +52,9 @@ public class ChildCourseConnectorActivity extends AppCompatActivity {
         startActivity(childProfileScreen);
         NavUtils.navigateUpTo(this, childProfileScreen);
     }
+
+    @Override
+    public void onBackPressed() {
+        openChildProfile();
+    }
 }

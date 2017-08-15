@@ -34,17 +34,22 @@ public class InstructorProfileActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        openMainScreen();
+                        openInstructorProfile();
                     }
                 }
         );
 
     }
 
-    private void openMainScreen(){
-        Intent mainScreen = new Intent(this, MainActivity.class);
-        startActivity(mainScreen);
+    private void openInstructorProfile(){
+        Intent instructorProfileScreen = new Intent(this, InstructorProfileActivity.class);
+        startActivity(instructorProfileScreen);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        openInstructorProfile();
     }
 
 }

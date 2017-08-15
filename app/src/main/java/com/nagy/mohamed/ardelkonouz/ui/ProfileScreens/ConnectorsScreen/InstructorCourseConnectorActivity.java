@@ -54,4 +54,9 @@ public class InstructorCourseConnectorActivity extends AppCompatActivity {
         startActivity(profileInstructorScreen);
         NavUtils.navigateUpTo(this, profileInstructorScreen);
     }
+
+    @Override
+    public void onBackPressed() {
+        openInstructorProfile();
+    }
 }

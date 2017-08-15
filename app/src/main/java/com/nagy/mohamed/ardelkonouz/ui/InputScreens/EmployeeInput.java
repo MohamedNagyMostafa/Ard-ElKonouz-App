@@ -64,4 +64,9 @@ public class EmployeeInput extends AppCompatActivity {
             NavUtils.navigateUpTo(this, employeeProfile);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        openScreen();
+    }
 }

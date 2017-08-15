@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.nagy.mohamed.ardelkonouz.R;
-import com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity;
+import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
 
 public class ChildProfileActivity extends AppCompatActivity {
 
@@ -35,17 +35,22 @@ public class ChildProfileActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        openMainScreen();
+                        openProfileScreen();
                     }
                 }
         );
 
     }
 
-    private void openMainScreen(){
-        Intent mainScreen = new Intent(this, MainActivity.class);
-        startActivity(mainScreen);
+    private void openProfileScreen(){
+        Intent childListScreen = new Intent(this, ChildActivity.class);
+        startActivity(childListScreen);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        openProfileScreen();
     }
 
 }

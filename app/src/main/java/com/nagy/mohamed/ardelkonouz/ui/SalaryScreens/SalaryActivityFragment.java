@@ -240,6 +240,7 @@ public class SalaryActivityFragment extends Fragment
                 Intent openInstructorScreen = new Intent(getContext(), InstructorSalaryActivity.class);
                 openInstructorScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, INSTRUCTOR_ID);
                 startActivity(openInstructorScreen);
+                getActivity().finish();
             }
         });
     }
