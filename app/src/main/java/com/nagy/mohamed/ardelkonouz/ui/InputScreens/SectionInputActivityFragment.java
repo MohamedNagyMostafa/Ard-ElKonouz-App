@@ -618,6 +618,17 @@ public class SectionInputActivityFragment extends Fragment
             }
         }
 
+        if(sectionStartTime != null && sectionEndTime != null){
+            if(sectionStartTime > sectionEndTime){
+                Toast.makeText(
+                        getContext(),
+                        "Section start time value must be before section end time",
+                        Toast.LENGTH_SHORT
+                ).show();
+                isValid = false;
+            }
+        }
+
         return isValid;
     }
 
