@@ -35,7 +35,6 @@
         <activity
             android:name=".ui.ProfileScreens.ChildProfileActivity"
             android:label="@string/title_activity_kid_profile"
-            android:parentActivityName=".ui.ListScreens.ChildActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ListScreens.InstructorActivity"
@@ -45,7 +44,6 @@
         <activity
             android:name=".ui.ProfileScreens.InstructorProfileActivity"
             android:label="@string/title_activity_instructor_profile"
-            android:parentActivityName=".ui.ListScreens.InstructorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ListScreens.EmployeeActivity"
@@ -55,7 +53,6 @@
         <activity
             android:name=".ui.ProfileScreens.EmployeeProfileActivity"
             android:label="@string/title_activity_employee_profile"
-            android:parentActivityName=".ui.ListScreens.EmployeeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ListScreens.CourseActivity"
@@ -65,7 +62,6 @@
         <activity
             android:name=".ui.ProfileScreens.CourseProfileActivity"
             android:label="@string/title_activity_course_profile"
-            android:parentActivityName=".ui.ListScreens.CourseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InputScreens.ChildInputActivity"
@@ -104,7 +100,6 @@
         <activity
             android:name=".ui.SalaryScreens.InstructorSalaryActivity"
             android:label="@string/title_activity_instructor_salary"
-            android:parentActivityName=".ui.SalaryScreens.SalaryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ListScreens.ShiftListActivity"
@@ -119,6 +114,7 @@
             android:name=".ui.InputScreens.SectionInputActivity"
             android:label="@string/title_activity_section_input"
             android:theme="@style/AppTheme.NoActionBar" >
+
         </activity>
 
         <receiver android:name=".notification.ReceiverBroadCast">

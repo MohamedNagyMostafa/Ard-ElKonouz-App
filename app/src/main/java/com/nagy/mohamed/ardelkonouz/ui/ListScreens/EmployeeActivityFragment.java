@@ -59,6 +59,7 @@ public class EmployeeActivityFragment extends Fragment
                     Intent employeeInputScreen = new Intent(getContext(), EmployeeInput.class);
                     employeeInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(employeeInputScreen);
+                    getActivity().finish();
                 }
             };
 
@@ -134,6 +135,7 @@ public class EmployeeActivityFragment extends Fragment
                 Intent employeeProfile = new Intent(getContext(), EmployeeProfileActivity.class);
                 employeeProfile.putExtra(Constants.EMPLOYEE_ID_EXTRA, EMPLOYEE_ID);
                 startActivity(employeeProfile);
+                getActivity().finish();
             }
         });
     }

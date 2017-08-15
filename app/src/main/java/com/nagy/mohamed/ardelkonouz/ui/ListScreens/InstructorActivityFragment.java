@@ -186,6 +186,7 @@ public class InstructorActivityFragment extends Fragment
                 Intent instructorProfileScreen = new Intent(getContext(), InstructorProfileActivity.class);
                 instructorProfileScreen.putExtra(Constants.INSTRUCTOR_ID_EXTRA, INSTRUCTOR_ID);
                 startActivity(instructorProfileScreen);
+                getActivity().finish();
             }
         });
 

@@ -53,6 +53,7 @@ public class EmployeeProfileActivityFragment extends Fragment {
                         employeeInputScreen.putExtra(Constants.EMPLOYEE_ID_EXTRA, EMPLOYEE_ID);
                         employeeInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                         startActivity(employeeInputScreen);
+                        getActivity().finish();
                     }
                 }
         );

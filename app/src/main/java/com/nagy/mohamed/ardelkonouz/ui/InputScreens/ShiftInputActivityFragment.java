@@ -294,14 +294,16 @@ public class ShiftInputActivityFragment extends Fragment
                             if(selectedID.size() == 0){
                                 Cursor sectionCursor = getActivity().getContentResolver().query(
                                         DatabaseController.UriDatabase.SECTION_URI,
-                                        new String[]{DbContent.SectionTable._ID},
+                                        new String[]{DbContent.SectionTable._ID,
+                                        DbContent.SectionTable.SECTION_START_DATE_COLUMN},
                                         null,
                                         null,
                                         null
                                 );
                                 if(sectionCursor != null){
                                     while (sectionCursor.moveToNext()){
-                                        selectedID.add(sectionCursor.getLong(0));
+                                        if(sectionCursor.getLong(1) != Constants.NULL)
+                                            selectedID.add(sectionCursor.getLong(0));
                                     }
                                     sectionCursor.close();
                                 }

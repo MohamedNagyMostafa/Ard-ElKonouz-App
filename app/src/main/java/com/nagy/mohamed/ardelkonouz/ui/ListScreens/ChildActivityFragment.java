@@ -60,6 +60,7 @@ public class ChildActivityFragment extends Fragment
                     Intent childInputScreen = new Intent(getContext(), ChildInputActivity.class);
                     childInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(childInputScreen);
+                    getActivity().finish();
                 }
             };
 
@@ -146,6 +147,7 @@ public class ChildActivityFragment extends Fragment
                 Intent childProfile = new Intent(getActivity(), ChildProfileActivity.class);
                 childProfile.putExtra(Constants.CHILD_ID_EXTRA, CHILD_ID);
                 startActivity(childProfile);
+                getActivity().finish();
             }
         });
 

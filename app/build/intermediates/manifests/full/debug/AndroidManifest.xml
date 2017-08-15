@@ -46,7 +46,6 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.ChildProfileActivity"
             android:label="@string/title_activity_kid_profile"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity"
@@ -56,7 +55,6 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.InstructorProfileActivity"
             android:label="@string/title_activity_instructor_profile"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.ListScreens.InstructorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity"
@@ -66,7 +64,6 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.EmployeeProfileActivity"
             android:label="@string/title_activity_employee_profile"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity"
@@ -76,7 +73,6 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ProfileScreens.CourseProfileActivity"
             android:label="@string/title_activity_course_profile"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.ListScreens.CourseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.InputScreens.ChildInputActivity"
@@ -115,7 +111,6 @@
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.InstructorSalaryActivity"
             android:label="@string/title_activity_instructor_salary"
-            android:parentActivityName="com.nagy.mohamed.ardelkonouz.ui.SalaryScreens.SalaryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.nagy.mohamed.ardelkonouz.ui.ListScreens.ShiftListActivity"

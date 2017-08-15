@@ -60,6 +60,7 @@ public class CourseActivityFragment extends Fragment
                     Intent courseInputScreen = new Intent(getContext(), CourseInputActivity.class);
                     courseInputScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_ADD_EXTRA);
                     startActivity(courseInputScreen);
+                    getActivity().finish();
                 }
             };
 
@@ -182,6 +183,7 @@ public class CourseActivityFragment extends Fragment
                 Intent courseProfileScreen = new Intent(getContext(), CourseProfileActivity.class);
                 courseProfileScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
                 startActivity(courseProfileScreen);
+                getActivity().finish();
             }
         });
     }

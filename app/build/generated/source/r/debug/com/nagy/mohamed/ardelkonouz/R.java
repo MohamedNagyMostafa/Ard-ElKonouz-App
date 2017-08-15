@@ -3410,8 +3410,8 @@ containing a value of this type.
         public static final int instructor_add_new_floating_button=0x7f0d014a;
         public static final int instructor_course_connector_empty_view_layout=0x7f0d014c;
         public static final int instructor_course_list_days_text_view=0x7f0d01bc;
-        public static final int instructor_course_list_end_date_text_view=0x7f0d01be;
-        public static final int instructor_course_list_end_time_text_view=0x7f0d01c0;
+        public static final int instructor_course_list_end_date_text_view=0x7f0d01c0;
+        public static final int instructor_course_list_end_time_text_view=0x7f0d01be;
         public static final int instructor_course_list_name_text_view=0x7f0d01b9;
         public static final int instructor_course_list_salary_per_child_text_view=0x7f0d01bb;
         public static final int instructor_course_list_section_name_text_view=0x7f0d01ba;

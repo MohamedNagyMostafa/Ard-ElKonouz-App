@@ -1029,8 +1029,8 @@ int id info 0x7f0d01dc
 int id instructor_add_new_floating_button 0x7f0d014a
 int id instructor_course_connector_empty_view_layout 0x7f0d014c
 int id instructor_course_list_days_text_view 0x7f0d01bc
-int id instructor_course_list_end_date_text_view 0x7f0d01be
-int id instructor_course_list_end_time_text_view 0x7f0d01c0
+int id instructor_course_list_end_date_text_view 0x7f0d01c0
+int id instructor_course_list_end_time_text_view 0x7f0d01be
 int id instructor_course_list_name_text_view 0x7f0d01b9
 int id instructor_course_list_salary_per_child_text_view 0x7f0d01bb
 int id instructor_course_list_section_name_text_view 0x7f0d01ba

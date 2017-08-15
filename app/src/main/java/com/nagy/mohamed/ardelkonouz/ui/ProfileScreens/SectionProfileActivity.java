@@ -70,4 +70,10 @@ public class SectionProfileActivity extends AppCompatActivity {
         startActivity(courseScreen);
         NavUtils.navigateUpTo(this, courseScreen);
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        finish();
+    }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
@@ -36,6 +37,7 @@ public class SectionInputActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
     }
 
     @Override
@@ -53,19 +55,24 @@ public class SectionInputActivity extends AppCompatActivity {
         final Long COURSE_ID = getIntent().getExtras().getLong(Constants.COURSE_ID_EXTRA);
 
         if(INPUT_TYPE.equals(Constants.INPUT_ADD_EXTRA)){
-
+            Log.e("nav", "as add open profile screen");
             Intent profileScreen = new Intent(this, CourseProfileActivity.class);
             profileScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
-            startActivity(profileScreen);
             NavUtils.navigateUpTo(this, profileScreen);
+            startActivity(profileScreen);
         }else{
             final Long SECTION_ID = getIntent().getExtras().getLong(Constants.SECTION_ID_EXTRA);
-
+            Log.e("nav", "as edit open profile screen");
             Intent profileScreen = new Intent(this, SectionProfileActivity.class);
             profileScreen.putExtra(Constants.COURSE_ID_EXTRA, COURSE_ID);
             profileScreen.putExtra(Constants.SECTION_ID_EXTRA, SECTION_ID);
-            startActivity(profileScreen);
             NavUtils.navigateUpTo(this, profileScreen);
+            startActivity(profileScreen);
         }
     }
+    @Override
+    public void onBackPressed() {
+        openProfileScreen();
+    }
+
 }

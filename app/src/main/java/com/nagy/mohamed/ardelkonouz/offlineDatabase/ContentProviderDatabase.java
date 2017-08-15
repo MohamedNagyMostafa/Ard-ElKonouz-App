@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
@@ -191,8 +190,6 @@ public class ContentProviderDatabase extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         int match = m_uriMatcher.match(uri);
-        Log.e("match", String.valueOf(match));
-        Log.e("Uri ", uri.toString());
         switch(match){
             case CHILD_TABLE:
                 return m_dbHelper.getReadableDatabase().query(

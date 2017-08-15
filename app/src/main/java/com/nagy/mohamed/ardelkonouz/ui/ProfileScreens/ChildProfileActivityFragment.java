@@ -67,6 +67,7 @@ public class ChildProfileActivityFragment extends Fragment
                 inputChildScreen.putExtra(Constants.CHILD_ID_EXTRA, childId);
                 inputChildScreen.putExtra(Constants.INPUT_TYPE_EXTRA, Constants.INPUT_EDIT_EXTRA);
                 startActivity(inputChildScreen);
+                getActivity().finish();
             }
         });
         childProfileScreenViewHolder.ADD_SECTION_BUTTON.setOnClickListener(
