@@ -112,8 +112,12 @@ public class Utility {
                                 remainSession++;
                             }
                         }
-                    endDateIndex = Math.abs(((endDateIndex + 1 ) % 7) - 6);
-                        courseEndDateCounter += Constants.DAY_IN_MILS;
+                        if(endDateIndex == 0 ){
+                            endDateIndex = 6;
+                        }else {
+                            endDateIndex = Math.abs(((endDateIndex - 1) % 7));
+                        }
+                        courseEndDateCounter -= Constants.DAY_IN_MILS;
                     }
 
                 }

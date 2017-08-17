@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,14 +89,14 @@ public class InstructorSalaryActivityFragment extends Fragment
                 );
                 final Long TODAY_DATE = Utility.getCurrentDateAsMills();
 
-                if(SECTION_START_DATE < TODAY_DATE){
+                if(!SECTION_START_DATE.equals(Constants.NULL) && SECTION_START_DATE < TODAY_DATE){
                     if(SECTION_END_DATE < TODAY_DATE){
                         completeCourses++;
                     }else{
                         underProgressCourses++;
                     }
                 }
-                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE) {
+                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE && !SECTION_START_DATE.equals(Constants.NULL)) {
                     Cursor courseSectionCursor = getActivity().getContentResolver().query(
                             DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
                             DatabaseController.ProjectionDatabase.SALARY_PROJECTION,
@@ -204,16 +205,27 @@ public class InstructorSalaryActivityFragment extends Fragment
                 DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_SECTION_LIST_SECTION_ID
         );
 
-        instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
-               Utility.getTimeFormat(
-                        START_DATE
-                )
-        );
-        instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
-                Utility.getTimeFormat(
-                        END_DATE
-                )
-        );
+        Log.e("section name ", String.valueOf(SECTION_NAME));
+        Log.e("section end date ", String.valueOf(END_DATE));
+        if(!START_DATE.equals(Constants.NULL)) {
+            instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                    Utility.getTimeFormat(
+                            START_DATE
+                    )
+            );
+            instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                    Utility.getTimeFormat(
+                            END_DATE
+                    )
+            );
+        }else{
+            instructorCoursesViewHolder.COURSE_START_DATE_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+            instructorCoursesViewHolder.COURSE_END_DATE_TEXT_VIEW.setText(
+                    getString(R.string.empty_info)
+            );
+        }
 
         Cursor courseCursor = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseTableWithIdUri(COURSE_ID),
@@ -282,7 +294,7 @@ public class InstructorSalaryActivityFragment extends Fragment
             courseCursor.close();
         }
 
-        if(START_DATE < TODAY){
+        if(!START_DATE.equals(Constants.NULL) && START_DATE < TODAY){
             if(END_DATE < TODAY){
                 switch (SECTION_STATE){
                     case Constants.PAID_SECTION:

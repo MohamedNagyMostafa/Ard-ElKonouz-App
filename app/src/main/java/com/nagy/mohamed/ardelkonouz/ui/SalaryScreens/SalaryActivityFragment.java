@@ -22,6 +22,8 @@ import com.nagy.mohamed.ardelkonouz.ui.adapter.DatabaseCursorAdapter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import static com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController.ProjectionDatabase.SECTION_START_DATE;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -74,8 +76,11 @@ public class SalaryActivityFragment extends Fragment
                 final Long SECTION_END_DATE = instructorSectionCursor.getLong(
                         DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_SECTION_END_DATE
                 );
+                final Long SECTION_START_DATE = instructorSectionCursor.getLong(
+                        DatabaseController.ProjectionDatabase.SECTION_INSTRUCTOR_SECTION_START_DATE
+                );
 
-                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE) {
+                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE && !SECTION_START_DATE.equals(Constants.NULL)) {
 
                     Cursor sectionCourseCursor = getActivity().getContentResolver().query(
                             DatabaseController.UriDatabase.getCourseSectionJoinWithSectionId(SECTION_ID),
@@ -195,8 +200,11 @@ public class SalaryActivityFragment extends Fragment
                 final Long SECTION_END_DATE = sectionInstructorCursor.getLong(
                         DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_END_DATE
                 );
+                final Long SECTION_START_DATE = sectionInstructorCursor.getLong(
+                        DatabaseController.ProjectionDatabase.INSTRUCTOR_SECTION_SALARY_END_DATE
+                );
 
-                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE) {
+                if(Utility.getCurrentDateAsMills() >= SECTION_END_DATE && !SECTION_START_DATE.equals(Constants.NULL)) {
                     Cursor childSection = getActivity().getContentResolver().query(
                             DatabaseController.UriDatabase.getSectionChildTableWithSectionIdUri(SECTION_ID),
                             null,

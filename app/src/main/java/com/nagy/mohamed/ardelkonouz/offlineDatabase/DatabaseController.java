@@ -271,13 +271,16 @@ public class DatabaseController {
                 DbContent.SectionInstructorTable.SECTION_ID_COLUMN,
                 DbContent.SectionInstructorTable.INSTRUCTOR_ID_COLUMN,
                 DbContent.SectionInstructorTable.PAID_COLUMN,
-                DbContent.SectionTable.SECTION_END_DATE_COLUMN
+                DbContent.SectionTable.SECTION_END_DATE_COLUMN,
+                DbContent.SectionTable.SECTION_START_DATE_COLUMN
+
         };
 
         public static final int SECTION_INSTRUCTOR_SECTION_ID = 0;
         public static final int SECTION_INSTRUCTOR_INSTRUCTOR_ID = 1;
         public static final int SECTION_INSTRUCTOR_PAID =2;
         public static final int SECTION_INSTRUCTOR_SECTION_END_DATE = 3;
+        public static final int SECTION_INSTRUCTOR_SECTION_START_DATE = 4;
 
         public static final String[] SECTION_INSTRUCTOR_CONNECTOR_JOIN_TABLE = {
                 DbContent.SectionTable.TABLE_NAME + "." + DbContent.SectionTable._ID,
