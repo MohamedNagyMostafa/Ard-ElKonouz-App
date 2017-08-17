@@ -6,11 +6,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.ChildActivity;
+import com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity;
 
 public class ChildProfileActivity extends AppCompatActivity {
 
@@ -35,22 +37,38 @@ public class ChildProfileActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        openProfileScreen();
+                        openMainScreen();
                     }
                 }
         );
 
     }
 
-    private void openProfileScreen(){
+    private void openChildList(){
         Intent childListScreen = new Intent(this, ChildActivity.class);
         startActivity(childListScreen);
         finish();
     }
 
+    private void openMainScreen(){
+        Intent mainScreen = new Intent(this, MainActivity.class);
+        startActivity(mainScreen);
+        finish();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                openChildList();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     @Override
     public void onBackPressed() {
-        openProfileScreen();
+        openChildList();
     }
 
 }

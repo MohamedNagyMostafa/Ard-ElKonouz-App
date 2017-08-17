@@ -6,11 +6,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.nagy.mohamed.ardelkonouz.R;
 import com.nagy.mohamed.ardelkonouz.ui.ListScreens.EmployeeActivity;
+import com.nagy.mohamed.ardelkonouz.ui.mainScreen.MainActivity;
 
 public class EmployeeProfileActivity extends AppCompatActivity {
 
@@ -35,21 +37,37 @@ public class EmployeeProfileActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        openProfileScreen();
+                        openMainScreen();
                     }
                 }
         );
 
     }
 
-    private void openProfileScreen(){
+    private void openMainScreen(){
+        Intent mainScreen = new Intent(this, MainActivity.class);
+        startActivity(mainScreen);
+        finish();
+    }
+
+    private void openListScreen(){
         Intent employeeListProfile = new Intent(this, EmployeeActivity.class);
         startActivity(employeeListProfile);
         finish();
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                openListScreen();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
-        openProfileScreen();
+        openListScreen();
     }
 }
