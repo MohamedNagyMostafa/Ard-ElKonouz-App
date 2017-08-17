@@ -82,7 +82,7 @@ public class Utility {
                         courseStartDateCounter += Constants.DAY_IN_MILS;
                         startDateIndex = (startDateIndex + 1 ) % 7;
 
-                    }while(courseStartDateCounter != TODAY_DATE);
+                    }while(courseStartDateCounter <= TODAY_DATE);
 
                     remainSession = COURSE_SESSIONS_NUMBER - finishedSessionsNumber;
 
