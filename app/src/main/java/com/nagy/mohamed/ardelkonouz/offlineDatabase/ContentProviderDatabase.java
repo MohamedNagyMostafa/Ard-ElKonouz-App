@@ -1502,9 +1502,7 @@ public class ContentProviderDatabase extends ContentProvider {
             }
         }while (idUri.length() > 1);
 
-        String selectionAsString =
-                selection.toString() + " AND " +
-                        DbContent.SectionTable.SECTION_END_DATE_COLUMN  + " IS NOT NULL";
+        String selectionAsString = selection.toString() ;
         String[] selectionArgsArray = new String[selectionArgs.size() ];
         selectionArgs.toArray(selectionArgsArray);
 

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -307,7 +308,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
             if(!previousCourseSelected.contains(id))
                 newSelectionCourses.add(id);
         }
-
+        Log.e("selection Courses ", String.valueOf(newSelectionCourses.size()));
         Cursor coursesCost = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseSelection(newSelectionCourses),
                 new String[]{DbContent.CourseTable.COURSE_COST_COLUMN},
@@ -315,7 +316,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                 null,
                 null
         );
-
+        Log.e("cost",String.valueOf(coursesCost.getCount()));
         if(coursesCost != null){
             while (coursesCost.moveToNext()){
                 totalCost += coursesCost.getDouble(0);
