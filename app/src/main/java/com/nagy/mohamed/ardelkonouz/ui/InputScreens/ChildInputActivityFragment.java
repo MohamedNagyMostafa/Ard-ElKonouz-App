@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -819,7 +820,8 @@ public class ChildInputActivityFragment extends Fragment {
         );
 
         if(childNameUniqueCursor != null){
-            if(childNameUniqueCursor.getCount() != type || childNameUniqueCursor.getCount() != 0){
+            if(childNameUniqueCursor.getCount() > type){
+                Log.e("type", String.valueOf(childNameUniqueCursor.getCount()));
                 Cursor fatherMotherPhoneUniqueCursor = getActivity().getContentResolver().query(
                         DatabaseController.UriDatabase.getChildFatherMotherPhoneUnique(
                                 FATHER_PHONE_NUMBER, MOTHER_PHONE_NUMBER),
@@ -831,7 +833,7 @@ public class ChildInputActivityFragment extends Fragment {
                 );
 
                 if(fatherMotherPhoneUniqueCursor != null){
-                    if(fatherMotherPhoneUniqueCursor.getCount() != type || fatherMotherPhoneUniqueCursor.getCount() != 0) {
+                    if(fatherMotherPhoneUniqueCursor.getCount() > type) {
                         Toast.makeText(
                                 getContext(),
                                 "This child is found before",
