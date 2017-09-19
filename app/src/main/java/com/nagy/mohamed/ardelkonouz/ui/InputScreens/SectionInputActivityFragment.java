@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -619,6 +620,7 @@ public class SectionInputActivityFragment extends Fragment
                 }
             }else{
                 if(sectionStartDate != null){
+                    Log.e("section", "start date " + String.valueOf(sectionStartDate));
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(sectionStartDate);
                     String SECTION_DAYS_AS_STRING = Utility.getMultiDoubleSelectionAsString(SECTION_DAYS_LIST);

@@ -429,7 +429,7 @@ public class DatabaseController {
                 DbContent.SectionTable.SECTION_DAYS_COLUMN,
                 DbContent.SectionTable.SECTION_SESSIONS_NUMBER_COLUMN,
                 DbContent.CourseTable.COURSE_COST_COLUMN,
-                DbContent.SectionTable._ID,
+                DbContent.SectionTable.TABLE_NAME +"."+DbContent.SectionTable._ID,
                 DbContent.SectionTable.SECTION_END_DATE_COLUMN
         };
 
@@ -438,7 +438,7 @@ public class DatabaseController {
         public static final int SECTION_DATE_COST_SESSIONS_NUMBER = 2;
         public static final int SECTION_DATE_COST_COURSE_COST = 3;
         public static final int SECTION_DATE_COST_SECTION_ID = 4;
-        public static final int SECTION_DATE_COST_END_DATE= 4;
+        public static final int SECTION_DATE_COST_END_DATE= 5;
 
 
         public static final String[] SECTION_DATE_PROJECTION = {

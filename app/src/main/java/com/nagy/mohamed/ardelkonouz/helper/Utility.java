@@ -605,4 +605,9 @@ public class Utility {
             return getTimeFormat(NEXT_SESSION_DAY);
         }
     }
+
+    public static boolean isToday(Long date){
+        return (date == getCurrentDateAsMills());
+    }
+
 }

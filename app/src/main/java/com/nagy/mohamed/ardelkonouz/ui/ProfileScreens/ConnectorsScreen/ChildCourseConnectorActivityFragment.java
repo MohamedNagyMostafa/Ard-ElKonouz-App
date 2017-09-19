@@ -319,7 +319,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
 
         if (coursesCost != null) {
 
-            totalCost = getCost(coursesCost,newSelectionCourses);
+            totalCost = getCost(coursesCost);
 
             coursesCost.close();
         }
@@ -344,17 +344,28 @@ public class ChildCourseConnectorActivityFragment extends Fragment
         }
     }
 
-    private double getCost(Cursor coursesCostCursor, ArrayList<Long> selectionCoursesIds){
+    /**
+     * Get courses cost depends on two cases :
+     *                          1- course selection.
+     *                          2- If course is started before then the cost depend on
+     *                              the remain sessions.
+     * @param coursesCostCursor     Holder for course cost- section id- section days- section start/end date
+     *                              - section number
+     * @return                      the total cost which child have to pay
+     */
+
+    private double getCost(Cursor coursesCostCursor){
         double totalCost = 0;
         while(coursesCostCursor.moveToNext()){
             final Double COURSE_COST = coursesCostCursor.getDouble(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_COURSE_COST);
             final Long SECTION_ID = coursesCostCursor.getLong(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_SECTION_ID);
             final String SECTION_DAYS = coursesCostCursor.getString(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_DAYS);
             final Long SECTION_START_DATE = coursesCostCursor.getLong(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_START_DATE);
-            final Long SECTION_END_DATE = coursesCostCursor.getLong(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_START_DATE);
+            final Long SECTION_END_DATE = coursesCostCursor.getLong(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_END_DATE);
             final Integer SECTIONS_NUMBER = coursesCostCursor.getInt(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_SESSIONS_NUMBER);
 
-            if(SECTION_START_DATE.equals(Constants.NULL)){
+            if(!SECTION_START_DATE.equals(Constants.NULL) && SECTION_START_DATE < Utility.getCurrentDateAsMills()){
+                // Course started before.
                 ArrayList<Shift> sectionShifts = new ArrayList<>();
 
                 Cursor shiftCursor = getActivity().getContentResolver().query(
@@ -365,22 +376,22 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                         null
                 );
                 if(shiftCursor != null){
+                    // Get remains sections.
                     while(shiftCursor.moveToNext()) {
                         final Long SHIFT_START_DATE = shiftCursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN);
                         final Long SHIFT_END_DATE = shiftCursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN);
                         sectionShifts.add(new Shift(SHIFT_START_DATE, SHIFT_END_DATE, SECTION_ID));
                     }
-                    
+
                     shiftCursor.close();
-
-                    int remainsSections = Utility.getRemainDays(sectionShifts, SECTION_DAYS, SECTION_START_DATE,  SECTION_END_DATE, SECTIONS_NUMBER);
-
-                    if(remainsSections + 1 < SECTIONS_NUMBER){
-                        totalCost = (COURSE_COST / Long.parseLong(String.valueOf(SECTIONS_NUMBER))) * remainsSections;
-                    }
-
                 }
+
+                double remainsSections = Utility.getRemainDays(sectionShifts, SECTION_DAYS, SECTION_START_DATE,  SECTION_END_DATE, SECTIONS_NUMBER);
+
+                totalCost += (COURSE_COST / SECTIONS_NUMBER) * remainsSections;
+
             }else{
+                // Course is not started.
                 totalCost += COURSE_COST;
             }
         }
