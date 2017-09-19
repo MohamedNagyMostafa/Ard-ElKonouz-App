@@ -12,20 +12,20 @@
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_child.xml"
     },
     {
-        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\child_list_recycle_view.xml",
-        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\child_list_recycle_view.xml"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_child.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_child.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_main.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_main.xml"
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\child_list_recycle_view.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\child_list_recycle_view.xml"
     },
     {
         "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_child_profile.xml",
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_child_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\fragment_main.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-xhdpi\\fragment_main.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-xhdpi-v4\\activity_active_screen.xml",

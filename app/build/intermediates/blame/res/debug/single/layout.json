@@ -44,12 +44,12 @@
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout\\instructor_list_recycle_view.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_instructor.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_instructor.xml"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_course.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\activity_course.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_instructor.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_instructor.xml"
     },
     {
         "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\child_course_recycle_view.xml",
@@ -64,24 +64,24 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.1\\res\\layout\\abc_screen_simple.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.1\\res\\layout\\select_dialog_item_material.xml"
-    },
-    {
         "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.3.1\\res\\layout\\design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.1\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_instructor_input.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\activity_instructor_input.xml"
     },
     {
-        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
-        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.3.1\\res\\layout\\design_navigation_menu.xml"
-    },
-    {
         "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.1\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.3.1\\res\\layout\\design_navigation_menu.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_instructor_input.xml",
@@ -108,20 +108,20 @@
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout\\fragment_child_course_connector.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_salary.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_salary.xml"
-    },
-    {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\course_pf_recycle_view.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\course_pf_recycle_view.xml"
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.3.1\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
         "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_instructor_course_connector.xml",
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout\\fragment_instructor_course_connector.xml"
     },
     {
-        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
-        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.3.1\\res\\layout\\design_navigation_item_subheader.xml"
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\course_pf_recycle_view.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\course_pf_recycle_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_salary.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\content_salary.xml"
     },
     {
         "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
@@ -148,12 +148,12 @@
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout\\activity_salary.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_employee.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\fragment_employee.xml"
-    },
-    {
         "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_course_input.xml",
         "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout\\activity_course_input.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_employee.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout\\fragment_employee.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_instructor_salary.xml",

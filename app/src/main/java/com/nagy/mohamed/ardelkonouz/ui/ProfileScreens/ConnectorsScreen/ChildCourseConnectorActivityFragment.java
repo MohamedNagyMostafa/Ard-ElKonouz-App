@@ -324,7 +324,7 @@ public class ChildCourseConnectorActivityFragment extends Fragment
             coursesCost.close();
         }
 
-        Toast.makeText(getContext(), "Total Cost Is : " + String.valueOf(totalCost),Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Total Cost Is : " + String.valueOf(Math.floor(totalCost * 100) / 100),Toast.LENGTH_LONG).show();
     }
     @Override
     public void onSaveInstanceState(Bundle outState) {
