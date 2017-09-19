@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -594,27 +595,46 @@ public class SectionInputActivityFragment extends Fragment
         if(getSelectionFromList(doubleChoiceStateArrayList) == -1) {
             isValid = false;
             Toast.makeText(getContext(), "Please choose the state of section",Toast.LENGTH_SHORT).show();
-        }else if(getSelectionFromList(doubleChoiceStateArrayList) == Constants.COURSE_COMPLETE){
-            if(sectionStartDate == null){
-                Toast.makeText(
-                        getContext(),
-                        "Please set section start date",
-                        Toast.LENGTH_SHORT
-                ).show();
-                isValid = false;
-            }else{
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(sectionStartDate);
-                String SECTION_DAYS_AS_STRING = Utility.getMultiDoubleSelectionAsString(SECTION_DAYS_LIST);
-
-                if(!Utility.isDaySelected(SECTION_DAYS_AS_STRING, Utility.getStartDay(calendar))){
+        }else {
+            if (getSelectionFromList(doubleChoiceStateArrayList) == Constants.COURSE_COMPLETE) {
+                if (sectionStartDate == null) {
                     Toast.makeText(
                             getContext(),
-                            "The section start date must be selected in section days",
+                            "Please set section start date",
                             Toast.LENGTH_SHORT
                     ).show();
                     isValid = false;
+                } else {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(sectionStartDate);
+                    String SECTION_DAYS_AS_STRING = Utility.getMultiDoubleSelectionAsString(SECTION_DAYS_LIST);
+
+                    if (!Utility.isDaySelected(SECTION_DAYS_AS_STRING, Utility.getStartDay(calendar))) {
+                        Toast.makeText(
+                                getContext(),
+                                "The section start date must be selected in section days",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        isValid = false;
+                    }
                 }
+            }else{
+                if(sectionStartDate != null){
+                    Log.e("section", "start date " + String.valueOf(sectionStartDate));
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(sectionStartDate);
+                    String SECTION_DAYS_AS_STRING = Utility.getMultiDoubleSelectionAsString(SECTION_DAYS_LIST);
+
+                    if (!Utility.isDaySelected(SECTION_DAYS_AS_STRING, Utility.getStartDay(calendar))) {
+                        Toast.makeText(
+                                getContext(),
+                                "The section start date must be selected in section days",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        isValid = false;
+                    }
+                }
+
             }
         }
 

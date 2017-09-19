@@ -9,13 +9,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.nagy.mohamed.ardelkonouz.R;
+import com.nagy.mohamed.ardelkonouz.component.Shift;
 import com.nagy.mohamed.ardelkonouz.helper.Constants;
 import com.nagy.mohamed.ardelkonouz.helper.Utility;
 import com.nagy.mohamed.ardelkonouz.offlineDatabase.DatabaseController;
@@ -308,23 +308,23 @@ public class ChildCourseConnectorActivityFragment extends Fragment
             if(!previousCourseSelected.contains(id))
                 newSelectionCourses.add(id);
         }
-        Log.e("selection Courses ", String.valueOf(newSelectionCourses.size()));
+
         Cursor coursesCost = getActivity().getContentResolver().query(
                 DatabaseController.UriDatabase.getCourseSelection(newSelectionCourses),
-                new String[]{DbContent.CourseTable.COURSE_COST_COLUMN},
+                DatabaseController.ProjectionDatabase.SECTION_DATE_COST_PROJECTION,
                 null,
                 null,
                 null
         );
-        Log.e("cost",String.valueOf(coursesCost.getCount()));
-        if(coursesCost != null){
-            while (coursesCost.moveToNext()){
-                totalCost += coursesCost.getDouble(0);
-            }
+
+        if (coursesCost != null) {
+
+            totalCost = getCost(coursesCost);
+
             coursesCost.close();
         }
 
-        Toast.makeText(getContext(), "Total Cost Is : " + String.valueOf(totalCost),Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Total Cost Is : " + String.valueOf(Math.floor(totalCost * 100) / 100),Toast.LENGTH_LONG).show();
     }
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -342,5 +342,59 @@ public class ChildCourseConnectorActivityFragment extends Fragment
                             Constants.SaveState.CONNECTOR_CHILD_COURSE_SELECTION
                     ));
         }
+    }
+
+    /**
+     * Get courses cost depends on two cases :
+     *                          1- course selection.
+     *                          2- If course is started before then the cost depend on
+     *                              the remain sessions.
+     * @param coursesCostCursor     Holder for course cost- section id- section days- section start/end date
+     *                              - section number
+     * @return                      the total cost which child have to pay
+     */
+
+    private double getCost(Cursor coursesCostCursor){
+        double totalCost = 0;
+        while(coursesCostCursor.moveToNext()){
+            final Double COURSE_COST = coursesCostCursor.getDouble(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_COURSE_COST);
+            final Long SECTION_ID = coursesCostCursor.getLong(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_SECTION_ID);
+            final String SECTION_DAYS = coursesCostCursor.getString(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_DAYS);
+            final Long SECTION_START_DATE = coursesCostCursor.getLong(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_START_DATE);
+            final Long SECTION_END_DATE = coursesCostCursor.getLong(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_END_DATE);
+            final Integer SECTIONS_NUMBER = coursesCostCursor.getInt(DatabaseController.ProjectionDatabase.SECTION_DATE_COST_SESSIONS_NUMBER);
+
+            if(!SECTION_START_DATE.equals(Constants.NULL) && SECTION_START_DATE < Utility.getCurrentDateAsMills()){
+                // Course started before.
+                ArrayList<Shift> sectionShifts = new ArrayList<>();
+
+                Cursor shiftCursor = getActivity().getContentResolver().query(
+                        DatabaseController.UriDatabase.getShiftWithSectionId(SECTION_ID),
+                        DatabaseController.ProjectionDatabase.SHIFT_TABLE_PROJECTION,
+                        null,
+                        null,
+                        null
+                );
+                if(shiftCursor != null){
+                    // Get remains sections.
+                    while(shiftCursor.moveToNext()) {
+                        final Long SHIFT_START_DATE = shiftCursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_START_DATE_COLUMN);
+                        final Long SHIFT_END_DATE = shiftCursor.getLong(DatabaseController.ProjectionDatabase.SHIFT_END_DATE_COLUMN);
+                        sectionShifts.add(new Shift(SHIFT_START_DATE, SHIFT_END_DATE, SECTION_ID));
+                    }
+
+                    shiftCursor.close();
+                }
+
+                double remainsSections = Utility.getRemainDays(sectionShifts, SECTION_DAYS, SECTION_START_DATE,  SECTION_END_DATE, SECTIONS_NUMBER);
+
+                totalCost += (COURSE_COST / SECTIONS_NUMBER) * remainsSections;
+
+            }else{
+                // Course is not started.
+                totalCost += COURSE_COST;
+            }
+        }
+        return totalCost;
     }
 }

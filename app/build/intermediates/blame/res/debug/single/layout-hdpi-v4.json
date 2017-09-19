@@ -4,10 +4,6 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child_input.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_main.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_main.xml"
-    },
-    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_child.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child.xml"
     },
@@ -20,20 +16,36 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\salary_recycle_view.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\activity_active_screen.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\activity_active_screen.xml"
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\child_list_recycle_view.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\child_list_recycle_view.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_child_profile.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child_profile.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_child_course_connector.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child_course_connector.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_child_course_connector.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child_course_connector.xml"
     },
     {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\activity_active_screen.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\activity_active_screen.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\salary_recycle_view.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\salary_recycle_view.xml"
+    },
+    {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_shift_input.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_shift_input.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_shift_list.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_shift_list.xml"
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_shift_input.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_shift_input.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\shift_list_recycle.xml",
@@ -44,11 +56,51 @@
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\child_list_recycle_view.xml"
     },
     {
-        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\course_pf_recycle_view.xml",
-        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\course_pf_recycle_view.xml"
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_main.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_main.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_child_input.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child_input.xml"
     },
     {
         "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_child_profile.xml",
         "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child_profile.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_child.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_child.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_main.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_main.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\course_pf_recycle_view.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\course_pf_recycle_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\activity_active_screen.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\activity_active_screen.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_shift_list.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_shift_list.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\shift_list_recycle.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\shift_list_recycle.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\fragment_shift_list.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\fragment_shift_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\course_pf_recycle_view.xml",
+        "source": "C:\\Users\\mohamednagy.mohamednagy-PC\\Desktop\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\course_pf_recycle_view.xml"
+    },
+    {
+        "merged": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\child_pf_courses_instructors_recycle.xml",
+        "source": "D:\\Projects android\\ArdElKonuz\\code 1.1v\\ArdElKonouz\\app\\src\\main\\res\\layout-hdpi\\child_pf_courses_instructors_recycle.xml"
     }
 ]
